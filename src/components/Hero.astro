@@ -6,12 +6,15 @@ const skills = ['Data Pipelines', 'Network Design', 'System Architecture', 'API 
 
 <AuroraBackground client:load>
   <div class="max-w-3xl mx-auto text-center px-6 pt-24">
-    <div class="relative w-32 h-32 mx-auto mb-8">
-      <div class="absolute inset-0 rounded-full bg-linear-to-br from-(--color-aurora-1) to-(--color-aurora-2) blur-md opacity-60"></div>
+    <div class="relative w-44 h-44 sm:w-48 sm:h-48 mx-auto mb-8 group">
+      <!-- هاله گرادیانی مربعی با گوشه‌های ملایم و بلر زیبا -->
+      <div class="absolute inset-0 rounded-2xl sm:rounded-3xl bg-linear-to-br from-(--color-aurora-1) to-(--color-aurora-2) blur-xl opacity-60 transition-opacity group-hover:opacity-80"></div>
+      
+      <!-- قاب مربعی عکس با لبه‌های نرم، بوردر شیشه‌ای و مقیاس بزرگ‌تر -->
       <img
         src={`${import.meta.env.BASE_URL}photos/ariya.jpg`}
         alt="Ariya Sarrafzadeh"
-        class="relative w-32 h-32 rounded-full object-cover border-2 border-white/20"
+        class="relative w-44 h-44 sm:w-48 sm:h-48 rounded-2xl sm:rounded-3xl object-cover border-2 border-white/20 shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
       />
     </div>
 
