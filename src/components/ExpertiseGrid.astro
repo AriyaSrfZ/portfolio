@@ -1,0 +1,40 @@
+---
+import SpotlightCard from './react/SpotlightCard';
+
+const cards = [
+  {
+    title: 'Data Engineering',
+    desc: 'Pipelines, warehousing, and the unglamorous plumbing that makes analytics trustworthy instead of just fast.',
+    span: 'sm:col-span-2',
+  },
+  {
+    title: 'Network Infrastructure',
+    desc: 'Design and troubleshooting for systems that actually stay up under real load.',
+    span: '',
+  },
+  {
+    title: 'System Architecture',
+    desc: 'Turning "it works on my machine" into something a team can operate for years.',
+    span: '',
+  },
+  {
+    title: 'Fintech & API Products',
+    desc: 'Auth, multi-tenancy, and the specific paranoia fintech systems need that most software doesn\'t.',
+    span: 'sm:col-span-2',
+  },
+];
+---
+
+<section id="expertise" class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+  <h2 class="text-3xl font-bold text-center mb-2">What I work on</h2>
+  <p class="text-center text-(--color-text-muted) mb-12">Four areas, one habit: build it so it still makes sense in a year.</p>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    {cards.map((card) => (
+      <SpotlightCard client:visible className={card.span}>
+        <h3 class="font-semibold text-lg mb-2">{card.title}</h3>
+        <p class="text-(--color-text-muted) text-sm leading-relaxed">{card.desc}</p>
+      </SpotlightCard>
+    ))}
+  </div>
+</section>

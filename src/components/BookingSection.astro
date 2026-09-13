@@ -1,0 +1,56 @@
+---
+// Replace CAL_LINK below with your real Cal.com username/event once you
+// create a free account at https://cal.com - format is "username/event-slug".
+const CAL_LINK = 'your-username/intro-call';
+---
+
+<section id="book" class="relative z-10 max-w-3xl mx-auto px-6 py-24">
+  <h2 class="text-3xl font-bold text-center mb-2">Book a call</h2>
+  <p class="text-center text-(--color-text-muted) mb-10">
+    Happy to talk data engineering, network design, system architecture, or
+    just trade war stories.
+  </p>
+
+  <div class="glass rounded-2xl p-2 sm:p-4">
+    <div id="cal-inline" style="min-height: 600px;"></div>
+  </div>
+</section>
+
+<script define:vars={{ CAL_LINK }}>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement('script')).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === 'string') {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ['initNamespace', namespace]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, 'https://app.cal.com/embed/embed.js', 'init');
+
+  Cal('init', { origin: 'https://cal.com' });
+  Cal('inline', {
+    elementOrSelector: '#cal-inline',
+    calLink: CAL_LINK,
+    layout: 'month_view',
+  });
+  Cal('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+</script>

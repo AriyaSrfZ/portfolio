@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categoryLabels: Record<string, string> = {
+  'data-engineering': 'Data Engineering',
+  'network-infrastructure': 'Network Infrastructure',
+  'system-architecture': 'System Architecture',
+  'fintech': 'Fintech',
+  'api-products': 'API Products',
+  'product-management': 'Product Management',
+};
+---
+
+<section id="work" class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+  <h2 class="text-3xl font-bold text-center mb-2">Case studies</h2>
+  <p class="text-center text-(--color-text-muted) mb-12">Public-safe write-ups of real work — no customer data, no internals.</p>
+
+  {posts.length === 0 ? (
+    <p class="text-center text-(--color-text-muted)">
+      No case studies published yet — add one to <code class="glass rounded px-1.5 py-0.5">src/content/blog/</code>.
+    </p>
+  ) : (
+    <div class="grid sm:grid-cols-2 gap-4">
+      {posts.map((post) => (
+        <a href={`${import.meta.env.BASE_URL}blog/${post.id}`} class="spotlight-card glass rounded-2xl p-6 block hover:bg-white/8 transition-colors">
+          <p class="text-xs text-(--color-aurora-2) mb-2">{categoryLabels[post.data.category] ?? post.data.category}</p>
+          <h3 class="font-semibold text-lg mb-2">{post.data.title}</h3>
+          <p class="text-sm text-(--color-text-muted) leading-relaxed mb-3">{post.data.description}</p>
+          <div class="flex flex-wrap gap-1.5 mb-2">
+            {post.data.technologies.map((tech: string) => (
+              <span class="text-xs px-2 py-0.5 rounded-full bg-white/5 text-(--color-text-muted)">{tech}</span>
+            ))}
+          </div>
+          {post.data.metric && <p class="text-sm font-medium text-emerald-400">{post.data.metric}</p>}
+        </a>
+      ))}
+    </div>
+  )}
+</section>

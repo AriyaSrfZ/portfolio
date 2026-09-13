@@ -1,0 +1,51 @@
+---
+// Real experience, from the CV. Edit here if anything needs updating.
+const entries = [
+  {
+    year: '2025 — Now',
+    title: 'Senior Technical Product Manager',
+    org: 'P.G IT Solutions / Persia Fava Gostaresh',
+    desc: 'Architecting a new API gateway business plan and 12-month roadmap. Leading a multi-petabyte "Smart DB" for SMS advertising on Elasticsearch. Designing the UAA (identity) microservice standardizing auth across all products — the same architecture built out in the identity-service project on this site.',
+  },
+  {
+    year: '2018 — 2025',
+    title: 'Senior Payments & Fraud Consultant + Tech-Ops Analyst',
+    org: 'Digipay Co. (Digikala Group)',
+    desc: 'Owned the Fraud & Judicial vertical solo for 7 years — 30,000+ case caseload, sole technical expert in 30+ judicial fraud cases. Cut official fraud reporting time to FATA from 3 working days to under 3 hours. Also advised across Digikala\'s 45-million-customer platform on fraud and payments, and built the company\'s first monitoring stack (Prometheus, Grafana) and logging standard (Grok).',
+  },
+  {
+    year: '2016 — 2018',
+    title: 'Founding Operations Analyst / Administrator',
+    org: 'Homapay Co.',
+    desc: 'One of the first 10 employees. Manually operated and debugged every fintech platform (C2C, billing, top-up) while masking real code deficiencies to keep things running. That operational stability helped secure a 3x funding increase and the eventual acquisition by Digikala.',
+  },
+  {
+    year: '2010 — 2016',
+    title: 'Mid Sales Area Manager',
+    org: 'Gd Retail Sell',
+    desc: 'Directed a 30+ agent sales division with full P&L responsibility. Sole translator and communications lead for international partners.',
+  },
+  {
+    year: '2005 — 2012',
+    title: 'CEO / Board Member',
+    org: 'Aida Faraz Gostaresh',
+    desc: 'Founded and led an IT solutions consultancy, growing a portfolio of 15+ SME clients. Architected and administered mixed Windows/Red Hat network infrastructure for all of them.',
+  },
+];
+---
+
+<section id="experience" class="relative z-10 max-w-3xl mx-auto px-6 py-24">
+  <h2 class="text-3xl font-bold text-center mb-12">Experience</h2>
+
+  <div class="relative pl-8 border-l border-white/10">
+    {entries.map((entry) => (
+      <div class="relative mb-10 last:mb-0">
+        <span class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-linear-to-br from-(--color-aurora-1) to-(--color-aurora-2) ring-4 ring-(--color-bg)"></span>
+        <p class="text-xs text-(--color-text-muted) mb-1">{entry.year}</p>
+        <h3 class="font-semibold text-lg">{entry.title}</h3>
+        <p class="text-sm text-(--color-aurora-2) mb-2">{entry.org}</p>
+        <p class="text-sm text-(--color-text-muted) leading-relaxed">{entry.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>

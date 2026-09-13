@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import ConceptCard from '../components/ConceptCard.astro';
+
+const concepts = (await getCollection('concepts')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const domains = [...new Set(concepts.map((c) => c.data.domain))];
+---
+
+<Layout title="Concepts — Ariya Sarrafzadeh" description="Concepts explained simply, one at a time.">
+  <section class="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-24">
+    <h1 class="text-4xl font-bold text-center mb-2">Concepts</h1>
+    <p class="text-center text-(--color-text-muted) mb-16">
+      15 years of things learned the hard way, explained the easy way.
+    </p>
+
+    {domains.map((domain) => (
+      <div class="mb-16">
+        <h2 class="text-sm font-bold tracking-wide text-(--color-aurora-2) mb-6 text-center uppercase">{domain}</h2>
+        <div class="grid gap-8">
+          {concepts.filter((c) => c.data.domain === domain).map((concept) => (
+            <ConceptCard
+              title={concept.data.title}
+              subtitle={concept.data.subtitle}
+              leftColumnTitle={concept.data.leftColumnTitle}
+              leftColumnItems={concept.data.leftColumnItems}
+              rightColumnTitle={concept.data.rightColumnTitle}
+              rightColumnItems={concept.data.rightColumnItems}
+              oneLiner={concept.data.oneLiner}
+            />
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</Layout>

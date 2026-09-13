@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+import FloatingNavbar from '../components/react/FloatingNavbar';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Ariya Sarrafzadeh — data engineering, network infrastructure, and system architecture.' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+</head>
+<body class="min-h-screen bg-(--color-bg) text-(--color-text) selection:bg-purple-500/30">
+  <div class="site-bg-wash"></div>
+  <FloatingNavbar client:load />
+
+  <main class="relative">
+    <slot />
+  </main>
+
+  <footer class="relative z-10 border-t border-white/5 mt-24 py-10 px-6 text-center text-sm text-(--color-text-muted)">
+    <p>© {new Date().getFullYear()} Ariya Sarrafzadeh. Built with Astro + React islands — animation where it earns its keep, static everywhere else.</p>
+  </footer>
+</body>
+</html>

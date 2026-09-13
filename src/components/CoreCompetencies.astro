@@ -1,0 +1,38 @@
+---
+const groups = [
+  {
+    title: 'Product Management',
+    items: ['Technical Product Management', 'New Product Development', 'Product Lifecycle', 'Technical Roadmapping', 'Agile/Scrum Leadership', 'PRDs & User Stories'],
+  },
+  {
+    title: 'Fintech & Payments',
+    items: ['Fraud Detection & Risk (AML)', 'Payments Architecture (C2C, Wallet)', 'Multi-Party Reconciliation', 'PSP & Bank Integration', 'FATA & Shaparak Compliance'],
+  },
+  {
+    title: 'Technical Operations',
+    items: ['Prometheus / Grafana / ELK', 'Log Engineering (Grok)', 'API Design & Microservices', 'Incident Management'],
+  },
+  {
+    title: 'Data & Engineering',
+    items: ['Elasticsearch', 'MongoDB / MySQL / PostgreSQL', 'Java / Python / Shell'],
+  },
+];
+---
+
+<section class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+  <h2 class="text-3xl font-bold text-center mb-2">Core Competencies</h2>
+  <p class="text-center text-(--color-text-muted) mb-12">What 15 years across product, payments, and infrastructure actually adds up to.</p>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    {groups.map((group) => (
+      <div class="glass rounded-2xl p-6">
+        <h3 class="font-semibold mb-3 text-(--color-aurora-2)">{group.title}</h3>
+        <div class="flex flex-wrap gap-2">
+          {group.items.map((item) => (
+            <span class="text-xs px-3 py-1.5 rounded-full bg-white/5 text-(--color-text-muted)">{item}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

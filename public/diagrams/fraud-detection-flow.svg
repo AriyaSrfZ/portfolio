@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340">
+  <defs>
+    <marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#8b90a8"/>
+    </marker>
+    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="340" fill="#0b0e17"/>
+  <text x="450" y="35" text-anchor="middle" fill="#e8eaf2" font-family="sans-serif" font-size="18" font-weight="bold">Fraud Detection &amp; Forensic Tracing — End to End in Under 10 Minutes</text>
+
+  <g font-family="sans-serif" font-size="13" fill="#e8eaf2">
+    <rect x="30" y="140" width="150" height="70" rx="10" fill="url(#grad1)" opacity="0.85"/>
+    <text x="105" y="170" text-anchor="middle" font-weight="bold">Anomalous</text>
+    <text x="105" y="188" text-anchor="middle">purchase pattern</text>
+    <text x="105" y="204" text-anchor="middle" font-size="11" fill="#c7cadb">detected</text>
+
+    <line x1="180" y1="175" x2="230" y2="175" stroke="#8b90a8" stroke-width="2" marker-end="url(#arrow1)"/>
+
+    <rect x="235" y="140" width="150" height="70" rx="10" fill="#151a2b" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="310" y="170" text-anchor="middle" font-weight="bold">Session frozen,</text>
+    <text x="310" y="188" text-anchor="middle">wallet + device</text>
+    <text x="310" y="204" text-anchor="middle" font-size="11" fill="#c7cadb">tokens unmounted</text>
+
+    <line x1="385" y1="175" x2="435" y2="175" stroke="#8b90a8" stroke-width="2" marker-end="url(#arrow1)"/>
+
+    <rect x="440" y="140" width="170" height="70" rx="10" fill="#151a2b" stroke="#06b6d4" stroke-width="1.5"/>
+    <text x="525" y="163" text-anchor="middle" font-weight="bold">Money trail traced</text>
+    <text x="525" y="181" text-anchor="middle" font-size="11" fill="#c7cadb">across 40+ services,</text>
+    <text x="525" y="196" text-anchor="middle" font-size="11" fill="#c7cadb">recursive wallet hops</text>
+
+    <line x1="610" y1="175" x2="660" y2="175" stroke="#8b90a8" stroke-width="2" marker-end="url(#arrow1)"/>
+
+    <rect x="665" y="140" width="200" height="70" rx="10" fill="url(#grad1)" opacity="0.85"/>
+    <text x="765" y="163" text-anchor="middle" font-weight="bold">Court-ready Excel</text>
+    <text x="765" y="181" text-anchor="middle" font-size="11">hyperlinked, visual</text>
+    <text x="765" y="196" text-anchor="middle" font-size="11">money-path chart</text>
+  </g>
+
+  <text x="450" y="270" text-anchor="middle" fill="#8b90a8" font-family="sans-serif" font-size="12">~80% accuracy on final spend destination · one operator · no cross-team handoff</text>
+  <text x="450" y="295" text-anchor="middle" fill="#22c3a6" font-family="sans-serif" font-size="13" font-weight="bold">Funds recoverable before downstream liquidation</text>
+</svg>
