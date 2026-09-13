@@ -5,9 +5,9 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
+// https://astro.build/config
 export default defineConfig({
-  site: 'https://AriyaSrfZ.github.io',
-  base: '/portfolio/',
+  site: 'https://ariya-sarrafzadeh.ir',
   integrations: [mdx(), sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
