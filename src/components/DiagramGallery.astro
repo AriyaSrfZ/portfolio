@@ -1,24 +1,29 @@
 ---
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+interface Diagram {
+  src: string;
+  title: string;
+  category: string;
+  desc: string;
+}
 
-const diagrams = [
+const diagrams: Diagram[] = [
   {
-    file: "placeholder-1.svg",
+    src: "/diagrams/fraud-detection-flow.svg",
     title: "Fraud Detection & Forensic Tracing",
-    category: "Data Engineering",
-    desc: "High-throughput heuristic scoring engine, real-time feature extraction, and automated forensic logging."
+    category: "Security & Data Engineering",
+    desc: "Real-time heuristic scoring, distributed feature extraction, and immutable forensic audit trails for high-volume transactions."
   },
   {
-    file: "placeholder-2.svg",
-    title: "Contact Enrichment Pipeline",
-    category: "Network Infrastructure",
-    desc: "Multi-source stream enrichment architecture with low-latency caching and distributed sync."
-  },
-  {
-    file: "placeholder-3.svg",
-    title: "Unified Identity & Session Authority",
+    src: "/diagrams/event-driven-payments.svg",
+    title: "Event-Driven Payment Settlement",
     category: "System Architecture",
-    desc: "High-availability authentication broker with distributed session validation and RBAC enforcement."
+    desc: "Asynchronous settlement orchestration with distributed state machines, idempotent webhooks, and outbox pattern."
+  },
+  {
+    src: "/diagrams/multi-bank-reconciliation.svg",
+    title: "Multi-Bank Core Reconciliation",
+    category: "Financial Infrastructure",
+    desc: "Automated ledger balancing, dual-entry accounting guarantees, and anomaly resolution across heterogeneous bank protocols."
   }
 ];
 ---
@@ -26,13 +31,13 @@ const diagrams = [
 <section id="diagrams" class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-24">
   <div class="max-w-3xl mb-14">
     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10 text-xs text-purple-300 mb-4 font-mono tracking-wide">
-      <span>ARCHITECTURE & SYSTEMS</span>
+      <span>SYSTEM BLUEPRINTS</span>
     </div>
     <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
-      System Diagrams
+      Architecture & Flows
     </h2>
     <p class="text-base md:text-lg text-(--color-text-muted) leading-relaxed">
-      Visual blueprints of production distributed pipelines, data backbones, and infrastructure topologies built for high concurrency.
+      Production-grade architectural schematics, distributed state machines, and payment reconciliation topology.
     </p>
   </div>
 
@@ -40,14 +45,13 @@ const diagrams = [
     {diagrams.map((d, i) => (
       <div class="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
         <div>
-          <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-neutral-950/80 border border-white/5 flex items-center justify-center p-3 mb-5 group-hover:border-purple-500/20 transition-colors">
+          <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-neutral-950 border border-white/10 flex items-center justify-center p-3 mb-5 group-hover:border-purple-500/30 transition-colors">
             <img 
-              src={`${base}/diagrams/${d.file}`} 
+              src={d.src} 
               alt={d.title} 
               class="w-full h-full object-contain filter drop-shadow-md transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
+              loading="eager"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </div>
 
           <div class="flex items-center justify-between gap-2 mb-2">
@@ -84,7 +88,7 @@ const diagrams = [
     <dialog id={`diagram-dialog-${i}`} class="diagram-modal">
       <div class="diagram-modal-backdrop" data-diagram-close={i}></div>
       <div class="diagram-modal-box">
-        <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-neutral-900/60">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-neutral-900/80">
           <div class="flex items-center gap-3">
             <span class="text-xs font-mono px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 font-semibold">
               {d.category}
@@ -105,16 +109,17 @@ const diagrams = [
           </button>
         </div>
 
-        <div class="p-4 md:p-8 flex items-center justify-center bg-black/80 overflow-auto min-h-[50vh]">
+        <div class="p-6 md:p-10 flex items-center justify-center bg-neutral-950/95 overflow-auto min-h-[50vh]">
           <img 
-            src={`${base}/diagrams/${d.file}`} 
+            src={d.src} 
             alt={d.title} 
-            class="max-w-full max-h-[72vh] w-auto h-auto object-contain rounded-lg shadow-2xl" 
+            class="w-full max-w-5xl max-h-[75vh] object-contain rounded-lg shadow-2xl" 
           />
         </div>
 
-        <div class="px-6 py-3 border-t border-white/5 bg-neutral-900/40 text-xs text-neutral-400">
-          Tip: Press <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">ESC</kbd> or click outside to dismiss.
+        <div class="px-6 py-3 border-t border-white/5 bg-neutral-900/50 text-xs text-neutral-400 flex items-center justify-between">
+          <span>{d.desc}</span>
+          <span>Press <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">ESC</kbd> to close</span>
         </div>
       </div>
     </dialog>
@@ -155,8 +160,8 @@ const diagrams = [
   .diagram-modal-box {
     position: relative;
     z-index: 2;
-    width: 92vw;
-    max-width: 1100px;
+    width: 94vw;
+    max-width: 1200px;
     max-height: 90vh;
     border-radius: 1.25rem;
     background: #0d0d11;
