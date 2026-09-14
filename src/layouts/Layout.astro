@@ -7,7 +7,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Ariya Sarrafzadeh — data engineering, network infrastructure, and system architecture.' } = Astro.props;
+const { title, description = 'Ariya Sarrafzadeh — Enterprise Systems Architecture' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,16 +20,15 @@ const { title, description = 'Ariya Sarrafzadeh — data engineering, network in
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
 </head>
-<body class="min-h-screen bg-(--color-bg) text-(--color-text) selection:bg-purple-500/30">
-  <div class="site-bg-wash"></div>
+<body class="min-h-screen bg-(--color-bg) text-(--color-text) selection:bg-emerald-500/30 selection:text-emerald-300">
   <FloatingNavbar client:load />
 
   <main class="relative">
     <slot />
   </main>
 
-  <footer class="relative z-10 border-t border-white/5 mt-24 py-10 px-6 text-center text-sm text-(--color-text-muted)">
-    <p>© {new Date().getFullYear()} Ariya Sarrafzadeh. Built with Astro + React islands — animation where it earns its keep, static everywhere else.</p>
+  <footer class="relative z-10 border-t border-(--color-glass-border) mt-24 py-10 px-6 text-center text-sm text-(--color-text-muted)">
+    <p>© {new Date().getFullYear()} Ariya Sarrafzadeh.</p>
   </footer>
 </body>
 </html>

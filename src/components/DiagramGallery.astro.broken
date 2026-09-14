@@ -1,0 +1,80 @@
+---
+// Drop your diagram images into /public/diagrams/ then add an entry here
+// for each one. This is the placeholder set - replace with your real diagrams.
+const diagrams = [
+  { file: '/diagrams/placeholder-1.svg', title: 'Data pipeline architecture', category: 'Data Engineering' },
+  { file: '/diagrams/placeholder-2.svg', title: 'Network topology', category: 'Network Infrastructure' },
+  { file: '/diagrams/placeholder-3.svg', title: 'Multi-tenant system design', category: 'System Architecture' },
+];
+---
+
+<section id="diagrams" class="relative z-10 max-w-5xl mx-auto px-6 py-24">
+  <h2 class="text-3xl font-bold text-center mb-2">Diagrams</h2>
+  <p class="text-center text-(--color-text-muted) mb-12">
+    Years of whiteboard sessions, distilled. Click any diagram to view it full size.
+  </p>
+
+  <div class="grid sm:grid-cols-3 gap-4">
+    {diagrams.map((d, i) => (
+      <button
+        type="button"
+        class="spotlight-card glass rounded-2xl p-4 text-left group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+        data-diagram-trigger={i}
+      >
+        <img src={d.file} alt={d.title} class="rounded-lg w-full h-40 object-cover mb-3 bg-black/20" loading="lazy" />
+        <p class="text-xs text-(--color-aurora-2) mb-1">{d.category}</p>
+        <p class="text-sm font-medium">{d.title}</p>
+      </button>
+    ))}
+  </div>
+
+  {diagrams.map((d, i) => (
+    <dialog
+      id={`diagram-dialog-${i}`}
+      class="fixed inset-0 m-auto glass rounded-2xl p-6 max-w-4xl w-[90vw] max-h-[90vh] overflow-auto backdrop:bg-black/80 backdrop:backdrop-blur-md shadow-2xl focus:outline-none"
+    >
+      <div class="flex justify-between items-center mb-4">
+        <p class="font-semibold text-lg text-(--color-text)">{d.title}</p>
+        <button
+          type="button"
+          class="w-8 h-8 flex items-center justify-center rounded-lg text-(--color-text-muted) hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+          data-diagram-close={i}
+        >
+          ✕
+        </button>
+      </div>
+      <div class="flex items-center justify-center bg-black/30 rounded-xl p-2">
+        <img src={d.file} alt={d.title} class="rounded-lg w-full max-h-[70vh] object-contain" />
+      </div>
+    </dialog>
+  ))}
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-diagram-trigger]').forEach((btn) => {
+    const i = btn.dataset.diagramTrigger;
+    const dialog = document.getElementById(`diagram-dialog-${i}`) as HTMLDialogElement | null;
+    btn.addEventListener('click', () => dialog?.showModal());
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-diagram-close]').forEach((btn) => {
+    const i = btn.dataset.diagramClose;
+    const dialog = document.getElementById(`diagram-dialog-${i}`) as HTMLDialogElement | null;
+    btn.addEventListener('click', () => dialog?.close());
+  });
+
+  // بستن دیالوگ در صورت کلیک روی Backdrop بیرون از کادر مودال
+  document.querySelectorAll<HTMLDialogElement>('dialog[id^="diagram-dialog-"]').forEach((dialog) => {
+    dialog.addEventListener('click', (e) => {
+      const rect = dialog.getBoundingClientRect();
+      const isInDialog =
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width;
+      if (!isInDialog) {
+        dialog.close();
+      }
+    });
+  });
+</script>

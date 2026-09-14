@@ -1,44 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="100%" height="100%">
   <defs>
-    <marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#8b90a8"/>
-    </marker>
-    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#06b6d4"/>
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#15171C"/>
+      <stop offset="100%" stop-color="#0D0E11"/>
     </linearGradient>
+    <marker id="arrowJade1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669" />
+    </marker>
+    <style>
+      @keyframes flowDash { to { stroke-dashoffset: -32; } }
+      .anim-flow { stroke-dasharray: 10, 6; animation: flowDash 1.4s linear infinite; }
+      text { font-family: system-ui, -apple-system, sans-serif; }
+    </style>
   </defs>
-  <rect width="900" height="340" fill="#0b0e17"/>
-  <text x="450" y="35" text-anchor="middle" fill="#e8eaf2" font-family="sans-serif" font-size="18" font-weight="bold">Fraud Detection &amp; Forensic Tracing — End to End in Under 10 Minutes</text>
 
-  <g font-family="sans-serif" font-size="13" fill="#e8eaf2">
-    <rect x="30" y="140" width="150" height="70" rx="10" fill="url(#grad1)" opacity="0.85"/>
-    <text x="105" y="170" text-anchor="middle" font-weight="bold">Anomalous</text>
-    <text x="105" y="188" text-anchor="middle">purchase pattern</text>
-    <text x="105" y="204" text-anchor="middle" font-size="11" fill="#c7cadb">detected</text>
+  <path d="M 230 260 L 315 260" stroke="#059669" stroke-width="3.5" fill="none" class="anim-flow" marker-end="url(#arrowJade1)"/>
+  <path d="M 520 260 L 605 260" stroke="#059669" stroke-width="3.5" fill="none" class="anim-flow" marker-end="url(#arrowJade1)"/>
+  <path d="M 810 260 L 895 260" stroke="#059669" stroke-width="3.5" fill="none" class="anim-flow" marker-end="url(#arrowJade1)"/>
 
-    <line x1="180" y1="175" x2="230" y2="175" stroke="#8b90a8" stroke-width="2" marker-end="url(#arrow1)"/>
-
-    <rect x="235" y="140" width="150" height="70" rx="10" fill="#151a2b" stroke="#7c3aed" stroke-width="1.5"/>
-    <text x="310" y="170" text-anchor="middle" font-weight="bold">Session frozen,</text>
-    <text x="310" y="188" text-anchor="middle">wallet + device</text>
-    <text x="310" y="204" text-anchor="middle" font-size="11" fill="#c7cadb">tokens unmounted</text>
-
-    <line x1="385" y1="175" x2="435" y2="175" stroke="#8b90a8" stroke-width="2" marker-end="url(#arrow1)"/>
-
-    <rect x="440" y="140" width="170" height="70" rx="10" fill="#151a2b" stroke="#06b6d4" stroke-width="1.5"/>
-    <text x="525" y="163" text-anchor="middle" font-weight="bold">Money trail traced</text>
-    <text x="525" y="181" text-anchor="middle" font-size="11" fill="#c7cadb">across 40+ services,</text>
-    <text x="525" y="196" text-anchor="middle" font-size="11" fill="#c7cadb">recursive wallet hops</text>
-
-    <line x1="610" y1="175" x2="660" y2="175" stroke="#8b90a8" stroke-width="2" marker-end="url(#arrow1)"/>
-
-    <rect x="665" y="140" width="200" height="70" rx="10" fill="url(#grad1)" opacity="0.85"/>
-    <text x="765" y="163" text-anchor="middle" font-weight="bold">Court-ready Excel</text>
-    <text x="765" y="181" text-anchor="middle" font-size="11">hyperlinked, visual</text>
-    <text x="765" y="196" text-anchor="middle" font-size="11">money-path chart</text>
+  <g transform="translate(40, 150)">
+    <rect width="190" height="220" rx="4" fill="url(#cardGrad1)" stroke="#23262E" stroke-width="1.5"/>
+    <rect x="20" y="20" width="38" height="38" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="1"/>
+    <text x="39" y="44" fill="#10B981" font-size="12" font-weight="bold" text-anchor="middle">API</text>
+    <text x="20" y="90" fill="#F0F2F5" font-size="15" font-weight="bold">Edge Gateway</text>
+    <text x="20" y="120" fill="#7E8494" font-size="13">Token Validation</text>
+    <text x="20" y="145" fill="#7E8494" font-size="13">Rate Limiting</text>
+    <text x="20" y="170" fill="#7E8494" font-size="13">Payload Sanitization</text>
+    <text x="20" y="195" fill="#10B981" font-size="11" font-weight="bold">TLS Termination</text>
   </g>
 
-  <text x="450" y="270" text-anchor="middle" fill="#8b90a8" font-family="sans-serif" font-size="12">~80% accuracy on final spend destination · one operator · no cross-team handoff</text>
-  <text x="450" y="295" text-anchor="middle" fill="#22c3a6" font-family="sans-serif" font-size="13" font-weight="bold">Funds recoverable before downstream liquidation</text>
+  <g transform="translate(320, 150)">
+    <rect width="200" height="220" rx="4" fill="url(#cardGrad1)" stroke="#23262E" stroke-width="1.5"/>
+    <rect x="20" y="20" width="38" height="38" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="1"/>
+    <text x="39" y="44" fill="#10B981" font-size="12" font-weight="bold" text-anchor="middle">EVT</text>
+    <text x="20" y="90" fill="#F0F2F5" font-size="15" font-weight="bold">Kafka Streaming</text>
+    <text x="20" y="120" fill="#7E8494" font-size="13">Strict Partitioning</text>
+    <text x="20" y="145" fill="#7E8494" font-size="13">Outbox Pattern</text>
+    <text x="20" y="170" fill="#7E8494" font-size="13">Schema Validation</text>
+    <text x="20" y="195" fill="#10B981" font-size="11" font-weight="bold">Sequential Log</text>
+  </g>
+
+  <g transform="translate(610, 140)">
+    <rect width="200" height="240" rx="4" fill="url(#cardGrad1)" stroke="#059669" stroke-width="2"/>
+    <rect x="20" y="20" width="38" height="38" rx="3" fill="#059669" fill-opacity="0.25" stroke="#10B981" stroke-width="1"/>
+    <text x="39" y="44" fill="#34D399" font-size="12" font-weight="bold" text-anchor="middle">ML</text>
+    <text x="20" y="90" fill="#F0F2F5" font-size="15" font-weight="bold">Fraud Decision Core</text>
+    <text x="20" y="120" fill="#7E8494" font-size="13">Velocity Windows</text>
+    <text x="20" y="145" fill="#7E8494" font-size="13">Device Fingerprint</text>
+    <text x="20" y="170" fill="#7E8494" font-size="13">Graph Anomaly Score</text>
+    <rect x="20" y="192" width="125" height="26" rx="3" fill="#059669" fill-opacity="0.25"/>
+    <text x="82" y="209" fill="#F0F2F5" font-size="11" font-weight="bold" text-anchor="middle">&lt; 18ms Latency</text>
+  </g>
+
+  <g transform="translate(900, 150)">
+    <rect width="200" height="220" rx="4" fill="url(#cardGrad1)" stroke="#23262E" stroke-width="1.5"/>
+    <rect x="20" y="20" width="38" height="38" rx="3" fill="#374151" fill-opacity="0.3" stroke="#4B5563" stroke-width="1"/>
+    <text x="39" y="44" fill="#9CA3AF" font-size="12" font-weight="bold" text-anchor="middle">SEC</text>
+    <text x="20" y="90" fill="#F0F2F5" font-size="15" font-weight="bold">Immutable Ledger</text>
+    <text x="20" y="120" fill="#7E8494" font-size="13">Cryptographic Proof</text>
+    <text x="20" y="145" fill="#7E8494" font-size="13">Forensic Tracing</text>
+    <text x="20" y="170" fill="#7E8494" font-size="13">Audit Governance</text>
+    <text x="20" y="195" fill="#7E8494" font-size="11" font-weight="bold">WORM Archival</text>
+  </g>
 </svg>

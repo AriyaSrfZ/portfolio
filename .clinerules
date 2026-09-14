@@ -1,0 +1,5 @@
+# Project Overview
+- Framework: Astro with React islands
+- Styling: Tailwind CSS
+- Verification: Always run `npm run build` after edits to check for compilation errors.
+- Guardrail: Do not alter component structures without explicit user confirmation.

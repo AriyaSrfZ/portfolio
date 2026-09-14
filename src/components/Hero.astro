@@ -1,55 +1,76 @@
 ---
-import AuroraBackground from './react/AuroraBackground';
-
-const skills = ['Data Pipelines', 'Network Design', 'System Architecture', 'API Platforms', 'Fintech Infra'];
+const specs = [
+  { label: "FOCUS", val: "High-Throughput Systems" },
+  { label: "EXPERIENCE", val: "15+ Years" },
+  { label: "STACK", val: "Distributed / Low-Latency" },
+  { label: "ROLE", val: "VP of Product / Tech Director" },
+];
 ---
 
-<AuroraBackground client:load>
-  <div class="max-w-3xl mx-auto text-center px-6 pt-24">
-    <div class="relative w-44 h-44 sm:w-48 sm:h-48 mx-auto mb-8 group">
-      <!-- هاله گرادیانی مربعی با گوشه‌های ملایم و بلر زیبا -->
-      <div class="absolute inset-0 rounded-2xl sm:rounded-3xl bg-linear-to-br from-(--color-aurora-1) to-(--color-aurora-2) blur-xl opacity-60 transition-opacity group-hover:opacity-80"></div>
+<header class="relative pt-28 pb-16 border-b border-slate-800/80 bg-slate-950 overflow-hidden">
+  <!-- Subtle Background Engineering Grid -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-64 bg-gradient-to-b from-cyan-500/10 to-transparent blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-14">
       
-      <!-- قاب مربعی عکس با لبه‌های نرم، بوردر شیشه‌ای و مقیاس بزرگ‌تر -->
-      <img
-        src={`${import.meta.env.BASE_URL}photos/ariya.jpg`}
-        alt="Ariya Sarrafzadeh"
-        class="relative w-44 h-44 sm:w-48 sm:h-48 rounded-2xl sm:rounded-3xl object-cover border-2 border-white/20 shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
-      />
-    </div>
+      <!-- Profile Frame (Engineering Spec Style) -->
+      <div class="relative shrink-0">
+        <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl p-1 bg-gradient-to-b from-cyan-500/30 via-slate-800 to-transparent border border-slate-700/60 shadow-2xl shadow-cyan-950/40">
+          <img
+            src="/photos/ariya.jpg"
+            alt="Ariya Sarrafzadeh"
+            class="w-full h-full object-cover rounded-xl bg-slate-900"
+          />
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-slate-900 border border-cyan-500/30 px-3 py-0.5 rounded-full flex items-center gap-1.5 shadow-md">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[11px] font-mono text-cyan-300 font-medium tracking-tight">ONLINE / OPEN</span>
+          </div>
+        </div>
+      </div>
 
-    <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs text-(--color-text-muted) mb-8 float">
-      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-      Open to consulting &amp; mentoring
-    </div>
+      <!-- Info & Spec Matrix -->
+      <div class="flex-1 text-center lg:text-left">
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-3">
+          <span class="font-mono text-xs text-cyan-400 bg-cyan-950/60 border border-cyan-800/60 px-2.5 py-0.5 rounded">SYS.ARCH // PORTFOLIO</span>
+          <span class="font-mono text-xs text-slate-400 bg-slate-900 border border-slate-800 px-2.5 py-0.5 rounded">SPEC: 2026.1</span>
+        </div>
 
-    <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight">
-      Ariya Sarrafzadeh
-    </h1>
-    <p class="mt-4 text-xl sm:text-2xl text-gradient font-semibold">
-      Data Engineering · Network Infrastructure · System Architecture
-    </p>
-    <p class="mt-6 text-(--color-text-muted) text-lg max-w-xl mx-auto">
-      15+ years architecting high-availability fintech platforms in payments,
-      fraud, and national-level compliance — now sharing it forward through
-      diagrams, case studies, and direct conversations.
-    </p>
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white font-mono">
+          Ariya Sarrafzadeh
+        </h1>
+        
+        <p class="mt-2 text-xl font-medium text-slate-300">
+          Corporate Product Director &amp; Distributed Systems Architect
+        </p>
 
-    <div class="mt-10 flex flex-wrap justify-center gap-3">
-      <a href="#book" class="px-6 py-3 rounded-xl bg-linear-to-r from-(--color-aurora-1) to-(--color-aurora-2) font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-shadow">
-        Book a call
-      </a>
-      <a href="#work" class="px-6 py-3 rounded-xl glass font-medium hover:bg-white/10 transition-colors">
-        View case studies
-      </a>
-    </div>
+        <p class="mt-4 text-slate-400 text-sm sm:text-base max-w-2xl leading-relaxed font-light">
+          15+ years engineering high-availability FinTech platforms, national-scale SMS routing gateways,
+          and fraud forensic topologies. Bridging deterministic infrastructure with business execution.
+        </p>
 
-    <div class="mt-14 flex flex-wrap justify-center gap-2">
-      {skills.map((skill, i) => (
-        <span class={`glass rounded-full px-3 py-1 text-xs text-(--color-text-muted) float ${i % 3 === 1 ? 'float-delay-1' : i % 3 === 2 ? 'float-delay-2' : ''}`}>
-          {skill}
-        </span>
-      ))}
+        <!-- Spec Data Chips -->
+        <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
+          {specs.map(item => (
+            <div class="bg-slate-900/80 border border-slate-800 p-2.5 rounded-lg text-left">
+              <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider">{item.label}</div>
+              <div class="text-xs font-mono font-medium text-slate-200 truncate">{item.val}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+          <a href="#book" class="px-5 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-medium transition shadow-lg shadow-cyan-950/50">
+            Book Architecture Call
+          </a>
+          <a href="#blueprints" class="px-5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-sm font-medium transition">
+            Inspect Architecture Blueprints
+          </a>
+        </div>
+
+      </div>
     </div>
   </div>
-</AuroraBackground>
+</header>
