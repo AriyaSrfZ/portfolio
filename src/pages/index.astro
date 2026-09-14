@@ -2,117 +2,171 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import BookingSection from '../components/BookingSection.astro';
-
-const patterns = [
-  {
-    id: "payment-settlement",
-    kicker: "01 // SYSTEM ARCHITECTURE",
-    title: "Event-Driven Payment Settlement",
-    desc: "Low-latency double-entry ledger handling zero-loss reconciliation under network partitioning with idempotent state machines.",
-    diagram: "/diagrams/placeholder-2.svg",
-    metrics: ["Sub-50ms p99 SLA", "Deterministic Reversals", "Zero-Loss Audit Trail"],
-  },
-  {
-    id: "fraud-forensics",
-    kicker: "02 // CONTROL LOOP & SECURITY",
-    title: "Real-Time Fraud Detection & Forensic Tracing",
-    desc: "Sliding-window transaction scoring engine coupled with asynchronous forensic trace graphs for real-time anomaly isolation.",
-    diagram: "/diagrams/placeholder-1.svg",
-    metrics: ["Async Graph Analysis", "Sub-10ms Rule Engine", "Dynamic Thresholds"],
-  },
-  {
-    id: "sms-gateway-routing",
-    kicker: "03 // TELECOM & DISTRIBUTED INFRA",
-    title: "High-Throughput Multi-Carrier SMS Gateway",
-    desc: "National scale multi-protocol (SMPP/HTTP) dispatch engine with dynamic operator failover and adaptive rate throttling.",
-    diagram: "/diagrams/placeholder-3.svg",
-    metrics: ["50K+ msg/sec Peak", "Dynamic LBS Routing", "Circuit-Breaker Recovery"],
-  }
-];
 ---
 
 <Layout title="Ariya Sarrafzadeh | Systems Architecture & Product Specs">
-  <!-- Progress bar tracker -->
+  <!-- Reading Progress Bar -->
   <div id="progress-bar" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-cyan-500 to-emerald-400 z-50 transition-all duration-75"></div>
 
   <Hero />
 
-  <!-- 12-Column Technical Layout matching Agentic AI Spec -->
-  <main class="max-w-7xl mx-auto px-6 py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+  <!-- 12-Column Engineering Layout -->
+  <main class="max-w-7xl mx-auto px-6 py-12" id="blueprints">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- Sticky Sidebar (TOC) - 3 Columns -->
-      <aside class="hidden lg:block lg:col-span-3 sticky top-24 space-y-6">
-        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+      <!-- Sticky Sidebar Index (TOC) -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-24 space-y-4">
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 shadow-xl">
           <div class="text-[11px] font-mono font-bold text-cyan-400 tracking-wider uppercase mb-3">
             System Topology Index
           </div>
-          <nav class="space-y-1 text-xs font-mono">
-            <a href="#overview" class="block px-2.5 py-1.5 rounded text-slate-400 hover:text-white hover:bg-slate-800/60 transition">
-              00 // ARCHITECTURE MATRIX
+          <nav class="space-y-1.5 text-xs font-mono">
+            <a href="#payment-settlement" class="block px-2.5 py-1.5 rounded text-slate-300 hover:text-white hover:bg-slate-800 transition">
+              01 // PAYMENT SETTLEMENT
             </a>
-            {patterns.map((p, idx) => (
-              <a href={`#${p.id}`} class="block px-2.5 py-1.5 rounded text-slate-400 hover:text-white hover:bg-slate-800/60 transition">
-                0{idx + 1} // {p.title.toUpperCase()}
-              </a>
-            ))}
-            <a href="#book" class="block px-2.5 py-1.5 rounded text-slate-400 hover:text-white hover:bg-slate-800/60 transition">
-              04 // DIRECT ENGAGEMENT
+            <a href="#fraud-forensics" class="block px-2.5 py-1.5 rounded text-slate-300 hover:text-white hover:bg-slate-800 transition">
+              02 // FRAUD DETECTION & FORENSICS
+            </a>
+            <a href="#sms-gateway" class="block px-2.5 py-1.5 rounded text-slate-300 hover:text-white hover:bg-slate-800 transition">
+              03 // HIGH-THROUGHPUT SMS ROUTER
+            </a>
+            <a href="/whitepaper" class="block px-2.5 py-1.5 rounded text-cyan-400 hover:bg-cyan-950/60 border border-cyan-900/40 transition font-bold">
+              04 // FULL AGENTIC SPEC (DOC) ↗
+            </a>
+            <a href="#book" class="block px-2.5 py-1.5 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition">
+              05 // DIRECT ENGAGEMENT
             </a>
           </nav>
         </div>
 
-        <div class="bg-cyan-950/30 border border-cyan-800/40 rounded-xl p-4 text-xs font-mono text-cyan-300">
-          <span class="block font-bold text-cyan-400 mb-1">🔍 Diagram Inspection</span>
-          All architectural blueprints are deterministic SVGs rendered inline for low-overhead verification.
+        <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs font-mono text-slate-400">
+          <div class="text-cyan-400 font-bold mb-1">Architecture Standard</div>
+          Deterministic topologies, idempotent processing queues, and real-time state synchronization.
         </div>
       </aside>
 
-      <!-- Main Specification Column - 9 Columns -->
-      <div class="lg:col-span-9 space-y-16" id="blueprints">
+      <!-- Main Specification Column (9 Cols) -->
+      <div class="lg:col-span-9 space-y-12">
         
-        {patterns.map((item) => (
-          <section id={item.id} class="bg-slate-900/40 border border-slate-800/90 rounded-2xl p-6 sm:p-8 hover:border-slate-700/80 transition-all">
-            
-            <div class="flex items-center gap-3 mb-2">
-              <span class="font-mono text-xs text-cyan-400 tracking-wider font-semibold">{item.kicker}</span>
-              <div class="h-px flex-1 bg-slate-800"></div>
-            </div>
+        <!-- Topology 01: Payment Settlement -->
+        <section id="payment-settlement" class="bg-slate-900/50 border border-slate-800/90 rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="font-mono text-xs text-cyan-400 tracking-wider font-semibold">01 // CORE LEDGER ARCHITECTURE</span>
+            <div class="h-px flex-1 bg-slate-800"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-white font-mono">Event-Driven Payment Settlement Engine</h2>
+          <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+            High-reliability double-entry financial ledger designed for deterministic reconciliation under network partitioning, using append-only transaction logs and zero-loss idempotent queues.
+          </p>
+          <div class="flex flex-wrap gap-2 my-4">
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-400">✓ Sub-50ms p99 SLA</span>
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-400">✓ Idempotent Reversals</span>
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-slate-400">✓ Strict Audit Consensus</span>
+          </div>
+          <!-- Guaranteed Native Vector Diagram (No 404 or image fail) -->
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6 overflow-x-auto">
+            <svg class="w-full min-w-[600px] h-48" viewBox="0 0 700 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="130" height="60" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
+              <text x="85" y="77" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">INGESTION</text>
+              <text x="85" y="95" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">TLS 1.3 / mTLS</text>
 
-            <h2 class="text-2xl sm:text-3xl font-bold text-white font-mono mt-1">
-              {item.title}
-            </h2>
+              <path d="M150 80 H210" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 4"/>
+              <polygon points="215,80 207,75 207,85" fill="#38bdf8"/>
 
-            <p class="text-slate-400 text-sm sm:text-base mt-3 leading-relaxed">
-              {item.desc}
-            </p>
+              <rect x="220" y="40" width="170" height="80" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+              <text x="305" y="70" fill="#34d399" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">EVENT BUS &amp; QUEUE</text>
+              <text x="305" y="88" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Idempotent Deduplication</text>
+              <text x="305" y="104" fill="#64748b" font-family="monospace" font-size="9" text-anchor="middle">Kafka / RabbitMQ High-Prio</text>
 
-            <!-- Metrics Matrix Strip -->
-            <div class="flex flex-wrap gap-2 mt-4 mb-6">
-              {item.metrics.map(m => (
-                <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-400">
-                  ✓ {m}
-                </span>
-              ))}
-            </div>
+              <path d="M390 80 H450" stroke="#10b981" stroke-width="2" stroke-dasharray="4 4"/>
+              <polygon points="455,80 447,75 447,85" fill="#10b981"/>
 
-            <!-- SVG Diagram Display Canvas -->
-            <div class="relative bg-slate-950 border border-slate-800 rounded-xl p-4 overflow-hidden group">
-              <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-900 text-xs font-mono text-slate-500">
-                <span>CANVAS_TYPE: VECTOR_SVG</span>
-                <span class="group-hover:text-cyan-400 transition-colors">RENDER: LIVE_SYSTEM</span>
-              </div>
-              <img
-                src={item.diagram}
-                alt={item.title}
-                class="w-full h-auto max-h-[380px] object-contain mx-auto"
-                loading="lazy"
-              />
-            </div>
+              <rect x="460" y="50" width="150" height="60" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
+              <text x="535" y="77" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">LEDGER DB</text>
+              <text x="535" y="95" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Double-Entry / ACID</text>
+            </svg>
+          </div>
+        </section>
 
-          </section>
-        ))}
+        <!-- Topology 02: Fraud Forensics -->
+        <section id="fraud-forensics" class="bg-slate-900/50 border border-slate-800/90 rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="font-mono text-xs text-cyan-400 tracking-wider font-semibold">02 // CYBERSECURITY &amp; CONTROL</span>
+            <div class="h-px flex-1 bg-slate-800"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-white font-mono">Real-Time Fraud Detection &amp; Forensic Tracing</h2>
+          <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+            Multi-stage sliding window scoring engine coupled with asynchronous forensic trace graphs for real-time anomaly isolation without injecting transaction latency.
+          </p>
+          <div class="flex flex-wrap gap-2 my-4">
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-400">✓ Async Graph Scoring</span>
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-400">✓ Sub-10ms Rule Engine</span>
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-rose-400">✓ Instant Threat Quarantine</span>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6 overflow-x-auto">
+            <svg class="w-full min-w-[600px] h-48" viewBox="0 0 700 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="130" height="60" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
+              <text x="85" y="77" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">STREAM INGEST</text>
+              <text x="85" y="95" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Sliding Window</text>
 
+              <path d="M150 80 H210" stroke="#06b6d4" stroke-width="2"/>
+              <polygon points="215,80 207,75 207,85" fill="#06b6d4"/>
+
+              <rect x="220" y="40" width="170" height="80" rx="8" fill="#0f172a" stroke="#f43f5e" stroke-width="1.5"/>
+              <text x="305" y="70" fill="#fb7185" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">ANOMALY SCORING</text>
+              <text x="305" y="88" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Forensic Graph Matching</text>
+              <text x="305" y="104" fill="#e11d48" font-family="monospace" font-size="9" text-anchor="middle">Isolation Trigger: &gt;0.87</text>
+
+              <path d="M390 80 H450" stroke="#f43f5e" stroke-width="2"/>
+              <polygon points="455,80 447,75 447,85" fill="#f43f5e"/>
+
+              <rect x="460" y="50" width="150" height="60" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+              <text x="535" y="77" fill="#34d399" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">SECURE DISPATCH</text>
+              <text x="535" y="95" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Audit Vault Logged</text>
+            </svg>
+          </div>
+        </section>
+
+        <!-- Topology 03: Multi-Carrier SMS -->
+        <section id="sms-gateway" class="bg-slate-900/50 border border-slate-800/90 rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="font-mono text-xs text-cyan-400 tracking-wider font-semibold">03 // TELECOM &amp; DISTRIBUTED INFRA</span>
+            <div class="h-px flex-1 bg-slate-800"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-white font-mono">High-Throughput Multi-Carrier SMS Gateway</h2>
+          <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+            National scale SMPP/HTTP dispatch engine featuring dynamic operator failover, circuit-breaker mechanisms, and adaptive rate-throttling per carrier node.
+          </p>
+          <div class="flex flex-wrap gap-2 my-4">
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-400">✓ 50K+ msg/sec Peak</span>
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-400">✓ Dynamic LBS Routing</span>
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-amber-400">✓ Circuit-Breaker Auto-Heal</span>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6 overflow-x-auto">
+            <svg class="w-full min-w-[600px] h-48" viewBox="0 0 700 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="130" height="60" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
+              <text x="85" y="77" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">API GATEWAY</text>
+              <text x="85" y="95" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">REST / SMPP Client</text>
+
+              <path d="M150 80 H210" stroke="#06b6d4" stroke-width="2"/>
+              <polygon points="215,80 207,75 207,85" fill="#06b6d4"/>
+
+              <rect x="220" y="40" width="170" height="80" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
+              <text x="305" y="70" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">ROUTER &amp; BALANCER</text>
+              <text x="305" y="88" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">Operator Health Probe</text>
+              <text x="305" y="104" fill="#06b6d4" font-family="monospace" font-size="9" text-anchor="middle">LBS + Throttle Rules</text>
+
+              <path d="M390 80 H450" stroke="#10b981" stroke-width="2"/>
+              <polygon points="455,80 447,75 447,85" fill="#10b981"/>
+
+              <rect x="460" y="50" width="150" height="60" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+              <text x="535" y="77" fill="#34d399" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">TELCO CARRIERS</text>
+              <text x="535" y="95" fill="#94a3b8" font-family="monospace" font-size="10" text-anchor="middle">MCI / Irancell / Rightel</text>
+            </svg>
+          </div>
+        </section>
+
+        <!-- Booking Section -->
         <section id="book">
           <BookingSection />
         </section>
@@ -123,7 +177,6 @@ const patterns = [
   </main>
 
   <script>
-    // Reading Progress Bar
     window.addEventListener('scroll', () => {
       const winScroll = document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
