@@ -1,80 +1,199 @@
 ---
-// Drop your diagram images into /public/diagrams/ then add an entry here
-// for each one. This is the placeholder set - replace with your real diagrams.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 const diagrams = [
-  { file: '/diagrams/placeholder-1.svg', title: 'Data pipeline architecture', category: 'Data Engineering' },
-  { file: '/diagrams/placeholder-2.svg', title: 'Network topology', category: 'Network Infrastructure' },
-  { file: '/diagrams/placeholder-3.svg', title: 'Multi-tenant system design', category: 'System Architecture' },
+  {
+    file: "placeholder-1.svg",
+    title: "Fraud Detection & Forensic Tracing",
+    category: "Data Engineering",
+    desc: "High-throughput heuristic scoring engine, real-time feature extraction, and automated forensic logging."
+  },
+  {
+    file: "placeholder-2.svg",
+    title: "Contact Enrichment Pipeline",
+    category: "Network Infrastructure",
+    desc: "Multi-source stream enrichment architecture with low-latency caching and distributed sync."
+  },
+  {
+    file: "placeholder-3.svg",
+    title: "Unified Identity & Session Authority",
+    category: "System Architecture",
+    desc: "High-availability authentication broker with distributed session validation and RBAC enforcement."
+  }
 ];
 ---
 
-<section id="diagrams" class="relative z-10 max-w-5xl mx-auto px-6 py-24">
-  <h2 class="text-3xl font-bold text-center mb-2">Diagrams</h2>
-  <p class="text-center text-(--color-text-muted) mb-12">
-    Years of whiteboard sessions, distilled. Click any diagram to view it full size.
-  </p>
+<section id="diagrams" class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-24">
+  <div class="max-w-3xl mb-14">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10 text-xs text-purple-300 mb-4 font-mono tracking-wide">
+      <span>ARCHITECTURE & SYSTEMS</span>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
+      System Diagrams
+    </h2>
+    <p class="text-base md:text-lg text-(--color-text-muted) leading-relaxed">
+      Visual blueprints of production distributed pipelines, data backbones, and infrastructure topologies built for high concurrency.
+    </p>
+  </div>
 
-  <div class="grid sm:grid-cols-3 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
     {diagrams.map((d, i) => (
-      <button
-        type="button"
-        class="spotlight-card glass rounded-2xl p-4 text-left group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
-        data-diagram-trigger={i}
-      >
-        <img src={d.file} alt={d.title} class="rounded-lg w-full h-40 object-cover mb-3 bg-black/20" loading="lazy" />
-        <p class="text-xs text-(--color-aurora-2) mb-1">{d.category}</p>
-        <p class="text-sm font-medium">{d.title}</p>
-      </button>
+      <div class="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+        <div>
+          <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-neutral-950/80 border border-white/5 flex items-center justify-center p-3 mb-5 group-hover:border-purple-500/20 transition-colors">
+            <img 
+              src={`${base}/diagrams/${d.file}`} 
+              alt={d.title} 
+              class="w-full h-full object-contain filter drop-shadow-md transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-mono font-medium px-2.5 py-0.5 rounded-md bg-white/5 text-purple-300 border border-white/5">
+              {d.category}
+            </span>
+          </div>
+
+          <h3 class="text-lg font-semibold text-white group-hover:text-purple-200 transition-colors">
+            {d.title}
+          </h3>
+          <p class="text-sm text-(--color-text-muted) mt-2 line-clamp-3 leading-relaxed">
+            {d.desc}
+          </p>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/5">
+          <button
+            type="button"
+            data-diagram-trigger={i}
+            class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-semibold text-white bg-white/5 hover:bg-purple-600 hover:text-white border border-white/10 transition-all duration-200 cursor-pointer group-hover:border-purple-500/30"
+          >
+            <span>Inspect Blueprint</span>
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
     ))}
   </div>
 
   {diagrams.map((d, i) => (
-    <dialog
-      id={`diagram-dialog-${i}`}
-      class="fixed inset-0 m-auto glass rounded-2xl p-6 max-w-4xl w-[90vw] max-h-[90vh] overflow-auto backdrop:bg-black/80 backdrop:backdrop-blur-md shadow-2xl focus:outline-none"
-    >
-      <div class="flex justify-between items-center mb-4">
-        <p class="font-semibold text-lg text-(--color-text)">{d.title}</p>
-        <button
-          type="button"
-          class="w-8 h-8 flex items-center justify-center rounded-lg text-(--color-text-muted) hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-          data-diagram-close={i}
-        >
-          ✕
-        </button>
-      </div>
-      <div class="flex items-center justify-center bg-black/30 rounded-xl p-2">
-        <img src={d.file} alt={d.title} class="rounded-lg w-full max-h-[70vh] object-contain" />
+    <dialog id={`diagram-dialog-${i}`} class="diagram-modal">
+      <div class="diagram-modal-backdrop" data-diagram-close={i}></div>
+      <div class="diagram-modal-box">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-neutral-900/60">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 font-semibold">
+              {d.category}
+            </span>
+            <h4 class="text-base md:text-lg font-semibold text-white truncate max-w-lg">
+              {d.title}
+            </h4>
+          </div>
+          <button
+            type="button"
+            data-diagram-close={i}
+            class="p-2 text-neutral-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
+            aria-label="Close modal"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="p-4 md:p-8 flex items-center justify-center bg-black/80 overflow-auto min-h-[50vh]">
+          <img 
+            src={`${base}/diagrams/${d.file}`} 
+            alt={d.title} 
+            class="max-w-full max-h-[72vh] w-auto h-auto object-contain rounded-lg shadow-2xl" 
+          />
+        </div>
+
+        <div class="px-6 py-3 border-t border-white/5 bg-neutral-900/40 text-xs text-neutral-400">
+          Tip: Press <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">ESC</kbd> or click outside to dismiss.
+        </div>
       </div>
     </dialog>
   ))}
 </section>
 
+<style>
+  .diagram-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    max-width: none;
+    max-height: none;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .diagram-modal[open] {
+    display: flex;
+  }
+
+  .diagram-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1;
+  }
+
+  .diagram-modal-box {
+    position: relative;
+    z-index: 2;
+    width: 92vw;
+    max-width: 1100px;
+    max-height: 90vh;
+    border-radius: 1.25rem;
+    background: #0d0d11;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(168, 85, 247, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
 <script>
-  document.querySelectorAll<HTMLButtonElement>('[data-diagram-trigger]').forEach((btn) => {
-    const i = btn.dataset.diagramTrigger;
-    const dialog = document.getElementById(`diagram-dialog-${i}`) as HTMLDialogElement | null;
-    btn.addEventListener('click', () => dialog?.showModal());
-  });
-
-  document.querySelectorAll<HTMLButtonElement>('[data-diagram-close]').forEach((btn) => {
-    const i = btn.dataset.diagramClose;
-    const dialog = document.getElementById(`diagram-dialog-${i}`) as HTMLDialogElement | null;
-    btn.addEventListener('click', () => dialog?.close());
-  });
-
-  // بستن دیالوگ در صورت کلیک روی Backdrop بیرون از کادر مودال
-  document.querySelectorAll<HTMLDialogElement>('dialog[id^="diagram-dialog-"]').forEach((dialog) => {
-    dialog.addEventListener('click', (e) => {
-      const rect = dialog.getBoundingClientRect();
-      const isInDialog =
-        rect.top <= e.clientY &&
-        e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX &&
-        e.clientX <= rect.left + rect.width;
-      if (!isInDialog) {
-        dialog.close();
+  document.querySelectorAll<HTMLButtonElement>("[data-diagram-trigger]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const i = btn.dataset.diagramTrigger;
+      const dialog = document.getElementById(`diagram-dialog-${i}`) as HTMLDialogElement | null;
+      if (dialog) {
+        dialog.showModal();
+        document.body.style.overflow = "hidden";
       }
     });
+  });
+
+  document.querySelectorAll<HTMLElement>("[data-diagram-close]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const i = btn.dataset.diagramClose;
+      const dialog = document.getElementById(`diagram-dialog-${i}`) as HTMLDialogElement | null;
+      if (dialog) {
+        dialog.close();
+        document.body.style.overflow = "";
+      }
+    });
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.body.style.overflow = "";
+    }
   });
 </script>
