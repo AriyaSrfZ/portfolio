@@ -9,6 +9,10 @@ const telemetryStats = [
   { code: "SYS.VOL", label: "THROUGHPUT VOLUME", val: "1B+ SMS/Year | 50K Peak TPS" },
   { code: "SYS.OPS", label: "OPERATIONAL DOMAIN", val: "Product Director & Systems Lead" },
 ];
+
+const mailtoSubject = encodeURIComponent("Inquiry: Enterprise Systems Architecture");
+const mailtoHref = `mailto:ariasg2002@gmail.com?subject=${mailtoSubject}`;
+const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 ---
 
 <header id="overview" class="relative pt-24 pb-8 border-b border-[#5c6650] bg-[#141210] overflow-hidden font-['IBM_Plex_Mono',monospace]">
@@ -18,6 +22,7 @@ const telemetryStats = [
   <div class="max-w-[1600px] mx-auto px-6 relative z-10">
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-stretch">
       
+      <!-- Dossier Identity Frame -->
       <div class="xl:col-span-4 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-5 shadow-2xl relative">
         <span class="absolute -top-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
         <span class="absolute -top-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
@@ -34,7 +39,7 @@ const telemetryStats = [
             <img
               src={`${baseUrl}photos/ariya.jpg`}
               alt="Ariya Sarrafzadeh"
-              class="w-full h-full object-cover object-top filter grayscale contrast-115"
+              class="w-full h-full object-cover object-top filter contrast-105 brightness-100"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-80 pointer-events-none"></div>
 
@@ -54,10 +59,11 @@ const telemetryStats = [
 
         <div class="mt-4 pt-3 border-t border-[#5c6650] flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
           <span>ROLE: ENTERPRISE ARCHITECT</span>
-          <span class="text-[#c9a15a] font-bold">STATUS: READY</span>
+          <span class="text-[#c9a15a] font-bold">STATUS: VERIFIED</span>
         </div>
       </div>
 
+      <!-- Core Narrative, Telemetry & Direct Dispatch -->
       <div class="xl:col-span-8 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-6 sm:p-8 relative">
         <span class="absolute -top-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
         <span class="absolute -top-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
@@ -90,10 +96,11 @@ const telemetryStats = [
           </p>
 
           <p class="mt-2 text-xs sm:text-sm text-[#a8a196] leading-relaxed">
-            Bridging technical system execution with product delivery. Expert in ISO 8583 switch protocols, SMPP 3.4 mobile carrier integration, Redis distributed locking, and double-entry append-only ledger designs.
+            Bridging technical system execution with product delivery. Specialized in ISO 8583 switch protocols, SMPP 3.4 carrier routing, Redis distributed locking, and double-entry append-only ledger designs.
           </p>
         </div>
 
+        <!-- Telemetry Matrix -->
         <div class="mt-6 pt-5 border-t border-[#5c6650]">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {telemetryStats.map(stat => (
@@ -108,6 +115,7 @@ const telemetryStats = [
           </div>
         </div>
 
+        <!-- Action CTAs -->
         <div class="mt-6 pt-5 border-t border-[#5c6650] flex flex-wrap items-center gap-3">
           <a 
             href="#payment-settlement" 
@@ -125,8 +133,37 @@ const telemetryStats = [
             href="#book" 
             class="px-5 py-2.5 border border-[#5c6650] text-[#a8a196] text-xs font-bold uppercase tracking-wider hover:text-[#e8e2d5] hover:border-[#a8a196] transition"
           >
-            Initiate Contact
+            Initiate Consultation
           </a>
+        </div>
+
+        <!-- Direct Contact Channels -->
+        <div class="mt-5 pt-4 border-t border-[#5c6650]/60 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] text-[#a8a196] uppercase font-bold tracking-wider">CHANNELS:</span>
+            
+            <a 
+              href={linkedinUrl}
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center gap-1.5 px-3 py-1 bg-[#141210] border border-[#5c6650] text-[#c9a15a] hover:border-[#c4562e] hover:text-[#e8e2d5] transition font-mono text-[11px]"
+            >
+              <span>LINKEDIN</span>
+              <span class="text-[10px]">&nearr;</span>
+            </a>
+
+            <a 
+              href={mailtoHref}
+              class="flex items-center gap-1.5 px-3 py-1 bg-[#141210] border border-[#5c6650] text-[#e8e2d5] hover:border-[#c4562e] hover:text-[#c9a15a] transition font-mono text-[11px]"
+            >
+              <span>DISPATCH [EMAIL]</span>
+              <span class="text-[10px]">&nearr;</span>
+            </a>
+          </div>
+
+          <div class="text-[10px] text-[#5c6650] font-mono uppercase tracking-wider">
+            TEL: VERIFIED VIA LINKEDIN CREDENTIALS
+          </div>
         </div>
 
       </div>
