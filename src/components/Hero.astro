@@ -4,97 +4,118 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   : `${import.meta.env.BASE_URL}/`;
 
 const specs = [
-  { label: "CORE DOMAIN", val: "High-Throughput Systems" },
-  { label: "EXPERIENCE", val: "15+ Years Architecture" },
-  { label: "INFRASTRUCTURE", val: "Distributed / Low-Latency" },
-  { label: "LEADERSHIP", val: "VP of Product & Tech Ops" },
+  { label: "PRIMARY FOCUS", val: "High-Throughput Distributed Switches" },
+  { label: "EXPERIENCE", val: "15+ Years Systems Architecture" },
+  { label: "CORE LEDGER", val: "Double-Entry / Zero-Data-Loss ACID" },
+  { label: "CURRENT ROLE", val: "Director of Product & Systems Architecture" },
 ];
 ---
 
-<header id="overview" class="relative pt-32 pb-16 border-b border-[var(--rugged-olive-border)] bg-[var(--rugged-bg-nav)] overflow-hidden font-['IBM_Plex_Mono',monospace]">
-  <!-- Diagonal Hatch Texture Background -->
-  <div class="absolute inset-0 rugged-hatch pointer-events-none opacity-50"></div>
+<header id="overview" class="relative pt-24 pb-10 border-b border-[#5c6650] bg-[#141210] overflow-hidden font-['IBM_Plex_Mono',monospace]">
+  <div class="absolute inset-0 rugged-hatch pointer-events-none opacity-40"></div>
 
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+  <div class="max-w-[1600px] mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
       
-      <!-- Profile Picture Frame with Riveted Stamped Border -->
-      <div class="relative shrink-0">
-        <div class="relative w-44 h-44 sm:w-48 sm:h-48 p-1 bg-[var(--rugged-bg-panel)] border border-[var(--rugged-olive-border)] shadow-2xl">
-          <!-- Rivets -->
-          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+      <!-- Dossier Identity Card -->
+      <div class="lg:col-span-4 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-5 shadow-2xl relative">
+        <span class="absolute -top-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
+        <span class="absolute -top-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
+        <span class="absolute -bottom-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
+        <span class="absolute -bottom-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
 
-          <img
-            src={`${baseUrl}photos/ariya.jpg`}
-            alt="Ariya Sarrafzadeh"
-            class="w-full h-full object-cover bg-[var(--rugged-bg-nav)] filter contrast-105"
-          />
-
-          <!-- Operational Status Pill -->
-          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[var(--rugged-olive-bg)] border border-[var(--rugged-olive-border)] px-3 py-0.5 flex items-center gap-1.5 shadow-lg whitespace-nowrap">
-            <span class="w-1.5 h-1.5 bg-[var(--rugged-brass)] animate-pulse"></span>
-            <span class="text-[10px] text-[var(--rugged-olive-text)] font-semibold tracking-widest uppercase">SYS.ONLINE // READY</span>
+        <div>
+          <div class="flex items-center justify-between border-b border-[#5c6650] pb-3 mb-4 text-[10px] uppercase text-[#a8a196]">
+            <span class="text-[#c4562e] font-bold">OPERATIONAL DOSSIER</span>
+            <span class="text-[#c9a15a]">ID: 8409-AS</span>
           </div>
+
+          <div class="relative w-full aspect-[4/5] bg-[#141210] border border-[#5c6650] overflow-hidden">
+            <img
+              src={`${baseUrl}photos/ariya.jpg`}
+              alt="Ariya Sarrafzadeh"
+              class="w-full h-full object-cover object-top filter grayscale contrast-110"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-80 pointer-events-none"></div>
+            
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#1c1916]/90 border border-[#5c6650] px-3 py-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-[#c9d4a8] animate-ping"></span>
+                <span class="text-[10px] text-[#c9d4a8] font-bold tracking-wider uppercase">NODE ACTIVE</span>
+              </div>
+              <span class="text-[9px] text-[#a8a196] font-mono uppercase">TEH-CORE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-[#5c6650] flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
+          <span>CLEARANCE: SYSTEM ARCHITECT</span>
+          <span class="text-[#c9a15a]">VERIFIED 2026</span>
         </div>
       </div>
 
-      <!-- Hero Header & Spec Matrix -->
-      <div class="flex-1 text-center lg:text-left">
-        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-3">
-          <span class="rugged-tag">SYS.ARCH // SPEC-2026</span>
-          <span class="rugged-tag bg-transparent text-[var(--rugged-muted)]">INFRASTRUCTURE LEDGER</span>
+      <!-- Core Narrative and Specs Matrix -->
+      <div class="lg:col-span-8 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-6 sm:p-8 relative">
+        <span class="absolute -top-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
+        <span class="absolute -top-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
+        <span class="absolute -bottom-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
+        <span class="absolute -bottom-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
+
+        <div>
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="px-2 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase">
+              DISTRIBUTED SYSTEMS
+            </span>
+            <span class="px-2 py-0.5 border border-[#5c6650] bg-[#141210] text-[#a8a196] text-[10px] uppercase">
+              FINTECH SWITCHES
+            </span>
+            <span class="px-2 py-0.5 border border-[#5c6650] bg-[#141210] text-[#a8a196] text-[10px] uppercase">
+              TELECOM SMPP ROUTING
+            </span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-[#e8e2d5] uppercase">
+            Ariya Sarrafzadeh
+          </h1>
+          
+          <p class="mt-2 text-sm sm:text-base font-bold text-[#c9a15a] tracking-wide uppercase">
+            Corporate Product Director &amp; Enterprise Systems Architect
+          </p>
+
+          <p class="mt-4 text-xs sm:text-sm text-[#a8a196] leading-relaxed">
+            Over 15 years directing enterprise platforms, core banking switches, high-volume telecom routing gateways, and automated fraud forensic engines. Specializing in high-concurrency event loops, deterministic idempotency locks, strict double-entry ledger consensus, and carrier-grade SMPP integration under restrictive network constraints.
+          </p>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-[var(--rugged-paper)] uppercase">
-          Ariya Sarrafzadeh
-        </h1>
-        
-        <p class="mt-2 text-base sm:text-lg font-semibold text-[var(--rugged-brass)] tracking-wide">
-          Corporate Product Director &amp; Distributed Systems Architect
-        </p>
-
-        <p class="mt-3 text-[var(--rugged-muted)] text-sm sm:text-base max-w-2xl leading-relaxed">
-          15+ years architecting high-availability FinTech platforms, national-scale SMS routing gateways,
-          and fraud forensic topologies. Bridging deterministic infrastructure with business execution.
-        </p>
-
-        <!-- Spec Matrix Grid -->
-        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 max-w-3xl">
-          {specs.map(item => (
-            <div class="relative bg-[var(--rugged-bg-panel)] border border-[var(--rugged-olive-border)] p-3 text-left">
-              <span class="absolute -top-[2px] -left-[2px] w-[4px] h-[4px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-              <span class="absolute -top-[2px] -right-[2px] w-[4px] h-[4px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-              <span class="absolute -bottom-[2px] -left-[2px] w-[4px] h-[4px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-              <span class="absolute -bottom-[2px] -right-[2px] w-[4px] h-[4px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-              
-              <div class="text-[10px] text-[var(--rugged-muted)] uppercase tracking-wider">{item.label}</div>
-              <div class="text-xs font-bold text-[var(--rugged-brass)] mt-1">{item.val}</div>
-            </div>
-          ))}
+        <div class="mt-6 pt-6 border-t border-[#5c6650]">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {specs.map(item => (
+              <div class="bg-[#141210] border border-[#5c6650] p-3">
+                <div class="text-[10px] text-[#a8a196] uppercase tracking-wider">{item.label}</div>
+                <div class="text-xs font-bold text-[#e8e2d5] mt-1 uppercase">{item.val}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <!-- Action CTAs -->
-        <div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+        <div class="mt-6 pt-6 border-t border-[#5c6650] flex flex-wrap items-center gap-4">
           <a 
-            href={`${baseUrl}#work`} 
-            class="px-5 py-2.5 bg-[var(--rugged-rust)] text-[var(--rugged-bg-nav)] text-xs font-bold uppercase tracking-wider transition hover:brightness-90 select-none shadow-md"
+            href="#payment-settlement" 
+            class="px-5 py-2.5 bg-[#c4562e] text-[#141210] text-xs font-bold uppercase tracking-wider hover:brightness-90 transition"
           >
-            INSPECT BLUEPRINTS ↓
+            Review Architectures ↓
           </a>
           <a 
             href={`${baseUrl}whitepapers/`} 
-            class="px-5 py-2.5 bg-[var(--rugged-bg-panel)] border border-[var(--rugged-rust)] text-[var(--rugged-rust)] text-xs font-bold uppercase tracking-wider transition hover:bg-[var(--rugged-rust)]/10 select-none"
+            class="px-5 py-2.5 bg-[#141210] border border-[#c4562e] text-[#c4562e] text-xs font-bold uppercase tracking-wider hover:bg-[#c4562e] hover:text-[#141210] transition"
           >
-            WHITEPAPERS HUB →
+            Technical Whitepapers (5) →
           </a>
           <a 
-            href={`${baseUrl}#book`} 
-            class="px-5 py-2.5 bg-transparent border border-[var(--rugged-olive-border)] text-[var(--rugged-muted)] text-xs font-bold uppercase tracking-wider transition hover:text-[var(--rugged-paper)] hover:border-[var(--rugged-muted)] select-none"
+            href="#book" 
+            class="px-5 py-2.5 border border-[#5c6650] text-[#a8a196] text-xs font-bold uppercase tracking-wider hover:text-[#e8e2d5] hover:border-[#a8a196] transition"
           >
-            DISPATCH CONTACT
+            Direct Engagement
           </a>
         </div>
 
