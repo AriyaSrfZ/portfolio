@@ -115,3 +115,58 @@ body {
   letter-spacing: 0.08em;
   padding: 4px 10px;
 }
+
+/* Operational Animation Keyframes */
+@keyframes packet-flow {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes signal-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-packet {
+  stroke-dasharray: 6 6;
+  animation: packet-flow 1.2s linear infinite;
+}
+
+.animate-signal {
+  animation: signal-pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.radar-spinner {
+  transform-origin: center;
+  animation: radar-sweep 8s linear infinite;
+}
+
+.terminal-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 2px, 3px 100%;
+}

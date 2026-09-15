@@ -3,59 +3,62 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
-const specs = [
-  { label: "PRIMARY FOCUS", val: "High-Throughput Distributed Switches" },
-  { label: "EXPERIENCE", val: "15+ Years Systems Architecture" },
-  { label: "CORE LEDGER", val: "Double-Entry / Zero-Data-Loss ACID" },
-  { label: "CURRENT ROLE", val: "Director of Product & Systems Architecture" },
+const telemetryStats = [
+  { code: "SYS.DOM", label: "PRIMARY ARCHITECTURE", val: "Distributed Financial Switches" },
+  { code: "SYS.EXP", label: "PRODUCTION TENURE", val: "15+ Years Systems Architecture" },
+  { code: "SYS.VOL", label: "THROUGHPUT VOLUME", val: "1B+ SMS/Year | 50K Peak TPS" },
+  { code: "SYS.OPS", label: "OPERATIONAL DOMAIN", val: "Product Director & Systems Lead" },
 ];
 ---
 
-<header id="overview" class="relative pt-24 pb-10 border-b border-[#5c6650] bg-[#141210] overflow-hidden font-['IBM_Plex_Mono',monospace]">
+<header id="overview" class="relative pt-24 pb-8 border-b border-[#5c6650] bg-[#141210] overflow-hidden font-['IBM_Plex_Mono',monospace]">
   <div class="absolute inset-0 rugged-hatch pointer-events-none opacity-40"></div>
+  <div class="absolute inset-0 terminal-scanlines pointer-events-none opacity-30"></div>
 
   <div class="max-w-[1600px] mx-auto px-6 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-stretch">
       
-      <!-- Dossier Identity Card -->
-      <div class="lg:col-span-4 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-5 shadow-2xl relative">
+      <div class="xl:col-span-4 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-5 shadow-2xl relative">
         <span class="absolute -top-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
         <span class="absolute -top-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
         <span class="absolute -bottom-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
         <span class="absolute -bottom-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
 
         <div>
-          <div class="flex items-center justify-between border-b border-[#5c6650] pb-3 mb-4 text-[10px] uppercase text-[#a8a196]">
+          <div class="flex items-center justify-between border-b border-[#5c6650] pb-2.5 mb-3 text-[10px] uppercase text-[#a8a196]">
             <span class="text-[#c4562e] font-bold">OPERATIONAL DOSSIER</span>
-            <span class="text-[#c9a15a]">ID: 8409-AS</span>
+            <span class="text-[#c9a15a] font-mono">SPEC-ID: 8409-AS</span>
           </div>
 
-          <div class="relative w-full aspect-[4/5] bg-[#141210] border border-[#5c6650] overflow-hidden">
+          <div class="relative w-full aspect-[4/5] max-h-[460px] bg-[#141210] border border-[#5c6650] overflow-hidden">
             <img
               src={`${baseUrl}photos/ariya.jpg`}
               alt="Ariya Sarrafzadeh"
-              class="w-full h-full object-cover object-top filter grayscale contrast-110"
+              class="w-full h-full object-cover object-top filter grayscale contrast-115"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-80 pointer-events-none"></div>
-            
-            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#1c1916]/90 border border-[#5c6650] px-3 py-1.5">
+
+            <div class="absolute top-2 right-2 px-2 py-0.5 bg-[#141210]/90 border border-[#5c6650] text-[9px] text-[#c9a15a] uppercase font-bold">
+              AUTH: LEVEL-5
+            </div>
+
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#1c1916]/95 border border-[#5c6650] px-3 py-1.5 shadow-md">
               <div class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-[#c9d4a8] animate-ping"></span>
+                <span class="w-2 h-2 bg-[#c9d4a8] animate-signal"></span>
                 <span class="text-[10px] text-[#c9d4a8] font-bold tracking-wider uppercase">NODE ACTIVE</span>
               </div>
-              <span class="text-[9px] text-[#a8a196] font-mono uppercase">TEH-CORE</span>
+              <span class="text-[9px] text-[#a8a196] font-mono uppercase">IR-TEH MESH</span>
             </div>
           </div>
         </div>
 
         <div class="mt-4 pt-3 border-t border-[#5c6650] flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
-          <span>CLEARANCE: SYSTEM ARCHITECT</span>
-          <span class="text-[#c9a15a]">VERIFIED 2026</span>
+          <span>ROLE: ENTERPRISE ARCHITECT</span>
+          <span class="text-[#c9a15a] font-bold">STATUS: READY</span>
         </div>
       </div>
 
-      <!-- Core Narrative and Specs Matrix -->
-      <div class="lg:col-span-8 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-6 sm:p-8 relative">
+      <div class="xl:col-span-8 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-6 sm:p-8 relative">
         <span class="absolute -top-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
         <span class="absolute -top-[4px] -right-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
         <span class="absolute -bottom-[4px] -left-[4px] w-[8px] h-[8px] bg-[#141210] border border-[#c4562e] pointer-events-none"></span>
@@ -63,14 +66,14 @@ const specs = [
 
         <div>
           <div class="flex flex-wrap items-center gap-2 mb-3">
-            <span class="px-2 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase">
-              DISTRIBUTED SYSTEMS
+            <span class="px-2.5 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase">
+              MISSION-CRITICAL SYSTEMS
             </span>
             <span class="px-2 py-0.5 border border-[#5c6650] bg-[#141210] text-[#a8a196] text-[10px] uppercase">
-              FINTECH SWITCHES
+              HIGH CONCURRENCY
             </span>
             <span class="px-2 py-0.5 border border-[#5c6650] bg-[#141210] text-[#a8a196] text-[10px] uppercase">
-              TELECOM SMPP ROUTING
+              NATIONAL SCALE
             </span>
           </div>
 
@@ -79,31 +82,38 @@ const specs = [
           </h1>
           
           <p class="mt-2 text-sm sm:text-base font-bold text-[#c9a15a] tracking-wide uppercase">
-            Corporate Product Director &amp; Enterprise Systems Architect
+            Director of Product &amp; Distributed Systems Technical Architect
           </p>
 
           <p class="mt-4 text-xs sm:text-sm text-[#a8a196] leading-relaxed">
-            Over 15 years directing enterprise platforms, core banking switches, high-volume telecom routing gateways, and automated fraud forensic engines. Specializing in high-concurrency event loops, deterministic idempotency locks, strict double-entry ledger consensus, and carrier-grade SMPP integration under restrictive network constraints.
+            Leading engineering initiatives across high-throughput financial switches, national telecommunication routing hubs, and forensic cybersecurity architectures. Directing systems processing billions of annual messages and multi-million dollar transaction volumes under strict isolation constraints.
+          </p>
+
+          <p class="mt-2 text-xs sm:text-sm text-[#a8a196] leading-relaxed">
+            Bridging technical system execution with product delivery. Expert in ISO 8583 switch protocols, SMPP 3.4 mobile carrier integration, Redis distributed locking, and double-entry append-only ledger designs.
           </p>
         </div>
 
-        <div class="mt-6 pt-6 border-t border-[#5c6650]">
+        <div class="mt-6 pt-5 border-t border-[#5c6650]">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {specs.map(item => (
+            {telemetryStats.map(stat => (
               <div class="bg-[#141210] border border-[#5c6650] p-3">
-                <div class="text-[10px] text-[#a8a196] uppercase tracking-wider">{item.label}</div>
-                <div class="text-xs font-bold text-[#e8e2d5] mt-1 uppercase">{item.val}</div>
+                <div class="flex items-center justify-between text-[10px] text-[#5c6650] font-mono">
+                  <span>{stat.code}</span>
+                  <span class="text-[#c9a15a]">{stat.label}</span>
+                </div>
+                <div class="text-xs font-bold text-[#e8e2d5] mt-1 uppercase">{stat.val}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div class="mt-6 pt-6 border-t border-[#5c6650] flex flex-wrap items-center gap-4">
+        <div class="mt-6 pt-5 border-t border-[#5c6650] flex flex-wrap items-center gap-3">
           <a 
             href="#payment-settlement" 
             class="px-5 py-2.5 bg-[#c4562e] text-[#141210] text-xs font-bold uppercase tracking-wider hover:brightness-90 transition"
           >
-            Review Architectures ↓
+            Inspect Blueprints ↓
           </a>
           <a 
             href={`${baseUrl}whitepapers/`} 
@@ -115,7 +125,7 @@ const specs = [
             href="#book" 
             class="px-5 py-2.5 border border-[#5c6650] text-[#a8a196] text-xs font-bold uppercase tracking-wider hover:text-[#e8e2d5] hover:border-[#a8a196] transition"
           >
-            Direct Engagement
+            Initiate Contact
           </a>
         </div>
 
