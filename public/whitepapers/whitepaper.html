@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic AI Workflows: System Architectures and Design Patterns</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --rugged-bg-panel: #1c1916;
+      --rugged-bg-nav: #141210;
+      --rugged-rust: #c4562e;
+      --rugged-brass: #c9a15a;
+      --rugged-olive-bg: #3d4632;
+      --rugged-olive-text: #c9d4a8;
+      --rugged-olive-border: #5c6650;
+      --rugged-paper: #e8e2d5;
+      --rugged-muted: #a8a196;
+    }
+    * {
+      border-radius: 0px !important;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    body {
+      background-color: var(--rugged-bg-nav);
+      color: var(--rugged-paper);
+    }
+    .rugged-hatch {
+      background-image: repeating-linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 12px
+      );
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--rugged-bg-nav);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--rugged-olive-border);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--rugged-rust);
+    }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--rugged-rust);
+      z-index: 100;
+      width: 0%;
+      transition: width 0.1s ease-out;
+    }
+    .diagram-container {
+      transition: border-color 0.2s ease;
+      cursor: zoom-in;
+    }
+    .diagram-container:hover {
+      border-color: var(--rugged-rust);
+    }
+    .rivet {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--rugged-bg-nav);
+      border: 1px solid var(--rugged-rust);
+      pointer-events: none;
+    }
+    .rivet-tl { top: -3px; left: -3px; }
+    .rivet-tr { top: -3px; right: -3px; }
+    .rivet-bl { bottom: -3px; left: -3px; }
+    .rivet-br { bottom: -3px; right: -3px; }
+    html {
+      scroll-padding-top: 80px;
+    }
+  </style>
+</head>
+
+<body class="rugged-hatch text-[#a8a196] antialiased selection:bg-[#c4562e]/30 selection:text-[#c9a15a] min-h-screen">
+
+  <div id="progress-bar"></div>
+
+  <header class="sticky top-0 z-40 w-full border-b border-[#5c6650] bg-[#141210]/95 backdrop-blur-md">
+    <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="px-2 py-1 bg-[#c4562e] text-[#141210] font-bold text-xs">SPEC.AI</span>
+        <a href="../" class="font-bold text-xs tracking-wider text-[#e8e2d5] hover:text-[#c9a15a] uppercase">
+          SYS.ENG // AGENTIC SYSTEMS
+        </a>
+      </div>
+      
+      <div class="flex items-center space-x-6 text-xs text-[#a8a196]">
+        <span class="hidden md:inline-flex items-center gap-1.5 bg-[#1c1916] border border-[#5c6650] px-2.5 py-1 text-[#c9d4a8] text-[10px] uppercase">
+          <span class="h-1.5 w-1.5 bg-[#c9a15a] animate-pulse"></span>
+          PRODUCTION SPEC: v4.2
+        </span>
+        <span class="hidden sm:inline text-[10px] tracking-wider uppercase">READ TIME: 16 MIN</span>
+        <a href="whitepapers/" class="px-3 py-1.5 border border-[#5c6650] hover:border-[#c4562e] text-[#e8e2d5] text-xs font-bold uppercase transition">
+          Hub Index
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1600px] mx-auto px-6 pt-12 pb-24">
+    <header class="relative bg-[#1c1916] border border-[#5c6650] p-8 sm:p-12 mb-12">
+      <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+      <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+      <div class="inline-flex items-center gap-2 px-2.5 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase mb-4">
+        <span>DISTRIBUTED SYSTEMS</span>
+        <span>&bull;</span>
+        <span>COGNITIVE CONTROL LOOPS</span>
+        <span>&bull;</span>
+        <span>DESIGN PATTERNS</span>
+      </div>
+      
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-[#e8e2d5] uppercase leading-tight">
+        Agentic AI Workflows: System Architectures &amp; Design Patterns
+      </h1>
+      
+      <p class="text-sm sm:text-base text-[#a8a196] max-w-4xl mt-4 leading-relaxed">
+        A rigorous architectural taxonomy dissecting the transition from open-loop stochastic generation to stateful, self-correcting cognitive control loops. Features formal state schemas, vector diagrams, and production execution models.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 text-xs text-[#a8a196] pt-6 border-t border-[#5c6650] mt-6">
+        <span class="text-[#e8e2d5] font-bold uppercase">AI Systems Engineering Lab</span>
+        <span class="text-[#5c6650]">&bull;</span>
+        <time datetime="2026-03-01" class="text-[11px] uppercase">Updated Q1 2026</time>
+        <span class="text-[#5c6650]">&bull;</span>
+        <span class="text-[#c9d4a8] font-bold uppercase">Production Verified</span>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <aside class="hidden lg:block lg:col-span-3">
+        <div class="sticky top-24 space-y-4">
+          <div class="relative bg-[#1c1916] border border-[#5c6650] p-4 shadow-xl">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <h3 class="text-xs uppercase tracking-wider text-[#c9a15a] font-bold mb-3">
+              SPECIFICATION INDEX
+            </h3>
+            <nav class="space-y-1.5 text-xs">
+              <a href="#paradigm-shift" class="block py-1 px-2 text-[#a8a196] hover:text-[#e8e2d5] hover:bg-[#141210] transition">00. Paradigm Shift</a>
+              <a href="#pattern-1-reflection" class="block py-1 px-2 text-[#a8a196] hover:text-[#e8e2d5] hover:bg-[#141210] transition">01. Reflection Pattern</a>
+              <a href="#pattern-2-tool-use" class="block py-1 px-2 text-[#a8a196] hover:text-[#e8e2d5] hover:bg-[#141210] transition">02. Tool Use Pattern</a>
+              <a href="#pattern-3-react" class="block py-1 px-2 text-[#a8a196] hover:text-[#e8e2d5] hover:bg-[#141210] transition">03. Reason &amp; Act (ReAct)</a>
+              <a href="#pattern-4-planning" class="block py-1 px-2 text-[#a8a196] hover:text-[#e8e2d5] hover:bg-[#141210] transition">04. Planning &amp; DAGs</a>
+              <a href="#pattern-5-multi-agent" class="block py-1 px-2 text-[#a8a196] hover:text-[#e8e2d5] hover:bg-[#141210] transition">05. Multi-Agent Topology</a>
+              <a href="#architectural-matrix" class="block py-1 px-2 text-[#a8a196] hover:text-[#e8e2d5] hover:bg-[#141210] transition">06. Performance Matrix</a>
+              <a href="#production-guidelines" class="block py-1 px-2 text-[#a8a196] hover:text-[#e8e2d5] hover:bg-[#141210] transition">07. Production Hardening</a>
+            </nav>
+          </div>
+
+          <div class="bg-[#1c1916] border border-[#5c6650] p-4 text-xs text-[#a8a196]">
+            <div class="font-bold text-[#c9a15a] uppercase tracking-wide mb-1">Vector Inspection</div>
+            <p class="leading-relaxed text-[11px]">Click any architectural diagram to open the full-resolution vector inspection modal.</p>
+          </div>
+        </div>
+      </aside>
+
+      <article class="lg:col-span-9 space-y-12 max-w-none text-xs sm:text-sm leading-relaxed">
+
+        <section id="paradigm-shift" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-4">
+          <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+          <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#c4562e] font-bold text-xs tracking-widest uppercase">00 // Foundational Concepts</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
+            The Paradigm Shift: From Open-Loop Inference to Closed-Loop Control
+          </h2>
+          <p>
+            Traditional Large Language Model (LLM) serving follows an <strong class="text-[#e8e2d5]">open-loop feed-forward pipeline</strong>. Given an input context, the model computes token probabilities conditioned strictly on preceding context tokens. If generation trajectory deviates during intermediate reasoning steps, errors compound monotonically.
+          </p>
+          <p>
+            <strong class="text-[#e8e2d5]">Agentic workflows replace open-loop inference with closed-loop discrete control systems</strong>. By treating the foundation model as a stochastic reasoning processor situated within a cyclic state transition graph, we formalize agent execution as:
+          </p>
+
+          <div class="p-4 bg-[#141210] border border-[#5c6650] text-xs text-[#c9a15a] overflow-x-auto my-2 leading-relaxed">
+            S_{t+1} = f_{transition}(S_t, A_t, O_t) <br>
+            A_t = &pi;_{policy}(S_t; &theta;_{LLM}) <br>
+            O_t = &Epsilon;(A_t)
+          </div>
+
+          <p>
+            Where <span class="text-[#e8e2d5]">S_t</span> represents working memory and environment state, <span class="text-[#e8e2d5]">A_t</span> is the structured action (tool call, sub-query, code execution), and <span class="text-[#e8e2d5]">O_t</span> is the deterministic observation returned by operational environment <span class="text-[#e8e2d5]">&Epsilon;</span>.
+          </p>
+        </section>
+
+        <section id="pattern-1-reflection" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+          <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#c4562e] font-bold text-xs tracking-widest uppercase">01 // Design Pattern</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
+              The Reflection Pattern: Dual-Agent Evaluator-Critic Loops
+            </h2>
+            <p class="text-[#a8a196] text-xs mt-1">Closed-loop iterative refinement utilizing isolated generative and evaluative contexts.</p>
+          </div>
+
+          <p>
+            The Reflection pattern decouples generation from quality assurance. A foundational limitation of single-prompt generation is prompt interference: instructing a model to simultaneously brainstorm, draft, check formatting, and verify rigorous constraints degrades performance across all dimensions. Reflection decomposes the cognitive burden into distinct temporal roles:
+          </p>
+          
+          <ul class="list-disc pl-5 space-y-1.5 text-xs">
+            <li><strong class="text-[#e8e2d5]">Generator (&pi;_gen):</strong> Unconstrained generation focused on creative, analytical, or algorithmic synthesis.</li>
+            <li><strong class="text-[#e8e2d5]">Critic / Evaluator (&pi;_eval):</strong> Rubric assessment verifying factual grounding, edge-case coverage, and schema fidelity.</li>
+            <li><strong class="text-[#e8e2d5]">State Revision Memory:</strong> Explicit diffs and structured feedback injected back into the Generator's context window.</li>
+          </ul>
+
+          <div class="my-4 border border-[#5c6650] bg-[#141210] p-4 diagram-container" onclick="openModal('svg-reflection')">
+            <div class="flex items-center justify-between pb-3 border-b border-[#5c6650] mb-4">
+              <span class="text-xs font-bold text-[#c9a15a] uppercase tracking-wider">
+                FIGURE 1.0: THE REFLECTION &amp; CRITIQUE STATE MACHINE
+              </span>
+              <span class="text-[10px] text-[#a8a196] uppercase">Click to Inspect</span>
+            </div>
+            
+            <div class="w-full overflow-hidden flex justify-center">
+              <svg id="svg-reflection" viewBox="0 0 920 460" class="w-full h-auto max-w-4xl select-none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="arrow-rust" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#c4562e"/>
+                  </marker>
+                  <marker id="arrow-brass" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#c9a15a"/>
+                  </marker>
+                  <marker id="arrow-olive" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#c9d4a8"/>
+                  </marker>
+                </defs>
+
+                <rect width="920" height="460" fill="#141210" stroke="#5c6650" stroke-width="1"/>
+                
+                <g stroke="#5c6650" stroke-width="0.5" opacity="0.2">
+                  <line x1="40" y1="0" x2="40" y2="460"/><line x1="280" y1="0" x2="280" y2="460"/>
+                  <line x1="520" y1="0" x2="520" y2="460"/><line x1="760" y1="0" x2="760" y2="460"/>
+                  <line x1="0" y1="115" x2="920" y2="115"/><line x1="0" y1="230" x2="920" y2="230"/>
+                  <line x1="0" y1="345" x2="920" y2="345"/>
+                </g>
+
+                <g transform="translate(40, 160)">
+                  <rect width="130" height="90" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+                  <text x="65" y="32" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">INPUT</text>
+                  <text x="65" y="52" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Task Spec</text>
+                  <rect x="12" y="60" width="106" height="20" fill="#141210" stroke="#5c6650"/>
+                  <text x="65" y="74" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">&gt; Objective Payload</text>
+                </g>
+
+                <path d="M 170 205 L 230 205" stroke="#c4562e" stroke-width="2" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(240, 130)">
+                  <rect width="180" height="150" fill="#1c1916" stroke="#c4562e" stroke-width="1.8"/>
+                  <rect x="16" y="14" width="76" height="18" fill="#c4562e"/>
+                  <text x="54" y="27" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">AGENT 01</text>
+                  <text x="16" y="54" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700">Generator Model</text>
+                  <text x="16" y="70" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Synthesizes candidate D_i</text>
+                  
+                  <rect x="14" y="86" width="152" height="48" fill="#141210" stroke="#5c6650"/>
+                  <text x="24" y="104" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">System Prompt:</text>
+                  <text x="24" y="118" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8">"Fulfill task strictly."</text>
+                </g>
+
+                <path d="M 420 205 L 470 205" stroke="#c4562e" stroke-width="2" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(480, 145)">
+                  <rect width="130" height="120" fill="#1c1916" stroke="#5c6650" stroke-dasharray="4,3" stroke-width="1.5"/>
+                  <text x="65" y="28" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="10" text-anchor="middle" font-weight="700">ARTIFACT [D_i]</text>
+                  <line x1="20" y1="42" x2="110" y2="42" stroke="#5c6650"/>
+                  <line x1="20" y1="58" x2="90" y2="58" stroke="#a8a196" stroke-width="1.5"/>
+                  <line x1="20" y1="70" x2="105" y2="70" stroke="#a8a196" stroke-width="1.5"/>
+                  <line x1="20" y1="82" x2="70" y2="82" stroke="#a8a196" stroke-width="1.5"/>
+                  <text x="65" y="104" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Iteration: i</text>
+                </g>
+
+                <path d="M 610 205 L 660 205" stroke="#c4562e" stroke-width="2" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(670, 120)">
+                  <rect width="200" height="170" fill="#1c1916" stroke="#c9a15a" stroke-width="1.8"/>
+                  <rect x="16" y="14" width="76" height="18" fill="#c9a15a"/>
+                  <text x="54" y="27" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">AGENT 02</text>
+                  <text x="16" y="52" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700">Critic / Evaluator</text>
+                  <text x="16" y="68" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Rubric Verification</text>
+
+                  <g transform="translate(14, 80)">
+                    <rect width="172" height="74" fill="#141210" stroke="#5c6650"/>
+                    <text x="10" y="20" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">[PASS] Grounding</text>
+                    <text x="10" y="36" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">[PASS] Schema Validation</text>
+                    <text x="10" y="52" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="8">[FAIL] Security Coverage</text>
+                    <text x="10" y="66" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Score: 0.74 &lt; 0.90 Target</text>
+                  </g>
+                </g>
+
+                <path d="M 770 290 L 770 380 L 330 380 L 330 290" fill="none" stroke="#c4562e" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-rust)"/>
+                
+                <g transform="translate(480, 362)">
+                  <rect width="190" height="34" fill="#1c1916" stroke="#c4562e" stroke-width="1.2"/>
+                  <text x="95" y="16" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">FEEDBACK REVISION LOOP</text>
+                  <text x="95" y="28" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Condition: i &lt; N_max &amp;&amp; Score &lt; Threshold</text>
+                </g>
+
+                <path d="M 870 205 L 900 205 L 900 70 L 520 70" fill="none" stroke="#c9d4a8" stroke-width="2" marker-end="url(#arrow-olive)"/>
+                
+                <g transform="translate(320, 36)">
+                  <rect width="190" height="66" fill="#3d4632" stroke="#5c6650" stroke-width="1.5"/>
+                  <text x="95" y="28" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">CRITIQUE PASSED</text>
+                  <text x="95" y="44" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Artifact Verified &amp; Emitted</text>
+                  <text x="95" y="56" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Confidence: 0.96 | Cycles: 2</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <div class="border border-[#5c6650] bg-[#141210] p-4 text-xs font-mono text-[#e8e2d5]">
+            <span class="text-[#c4562e] font-bold uppercase">Critical Production Failure Mode:</span> Critique Saturation occurs when the generator and critic enter an oscillation trap, continuously revising stylistic syntax without improving structural correctness.
+          </div>
+        </section>
+
+        <section id="pattern-2-tool-use" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+          <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#c4562e] font-bold text-xs tracking-widest uppercase">02 // Design Pattern</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
+              The Tool Use Pattern: Schema-Enforced Function Calling
+            </h2>
+            <p class="text-[#a8a196] text-xs mt-1">Grounding probabilistic inference in deterministic compute and external API gateways.</p>
+          </div>
+
+          <p>
+            LLMs operate in parametric isolation: weights reflect static historical data and lack access to real-time networks or relational databases. The Tool Use pattern converts the LLM into a deterministic RPC controller. The model generates structured payloads conforming to JSON Schema, and an execution sandbox handles authorization, security controls, and parameter validation.
+          </p>
+
+          <div class="my-4 border border-[#5c6650] bg-[#141210] p-4 diagram-container" onclick="openModal('svg-tools')">
+            <div class="flex items-center justify-between pb-3 border-b border-[#5c6650] mb-4">
+              <span class="text-xs font-bold text-[#c9a15a] uppercase tracking-wider">
+                FIGURE 2.0: SCHEMA-DRIVEN FUNCTION CALLING ARCHITECTURE
+              </span>
+              <span class="text-[10px] text-[#a8a196] uppercase">Click to Inspect</span>
+            </div>
+            
+            <div class="w-full overflow-hidden flex justify-center">
+              <svg id="svg-tools" viewBox="0 0 920 440" class="w-full h-auto max-w-4xl select-none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="920" height="440" fill="#141210" stroke="#5c6650" stroke-width="1"/>
+                
+                <g transform="translate(50, 110)">
+                  <rect width="220" height="220" fill="#1c1916" stroke="#c4562e" stroke-width="1.8"/>
+                  <rect x="20" y="20" width="84" height="20" fill="#c4562e"/>
+                  <text x="62" y="34" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">AGENT CORE</text>
+                  <text x="20" y="70" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="14" font-weight="700">Reasoning Engine</text>
+                  <text x="20" y="88" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Evaluates Context State</text>
+                  
+                  <rect x="18" y="108" width="184" height="92" fill="#141210" stroke="#5c6650"/>
+                  <text x="28" y="128" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="9">Registered Schemas:</text>
+                  <text x="28" y="146" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">&bull; web_search(query)</text>
+                  <text x="28" y="162" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">&bull; vector_query(vector)</text>
+                  <text x="28" y="178" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">&bull; sql_exec(query_ast)</text>
+                  <text x="28" y="192" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">&bull; sandbox_py(code)</text>
+                </g>
+
+                <path d="M 270 180 L 370 180" stroke="#c4562e" stroke-width="2" marker-end="url(#arrow-rust)"/>
+                <text x="320" y="170" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">TOOL DISPATCH</text>
+
+                <g transform="translate(370, 90)">
+                  <rect width="180" height="260" fill="#1c1916" stroke="#c9a15a" stroke-width="1.8"/>
+                  <rect x="16" y="16" width="90" height="20" fill="#c9a15a"/>
+                  <text x="61" y="30" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">GATEWAY BUS</text>
+                  <text x="16" y="60" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700">Execution Layer</text>
+                  
+                  <rect x="14" y="78" width="152" height="65" fill="#141210" stroke="#5c6650"/>
+                  <text x="22" y="96" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">[OK] Schema Validation</text>
+                  <text x="22" y="112" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">[OK] RBAC Auth Tokens</text>
+                  <text x="22" y="128" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">[OK] Rate Throttling</text>
+
+                  <rect x="14" y="155" width="152" height="80" fill="#141210" stroke="#5c6650"/>
+                  <text x="24" y="174" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8">Parsed JSON Payload:</text>
+                  <text x="24" y="190" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="8">{"tool": "sql_query",</text>
+                  <text x="24" y="204" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="8"> "table": "settlement",</text>
+                  <text x="24" y="218" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="8"> "timeout_ms": 5000}</text>
+                </g>
+
+                <path d="M 550 140 L 640 100" stroke="#5c6650" stroke-width="1.5" marker-end="url(#arrow-brass)"/>
+                <path d="M 550 180 L 640 170" stroke="#5c6650" stroke-width="1.5" marker-end="url(#arrow-brass)"/>
+                <path d="M 550 220 L 640 240" stroke="#5c6650" stroke-width="1.5" marker-end="url(#arrow-brass)"/>
+                <path d="M 550 260 L 640 310" stroke="#5c6650" stroke-width="1.5" marker-end="url(#arrow-brass)"/>
+
+                <g transform="translate(640, 75)">
+                  <rect width="230" height="56" fill="#1c1916" stroke="#5c6650" stroke-width="1.2"/>
+                  <text x="20" y="26" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">WEB SEARCH ENGINE</text>
+                  <text x="20" y="44" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">GET /v1/search &bull; Latency: 210ms</text>
+                </g>
+
+                <g transform="translate(640, 145)">
+                  <rect width="230" height="56" fill="#1c1916" stroke="#5c6650" stroke-width="1.2"/>
+                  <text x="20" y="26" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">VECTOR EMBEDDING DB</text>
+                  <text x="20" y="44" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">k-NN Similarity &bull; pgvector / Qdrant</text>
+                </g>
+
+                <g transform="translate(640, 215)">
+                  <rect width="230" height="56" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+                  <text x="20" y="26" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">POSTGRESQL ANALYTICS</text>
+                  <text x="20" y="44" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">READ-ONLY &bull; Active Connection</text>
+                </g>
+
+                <g transform="translate(640, 285)">
+                  <rect width="230" height="56" fill="#1c1916" stroke="#5c6650" stroke-width="1.2"/>
+                  <text x="20" y="26" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">PYTHON RUNTIME SANDBOX</text>
+                  <text x="20" y="44" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Isolated gVisor / WASM Container</text>
+                </g>
+
+                <path d="M 755 350 L 755 390 L 160 390 L 160 340" fill="none" stroke="#c9d4a8" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-olive)"/>
+                
+                <g transform="translate(360, 375)">
+                  <rect width="210" height="28" fill="#3d4632" stroke="#5c6650" stroke-width="1"/>
+                  <text x="105" y="18" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">OBSERVATION HYDRATION LOOP</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section id="pattern-3-react" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+          <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#c4562e] font-bold text-xs tracking-widest uppercase">03 // Design Pattern</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
+              The ReAct Pattern: Interleaved Reasoning and Action
+            </h2>
+            <p class="text-[#a8a196] text-xs mt-1">Coupling dynamic thought synthesis with environment feedback via persistent scratchpad memory.</p>
+          </div>
+
+          <p>
+            The Reason + Act (ReAct) architecture establishes an alternating cycle of internal reasoning and empirical interactions. Without explicit internal tokens (<code class="text-[#c9a15a]">Thought:</code>), agents exhibit action blindness, invoking external endpoints without grounding. Pure chain-of-thought, conversely, lacks environment feedback and drifts into hallucination.
+          </p>
+
+          <div class="my-4 border border-[#5c6650] bg-[#141210] p-4 diagram-container" onclick="openModal('svg-react')">
+            <div class="flex items-center justify-between pb-3 border-b border-[#5c6650] mb-4">
+              <span class="text-xs font-bold text-[#c9a15a] uppercase tracking-wider">
+                FIGURE 3.0: THE REACT SCRATCHPAD COGNITIVE LOOP
+              </span>
+              <span class="text-[10px] text-[#a8a196] uppercase">Click to Inspect</span>
+            </div>
+            
+            <div class="w-full overflow-hidden flex justify-center">
+              <svg id="svg-react" viewBox="0 0 920 440" class="w-full h-auto max-w-4xl select-none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="920" height="440" fill="#141210" stroke="#5c6650" stroke-width="1"/>
+                
+                <circle cx="460" cy="225" r="160" fill="none" stroke="#5c6650" stroke-width="1" stroke-dasharray="6,4"/>
+
+                <g transform="translate(360, 145)">
+                  <rect width="200" height="160" fill="#1c1916" stroke="#c4562e" stroke-width="2"/>
+                  <rect x="20" y="16" width="160" height="24" fill="#c4562e"/>
+                  <text x="100" y="32" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">SCRATCHPAD MEMORY</text>
+                  <text x="20" y="62" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">T_0: User Goal</text>
+                  <text x="20" y="80" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8">T_1: Thought[1]</text>
+                  <text x="20" y="98" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="8">A_1: Action[Tool, Args]</text>
+                  <text x="20" y="116" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">O_1: Observation[Data]</text>
+                  <text x="20" y="138" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="8">&gt;&gt; In-Memory Buffer</text>
+                </g>
+
+                <g transform="translate(100, 50)">
+                  <rect width="220" height="110" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
+                  <rect x="14" y="12" width="70" height="18" fill="#c9a15a"/>
+                  <text x="49" y="25" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">PHASE 01</text>
+                  <text x="14" y="48" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700">Thought Synthesis</text>
+                  <text x="14" y="66" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Assesses observations, selects</text>
+                  <text x="14" y="80" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">next tactical step.</text>
+                </g>
+
+                <path d="M 320 100 Q 460 30 600 90" fill="none" stroke="#c4562e" stroke-width="2" marker-end="url(#arrow-rust)"/>
+                <text x="460" y="55" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">ACTION DIRECTIVE</text>
+
+                <g transform="translate(600, 50)">
+                  <rect width="220" height="110" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+                  <rect x="14" y="12" width="70" height="18" fill="#c4562e"/>
+                  <text x="49" y="25" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">PHASE 02</text>
+                  <text x="14" y="48" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700">Action Execution</text>
+                  <text x="14" y="66" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Dispatches command to RPC endpoint.</text>
+                  <rect x="14" y="76" width="192" height="22" fill="#141210" stroke="#5c6650"/>
+                  <text x="22" y="91" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8">Act: RunQuery["sql"]</text>
+                </g>
+
+                <path d="M 710 160 Q 750 280 660 350" fill="none" stroke="#c9d4a8" stroke-width="2" marker-end="url(#arrow-olive)"/>
+                <text x="760" y="260" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">RAW RESULT</text>
+
+                <g transform="translate(500, 320)">
+                  <rect width="230" height="95" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+                  <rect x="14" y="12" width="70" height="18" fill="#5c6650"/>
+                  <text x="49" y="25" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">PHASE 03</text>
+                  <text x="14" y="48" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700">Observation Feedback</text>
+                  <text x="14" y="66" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Captures payload and checks</text>
+                  <text x="14" y="80" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">halting predicates.</text>
+                </g>
+
+                <path d="M 500 370 Q 280 430 190 280 L 190 160" fill="none" stroke="#c4562e" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-rust)"/>
+                <text x="260" y="395" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="8">RE-INGEST SCRATCHPAD</text>
+
+                <g transform="translate(30, 260)">
+                  <rect width="180" height="70" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
+                  <text x="20" y="26" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700">TERMINAL CONDITION</text>
+                  <text x="20" y="44" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Thought: "Goal complete."</text>
+                  <text x="20" y="58" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">Action: EmitResponse[]</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section id="pattern-4-planning" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+          <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#c4562e] font-bold text-xs tracking-widest uppercase">04 // Design Pattern</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
+              The Planning Pattern: Directed Acyclic Graph (DAG) Execution
+            </h2>
+            <p class="text-[#a8a196] text-xs mt-1">Decomposing complex strategic objectives into dependency graphs with dynamic replanning triggers.</p>
+          </div>
+
+          <p>
+            ReAct and Reflection patterns execute sequentially, picking each step greedily. For multi-service migrations or complex architectural tasks, greedy dispatch fails due to horizon myopia. The Planning Pattern decomposes the objective upfront into a Directed Acyclic Graph (DAG) where nodes represent atomic work units and edges encode dependency constraints.
+          </p>
+
+          <div class="my-4 border border-[#5c6650] bg-[#141210] p-4 diagram-container" onclick="openModal('svg-planning')">
+            <div class="flex items-center justify-between pb-3 border-b border-[#5c6650] mb-4">
+              <span class="text-xs font-bold text-[#c9a15a] uppercase tracking-wider">
+                FIGURE 4.0: DAG DECOMPOSITION &amp; ADAPTIVE REPLANNING ARCHITECTURE
+              </span>
+              <span class="text-[10px] text-[#a8a196] uppercase">Click to Inspect</span>
+            </div>
+            
+            <div class="w-full overflow-hidden flex justify-center">
+              <svg id="svg-planning" viewBox="0 0 920 460" class="w-full h-auto max-w-4xl select-none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="920" height="460" fill="#141210" stroke="#5c6650" stroke-width="1"/>
+                
+                <g transform="translate(40, 160)">
+                  <rect width="170" height="150" fill="#1c1916" stroke="#c4562e" stroke-width="1.8"/>
+                  <rect x="14" y="14" width="75" height="18" fill="#c4562e"/>
+                  <text x="51" y="27" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">DAG PLANNER</text>
+                  <text x="14" y="56" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="700">Goal Ingestion</text>
+                  <text x="14" y="74" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Decomposes objective into</text>
+                  <text x="14" y="88" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">topological subtasks.</text>
+                  <rect x="12" y="104" width="146" height="32" fill="#141210" stroke="#5c6650"/>
+                  <text x="20" y="124" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8">&gt; TopoSort(G)</text>
+                </g>
+
+                <path d="M 210 235 L 290 235" stroke="#c4562e" stroke-width="2" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(300, 90)">
+                  <rect width="180" height="90" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+                  <text x="20" y="28" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">1A // Extract Schemas</text>
+                  <text x="20" y="48" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Worker: Database Specialist</text>
+                  <rect x="20" y="58" width="140" height="16" fill="#3d4632"/>
+                  <text x="90" y="70" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">STATUS: COMPLETED</text>
+                </g>
+
+                <g transform="translate(300, 280)">
+                  <rect width="180" height="90" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+                  <text x="20" y="28" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">1B // Audit Protocols</text>
+                  <text x="20" y="48" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Worker: Security Specialist</text>
+                  <rect x="20" y="58" width="140" height="16" fill="#3d4632"/>
+                  <text x="90" y="70" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">STATUS: COMPLETED</text>
+                </g>
+
+                <path d="M 290 235 L 300 135" stroke="#5c6650" stroke-width="1.5"/>
+                <path d="M 290 235 L 300 325" stroke="#5c6650" stroke-width="1.5"/>
+
+                <path d="M 480 135 L 560 210" stroke="#5c6650" stroke-width="1.5" marker-end="url(#arrow-rust)"/>
+                <path d="M 480 325 L 560 250" stroke="#5c6650" stroke-width="1.5" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(560, 185)">
+                  <rect width="180" height="100" fill="#1c1916" stroke="#c4562e" stroke-width="1.8"/>
+                  <text x="20" y="28" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">02 // Code Synthesis</text>
+                  <text x="20" y="48" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Depends on [1A, 1B]</text>
+                  <rect x="20" y="62" width="140" height="22" fill="#141210" stroke="#5c6650"/>
+                  <text x="90" y="76" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">DISPATCH EXECUTION</text>
+                </g>
+
+                <path d="M 740 235 L 780 235" stroke="#c4562e" stroke-width="1.8" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(780, 175)">
+                  <rect width="110" height="120" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+                  <text x="55" y="26" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">DAG MONITOR</text>
+                  <line x1="12" y1="36" x2="98" y2="36" stroke="#5c6650"/>
+                  <text x="14" y="56" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Evaluation &Delta;?</text>
+                  <rect x="12" y="78" width="86" height="26" fill="#c4562e"/>
+                  <text x="55" y="95" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">REPLAN</text>
+                </g>
+
+                <path d="M 835 175 L 835 50 L 125 50 L 125 160" fill="none" stroke="#c4562e" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-rust)"/>
+                <g transform="translate(420, 36)">
+                  <rect width="180" height="28" fill="#1c1916" stroke="#c4562e"/>
+                  <text x="90" y="18" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">DYNAMIC REPLAN TRIGGER</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section id="pattern-5-multi-agent" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+          <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#c4562e] font-bold text-xs tracking-widest uppercase">05 // Design Pattern</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
+              The Multi-Agent Collaboration Pattern: Hierarchical Topologies
+            </h2>
+            <p class="text-[#a8a196] text-xs mt-1">Distributed specialization, message buses, and consensus aggregation across heterogeneous agents.</p>
+          </div>
+
+          <p>
+            When tasks demand contradictory persona constraints (such as rapid speculative synthesis versus defensive compliance auditing), cramming all concerns into a single prompt damages performance. The Multi-Agent pattern formalizes agent collaboration into supervisor-worker pools or decentralized topologies using typed message passing.
+          </p>
+
+          <div class="my-4 border border-[#5c6650] bg-[#141210] p-4 diagram-container" onclick="openModal('svg-multi')">
+            <div class="flex items-center justify-between pb-3 border-b border-[#5c6650] mb-4">
+              <span class="text-xs font-bold text-[#c9a15a] uppercase tracking-wider">
+                FIGURE 5.0: HIERARCHICAL SUPERVISOR &amp; SPECIALIZED WORKER POOL
+              </span>
+              <span class="text-[10px] text-[#a8a196] uppercase">Click to Inspect</span>
+            </div>
+            
+            <div class="w-full overflow-hidden flex justify-center">
+              <svg id="svg-multi" viewBox="0 0 920 480" class="w-full h-auto max-w-4xl select-none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="920" height="480" fill="#141210" stroke="#5c6650" stroke-width="1"/>
+                
+                <g transform="translate(330, 40)">
+                  <rect width="260" height="120" fill="#1c1916" stroke="#c4562e" stroke-width="2"/>
+                  <rect x="20" y="14" width="100" height="20" fill="#c4562e"/>
+                  <text x="70" y="28" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">ORCHESTRATOR</text>
+                  <text x="20" y="58" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="14" font-weight="700">Supervisor Router</text>
+                  <text x="20" y="76" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">Delegates subtasks, resolves conflicts,</text>
+                  <text x="20" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9">and synthesizes final consensus.</text>
+                </g>
+
+                <g transform="translate(180, 195)">
+                  <rect width="560" height="36" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+                  <text x="280" y="22" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">SHARED STATE GRAPH &amp; DISTRIBUTED EVENT BUS</text>
+                </g>
+
+                <path d="M 460 160 L 460 195" stroke="#c4562e" stroke-width="2" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(60, 270)">
+                  <rect width="220" height="130" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+                  <text x="16" y="30" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">RESEARCH AGENT</text>
+                  <text x="16" y="50" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Vector RAG + API Parsing</text>
+                  <rect x="12" y="66" width="196" height="48" fill="#141210" stroke="#5c6650"/>
+                  <text x="18" y="86" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">&gt; query_vector_store()</text>
+                  <text x="18" y="100" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">&gt; Emits: raw_evidence_doc</text>
+                </g>
+                <path d="M 170 231 L 170 270" stroke="#5c6650" stroke-width="1.8" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(350, 270)">
+                  <rect width="220" height="130" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+                  <text x="16" y="30" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">ENGINEERING AGENT</text>
+                  <text x="16" y="50" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Code Synthesis &amp; AST Analysis</text>
+                  <rect x="12" y="66" width="196" height="48" fill="#141210" stroke="#5c6650"/>
+                  <text x="18" y="86" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">&gt; compile_and_lint()</text>
+                  <text x="18" y="100" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">&gt; Emits: executable_patch</text>
+                </g>
+                <path d="M 460 231 L 460 270" stroke="#c4562e" stroke-width="1.8" marker-end="url(#arrow-rust)"/>
+
+                <g transform="translate(640, 270)">
+                  <rect width="220" height="130" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+                  <text x="16" y="30" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700">AUDITOR AGENT</text>
+                  <text x="16" y="50" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">Static Analysis &amp; CVE Check</text>
+                  <rect x="12" y="66" width="196" height="48" fill="#141210" stroke="#5c6650"/>
+                  <text x="18" y="86" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8">&gt; semgrep_audit()</text>
+                  <text x="18" y="100" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8">&gt; Emits: vulnerability_log</text>
+                </g>
+                <path d="M 750 231 L 750 270" stroke="#5c6650" stroke-width="1.8" marker-end="url(#arrow-rust)"/>
+
+                <path d="M 750 400 L 750 440 L 460 440 L 460 400" fill="none" stroke="#c4562e" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-rust)"/>
+                <g transform="translate(510, 426)">
+                  <rect width="180" height="24" fill="#1c1916" stroke="#c4562e"/>
+                  <text x="90" y="16" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">CONSENSUS AGGREGATION</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section id="architectural-matrix" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+          <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#c4562e] font-bold text-xs tracking-widest uppercase">06 // Comparative Analysis</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
+              Quantitative Architectural Matrix
+            </h2>
+            <p class="text-[#a8a196] text-xs mt-1">Cost, latency, reliability, and token consumption benchmarks across patterns[cite: 5].</p>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#141210] text-[#c9a15a] uppercase border-b border-[#5c6650]">
+                <tr>
+                  <th class="py-3 px-3">Pattern</th>
+                  <th class="py-3 px-3">Token Overhead</th>
+                  <th class="py-3 px-3">Latency SLA</th>
+                  <th class="py-3 px-3">Reliability &Delta;</th>
+                  <th class="py-3 px-3">Cost Multiple</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#5c6650] text-[#a8a196]">
+                <tr>
+                  <td class="py-3 px-3 font-bold text-[#e8e2d5]">Single-Turn Baseline</td>
+                  <td class="py-3 px-3">1.0x (Baseline)</td>
+                  <td class="py-3 px-3 text-[#c9d4a8]">300 - 800ms</td>
+                  <td class="py-3 px-3 text-[#c4562e]">Baseline (Low)</td>
+                  <td class="py-3 px-3">1.0x</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-[#e8e2d5]">Reflection Loop</td>
+                  <td class="py-3 px-3">2.5x &ndash; 4.0x</td>
+                  <td class="py-3 px-3">3.0 &ndash; 8.0s</td>
+                  <td class="py-3 px-3 text-[#c9d4a8]">+34% Accuracy</td>
+                  <td class="py-3 px-3">~3.2x</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-[#e8e2d5]">Tool Use (RPC)</td>
+                  <td class="py-3 px-3">1.2x &ndash; 2.0x</td>
+                  <td class="py-3 px-3">1.0 &ndash; 4.0s</td>
+                  <td class="py-3 px-3 text-[#c9d4a8]">+62% Grounding</td>
+                  <td class="py-3 px-3">~1.5x</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-[#e8e2d5]">ReAct Pattern</td>
+                  <td class="py-3 px-3">3.0x &ndash; 6.0x</td>
+                  <td class="py-3 px-3">5.0 &ndash; 15.0s</td>
+                  <td class="py-3 px-3 text-[#c9d4a8]">+51% Success</td>
+                  <td class="py-3 px-3">~4.5x</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-[#e8e2d5]">Planning (DAG)</td>
+                  <td class="py-3 px-3">2.0x &ndash; 3.5x</td>
+                  <td class="py-3 px-3">4.0 &ndash; 10.0s</td>
+                  <td class="py-3 px-3 text-[#c9d4a8]">+58% Success</td>
+                  <td class="py-3 px-3">~2.8x</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-bold text-[#e8e2d5]">Multi-Agent Swarm</td>
+                  <td class="py-3 px-3">6.0x &ndash; 18.0x</td>
+                  <td class="py-3 px-3">12.0 &ndash; 45.0s</td>
+                  <td class="py-3 px-3 text-[#c9d4a8]">+73% Robustness</td>
+                  <td class="py-3 px-3">~10x &ndash; 15x</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="production-guidelines" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+          <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[#c4562e] font-bold text-xs tracking-widest uppercase">07 // Hardening Guidelines</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
+              Production Hardening: Operational Guardrails
+            </h2>
+            <p class="text-[#a8a196] text-xs mt-1">Mitigating failure modes in non-deterministic systems[cite: 5].</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-[#141210] border border-[#5c6650] p-4 space-y-2">
+              <span class="text-[10px] text-[#c4562e] font-bold uppercase tracking-wider block">01 // Bounded Budgets</span>
+              <h4 class="text-xs font-bold text-[#e8e2d5] uppercase">Step &amp; Token Deadlines</h4>
+              <p class="text-[11px] text-[#a8a196] leading-relaxed">
+                Enforce a maximum step limit (MAX_STEPS = 10) and hard wall-clock timeouts. Runaway loops exhaust token quotas and increase operational costs without circuit breakers[cite: 5].
+              </p>
+            </div>
+
+            <div class="bg-[#141210] border border-[#5c6650] p-4 space-y-2">
+              <span class="text-[10px] text-[#c9a15a] font-bold uppercase tracking-wider block">02 // Deterministic Types</span>
+              <h4 class="text-xs font-bold text-[#e8e2d5] uppercase">Pydantic Schemas</h4>
+              <p class="text-[11px] text-[#a8a196] leading-relaxed">
+                Reject raw text strings for inter-agent communication. Require JSON schemas with Pydantic validation to handle structural deserialization errors[cite: 5].
+              </p>
+            </div>
+
+            <div class="bg-[#141210] border border-[#5c6650] p-4 space-y-2">
+              <span class="text-[10px] text-[#c9d4a8] font-bold uppercase tracking-wider block">03 // Full Observability</span>
+              <h4 class="text-xs font-bold text-[#e8e2d5] uppercase">Distributed Tracing</h4>
+              <p class="text-[11px] text-[#a8a196] leading-relaxed">
+                Trace thoughts, tool payloads, and critic scores using distributed telemetry spans (OpenTelemetry). Granular event logs are necessary to debug non-deterministic state transitions[cite: 5].
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <div id="svg-modal" class="fixed inset-0 z-50 bg-[#141210]/95 hidden flex items-center justify-center p-4 sm:p-8" onclick="closeModal(event)">
+    <div class="relative w-full max-w-5xl bg-[#1c1916] border border-[#5c6650] p-6 shadow-2xl flex flex-col max-h-[90vh]" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-3 border-b border-[#5c6650]">
+        <span id="modal-title" class="text-xs font-bold text-[#c9a15a] uppercase tracking-wider">
+          INSPECTING ARCHITECTURAL VECTOR
+        </span>
+        <button onclick="closeModalDirect()" class="px-3 py-1 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase hover:brightness-90">
+          Close [ESC]
+        </button>
+      </div>
+      <div id="modal-content" class="flex-1 overflow-auto py-6 flex items-center justify-center"></div>
+      <div class="pt-3 border-t border-[#5c6650] flex justify-between items-center text-[10px] text-[#a8a196] uppercase tracking-wider">
+        <span>Vector Graphics Engine &bull; Native Scalable Render</span>
+        <span class="text-[#c4562e]">Press ESC to exit</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('progress-bar');
+      if (bar) bar.style.width = scrolled + '%';
+    });
+
+    function openModal(svgId) {
+      const sourceSvg = document.getElementById(svgId);
+      if (!sourceSvg) return;
+      const modal = document.getElementById('svg-modal');
+      const content = document.getElementById('modal-content');
+      const title = document.getElementById('modal-title');
+
+      content.innerHTML = '';
+      const clone = sourceSvg.cloneNode(true);
+      clone.classList.remove('max-w-4xl');
+      clone.classList.add('w-full', 'h-auto', 'max-h-[75vh]');
+      content.appendChild(clone);
+      
+      title.innerText = "INSPECTING ARCHITECTURAL VECTOR // " + svgId.toUpperCase();
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+      document.getElementById('svg-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function closeModalDirect() {
+      document.getElementById('svg-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModalDirect();
+    });
+  </script>
+</body>
+</html>

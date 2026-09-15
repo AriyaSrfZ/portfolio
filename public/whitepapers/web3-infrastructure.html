@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 &amp; Crypto Infrastructure | Technical Specification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --rugged-bg-panel: #1c1916;
+            --rugged-bg-nav: #141210;
+            --rugged-rust: #c4562e;
+            --rugged-brass: #c9a15a;
+            --rugged-olive-bg: #3d4632;
+            --rugged-olive-text: #c9d4a8;
+            --rugged-olive-border: #5c6650;
+            --rugged-paper: #e8e2d5;
+            --rugged-muted: #a8a196;
+        }
+        * {
+            border-radius: 0px !important;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        body {
+            background-color: var(--rugged-bg-nav);
+            color: var(--rugged-paper);
+        }
+        .rugged-hatch {
+            background-image: repeating-linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.02) 0px,
+                rgba(255, 255, 255, 0.02) 1px,
+                transparent 1px,
+                transparent 12px
+            );
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 320px;
+        }
+        .rivet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--rugged-bg-nav);
+            border: 1px solid var(--rugged-rust);
+            pointer-events: none;
+        }
+        .rivet-tl { top: -3px; left: -3px; }
+        .rivet-tr { top: -3px; right: -3px; }
+        .rivet-bl { bottom: -3px; left: -3px; }
+        .rivet-br { bottom: -3px; right: -3px; }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #ffffff !important; color: #000000 !important; }
+        }
+    </style>
+</head>
+<body class="rugged-hatch min-h-screen flex flex-col antialiased">
+
+    <header class="bg-[#141210] border-b border-[#5c6650] sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="px-2 py-1 bg-[#c4562e] text-[#141210] font-bold text-xs">SPEC.03</span>
+                <div>
+                    <span class="font-bold text-sm tracking-wider text-[#e8e2d5] block uppercase">Web3 &amp; Crypto Infrastructure</span>
+                    <span class="text-[10px] text-[#c9a15a] uppercase tracking-widest">Decentralized State Machines &amp; Rollup Finality</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4 no-print">
+                <a href="index.html" class="px-3 py-1.5 border border-[#5c6650] text-[#a8a196] hover:text-[#e8e2d5] text-xs font-semibold uppercase tracking-wider transition">
+                    Hub Index
+                </a>
+                <button onclick="window.print()" class="px-4 py-1.5 bg-[#c4562e] text-[#141210] hover:brightness-90 text-xs font-bold uppercase tracking-wider transition">
+                    Print Dossier
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-[1600px] w-full mx-auto px-6 py-8 space-y-8">
+
+        <div class="relative bg-[#1c1916] p-8 border border-[#5c6650]">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+            
+            <div class="max-w-4xl space-y-3">
+                <div class="inline-block px-2.5 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase">
+                    ENGINEERING WHITEPAPER // DOCUMENT 03
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-bold text-[#e8e2d5] tracking-tight uppercase">
+                    Decentralized Execution &amp; Rollup Settlement
+                </h1>
+                <p class="text-[#a8a196] text-sm sm:text-base leading-relaxed">
+                    Analyzing the architectural transition from centralized database switches to cryptographically verified state machines. This dossier covers EVM opcode gas metering, Optimistic versus Zero-Knowledge Rollup settlement mechanics, and cross-chain bridge vulnerability profiles.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-[#5c6650] pt-6 mt-6">
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Base Transfer Cost</span>
+                    <span class="text-2xl font-bold text-[#c9a15a] mt-1 block">21,000 Gas</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Native L1 ETH Transfer</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">ZK Batch Capacity</span>
+                    <span class="text-2xl font-bold text-[#c9d4a8] mt-1 block">4,000+ TPS</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Off-Chain Batch Proving</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Challenge Window</span>
+                    <span class="text-2xl font-bold text-[#c4562e] mt-1 block">7 Days</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Optimistic Fraud Proofs</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Execution Runtime</span>
+                    <span class="text-2xl font-bold text-[#e8e2d5] mt-1 block">EVM</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Deterministic Stack Engine</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">01 // Architectural Shift</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Deterministic State Machines vs. Relational Switches</h2>
+            </div>
+            
+            <p class="text-[#a8a196] text-sm leading-relaxed">
+                Decentralized ledgers replace mutable relational database switches with cryptographically verified state machines. State transition validity relies on cryptographic consensus rather than administrative database authorization.
+            </p>
+            <p class="text-[#a8a196] text-sm leading-relaxed">
+                While public ledgers provide continuous settlement and composability, they enforce strict computational limits, finality latency periods, and structural security constraints.
+            </p>
+
+            <div class="p-4 bg-[#141210] border-l-2 border-[#c4562e] text-[#e8e2d5] text-xs font-mono">
+                EVM GAS METERING FORMULA: Gas Total = 21000 + Sum(Opcode Compute Costs) + Calldata Size Cost
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">02 // Core Protocol Mechanics</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">EVM Internals &amp; Layer 2 Scaling Architectures</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">EVM Gas Metering</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        Every opcode execution step consumes gas to prevent infinite execution loops. Storage writes (SSTORE) consume up to 20,000 gas units, while storage reads (SLOAD) require 2,100 gas units, penalizing heavy on-chain state modifications.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">Layer 2 Rollup Topologies</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        Optimistic Rollups assume transaction batches are valid, enforcing a 7-day challenge window for fraud disputes. ZK-Rollups compute succinct validity proofs (zk-SNARKs) off-chain, verifying state mathematically on Layer 1 smart contracts.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">Cross-Chain Bridge Vulnerabilities</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        Assets transfer across chains through lock-and-mint or burn-and-release smart contracts. Bridges introduce systemic exposure vectors via validator key theft, multisig threshold compromises, or proof verification logic bugs.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-[#5c6650]">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xs font-bold text-[#e8e2d5] uppercase tracking-wider">L1 Mainnet vs. L2 Rollup Throughput</h3>
+                    <span class="text-[10px] text-[#c9a15a] uppercase">Transactions Per Second (TPS)</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="web3ScalingChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">03 // Settlement Topology</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Permissionless Global Rails vs. Capital-Controlled Environments</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="font-bold text-[#c9a15a] uppercase">Global Permissionless Infrastructure</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Public smart contracts function as continuous global settlement engines. Automated market makers and peer-to-peer lending pools clear cross-border transactions without correspondent banking networks.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="font-bold text-[#c4562e] uppercase">Restricted Economic Geographies</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Under capital controls and inflation pressures, users clear balances through stablecoins and decentralized exchange liquidity pools. This operational route circumvents domestic clearing limitations but presents liquidity fragmentation risks.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">04 // Process Architecture</span>
+                    <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Layer 2 Batch Settlement Pipeline</h2>
+                </div>
+                <span class="text-[10px] text-[#c9a15a] uppercase border border-[#5c6650] px-2 py-1">Interactive</span>
+            </div>
+
+            <div class="bg-[#141210] p-6 border border-[#5c6650] overflow-x-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[800px]">
+                    <div onclick="inspectWeb3Node('intent')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c4562e] block uppercase">01 // INTENT</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Signed Tx</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">ECDSA Secp256k1</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectWeb3Node('sequencer')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9a15a] block uppercase">02 // SEQUENCER</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Batch Engine</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">State Compression</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectWeb3Node('prover')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9d4a8] block uppercase">03 // PROVER</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Proof Gen</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">SNARK / Dispute</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectWeb3Node('l1')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#e8e2d5] block uppercase">04 // FINALITY</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">L1 Settlement</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Contract Commit</span>
+                    </div>
+                </div>
+                <div id="web3-node-details" class="mt-6 p-4 bg-[#1c1916] border border-[#5c6650] text-xs text-[#a8a196] leading-relaxed">
+                    <span class="font-bold text-[#c9a15a] uppercase">INSPECTOR:</span> Select an architecture node above to verify state verification rules.
+                </div>
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6 no-print">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">05 // Compute Simulator</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Live EVM Gas &amp; Execution Cost Sandbox</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">SSTORE Writes (20k gas each)</label>
+                    <input type="number" id="evm-sstore" value="2" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">SLOAD Reads (2.1k gas each)</label>
+                    <input type="number" id="evm-sload" value="4" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Base Gas Price (Gwei)</label>
+                    <input type="number" id="evm-gwei" value="25" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+            </div>
+
+            <button onclick="calculateGasCost()" class="w-full py-3 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition">
+                Compute Execution Gas
+            </button>
+
+            <div class="p-4 bg-[#141210] border border-[#5c6650] text-center">
+                <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Total Estimated Gas Units</span>
+                <span class="text-3xl font-bold text-[#c9a15a] block mt-1" id="gas-val">69,400 Gas</span>
+                <span class="text-xs text-[#c9d4a8] block mt-1" id="gas-eth">Estimated L1 Fee: 0.001735 ETH (@ 25 Gwei)</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#141210] border-t border-[#5c6650] py-6 text-xs text-[#a8a196] no-print">
+        <div class="max-w-[1600px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="uppercase tracking-wider">Ariya Sarrafzadeh // Architecture Whitepaper Suite</span>
+            <span class="text-[10px] text-[#5c6650] uppercase tracking-widest">Document Reference: SPEC-03-WEB3</span>
+        </div>
+    </footer>
+
+    <script>
+        function inspectWeb3Node(type) {
+            const box = document.getElementById('web3-node-details');
+            const data = {
+                'intent': '1. User Intent: Client signs execution parameters off-chain using an ECDSA key pair. Gas limits and priority fees are defined by the client.',
+                'sequencer': '2. L2 Sequencer: Gathers transaction payloads, computes state transitions in an execution sandbox, and packs data into compressed batches.',
+                'prover': '3. Validity Proof: A Zero-Knowledge prover constructs circuit proofs (zk-SNARK), or an Optimistic node asserts batch validity under a 7-day challenge window.',
+                'l1': '4. L1 Settlement: Submits state roots and validity proofs directly to Ethereum Layer 1 smart contracts for final canonical settlement.'
+            };
+            box.innerText = data[type] || '';
+        }
+
+        function calculateGasCost() {
+            const sstore = parseInt(document.getElementById('evm-sstore').value) || 0;
+            const sload = parseInt(document.getElementById('evm-sload').value) || 0;
+            const gwei = parseFloat(document.getElementById('evm-gwei').value) || 0;
+            
+            const baseGas = 21000;
+            const totalGas = baseGas + (sstore * 20000) + (sload * 2100);
+            const ethCost = (totalGas * gwei * 1e-9).toFixed(6);
+
+            document.getElementById('gas-val').innerText = totalGas.toLocaleString() + ' Gas';
+            document.getElementById('gas-eth').innerText = 'Estimated L1 Fee: ' + ethCost + ' ETH (@ ' + gwei + ' Gwei)';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('web3ScalingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Ethereum L1', 'Arbitrum One', 'Optimism', 'Starknet', 'zkSync Era'],
+                    datasets: [{
+                        label: 'Average Effective TPS',
+                        data: [15, 450, 380, 2200, 3100],
+                        backgroundColor: '#c4562e',
+                        borderColor: '#5c6650',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#a8a196', font: { family: 'IBM Plex Mono' } }
+                        },
+                        y: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#e8e2d5', font: { family: 'IBM Plex Mono' } }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

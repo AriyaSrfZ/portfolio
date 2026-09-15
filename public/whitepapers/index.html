@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Whitepaper Suite | Command Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --rugged-bg-panel: #1c1916;
+            --rugged-bg-nav: #141210;
+            --rugged-rust: #c4562e;
+            --rugged-brass: #c9a15a;
+            --rugged-olive-bg: #3d4632;
+            --rugged-olive-text: #c9d4a8;
+            --rugged-olive-border: #5c6650;
+            --rugged-paper: #e8e2d5;
+            --rugged-muted: #a8a196;
+        }
+        * {
+            border-radius: 0px !important;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        body {
+            background-color: var(--rugged-bg-nav);
+            color: var(--rugged-paper);
+        }
+        .rugged-hatch {
+            background-image: repeating-linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.02) 0px,
+                rgba(255, 255, 255, 0.02) 1px,
+                transparent 1px,
+                transparent 12px
+            );
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            height: 340px;
+        }
+        .rivet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--rugged-bg-nav);
+            border: 1px solid var(--rugged-rust);
+            pointer-events: none;
+        }
+        .rivet-tl { top: -3px; left: -3px; }
+        .rivet-tr { top: -3px; right: -3px; }
+        .rivet-bl { bottom: -3px; left: -3px; }
+        .rivet-br { bottom: -3px; right: -3px; }
+    </style>
+</head>
+<body class="rugged-hatch min-h-screen flex flex-col antialiased">
+
+    <header class="bg-[#141210] border-b border-[#5c6650] sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="px-2 py-1 bg-[#c4562e] text-[#141210] font-bold text-xs">SPEC.HUB</span>
+                <div>
+                    <span class="font-bold text-sm tracking-wider text-[#e8e2d5] block uppercase">Engineering Whitepaper Suite</span>
+                    <span class="text-[10px] text-[#c9a15a] uppercase tracking-widest">Financial &amp; Decentralized Switches</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="../" class="px-3 py-1.5 border border-[#5c6650] text-[#a8a196] hover:text-[#e8e2d5] text-xs font-semibold uppercase tracking-wider transition">
+                    &larr; Portfolio Main
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-[1600px] w-full mx-auto px-6 py-8 space-y-8">
+
+        <div class="relative bg-[#1c1916] p-8 border border-[#5c6650]">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+            
+            <div class="max-w-4xl space-y-3">
+                <div class="inline-block px-2.5 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase">
+                    TECHNICAL INTELLIGENCE SUITE // 2026
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-bold text-[#e8e2d5] tracking-tight uppercase">
+                    High-Throughput Switches &amp; Cryptographic Ledgers
+                </h1>
+                <p class="text-[#a8a196] text-sm sm:text-base leading-relaxed">
+                    Engineering reference specifications analyzing modern payment routing architectures, perimeter fraud isolation systems, and trustless state transitions. Formulated for systems architects and engineering leadership.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-[#5c6650] pt-6 mt-6">
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Gateway Target SLA</span>
+                    <span class="text-2xl font-bold text-[#c9a15a] mt-1 block">&lt; 250 ms</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">End-to-End Authorization</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Chargeback Ceiling</span>
+                    <span class="text-2xl font-bold text-[#c4562e] mt-1 block">1.0 %</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Program Monitoring Threshold</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">L2 Settlement Capacity</span>
+                    <span class="text-2xl font-bold text-[#c9d4a8] mt-1 block">4,000+ TPS</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Off-Chain Batch Proving</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="relative bg-[#1c1916] p-6 border border-[#5c6650] flex flex-col justify-between space-y-4">
+                <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+                <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+                <div>
+                    <span class="text-[10px] font-bold text-[#c4562e] uppercase tracking-widest block">DOSSIER 01</span>
+                    <h3 class="text-lg font-bold text-[#e8e2d5] uppercase mt-1">Payment Gateway Ecosystem</h3>
+                    <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
+                        Transaction lifecycle mechanics, ISO 8583 protocol serializations, Redis distributed locks, Fact vs. State storage patterns, and comparative topology between Shaparak and Stripe.
+                    </p>
+                </div>
+                <a href="payment-gateway.html" class="block w-full text-center py-2.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition">
+                    Open Specification &rarr;
+                </a>
+            </div>
+
+            <div class="relative bg-[#1c1916] p-6 border border-[#5c6650] flex flex-col justify-between space-y-4">
+                <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+                <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+                <div>
+                    <span class="text-[10px] font-bold text-[#c4562e] uppercase tracking-widest block">DOSSIER 02</span>
+                    <h3 class="text-lg font-bold text-[#e8e2d5] uppercase mt-1">Forensic Fraud Mitigation</h3>
+                    <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
+                        Perimeter risk evaluation mechanisms, heuristic rule filtering, edge-level telemetry parsing, machine learning behavioral vectors, 3DS 2.0 liability shifts, and chargeback ratio calculations.
+                    </p>
+                </div>
+                <a href="fraud-tracing.html" class="block w-full text-center py-2.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition">
+                    Open Specification &rarr;
+                </a>
+            </div>
+
+            <div class="relative bg-[#1c1916] p-6 border border-[#5c6650] flex flex-col justify-between space-y-4">
+                <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+                <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+                <div>
+                    <span class="text-[10px] font-bold text-[#c4562e] uppercase tracking-widest block">DOSSIER 03</span>
+                    <h3 class="text-lg font-bold text-[#e8e2d5] uppercase mt-1">Web3 &amp; Crypto Infrastructure</h3>
+                    <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
+                        Deterministic state machine runtimes, EVM opcode gas calculations, Optimistic versus Zero-Knowledge Layer 2 rollup scaling, cross-chain bridge risks, and TradFi integration models.
+                    </p>
+                </div>
+                <a href="web3-infrastructure.html" class="block w-full text-center py-2.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition">
+                    Open Specification &rarr;
+                </a>
+            </div>
+        </div>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">Comparative Benchmarks</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Throughput Capacity &amp; Settlement Finality</h2>
+            </div>
+            <p class="text-xs text-[#a8a196]">
+                Comparing processing capacity (Transactions Per Second) and finality confirmation latency across traditional card switches, national networks, and decentralized ledgers.
+            </p>
+            <div class="chart-container">
+                <canvas id="overviewChart"></canvas>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#141210] border-t border-[#5c6650] py-6 text-xs text-[#a8a196]">
+        <div class="max-w-[1600px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="uppercase tracking-wider">Ariya Sarrafzadeh // Architecture Whitepaper Suite</span>
+            <span class="text-[10px] text-[#5c6650] uppercase tracking-widest">Master Terminal Hub</span>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('overviewChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Visa / Mastercard', 'Shaparak (Iran)', 'Ethereum L1', 'ZK-Rollup L2'],
+                    datasets: [
+                        {
+                            label: 'Max Peak Capacity (TPS)',
+                            data: [65000, 10000, 15, 4000],
+                            backgroundColor: '#c4562e',
+                            borderColor: '#5c6650',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Settlement Finality (Seconds)',
+                            data: [86400, 86400, 720, 12],
+                            backgroundColor: '#c9a15a',
+                            borderColor: '#5c6650',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#e8e2d5', font: { family: 'IBM Plex Mono' } } }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#a8a196', font: { family: 'IBM Plex Mono' } }
+                        },
+                        y: {
+                            type: 'logarithmic',
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#a8a196', font: { family: 'IBM Plex Mono' } }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

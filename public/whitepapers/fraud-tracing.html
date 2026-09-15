@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic Fraud Mitigation | Technical Specification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --rugged-bg-panel: #1c1916;
+            --rugged-bg-nav: #141210;
+            --rugged-rust: #c4562e;
+            --rugged-brass: #c9a15a;
+            --rugged-olive-bg: #3d4632;
+            --rugged-olive-text: #c9d4a8;
+            --rugged-olive-border: #5c6650;
+            --rugged-paper: #e8e2d5;
+            --rugged-muted: #a8a196;
+        }
+        * {
+            border-radius: 0px !important;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        body {
+            background-color: var(--rugged-bg-nav);
+            color: var(--rugged-paper);
+        }
+        .rugged-hatch {
+            background-image: repeating-linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.02) 0px,
+                rgba(255, 255, 255, 0.02) 1px,
+                transparent 1px,
+                transparent 12px
+            );
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 320px;
+        }
+        .rivet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--rugged-bg-nav);
+            border: 1px solid var(--rugged-rust);
+            pointer-events: none;
+        }
+        .rivet-tl { top: -3px; left: -3px; }
+        .rivet-tr { top: -3px; right: -3px; }
+        .rivet-bl { bottom: -3px; left: -3px; }
+        .rivet-br { bottom: -3px; right: -3px; }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #ffffff !important; color: #000000 !important; }
+        }
+    </style>
+</head>
+<body class="rugged-hatch min-h-screen flex flex-col antialiased">
+
+    <header class="bg-[#141210] border-b border-[#5c6650] sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="px-2 py-1 bg-[#c4562e] text-[#141210] font-bold text-xs">SPEC.02</span>
+                <div>
+                    <span class="font-bold text-sm tracking-wider text-[#e8e2d5] block uppercase">Forensic Fraud Mitigation</span>
+                    <span class="text-[10px] text-[#c9a15a] uppercase tracking-widest">Edge Telemetry, 3DS 2.0 &amp; Risk Graphs</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4 no-print">
+                <a href="index.html" class="px-3 py-1.5 border border-[#5c6650] text-[#a8a196] hover:text-[#e8e2d5] text-xs font-semibold uppercase tracking-wider transition">
+                    Hub Index
+                </a>
+                <button onclick="window.print()" class="px-4 py-1.5 bg-[#c4562e] text-[#141210] hover:brightness-90 text-xs font-bold uppercase tracking-wider transition">
+                    Print Dossier
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-[1600px] w-full mx-auto px-6 py-8 space-y-8">
+
+        <div class="relative bg-[#1c1916] p-8 border border-[#5c6650]">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+            
+            <div class="max-w-4xl space-y-3">
+                <div class="inline-block px-2.5 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase">
+                    ENGINEERING WHITEPAPER // DOCUMENT 02
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-bold text-[#e8e2d5] tracking-tight uppercase">
+                    Forensic Fraud Prevention &amp; Tracing
+                </h1>
+                <p class="text-[#a8a196] text-sm sm:text-base leading-relaxed">
+                    Analyzing real-time fraud mitigation architectures across high-velocity networks. Evaluates static heuristic filtering, edge-level telemetry collection, behavioral machine learning scoring, 3D-Secure 2.0 liability shifts, and post-transaction graph forensics.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-[#5c6650] pt-6 mt-6">
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Max Chargeback Ceiling</span>
+                    <span class="text-2xl font-bold text-[#c4562e] mt-1 block">1.0 %</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Card Scheme Program Cap</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Frictionless Rate</span>
+                    <span class="text-2xl font-bold text-[#c9d4a8] mt-1 block">&gt; 92.0 %</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">3DS 2.0 Direct Pass</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">False Positive Cap</span>
+                    <span class="text-2xl font-bold text-[#c9a15a] mt-1 block">&lt; 0.5 %</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Legitimate Buyer Drop</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Edge Scoring SLA</span>
+                    <span class="text-2xl font-bold text-[#e8e2d5] mt-1 block">&lt; 30 ms</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Perimeter Evaluation</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">01 // Defense Strategy</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Multi-Tiered Perimeter Defense</h2>
+            </div>
+            <p class="text-[#a8a196] text-sm leading-relaxed">
+                Static heuristic rules introduce severe operational bottlenecks. Malicious entities adapt to velocity checks and country blacklists, while legitimate buyers face false rejections.
+            </p>
+            <p class="text-[#a8a196] text-sm leading-relaxed">
+                Modern platforms deploy multi-layered perimeter architectures: deterministic filtering at ingress, edge telemetry collection, ML behavioral scoring, and post-transaction graph analysis.
+            </p>
+
+            <div class="p-4 bg-[#141210] border-l-2 border-[#c4562e] text-[#e8e2d5] text-xs font-mono">
+                MATHEMATICAL STANDARD: Chargeback Ratio = (Chargebacks Received in Month N / Total Transactions in Month N-1) * 100
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">02 // Detection Engines</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Heuristics vs. Behavioral ML Models</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">Heuristic Rule Filtering</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        Evaluates rigid static parameters, including velocity caps per card token, geographic IP mismatches, and compromised BIN tables. Executes under 5ms but yields elevated false-positive rates on legitimate traffic surges.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">Behavioral ML Scoring</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        Evaluates high-dimensional telemetry vectors, including typing cadence, device orientation entropy, and entity cluster graphs. Computes risk vectors between 0.00 and 1.00 within a 25ms execution SLA.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">3D-Secure 2.0 Shift</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        Transmits device telemetry payloads directly to issuer Access Control Servers. Frictionless approval occurs on low-risk transactions while shifting financial dispute liability from the merchant to the card issuer.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-[#5c6650]">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xs font-bold text-[#e8e2d5] uppercase tracking-wider">Score Threshold vs. Conversion Friction</h3>
+                    <span class="text-[10px] text-[#c9a15a] uppercase">ROC Optimization Curve</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="fraudRocChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">03 // Decisioning Flow</span>
+                    <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Edge Risk Pipeline</h2>
+                </div>
+                <span class="text-[10px] text-[#c9a15a] uppercase border border-[#5c6650] px-2 py-1">Interactive</span>
+            </div>
+
+            <div class="bg-[#141210] p-6 border border-[#5c6650] overflow-x-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[800px]">
+                    <div onclick="inspectFraudNode('edge')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c4562e] block uppercase">01 // INGRESS</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Edge Telemetry</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Fingerprint Hash</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectFraudNode('heuristic')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9a15a] block uppercase">02 // HEURISTICS</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Rule Engine</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Velocity &amp; BIN</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectFraudNode('ml')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9d4a8] block uppercase">03 // SCORING</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Behavioral ML</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Entropy Risk Score</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectFraudNode('3ds')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#e8e2d5] block uppercase">04 // OUTCOME</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">3DS 2.0 Engine</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Frictionless or Auth</span>
+                    </div>
+                </div>
+                <div id="fraud-node-details" class="mt-6 p-4 bg-[#1c1916] border border-[#5c6650] text-xs text-[#a8a196] leading-relaxed">
+                    <span class="font-bold text-[#c9a15a] uppercase">INSPECTOR:</span> Select an architecture node above to verify decisioning parameters.
+                </div>
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6 no-print">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">04 // Threshold Simulator</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Chargeback Program Monitor</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Prior Month (N-1) Sales Transactions</label>
+                    <input type="number" id="calc-tx" value="25000" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Current Month (N) Chargebacks</label>
+                    <input type="number" id="calc-cb" value="180" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+            </div>
+
+            <button onclick="calculateChargebacks()" class="w-full py-3 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition">
+                Calculate Scheme Standing
+            </button>
+
+            <div class="p-4 bg-[#141210] border border-[#5c6650] text-center">
+                <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Calculated Chargeback Ratio</span>
+                <span class="text-3xl font-bold text-[#c9d4a8] block mt-1" id="cb-val">0.72 %</span>
+                <span class="text-xs text-[#c9d4a8] block mt-1" id="cb-status">Compliant: Operating below 1.0% Scheme Monitoring Level</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#141210] border-t border-[#5c6650] py-6 text-xs text-[#a8a196] no-print">
+        <div class="max-w-[1600px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="uppercase tracking-wider">Ariya Sarrafzadeh // Architecture Whitepaper Suite</span>
+            <span class="text-[10px] text-[#5c6650] uppercase tracking-widest">Document Reference: SPEC-02-FRAUD</span>
+        </div>
+    </footer>
+
+    <script>
+        function inspectFraudNode(type) {
+            const box = document.getElementById('fraud-node-details');
+            const data = {
+                'edge': '1. Ingress Telemetry: Gathers client screen entropy, browser canvas signatures, and IP subnet metrics in under 15ms.',
+                'heuristic': '2. Heuristic Filter: Evaluates velocity checks, card expiration formats, and country blacklists to drop compromised requests.',
+                'ml': '3. Behavioral Scoring: Computes risk vectors using typing rhythm, sensor telemetry, and cross-merchant activity graphs.',
+                '3ds': '4. 3DS 2.0 Evaluation: Low-risk scores pass without friction. Medium-risk requests trigger biometric challenges; high-risk requests are rejected.'
+            };
+            box.innerText = data[type] || '';
+        }
+
+        function calculateChargebacks() {
+            const tx = parseFloat(document.getElementById('calc-tx').value) || 1;
+            const cb = parseFloat(document.getElementById('calc-cb').value) || 0;
+            const ratio = (cb / tx) * 100;
+            
+            const val = document.getElementById('cb-val');
+            const status = document.getElementById('cb-status');
+            val.innerText = ratio.toFixed(2) + ' %';
+
+            if (ratio >= 1.0) {
+                val.className = 'text-3xl font-bold text-[#c4562e] block mt-1';
+                status.innerText = 'VIOLATION: Exceeds 1.0% Program Monitoring Threshold';
+                status.className = 'text-xs text-[#c4562e] block mt-1';
+            } else if (ratio >= 0.75) {
+                val.className = 'text-3xl font-bold text-[#c9a15a] block mt-1';
+                status.innerText = 'WARNING: Approaching 1.0% Scheme Monitoring Level';
+                status.className = 'text-xs text-[#c9a15a] block mt-1';
+            } else {
+                val.className = 'text-3xl font-bold text-[#c9d4a8] block mt-1';
+                status.innerText = 'Compliant: Operating below 1.0% Scheme Monitoring Level';
+                status.className = 'text-xs text-[#c9d4a8] block mt-1';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('fraudRocChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0.10 Very Strict', '0.35 Optimal', '0.50 Balanced', '0.75 Permissive', '0.90 High Risk'],
+                    datasets: [
+                        {
+                            label: 'False Positive Drop-off (%)',
+                            data: [8.8, 2.2, 0.7, 0.2, 0.05],
+                            borderColor: '#c4562e',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Uncaught Fraud Rate (%)',
+                            data: [0.01, 0.04, 0.25, 0.88, 2.60],
+                            borderColor: '#c9a15a',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            tension: 0.2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#e8e2d5', font: { family: 'IBM Plex Mono' } } }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#a8a196', font: { family: 'IBM Plex Mono' } }
+                        },
+                        y: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#a8a196', font: { family: 'IBM Plex Mono' } }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

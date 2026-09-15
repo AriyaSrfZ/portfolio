@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway Architecture | Technical Specification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --rugged-bg-panel: #1c1916;
+            --rugged-bg-nav: #141210;
+            --rugged-rust: #c4562e;
+            --rugged-brass: #c9a15a;
+            --rugged-olive-bg: #3d4632;
+            --rugged-olive-text: #c9d4a8;
+            --rugged-olive-border: #5c6650;
+            --rugged-paper: #e8e2d5;
+            --rugged-muted: #a8a196;
+        }
+        * {
+            border-radius: 0px !important;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        body {
+            background-color: var(--rugged-bg-nav);
+            color: var(--rugged-paper);
+        }
+        .rugged-hatch {
+            background-image: repeating-linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.02) 0px,
+                rgba(255, 255, 255, 0.02) 1px,
+                transparent 1px,
+                transparent 12px
+            );
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 320px;
+        }
+        .rivet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--rugged-bg-nav);
+            border: 1px solid var(--rugged-rust);
+            pointer-events: none;
+        }
+        .rivet-tl { top: -3px; left: -3px; }
+        .rivet-tr { top: -3px; right: -3px; }
+        .rivet-bl { bottom: -3px; left: -3px; }
+        .rivet-br { bottom: -3px; right: -3px; }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #ffffff !important; color: #000000 !important; }
+        }
+    </style>
+</head>
+<body class="rugged-hatch min-h-screen flex flex-col antialiased">
+
+    <header class="bg-[#141210] border-b border-[#5c6650] sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="px-2 py-1 bg-[#c4562e] text-[#141210] font-bold text-xs">SPEC.01</span>
+                <div>
+                    <span class="font-bold text-sm tracking-wider text-[#e8e2d5] block uppercase">Payment Gateway Ecosystem</span>
+                    <span class="text-[10px] text-[#c9a15a] uppercase tracking-widest">Switch Architecture &amp; Settlement Protocols</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4 no-print">
+                <a href="index.html" class="px-3 py-1.5 border border-[#5c6650] text-[#a8a196] hover:text-[#e8e2d5] text-xs font-semibold uppercase tracking-wider transition">
+                    Hub Index
+                </a>
+                <button onclick="window.print()" class="px-4 py-1.5 bg-[#c4562e] text-[#141210] hover:brightness-90 text-xs font-bold uppercase tracking-wider transition">
+                    Print Dossier
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-[1600px] w-full mx-auto px-6 py-8 space-y-8">
+
+        <div class="relative bg-[#1c1916] p-8 border border-[#5c6650]">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+            
+            <div class="max-w-4xl space-y-3">
+                <div class="inline-block px-2.5 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase">
+                    ENGINEERING WHITEPAPER // DOCUMENT 01
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-bold text-[#e8e2d5] tracking-tight uppercase">
+                    High-Throughput Switches &amp; Distributed Ledgers
+                </h1>
+                <p class="text-[#a8a196] text-sm sm:text-base leading-relaxed">
+                    The modern payment gateway operates as a translation and routing boundary between merchant clients, acquiring banks, card networks, and issuing banks. High-availability switches require deterministic consistency, sub-second latency ceilings, and absolute isolation between mutable states and immutable transaction facts.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-[#5c6650] pt-6 mt-6">
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Switch Latency Budget</span>
+                    <span class="text-2xl font-bold text-[#c9a15a] mt-1 block">&lt; 250 ms</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Roundtrip SLA</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Idempotency TTL</span>
+                    <span class="text-2xl font-bold text-[#c4562e] mt-1 block">86,400 s</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Redis Key Lock</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Switch Protocol</span>
+                    <span class="text-2xl font-bold text-[#e8e2d5] mt-1 block">ISO 8583</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Bitmap Payload</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Storage Paradigm</span>
+                    <span class="text-2xl font-bold text-[#c9d4a8] mt-1 block">Fact / Event</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Double-Entry Append</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+            
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">01 // Architectural Purpose</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Transaction Execution &amp; The Fact vs. State Model</h2>
+            </div>
+            
+            <p class="text-[#a8a196] text-sm leading-relaxed">
+                Legacy monolithic switches failed due to destructive row updates. Overwriting database records during live transaction processing leads to irrecoverable race conditions and balance discrepancies during network timeouts.
+            </p>
+            <p class="text-[#a8a196] text-sm leading-relaxed">
+                Modern platforms decouple execution into transient States and immutable Facts. State represents mutable lifecycle phases such as PENDING, AUTHORIZED, or SETTLED. Fact represents the append-only ledger entry of raw events, which systems replay to reconstruct balance state deterministically.
+            </p>
+
+            <div class="p-4 bg-[#141210] border-l-2 border-[#c4562e] text-[#e8e2d5] text-xs font-mono">
+                EXECUTION RULE: Edge gateways must verify request idempotency via atomic distributed locks before dispatching authorization packets to upstream banking networks.
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">02 // Core Protocol Mechanics</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Distributed Consensus &amp; Serialization</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">Idempotency &amp; State Locks</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        Clients transmit a unique UUIDv4 token in request headers. The gateway executes an atomic SETNX command against a Redis cluster with an expiration TTL. Subsequent retries with identical keys receive cached payloads, neutralizing network retry storms.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">ISO 8583 Protocol Routing</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        API gateways serialize incoming JSON payloads into binary ISO 8583 bitmaps. Fields populate standard positions, packaging Message Type Identifiers (MTI 0100 for auth requests) to communicate with mainframe core banking switches over dedicated TCP/IP sockets.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="text-sm font-bold text-[#c9a15a] uppercase">ACID Distributed Consensus</h3>
+                    <p class="text-xs text-[#a8a196] leading-relaxed">
+                        Ledger stores require serializable multi-region consistency. Sharded PostgreSQL or CockroachDB clusters enforce Raft consensus across balance tables, prioritizing partition tolerance and consistency over raw node availability.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-[#5c6650]">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xs font-bold text-[#e8e2d5] uppercase tracking-wider">Gateway Latency Budget Allocation</h3>
+                    <span class="text-[10px] text-[#c9a15a] uppercase">Target Threshold: 250 ms</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="gatewayLatencyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">03 // Topology Comparison</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Shaparak Switch Topology vs. Global Standard</h2>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-[#141210] text-[#c9a15a] uppercase border-b border-[#5c6650]">
+                            <th class="p-3">Architectural Vector</th>
+                            <th class="p-3">Global Acquirers (Stripe / Adyen)</th>
+                            <th class="p-3">Iranian Switch (Shaparak / PSPs)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#5c6650] text-[#a8a196]">
+                        <tr>
+                            <td class="p-3 font-bold text-[#e8e2d5]">Network Topology</td>
+                            <td class="p-3">Multi-region mesh with direct scheme links to Visa and Mastercard.</td>
+                            <td class="p-3">Centralized national clearing router connecting licensed PSP switches.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-[#e8e2d5]">Token Storage</td>
+                            <td class="p-3">PCI-DSS Level 1 vaults with multi-cloud key encryption.</td>
+                            <td class="p-3">Dedicated on-premise hardware security module (HSM) appliances.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-[#e8e2d5]">Protocol Translation</td>
+                            <td class="p-3">Modern REST endpoints dynamically serialized to ISO 8583 and ISO 20022.</td>
+                            <td class="p-3">Mandatory legacy Shaparak XML and ISO interfaces with local token constraints.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-[#e8e2d5]">Cross-Border Clearing</td>
+                            <td class="p-3">Global multi-currency accounts with dynamic route selection.</td>
+                            <td class="p-3">Isolated from external international networks; restricted to IRR fiat clearing.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">04 // Process Diagram</span>
+                    <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Switch Transaction Pipeline</h2>
+                </div>
+                <span class="text-[10px] text-[#c9a15a] uppercase border border-[#5c6650] px-2 py-1">Interactive</span>
+            </div>
+
+            <div class="bg-[#141210] p-6 border border-[#5c6650] overflow-x-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[800px]">
+                    <div onclick="inspectGatewayNode('client')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c4562e] block uppercase">01 // INGRESS</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Merchant Client</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">TLS 1.3 POST</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectGatewayNode('idempotency')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9a15a] block uppercase">02 // CACHE LOCK</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Redis Store</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">O(1) SETNX</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectGatewayNode('switch')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9d4a8] block uppercase">03 // SERIALIZER</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">ISO 8583 Engine</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Bitmap Packing</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectGatewayNode('ledger')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#e8e2d5] block uppercase">04 // SETTLEMENT</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Ledger Store</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">ACID Event Log</span>
+                    </div>
+                </div>
+                <div id="gateway-node-details" class="mt-6 p-4 bg-[#1c1916] border border-[#5c6650] text-xs text-[#a8a196] leading-relaxed">
+                    <span class="font-bold text-[#c9a15a] uppercase">INSPECTOR:</span> Select an architecture node above to verify component responsibilities.
+                </div>
+            </div>
+        </section>
+
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6 no-print">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">05 // Latency Simulation</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Interactive Switch Roundtrip Sandbox</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Ingress &amp; TLS Handshake (ms)</label>
+                    <input type="number" id="sim-edge" value="12" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Redis Lock &amp; Risk Scoring (ms)</label>
+                    <input type="number" id="sim-risk" value="45" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Core Bank Authorization (ms)</label>
+                    <input type="number" id="sim-issuer" value="140" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+            </div>
+
+            <button onclick="calculateSimulatedLatency()" class="w-full py-3 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition">
+                Simulate Latency Budget
+            </button>
+
+            <div class="p-4 bg-[#141210] border border-[#5c6650] text-center">
+                <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Calculated Roundtrip Time</span>
+                <span class="text-3xl font-bold text-[#c9a15a] block mt-1" id="sim-total-val">197 ms</span>
+                <span class="text-xs text-[#c9d4a8] block mt-1" id="sim-status">Within Target SLA Budget (&lt; 250 ms)</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#141210] border-t border-[#5c6650] py-6 text-xs text-[#a8a196] no-print">
+        <div class="max-w-[1600px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="uppercase tracking-wider">Ariya Sarrafzadeh // Architecture Whitepaper Suite</span>
+            <span class="text-[10px] text-[#5c6650] uppercase tracking-widest">Document Reference: SPEC-01-PAYMENTS</span>
+        </div>
+    </footer>
+
+    <script>
+        function inspectGatewayNode(type) {
+            const box = document.getElementById('gateway-node-details');
+            const data = {
+                'client': '1. Ingress Layer: Client initiates connection via TLS 1.3. Passes an Idempotency-Key header containing a UUIDv4 token and the charge payload.',
+                'idempotency': '2. Cache Lock Layer: Redis cluster runs an atomic SETNX with an 86,400-second TTL. Prevents double-debiting during client retry storms.',
+                'switch': '3. Serialization Engine: Encodes JSON payload into binary ISO 8583 standard message fields, attaching transaction amount and routing identifiers.',
+                'ledger': '4. Settlement Store: Appends the resulting transaction fact to a distributed database log before returning confirmation to the caller.'
+            };
+            box.innerText = data[type] || '';
+        }
+
+        function calculateSimulatedLatency() {
+            const edge = parseFloat(document.getElementById('sim-edge').value) || 0;
+            const risk = parseFloat(document.getElementById('sim-risk').value) || 0;
+            const issuer = parseFloat(document.getElementById('sim-issuer').value) || 0;
+            const total = edge + risk + issuer;
+            
+            const totalVal = document.getElementById('sim-total-val');
+            const status = document.getElementById('sim-status');
+            totalVal.innerText = total + ' ms';
+
+            if (total > 250) {
+                totalVal.className = 'text-3xl font-bold text-[#c4562e] block mt-1';
+                status.innerText = 'Exceeds Target SLA Budget (> 250 ms)';
+                status.className = 'text-xs text-[#c4562e] block mt-1';
+            } else {
+                totalVal.className = 'text-3xl font-bold text-[#c9a15a] block mt-1';
+                status.innerText = 'Within Target SLA Budget (< 250 ms)';
+                status.className = 'text-xs text-[#c9d4a8] block mt-1';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('gatewayLatencyChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Edge TLS Handshake', 'Redis Idempotency', 'Risk Evaluation', 'ISO Serialization', 'Core Banking Routing'],
+                    datasets: [{
+                        data: [12, 5, 42, 14, 120],
+                        backgroundColor: '#c4562e',
+                        borderColor: '#5c6650',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#a8a196', font: { family: 'IBM Plex Mono' } }
+                        },
+                        y: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#e8e2d5', font: { family: 'IBM Plex Mono' } }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
