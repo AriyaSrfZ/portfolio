@@ -8,15 +8,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   : `${import.meta.env.BASE_URL}/`;
 ---
 
-<Layout title="Ariya Sarrafzadeh | Systems Architecture & Telecom Blueprints">
+<Layout title="Ariya Sarrafzadeh | Enterprise Systems Architecture & Telecommunications">
   <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-[#c4562e] z-50 transition-all duration-75"></div>
 
   <Hero />
 
-  <main class="max-w-[1600px] mx-auto px-6 py-12 font-['IBM_Plex_Mono',monospace]" id="blueprints">
+  <main class="max-w-[1600px] mx-auto px-6 py-10 font-['IBM_Plex_Mono',monospace]" id="blueprints">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- Sticky Operational Index Sidebar -->
       <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
         <div class="relative bg-[#1c1916] border border-[#5c6650] p-4 shadow-xl rugged-hatch">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -24,38 +23,38 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
 
-          <div class="text-[11px] font-bold text-[#c9a15a] tracking-widest uppercase mb-3 border-b border-[#5c6650] pb-2">
-            System Topology Index
+          <div class="text-[11px] font-bold text-[#c9a15a] tracking-widest uppercase mb-3 border-b border-[#5c6650] pb-2 flex justify-between items-center">
+            <span>SYSTEM INDEX</span>
+            <span class="w-1.5 h-1.5 bg-[#c9d4a8] animate-signal"></span>
           </div>
+          
           <nav class="space-y-1.5 text-xs">
-            <a href="#payment-settlement" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition">
+            <a href="#payment-settlement" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
               01 // Payment Settlement
             </a>
-            <a href="#fraud-forensics" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition">
-              02 // Fraud Detection &amp; Forensics
+            <a href="#fraud-forensics" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+              02 // Fraud Detection
             </a>
-            <a href="#sms-gateway" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition">
-              03 // Telecom &amp; SMS Router
+            <a href="#sms-gateway" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+              03 // Telecom SMS Switch
             </a>
-            <a href={`${baseUrl}whitepapers/`} class="block px-3 py-1.5 text-[#c4562e] border border-[#c4562e]/40 hover:bg-[#c4562e] hover:text-[#141210] transition font-bold uppercase mt-2">
-              04 // Whitepaper Dossiers (5) ↗
+            <a href="#data-pipeline" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+              04 // Contact Analytics
             </a>
-            <a href="#book" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition">
+            <a href={`${baseUrl}whitepapers/`} class="block px-3 py-2 text-[#c4562e] border border-[#c4562e]/40 hover:bg-[#c4562e] hover:text-[#141210] transition font-bold uppercase mt-3">
+              Whitepapers Suite (5) ↗
+            </a>
+            <a href="#book" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition mt-1">
               05 // Direct Engagement
             </a>
           </nav>
         </div>
 
-        <div class="bg-[#1c1916] border border-[#5c6650] p-4 text-xs text-[#a8a196] leading-relaxed">
-          <div class="text-[#c9a15a] font-bold mb-1 uppercase text-[10px]">Architecture Standard</div>
-          Deterministic topologies, append-only ledger facts, strict SMPP window controls, and sub-50ms risk evaluation loops.
-        </div>
-      </aside>
 
-      <!-- Main Specifications Column -->
+
       <div class="lg:col-span-9 space-y-10">
         
-        <!-- Topology 01: Payment Settlement -->
+        <!-- SECTION 1: Payment Settlement -->
         <section id="payment-settlement" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -63,59 +62,62 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
 
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">01 // Transaction Routing &amp; Ledgers</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">01 // TRANSACTION ROUTING &amp; LEDGERS</span>
             <div class="h-px flex-1 bg-[#5c6650]"></div>
           </div>
           <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Event-Driven Payment Settlement Engine</h2>
           
           <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              High-reliability financial switches require absolute isolation between transient request states and immutable settlement facts. Destructive database updates during active transaction processing create irreconcilable states during network dropouts and gateway timeouts.
+              High-availability payment switches require complete architectural isolation between mutable request states and immutable settlement facts. Destructive database updates during active transaction processing create irreconcilable states during network dropouts and gateway timeouts.
             </p>
             <p>
               This architecture enforces the Fact vs. State model. Every financial transition registers as an append-only ledger entry. The current balance derives directly from replaying facts across an ACID-compliant distributed database cluster.
             </p>
+            <p>
+              The ingress edge terminates TLS 1.3 connections and checks request idempotency via atomic Redis distributed locks with an 86,400-second expiration period. Verified requests convert to ISO 8583 binary bitmaps for direct host-to-host switch routing.
+            </p>
           </div>
 
           <div class="flex flex-wrap gap-2 my-4">
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-50ms Ingress SLA</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-50ms SLA</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Redis O(1) Idempotency</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">ISO 8583 Serialization</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">ISO 8583 Routing</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Append-Only ACID</span>
           </div>
 
-          <!-- Animated Native SVG Flow -->
           <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto">
             <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
               <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">API INGRESS</text>
-              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">mTLS / REST Ingress</text>
+              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">mTLS / JSON Payload</text>
 
-              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" stroke-dasharray="4 4" class="animate-pulse"/>
+              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
               <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
 
               <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
-              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">IDEMPOTENCY &amp; LOCKS</text>
+              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">IDEMPOTENCY LOCKS</text>
               <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Redis SETNX TTL: 86400s</text>
-              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Zero Double-Spend Guard</text>
+              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">O(1) Concurrency Guard</text>
 
-              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" stroke-dasharray="4 4" class="animate-pulse"/>
+              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
               <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
 
               <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
               <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">LEDGER CLUSTER</text>
-              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Double-Entry Append-Only</text>
+              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">ACID Double-Entry</text>
             </svg>
           </div>
 
           <div class="mt-4 flex justify-between items-center text-xs">
-            <span class="text-[#a8a196]">Detailed technical writeup available in Whitepaper Spec 01.</span>
+            <span class="text-[#a8a196]">Full protocol specification documented in Dossier 01.</span>
             <a href={`${baseUrl}whitepapers/payment-gateway.html`} class="text-[#c4562e] font-bold hover:underline uppercase">
               Open Spec 01 Dossier &rarr;
             </a>
           </div>
         </section>
 
-        <!-- Topology 02: Fraud Forensics -->
+        <!-- SECTION 2: Fraud Forensics -->
         <section id="fraud-forensics" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -123,42 +125,45 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
 
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">02 // Cybersecurity &amp; Surveillance</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">02 // SURVEILLANCE &amp; THREAT ISOLATION</span>
             <div class="h-px flex-1 bg-[#5c6650]"></div>
           </div>
           <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Real-Time Fraud Mitigation &amp; Forensic Graph Tracing</h2>
           
           <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              Perimeter fraud systems balance precision against checkout latency. Static heuristics flag known bad actors quickly but miss bot-driven account takeovers and distributed attacks.
+              Perimeter fraud systems balance detection accuracy against checkout latency. Static heuristics drop basic malicious traffic quickly but miss distributed bot attacks, proxy networks, and automated account takeovers.
             </p>
             <p>
-              This engine processes biometric entropy, device orientation, and typing rhythm at edge ingress. Transactions generate high-dimensional risk scores that inform frictionless 3DS 2.0 liability shifts, keeping chargeback ratios below 1.0%.
+              This engine processes client telemetry, device orientation, and typing rhythm at edge ingress within a 15-millisecond budget. Telemetry inputs feed a behavioral model generating high-dimensional risk scores between 0.00 and 1.00.
+            </p>
+            <p>
+              Scores beneath 0.30 execute friction-free. Scores between 0.30 and 0.75 trigger biometric 3D-Secure 2.0 validation, shifting financial dispute liability directly to issuing banks while maintaining conversion rates above 98%.
             </p>
           </div>
 
           <div class="flex flex-wrap gap-2 my-4">
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-30ms Edge Scoring</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">3DS 2.0 Liability Shift</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-30ms Pipeline</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">3DS 2.0 Shift</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">&lt; 0.5% False Positives</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Graph Cluster Tracing</span>
           </div>
 
-          <!-- Animated Native SVG Flow -->
           <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto">
             <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
               <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">EDGE TELEMETRY</text>
-              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Biometric / Canvas Entropy</text>
+              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Canvas / Device Hash</text>
 
-              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" stroke-dasharray="4 4" class="animate-pulse"/>
+              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
               <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
 
               <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
-              <text x="340" y="70" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">ML SCORING ENGINE</text>
-              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Behavioral Vectors</text>
-              <text x="340" y="106" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Threshold Cutoff: 0.75</text>
+              <text x="340" y="70" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">SCORING ENGINE</text>
+              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Behavioral ML Vectors</text>
+              <text x="340" y="106" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Threshold: 0.75 Limit</text>
 
-              <path d="M440 82 H510" stroke="#c4562e" stroke-width="2" stroke-dasharray="4 4" class="animate-pulse"/>
+              <path d="M440 82 H510" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
               <polygon points="515,82 507,77 507,87" fill="#c4562e"/>
 
               <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
@@ -168,14 +173,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
 
           <div class="mt-4 flex justify-between items-center text-xs">
-            <span class="text-[#a8a196]">Detailed technical writeup available in Whitepaper Spec 02.</span>
+            <span class="text-[#a8a196]">Detailed mitigation logic documented in Dossier 02.</span>
             <a href={`${baseUrl}whitepapers/fraud-tracing.html`} class="text-[#c4562e] font-bold hover:underline uppercase">
               Open Spec 02 Dossier &rarr;
             </a>
           </div>
         </section>
 
-        <!-- Topology 03: Multi-Carrier SMS Gateway -->
+        <!-- SECTION 3: Telecom SMS Gateway -->
         <section id="sms-gateway" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -183,55 +188,114 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
 
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">03 // Telecom &amp; High-Volume Queues</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">03 // TELECOM SWITCHING &amp; QUEUES</span>
             <div class="h-px flex-1 bg-[#5c6650]"></div>
           </div>
           <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">National Telecom Routing &amp; Aggregator Infrastructure</h2>
           
           <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              National telecom architectures route enterprise traffic through specialized wholesale aggregators like Magfa and Rahyab over stateful SMPP 3.4 TCP sessions. The regulatory blocking of RCS and MMS shifts 100% of transactional and banking traffic onto traditional GSM signaling channels.
+              National telecommunication networks route high-volume enterprise traffic across specialized wholesale aggregators including Magfa and Rahyab over stateful SMPP 3.4 TCP sessions. The regulatory blocking of RCS and MMS shifts all transactional, banking, and authentication traffic directly onto legacy GSM signaling channels.
             </p>
             <p>
-              Persian character sets require 16-bit UCS-2 encoding, capping single segments at 70 characters. The router manages sliding-window backpressure across shortcode bands (1000, 2000, 3000, 5000, 9000), bypasses *800# DND blocks via approved service lines, and reconciles asynchronous DLR lifecycle events.
+              Persian text requires 16-bit UCS-2 encoding, restricting single segments to 70 characters and concatenated messages to 67 characters per segment. This restriction increases carrier billing volume and requires robust queue splitting engines.
+            </p>
+            <p>
+              The gateway balances message dispatch across shortcode prefix bands (1000, 2000, 3000, 5000, 9000), bypasses the national *800# Do-Not-Disturb blacklist using service lines, and tracks delivery receipts asynchronously.
             </p>
           </div>
 
           <div class="flex flex-wrap gap-2 my-4">
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">SMPP 3.4 Persistent Sockets</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">UCS-2 Segment Splitting</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">*800# DND Service Bypass</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">50K+ TPS Capacity</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">SMPP 3.4 Sockets</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">UCS-2 Segmentation</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">*800# DND Bypass</span>
           </div>
 
-          <!-- Animated Native SVG Flow -->
           <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto">
             <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
               <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">INGRESS QUEUE</text>
-              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">RabbitMQ / Kafka</text>
+              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Kafka / RabbitMQ</text>
 
-              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" stroke-dasharray="4 4" class="animate-pulse"/>
+              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
               <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
 
               <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
-              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">ROUTER &amp; BALANCER</text>
+              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">SMPP 3.4 ROUTER</text>
               <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Prefix Sharding (3000/9000)</text>
-              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Sliding Window Control</text>
+              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Sliding Window Throttle</text>
 
-              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" stroke-dasharray="4 4" class="animate-pulse"/>
+              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
               <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
 
               <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
-              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">CARRIER SMSC</text>
+              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">MNO SMSC</text>
               <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">MCI / Irancell Direct</text>
             </svg>
           </div>
 
           <div class="mt-4 flex justify-between items-center text-xs">
-            <span class="text-[#a8a196]">Detailed technical writeup available in Whitepaper Spec 04.</span>
+            <span class="text-[#a8a196]">Telecom routing and aggregator specs documented in Dossier 04.</span>
             <a href={`${baseUrl}whitepapers/sms-infrastructure.html`} class="text-[#c4562e] font-bold hover:underline uppercase">
               Open Spec 04 Dossier &rarr;
             </a>
+          </div>
+        </section>
+
+        <!-- SECTION 4: Data Pipeline -->
+        <section id="data-pipeline" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">04 // HIGH-VOLUME ANALYTICS &amp; ENRICHMENT</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">National Contact Database Consolidation &amp; Enrichment</h2>
+          
+          <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
+            <p>
+              High-volume campaign routing demands real-time contact validation and regional attribute normalization across tens of millions of records. Traditional row-based relational databases fail under heavy multi-attribute joins across wide analytical datasets.
+            </p>
+            <p>
+              This pipeline uses DuckDB and columnar Apache Parquet files for fast vector execution. Python and PyArrow workers clean, deduplicate, and enrich regional attributes, cutting storage overhead by 70% and accelerating query execution by an order of magnitude.
+            </p>
+            <p>
+              Enriched datasets provide carrier verification, province and city lookups, and DND status before jobs hit the SMPP gateway, avoiding unnecessary billing charges on disconnected numbers.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 my-4">
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Columnar Parquet</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">DuckDB In-Memory</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Carrier HLR Verification</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">PyArrow Pipelines</span>
+          </div>
+
+          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto">
+            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">RAW INGESTION</text>
+              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Multi-Source CSV/TSV</text>
+
+              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
+              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
+
+              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
+              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">DUCKDB ENGINE</text>
+              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Vectorized Normalization</text>
+              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Carrier &amp; Region Join</text>
+
+              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
+              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
+
+              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">PARQUET STORE</text>
+              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Snappy Compressed</text>
+            </svg>
           </div>
         </section>
 
