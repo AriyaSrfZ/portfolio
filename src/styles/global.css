@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+@import "tailwindcss";
 
 @theme {
   --color-bg: #0D0E11;
@@ -13,7 +13,6 @@
   --color-aurora-3: #047857;
   --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* Rugged Theme Tokens */
   --color-rugged-bg-panel: #1c1916;
   --color-rugged-bg-nav: #141210;
   --color-rugged-rust: #c4562e;
@@ -40,7 +39,6 @@ body {
   margin: 0;
 }
 
-/* Original Card & Interactive Styles */
 .archival-card {
   background-color: var(--color-bg-elevated);
   border: 1px solid var(--color-glass-border);
@@ -64,7 +62,6 @@ body {
   border: 1px solid var(--color-glass-border);
 }
 
-/* Rugged Industrial Design System */
 [data-theme="rugged"] {
   --rugged-bg-panel: #1c1916;
   --rugged-bg-nav: #141210;

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Infrastructure &amp; Aggregator Topologies | Technical Specification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --rugged-bg-panel: #1c1916;
+            --rugged-bg-nav: #141210;
+            --rugged-rust: #c4562e;
+            --rugged-brass: #c9a15a;
+            --rugged-olive-bg: #3d4632;
+            --rugged-olive-text: #c9d4a8;
+            --rugged-olive-border: #5c6650;
+            --rugged-paper: #e8e2d5;
+            --rugged-muted: #a8a196;
+        }
+        * {
+            border-radius: 0px !important;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        body {
+            background-color: var(--rugged-bg-nav);
+            color: var(--rugged-paper);
+        }
+        .rugged-hatch {
+            background-image: repeating-linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.02) 0px,
+                rgba(255, 255, 255, 0.02) 1px,
+                transparent 1px,
+                transparent 12px
+            );
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            height: 340px;
+        }
+        .rivet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--rugged-bg-nav);
+            border: 1px solid var(--rugged-rust);
+            pointer-events: none;
+        }
+        .rivet-tl { top: -3px; left: -3px; }
+        .rivet-tr { top: -3px; right: -3px; }
+        .rivet-bl { bottom: -3px; left: -3px; }
+        .rivet-br { bottom: -3px; right: -3px; }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #ffffff !important; color: #000000 !important; }
+        }
+    </style>
+</head>
+<body class="rugged-hatch min-h-screen flex flex-col antialiased">
+
+    <!-- Header Navigation -->
+    <header class="bg-[#141210] border-b border-[#5c6650] sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="px-2 py-1 bg-[#c4562e] text-[#141210] font-bold text-xs">SPEC.04</span>
+                <div>
+                    <span class="font-bold text-sm tracking-wider text-[#e8e2d5] block uppercase">Telecom &amp; SMS Infrastructure</span>
+                    <span class="text-[10px] text-[#c9a15a] uppercase tracking-widest">Aggregator Tiers, SMPP Mechanics &amp; Protocol Fallback</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4 no-print">
+                <a href="index.html" class="px-3 py-1.5 border border-[#5c6650] text-[#a8a196] hover:text-[#e8e2d5] text-xs font-semibold uppercase tracking-wider transition">
+                    &larr; Hub Index
+                </a>
+                <button onclick="window.print()" class="px-4 py-1.5 bg-[#c4562e] text-[#141210] hover:brightness-90 text-xs font-bold uppercase tracking-wider transition">
+                    Print Dossier
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-[1600px] w-full mx-auto px-6 py-8 space-y-8">
+
+        <!-- Executive Banner -->
+        <div class="relative bg-[#1c1916] p-8 border border-[#5c6650]">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+            
+            <div class="max-w-5xl space-y-3">
+                <div class="inline-block px-2.5 py-0.5 border border-[#5c6650] bg-[#3d4632] text-[#c9d4a8] text-[10px] font-bold tracking-widest uppercase">
+                    ENGINEERING WHITEPAPER // DOCUMENT 04
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-bold text-[#e8e2d5] tracking-tight uppercase">
+                    National Telecom SMS Switching &amp; Aggregator Infrastructure
+                </h1>
+                <p class="text-[#a8a196] text-sm sm:text-base leading-relaxed">
+                    A rigorous architectural breakdown of the Iranian domestic SMS routing ecosystem. Examines direct Mobile Network Operator (MNO) interconnection, the state-mandated wholesale aggregator hierarchy, SMPP 3.4 session lifecycle management, sliding-window flow controls, and the systemic architectural overhead triggered by regulatory filtering of Rich Communication Services (RCS) and Multimedia Messaging Service (MMS).
+                </p>
+            </div>
+
+            <!-- Top Level KPIs -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-[#5c6650] pt-6 mt-6">
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Peak National Throughput</span>
+                    <span class="text-2xl font-bold text-[#c9a15a] mt-1 block">50,000+ TPS</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Aggregate MNO Burst Capacity</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">SMPP Window Size</span>
+                    <span class="text-2xl font-bold text-[#c4562e] mt-1 block">16 &ndash; 64 PDU</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">In-Flight Unacknowledged Bound</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Persian UCS-2 Limit</span>
+                    <span class="text-2xl font-bold text-[#e8e2d5] mt-1 block">70 / 67 Chars</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Single / Concatenated Segment</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">RCS / MMS Availability</span>
+                    <span class="text-2xl font-bold text-[#c4562e] mt-1 block">0.0 % (BLOCKED)</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">100% Traffic Shifted to GSM-7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1.0: Executive Architecture & Macro Ecosystem -->
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">01 // Macro Topology</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">The Domestic Aggregation Model &amp; Regulatory Gatekeepers</h2>
+            </div>
+            
+            <p class="text-[#a8a196] text-sm leading-relaxed">
+                The telecommunications landscape in Iran operates under a rigid, state-supervised aggregation hierarchy. Unlike western ecosystems where Communication Platforms as a Service (CPaaS) vendors like Twilio or Sinch establish dynamic, multi-hop global SS7/SIGTRAN signaling links with dynamic global carrier fallbacks, domestic enterprise traffic is partitioned across state-licensed wholesale aggregators and direct Mobile Network Operators (MNOs).
+            </p>
+            <p class="text-[#a8a196] text-sm leading-relaxed">
+                The primary underlying carriers—<strong>MCI (Hamrah-e Aval / Mobile Telecommunication Company of Iran)</strong>, <strong>MTN Irancell</strong>, and <strong>Rightel</strong>—do not typically expose public REST endpoints to private commercial enterprises. Instead, high-volume routing is arbitrated through licensed First-Tier Aggregators via shortcode prefix allocations, enforced under regulatory oversight by the Communications Regulatory Authority (CRA) and the Telecommunication Infrastructure Company (TIC / ارتباطات زیرساخت).
+            </p>
+
+            <div class="p-4 bg-[#141210] border-l-2 border-[#c4562e] text-[#e8e2d5] text-xs font-mono leading-relaxed">
+                CRITICAL ARCHITECTURAL REALITY: Due to structural sanctions and national cyber governance mandates, international SS7 signaling routes cannot peer directly with Iranian MNO Short Message Service Centers (SMSCs). All inbound domestic messaging must originate within white-listed domestic IP ranges through direct SMPP bindings to authorized aggregators.
+            </div>
+        </section>
+
+        <!-- Section 2.0: Reseller Hierarchy & Prefix Taxonomy Table -->
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">02 // Network Hierarchy</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Shortcode Prefix Partitioning &amp; Operator Bindings</h2>
+            </div>
+
+            <p class="text-xs text-[#a8a196] leading-relaxed">
+                Every programmatic SMS in Iran is routed through an explicit numeric prefix. This prefix dictates the underlying wholesale aggregator, the physical SMSC bridge, delivery failure characteristics, and latency profiles:
+            </p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs mt-2">
+                    <thead>
+                        <tr class="bg-[#141210] text-[#c9a15a] uppercase border-b border-[#5c6650]">
+                            <th class="p-3">Prefix Band</th>
+                            <th class="p-3">Primary Operator / Aggregator</th>
+                            <th class="p-3">Protocol Interface</th>
+                            <th class="p-3">Throughput Ceiling (Per Binding)</th>
+                            <th class="p-3">Typical Target Application</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#5c6650] text-[#a8a196]">
+                        <tr>
+                            <td class="p-3 font-bold text-[#c4562e]">1000 Series</td>
+                            <td class="p-3">Rahyab Rayaneh Gostar (MCI Direct)</td>
+                            <td class="p-3">SMPP 3.4 / REST SOAP</td>
+                            <td class="p-3">150 &ndash; 300 TPS</td>
+                            <td class="p-3">Commercial Bulk, Tier-2 Marketing, Retail CRM Alerts</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-[#c4562e]">2000 Series</td>
+                            <td class="p-3">Asre Danesh Afzar / Danestan</td>
+                            <td class="p-3">SMPP 3.4 / Proprietary HTTP</td>
+                            <td class="p-3">100 &ndash; 250 TPS</td>
+                            <td class="p-3">Corporate Portals, High-Volume Marketing Campaigns</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-[#c9a15a]">3000 Series</td>
+                            <td class="p-3">MAGFA (Gov / Industrial Development)</td>
+                            <td class="p-3">SMPP 3.4 / SOAP WebServices</td>
+                            <td class="p-3">300 &ndash; 600 TPS</td>
+                            <td class="p-3">Banking Transaction Alerts, OTP Authentications, State Services</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-[#e8e2d5]">5000 Series</td>
+                            <td class="p-3">Multiple Sub-Allocators (50001, 50004)</td>
+                            <td class="p-3">SMPP 3.4 / HTTP Rest</td>
+                            <td class="p-3">150 &ndash; 400 TPS</td>
+                            <td class="p-3">Value-Added Services (VAS), Low-Cost Bulk Commercial CRM</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-[#c9d4a8]">9000 Series</td>
+                            <td class="p-3">MTN Irancell Direct Wholesale</td>
+                            <td class="p-3">Direct SMPP 3.4 / REST</td>
+                            <td class="p-3">400 &ndash; 800 TPS</td>
+                            <td class="p-3">Low-Latency Dedicated Irancell Subscriptions, Fast OTP</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-[#a8a196]">021 / 026 Series</td>
+                            <td class="p-3">Fixed-Line Operators (Asianet / Pishgaman)</td>
+                            <td class="p-3">REST / HTTP Proxy to SMPP</td>
+                            <td class="p-3">50 &ndash; 150 TPS</td>
+                            <td class="p-3">Local Office Landline Caller-ID Emulation Messaging</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-xs font-bold text-[#c9a15a] uppercase block mb-1">Commercial Line (خطوط تبلیغاتی)</span>
+                    <p class="text-[11px] text-[#a8a196] leading-relaxed">
+                        Subject to the national Do-Not-Disturb blacklist (*800#). If an end-user has dialed *800# to mute SMS advertisements, the operator gateway rejects the PDU with error code <code class="text-[#c4562e]">Blacklisted Subscriber</code> before it reaches the Base Station Controller (BSC). Rejection rates on commercial lines frequently hit 35% to 55% of all targeted national MSISDNs.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-xs font-bold text-[#c9d4a8] uppercase block mb-1">Service Line (خطوط خدماتی)</span>
+                    <p class="text-[11px] text-[#a8a196] leading-relaxed">
+                        Exempt from the *800# DND blacklist. Strictly restricted to transactional receipts, authentication OTPs, logistic tracking, and legal notifications (e.g., Sana judiciary alerts). Deploying commercial marketing over service lines results in immediate regulator fines, shortcode revocation, and legal escrow confiscation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3.0: Protocol Deep Dive (SMPP 3.4 Internals vs REST) -->
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">03 // Low-Level Protocol Engineering</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">SMPP 3.4 Mechanics: PDU Lifecycles &amp; Sliding Window Bounds</h2>
+            </div>
+
+            <p class="text-sm text-[#a8a196] leading-relaxed">
+                While international systems abstract transmission behind HTTP/2 or HTTP/3 REST APIs, high-throughput enterprise gateways interfacing with domestic aggregators must maintain persistent, stateful <strong>Short Message Peer-to-Peer (SMPP) v3.4</strong> socket sessions over raw TCP.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="font-bold text-[#c9a15a] uppercase">Binding Session Topology</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Gateways establish separate asynchronous TCP connections: <code class="text-[#c9d4a8]">bind_transmitter</code> (TX) for outbound injection, <code class="text-[#c9d4a8]">bind_receiver</code> (RX) for incoming delivery receipts and inbound replies, or <code class="text-[#c4562e]">bind_transceiver</code> (TRX) for bidirectional multiplexing. MNOs enforce maximum binding limits (often max 2-5 concurrent TCP binds per enterprise account).
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="font-bold text-[#c9a15a] uppercase">Sliding Window &amp; Backpressure</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Synchronous dispatch (awaiting <code class="text-[#c9a15a]">submit_sm_resp</code> before emitting the next PDU) caps throughput at ~10 TPS due to network round-trip time. Gateways implement a Sliding Window protocol: emitting up to $W$ in-flight unacknowledged PDUs. If window size $W$ exceeds carrier thresholds (typically 16-64), the SMSC throttles with <code class="text-[#c4562e]">ESME_RTHROTTLED (0x00000058)</code>.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="font-bold text-[#c9a15a] uppercase">Heartbeat &amp; Session Health</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        To keep TCP socket state alive through stateful carrier NAT firewalls, the client must emit <code class="text-[#e8e2d5]">enquire_link</code> PDUs at strict intervals (typically 30 seconds). Failure to receive an <code class="text-[#e8e2d5]">enquire_link_resp</code> within the timeout window demands aggressive TCP teardown, socket draining, and reconnection to a fallback aggregator node.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visual Comparison: International CPaaS vs Iranian Telecom -->
+            <div class="pt-4 border-t border-[#5c6650]">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xs font-bold text-[#e8e2d5] uppercase tracking-wider">CPaaS Architecture: International vs. Domestic Stack</h3>
+                    <span class="text-[10px] text-[#c9a15a] uppercase">Operational Vectors</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-[#141210] text-[#c9a15a] uppercase border-b border-[#5c6650]">
+                                <th class="p-3">Architectural Layer</th>
+                                <th class="p-3">Global CPaaS (Twilio / Sinch / Infobip)</th>
+                                <th class="p-3">Domestic Model (Magfa / Rahyab / Direct MNO)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#5c6650] text-[#a8a196]">
+                            <tr>
+                                <td class="p-3 font-bold text-[#e8e2d5]">Primary Ingress Interface</td>
+                                <td class="p-3">Edge-distributed JSON REST APIs, WebSocket streams, SDK abstractions.</td>
+                                <td class="p-3">Stateful SMPP 3.4 TCP Sockets; legacy SOAP XML proxies.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-[#e8e2d5]">Delivery Callback Pipeline</td>
+                                <td class="p-3">Asynchronous HTTPS webhooks signed with cryptographic HMAC headers.</td>
+                                <td class="p-3">SMPP <code class="text-[#c9d4a8]">deliver_sm</code> PDUs or polling-based batch HTTP queries.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-[#e8e2d5]">Route Redundancy</td>
+                                <td class="p-3">Automated dynamic Least-Cost Routing (LCR) across 800+ tier-1 telecom carriers.</td>
+                                <td class="p-3">Manual prefix configuration; failover requires application-level circuit breakers.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-[#e8e2d5]">Traffic Channels</td>
+                                <td class="p-3">Omnichannel: SMS, WhatsApp Business API, RCS Business Messaging, Viber.</td>
+                                <td class="p-3">Strictly GSM SMS; data-based channels banned or throttled.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4.0: The Impact of Blocking RCS & MMS -->
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">04 // Regulatory Impact Analysis</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">The Systemic Impact of RCS &amp; MMS Protocol Blocking</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs">
+                <div class="space-y-3">
+                    <h3 class="font-bold text-[#c4562e] uppercase text-sm">1. Regulatory Context &amp; Attack Surface Mitigation</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        In global telecommunications, <strong>Rich Communication Services (RCS)</strong> via Universal Profile 2.0+ enables carrier-verified sender branding, high-resolution media payloads, interactive carousel buttons, and end-to-end encryption via Google Jibe or carrier clouds. 
+                    </p>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        In Iran, RCS is structurally unavailable. Google Jibe servers and carrier-level data signaling routes for RCS are disabled or unreachable due to national cyberspace filtering policies and the National Information Network (NIN / شبکه ملی اطلاعات) architecture. Similarly, MMS (Multimedia Messaging Service) has remained deactivated or heavily throttled for mass enterprise distribution since early regulatory bans over multimedia content inspection concerns.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="font-bold text-[#c9a15a] uppercase text-sm">2. Engineering Fallout: The GSM-7 &amp; UCS-2 Trap</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Because rich data channels are blocked, <strong>100% of all critical transactional and conversational touchpoints</strong>—including banking OTPs, debit/credit receipts, logistics tracking, marketing campaigns, and two-factor authentication—are forced backward onto legacy 1990s-era GSM signaling channels.
+                    </p>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        This creates immense technical and financial penalties:
+                    </p>
+                    <ul class="list-disc pl-4 space-y-1.5 text-[#a8a196]">
+                        <li><strong class="text-[#e8e2d5]">Persian UCS-2 Encoding Overhead:</strong> Persian text cannot be encoded using standard 7-bit GSM default alphabet (160 characters). It requires 16-bit UCS-2 encoding, restricting single SMS length to just <strong>70 characters</strong>.</li>
+                        <li><strong class="text-[#e8e2d5]">UDH Concatenation Tax:</strong> Messages exceeding 70 characters inject a 6-byte User Data Header (UDH), reducing per-segment capacity to <strong>67 characters</strong>. A complex bank receipt or e-commerce delivery notification easily splits into 3 to 5 concatenated parts, multiplying billing cost and SMSC congestion by 300% to 500%.</li>
+                        <li><strong class="text-[#e8e2d5]">Missing Delivery of Split Segments:</strong> In concatenated messages, if segment 2 of 3 is dropped during BSC radio handovers, the subscriber handset cannot reconstruct the payload, rendering banking alerts completely unreadable.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Segment & Cost Comparison Chart -->
+            <div class="pt-4 border-t border-[#5c6650]">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xs font-bold text-[#e8e2d5] uppercase tracking-wider">Payload Size vs. Billed Segments: GSM-7 (Latin) vs. UCS-2 (Persian)</h3>
+                    <span class="text-[10px] text-[#c9a15a] uppercase">Character Boundary Physics</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="encodingCostChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5.0: Delivery Receipts (DLR) Lifecycle & LBS Targeting -->
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">05 // Delivery Telemetry</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">DLR Lifecycle Reconciliation &amp; Cell-Tower LBS Filtering</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-3">
+                    <h3 class="font-bold text-[#c9a15a] uppercase">Delivery Receipt (DLR) State Machine</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        When an enterprise submits a <code class="text-[#e8e2d5]">submit_sm</code> PDU, the aggregator returns a <code class="text-[#c9a15a]">message_id</code> in the synchronous <code class="text-[#e8e2d5]">submit_sm_resp</code>. This only proves receipt by the aggregator, NOT delivery to the mobile handset.
+                    </p>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Handset delivery confirmation travels asynchronously over hours via an incoming <code class="text-[#c4562e]">deliver_sm</code> PDU containing the receipt text payload:
+                    </p>
+                    <div class="p-3 bg-[#1c1916] border border-[#5c6650] font-mono text-[11px] text-[#c9d4a8]">
+                        id:10982348 sub:001 dlvrd:001 submit date:2609151230 done date:2609151231 stat:DELIVRD err:000
+                    </div>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Gateways must match <code class="text-[#c9d4a8]">id</code> with internal billing records. Primary status codes: <strong class="text-[#e8e2d5]">DELIVRD</strong> (Reached handset), <strong class="text-[#c4562e]">UNDELIV</strong> (Out of coverage / unreachable), <strong class="text-[#c4562e]">EXPIRED</strong> (SMSC timeout reached, typically 48 hours), or <strong class="text-[#c4562e]">REJECTD</strong> (DND blacklisted).
+                    </p>
+                </div>
+
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-3">
+                    <h3 class="font-bold text-[#c9a15a] uppercase">Location-Based Services (LBS) via Cell-ID</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Domestic operators offer specialized <strong>LBS (Location-Based SMS)</strong> engines. Instead of relying on GPS or client-side app permissions, targeting operates directly on cellular network signaling data via the Home Location Register (HLR) and Visitor Location Register (VLR).
+                    </p>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Enterprises define geographic polygons or target specific Base Transceiver Stations (BTS / cell towers). When a subscriber's mobile phone registers a periodic location update or handovers between cells (e.g., entering an exhibition center, airport, or specific trade district), the operator's LBS switch triggers an automated transactional or marketing SMS.
+                    </p>
+                    <div class="p-2 border border-[#5c6650] bg-[#1c1916] text-[#c9a15a] font-bold">
+                        SLA LATENCY CONSTRAINT: LBS injection suffers from 5 to 45 minute propagation delays due to VLR batch updates and carrier queue limits.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6.0: Architecture Pipeline Diagram & Node Inspector -->
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">06 // System Architecture</span>
+                    <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">End-to-End Telecom Dispatch Pipeline</h2>
+                </div>
+                <span class="text-[10px] text-[#c9a15a] uppercase border border-[#5c6650] px-2 py-1">Interactive Node Inspector</span>
+            </div>
+
+            <div class="bg-[#141210] p-6 border border-[#5c6650] overflow-x-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4 min-w-[900px]">
+                    <div onclick="inspectSmsNode('client')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c4562e] block uppercase">01 // INGRESS</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Enterprise Core</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">REST API / RabbitMQ</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectSmsNode('gateway')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9a15a] block uppercase">02 // GATEWAY</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">SMPP Engine</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Sliding Window / Rate Limit</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectSmsNode('aggregator')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9d4a8] block uppercase">03 // AGGREGATOR</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">Wholesale Hub</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Magfa / Rahyab Switch</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectSmsNode('smsc')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#e8e2d5] block uppercase">04 // CARRIER</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">MNO SMSC / HLR</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">MCI / Irancell HLR Check</span>
+                    </div>
+                    <span class="text-[#c9a15a] font-bold hidden md:inline">&rarr;</span>
+                    <div onclick="inspectSmsNode('handset')" class="bg-[#1c1916] border border-[#5c6650] hover:border-[#c4562e] p-4 text-center cursor-pointer w-48 transition">
+                        <span class="text-[10px] font-bold text-[#c9d4a8] block uppercase">05 // RADIO</span>
+                        <span class="text-xs font-bold text-[#e8e2d5] block mt-1 uppercase">BTS &rarr; Handset</span>
+                        <span class="text-[10px] text-[#a8a196] block mt-1">Over-The-Air Delivery</span>
+                    </div>
+                </div>
+                <div id="sms-node-details" class="mt-6 p-4 bg-[#1c1916] border border-[#5c6650] text-xs text-[#a8a196] leading-relaxed">
+                    <span class="font-bold text-[#c9a15a] uppercase">INSPECTOR:</span> Select an architecture node above to verify component routing rules and failure mechanics.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7.0: Critical Engineering Trade-offs -->
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">07 // Architecture Trade-offs</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Latency, Resilience &amp; Rate-Limiting Dilemmas</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="font-bold text-[#c9a15a] uppercase">Aggregator Failover vs. Message Deduplication</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        When an upstream aggregator (e.g., Magfa 3000) experiences an outage or TCP socket stall during a national traffic spike, an enterprise system must decide whether to reroute pending OTPs to a secondary aggregator (e.g., 1000 or 9000). However, if the first aggregator unblocks later and emits the queued message, the subscriber receives duplicate OTPs, invalidating the first session hash. Systems must trade off failover speed against client confusion.
+                    </p>
+                </div>
+                <div class="bg-[#141210] p-5 border border-[#5c6650] space-y-2">
+                    <h3 class="font-bold text-[#c9a15a] uppercase">Synchronous Ingestion vs. Backpressure Buffering</h3>
+                    <p class="text-[#a8a196] leading-relaxed">
+                        Enterprise microservices generate bursts of 10,000+ requests per second during promotional flashes or authentication surges. Domestic aggregator bindings cap ingestion at 100-300 TPS. Gateways must implement persistent distributed queues (Kafka or RabbitMQ) with leaky-bucket rate shapers. If backpressure retention exceeds 5 minutes, delayed OTPs arrive after the client-side UI timer expires, destroying conversion.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8.0: Live Interactive SMS Simulator & Calculator -->
+        <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-6 no-print">
+            <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+            <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+
+            <div class="border-b border-[#5c6650] pb-3">
+                <span class="text-xs font-bold text-[#c4562e] tracking-widest uppercase">08 // Interactive Simulation</span>
+                <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Persian UCS-2 Segment Split &amp; Throughput Cost Sandbox</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Message Content Length (Characters)</label>
+                    <input type="number" id="sim-chars" value="145" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Encoding Type</label>
+                    <select id="sim-encoding" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                        <option value="ucs2">Persian / Arabic (UCS-2 16-Bit)</option>
+                        <option value="gsm7">Latin / English (GSM 7-Bit)</option>
+                    </select>
+                </div>
+                <div class="space-y-1">
+                    <label class="block font-bold text-[#a8a196] uppercase">Total Campaign Volume (Subscribers)</label>
+                    <input type="number" id="sim-volume" value="50000" class="w-full p-2.5 bg-[#141210] border border-[#5c6650] text-[#c9a15a] focus:outline-none focus:border-[#c4562e]">
+                </div>
+            </div>
+
+            <button onclick="calculateSmsMetrics()" class="w-full py-3 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition">
+                Execute Transmission Calculation
+            </button>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <div class="p-4 bg-[#141210] border border-[#5c6650] text-center">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Segments Per Recipient</span>
+                    <span class="text-3xl font-bold text-[#c9a15a] block mt-1" id="res-segments">3 Segments</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Concatenation UDH active</span>
+                </div>
+                <div class="p-4 bg-[#141210] border border-[#5c6650] text-center">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Total Carrier Billing Hits</span>
+                    <span class="text-3xl font-bold text-[#e8e2d5] block mt-1" id="res-total-hits">150,000</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Separate SMSC PDUs</span>
+                </div>
+                <div class="p-4 bg-[#141210] border border-[#5c6650] text-center">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Dispatch Time (@ 200 TPS Binding)</span>
+                    <span class="text-3xl font-bold text-[#c9d4a8] block mt-1" id="res-dispatch-time">12.5 Min</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Under zero carrier throttle</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#141210] border-t border-[#5c6650] py-6 text-xs text-[#a8a196] no-print">
+        <div class="max-w-[1600px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span class="uppercase tracking-wider">Ariya Sarrafzadeh // Telecom Architecture Series</span>
+            <span class="text-[10px] text-[#5c6650] uppercase tracking-widest">Document Reference: SPEC-04-TELECOM-SMS</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        function inspectSmsNode(type) {
+            const box = document.getElementById('sms-node-details');
+            const data = {
+                'client': '1. Enterprise Core Ingress: Client applications publish SMS intents over RabbitMQ or Kafka. Payload contains destination MSISDN, raw text, and message type (Service vs Commercial).',
+                'gateway': '2. High-Throughput SMPP Gateway: Formats payload into submit_sm PDUs. Enforces sliding-window size (max 32), handles UCS-2 character splitting, and manages token-bucket rate limits per shortcode prefix.',
+                'aggregator': '3. Tier-1 Wholesale Aggregator (Magfa / Rahyab): Performs DND check (*800#) on commercial lines, maps the dedicated or shared shortcode, and routes over private leased line / MPLS to targeted MNO.',
+                'smsc': '4. Carrier SMSC & HLR/VLR: Operator Short Message Service Center queries Home Location Register (HLR) to find the current cell tower location and routing path for the destination subscriber.',
+                'handset': '5. Over-The-Air BSC Delivery: Base Station transmits PDU over GSM signaling channel (SDCCH). Handset acknowledges delivery, triggering an asynchronous deliver_sm receipt back through the pipeline.'
+            };
+            box.innerText = data[type] || '';
+        }
+
+        function calculateSmsMetrics() {
+            const chars = parseInt(document.getElementById('sim-chars').value) || 1;
+            const encoding = document.getElementById('sim-encoding').value;
+            const volume = parseInt(document.getElementById('sim-volume').value) || 1;
+
+            let segments = 1;
+            if (encoding === 'ucs2') {
+                if (chars <= 70) {
+                    segments = 1;
+                } else {
+                    segments = Math.ceil(chars / 67);
+                }
+            } else {
+                if (chars <= 160) {
+                    segments = 1;
+                } else {
+                    segments = Math.ceil(chars / 153);
+                }
+            }
+
+            const totalHits = segments * volume;
+            const dispatchSeconds = totalHits / 200; // Assuming 200 TPS binding
+            const dispatchMinutes = (dispatchSeconds / 60).toFixed(1);
+
+            document.getElementById('res-segments').innerText = segments + ' Segment' + (segments > 1 ? 's' : '');
+            document.getElementById('res-total-hits').innerText = totalHits.toLocaleString();
+            document.getElementById('res-dispatch-time').innerText = dispatchMinutes + ' Min';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('encodingCostChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['50 Chars', '70 Chars', '100 Chars', '140 Chars', '200 Chars', '300 Chars'],
+                    datasets: [
+                        {
+                            label: 'Persian UCS-2 Billed Segments',
+                            data: [1, 1, 2, 3, 3, 5],
+                            borderColor: '#c4562e',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            stepped: true
+                        },
+                        {
+                            label: 'Latin GSM-7 Billed Segments',
+                            data: [1, 1, 1, 1, 2, 2],
+                            borderColor: '#c9a15a',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            stepped: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#e8e2d5', font: { family: 'IBM Plex Mono' } } }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#a8a196', font: { family: 'IBM Plex Mono' } }
+                        },
+                        y: {
+                            grid: { color: '#1c1916' },
+                            ticks: { color: '#a8a196', font: { family: 'IBM Plex Mono' } },
+                            title: { display: true, text: 'Segments Billed', color: '#a8a196' }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

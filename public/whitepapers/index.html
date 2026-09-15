@@ -67,7 +67,7 @@
                 <span class="px-2 py-1 bg-[#c4562e] text-[#141210] font-bold text-xs">SPEC.HUB</span>
                 <div>
                     <span class="font-bold text-sm tracking-wider text-[#e8e2d5] block uppercase">Engineering Whitepaper Suite</span>
-                    <span class="text-[10px] text-[#c9a15a] uppercase tracking-widest">Financial &amp; Decentralized Switches</span>
+                    <span class="text-[10px] text-[#c9a15a] uppercase tracking-widest">Financial, Telecom &amp; Distributed Switches</span>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
@@ -92,20 +92,25 @@
                     High-Throughput Switches &amp; Cryptographic Ledgers
                 </h1>
                 <p class="text-[#a8a196] text-sm sm:text-base leading-relaxed">
-                    Engineering reference specifications analyzing modern payment routing architectures, perimeter fraud isolation systems, and trustless state transitions. Formulated for systems architects and engineering leadership.
+                    Engineering reference specifications analyzing modern payment routing architectures, telecom aggregator mechanics, perimeter fraud isolation systems, and trustless state transitions. Formulated for systems architects and engineering leadership.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-[#5c6650] pt-6 mt-6">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-[#5c6650] pt-6 mt-6">
                 <div class="bg-[#141210] p-4 border border-[#5c6650]">
                     <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Gateway Target SLA</span>
                     <span class="text-2xl font-bold text-[#c9a15a] mt-1 block">&lt; 250 ms</span>
                     <span class="text-[10px] text-[#5c6650] block mt-0.5">End-to-End Authorization</span>
                 </div>
                 <div class="bg-[#141210] p-4 border border-[#5c6650]">
+                    <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">National SMS Burst</span>
+                    <span class="text-2xl font-bold text-[#c9a15a] mt-1 block">50,000+ TPS</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Combined MNO Capacity</span>
+                </div>
+                <div class="bg-[#141210] p-4 border border-[#5c6650]">
                     <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">Chargeback Ceiling</span>
                     <span class="text-2xl font-bold text-[#c4562e] mt-1 block">1.0 %</span>
-                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Program Monitoring Threshold</span>
+                    <span class="text-[10px] text-[#5c6650] block mt-0.5">Program Monitoring Limit</span>
                 </div>
                 <div class="bg-[#141210] p-4 border border-[#5c6650]">
                     <span class="text-[10px] text-[#a8a196] uppercase tracking-widest block">L2 Settlement Capacity</span>
@@ -115,7 +120,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             <div class="relative bg-[#1c1916] p-6 border border-[#5c6650] flex flex-col justify-between space-y-4">
                 <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
                 <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
@@ -160,6 +165,21 @@
                     Open Specification &rarr;
                 </a>
             </div>
+
+            <div class="relative bg-[#1c1916] p-6 border border-[#5c6650] flex flex-col justify-between space-y-4">
+                <span class="rivet rivet-tl"></span><span class="rivet rivet-tr"></span>
+                <span class="rivet rivet-bl"></span><span class="rivet rivet-br"></span>
+                <div>
+                    <span class="text-[10px] font-bold text-[#c4562e] uppercase tracking-widest block">DOSSIER 04</span>
+                    <h3 class="text-lg font-bold text-[#e8e2d5] uppercase mt-1">Telecom &amp; SMS Infrastructure</h3>
+                    <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
+                        National SMPP 3.4 gateway switches, aggregator tiering across Magfa and Rahyab, shortcode prefix taxonomy, DND blacklist filtering, and the architectural fallout of RCS and MMS blocking.
+                    </p>
+                </div>
+                <a href="sms-infrastructure.html" class="block w-full text-center py-2.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition">
+                    Open Specification &rarr;
+                </a>
+            </div>
         </div>
 
         <section class="relative bg-[#1c1916] p-8 border border-[#5c6650] space-y-4">
@@ -171,7 +191,7 @@
                 <h2 class="text-xl font-bold text-[#e8e2d5] uppercase mt-1">Throughput Capacity &amp; Settlement Finality</h2>
             </div>
             <p class="text-xs text-[#a8a196]">
-                Comparing processing capacity (Transactions Per Second) and finality confirmation latency across traditional card switches, national networks, and decentralized ledgers.
+                Comparing peak throughput capacity in Transactions Per Second and finality confirmation latency across traditional card schemes, national switches, telecom routing fabrics, and distributed ledgers.
             </p>
             <div class="chart-container">
                 <canvas id="overviewChart"></canvas>
@@ -193,18 +213,18 @@
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Visa / Mastercard', 'Shaparak (Iran)', 'Ethereum L1', 'ZK-Rollup L2'],
+                    labels: ['Visa / Mastercard', 'National SMS Hub', 'Shaparak (Iran)', 'Ethereum L1', 'ZK-Rollup L2'],
                     datasets: [
                         {
                             label: 'Max Peak Capacity (TPS)',
-                            data: [65000, 10000, 15, 4000],
+                            data: [65000, 50000, 10000, 15, 4000],
                             backgroundColor: '#c4562e',
                             borderColor: '#5c6650',
                             borderWidth: 1
                         },
                         {
                             label: 'Settlement Finality (Seconds)',
-                            data: [86400, 86400, 720, 12],
+                            data: [86400, 5, 86400, 720, 12],
                             backgroundColor: '#c9a15a',
                             borderColor: '#5c6650',
                             borderWidth: 1
