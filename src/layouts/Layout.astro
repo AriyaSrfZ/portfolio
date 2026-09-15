@@ -5,13 +5,18 @@ import FloatingNavbar from '../components/react/FloatingNavbar';
 interface Props {
   title: string;
   description?: string;
+  theme?: string;
 }
 
-const { title, description = 'Ariya Sarrafzadeh — Enterprise Systems Architecture' } = Astro.props;
+const { 
+  title, 
+  description = 'Ariya Sarrafzadeh | Enterprise Systems Architecture',
+  theme = 'rugged'
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme={theme}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,15 +25,15 @@ const { title, description = 'Ariya Sarrafzadeh — Enterprise Systems Architect
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
 </head>
-<body class="min-h-screen bg-(--color-bg) text-(--color-text) selection:bg-emerald-500/30 selection:text-emerald-300">
+<body class="min-h-screen bg-[var(--rugged-bg-nav)] text-[var(--rugged-paper)] selection:bg-[var(--rugged-rust)]/30 selection:text-[var(--rugged-brass)] font-['IBM_Plex_Mono',monospace]">
   <FloatingNavbar client:load />
 
   <main class="relative">
     <slot />
   </main>
 
-  <footer class="relative z-10 border-t border-(--color-glass-border) mt-24 py-10 px-6 text-center text-sm text-(--color-text-muted)">
-    <p>© {new Date().getFullYear()} Ariya Sarrafzadeh.</p>
+  <footer class="relative z-10 border-t border-[var(--rugged-olive-border)] mt-24 py-10 px-6 text-center text-xs text-[var(--rugged-muted)] uppercase tracking-wider">
+    <p>© {new Date().getFullYear()} Ariya Sarrafzadeh. All systems operational.</p>
   </footer>
 </body>
 </html>

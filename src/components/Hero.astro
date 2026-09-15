@@ -1,4 +1,8 @@
 ---
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
 const specs = [
   { label: "CORE DOMAIN", val: "High-Throughput Systems" },
   { label: "EXPERIENCE", val: "15+ Years Architecture" },
@@ -7,24 +11,32 @@ const specs = [
 ];
 ---
 
-<header id="overview" class="relative pt-32 pb-14 border-b border-slate-800/80 bg-slate-950 overflow-hidden">
-  <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b18_1px,transparent_1px),linear-gradient(to_bottom,#1e293b18_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-52 bg-gradient-to-b from-cyan-500/10 to-transparent blur-3xl pointer-events-none"></div>
+<header id="overview" class="relative pt-32 pb-16 border-b border-[var(--rugged-olive-border)] bg-[var(--rugged-bg-nav)] overflow-hidden font-['IBM_Plex_Mono',monospace]">
+  <!-- Diagonal Hatch Texture Background -->
+  <div class="absolute inset-0 rugged-hatch pointer-events-none opacity-50"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
       
-      <!-- Profile Picture Frame -->
+      <!-- Profile Picture Frame with Riveted Stamped Border -->
       <div class="relative shrink-0">
-        <div class="w-44 h-44 sm:w-48 sm:h-48 rounded-2xl p-1 bg-gradient-to-b from-cyan-500/30 via-slate-800 to-transparent border border-slate-700/60 shadow-xl shadow-cyan-950/40">
+        <div class="relative w-44 h-44 sm:w-48 sm:h-48 p-1 bg-[var(--rugged-bg-panel)] border border-[var(--rugged-olive-border)] shadow-2xl">
+          <!-- Rivets -->
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+
           <img
-            src="/photos/ariya.jpg"
+            src={`${baseUrl}photos/ariya.jpg`}
             alt="Ariya Sarrafzadeh"
-            class="w-full h-full object-cover rounded-xl bg-slate-900"
+            class="w-full h-full object-cover bg-[var(--rugged-bg-nav)] filter contrast-105"
           />
-          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-slate-900 border border-cyan-500/40 px-3 py-0.5 rounded-full flex items-center gap-1.5 shadow-lg whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-[10px] font-mono text-cyan-300 font-semibold tracking-wider">ONLINE // AVAIL</span>
+
+          <!-- Operational Status Pill -->
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[var(--rugged-olive-bg)] border border-[var(--rugged-olive-border)] px-3 py-0.5 flex items-center gap-1.5 shadow-lg whitespace-nowrap">
+            <span class="w-1.5 h-1.5 bg-[var(--rugged-brass)] animate-pulse"></span>
+            <span class="text-[10px] text-[var(--rugged-olive-text)] font-semibold tracking-widest uppercase">SYS.ONLINE // READY</span>
           </div>
         </div>
       </div>
@@ -32,43 +44,57 @@ const specs = [
       <!-- Hero Header & Spec Matrix -->
       <div class="flex-1 text-center lg:text-left">
         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-3">
-          <span class="font-mono text-xs text-cyan-400 bg-cyan-950/70 border border-cyan-800/80 px-2.5 py-0.5 rounded">SYS.ARCH // PORTFOLIO</span>
-          <span class="font-mono text-xs text-slate-400 bg-slate-900 border border-slate-800 px-2.5 py-0.5 rounded">SPEC: 2026.1</span>
+          <span class="rugged-tag">SYS.ARCH // SPEC-2026</span>
+          <span class="rugged-tag bg-transparent text-[var(--rugged-muted)]">INFRASTRUCTURE LEDGER</span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white font-mono">
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-[var(--rugged-paper)] uppercase">
           Ariya Sarrafzadeh
         </h1>
         
-        <p class="mt-2 text-lg sm:text-xl font-medium text-slate-300">
+        <p class="mt-2 text-base sm:text-lg font-semibold text-[var(--rugged-brass)] tracking-wide">
           Corporate Product Director &amp; Distributed Systems Architect
         </p>
 
-        <p class="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl leading-relaxed font-light">
+        <p class="mt-3 text-[var(--rugged-muted)] text-sm sm:text-base max-w-2xl leading-relaxed">
           15+ years architecting high-availability FinTech platforms, national-scale SMS routing gateways,
           and fraud forensic topologies. Bridging deterministic infrastructure with business execution.
         </p>
 
-        <!-- Fixed Spec Matrix: No Truncation, Flexible Wraps -->
-        <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2.5 max-w-3xl">
+        <!-- Spec Matrix Grid -->
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 max-w-3xl">
           {specs.map(item => (
-            <div class="bg-slate-900/90 border border-slate-800/90 p-3 rounded-lg text-left shadow-sm">
-              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">{item.label}</div>
-              <div class="text-xs font-mono font-semibold text-cyan-200 mt-0.5">{item.val}</div>
+            <div class="relative bg-[var(--rugged-bg-panel)] border border-[var(--rugged-olive-border)] p-3 text-left">
+              <span class="absolute -top-[2px] -left-[2px] w-[4px] h-[4px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+              <span class="absolute -top-[2px] -right-[2px] w-[4px] h-[4px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+              <span class="absolute -bottom-[2px] -left-[2px] w-[4px] h-[4px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+              <span class="absolute -bottom-[2px] -right-[2px] w-[4px] h-[4px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+              
+              <div class="text-[10px] text-[var(--rugged-muted)] uppercase tracking-wider">{item.label}</div>
+              <div class="text-xs font-bold text-[var(--rugged-brass)] mt-1">{item.val}</div>
             </div>
           ))}
         </div>
 
         <!-- Action CTAs -->
-        <div class="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3">
-          <a href="#blueprints" class="px-5 py-2.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-mono font-semibold transition shadow-lg shadow-cyan-950/50">
+        <div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+          <a 
+            href={`${baseUrl}#work`} 
+            class="px-5 py-2.5 bg-[var(--rugged-rust)] text-[var(--rugged-bg-nav)] text-xs font-bold uppercase tracking-wider transition hover:brightness-90 select-none shadow-md"
+          >
             INSPECT BLUEPRINTS ↓
           </a>
-          <a href="/whitepaper" class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-cyan-800/50 text-cyan-300 text-xs font-mono font-semibold transition">
-            READ AGENTIC AI SPEC (HTML) →
+          <a 
+            href={`${baseUrl}whitepapers/`} 
+            class="px-5 py-2.5 bg-[var(--rugged-bg-panel)] border border-[var(--rugged-rust)] text-[var(--rugged-rust)] text-xs font-bold uppercase tracking-wider transition hover:bg-[var(--rugged-rust)]/10 select-none"
+          >
+            WHITEPAPERS HUB →
           </a>
-          <a href="#book" class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-mono font-semibold transition">
-            BOOK A SESSION
+          <a 
+            href={`${baseUrl}#book`} 
+            class="px-5 py-2.5 bg-transparent border border-[var(--rugged-olive-border)] text-[var(--rugged-muted)] text-xs font-bold uppercase tracking-wider transition hover:text-[var(--rugged-paper)] hover:border-[var(--rugged-muted)] select-none"
+          >
+            DISPATCH CONTACT
           </a>
         </div>
 

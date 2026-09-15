@@ -2,18 +2,30 @@
 const CAL_LINK = 'ariya-sarrafzadeh/15min';
 ---
 
-<section id="book" class="relative z-10 max-w-4xl mx-auto px-6 py-24">
-  <div class="text-center mb-8">
-    <h2 class="text-3xl font-bold mb-2">Book a Session</h2>
-    <p class="text-(--color-text-muted)">
-      Pick a time that works for you. 15-minute intro / product & architecture discussion.
-    </p>
+<div class="relative bg-[var(--rugged-bg-panel)] border border-[var(--rugged-olive-border)] p-6 sm:p-8 font-['IBM_Plex_Mono',monospace]">
+  <!-- Corner Rivets -->
+  <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+  <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+  <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+  <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
+
+  <div class="flex items-center gap-3 mb-2">
+    <span class="text-xs text-[var(--rugged-rust)] tracking-wider font-semibold">05 // ENGAGEMENT CHANNEL</span>
+    <div class="h-px flex-1 bg-[var(--rugged-olive-border)]"></div>
   </div>
 
-  <div class="glass rounded-3xl p-4 sm:p-6 border border-white/10 overflow-hidden shadow-2xl">
+  <h2 class="text-2xl font-bold text-[var(--rugged-paper)] uppercase">
+    Direct Engagement &amp; Consultation
+  </h2>
+  
+  <p class="text-[var(--rugged-muted)] text-sm mt-2 mb-6 leading-relaxed">
+    Select an operating window for technical architecture assessments, platform audits, or product strategy reviews.
+  </p>
+
+  <div class="relative bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] p-2 sm:p-4 shadow-inner">
     <div id="cal-inline" class="w-full min-h-[600px]"></div>
   </div>
-</section>
+</div>
 
 <script define:vars={{ CAL_LINK }}>
   (function (C, A, L) {
@@ -56,7 +68,11 @@ const CAL_LINK = 'ariya-sarrafzadeh/15min';
 
   Cal("ui", {
     theme: "dark",
-    styles: { branding: { brandColor: "#06b6d4" } },
+    styles: { 
+      branding: { 
+        brandColor: "#c4562e" 
+      } 
+    },
     hideEventTypeDetails: false,
     layout: "month_view"
   });

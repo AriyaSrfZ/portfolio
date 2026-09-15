@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
 
 @theme {
   --color-bg: #0D0E11;
@@ -11,6 +12,18 @@
   --color-aurora-2: #10B981;
   --color-aurora-3: #047857;
   --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Rugged Theme Tokens */
+  --color-rugged-bg-panel: #1c1916;
+  --color-rugged-bg-nav: #141210;
+  --color-rugged-rust: #c4562e;
+  --color-rugged-brass: #c9a15a;
+  --color-rugged-olive-bg: #3d4632;
+  --color-rugged-olive-text: #c9d4a8;
+  --color-rugged-olive-border: #5c6650;
+  --color-rugged-paper: #e8e2d5;
+  --color-rugged-muted: #a8a196;
+  --font-mono-rugged: "IBM Plex Mono", monospace;
 }
 
 html {
@@ -27,7 +40,7 @@ body {
   margin: 0;
 }
 
-/* Card & Interactive Styles */
+/* Original Card & Interactive Styles */
 .archival-card {
   background-color: var(--color-bg-elevated);
   border: 1px solid var(--color-glass-border);
@@ -49,4 +62,59 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-glass-border);
+}
+
+/* Rugged Industrial Design System */
+[data-theme="rugged"] {
+  --rugged-bg-panel: #1c1916;
+  --rugged-bg-nav: #141210;
+  --rugged-rust: #c4562e;
+  --rugged-brass: #c9a15a;
+  --rugged-olive-bg: #3d4632;
+  --rugged-olive-text: #c9d4a8;
+  --rugged-olive-border: #5c6650;
+  --rugged-paper: #e8e2d5;
+  --rugged-muted: #a8a196;
+
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--rugged-bg-nav);
+  color: var(--rugged-paper);
+}
+
+[data-theme="rugged"] body {
+  background-color: var(--rugged-bg-nav);
+  color: var(--rugged-paper);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+[data-theme="rugged"] * {
+  border-radius: 0px !important;
+}
+
+.rugged-hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+}
+
+.rugged-panel {
+  background-color: var(--rugged-bg-panel);
+  border: 1px solid var(--rugged-olive-border);
+  position: relative;
+}
+
+.rugged-tag {
+  display: inline-block;
+  border: 1px solid var(--rugged-olive-border);
+  background-color: var(--rugged-olive-bg);
+  color: var(--rugged-olive-text);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
 }
