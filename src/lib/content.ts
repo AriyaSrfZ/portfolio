@@ -152,7 +152,13 @@ export type Copy = {
     s1Body2: string;
     s2Title: string;
     s2Lead: string;
-    s2Items: { title: string; body: string }[];
+    s2Items: {
+      title: string;
+      body: string;
+      description?: string;
+      technologies?: string[];
+      metrics?: string;
+    }[];
     s3Title: string;
     s3Body: string;
     s3Steps: string[];
@@ -190,6 +196,14 @@ export type Copy = {
       outcome: string;
     }[];
   };
+  projects: ProjectItem[];
+};
+
+export type ProjectItem = {
+  title: string;
+  description: string;
+  technologies: string[];
+  metrics: string;
 };
 
 export const copy: Record<Locale, Copy> = {
@@ -509,6 +523,13 @@ export const copy: Record<Locale, Copy> = {
       s2Lead: "Persian orthography creates several interacting sources of variation that must be addressed before reliable matching is possible.",
       s2Items: [
         {
+          title: "Smart DB v1 Architecture",
+          body: "Architected Smart DB processing 100 million distinct records. Engineered a dynamic scoring matrix delivering 70% predictive accuracy for user preferences prior to KYC data ingestion. Integrated real-time operator usage APIs for historical behavioral analysis, decoupling external data aggregation from core storage.",
+          description: "Architected Smart DB processing 100 million distinct records. Engineered a dynamic scoring matrix delivering 70% predictive accuracy for user preferences prior to KYC data ingestion. Integrated real-time operator usage APIs for historical behavioral analysis, decoupling external data aggregation from core storage.",
+          technologies: ["Elasticsearch", "API Gateway", "Data Pipeline"],
+          metrics: "100M Records | 70% Accuracy"
+        },
+        {
           title: "Character encoding and script variants",
           body: "The same letter may be represented by different Unicode code points (ي vs ی, ك vs ک). Diacritics and tatweel appear inconsistently. NFC alone does not resolve them; an explicit language-specific mapping is required.",
         },
@@ -628,6 +649,14 @@ export const copy: Record<Locale, Copy> = {
         },
       ],
     },
+    projects: [
+      {
+        title: "Smart DB v1 Architecture",
+        description: "Architected Smart DB processing 100 million distinct records. Engineered a dynamic scoring matrix delivering 70% predictive accuracy for user preferences prior to KYC data ingestion. Integrated real-time operator usage APIs for historical behavioral analysis, decoupling external data aggregation from core storage.",
+        technologies: ["Elasticsearch", "API Gateway", "Data Pipeline"],
+        metrics: "100M Records | 70% Accuracy"
+      }
+    ],
 
   },
   fa: {
@@ -932,6 +961,13 @@ export const copy: Record<Locale, Copy> = {
       s2Title: "۲. لایه‌های نرمال‌سازی",
       s2Lead: "قبل از هر تطبیق، شکل سطحی باید به شکل کانونی برسد.",
       s2Items: [
+        {
+          title: "معماری پایگاه داده هوشمند",
+          body: "معماری نسخه اول پایگاه داده هوشمند (Smart DB) با پردازش ۱۰۰ میلیون رکورد یکتا؛ طراحی ماتریس امتیازدهی پویا با دقت پیشبینی ۷۰ درصدی رفتار کاربر پیش از دریافت دادههای احراز هویت (KYC). یکپارچهسازی APIهای بلادرنگ اپراتورها جهت تحلیل تاریخچه رفتار کاربر، و جداسازی موفقیتآمیز تجمیع دادههای خارجی از هسته دیتابیس.",
+          description: "معماری نسخه اول پایگاه داده هوشمند (Smart DB) با پردازش ۱۰۰ میلیون رکورد یکتا؛ طراحی ماتریس امتیازدهی پویا با دقت پیشبینی ۷۰ درصدی رفتار کاربر پیش از دریافت دادههای احراز هویت (KYC). یکپارچهسازی APIهای بلادرنگ اپراتورها جهت تحلیل تاریخچه رفتار کاربر، و جداسازی موفقیتآمیز تجمیع دادههای خارجی از هسته دیتابیس.",
+          technologies: ["Elasticsearch", "API Gateway", "Data Pipeline"],
+          metrics: "۱۰۰ میلیون رکورد | ۷۰٪ دقت"
+        },
         { title: "نویسه و یونیکد", body: "یکسان‌سازی اشکال عربی و فارسی هم‌معنی، حذف اعراب غیرضروری، نرمال‌سازی فاصله." },
         { title: "نیم‌فاصله", body: "جدا کردن یا یکسان کردن نیم‌فاصله و فاصله در پیشوند و پسوند نام." },
         { title: "القاب", body: "جدا کردن و نگهداری القاب (آقا، خانم، دکتر و مانند آن) خارج از کلید تطبیق اصلی." },
@@ -1014,6 +1050,14 @@ export const copy: Record<Locale, Copy> = {
         },
       ],
     },
+    projects: [
+      {
+        title: "معماری پایگاه داده هوشمند",
+        description: "معماری نسخه اول پایگاه داده هوشمند (Smart DB) با پردازش ۱۰۰ میلیون رکورد یکتا؛ طراحی ماتریس امتیازدهی پویا با دقت پیشبینی ۷۰ درصدی رفتار کاربر پیش از دریافت دادههای احراز هویت (KYC). یکپارچهسازی APIهای بلادرنگ اپراتورها جهت تحلیل تاریخچه رفتار کاربر، و جداسازی موفقیتآمیز تجمیع دادههای خارجی از هسته دیتابیس.",
+        technologies: ["Elasticsearch", "API Gateway", "Data Pipeline"],
+        metrics: "۱۰۰ میلیون رکورد | ۷۰٪ دقت"
+      }
+    ],
   },
 };
 
