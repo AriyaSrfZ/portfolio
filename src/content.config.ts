@@ -6,12 +6,17 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.enum(['data-engineering', 'network-infrastructure', 'system-architecture', 'fintech', 'api-products', 'product-management']),
-    date: z.coerce.date(),
+    category: z.enum(['data-engineering', 'network-infrastructure', 'system-architecture', 'fintech', 'api-products', 'product-management']).default('system-architecture'),
+    date: z.coerce.date().optional(),
+    pubDate: z.coerce.date().optional(),
     technologies: z.array(z.string()),
     metric: z.string().optional(),
     diagram: z.string().optional(),
-  }),
+  }).transform((data) => ({
+    ...data,
+    date: data.date ?? data.pubDate ?? new Date('2026-09-29'),
+    pubDate: data.pubDate ?? data.date ?? new Date('2026-09-29'),
+  })),
 });
 
 const concepts = defineCollection({
