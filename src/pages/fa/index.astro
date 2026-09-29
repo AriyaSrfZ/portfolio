@@ -1,0 +1,331 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import BookingSection from '../../components/BookingSection.astro';
+import { copy } from '../../lib/content';
+
+const fa = copy.fa;
+const dFa = fa.systems.domains;
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<Layout 
+  title="آریا صراف‌زاده | معماری سامانه‌های سازمانی و مخابرات" 
+  description="مالک فنی محصول و مدیر ارشد محصول. سوییچ پرداخت، مسیریابی پیامک ملی، جداسازی تقلب در مقیاس عملیاتی."
+  lang="fa"
+  dir="rtl"
+>
+  <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-[#c4562e] z-50 transition-all duration-75"></div>
+
+  <Hero locale="fa" />
+
+  <main class="max-w-[1600px] mx-auto px-6 py-10 font-['IBM_Plex_Mono',monospace]" id="blueprints" dir="rtl">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Sticky Sidebar Index (Strict 01 to 06 sequence) -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
+        <div class="relative bg-[#1c1916] border border-[#5c6650] p-4 shadow-xl rugged-hatch">
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
+          <div class="text-[11px] font-bold text-[#c9a15a] tracking-widest uppercase mb-3 border-b border-[#5c6650] pb-2 flex justify-between items-center">
+            <span>فهرست سامانه</span>
+            <span class="w-1.5 h-1.5 bg-[#c9d4a8] animate-signal"></span>
+          </div>
+          
+          <nav class="space-y-1.5 text-xs">
+            <a href="#payment-settlement" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
+              ۰۱ // تسویه و سوییچ
+            </a>
+            <a href="#fraud-forensics" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
+              ۰۲ // تقلب و ریسک
+            </a>
+            <a href="#sms-gateway" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
+              ۰۳ // سوییچ پیامک
+            </a>
+            <a href="#data-pipeline" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
+              ۰۴ // خط داده و پالایش
+            </a>
+            <a href={`${baseUrl}whitepapers/`} class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
+              ۰۵ // اسناد فنی
+            </a>
+            <a href="#book" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
+              ۰۶ // تماس
+            </a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Blueprint Sections -->
+      <div class="lg:col-span-9 space-y-10">
+        
+        <!-- SECTION 01: Payment Settlement -->
+        <section id="payment-settlement" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">۰۱ // مسیریابی تراکنش و دفاتر کل</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5]">{dFa.payments.title}</h2>
+          
+          <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
+            <p>{dFa.payments.problem}</p>
+            <p>{dFa.payments.approach}</p>
+            <p><span class="text-[#c9a15a] font-bold">حالت خرابی:</span> {dFa.payments.failure}</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 my-4">
+            {dFa.payments.tags.map(tag => (
+              <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">{tag}</span>
+            ))}
+          </div>
+
+          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto" dir="ltr">
+            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">API INGRESS</text>
+              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">mTLS / JSON Payload</text>
+
+              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
+              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
+
+              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
+              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">IDEMPOTENCY LOCKS</text>
+              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Redis SETNX TTL: 86400s</text>
+              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">O(1) Concurrency Guard</text>
+
+              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
+              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
+
+              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">LEDGER CLUSTER</text>
+              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">ACID Double-Entry</text>
+            </svg>
+          </div>
+
+          <div class="mt-4 flex justify-between items-center text-xs">
+            <span class="text-[#a8a196]">مشخصات پروتکل در سند ۰۱ تدوین شده است.</span>
+            <a href={`${baseUrl}whitepapers/payment-gateway.html`} class="text-[#c4562e] font-bold hover:underline">
+              مشاهده سند فنی ۰۱ &larr;
+            </a>
+          </div>
+        </section>
+
+        <!-- SECTION 02: Fraud Forensics -->
+        <section id="fraud-forensics" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">۰۲ // پایش و کشف تقلب</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5]">{dFa.fraud.title}</h2>
+          
+          <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
+            <p>{dFa.fraud.problem}</p>
+            <p>{dFa.fraud.approach}</p>
+            <p><span class="text-[#c9a15a] font-bold">حالت خرابی:</span> {dFa.fraud.failure}</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 my-4">
+            {dFa.fraud.tags.map(tag => (
+              <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">{tag}</span>
+            ))}
+          </div>
+
+          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto" dir="ltr">
+            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">EDGE TELEMETRY</text>
+              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Canvas / Device Hash</text>
+
+              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
+              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
+
+              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+              <text x="340" y="70" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">SCORING ENGINE</text>
+              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Behavioral ML Vectors</text>
+              <text x="340" y="106" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Threshold: 0.75 Limit</text>
+
+              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
+              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
+
+              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">ISOLATION VAULT</text>
+              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Challenge / Quarantine</text>
+            </svg>
+          </div>
+
+          <div class="mt-4 flex justify-between items-center text-xs">
+            <span class="text-[#a8a196]">الگوی کشف و جداسازی در سند ۰۲ مستند شده است.</span>
+            <a href={`${baseUrl}whitepapers/fraud-tracing.html`} class="text-[#c4562e] font-bold hover:underline">
+              مشاهده سند فنی ۰۲ &larr;
+            </a>
+          </div>
+        </section>
+
+        <!-- SECTION 03: Telecom SMS Gateway -->
+        <section id="sms-gateway" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">۰۳ // سوییچینگ و صف مخابراتی</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5]">{dFa.sms.title}</h2>
+          
+          <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
+            <p>{dFa.sms.problem}</p>
+            <p>{dFa.sms.approach}</p>
+            <p><span class="text-[#c9a15a] font-bold">حالت خرابی:</span> {dFa.sms.failure}</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 my-4">
+            {dFa.sms.tags.map(tag => (
+              <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">{tag}</span>
+            ))}
+          </div>
+
+          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto" dir="ltr">
+            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">INGRESS QUEUE</text>
+              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Kafka / RabbitMQ</text>
+
+              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
+              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
+
+              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
+              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">SMPP 3.4 ROUTER</text>
+              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Prefix Sharding (3000/9000)</text>
+              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Sliding Window Throttle</text>
+
+              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
+              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
+
+              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">MNO SMSC</text>
+              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">MCI / Irancell Direct</text>
+            </svg>
+          </div>
+
+          <div class="mt-4 flex justify-between items-center text-xs">
+            <span class="text-[#a8a196]">الگوی هدایت پیام و تجمیع‌کننده در سند ۰۳ مستند است.</span>
+            <a href={`${baseUrl}whitepapers/sms-infrastructure.html`} class="text-[#c4562e] font-bold hover:underline">
+              مشاهده سند فنی ۰۳ &larr;
+            </a>
+          </div>
+        </section>
+
+        <!-- SECTION 04: Data Pipeline -->
+        <section id="data-pipeline" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">۰۴ // پردازش تحلیلی و پالایش نام</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5]">{dFa.contacts.title}</h2>
+          
+          <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
+            <p>{dFa.contacts.problem}</p>
+            <p>{dFa.contacts.approach}</p>
+            <p><span class="text-[#c9a15a] font-bold">حالت خرابی:</span> {dFa.contacts.failure}</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 my-4">
+            {dFa.contacts.tags.map(tag => (
+              <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">{tag}</span>
+            ))}
+          </div>
+
+          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto" dir="ltr">
+            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">RAW INGESTION</text>
+              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Multi-Source CSV/TSV</text>
+
+              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
+              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
+
+              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
+              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">DUCKDB ENGINE</text>
+              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Vectorized Normalization</text>
+              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Carrier &amp; Region Join</text>
+
+              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
+              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
+
+              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">PARQUET STORE</text>
+              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Snappy Compressed</text>
+            </svg>
+          </div>
+
+          <div class="mt-4 flex justify-between items-center text-xs">
+            <span class="text-[#a8a196]">الگوی پالایش نام فارسی و بنچمارک‌های DuckDB در مقاله اختصاصی.</span>
+            <a href={`${baseUrl}fa/data-cleaning/`} class="text-[#c4562e] font-bold hover:underline">
+              مطالعه مشخصات پالایش داده &larr;
+            </a>
+          </div>
+        </section>
+
+        <!-- PRODUCTION USE CASES -->
+        <section id="pm-cases" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">موارد عملیاتی تولید</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5]">رفع خطاهای واقعی در سوییچ‌های زنده</h2>
+          <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed">
+            معماری مستقیم سامانه‌ها: مقیاس‌پذیری بک‌اند و حل مسائل بحرانی در ترافیک زنده. موارد زیر نشان می‌دهند قطعی‌های ISO 8583، رقابت دوگانه‌تسویه، و کنترل صف‌های SMPP در دنیای واقعی چگونه دچار اختلال شده و چگونه تثبیت گردیدند.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-[#141210] border border-[#5c6650] p-5">
+              <span class="text-[10px] font-mono text-[#c9a15a] uppercase font-bold">مورد عملیاتی ۰۱</span>
+              <h3 class="text-sm font-bold text-[#e8e2d5] mt-1">یکتایی پس از قطع ارتباط و برگشت وجه</h3>
+              <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
+                <strong>مسئله:</strong> نوسان شبکه بین درگاه و میزبان‌های شتاب سبب تلاش مجدد پذیرندگان و ایجاد تسویه مضاعف می‌شد.<br/><br/>
+                <strong>راهکار:</strong> اعمال قفل اتمیک SETNX در Redis و انتقال کامل جداول به ساختار دفترکل فقط‌افزودنی. ثبت صفر تراکنش تکراری حتی در زمان خاموشی سرور بالادست.
+              </p>
+            </div>
+
+            <div class="bg-[#141210] border border-[#5c6650] p-5">
+              <span class="text-[10px] font-mono text-[#c9a15a] uppercase font-bold">مورد عملیاتی ۰۲</span>
+              <h3 class="text-sm font-bold text-[#e8e2d5] mt-1">جداسازی صف پیامک SMPP در پیک ترافیک</h3>
+              <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
+                <strong>مسئله:</strong> ارسال پیامک‌های حجیم تبلیغاتی مسیر پیامک‌های احراز هویت بانکی (OTP) را در ساعات اوج مسدود می‌کرد.<br/><br/>
+                <strong>راهکار:</strong> بخش‌بندی ترافیک به صف‌های اولویت‌دار، تنظیم نرخ لغزشی مبتنی بر پنجره کشویی SMPP و حذف استعلام شماره‌های مسدود پیش از ارسال.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Booking Section (Anchor: #book) -->
+        <section id="book">
+          <BookingSection locale="fa" />
+        </section>
+
+      </div>
+    </div>
+  </main>
+</Layout>

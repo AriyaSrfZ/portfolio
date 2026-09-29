@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { copy } from '../lib/content';
+
+const en = copy.en.dataCleaning;
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<Layout title={`${en.title} — Ariya Sarrafzadeh`} description={en.lead} lang="en">
+  <article class="max-w-4xl mx-auto px-6 pt-32 pb-24 font-['IBM_Plex_Mono',monospace]">
+    <div class="flex justify-between items-center mb-4">
+      <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a15a]">{en.kicker}</p>
+      <a href={`${baseUrl}fa/data-cleaning/`} class="px-2.5 py-1 text-xs border border-[#5c6650] text-[#c9a15a] hover:border-[#c4562e] uppercase font-bold transition">
+        نسخه فارسی
+      </a>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-[#e8e2d5] uppercase mt-2">{en.title}</h1>
+    <p class="mt-4 text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.lead}</p>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s1Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s1Body1}</p>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s1Body2}</p>
+    </section>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s2Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s2Lead}</p>
+      <div class="space-y-3">
+        {(en.s2Items ?? []).map((item) => (
+          <div class="bg-[#1c1916] border border-[#5c6650] p-4">
+            <h3 class="text-sm font-bold uppercase text-[#c9a15a]">{item?.title ?? ''}</h3>
+            <p class="text-xs leading-relaxed text-[#a8a196] mt-2">{item?.body ?? ''}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s3Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s3Body}</p>
+      <ol class="list-decimal pl-5 space-y-2 text-xs sm:text-sm text-[#a8a196]">
+        {(en.s3Steps ?? []).map((step) => (
+          <li>{step}</li>
+        ))}
+      </ol>
+      <p class="text-[11px] text-[#5c6650] mt-2">{en.fig1Caption}</p>
+    </section>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s4Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s4Body}</p>
+      {(en.s4Items ?? []).map((item) => (
+        <div class="bg-[#1c1916] border border-[#5c6650] p-4">
+          <h3 class="text-sm font-bold uppercase text-[#c9a15a]">{item?.title ?? ''}</h3>
+          <p class="text-xs leading-relaxed text-[#a8a196] mt-2">{item?.body ?? ''}</p>
+        </div>
+      ))}
+    </section>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s5Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s5Body}</p>
+      {(en.s5Items ?? []).map((item) => (
+        <div class="bg-[#1c1916] border border-[#5c6650] p-4">
+          <h3 class="text-sm font-bold uppercase text-[#c9a15a]">{item?.title ?? ''}</h3>
+          <p class="text-xs leading-relaxed text-[#a8a196] mt-2">{item?.body ?? ''}</p>
+        </div>
+      ))}
+      <p class="text-[11px] text-[#5c6650] mt-2">{en.fig2Caption}</p>
+    </section>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s6Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s6Body}</p>
+    </section>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s7Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s7Body}</p>
+    </section>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s8Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{en.s8Body}</p>
+      <p class="text-[11px] text-[#5c6650] mt-2">{en.fig3Caption}</p>
+    </section>
+
+    <section class="mt-12 space-y-4">
+      <h2 class="text-xl font-bold uppercase text-[#e8e2d5]">{en.s9Title}</h2>
+      <ul class="space-y-2 text-xs sm:text-sm text-[#a8a196] list-disc pl-5">
+        {(en.s9Items ?? []).map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#c9a15a] mt-3 font-semibold">{en.s9Note}</p>
+    </section>
+  </article>
+</Layout>

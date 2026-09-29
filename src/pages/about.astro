@@ -5,15 +5,22 @@ import CoreCompetencies from '../components/CoreCompetencies.astro';
 ---
 
 <Layout title="About — Ariya Sarrafzadeh" description="15+ years as a Systems Architect & Infrastructure Engineer: payments, fraud, SMS switches, and data pipelines.">
-  <section class="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-12 text-center">
-    <img
-      src={`${import.meta.env.BASE_URL}photos/ariya.jpg`}
-      alt="Ariya Sarrafzadeh"
-      class="w-28 h-28 rounded-full object-cover border-2 border-white/20 mx-auto mb-6"
-    />
-    <h1 class="text-3xl font-bold mb-2">Ariya Sarrafzadeh</h1>
-    <p class="text-(--color-aurora-2) mb-6">Systems Architect &amp; Infrastructure Engineer — Tehran, Iran (open to relocation)</p>
-    <p class="text-(--color-text-muted) leading-relaxed max-w-xl mx-auto">
+  <section class="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-12 text-center font-['IBM_Plex_Mono',monospace]">
+    <div class="relative inline-block mx-auto mb-6">
+      <img
+        src={`${import.meta.env.BASE_URL}photos/ariya.jpg`}
+        alt="Ariya Sarrafzadeh"
+        class="w-28 h-28 object-cover border-2 border-[#5c6650]"
+      />
+      <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650]"></span>
+      <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650]"></span>
+      <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650]"></span>
+      <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650]"></span>
+    </div>
+    
+    <h1 class="text-3xl font-bold uppercase mb-2 text-[#e8e2d5]">Ariya Sarrafzadeh</h1>
+    <p class="text-[#c9a15a] uppercase text-xs tracking-wider mb-6">Systems Architect &amp; Infrastructure Engineer — Tehran, Iran</p>
+    <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-xl mx-auto">
       15+ years designing, building, and operating high-availability payment,
       SMS, and fraud platforms. The work is hands-on systems architecture:
       ISO 8583 timeout recovery, SMPP UCS-2 windowing, Redis double-settlement

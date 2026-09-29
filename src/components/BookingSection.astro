@@ -1,4 +1,10 @@
 ---
+interface Props {
+  locale?: 'en' | 'fa';
+}
+
+const { locale = 'en' } = Astro.props;
+const isFa = locale === 'fa';
 const CAL_LINK = 'ariya-sarrafzadeh/15min';
 ---
 
@@ -10,16 +16,20 @@ const CAL_LINK = 'ariya-sarrafzadeh/15min';
   <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
 
   <div class="flex items-center gap-3 mb-2">
-    <span class="text-xs text-[var(--rugged-rust)] tracking-wider font-semibold">06 // CONTACT</span>
+    <span class="text-xs text-[var(--rugged-rust)] tracking-wider font-semibold">
+      {isFa ? '۰۶ // تماس و جلسه فنی' : '06 // CONTACT'}
+    </span>
     <div class="h-px flex-1 bg-[var(--rugged-olive-border)]"></div>
   </div>
 
   <h2 class="text-2xl font-bold text-[var(--rugged-paper)] uppercase">
-    Architecture Review &amp; Contact
+    {isFa ? 'بررسی معماری و جلسه فنی' : 'Architecture Review & Contact'}
   </h2>
   
-  <p class="text-[var(--rugged-muted)] text-sm mt-2 mb-6 leading-relaxed">
-    Select an operating window for technical architecture assessments, platform audits, or failure-mode reviews of payment, SMS, and data platforms.
+  <p class="text-[var(--rugged-muted)] text-xs sm:text-sm mt-2 mb-6 leading-relaxed">
+    {isFa 
+      ? 'انتخاب بازه زمانی برای ارزیابی معماری فنی، ممیزی پلتفرم یا بازبینی حالت‌های خرابی در سامانه‌های پرداخت، پیامک و خطوط داده.'
+      : 'Select an operating window for technical architecture assessments, platform audits, or failure-mode reviews of payment, SMS, and data platforms.'}
   </p>
 
   <div class="relative bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] p-2 sm:p-4 shadow-inner">

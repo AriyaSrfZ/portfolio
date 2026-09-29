@@ -13,27 +13,27 @@ const categoryLabels: Record<string, string> = {
 };
 ---
 
-<section id="work" class="relative z-10 max-w-6xl mx-auto px-6 py-24">
-  <h2 class="text-3xl font-bold text-center mb-2">Case studies</h2>
-  <p class="text-center text-(--color-text-muted) mb-12">Public-safe write-ups of real work — no customer data, no internals.</p>
+<section id="work" class="relative z-10 max-w-6xl mx-auto px-6 py-24 font-['IBM_Plex_Mono',monospace]">
+  <h2 class="text-3xl font-bold text-center mb-2 uppercase text-[#e8e2d5]">Case Studies</h2>
+  <p class="text-center text-[#a8a196] text-xs sm:text-sm mb-12">Public-safe write-ups of real work — no customer data, no internals.</p>
 
   {posts.length === 0 ? (
-    <p class="text-center text-(--color-text-muted)">
-      No case studies published yet — add one to <code class="glass rounded px-1.5 py-0.5">src/content/blog/</code>.
+    <p class="text-center text-[#a8a196] text-xs">
+      No case studies published yet — add one to <code class="bg-[#1c1916] border border-[#5c6650] px-1.5 py-0.5 text-[#c9a15a]">src/content/blog/</code>.
     </p>
   ) : (
     <div class="grid sm:grid-cols-2 gap-4">
       {posts.map((post) => (
-        <a href={`${import.meta.env.BASE_URL}blog/${post.id}`} class="spotlight-card glass rounded-2xl p-6 block hover:bg-white/8 transition-colors">
-          <p class="text-xs text-(--color-aurora-2) mb-2">{categoryLabels[post.data.category] ?? post.data.category}</p>
-          <h3 class="font-semibold text-lg mb-2">{post.data.title}</h3>
-          <p class="text-sm text-(--color-text-muted) leading-relaxed mb-3">{post.data.description}</p>
-          <div class="flex flex-wrap gap-1.5 mb-2">
+        <a href={`${import.meta.env.BASE_URL}blog/${post.id}`} class="bg-[#1c1916] border border-[#5c6650] p-6 block hover:border-[#c4562e] transition-colors group">
+          <p class="text-[10px] uppercase font-bold text-[#c4562e] tracking-wider mb-2">{categoryLabels[post.data.category] ?? post.data.category}</p>
+          <h3 class="font-bold text-lg mb-2 text-[#e8e2d5] group-hover:text-[#c9a15a] uppercase">{post.data.title}</h3>
+          <p class="text-xs text-[#a8a196] leading-relaxed mb-4">{post.data.description}</p>
+          <div class="flex flex-wrap gap-2 mb-3">
             {post.data.technologies.map((tech: string) => (
-              <span class="text-xs px-2 py-0.5 rounded-full bg-white/5 text-(--color-text-muted)">{tech}</span>
+              <span class="text-xs px-2.5 py-1 bg-[#141210] border border-[#5c6650] text-[#a8a196]">{tech}</span>
             ))}
           </div>
-          {post.data.metric && <p class="text-sm font-medium text-emerald-400">{post.data.metric}</p>}
+          {post.data.metric && <p class="text-xs font-bold text-[#c9d4a8] uppercase">{post.data.metric}</p>}
         </a>
       ))}
     </div>

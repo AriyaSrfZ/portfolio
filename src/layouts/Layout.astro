@@ -6,17 +6,23 @@ interface Props {
   title: string;
   description?: string;
   theme?: string;
+  lang?: string;
+  dir?: 'ltr' | 'rtl';
 }
 
 const { 
   title, 
   description = 'Ariya Sarrafzadeh | Systems Architect & Infrastructure Engineer',
-  theme = 'rugged'
+  theme = 'rugged',
+  lang = 'en',
+  dir = lang === 'fa' ? 'rtl' : 'ltr'
 } = Astro.props;
+
+const isFa = lang === 'fa';
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme={theme}>
+<html lang={lang} dir={dir} data-theme={theme}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,14 +32,18 @@ const {
   <title>{title}</title>
 </head>
 <body class="min-h-screen bg-[var(--rugged-bg-nav)] text-[var(--rugged-paper)] selection:bg-[var(--rugged-rust)]/30 selection:text-[var(--rugged-brass)] font-['IBM_Plex_Mono',monospace]">
-  <FloatingNavbar client:load />
+  <FloatingNavbar client:load locale={isFa ? 'fa' : 'en'} />
 
   <main class="relative">
     <slot />
   </main>
 
   <footer class="relative z-10 border-t border-[var(--rugged-olive-border)] mt-24 py-10 px-6 text-center text-xs text-[var(--rugged-muted)] uppercase tracking-wider">
-    <p>© {new Date().getFullYear()} Ariya Sarrafzadeh. All systems operational.</p>
+    {isFa ? (
+      <p>© {new Date().getFullYear()} آریا صراف‌زاده. تمامی سامانه‌ها در وضعیت عملیاتی.</p>
+    ) : (
+      <p>© {new Date().getFullYear()} Ariya Sarrafzadeh. All systems operational.</p>
+    )}
   </footer>
 </body>
 </html>

@@ -1,14 +1,28 @@
 ---
+interface Props {
+  locale?: 'en' | 'fa';
+}
+
+const { locale = 'en' } = Astro.props;
+const isFa = locale === 'fa';
+
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
-const telemetryStats = [
-  { code: "SYS.DOM", label: "PRIMARY ARCHITECTURE", val: "Distributed Financial Switches" },
-  { code: "SYS.EXP", label: "PRODUCTION TENURE", val: "15+ Years Hands-On Architecture" },
-  { code: "SYS.VOL", label: "THROUGHPUT VOLUME", val: "1B+ SMS/year · 50K TPS" },
-  { code: "SYS.OPS", label: "RISK LOOP", val: "Sub-15ms Fraud Scoring" },
-];
+const telemetryStats = isFa
+  ? [
+      { code: "SYS.DOM", label: "معماری اصلی", val: "سوییچ‌های مالی توزیع‌شده" },
+      { code: "SYS.EXP", label: "سابقه عملیاتی", val: "۱۵+ سال معماری و پیاده‌سازی" },
+      { code: "SYS.VOL", label: "حجم عبوری", val: "۱B+ پیامک/سال · ۵۰K TPS" },
+      { code: "SYS.OPS", label: "حلقه کشف تقلب", val: "امتیازدهی زیر ۱۵ میلی‌ثانیه" },
+    ]
+  : [
+      { code: "SYS.DOM", label: "PRIMARY ARCHITECTURE", val: "Distributed Financial Switches" },
+      { code: "SYS.EXP", label: "PRODUCTION TENURE", val: "15+ Years Hands-On Architecture" },
+      { code: "SYS.VOL", label: "THROUGHPUT VOLUME", val: "1B+ SMS/year · 50K TPS" },
+      { code: "SYS.OPS", label: "RISK LOOP", val: "Sub-15ms Fraud Scoring" },
+    ];
 
 const mailtoSubject = encodeURIComponent("Inquiry: Systems Architecture & Infrastructure");
 const mailtoHref = `mailto:ariasg2002@gmail.com?subject=${mailtoSubject}`;
@@ -23,7 +37,7 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
       <div class="xl:col-span-4 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-5 shadow-2xl relative">
         <div>
           <div class="flex items-center justify-between border-b border-[#5c6650] pb-2.5 mb-3 text-[10px] uppercase text-[#a8a196]">
-            <span class="text-[#c4562e] font-bold">ENGINEERING PROFILE</span>
+            <span class="text-[#c4562e] font-bold">{isFa ? 'پروفایل مهندسی' : 'ENGINEERING PROFILE'}</span>
             <span class="text-[#c9a15a] font-mono">TEHRAN, IR</span>
           </div>
 
@@ -36,18 +50,18 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
             <div class="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-80 pointer-events-none"></div>
 
             <div class="absolute top-2 right-2 px-2 py-0.5 bg-[#141210]/90 border border-[#5c6650] text-[9px] text-[#c9a15a] uppercase font-bold">
-              PRODUCTION ACTIVE
+              {isFa ? 'سامانه‌های فعال' : 'PRODUCTION ACTIVE'}
             </div>
 
             <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#1c1916]/95 border border-[#5c6650] px-3 py-1.5 shadow-md">
-              <span class="text-xs font-bold text-[#e8e2d5]">Ariya Sarrafzadeh</span>
-              <span class="text-[10px] text-[#a8a196] font-mono">Systems Architect & Infrastructure Engineer</span>
+              <span class="text-xs font-bold text-[#e8e2d5]">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
+              <span class="text-[10px] text-[#a8a196] font-mono">{isFa ? 'معمار سامانه‌های زیرساخت' : 'Systems Architect'}</span>
             </div>
           </div>
         </div>
 
         <div class="mt-4 pt-3 border-t border-[#5c6650] flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
-          <span>Switches & Ledgers</span>
+          <span>{isFa ? 'سوییچ‌ها و دفاتر کل' : 'Switches & Ledgers'}</span>
           <span class="text-[#c9d4a8]">ISO 8583 · SMPP 3.4</span>
         </div>
       </div>
@@ -56,23 +70,27 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
       <div class="xl:col-span-8 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-6 sm:p-8 shadow-2xl">
         <div>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#c9a15a] uppercase">PRODUCTION SWITCHES</span>
-            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#c9d4a8] uppercase">HIGH CONCURRENCY</span>
-            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#e8e2d5] uppercase">NATIONAL SCALE</span>
+            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#c9a15a] uppercase">{isFa ? 'سوییچ‌های عملیاتی' : 'PRODUCTION SWITCHES'}</span>
+            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#c9d4a8] uppercase">{isFa ? 'هم‌روندی بالا' : 'HIGH CONCURRENCY'}</span>
+            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#e8e2d5] uppercase">{isFa ? 'مقیاس ملی' : 'NATIONAL SCALE'}</span>
           </div>
 
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#e8e2d5] uppercase">
-            Ariya Sarrafzadeh
+            {isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}
           </h1>
           <p class="text-sm sm:text-base font-semibold text-[#c9a15a] mt-1 uppercase tracking-wide">
-            Systems Architect & Infrastructure Engineer
+            {isFa ? 'معمار سامانه‌های زیرساخت و ارتباطات · مدیر ارشد محصول فنی' : 'Systems Architect & Infrastructure Engineer'}
           </p>
 
           <p class="mt-4 text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl">
-            Engineering distributed payment routers, national telecommunication switches, and forensic abuse mitigation pipelines. Focused strictly on system durability: switches that cannot drop a rial or a packet under network isolation and strict SLA constraints.
+            {isFa
+              ? 'راهبری سوییچ پرداخت پرحجم، هاب مسیریابی پیامک در مقیاس ملی، و معماری کشف تقلب. سامانه‌هایی که میلیاردها پیام در سال و حجم مالی سنگین را با قید پایداری و جداسازی کامل داده جلو می‌برند.'
+              : 'Engineering distributed payment routers, national telecommunication switches, and forensic abuse mitigation pipelines. Focused strictly on system durability: switches that cannot drop a rial or a packet under network isolation and strict SLA constraints.'}
           </p>
           <p class="mt-2 text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl">
-            Hands-on technical implementation backed by 15+ years in ISO 8583 banking protocols, SMPP 3.4 carrier windowing, Redis distributed locking, and vectorized columnar data processing with DuckDB and Parquet.
+            {isFa
+              ? 'پیاده‌سازی مستقیم با اتکا به ۱۵+ سال تجربه در پروتکل‌های بانکی ISO 8583، ارسال پیامک SMPP 3.4، قفل‌های توزیع‌شده Redis، و خطوط پردازش داده ستونی با DuckDB و Parquet.'
+              : 'Hands-on technical implementation backed by 15+ years in ISO 8583 banking protocols, SMPP 3.4 carrier windowing, Redis distributed locking, and vectorized columnar data processing with DuckDB and Parquet.'}
           </p>
 
           <!-- Telemetry Grid -->
@@ -90,24 +108,20 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
         <div class="mt-8 pt-4 border-t border-[#5c6650] flex flex-wrap gap-3 items-center justify-between">
           <div class="flex flex-wrap gap-3">
             <a href="#payment-settlement" class="px-4 py-2 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-110 transition">
-              Inspect Blueprints ↓
+              {isFa ? 'مشاهده نقشه‌های معماری ↓' : 'Inspect Blueprints ↓'}
             </a>
             <a href={`${baseUrl}whitepapers/`} class="px-4 py-2 bg-transparent border border-[#5c6650] text-[#e8e2d5] font-bold text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] transition">
-              Technical Whitepapers (4) →
+              {isFa ? 'اسناد مشخصات فنی (۴) →' : 'Technical Whitepapers (4) →'}
             </a>
           </div>
 
           <div class="flex items-center gap-4 text-xs font-mono">
-            <a href={linkedinUrl} target="_blank" rel="noreferrer" class="text-[#a8a196] hover:text-[#c9a15a] transition">
-              LinkedIn ↗
-            </a>
-            <a href={mailtoHref} class="text-[#a8a196] hover:text-[#c9a15a] transition">
-              Email ↗
-            </a>
+            <a href={mailtoHref} class="text-[#c9a15a] hover:underline">ariasg2002@gmail.com</a>
+            <span class="text-[#5c6650]">|</span>
+            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="text-[#a8a196] hover:text-[#e8e2d5]">LinkedIn ↗</a>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </header>

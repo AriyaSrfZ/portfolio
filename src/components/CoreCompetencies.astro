@@ -19,17 +19,17 @@ const groups = [
 ];
 ---
 
-<section class="relative z-10 max-w-6xl mx-auto px-6 py-24">
-  <h2 class="text-3xl font-bold text-center mb-2">Core Competencies</h2>
-  <p class="text-center text-(--color-text-muted) mb-12">What 15 years of production switches, fraud loops, and SMS infrastructure actually adds up to.</p>
+<section class="relative z-10 max-w-6xl mx-auto px-6 py-24 font-['IBM_Plex_Mono',monospace]">
+  <h2 class="text-3xl font-bold text-center mb-2 uppercase text-[#e8e2d5]">Core Competencies</h2>
+  <p class="text-center text-[#a8a196] text-xs sm:text-sm mb-12">What 15 years of production switches, fraud loops, and SMS infrastructure actually adds up to.</p>
 
   <div class="grid sm:grid-cols-2 gap-4">
     {groups.map((group) => (
-      <div class="glass rounded-2xl p-6">
-        <h3 class="font-semibold mb-3 text-(--color-aurora-2)">{group.title}</h3>
+      <div class="bg-[#1c1916] border border-[#5c6650] p-6">
+        <h3 class="font-bold text-sm uppercase mb-3 text-[#c9a15a]">{group.title}</h3>
         <div class="flex flex-wrap gap-2">
           {group.items.map((item) => (
-            <span class="text-xs px-3 py-1.5 rounded-full bg-white/5 text-(--color-text-muted)">{item}</span>
+            <span class="text-xs px-2.5 py-1 bg-[#141210] border border-[#5c6650] text-[#a8a196]">{item}</span>
           ))}
         </div>
       </div>

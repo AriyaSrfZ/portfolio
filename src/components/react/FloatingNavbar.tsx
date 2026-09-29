@@ -5,41 +5,57 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
-const inPageAnchors = [
-  { href: `${baseUrl}#payment-settlement`, label: '01 // Settlements' },
-  { href: `${baseUrl}#fraud-forensics`, label: '02 // Fraud Risk' },
-  { href: `${baseUrl}#sms-gateway`, label: '03 // SMS Switch' },
-  { href: `${baseUrl}#data-pipeline`, label: '04 // Data Pipeline' },
-];
-
 const whitepaperDossiers = [
   {
     spec: 'Spec 01',
     title: 'Payment Switch & Ledgers',
     desc: 'ISO 8583 timeouts, Redis locks & double-settlement guards',
-    href: `${baseUrl}whitepapers/payment-gateway/`,
+    href: `${baseUrl}whitepapers/payment-gateway.html`,
   },
   {
     spec: 'Spec 02',
     title: 'Forensic Fraud Mitigation',
     desc: 'Edge telemetry, 3DS 2.0 & sub-15ms risk loops',
-    href: `${baseUrl}whitepapers/fraud-tracing/`,
+    href: `${baseUrl}whitepapers/fraud-tracing.html`,
   },
   {
     spec: 'Spec 03',
     title: 'Telecom & SMS Infrastructure',
     desc: 'SMPP 3.4 aggregators & UCS-2 windowing',
-    href: `${baseUrl}whitepapers/sms-infrastructure/`,
+    href: `${baseUrl}whitepapers/sms-infrastructure.html`,
   },
   {
     spec: 'Spec 04',
     title: 'Web3 & Crypto State Machines',
     desc: 'Deterministic EVM compute & rollup finality',
-    href: `${baseUrl}whitepapers/web3-infrastructure/`,
+    href: `${baseUrl}whitepapers/web3-infrastructure.html`,
   },
 ];
 
-export default function FloatingNavbar() {
+interface FloatingNavbarProps {
+  locale?: 'en' | 'fa';
+}
+
+export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
+  const isFa = locale === 'fa';
+  const homePath = isFa ? `${baseUrl}fa/` : baseUrl;
+  const switchTarget = isFa ? baseUrl : `${baseUrl}fa/`;
+  const switchLabel = isFa ? 'EN' : 'FA';
+
+  const inPageAnchors = isFa
+    ? [
+        { href: `${baseUrl}fa/#payment-settlement`, label: '۰۱ // تسویه' },
+        { href: `${baseUrl}fa/#fraud-forensics`, label: '۰۲ // تقلب' },
+        { href: `${baseUrl}fa/#sms-gateway`, label: '۰۳ // سوییچ پیامک' },
+        { href: `${baseUrl}fa/#data-pipeline`, label: '۰۴ // خط داده' },
+      ]
+    : [
+        { href: `${baseUrl}#payment-settlement`, label: '01 // Settlements' },
+        { href: `${baseUrl}#fraud-forensics`, label: '02 // Fraud Risk' },
+        { href: `${baseUrl}#sms-gateway`, label: '03 // SMS Switch' },
+        { href: `${baseUrl}#data-pipeline`, label: '04 // Data Pipeline' },
+      ];
+
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(true);
   const [lastY, setLastY] = useState(0);
@@ -95,8 +111,8 @@ export default function FloatingNavbar() {
 
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 bg-[#c9a15a] animate-pulse" />
-          <a href={baseUrl} className="font-bold text-xs sm:text-sm tracking-wider text-[#e8e2d5] uppercase hover:text-[#c9a15a] transition-colors">
-            ARIYA SARRAFZADEH<span className="text-[#c4562e]">.</span>
+          <a href={homePath} className="font-bold text-xs sm:text-sm tracking-wider text-[#e8e2d5] uppercase hover:text-[#c9a15a] transition-colors">
+            {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}<span className="text-[#c4562e]">.</span>
           </a>
         </div>
 
@@ -122,7 +138,7 @@ export default function FloatingNavbar() {
               }}
               className="flex items-center gap-1.5 py-1 text-[#a8a196] hover:text-[#c9a15a] text-xs uppercase transition-colors cursor-pointer"
             >
-              <span>05 // Whitepapers</span>
+              <span>{isFa ? '۰۵ // مقالات فنی' : '05 // Whitepapers'}</span>
               <span className="text-[10px]">{dropdownOpen ? '▲' : '▼'}</span>
             </button>
 
@@ -136,9 +152,9 @@ export default function FloatingNavbar() {
                   className="absolute right-0 top-full mt-2 w-96 bg-[#1c1916] border-2 border-[#5c6650] shadow-2xl p-2 z-50 rugged-hatch"
                 >
                   <div className="px-3 py-1.5 border-b border-[#5c6650] mb-2 flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
-                    <span className="text-[#c4562e] font-bold">Technical Specifications</span>
+                    <span className="text-[#c4562e] font-bold">{isFa ? 'اسناد مشخصات فنی' : 'Technical Specifications'}</span>
                     <a href={`${baseUrl}whitepapers/`} onClick={closeMenus} className="text-[#c9a15a] hover:underline font-bold">
-                      Open Index &rarr;
+                      {isFa ? 'فهرست اسناد ←' : 'Open Index →'}
                     </a>
                   </div>
 
@@ -151,11 +167,11 @@ export default function FloatingNavbar() {
                         className="block p-2.5 bg-[#141210] border border-[#5c6650]/60 hover:border-[#c4562e] hover:bg-[#1c1916] transition group"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-[9px] font-bold text-[#c9a15a] uppercase">{doc.spec}</span>
+                          <span className="text-[10px] font-bold text-[#c9a15a] uppercase">{doc.spec}</span>
                           <span className="text-[10px] text-[#5c6650] group-hover:text-[#c4562e] transition">&rarr;</span>
                         </div>
-                        <div className="text-xs font-bold text-[#e8e2d5] uppercase mt-0.5">{doc.title}</div>
-                        <div className="text-[10px] text-[#a8a196] mt-1">{doc.desc}</div>
+                        <p className="text-xs font-bold text-[#e8e2d5] uppercase group-hover:text-[#c9a15a] transition mt-0.5">{doc.title}</p>
+                        <p className="text-[10px] text-[#a8a196] mt-0.5 line-clamp-1">{doc.desc}</p>
                       </a>
                     ))}
                   </div>
@@ -165,20 +181,29 @@ export default function FloatingNavbar() {
           </div>
 
           <a
-            href={`${baseUrl}#book`}
+            href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
             className="hover:text-[#e8e2d5] text-[#a8a196] transition-colors py-1"
           >
-            06 // Contact
+            {isFa ? '۰۶ // تماس' : '06 // Contact'}
           </a>
         </div>
 
-        <div className="flex items-center gap-2" ref={mobileRef}>
+        <div className="flex items-center gap-3" ref={mobileRef}>
           <a
-            href={`${baseUrl}#book`}
+            href={switchTarget}
+            className="px-2.5 py-1 border border-[#5c6650] text-[#c9a15a] hover:border-[#c4562e] hover:text-[#e8e2d5] font-bold text-xs uppercase transition tracking-wider"
+            title={isFa ? 'Switch to English' : 'تغییر به فارسی'}
+          >
+            {switchLabel}
+          </a>
+
+          <a
+            href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
             className="hidden sm:inline-flex px-3 py-1.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition"
           >
-            Schedule Review
+            {isFa ? 'بررسی معماری' : 'Schedule Review'}
           </a>
+
           <button
             type="button"
             className="lg:hidden px-2.5 py-1.5 border border-[#5c6650] text-[#e8e2d5] text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] transition"
@@ -203,7 +228,7 @@ export default function FloatingNavbar() {
                 className="absolute right-3 top-full mt-2 w-[min(24rem,calc(100%-1.5rem))] bg-[#1c1916] border-2 border-[#5c6650] shadow-2xl p-2 z-50 lg:hidden rugged-hatch"
               >
                 <div className="px-3 py-1.5 border-b border-[#5c6650] mb-2 text-[10px] text-[#a8a196] uppercase">
-                  System Index
+                  {isFa ? 'فهرست سامانه‌ها' : 'System Index'}
                 </div>
                 <div className="space-y-1">
                   {inPageAnchors.map((item) => (
@@ -221,7 +246,7 @@ export default function FloatingNavbar() {
                     onClick={closeMenus}
                     className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
                   >
-                    05 // Whitepapers
+                    {isFa ? '۰۵ // مقالات فنی' : '05 // Whitepapers'}
                   </a>
                   {whitepaperDossiers.map((doc) => (
                     <a
@@ -234,11 +259,11 @@ export default function FloatingNavbar() {
                     </a>
                   ))}
                   <a
-                    href={`${baseUrl}#book`}
+                    href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
                     onClick={closeMenus}
                     className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
                   >
-                    06 // Contact
+                    {isFa ? '۰۶ // تماس' : '06 // Contact'}
                   </a>
                 </div>
               </motion.div>

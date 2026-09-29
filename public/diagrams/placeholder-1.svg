@@ -1,44 +1,71 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="100%" height="100%" fill="none">
-  <rect width="600" height="340" rx="8" fill="#15171C"/>
-  <rect x="0.5" y="0.5" width="599" height="339" rx="7.5" stroke="#23262E"/>
-  
-  <!-- Ingestion -->
-  <rect x="30" y="130" width="100" height="60" rx="6" fill="#0D0E11" stroke="#059669" stroke-width="1.5"/>
-  <text x="80" y="158" fill="#F0F2F5" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">KAFKA</text>
-  <text x="80" y="174" fill="#7E8494" font-family="monospace" font-size="9" text-anchor="middle">INGESTION</text>
+  <!-- Rugged Outer Frame -->
+  <rect width="600" height="340" fill="#141210"/>
+  <rect x="0.5" y="0.5" width="599" height="339" stroke="#5c6650" stroke-width="1"/>
 
-  <!-- Arrow 1 -->
-  <line x1="130" y1="160" x2="180" y2="160" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 3"/>
-  <polygon points="180,160 174,156 174,164" fill="#059669"/>
+  <!-- Tactical Corner Crosshairs -->
+  <rect x="2" y="2" width="6" height="6" fill="#141210" stroke="#c4562e" stroke-width="1"/>
+  <rect x="592" y="2" width="6" height="6" fill="#141210" stroke="#c4562e" stroke-width="1"/>
+  <rect x="2" y="332" width="6" height="6" fill="#141210" stroke="#c4562e" stroke-width="1"/>
+  <rect x="592" y="332" width="6" height="6" fill="#141210" stroke="#c4562e" stroke-width="1"/>
 
-  <!-- Stream Processing -->
-  <rect x="180" y="130" width="110" height="60" rx="6" fill="#0D0E11" stroke="#10B981" stroke-width="1.5"/>
-  <text x="235" y="158" fill="#F0F2F5" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">APACHE FLINK</text>
-  <text x="235" y="174" fill="#7E8494" font-family="monospace" font-size="9" text-anchor="middle">CEP ENGINE</text>
+  <!-- Top Metadata Bar -->
+  <rect x="20" y="16" width="560" height="24" fill="#1c1916" stroke="#5c6650" stroke-width="1"/>
+  <text x="32" y="32" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" letter-spacing="1">SPEC.02 // TOPOLOGY</text>
+  <text x="300" y="32" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">FORENSIC FRAUD MITIGATION &amp; GRAPH TRACING</text>
+  <text x="568" y="32" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="700" text-anchor="end">SLA: &lt;15MS</text>
 
-  <!-- Arrow 2 -->
-  <line x1="290" y1="160" x2="340" y2="160" stroke="#10B981" stroke-width="1.5"/>
-  <polygon points="340,160 334,156 334,164" fill="#10B981"/>
+  <!-- Module 1: Ingestion -->
+  <rect x="20" y="120" width="110" height="80" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+  <rect x="20" y="120" width="110" height="16" fill="#c4562e"/>
+  <text x="75" y="132" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">INGESTION</text>
+  <text x="75" y="156" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">KAFKA CLUSTER</text>
+  <text x="75" y="172" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Telemetry Event Bus</text>
+  <text x="75" y="186" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="7" text-anchor="middle">50K TPS Burst</text>
 
-  <!-- Graph DB -->
-  <rect x="340" y="70" width="110" height="60" rx="6" fill="#0D0E11" stroke="#23262E" stroke-width="1.5"/>
-  <text x="395" y="98" fill="#F0F2F5" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">NEO4J</text>
-  <text x="395" y="114" fill="#7E8494" font-family="monospace" font-size="9" text-anchor="middle">GRAPH CLUSTER</text>
+  <!-- Conduit 1 -->
+  <line x1="130" y1="160" x2="175" y2="160" stroke="#c4562e" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <polygon points="175,160 167,156 167,164" fill="#c4562e"/>
 
-  <!-- Relational Cold Store -->
-  <rect x="340" y="190" width="110" height="60" rx="6" fill="#0D0E11" stroke="#23262E" stroke-width="1.5"/>
-  <text x="395" y="218" fill="#F0F2F5" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">POSTGRESQL</text>
-  <text x="395" y="234" fill="#7E8494" font-family="monospace" font-size="9" text-anchor="middle">AUDIT LEDGER</text>
+  <!-- Module 2: Stream Processing -->
+  <rect x="175" y="120" width="125" height="80" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
+  <rect x="175" y="120" width="125" height="16" fill="#c9a15a"/>
+  <text x="237" y="132" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">CEP ENGINE</text>
+  <text x="237" y="156" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">APACHE FLINK</text>
+  <text x="237" y="172" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Sliding Window CEP</text>
+  <text x="237" y="186" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="7" text-anchor="middle">Entropy &lt; 15ms</text>
 
   <!-- Branch lines -->
-  <path d="M 290 160 L 315 160 L 315 100 L 340 100" stroke="#7E8494" stroke-width="1.2" fill="none"/>
-  <path d="M 290 160 L 315 160 L 315 220 L 340 220" stroke="#7E8494" stroke-width="1.2" fill="none"/>
+  <path d="M 300 160 L 325 160 L 325 100 L 345 100" stroke="#5c6650" stroke-width="1.5" fill="none"/>
+  <polygon points="345,100 337,96 337,104" fill="#5c6650"/>
 
-  <!-- Alerts Node -->
-  <rect x="490" y="130" width="80" height="60" rx="6" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="1.5"/>
-  <text x="530" y="158" fill="#10B981" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">ALERT / AML</text>
-  <text x="530" y="174" fill="#10B981" font-family="monospace" font-size="9" text-anchor="middle">ACTION</text>
+  <path d="M 300 160 L 325 160 L 325 220 L 345 220" stroke="#5c6650" stroke-width="1.5" fill="none"/>
+  <polygon points="345,220 337,216 337,224" fill="#5c6650"/>
 
-  <path d="M 450 100 L 470 100 L 470 150 L 490 150" stroke="#059669" stroke-width="1.2" fill="none"/>
-  <path d="M 450 220 L 470 220 L 470 170 L 490 170" stroke="#059669" stroke-width="1.2" fill="none"/>
+  <!-- Module 3: Graph DB -->
+  <rect x="345" y="65" width="120" height="74" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+  <rect x="345" y="65" width="120" height="16" fill="#3d4632"/>
+  <text x="405" y="77" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">GRAPH CLUSTER</text>
+  <text x="405" y="101" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">NEO4J</text>
+  <text x="405" y="117" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Forensic Graph Tracing</text>
+  <text x="405" y="129" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="7" text-anchor="middle">Multi-Hop Rings</text>
+
+  <!-- Module 4: Relational Store -->
+  <rect x="345" y="185" width="120" height="74" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
+  <rect x="345" y="185" width="120" height="16" fill="#3d4632"/>
+  <text x="405" y="197" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">AUDIT LOG</text>
+  <text x="405" y="221" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">POSTGRESQL</text>
+  <text x="405" y="237" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Dispute Evidence Store</text>
+  <text x="405" y="249" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="7" text-anchor="middle">FATA Dossiers</text>
+
+  <!-- Action Node -->
+  <rect x="495" y="120" width="85" height="80" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
+  <rect x="495" y="120" width="85" height="16" fill="#c4562e"/>
+  <text x="537" y="132" fill="#141210" font-family="'IBM Plex Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">ACTION</text>
+  <text x="537" y="156" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">AML / 3DS</text>
+  <text x="537" y="172" fill="#c9d4a8" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Liability Shift</text>
+  <text x="537" y="186" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="7" text-anchor="middle">Hold / Pass</text>
+
+  <path d="M 465 102 L 480 102 L 480 150 L 495 150" stroke="#c9a15a" stroke-width="1.2" fill="none"/>
+  <path d="M 465 222 L 480 222 L 480 170 L 495 170" stroke="#c9a15a" stroke-width="1.2" fill="none"/>
 </svg>

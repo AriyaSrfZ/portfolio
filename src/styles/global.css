@@ -2,16 +2,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0D0E11;
-  --color-bg-elevated: #15171C;
-  --color-glass: rgba(21, 23, 28, 0.7);
-  --color-glass-border: #23262E;
-  --color-text: #F0F2F5;
-  --color-text-muted: #7E8494;
-  --color-aurora-1: #059669;
-  --color-aurora-2: #10B981;
-  --color-aurora-3: #047857;
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: #141210;
+  --color-bg-elevated: #1c1916;
+  --color-text: #e8e2d5;
+  --color-text-muted: #a8a196;
 
   --color-rugged-bg-panel: #1c1916;
   --color-rugged-bg-nav: #141210;
@@ -27,39 +21,16 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--color-rugged-bg-nav);
+  color: var(--color-rugged-paper);
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  background-color: var(--color-rugged-bg-nav);
+  color: var(--color-rugged-paper);
+  font-family: 'IBM Plex Mono', monospace;
   overflow-x: hidden;
   margin: 0;
-}
-
-.archival-card {
-  background-color: var(--color-bg-elevated);
-  border: 1px solid var(--color-glass-border);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.archival-card:hover {
-  border-color: #059669;
-}
-
-.tag-badge {
-  background-color: rgba(5, 150, 105, 0.12);
-  color: #10B981;
-  border: 1px solid rgba(5, 150, 105, 0.25);
-}
-
-.glass {
-  background: var(--color-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-glass-border);
 }
 
 [data-theme="rugged"] {

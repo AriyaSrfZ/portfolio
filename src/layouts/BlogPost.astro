@@ -13,21 +13,21 @@ const { title, description, date, technologies, metric } = Astro.props;
 ---
 
 <Layout title={`${title} — Ariya Sarrafzadeh`} description={description}>
-  <article class="relative z-10 max-w-2xl mx-auto px-6 pt-32 pb-24">
-    <a href={`${import.meta.env.BASE_URL}#work`} class="text-sm text-(--color-text-muted) hover:text-(--color-text)">&larr; Back to case studies</a>
+  <article class="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-24 font-['IBM_Plex_Mono',monospace]">
+    <a href={`${import.meta.env.BASE_URL}#work`} class="text-xs uppercase tracking-wider text-[#a8a196] hover:text-[#e8e2d5]">&larr; Back to case studies</a>
 
-    <h1 class="text-3xl font-bold mt-6 mb-2">{title}</h1>
-    <p class="text-(--color-text-muted) mb-4">{date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</p>
+    <h1 class="text-3xl font-bold uppercase mt-6 mb-2 text-[#e8e2d5]">{title}</h1>
+    <p class="text-xs text-[#a8a196] uppercase mb-4">{date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</p>
 
-    <div class="flex flex-wrap gap-1.5 mb-6">
+    <div class="flex flex-wrap gap-2 mb-6">
       {technologies.map((tech) => (
-        <span class="text-xs px-2 py-0.5 rounded-full bg-white/5 text-(--color-text-muted)">{tech}</span>
+        <span class="text-xs px-2.5 py-1 bg-[#1c1916] border border-[#5c6650] text-[#c9d4a8]">{tech}</span>
       ))}
     </div>
 
-    {metric && <p class="glass rounded-xl px-4 py-3 text-emerald-400 font-medium mb-8 inline-block">{metric}</p>}
+    {metric && <p class="bg-[#1c1916] border border-[#5c6650] px-4 py-3 text-[#c9a15a] font-bold text-xs uppercase mb-8 inline-block">{metric}</p>}
 
-    <div class="prose prose-invert prose-p:text-(--color-text-muted) prose-headings:text-(--color-text) max-w-none">
+    <div class="prose prose-invert prose-p:text-[#a8a196] prose-headings:text-[#e8e2d5] max-w-none text-sm leading-relaxed">
       <slot />
     </div>
   </article>
