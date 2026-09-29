@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.3/misc/Farsi-Digits/font-face.css');
 @import "tailwindcss";
 
 @theme {
@@ -140,4 +141,11 @@ body {
     rgba(0, 0, 255, 0.03)
   );
   background-size: 100% 2px, 3px 100%;
+}
+
+:lang(fa) {
+  font-family: 'Vazirmatn', sans-serif !important;
+}
+:lang(fa) h1, :lang(fa) h2, :lang(fa) h3, :lang(fa) h4, :lang(fa) h5, :lang(fa) h6, :lang(fa) a, :lang(fa) p, :lang(fa) span, :lang(fa) div {
+  font-family: 'Vazirmatn', sans-serif !important;
 }
