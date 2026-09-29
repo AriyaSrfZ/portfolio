@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="100%" height="100%" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 340" width="100%" height="100%" fill="none">
   <defs>
-    <!-- Background Blueprint Grid Pattern -->
-    <pattern id="ruggedGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <pattern id="grid-p2" width="20" height="20" patternUnits="userSpaceOnUse">
       <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#221e1a" stroke-width="0.5"/>
     </pattern>
     <style>
@@ -13,168 +12,127 @@
   </defs>
 
   <!-- Background Canvas -->
-  <rect width="600" height="340" fill="#141210" rx="0"/>
-  <rect width="600" height="340" fill="url(#ruggedGrid)" rx="0"/>
+  <rect width="740" height="340" fill="#141210" rx="0"/>
+  <rect width="740" height="340" fill="url(#grid-p2)" rx="0"/>
 
-  <!-- Outer Borders and Inset Tactical Reticle -->
-  <rect x="0.5" y="0.5" width="599" height="339" fill="none" stroke="#5c6650" stroke-width="1" rx="0"/>
-  <rect x="8" y="8" width="584" height="324" fill="none" stroke="#5c6650" stroke-width="0.5" stroke-opacity="0.35" rx="0"/>
+  <!-- Outer Frame & Tactical Reticle -->
+  <rect x="0.5" y="0.5" width="739" height="339" stroke="#5c6650" stroke-width="1" rx="0"/>
+  <rect x="8" y="8" width="724" height="324" stroke="#5c6650" stroke-width="0.5" stroke-opacity="0.4" rx="0"/>
 
-  <!-- Corner Brackets -->
+  <!-- Tactical Corner Crosshairs -->
   <path d="M 4 14 L 4 4 L 14 4" stroke="#c9a15a" stroke-width="1.5" fill="none"/>
-  <path d="M 586 4 L 596 4 L 596 14" stroke="#c9a15a" stroke-width="1.5" fill="none"/>
+  <path d="M 726 4 L 736 4 L 736 14" stroke="#c9a15a" stroke-width="1.5" fill="none"/>
   <path d="M 4 326 L 4 336 L 14 336" stroke="#c9a15a" stroke-width="1.5" fill="none"/>
-  <path d="M 586 336 L 596 336 L 596 326" stroke="#c9a15a" stroke-width="1.5" fill="none"/>
+  <path d="M 726 336 L 736 336 L 736 326" stroke="#c9a15a" stroke-width="1.5" fill="none"/>
 
-  <!-- Header Telemetry Strip -->
-  <line x1="8" y1="34" x2="592" y2="34" stroke="#5c6650" stroke-width="1" stroke-opacity="0.6"/>
-  <text x="18" y="24" fill="#c4562e" font-size="8.5" font-weight="700" letter-spacing="1.5">SYS.ARCH // TXN-SETTLE-02</text>
-  <text x="195" y="24" fill="#a8a196" font-size="7.5" letter-spacing="0.5">EVENT-DRIVEN SETTLEMENT &amp; RECONCILIATION</text>
-  
-  <rect x="496" y="14" width="86" height="15" fill="#1c1916" stroke="#5c6650" stroke-width="1" rx="0"/>
-  <rect x="500" y="18" width="7" height="7" fill="#c9d4a8" rx="0"/>
-  <text x="512" y="25" fill="#c9d4a8" font-size="7" font-weight="700" letter-spacing="0.5">LOCK: ACTIVE</text>
+  <!-- Telemetry Header Bar -->
+  <line x1="8" y1="36" x2="732" y2="36" stroke="#5c6650" stroke-width="1" stroke-opacity="0.6"/>
+  <rect x="18" y="16" width="6" height="6" fill="#c4562e" rx="0"/>
+  <text x="32" y="23" fill="#c4562e" font-size="9" font-weight="700" letter-spacing="1.5">SPEC-ID: 8409-AS // 02 // FORENSIC EDGE FRAUD &amp; GRAPH TRACING</text>
+  <text x="440" y="23" fill="#a8a196" font-size="8" letter-spacing="0.5">REAL-TIME BEHAVIORAL VECTORS</text>
+  <rect x="620" y="13" width="102" height="17" fill="#1c1916" stroke="#5c6650" stroke-width="1" rx="0"/>
+  <rect x="626" y="18" width="6" height="6" fill="#c9d4a8" rx="0"/>
+  <text x="638" y="24" fill="#c9d4a8" font-size="7.5" font-weight="700" letter-spacing="0.5">LOOP: &lt;15MS SLA</text>
 
-  <!-- ================= MODULE 1: INGRESS EDGE ================= -->
-  <g id="mod-ingress">
-    <rect x="22" y="126" width="108" height="84" fill="#1c1916" stroke="#5c6650" stroke-width="1.2" rx="0"/>
-    <rect x="22" y="126" width="108" height="16" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
-    <rect x="25" y="130" width="4" height="8" fill="#c4562e" rx="0"/>
-    <text x="34" y="138" fill="#c4562e" font-size="7.5" font-weight="700">01 // INGRESS</text>
-    <text x="110" y="138" fill="#a8a196" font-size="6.5">:8443</text>
-    <text x="76" y="160" fill="#e8e2d5" font-size="10" font-weight="700" text-anchor="middle">gRPC INGRESS</text>
-    <text x="76" y="174" fill="#c4562e" font-size="8" font-weight="700" text-anchor="middle">mTLS Payload</text>
-    <line x1="28" y1="182" x2="124" y2="182" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
-    <text x="76" y="194" fill="#a8a196" font-size="7" text-anchor="middle">AUTH: STRICT mTLS</text>
-    <text x="76" y="203" fill="#a8a196" font-size="6.5" text-anchor="middle">NONCE: VERIFIED</text>
+  <!-- ================= MODULE 01: EDGE TELEMETRY ================= -->
+  <g id="mod-telemetry">
+    <rect x="24" y="60" width="144" height="190" fill="#1c1916" stroke="#c4562e" stroke-width="1.5" rx="0"/>
+    <rect x="24" y="60" width="144" height="24" fill="#c4562e" rx="0"/>
+    <text x="96" y="76" fill="#141210" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">01 // EDGE INGRESS</text>
+    
+    <text x="96" y="105" fill="#e8e2d5" font-size="11" font-weight="700" text-anchor="middle">EDGE TELEMETRY</text>
+    <text x="96" y="122" fill="#c4562e" font-size="8.5" font-weight="700" text-anchor="middle">Budget: &lt; 15ms</text>
+    
+    <line x1="36" y1="135" x2="156" y2="135" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
+    
+    <text x="96" y="152" fill="#a8a196" font-size="7.5" text-anchor="middle">Canvas Entropy Fingerprint</text>
+    <text x="96" y="168" fill="#a8a196" font-size="7.5" text-anchor="middle">Device Accelerometer Bias</text>
+    <text x="96" y="184" fill="#c9a15a" font-size="7.5" text-anchor="middle">Keystroke Cadence Dynamics</text>
+    <text x="96" y="200" fill="#a8a196" font-size="7.5" text-anchor="middle">mTLS Ingress Sanitizer</text>
+    
+    <rect x="36" y="215" width="120" height="20" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
+    <text x="96" y="228" fill="#c9d4a8" font-size="7" font-weight="700" text-anchor="middle">INGESTION: SECURE</text>
   </g>
 
-  <!-- ================= MODULE 2: CONCURRENCY LOCK ================= -->
-  <g id="mod-redis">
-    <rect x="166" y="46" width="124" height="76" fill="#1c1916" stroke="#5c6650" stroke-width="1.2" rx="0"/>
-    <rect x="166" y="46" width="124" height="16" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
-    <rect x="169" y="50" width="4" height="8" fill="#c9a15a" rx="0"/>
-    <text x="178" y="58" fill="#c9a15a" font-size="7.5" font-weight="700">02 // MUTEX LOCK</text>
-    <text x="270" y="58" fill="#a8a196" font-size="6.5">:6379</text>
-    <text x="228" y="78" fill="#e8e2d5" font-size="10" font-weight="700" text-anchor="middle">REDIS SETNX</text>
-    <text x="228" y="93" fill="#c9a15a" font-size="8" font-weight="700" text-anchor="middle">Idempotency TTL</text>
-    <line x1="172" y1="100" x2="284" y2="100" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
-    <text x="228" y="112" fill="#a8a196" font-size="7" text-anchor="middle">TTL: 120s // ATOMIC</text>
+  <!-- Conduit 1 -> 2 -->
+  <path d="M 168 155 L 202 155" stroke="#c4562e" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="204,155 194,150 194,160" fill="#c4562e"/>
+  <text x="186" y="145" fill="#c4562e" font-size="7" font-weight="700" text-anchor="middle">VECTOR</text>
+
+  <!-- ================= MODULE 02: STREAM SCORING CEP ================= -->
+  <g id="mod-scoring">
+    <rect x="204" y="60" width="150" height="190" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5" rx="0"/>
+    <rect x="204" y="60" width="150" height="24" fill="#c9a15a" rx="0"/>
+    <text x="279" y="76" fill="#141210" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">02 // CEP ENGINE</text>
+    
+    <text x="279" y="105" fill="#e8e2d5" font-size="11" font-weight="700" text-anchor="middle">APACHE FLINK CEP</text>
+    <text x="279" y="122" fill="#c9a15a" font-size="8.5" font-weight="700" text-anchor="middle">Sliding Window Scoring</text>
+    
+    <line x1="216" y1="135" x2="342" y2="135" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
+    
+    <text x="279" y="152" fill="#e8e2d5" font-size="7.5" text-anchor="middle">Risk Score: [0.00 – 1.00]</text>
+    <text x="279" y="168" fill="#a8a196" font-size="7.5" text-anchor="middle">&lt; 0.30: Friction-Free Pass</text>
+    <text x="279" y="184" fill="#c9a15a" font-size="7.5" text-anchor="middle">0.30–0.75: 3DS 2.0 Challenge</text>
+    <text x="279" y="200" fill="#c4562e" font-size="7.5" text-anchor="middle">&gt; 0.75: Quarantine Isolate</text>
+    
+    <rect x="216" y="215" width="126" height="20" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
+    <text x="279" y="228" fill="#c9a15a" font-size="7" font-weight="700" text-anchor="middle">LATENCY: 8.4MS AVG</text>
   </g>
 
-  <!-- ================= MODULE 3: TRANSACTION OUTBOX ================= -->
-  <g id="mod-outbox">
-    <rect x="166" y="156" width="130" height="96" fill="#1c1916" stroke="#5c6650" stroke-width="1.2" rx="0"/>
-    <rect x="166" y="156" width="130" height="16" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
-    <rect x="169" y="160" width="4" height="8" fill="#c9d4a8" rx="0"/>
-    <text x="178" y="168" fill="#c9d4a8" font-size="7.5" font-weight="700">03 // RELAY ENGINE</text>
-    <text x="231" y="188" fill="#e8e2d5" font-size="9" font-weight="700" text-anchor="middle">TRANSACTION OUTBOX</text>
-    <text x="231" y="203" fill="#c9d4a8" font-size="8" font-weight="700" text-anchor="middle">CDC / Event Relay</text>
-    <line x1="172" y1="211" x2="290" y2="211" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
-    <text x="231" y="224" fill="#a8a196" font-size="7" text-anchor="middle">WAL LOG TAIL // ACK</text>
-    <text x="231" y="238" fill="#c4562e" font-size="7" font-weight="700" text-anchor="middle">GUARANTEE: AT-LEAST-ONCE</text>
+  <!-- Conduit 2 -> 3 -->
+  <path d="M 354 155 L 388 155" stroke="#c9a15a" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="390,155 380,150 380,160" fill="#c9a15a"/>
+  <text x="372" y="145" fill="#c9a15a" font-size="7" font-weight="700" text-anchor="middle">3DS</text>
+
+  <!-- ================= MODULE 03: POLICY & LIABILITY SHIFT ================= -->
+  <g id="mod-policy">
+    <rect x="390" y="60" width="150" height="190" fill="#1c1916" stroke="#5c6650" stroke-width="1.5" rx="0"/>
+    <rect x="390" y="60" width="150" height="24" fill="#3d4632" rx="0"/>
+    <text x="465" y="76" fill="#c9d4a8" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">03 // POLICY ENGINE</text>
+    
+    <text x="465" y="105" fill="#e8e2d5" font-size="11" font-weight="700" text-anchor="middle">3DS 2.0 BIOMETRIC</text>
+    <text x="465" y="122" fill="#c9d4a8" font-size="8.5" font-weight="700" text-anchor="middle">Bank Liability Shift</text>
+    
+    <line x1="402" y1="135" x2="528" y2="135" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
+    
+    <text x="465" y="152" fill="#a8a196" font-size="7.5" text-anchor="middle">Automated Liability Transfer</text>
+    <text x="465" y="168" fill="#a8a196" font-size="7.5" text-anchor="middle">Conversion &gt; 98% Maintained</text>
+    <text x="465" y="184" fill="#c4562e" font-size="7.5" text-anchor="middle">Promo Arbitrage Filter</text>
+    <text x="465" y="200" fill="#a8a196" font-size="7.5" text-anchor="middle">Prepaid Residual Monitor</text>
+    
+    <rect x="402" y="215" width="126" height="20" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
+    <text x="465" y="228" fill="#c9d4a8" font-size="7" font-weight="700" text-anchor="middle">FP: &lt; 0.5% RATE</text>
   </g>
 
-  <!-- ================= MODULE 4: 2-PHASE RECONCILER ================= -->
-  <g id="mod-reconciler">
-    <rect x="332" y="46" width="128" height="76" fill="#1c1916" stroke="#5c6650" stroke-width="1.2" rx="0"/>
-    <rect x="332" y="46" width="128" height="16" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
-    <rect x="335" y="50" width="4" height="8" fill="#c4562e" rx="0"/>
-    <text x="344" y="58" fill="#c4562e" font-size="7.5" font-weight="700">04 // RECONCILER</text>
-    <text x="396" y="78" fill="#e8e2d5" font-size="10" font-weight="700" text-anchor="middle">RECONCILER</text>
-    <text x="396" y="93" fill="#c4562e" font-size="8" font-weight="700" text-anchor="middle">2PC State Verification</text>
-    <line x1="338" y1="100" x2="454" y2="100" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
-    <text x="396" y="112" fill="#a8a196" font-size="7" text-anchor="middle">DUAL QUORUM CONSENSUS</text>
+  <!-- Conduit 3 -> 4 -->
+  <path d="M 540 155 L 574 155" stroke="#5c6650" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="576,155 566,150 566,160" fill="#5c6650"/>
+  <text x="558" y="145" fill="#5c6650" font-size="7" font-weight="700" text-anchor="middle">GRAPH</text>
+
+  <!-- ================= MODULE 04: NEO4J FORENSIC GRAPH ================= -->
+  <g id="mod-graph">
+    <rect x="576" y="60" width="140" height="190" fill="#1c1916" stroke="#c4562e" stroke-width="1.5" rx="0"/>
+    <rect x="576" y="60" width="140" height="24" fill="#c4562e" rx="0"/>
+    <text x="646" y="76" fill="#141210" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">04 // FORENSIC GRAPH</text>
+    
+    <text x="646" y="105" fill="#e8e2d5" font-size="11" font-weight="700" text-anchor="middle">NEO4J CLUSTER</text>
+    <text x="646" y="122" fill="#c4562e" font-size="8.5" font-weight="700" text-anchor="middle">Money-Flow Tracing</text>
+    
+    <line x1="588" y1="135" x2="704" y2="135" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
+    
+    <text x="646" y="152" fill="#a8a196" font-size="7.5" text-anchor="middle">Multi-Hop Syndicate Ring</text>
+    <text x="646" y="168" fill="#e8e2d5" font-size="7.5" text-anchor="middle">Automated Quarantine</text>
+    <text x="646" y="184" fill="#c9a15a" font-size="7.5" text-anchor="middle">Dispute Evidence Export</text>
+    <text x="646" y="200" fill="#a8a196" font-size="7.5" text-anchor="middle">Judicial Audit Package</text>
+    
+    <rect x="588" y="215" width="116" height="20" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
+    <text x="646" y="228" fill="#c9d4a8" font-size="7" font-weight="700" text-anchor="middle">EVIDENCE: RETAINED</text>
   </g>
 
-  <!-- ================= MODULE 5: TARGET STORE ================= -->
-  <g id="mod-scylladb">
-    <rect x="466" y="156" width="116" height="96" fill="#1c1916" stroke="#5c6650" stroke-width="1.2" rx="0"/>
-    <rect x="466" y="156" width="116" height="16" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
-    <rect x="469" y="160" width="4" height="8" fill="#c9d4a8" rx="0"/>
-    <text x="478" y="168" fill="#c9d4a8" font-size="7.5" font-weight="700">05 // IMMUTABLE LOG</text>
-    <text x="560" y="168" fill="#a8a196" font-size="6.5">:9042</text>
-    <text x="524" y="188" fill="#e8e2d5" font-size="10" font-weight="700" text-anchor="middle">SCYLLADB</text>
-    <text x="524" y="203" fill="#c9d4a8" font-size="8" font-weight="700" text-anchor="middle">Append-Only ACID Log</text>
-    <line x1="472" y1="211" x2="576" y2="211" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="2 2"/>
-    <text x="524" y="224" fill="#a8a196" font-size="7" text-anchor="middle">PARTITION KEY: TX_ID</text>
-    <text x="524" y="238" fill="#c9a15a" font-size="7" font-weight="700" text-anchor="middle">LOCAL_QUORUM // SSTABLE</text>
-  </g>
-
-  <!-- ================= CONDUITS, BUS BARS & ARROWS ================= -->
-
-  <!-- 1. Ingress -> Redis SetNX (Mutex Lock) -->
-  <path d="M 130 148 L 148 148 L 148 84 L 166 84" stroke="#c9a15a" stroke-width="1.5" fill="none"/>
-  <polygon points="166,84 159,80 159,88" fill="#c9a15a"/>
-  <rect x="146" y="146" width="4" height="4" fill="#c9a15a" rx="0"/>
-  <rect x="135" y="104" width="26" height="12" fill="#141210" stroke="#5c6650" stroke-width="0.8" rx="0"/>
-  <text x="148" y="113" fill="#c9a15a" font-size="6.5" font-weight="700" text-anchor="middle">SETNX</text>
-
-  <!-- 2. Ingress -> Transaction Outbox (Atomic Write) -->
-  <line x1="130" y1="184" x2="166" y2="184" stroke="#5c6650" stroke-width="1.5" stroke-dasharray="3 2"/>
-  <polygon points="166,184 159,180 159,188" fill="#5c6650"/>
-  <rect x="135" y="178" width="26" height="12" fill="#141210" stroke="#5c6650" stroke-width="0.8" rx="0"/>
-  <text x="148" y="187" fill="#e8e2d5" font-size="6.5" font-weight="700" text-anchor="middle">WRITE</text>
-
-  <!-- 3. Redis SetNX <-> Reconciler (Lease / Lock Verification) -->
-  <line x1="290" y1="84" x2="332" y2="84" stroke="#c9a15a" stroke-width="1.5" stroke-dasharray="3 2"/>
-  <polygon points="332,84 325,80 325,88" fill="#c9a15a"/>
-  <polygon points="290,84 297,80 297,88" fill="#c9a15a"/>
-  <rect x="296" y="78" width="30" height="12" fill="#141210" stroke="#5c6650" stroke-width="0.8" rx="0"/>
-  <text x="311" y="87" fill="#c9a15a" font-size="6.5" font-weight="700" text-anchor="middle">LEASE</text>
-
-  <!-- 4. Outbox -> Reconciler (CDC Event Relay Stream) -->
-  <path d="M 296 184 L 314 184 L 314 104 L 332 104" stroke="#c4562e" stroke-width="1.5" fill="none"/>
-  <polygon points="332,104 325,100 325,108" fill="#c4562e"/>
-  <rect x="312" y="182" width="4" height="4" fill="#c4562e" rx="0"/>
-  <rect x="301" y="136" width="26" height="12" fill="#141210" stroke="#5c6650" stroke-width="0.8" rx="0"/>
-  <text x="314" y="145" fill="#c4562e" font-size="6.5" font-weight="700" text-anchor="middle">CDC</text>
-
-  <!-- 5. Outbox -> ScyllaDB (Data Pipeline / Event Relay) -->
-  <line x1="296" y1="204" x2="466" y2="204" stroke="#c9d4a8" stroke-width="1.8" stroke-dasharray="5 3"/>
-  <polygon points="466,204 458,200 458,208" fill="#c9d4a8"/>
-  <rect x="345" y="198" width="76" height="13" fill="#141210" stroke="#5c6650" stroke-width="0.8" rx="0"/>
-  <text x="383" y="207" fill="#c9d4a8" font-size="6.5" font-weight="700" text-anchor="middle">EVENT RELAY STREAM</text>
-
-  <!-- 6. Reconciler -> ScyllaDB (2PC Commit / Settlement Affirmation) -->
-  <path d="M 460 84 L 524 84 L 524 156" stroke="#c9a15a" stroke-width="1.5" fill="none"/>
-  <polygon points="524,156 520,148 528,148" fill="#c9a15a"/>
-  <rect x="522" y="82" width="4" height="4" fill="#c9a15a" rx="0"/>
-  <rect x="472" y="78" width="42" height="12" fill="#141210" stroke="#5c6650" stroke-width="0.8" rx="0"/>
-  <text x="493" y="87" fill="#c9a15a" font-size="6.5" font-weight="700" text-anchor="middle">2PC COMMIT</text>
-
-  <!-- ================= TACTICAL BUS BAR ================= -->
-  <line x1="22" y1="274" x2="582" y2="274" stroke="#5c6650" stroke-width="2"/>
-  <line x1="22" y1="277" x2="582" y2="277" stroke="#5c6650" stroke-width="0.8" stroke-dasharray="3 3"/>
-
-  <!-- Bus Bar Vertical Taps -->
-  <line x1="76" y1="210" x2="76" y2="274" stroke="#5c6650" stroke-width="1" stroke-dasharray="2 2"/>
-  <rect x="74" y="272" width="4" height="4" fill="#5c6650" rx="0"/>
-
-  <line x1="231" y1="252" x2="231" y2="274" stroke="#c9d4a8" stroke-width="1" stroke-dasharray="2 2"/>
-  <rect x="229" y="272" width="4" height="4" fill="#c9d4a8" rx="0"/>
-
-  <line x1="524" y1="252" x2="524" y2="274" stroke="#c9d4a8" stroke-width="1" stroke-dasharray="2 2"/>
-  <rect x="522" y="272" width="4" height="4" fill="#c9d4a8" rx="0"/>
-
-  <rect x="285" y="268" width="148" height="13" fill="#141210" stroke="#5c6650" stroke-width="1" rx="0"/>
-  <text x="359" y="277" fill="#c9a15a" font-size="7" font-weight="700" letter-spacing="1" text-anchor="middle">EVENT BUS // AUDIT TRAIL</text>
-
-  <!-- ================= TELEMETRY FOOTER ================= -->
-  <rect x="22" y="294" width="560" height="28" fill="#1c1916" stroke="#5c6650" stroke-width="1" rx="0"/>
-
-  <text x="32" y="311" fill="#a8a196" font-size="7.5" font-weight="700">INP:</text>
-  <text x="56" y="311" fill="#e8e2d5" font-size="7.5" font-weight="700">mTLS / gRPC</text>
-
-  <line x1="145" y1="298" x2="145" y2="318" stroke="#5c6650" stroke-width="1"/>
-  <text x="154" y="311" fill="#a8a196" font-size="7.5" font-weight="700">LOCK:</text>
-  <text x="184" y="311" fill="#c9a15a" font-size="7.5" font-weight="700">SETNX IDEMPOTENT</text>
-
-  <line x1="290" y1="298" x2="290" y2="318" stroke="#5c6650" stroke-width="1"/>
-  <text x="299" y="311" fill="#a8a196" font-size="7.5" font-weight="700">CDC:</text>
-  <text x="325" y="311" fill="#c4562e" font-size="7.5" font-weight="700">WAL-TAIL RELAY</text>
-
-  <line x1="430" y1="298" x2="430" y2="318" stroke="#5c6650" stroke-width="1"/>
-  <text x="439" y="311" fill="#a8a196" font-size="7.5" font-weight="700">STORE:</text>
-  <text x="475" y="311" fill="#c9d4a8" font-size="7.5" font-weight="700">SCYLLA LSM-TREE</text>
+  <!-- ================= INVARIANT TELEMETRY FOOTER ================= -->
+  <rect x="24" y="268" width="692" height="48" fill="#1c1916" stroke="#5c6650" stroke-width="1" rx="0"/>
+  <rect x="24" y="268" width="4" height="48" fill="#c4562e" rx="0"/>
+  <text x="38" y="286" fill="#c4562e" font-size="8" font-weight="700" letter-spacing="1">ARCHITECTURAL INVARIANT:</text>
+  <text x="175" y="286" fill="#e8e2d5" font-size="8">CHECKOUT LATENCY &lt; 15MS. DISPUTE EVIDENCE PACKET MUST WITHSTAND JUDICIAL INTAKE.</text>
+  <text x="38" y="303" fill="#a8a196" font-size="7.5">FAILURE MODE MITIGATION: RECURSIVE MONEY-FLOW GRAPH TRACING ELIMINATES HEURISTIC BYPASSES ACROSS 40+ SERVICES.</text>
 </svg>

@@ -10,18 +10,18 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
-const telemetryStats = isFa
+const proofMatrix = isFa
   ? [
-      { code: "SYS.DOM", label: "معماری اصلی", val: "سوییچ‌های مالی توزیع‌شده" },
-      { code: "SYS.EXP", label: "سابقه عملیاتی", val: "۱۵+ سال معماری و پیاده‌سازی" },
-      { code: "SYS.VOL", label: "حجم عبوری", val: "۱B+ پیامک/سال · ۵۰K TPS" },
-      { code: "SYS.OPS", label: "حلقه کشف تقلب", val: "امتیازدهی زیر ۱۵ میلی‌ثانیه" },
+      { val: "۱۵+ سال", label: "زیرساخت عملیاتی" },
+      { val: "۱٬۰۰۰٬۰۰۰٬۰۰۰+", label: "پیامک مسیریابی‌شده در سال" },
+      { val: "۵۰٬۰۰۰ TPS", label: "ظرفیت اوج هم‌روند" },
+      { val: "زیر ۱۵ms", label: "SLA حلقه کشف تقلب در لحظه" },
     ]
   : [
-      { code: "SYS.DOM", label: "PRIMARY ARCHITECTURE", val: "Distributed Financial Switches" },
-      { code: "SYS.EXP", label: "PRODUCTION TENURE", val: "15+ Years Hands-On Architecture" },
-      { code: "SYS.VOL", label: "THROUGHPUT VOLUME", val: "1B+ SMS/year · 50K TPS" },
-      { code: "SYS.OPS", label: "RISK LOOP", val: "Sub-15ms Fraud Scoring" },
+      { val: "15+ YEARS", label: "Production Infrastructure" },
+      { val: "1,000,000,000+", label: "SMS Messages Routed / Year" },
+      { val: "50,000 TPS", label: "Combined Burst Capacity" },
+      { val: "<15ms", label: "Real-Time Fraud Loop SLA" },
     ];
 
 const mailtoSubject = encodeURIComponent("Inquiry: Systems Architecture & Infrastructure");
@@ -29,33 +29,38 @@ const mailtoHref = `mailto:ariasg2002@gmail.com?subject=${mailtoSubject}`;
 const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 ---
 
-<header id="overview" class="relative pt-24 pb-8 border-b border-[#5c6650] bg-[#141210] overflow-hidden font-['IBM_Plex_Mono',monospace]">
+<header id="overview" class="relative pt-20 pb-8 border-b border-[#5c6650] bg-[#141210] overflow-hidden font-['IBM_Plex_Mono',monospace]">
   <div class="max-w-[1600px] mx-auto px-6 relative z-10">
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-stretch">
       
       <!-- Identity Card -->
-      <div class="xl:col-span-4 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-5 shadow-2xl relative">
+      <div class="xl:col-span-4 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-5 shadow-2xl relative rounded-none">
+        <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+        <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+        <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+        <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
         <div>
           <div class="flex items-center justify-between border-b border-[#5c6650] pb-2.5 mb-3 text-[10px] uppercase text-[#a8a196]">
             <span class="text-[#c4562e] font-bold">{isFa ? 'پروفایل مهندسی' : 'ENGINEERING PROFILE'}</span>
-            <span class="text-[#c9a15a] font-mono">TEHRAN, IR</span>
+            <span class="text-[#c9a15a] font-mono">NODE: TEHRAN, IR</span>
           </div>
 
-          <div class="relative w-full aspect-[4/5] max-h-[460px] bg-[#141210] border border-[#5c6650] overflow-hidden">
+          <div class="relative w-full aspect-[4/5] max-h-[440px] bg-[#141210] border border-[#5c6650] overflow-hidden rounded-none">
             <img
               src={`${baseUrl}photos/ariya.jpg`}
               alt="Ariya Sarrafzadeh"
-              class="w-full h-full object-cover object-top filter contrast-105 brightness-100"
+              class="w-full h-full object-cover object-top filter contrast-105 brightness-100 rounded-none"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-80 pointer-events-none"></div>
 
-            <div class="absolute top-2 right-2 px-2 py-0.5 bg-[#141210]/90 border border-[#5c6650] text-[9px] text-[#c9a15a] uppercase font-bold">
-              {isFa ? 'سامانه‌های فعال' : 'PRODUCTION ACTIVE'}
+            <div class="absolute top-2 right-2 px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[9px] text-[#c9a15a] uppercase font-bold rounded-none">
+              {isFa ? 'فعال در تولید' : 'PRODUCTION ACTIVE'}
             </div>
 
-            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#1c1916]/95 border border-[#5c6650] px-3 py-1.5 shadow-md">
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#1c1916] border border-[#5c6650] px-3 py-1.5 shadow-md rounded-none">
               <span class="text-xs font-bold text-[#e8e2d5]">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
-              <span class="text-[10px] text-[#a8a196] font-mono">{isFa ? 'معمار سامانه‌های زیرساخت' : 'Systems Architect'}</span>
+              <span class="text-[10px] text-[#a8a196] font-mono">{isFa ? 'مدیر ارشد محصول فنی' : 'Systems Architect'}</span>
             </div>
           </div>
         </div>
@@ -66,51 +71,67 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
         </div>
       </div>
 
-      <!-- Main Headline & Values -->
-      <div class="xl:col-span-8 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-6 sm:p-8 shadow-2xl">
+      <!-- Main Headline & Narrative & Proof Matrix -->
+      <div class="xl:col-span-8 flex flex-col justify-between bg-[#1c1916] border-2 border-[#5c6650] p-6 sm:p-8 shadow-2xl relative rounded-none">
+        <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+        <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+        <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+        <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
         <div>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#c9a15a] uppercase">{isFa ? 'سوییچ‌های عملیاتی' : 'PRODUCTION SWITCHES'}</span>
-            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#c9d4a8] uppercase">{isFa ? 'هم‌روندی بالا' : 'HIGH CONCURRENCY'}</span>
-            <span class="px-2 py-0.5 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#e8e2d5] uppercase">{isFa ? 'مقیاس ملی' : 'NATIONAL SCALE'}</span>
+          <!-- Kicker -->
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-[#141210] border border-[#5c6650] text-[10px] font-bold text-[#c4562e] tracking-wider uppercase mb-3 rounded-none">
+            <span class="w-1.5 h-1.5 bg-[#c4562e] animate-pulse"></span>
+            <span>{isFa ? 'شناسه سند: ۸۴۰۹-AS // گره: تهران // وضعیت: فعال در تولید' : 'SPEC-ID: 8409-AS // NODE: TEHRAN, IR // STATUS: PRODUCTION ACTIVE'}</span>
           </div>
 
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#e8e2d5] uppercase">
-            {isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}
+          <!-- Headline -->
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#e8e2d5] uppercase leading-tight mt-1">
+            {isFa ? 'معماری سامانه‌های سازمانی و سوییچ‌های پرحجم' : 'ENTERPRISE SYSTEMS ARCHITECTURE & HIGH-THROUGHPUT SWITCHES'}
           </h1>
-          <p class="text-sm sm:text-base font-semibold text-[#c9a15a] mt-1 uppercase tracking-wide">
-            {isFa ? 'معمار سامانه‌های زیرساخت و ارتباطات · مدیر ارشد محصول فنی' : 'Systems Architect & Infrastructure Engineer'}
+          
+          <!-- Role -->
+          <p class="text-xs sm:text-sm font-semibold text-[#c9a15a] mt-2 uppercase tracking-wide">
+            {isFa ? 'معمار سامانه‌های زیرساخت و ارتباطات · مدیر ارشد محصول فنی' : 'Systems Architect & Infrastructure Engineer · Senior Technical Product Owner'}
           </p>
 
-          <p class="mt-4 text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl">
-            {isFa
-              ? 'راهبری سوییچ پرداخت پرحجم، هاب مسیریابی پیامک در مقیاس ملی، و معماری کشف تقلب. سامانه‌هایی که میلیاردها پیام در سال و حجم مالی سنگین را با قید پایداری و جداسازی کامل داده جلو می‌برند.'
-              : 'Engineering distributed payment routers, national telecommunication switches, and forensic abuse mitigation pipelines. Focused strictly on system durability: switches that cannot drop a rial or a packet under network isolation and strict SLA constraints.'}
-          </p>
-          <p class="mt-2 text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl">
-            {isFa
-              ? 'پیاده‌سازی مستقیم با اتکا به ۱۵+ سال تجربه در پروتکل‌های بانکی ISO 8583، ارسال پیامک SMPP 3.4، قفل‌های توزیع‌شده Redis، و خطوط پردازش داده ستونی با DuckDB و Parquet.'
-              : 'Hands-on technical implementation backed by 15+ years in ISO 8583 banking protocols, SMPP 3.4 carrier windowing, Redis distributed locking, and vectorized columnar data processing with DuckDB and Parquet.'}
-          </p>
+          <!-- Production Narrative -->
+          <div class="mt-4 text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl space-y-2.5">
+            <p>
+              {isFa
+                ? 'اغلب نقشه‌های محصول در مرزهای شبکه شکست می‌خورند. هنگامی که سوییچ بانکی بالادست قطع می‌شود یا اپراتور مخابرات گزارش تحویل پیامک را بی‌پاسخ رها می‌کند، مدل‌های متعارف داده دچار مغایرت مالی و صف‌های طویل بازبینی دستی می‌شوند.'
+                : 'Most product roadmaps fail at network boundaries. When an upstream banking switch times out or an SMS carrier silently drops delivery receipts, standard application states collapse into balance drift and manual reconciliation queues.'}
+            </p>
+            <p>
+              {isFa
+                ? 'حوزه تمرکز من طراحی و راهبری زیرساخت‌های حیاتی مخابرات و فین‌تک است: درگاه‌های پرداخت بر مبنای ISO 8583، هاب‌های مسیریابی SMPP 3.4 با ظرفیت میلیاردها پیام در سال، و دفاتر کل فقط‌افزودنی که در آن موجودی مالی حاصل بازپخش قطعی اسناد تغییرناپذیر است.'
+                : 'I design and operate mission-critical telecom and fintech infrastructure: ISO 8583 payment gateways, SMPP 3.4 routing hubs pushing billions of messages annually, and append-only double-entry ledgers where every financial state is an immutable mathematical replay.'}
+            </p>
+          </div>
 
-          <!-- Telemetry Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#5c6650] border border-[#5c6650] mt-6">
-            {telemetryStats.map(stat => (
-              <div class="bg-[#141210] p-3 flex flex-col justify-between">
-                <span class="text-[9px] text-[#a8a196] uppercase">{stat.label}</span>
-                <span class="text-xs sm:text-sm font-bold text-[#e8e2d5] mt-1">{stat.val}</span>
-              </div>
-            ))}
+          <!-- Proof Matrix: 4-Cell HTML/Tailwind Grid -->
+          <div class="mt-6 pt-5 border-t border-[#5c6650]">
+            <div class="text-[10px] font-bold text-[#c9a15a] uppercase tracking-widest mb-2">
+              {isFa ? 'ماتریس شاخص‌های عملیاتی اثبات‌شده // TELEMETRY PROOF MATRIX' : 'AUDITABLE PROOF MATRIX // PRODUCTION METRICS'}
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#5c6650] border border-[#5c6650]">
+              {proofMatrix.map(cell => (
+                <div class="bg-[#141210] p-3 sm:p-4 flex flex-col justify-between rounded-none">
+                  <span class="text-lg sm:text-2xl font-bold font-mono text-[#e8e2d5] tracking-tight">{cell.val}</span>
+                  <span class="text-[10px] sm:text-xs text-[#a8a196] uppercase mt-1 tracking-wide">{cell.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         <!-- Action CTAs -->
-        <div class="mt-8 pt-4 border-t border-[#5c6650] flex flex-wrap gap-3 items-center justify-between">
+        <div class="mt-6 pt-4 border-t border-[#5c6650] flex flex-wrap gap-3 items-center justify-between">
           <div class="flex flex-wrap gap-3">
-            <a href="#payment-settlement" class="px-4 py-2 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-110 transition">
+            <a href="#blueprints" class="px-4 py-2 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-110 transition rounded-none">
               {isFa ? 'مشاهده نقشه‌های معماری ↓' : 'Inspect Blueprints ↓'}
             </a>
-            <a href={`${baseUrl}whitepapers/`} class="px-4 py-2 bg-transparent border border-[#5c6650] text-[#e8e2d5] font-bold text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] transition">
+            <a href={`${baseUrl}whitepapers/`} class="px-4 py-2 bg-transparent border border-[#5c6650] text-[#e8e2d5] font-bold text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] transition rounded-none">
               {isFa ? 'اسناد مشخصات فنی (۴) →' : 'Technical Whitepapers (4) →'}
             </a>
           </div>

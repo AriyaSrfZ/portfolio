@@ -18,7 +18,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       
       <!-- Sticky Sidebar Index (Strict 01 to 06 sequence) -->
       <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
-        <div class="relative bg-[#1c1916] border border-[#5c6650] p-4 shadow-xl rugged-hatch">
+        <div class="relative bg-[#1c1916] border border-[#5c6650] p-4 shadow-xl rugged-hatch rounded-none">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -42,11 +42,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <a href="#data-pipeline" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
               04 // Data Pipeline
             </a>
+            <a href="#incident-dossiers" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+              05 // Incident Dossiers
+            </a>
             <a href={`${baseUrl}whitepapers/`} class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
-              05 // Whitepapers
+              06 // Whitepapers (4)
             </a>
             <a href="#book" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
-              06 // Contact
+              07 // Architecture Intake
             </a>
           </nav>
         </div>
@@ -56,7 +59,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="lg:col-span-9 space-y-10">
         
         <!-- SECTION 01: Payment Settlement -->
-        <section id="payment-settlement" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+        <section id="payment-settlement" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 rounded-none">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -68,46 +71,43 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
           <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Event-Driven Payment Settlement Engine</h2>
           
+          <!-- Invariant Box -->
+          <div class="mt-4 p-3 bg-[#141210] border-l-2 border-[#c4562e] text-xs space-y-1">
+            <span class="text-[#c4562e] font-bold uppercase tracking-wider block">Architectural Invariant</span>
+            <p class="text-[#e8e2d5] font-mono">Request State &ne; Settlement Fact. Zero double-settlements across 86,400s replay windows.</p>
+          </div>
+
+          <!-- Mechanism -->
           <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              High-availability payment switches require complete architectural isolation between mutable request states and immutable settlement facts. Destructive database updates during active transaction processing create irreconcilable states during network dropouts and gateway timeouts.
-            </p>
-            <p>
-              This architecture enforces the Fact vs. State model. Every financial transition registers as an append-only ledger entry. The current balance derives directly from replaying facts across an ACID-compliant distributed database cluster.
-            </p>
-            <p>
-              The ingress edge terminates TLS 1.3 connections and checks request idempotency via atomic Redis distributed locks with an 86,400-second expiration period. Verified requests convert to ISO 8583 binary bitmaps for direct host-to-host switch routing.
+              TLS 1.3 ingress claims an atomic Redis distributed lock (<code class="text-[#c9a15a]">SETNX</code>, TTL 86,400s). Payloads serialize into ISO 8583 binary bitmaps for direct host-to-host clearing switches. Balances compute strictly through append-only log replay across an ACID-compliant ScyllaDB cluster.
             </p>
           </div>
 
+          <!-- Failure Mode -->
+          <div class="mt-3 p-3 bg-[#141210] border-l-2 border-[#c9a15a] text-xs space-y-1">
+            <span class="text-[#c9a15a] font-bold uppercase tracking-wider block">Failure Mode &amp; Mitigation</span>
+            <p class="text-[#a8a196] leading-relaxed">
+              Network drops between gateway and upstream clearing switch. Zero duplicate charges via replay isolation; automatic 0420 reverse commits post as a new immutable ledger row without state overwrites.
+            </p>
+          </div>
+
+          <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-4">
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-50ms SLA</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Redis O(1) Idempotency</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">ISO 8583 Routing</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Append-Only ACID</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">ISO 8583 Bitmaps</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">ScyllaDB Double-Entry</span>
           </div>
 
-          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto">
-            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
-              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">API INGRESS</text>
-              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">mTLS / JSON Payload</text>
-
-              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
-              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
-
-              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
-              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">IDEMPOTENCY LOCKS</text>
-              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Redis SETNX TTL: 86400s</text>
-              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">O(1) Concurrency Guard</text>
-
-              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
-              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
-
-              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
-              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">LEDGER CLUSTER</text>
-              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">ACID Double-Entry</text>
-            </svg>
+          <!-- Linked SVG Diagram -->
+          <div class="bg-[#141210] border border-[#5c6650] p-2 sm:p-4 my-4 overflow-hidden rounded-none">
+            <img 
+              src={`${baseUrl}diagrams/placeholder-1.svg`} 
+              alt="Payment Switch and Settlement Engine Topology Schematic"
+              class="w-full h-auto object-contain rounded-none"
+              loading="lazy"
+            />
           </div>
 
           <div class="mt-4 flex justify-between items-center text-xs">
@@ -119,7 +119,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </section>
 
         <!-- SECTION 02: Fraud Forensics -->
-        <section id="fraud-forensics" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+        <section id="fraud-forensics" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 rounded-none">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -131,46 +131,43 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
           <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Real-Time Fraud Mitigation &amp; Forensic Graph Tracing</h2>
           
+          <!-- Invariant Box -->
+          <div class="mt-4 p-3 bg-[#141210] border-l-2 border-[#c4562e] text-xs space-y-1">
+            <span class="text-[#c4562e] font-bold uppercase tracking-wider block">Architectural Invariant</span>
+            <p class="text-[#e8e2d5] font-mono">Checkout latency &lt; 15ms SLA; dispute packet must withstand judicial intake.</p>
+          </div>
+
+          <!-- Mechanism -->
           <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              Perimeter fraud systems balance detection accuracy against checkout latency. Static heuristics drop basic malicious traffic quickly but miss distributed bot attacks, proxy networks, and automated account takeovers.
-            </p>
-            <p>
-              This engine processes client telemetry, device orientation, and typing rhythm at edge ingress within a 15-millisecond budget. Telemetry inputs feed a behavioral model generating high-dimensional risk scores between 0.00 and 1.00.
-            </p>
-            <p>
-              Scores beneath 0.30 execute friction-free. Scores between 0.30 and 0.75 trigger biometric 3D-Secure 2.0 validation, shifting financial dispute liability directly to issuing banks while maintaining conversion rates above 98%.
+              Ingress extracts canvas entropy, device acceleration, and typing cadence to generate high-dimensional risk vectors [0.00, 1.00] in sub-15ms. Transactions under 0.30 execute friction-free; 0.30–0.75 triggers biometric 3DS 2.0 (shifting financial liability to issuing banks); &gt;0.75 quarantines into forensic Neo4j graph clusters.
             </p>
           </div>
 
+          <!-- Failure Mode -->
+          <div class="mt-3 p-3 bg-[#141210] border-l-2 border-[#c9a15a] text-xs space-y-1">
+            <span class="text-[#c9a15a] font-bold uppercase tracking-wider block">Failure Mode &amp; Mitigation</span>
+            <p class="text-[#a8a196] leading-relaxed">
+              Distributed account takeover and promo abuse rings. Heuristic bypasses eliminated by recursive money-flow tracing across 40+ microservices in Neo4j.
+            </p>
+          </div>
+
+          <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-4">
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-15ms Risk Loop</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">3DS 2.0 Shift</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">3DS 2.0 Liability Shift</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">&lt; 0.5% False Positives</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Graph Cluster Tracing</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Neo4j Forensic Graph</span>
           </div>
 
-          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto">
-            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
-              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">EDGE TELEMETRY</text>
-              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Canvas / Device Hash</text>
-
-              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
-              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
-
-              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
-              <text x="340" y="70" fill="#c4562e" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">SCORING ENGINE</text>
-              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Behavioral ML Vectors</text>
-              <text x="340" y="106" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Threshold: 0.75 Limit</text>
-
-              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
-              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
-
-              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
-              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">ISOLATION VAULT</text>
-              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Challenge / Quarantine</text>
-            </svg>
+          <!-- Linked SVG Diagram -->
+          <div class="bg-[#141210] border border-[#5c6650] p-2 sm:p-4 my-4 overflow-hidden rounded-none">
+            <img 
+              src={`${baseUrl}diagrams/placeholder-2.svg`} 
+              alt="Real-Time Fraud Mitigation and Forensic Graph Tracing Schematic"
+              class="w-full h-auto object-contain rounded-none"
+              loading="lazy"
+            />
           </div>
 
           <div class="mt-4 flex justify-between items-center text-xs">
@@ -182,7 +179,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </section>
 
         <!-- SECTION 03: Telecom SMS Gateway -->
-        <section id="sms-gateway" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+        <section id="sms-gateway" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 rounded-none">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -194,18 +191,28 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
           <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">National Telecom Routing &amp; Aggregator Infrastructure</h2>
           
+          <!-- Invariant Box -->
+          <div class="mt-4 p-3 bg-[#141210] border-l-2 border-[#c4562e] text-xs space-y-1">
+            <span class="text-[#c4562e] font-bold uppercase tracking-wider block">Architectural Invariant</span>
+            <p class="text-[#e8e2d5] font-mono">Zero OTP blockage during multi-million marketing broadcast surges. 1B+ SMS routed/year.</p>
+          </div>
+
+          <!-- Mechanism -->
           <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              National telecommunication networks route high-volume enterprise traffic across specialized wholesale aggregators including Magfa and Rahyab over stateful SMPP 3.4 TCP sessions. The regulatory blocking of RCS and MMS shifts all transactional, banking, and authentication traffic directly onto legacy GSM signaling channels.
-            </p>
-            <p>
-              Persian text requires 16-bit UCS-2 encoding, restricting single segments to 70 characters and concatenated messages to 67 characters per segment. This restriction increases carrier billing volume and requires robust queue splitting engines.
-            </p>
-            <p>
-              The gateway balances message dispatch across shortcode prefix bands (1000, 2000, 3000, 5000, 9000), bypasses the national *800# Do-Not-Disturb blacklist using service lines, and tracks delivery receipts asynchronously.
+              Stateful SMPP 3.4 TCP sessions balanced over prefix bands (1000–9000). Dynamic sliding-window flow control (16–64 PDU) paired with upstream HLR lookups to filter dead numbers and Do-Not-Disturb (*800#) numbers before dispatch.
             </p>
           </div>
 
+          <!-- Failure Mode -->
+          <div class="mt-3 p-3 bg-[#141210] border-l-2 border-[#c9a15a] text-xs space-y-1">
+            <span class="text-[#c9a15a] font-bold uppercase tracking-wider block">Failure Mode &amp; Mitigation</span>
+            <p class="text-[#a8a196] leading-relaxed">
+              Carrier pipe saturation under UCS-2 Persian 70-character segmentation limits. Resolved through strict priority queue partitioning separating transactional OTPs from bulk marketing campaigns.
+            </p>
+          </div>
+
+          <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-4">
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">50K+ TPS Capacity</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">SMPP 3.4 Sockets</span>
@@ -213,27 +220,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">*800# DND Bypass</span>
           </div>
 
-          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto">
-            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
-              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">INGRESS QUEUE</text>
-              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Kafka / RabbitMQ</text>
-
-              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
-              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
-
-              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
-              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">SMPP 3.4 ROUTER</text>
-              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Prefix Sharding (3000/9000)</text>
-              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Sliding Window Throttle</text>
-
-              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
-              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
-
-              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
-              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">MNO SMSC</text>
-              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">MCI / Irancell Direct</text>
-            </svg>
+          <!-- Linked SVG Diagram -->
+          <div class="bg-[#141210] border border-[#5c6650] p-2 sm:p-4 my-4 overflow-hidden rounded-none">
+            <img 
+              src={`${baseUrl}diagrams/placeholder-3.svg`} 
+              alt="National Telecom SMS Routing Hub Topology Schematic"
+              class="w-full h-auto object-contain rounded-none"
+              loading="lazy"
+            />
           </div>
 
           <div class="mt-4 flex justify-between items-center text-xs">
@@ -245,7 +239,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </section>
 
         <!-- SECTION 04: Data Pipeline -->
-        <section id="data-pipeline" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
+        <section id="data-pipeline" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 rounded-none">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -255,86 +249,107 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">04 // HIGH-VOLUME ANALYTICS &amp; ENRICHMENT</span>
             <div class="h-px flex-1 bg-[#5c6650]"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">National Contact Database Consolidation &amp; Enrichment</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">National Contact Consolidation &amp; Smart DB v1</h2>
           
+          <!-- Invariant Box -->
+          <div class="mt-4 p-3 bg-[#141210] border-l-2 border-[#c4562e] text-xs space-y-1">
+            <span class="text-[#c4562e] font-bold uppercase tracking-wider block">Architectural Invariant</span>
+            <p class="text-[#e8e2d5] font-mono">70% predictive behavioral accuracy for user preferences prior to formal KYC data ingestion.</p>
+          </div>
+
+          <!-- Mechanism -->
           <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              High-volume campaign routing demands real-time contact validation and regional attribute normalization across tens of millions of records. Traditional row-based relational databases fail under heavy multi-attribute joins across wide analytical datasets.
-            </p>
-            <p>
-              This pipeline uses DuckDB and columnar Apache Parquet files for fast vector execution. Python and PyArrow workers clean, deduplicate, and enrich regional attributes, cutting storage overhead by 70% and accelerating query execution by an order of magnitude.
-            </p>
-            <p>
-              Enriched datasets provide carrier verification, province and city lookups, and DND status before jobs hit the SMPP gateway, avoiding unnecessary billing charges on disconnected numbers.
+              Vectorized DuckDB engine ingesting unstructured operator CSV/TSV dumps. Generates dynamic scoring matrices with 70% predictive accuracy for user preferences prior to identity verification. Storage overhead reduced by 70% via Snappy-compressed Apache Parquet.
             </p>
           </div>
 
+          <!-- Failure Mode -->
+          <div class="mt-3 p-3 bg-[#141210] border-l-2 border-[#c9a15a] text-xs space-y-1">
+            <span class="text-[#c9a15a] font-bold uppercase tracking-wider block">Failure Mode &amp; Mitigation</span>
+            <p class="text-[#a8a196] leading-relaxed">
+              Relational database degradation during multi-attribute joins on 94M+ records. Solved by decoupling query paths into an Elasticsearch cluster fronted by an API gateway.
+            </p>
+          </div>
+
+          <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-4">
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">100M Records</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Columnar Parquet</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">DuckDB In-Memory</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Carrier HLR Verification</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">PyArrow Pipelines</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Elasticsearch Decoupled</span>
           </div>
 
-          <div class="bg-[#141210] border border-[#5c6650] p-6 overflow-x-auto">
-            <svg class="w-full min-w-[700px] h-44" viewBox="0 0 740 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="20" y="50" width="140" height="64" fill="#1c1916" stroke="#c4562e" stroke-width="1.5"/>
-              <text x="90" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">RAW INGESTION</text>
-              <text x="90" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Multi-Source CSV/TSV</text>
-
-              <path d="M160 82 H230" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
-              <polygon points="235,82 227,77 227,87" fill="#c4562e"/>
-
-              <rect x="240" y="40" width="200" height="84" fill="#1c1916" stroke="#c9a15a" stroke-width="1.5"/>
-              <text x="340" y="70" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">DUCKDB ENGINE</text>
-              <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Vectorized Normalization</text>
-              <text x="340" y="106" fill="#5c6650" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Carrier &amp; Region Join</text>
-
-              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
-              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
-
-              <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
-              <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">PARQUET STORE</text>
-              <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Snappy Compressed</text>
-            </svg>
+          <!-- Linked SVG Diagram -->
+          <div class="bg-[#141210] border border-[#5c6650] p-2 sm:p-4 my-4 overflow-hidden rounded-none">
+            <img 
+              src={`${baseUrl}diagrams/placeholder-4.svg`} 
+              alt="Smart DB v1 Contact Consolidation and Data Pipeline Schematic"
+              class="w-full h-auto object-contain rounded-none"
+              loading="lazy"
+            />
           </div>
 
           <div class="mt-4 flex justify-between items-center text-xs">
             <span class="text-[#a8a196]">Columnar normalization and DuckDB benchmarks documented in Case Study.</span>
-            <a href={`${baseUrl}whitepapers/`} class="text-[#c4562e] font-bold hover:underline uppercase">
-              View All 4 Technical Specs &rarr;
+            <a href={`${baseUrl}data-cleaning/`} class="text-[#c4562e] font-bold hover:underline uppercase">
+              View Name-Cleaning Blueprint &rarr;
             </a>
           </div>
         </section>
 
-        <!-- PRODUCTION USE CASES -->
-        <section id="pm-cases" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+        <!-- PRODUCTION INCIDENT DOSSIERS -->
+        <section id="incident-dossiers" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6 rounded-none">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">PRODUCTION USE CASES</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">PRODUCTION INCIDENT DOSSIERS</span>
             <div class="h-px flex-1 bg-[#5c6650]"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Failure Resolution in Live Switches</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Battle-Tested Failure Resolution</h2>
           <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed">
-            Hands-on systems architecture: backend scaling and production failure resolution. The cases below show how ISO 8583 timeouts, double-settlement races, SMPP queue isolation, and ledger design actually fail—and how they were fixed in production.
+            Hands-on systems architecture: production failure resolution and incident mitigation under strict SLA constraints.
           </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div class="bg-[#141210] border border-[#5c6650] p-5">
-              <span class="text-[10px] font-mono text-[#c9a15a] uppercase font-bold">Use Case 01</span>
-              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase mt-1">Post-Timeout Idempotency &amp; Refund Recovery</h3>
-              <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
-                <strong>Context:</strong> Network instability between payment gateways and upstream clearing hosts causes frequent timeouts, leading merchant retry storms to trigger double-settlements.<br/><br/>
-                <strong>Fix:</strong> Enforced Redis SETNX locks and migrated tables to an immutable, append-only double-entry ledger. Zero duplicate charges during major upstream outages.
-              </p>
+          <div class="space-y-4 mt-4">
+            <!-- Dossier 01 -->
+            <div class="bg-[#141210] border border-[#5c6650] p-5 rounded-none">
+              <div class="flex items-center justify-between border-b border-[#5c6650] pb-2 mb-3">
+                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 01 // PAYMENT GATEWAY</span>
+                <span class="text-[9px] text-[#c9d4a8] font-mono">STATUS: RESOLVED</span>
+              </div>
+              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase">Upstream ISO 8583 Timeout Recovery</h3>
+              <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
+                <p><strong class="text-[#c9a15a]">Context:</strong> Merchant retry storms triggering duplicate captures during banking host timeouts.</p>
+                <p><strong class="text-[#c4562e]">Invariant:</strong> An idempotent lock must outlive the longest carrier retry window (86,400s).</p>
+                <p><strong class="text-[#e8e2d5]">Resolution:</strong> Distributed Redis mutex with 24-hour expiration. Database updates migrated to append-only double-entry ledger. Zero financial drift.</p>
+              </div>
             </div>
 
-            <div class="bg-[#141210] border border-[#5c6650] p-5">
-              <span class="text-[10px] font-mono text-[#c9a15a] uppercase font-bold">Use Case 02</span>
-              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase mt-1">High-Volume SMPP SMS Queue Isolation</h3>
-              <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
-                <strong>Context:</strong> Marketing broadcasts clogging carrier pipes and delaying critical banking OTP verification codes during peak traffic surges.<br/><br/>
-                <strong>Fix:</strong> Segmented traffic into tiered priority queues, implemented dynamic sliding-window carrier throttling with SMPP UCS-2 windowing, and added upstream HLR lookups to stop billing dead numbers.
-              </p>
+            <!-- Dossier 02 -->
+            <div class="bg-[#141210] border border-[#5c6650] p-5 rounded-none">
+              <div class="flex items-center justify-between border-b border-[#5c6650] pb-2 mb-3">
+                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 02 // TELECOM SWITCH</span>
+                <span class="text-[9px] text-[#c9d4a8] font-mono">STATUS: RESOLVED</span>
+              </div>
+              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase">Carrier SMPP Sliding-Window Choke</h3>
+              <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
+                <p><strong class="text-[#c9a15a]">Context:</strong> High-volume marketing runs delaying critical banking OTP verification codes.</p>
+                <p><strong class="text-[#c4562e]">Invariant:</strong> Critical authentication traffic cannot share worker pipes with bulk broadcast queues.</p>
+                <p><strong class="text-[#e8e2d5]">Resolution:</strong> Multi-tiered queue partitioning; real-time SMPP sliding window throttle (16–64 PDU); upstream HLR validation to discard dead lines before billing.</p>
+              </div>
+            </div>
+
+            <!-- Dossier 03 -->
+            <div class="bg-[#141210] border border-[#5c6650] p-5 rounded-none">
+              <div class="flex items-center justify-between border-b border-[#5c6650] pb-2 mb-3">
+                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 03 // SMART DB v1</span>
+                <span class="text-[9px] text-[#c9d4a8] font-mono">STATUS: RESOLVED</span>
+              </div>
+              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase">Smart DB v1 100M Pre-KYC Scoring</h3>
+              <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
+                <p><strong class="text-[#c9a15a]">Context:</strong> 94.7M orphaned, unindexed records with inconsistent schemas causing RDBMS lock degradation.</p>
+                <p><strong class="text-[#c4562e]">Invariant:</strong> Fast attribute enrichment without slowing down the primary transaction switch.</p>
+                <p><strong class="text-[#e8e2d5]">Resolution:</strong> Layered deterministic normalisation + phonetic blocking. 70% predictive user accuracy prior to formal KYC verification.</p>
+              </div>
             </div>
           </div>
         </section>
