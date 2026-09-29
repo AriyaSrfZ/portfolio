@@ -43,7 +43,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               04 // Data Pipeline
             </a>
             <a href="#incident-dossiers" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
-              05 // Incident Dossiers
+              Dossiers // Production Incidents
+            </a>
+            <a href="#lifecycle" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+              05 // Product Lifecycle
             </a>
             <a href={`${baseUrl}whitepapers/`} class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
               06 // Whitepapers (4)
@@ -349,6 +352,101 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                 <p><strong class="text-[#c9a15a]">Context:</strong> 94.7M orphaned, unindexed records with inconsistent schemas causing RDBMS lock degradation.</p>
                 <p><strong class="text-[#c4562e]">Invariant:</strong> Fast attribute enrichment without slowing down the primary transaction switch.</p>
                 <p><strong class="text-[#e8e2d5]">Resolution:</strong> Layered deterministic normalisation + phonetic blocking. 70% predictive user accuracy prior to formal KYC verification.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 05: TECHNICAL PRODUCT LIFECYCLE -->
+        <section id="lifecycle" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6 rounded-none">
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">05 // TECHNICAL PRODUCT LIFECYCLE</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Technical Product Lifecycle Arc</h2>
+          <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl">
+            Bridging engineering architecture with product management execution across four disciplined operational phases.
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-4 border border-[#5c6650] divide-y lg:divide-y-0 lg:divide-x divide-[#5c6650] bg-[#141210] mt-6">
+            <!-- Phase 1 -->
+            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-mono font-bold text-[#c4562e] uppercase tracking-wider">PHASE 01</span>
+                  <span class="w-1.5 h-1.5 bg-[#c4562e]"></span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
+                  01 // DISCOVERY &amp; INVARIANTS
+                </h3>
+                <p class="text-xs text-[#a8a196] leading-relaxed">
+                  Authoring executable PRDs, defining strict system invariants, and auditing legacy network boundaries before a single line of code is written.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+                System Boundary Audit
+              </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-mono font-bold text-[#c9a15a] uppercase tracking-wider">PHASE 02</span>
+                  <span class="w-1.5 h-1.5 bg-[#c9a15a]"></span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
+                  02 // TOPOLOGY BLUEPRINTING
+                </h3>
+                <p class="text-xs text-[#a8a196] leading-relaxed">
+                  Architecting sequence diagrams, API contracts, and concurrency guardrails (e.g., distributed locks) to ensure scale and idempotency.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+                Idempotency &amp; SLAs
+              </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-mono font-bold text-[#c9d4a8] uppercase tracking-wider">PHASE 03</span>
+                  <span class="w-1.5 h-1.5 bg-[#c9d4a8]"></span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
+                  03 // CROSS-FUNCTIONAL EXECUTION
+                </h3>
+                <p class="text-xs text-[#a8a196] leading-relaxed">
+                  Acting as the single technical liaison between the C-suite and engineering. Synchronizing backend, frontend, and UI/UX sprint deliveries.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+                Engineering Alignment
+              </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-mono font-bold text-[#c4562e] uppercase tracking-wider">PHASE 04</span>
+                  <span class="w-1.5 h-1.5 bg-[#c4562e]"></span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
+                  04 // TELEMETRY &amp; LAUNCH
+                </h3>
+                <p class="text-xs text-[#a8a196] leading-relaxed">
+                  Executing zero-downtime deployments. Establishing Prometheus/Grafana monitoring and enforcing strict sub-15ms SLAs in production.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+                Production Durability
               </div>
             </div>
           </div>

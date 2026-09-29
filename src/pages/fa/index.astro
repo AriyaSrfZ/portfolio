@@ -48,7 +48,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               ۰۴ // پایگاه داده Smart DB
             </a>
             <a href="#incident-dossiers" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
-              ۰۵ // پرونده‌های حل بحران
+              پرونده‌ها // حل بحران‌های زنده
+            </a>
+            <a href="#lifecycle" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
+              ۰۵ // چرخه حیات محصول
             </a>
             <a href={`${baseUrl}whitepapers/`} class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-r border-transparent hover:border-[#c4562e]">
               ۰۶ // اسناد مشخصات فنی
@@ -354,6 +357,101 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                 <p><strong class="text-[#c9a15a]">شرایط وقوع:</strong> ۹۴٫۷ میلیون رکورد یتیم و بدون ایندکس با ساختار ناهمگون که موجب افت کارایی پایگاه‌های داده رابطه‌ای می‌شدند.</p>
                 <p><strong class="text-[#c4562e]">اصل تخطی‌ناپذیر:</strong> غنی‌سازی سریع ویژگی‌ها بدون افت کارایی سوییچ تراکنش اصلی.</p>
                 <p><strong class="text-[#e8e2d5]">راه‌حل عملیاتی:</strong> نرمال‌سازی قطعی چندمرحله‌ای متن فارسی و کلیدهای آوایی (Phonetic Blocking). دستیابی به دقت ۷۰٪ در پیش‌بینی ترجیحات کاربران پیش از فرایند رسمی احراز هویت.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 05: TECHNICAL PRODUCT LIFECYCLE (FA) -->
+        <section id="lifecycle" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6 rounded-none" dir="rtl">
+          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
+
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">۰۵ // چرخه حیات محصول فنی</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5]">چرخه حیات محصول فنی (Technical Product Lifecycle Arc)</h2>
+          <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl">
+            پیوند دادن معماری مهندسی با راهبری و اجرای مدیریت محصول در چهار فاز عملیاتی منضبط.
+          </p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-4 border border-[#5c6650] divide-y lg:divide-y-0 lg:divide-x lg:divide-x-reverse divide-[#5c6650] bg-[#141210] mt-6">
+            <!-- Phase 1 -->
+            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-mono font-bold text-[#c4562e] uppercase tracking-wider">فاز ۰۱</span>
+                  <span class="w-1.5 h-1.5 bg-[#c4562e]"></span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] mb-2.5">
+                  ۰۱ // کشف و تعریف الزامات
+                </h3>
+                <p class="text-xs text-[#a8a196] leading-relaxed">
+                  تدوین مستندات محصول (PRD)، تعریف دقیق محدودیت‌های سیستم و ارزیابی زیرساخت‌های قدیمی پیش از آغاز توسعه.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+                ارزیابی مرزهای شبکه
+              </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-mono font-bold text-[#c9a15a] uppercase tracking-wider">فاز ۰۲</span>
+                  <span class="w-1.5 h-1.5 bg-[#c9a15a]"></span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] mb-2.5">
+                  ۰۲ // معماری و طراحی توپولوژی
+                </h3>
+                <p class="text-xs text-[#a8a196] leading-relaxed">
+                  طراحی نمودارهای توالی، قراردادهای API و مکانیزم‌های کنترل هم‌روندی (مانند قفل‌های توزیع‌شده) برای تضمین مقیاس‌پذیری.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+                قراردادها و قفل‌های اتمی
+              </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-mono font-bold text-[#c9d4a8] uppercase tracking-wider">فاز ۰۳</span>
+                  <span class="w-1.5 h-1.5 bg-[#c9d4a8]"></span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] mb-2.5">
+                  ۰۳ // راهبری و اجرای یکپارچه
+                </h3>
+                <p class="text-xs text-[#a8a196] leading-relaxed">
+                  ایفای نقش به عنوان پل ارتباطی فنی میان مدیران ارشد و تیم‌های مهندسی. همگام‌سازی بک‌اند، فرانت‌اند و طراحی رابط کاربری در اسپرینت‌ها.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+                هماهنگی چندرشته‌ای اسپرینت
+              </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[10px] font-mono font-bold text-[#c4562e] uppercase tracking-wider">فاز ۰۴</span>
+                  <span class="w-1.5 h-1.5 bg-[#c4562e]"></span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] mb-2.5">
+                  ۰۴ // مانیتورینگ و استقرار
+                </h3>
+                <p class="text-xs text-[#a8a196] leading-relaxed">
+                  استقرار سیستم بدون قطعی (Zero-downtime). پیاده‌سازی مانیتورینگ با Prometheus/Grafana و تضمین پایداری در محیط عملیاتی.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+                پایداری و SLA در تولید
               </div>
             </div>
           </div>
