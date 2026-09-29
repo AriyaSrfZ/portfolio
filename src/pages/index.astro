@@ -8,7 +8,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   : `${import.meta.env.BASE_URL}/`;
 ---
 
-<Layout title="Ariya Sarrafzadeh | Enterprise Systems Architecture & Telecommunications">
+<Layout title="Ariya Sarrafzadeh | Systems Architect & Infrastructure Engineer">
   <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-[#c4562e] z-50 transition-all duration-75"></div>
 
   <Hero />
@@ -16,6 +16,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   <main class="max-w-[1600px] mx-auto px-6 py-10 font-['IBM_Plex_Mono',monospace]" id="blueprints">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
+      <!-- Sticky Sidebar Index (Strict 01 to 06 sequence) -->
       <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
         <div class="relative bg-[#1c1916] border border-[#5c6650] p-4 shadow-xl rugged-hatch">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -30,30 +31,31 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           
           <nav class="space-y-1.5 text-xs">
             <a href="#payment-settlement" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
-              01 // Payment Settlement
+              01 // Settlements
             </a>
             <a href="#fraud-forensics" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
-              02 // Fraud Detection
+              02 // Fraud Risk
             </a>
             <a href="#sms-gateway" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
-              03 // Telecom SMS Switch
+              03 // SMS Switch
             </a>
             <a href="#data-pipeline" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
-              04 // Contact Analytics
+              04 // Data Pipeline
             </a>
-            <a href={`${baseUrl}whitepapers/`} class="block px-3 py-2 text-[#c4562e] border border-[#c4562e]/40 hover:bg-[#c4562e] hover:text-[#141210] transition font-bold uppercase mt-3">
-              Whitepapers Suite (5) ↗
+            <a href={`${baseUrl}whitepapers/`} class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+              05 // Whitepapers
             </a>
-            <a href="#book" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition mt-1">
-              05 // Direct Engagement
+            <a href="#book" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+              06 // Contact
             </a>
           </nav>
         </div>
       </aside>
 
+      <!-- Main Blueprint Sections -->
       <div class="lg:col-span-9 space-y-10">
         
-        <!-- SECTION 1: Payment Settlement -->
+        <!-- SECTION 01: Payment Settlement -->
         <section id="payment-settlement" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -116,7 +118,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
         </section>
 
-        <!-- SECTION 2: Fraud Forensics -->
+        <!-- SECTION 02: Fraud Forensics -->
         <section id="fraud-forensics" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -142,7 +144,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
 
           <div class="flex flex-wrap gap-2 my-4">
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-30ms Pipeline</span>
+            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-15ms Risk Loop</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">3DS 2.0 Shift</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">&lt; 0.5% False Positives</span>
             <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Graph Cluster Tracing</span>
@@ -162,8 +164,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <text x="340" y="90" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Behavioral ML Vectors</text>
               <text x="340" y="106" fill="#c9a15a" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">Threshold: 0.75 Limit</text>
 
-              <path d="M440 82 H510" stroke="#c4562e" stroke-width="2" class="animate-packet"/>
-              <polygon points="515,82 507,77 507,87" fill="#c4562e"/>
+              <path d="M440 82 H510" stroke="#c9a15a" stroke-width="2" class="animate-packet"/>
+              <polygon points="515,82 507,77 507,87" fill="#c9a15a"/>
 
               <rect x="520" y="50" width="160" height="64" fill="#1c1916" stroke="#5c6650" stroke-width="1.5"/>
               <text x="600" y="78" fill="#e8e2d5" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">ISOLATION VAULT</text>
@@ -179,7 +181,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
         </section>
 
-        <!-- SECTION 3: Telecom SMS Gateway -->
+        <!-- SECTION 03: Telecom SMS Gateway -->
         <section id="sms-gateway" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -235,14 +237,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
 
           <div class="mt-4 flex justify-between items-center text-xs">
-            <span class="text-[#a8a196]">Telecom routing and aggregator specs documented in Dossier 04.</span>
+            <span class="text-[#a8a196]">Telecom routing and aggregator specs documented in Dossier 03.</span>
             <a href={`${baseUrl}whitepapers/sms-infrastructure.html`} class="text-[#c4562e] font-bold hover:underline uppercase">
-              Open Spec 04 Dossier &rarr;
+              Open Spec 03 Dossier &rarr;
             </a>
           </div>
         </section>
 
-        <!-- SECTION 4: Data Pipeline -->
+        <!-- SECTION 04: Data Pipeline -->
         <section id="data-pipeline" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8">
           <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
           <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
@@ -296,9 +298,48 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <text x="600" y="98" fill="#a8a196" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">Snappy Compressed</text>
             </svg>
           </div>
+
+          <div class="mt-4 flex justify-between items-center text-xs">
+            <span class="text-[#a8a196]">Columnar normalization and DuckDB benchmarks documented in Case Study.</span>
+            <a href={`${baseUrl}whitepapers/`} class="text-[#c4562e] font-bold hover:underline uppercase">
+              View All 4 Technical Specs &rarr;
+            </a>
+          </div>
         </section>
 
-        <!-- Booking Section -->
+        <!-- PRODUCTION USE CASES -->
+        <section id="pm-cases" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">PRODUCTION USE CASES</span>
+            <div class="h-px flex-1 bg-[#5c6650]"></div>
+          </div>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Failure Resolution in Live Switches</h2>
+          <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed">
+            Hands-on systems architecture: backend scaling and production failure resolution. The cases below show how ISO 8583 timeouts, double-settlement races, SMPP queue isolation, and ledger design actually fail—and how they were fixed in production.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-[#141210] border border-[#5c6650] p-5">
+              <span class="text-[10px] font-mono text-[#c9a15a] uppercase font-bold">Use Case 01</span>
+              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase mt-1">Post-Timeout Idempotency &amp; Refund Recovery</h3>
+              <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
+                <strong>Context:</strong> Network instability between payment gateways and upstream clearing hosts causes frequent timeouts, leading merchant retry storms to trigger double-settlements.<br/><br/>
+                <strong>Fix:</strong> Enforced Redis SETNX locks and migrated tables to an immutable, append-only double-entry ledger. Zero duplicate charges during major upstream outages.
+              </p>
+            </div>
+
+            <div class="bg-[#141210] border border-[#5c6650] p-5">
+              <span class="text-[10px] font-mono text-[#c9a15a] uppercase font-bold">Use Case 02</span>
+              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase mt-1">High-Volume SMPP SMS Queue Isolation</h3>
+              <p class="text-xs text-[#a8a196] mt-2 leading-relaxed">
+                <strong>Context:</strong> Marketing broadcasts clogging carrier pipes and delaying critical banking OTP verification codes during peak traffic surges.<br/><br/>
+                <strong>Fix:</strong> Segmented traffic into tiered priority queues, implemented dynamic sliding-window carrier throttling with SMPP UCS-2 windowing, and added upstream HLR lookups to stop billing dead numbers.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Booking Section (Anchor: #book) -->
         <section id="book">
           <BookingSection />
         </section>

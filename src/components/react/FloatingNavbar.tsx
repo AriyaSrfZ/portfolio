@@ -1,46 +1,41 @@
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 
-const baseUrl = import.meta.env.BASE_URL.endsWith('/') 
-  ? import.meta.env.BASE_URL 
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
 const inPageAnchors = [
   { href: `${baseUrl}#payment-settlement`, label: '01 // Settlements' },
   { href: `${baseUrl}#fraud-forensics`, label: '02 // Fraud Risk' },
   { href: `${baseUrl}#sms-gateway`, label: '03 // SMS Switch' },
+  { href: `${baseUrl}#data-pipeline`, label: '04 // Data Pipeline' },
 ];
 
 const whitepaperDossiers = [
-  { 
-    spec: 'SPEC 01', 
-    title: 'Payment Switch & Ledgers', 
-    desc: 'ISO 8583, Redis locks & double-entry',
-    href: `${baseUrl}whitepapers/payment-gateway.html` 
+  {
+    spec: 'Spec 01',
+    title: 'Payment Switch & Ledgers',
+    desc: 'ISO 8583 timeouts, Redis locks & double-settlement guards',
+    href: `${baseUrl}whitepapers/payment-gateway/`,
   },
-  { 
-    spec: 'SPEC 02', 
-    title: 'Forensic Fraud Mitigation', 
-    desc: 'Edge telemetry, 3DS 2.0 & ML vectors',
-    href: `${baseUrl}whitepapers/fraud-tracing.html` 
+  {
+    spec: 'Spec 02',
+    title: 'Forensic Fraud Mitigation',
+    desc: 'Edge telemetry, 3DS 2.0 & sub-15ms risk loops',
+    href: `${baseUrl}whitepapers/fraud-tracing/`,
   },
-  { 
-    spec: 'SPEC 03', 
-    title: 'Web3 & Crypto State Machines', 
-    desc: 'EVM opcode compute & rollup proofs',
-    href: `${baseUrl}whitepapers/web3-infrastructure.html` 
+  {
+    spec: 'Spec 03',
+    title: 'Telecom & SMS Infrastructure',
+    desc: 'SMPP 3.4 aggregators & UCS-2 windowing',
+    href: `${baseUrl}whitepapers/sms-infrastructure/`,
   },
-  { 
-    spec: 'SPEC 04', 
-    title: 'Telecom & SMS Infrastructure', 
-    desc: 'Aggregators, SMPP 3.4 & RCS/MMS blocks',
-    href: `${baseUrl}whitepapers/sms-infrastructure.html` 
-  },
-  { 
-    spec: 'AI SPEC', 
-    title: 'Agentic Workflows Architecture', 
-    desc: 'Cognitive loops & DAG state machines',
-    href: `${baseUrl}whitepaper.html` 
+  {
+    spec: 'Spec 04',
+    title: 'Web3 & Crypto State Machines',
+    desc: 'Deterministic EVM compute & rollup finality',
+    href: `${baseUrl}whitepapers/web3-infrastructure/`,
   },
 ];
 
@@ -49,7 +44,9 @@ export default function FloatingNavbar() {
   const [visible, setVisible] = useState(true);
   const [lastY, setLastY] = useState(0);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
 
   useMotionValueEvent(scrollY, 'change', (current) => {
     const diff = current - lastY;
@@ -58,6 +55,7 @@ export default function FloatingNavbar() {
     } else if (diff > 5) {
       setVisible(false);
       setDropdownOpen(false);
+      setMobileOpen(false);
     } else if (diff < -5) {
       setVisible(true);
     }
@@ -66,13 +64,22 @@ export default function FloatingNavbar() {
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setDropdownOpen(false);
+      }
+      if (mobileRef.current && !mobileRef.current.contains(target)) {
+        setMobileOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const closeMenus = () => {
+    setDropdownOpen(false);
+    setMobileOpen(false);
+  };
 
   return (
     <motion.header
@@ -93,7 +100,7 @@ export default function FloatingNavbar() {
           </a>
         </div>
 
-        <div className="hidden lg:flex items-center gap-6 text-xs uppercase tracking-wider text-[#a8a196]">
+        <div className="hidden lg:flex items-center gap-5 text-xs uppercase tracking-wider text-[#a8a196]">
           {inPageAnchors.map((item) => (
             <a
               key={item.href}
@@ -107,10 +114,15 @@ export default function FloatingNavbar() {
           <div className="relative" ref={dropdownRef}>
             <button
               type="button"
-              onClick={() => setDropdownOpen((prev) => !prev)}
-              className="flex items-center gap-1.5 px-2.5 py-1 border border-[#5c6650] hover:border-[#c4562e] hover:text-[#e8e2d5] text-[#c9a15a] font-bold text-xs uppercase transition-colors"
+              aria-expanded={dropdownOpen}
+              aria-haspopup="true"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDropdownOpen(!dropdownOpen);
+              }}
+              className="flex items-center gap-1.5 py-1 text-[#a8a196] hover:text-[#c9a15a] text-xs uppercase transition-colors cursor-pointer"
             >
-              <span>Whitepapers [5]</span>
+              <span>05 // Whitepapers</span>
               <span className="text-[10px]">{dropdownOpen ? '▲' : '▼'}</span>
             </button>
 
@@ -124,9 +136,9 @@ export default function FloatingNavbar() {
                   className="absolute right-0 top-full mt-2 w-96 bg-[#1c1916] border-2 border-[#5c6650] shadow-2xl p-2 z-50 rugged-hatch"
                 >
                   <div className="px-3 py-1.5 border-b border-[#5c6650] mb-2 flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
-                    <span className="text-[#c4562e] font-bold">Engineering Dossiers</span>
-                    <a href={`${baseUrl}whitepapers/`} className="text-[#c9a15a] hover:underline font-bold">
-                      Open Hub &rarr;
+                    <span className="text-[#c4562e] font-bold">Technical Specifications</span>
+                    <a href={`${baseUrl}whitepapers/`} onClick={closeMenus} className="text-[#c9a15a] hover:underline font-bold">
+                      Open Index &rarr;
                     </a>
                   </div>
 
@@ -135,7 +147,7 @@ export default function FloatingNavbar() {
                       <a
                         key={doc.href}
                         href={doc.href}
-                        onClick={() => setDropdownOpen(false)}
+                        onClick={closeMenus}
                         className="block p-2.5 bg-[#141210] border border-[#5c6650]/60 hover:border-[#c4562e] hover:bg-[#1c1916] transition group"
                       >
                         <div className="flex items-center justify-between">
@@ -152,21 +164,86 @@ export default function FloatingNavbar() {
             </AnimatePresence>
           </div>
 
-          <a 
-            href={`${baseUrl}#book`} 
-            className="hover:text-[#e8e2d5] text-[#a8a196] transition-colors"
+          <a
+            href={`${baseUrl}#book`}
+            className="hover:text-[#e8e2d5] text-[#a8a196] transition-colors py-1"
           >
-            05 // Contact
+            06 // Contact
           </a>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2" ref={mobileRef}>
           <a
             href={`${baseUrl}#book`}
-            className="px-3 py-1.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition"
+            className="hidden sm:inline-flex px-3 py-1.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition"
           >
-            Dispatch Audit
+            Schedule Review
           </a>
+          <button
+            type="button"
+            className="lg:hidden px-2.5 py-1.5 border border-[#5c6650] text-[#e8e2d5] text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] transition"
+            aria-expanded={mobileOpen}
+            aria-label="Open navigation"
+            onClick={(e) => {
+              e.stopPropagation();
+              setMobileOpen(!mobileOpen);
+              setDropdownOpen(false);
+            }}
+          >
+            {mobileOpen ? 'Close' : 'Menu'}
+          </button>
+
+          <AnimatePresence>
+            {mobileOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 6 }}
+                transition={{ duration: 0.12 }}
+                className="absolute right-3 top-full mt-2 w-[min(24rem,calc(100%-1.5rem))] bg-[#1c1916] border-2 border-[#5c6650] shadow-2xl p-2 z-50 lg:hidden rugged-hatch"
+              >
+                <div className="px-3 py-1.5 border-b border-[#5c6650] mb-2 text-[10px] text-[#a8a196] uppercase">
+                  System Index
+                </div>
+                <div className="space-y-1">
+                  {inPageAnchors.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={closeMenus}
+                      className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                  <a
+                    href={`${baseUrl}whitepapers/`}
+                    onClick={closeMenus}
+                    className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
+                  >
+                    05 // Whitepapers
+                  </a>
+                  {whitepaperDossiers.map((doc) => (
+                    <a
+                      key={doc.href}
+                      href={doc.href}
+                      onClick={closeMenus}
+                      className="block px-5 py-1.5 text-[10px] uppercase tracking-wider text-[#c9a15a] hover:text-[#e8e2d5]"
+                    >
+                      {doc.spec} — {doc.title}
+                    </a>
+                  ))}
+                  <a
+                    href={`${baseUrl}#book`}
+                    onClick={closeMenus}
+                    className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
+                  >
+                    06 // Contact
+                  </a>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </nav>
     </motion.header>

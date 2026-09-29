@@ -1,27 +1,27 @@
 ---
 const groups = [
   {
-    title: 'Product Management',
-    items: ['Technical Product Management', 'New Product Development', 'Product Lifecycle', 'Technical Roadmapping', 'Agile/Scrum Leadership', 'PRDs & User Stories'],
+    title: 'Systems Architecture',
+    items: ['ISO 8583 Switches', 'SMPP 3.4 Windowing', 'Redis Distributed Locks', 'Double-Entry Ledgers', 'Timeout & Retry Isolation', 'High-Availability Routing'],
   },
   {
-    title: 'Fintech & Payments',
-    items: ['Fraud Detection & Risk (AML)', 'Payments Architecture (C2C, Wallet)', 'Multi-Party Reconciliation', 'PSP & Bank Integration', 'FATA & Shaparak Compliance'],
+    title: 'Fraud & Risk',
+    items: ['Sub-15ms Risk Loops', 'Forensic Graph Tracing', '3DS 2.0 Liability Shift', 'AML Case Pipelines', 'Device Telemetry Scoring', 'FATA & Shaparak Compliance'],
   },
   {
-    title: 'Technical Operations',
-    items: ['Prometheus / Grafana / ELK', 'Log Engineering (Grok)', 'API Design & Microservices', 'Incident Management'],
+    title: 'Data & Observability',
+    items: ['DuckDB / Parquet Enrichment', 'Elasticsearch at Petabyte Scale', 'Prometheus / Grafana', 'Python / PyArrow Pipelines', 'MongoDB / MySQL / PostgreSQL'],
   },
   {
-    title: 'Data & Engineering',
-    items: ['Elasticsearch', 'MongoDB / MySQL / PostgreSQL', 'Java / Python / Shell'],
+    title: 'Production Delivery',
+    items: ['Incident Response', 'API Gateway Design', 'Identity / UAA Isolation', 'Capacity & Queue Isolation', 'Roadmaps Tied to Live Traffic'],
   },
 ];
 ---
 
 <section class="relative z-10 max-w-6xl mx-auto px-6 py-24">
   <h2 class="text-3xl font-bold text-center mb-2">Core Competencies</h2>
-  <p class="text-center text-(--color-text-muted) mb-12">What 15 years across product, payments, and infrastructure actually adds up to.</p>
+  <p class="text-center text-(--color-text-muted) mb-12">What 15 years of production switches, fraud loops, and SMS infrastructure actually adds up to.</p>
 
   <div class="grid sm:grid-cols-2 gap-4">
     {groups.map((group) => (
