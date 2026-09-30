@@ -159,7 +159,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                 >
                   <div className="px-3 py-1.5 border-b border-[#5c6650] mb-2 flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
                     <span className="text-[#c4562e] font-bold">{isFa ? 'اسناد مشخصات فنی' : 'Technical Specifications'}</span>
-                    <a href={`${baseUrl}whitepapers/`} onClick={closeMenus} className="text-[#c9a15a] hover:underline font-bold">
+                    <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} onClick={closeMenus} className="text-[#c9a15a] hover:underline font-bold">
                       {isFa ? 'فهرست اسناد ←' : 'Open Index →'}
                     </a>
                   </div>
@@ -248,7 +248,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                     </a>
                   ))}
                   <a
-                    href={`${baseUrl}whitepapers/`}
+                    href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
                     onClick={closeMenus}
                     className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
                   >
