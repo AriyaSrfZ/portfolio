@@ -84,64 +84,60 @@ const CAL_LINK = 'ariya-sarrafzadeh/15min';
     };
   })(window, "https://app.cal.com/embed/embed.js", "init");
 
-  Cal("init", "inline", { origin: "https://app.cal.com" });
+  if (!window.__calInitialized) {
+    window.__calInitialized = true;
+    Cal("init", { origin: "https://app.cal.com" });
 
-  const calUiOptions = {
-    theme: "dark",
-    cssVarsPerTheme: {
-      dark: {
-        "cal-brand": "#06b6d4",
-        "cal-brand-emphasis": "#0891b2",
-        "cal-brand-text": "#0b1120",
-        "cal-brand-subtle": "rgba(6, 182, 212, 0.15)",
-        "cal-text": "#f8fafc",
-        "cal-text-muted": "#94a3b8",
-        "cal-text-emphasis": "#ffffff",
-        "cal-bg": "#0b1120",
-        "cal-bg-emphasis": "#111827",
-        "cal-bg-subtle": "#1e293b",
-        "cal-bg-muted": "#0f172a",
-        "cal-border": "rgba(255, 255, 255, 0.1)",
-        "cal-border-emphasis": "rgba(255, 255, 255, 0.2)",
-        "cal-border-subtle": "rgba(255, 255, 255, 0.05)",
-        "cal-border-booker": "rgba(255, 255, 255, 0.1)",
-        "cal-border-default": "rgba(255, 255, 255, 0.1)"
+    const calUiOptions = {
+      theme: "dark",
+      cssVarsPerTheme: {
+        dark: {
+          "cal-brand": "#06b6d4",
+          "cal-brand-emphasis": "#0891b2",
+          "cal-brand-text": "#0b1120",
+          "cal-brand-subtle": "rgba(6, 182, 212, 0.15)",
+          "cal-text": "#f8fafc",
+          "cal-text-muted": "#94a3b8",
+          "cal-text-emphasis": "#ffffff",
+          "cal-bg": "#0b1120",
+          "cal-bg-emphasis": "#111827",
+          "cal-bg-subtle": "#1e293b",
+          "cal-bg-muted": "#0f172a",
+          "cal-border": "rgba(255, 255, 255, 0.1)",
+          "cal-border-emphasis": "rgba(255, 255, 255, 0.2)",
+          "cal-border-subtle": "rgba(255, 255, 255, 0.05)",
+          "cal-border-booker": "rgba(255, 255, 255, 0.1)",
+          "cal-border-default": "rgba(255, 255, 255, 0.1)"
+        },
+        light: {
+          "cal-brand": "#06b6d4",
+          "cal-brand-emphasis": "#0891b2",
+          "cal-brand-text": "#0b1120",
+          "cal-bg": "#0b1120",
+          "cal-border": "rgba(255, 255, 255, 0.1)"
+        }
       },
-      light: {
-        "cal-brand": "#06b6d4",
-        "cal-brand-emphasis": "#0891b2",
-        "cal-brand-text": "#0b1120",
-        "cal-bg": "#0b1120",
-        "cal-border": "rgba(255, 255, 255, 0.1)"
+      styles: { 
+        branding: { 
+          brandColor: "#06b6d4" 
+        } 
+      },
+      hideEventTypeDetails: false,
+      layout: "month_view"
+    };
+
+    const calInlineOptions = {
+      elementOrSelector: "#cal-inline",
+      calLink: CAL_LINK,
+      layout: "month_view",
+      config: {
+        theme: "dark"
       }
-    },
-    styles: { 
-      branding: { 
-        brandColor: "#06b6d4" 
-      } 
-    },
-    hideEventTypeDetails: false,
-    layout: "month_view"
-  };
+    };
 
-  const calInlineOptions = {
-    elementOrSelector: "#cal-inline",
-    calLink: CAL_LINK,
-    layout: "month_view",
-    config: {
-      theme: "dark"
-    }
-  };
-
-  // Call on namespaced API
-  if (Cal.ns && Cal.ns.inline) {
-    Cal.ns.inline("inline", calInlineOptions);
-    Cal.ns.inline("ui", calUiOptions);
+    Cal("inline", calInlineOptions);
+    Cal("ui", calUiOptions);
   }
-
-  // Also call on root Cal API for fallback safety
-  Cal("inline", calInlineOptions);
-  Cal("ui", calUiOptions);
 </script>
 
 <style>
