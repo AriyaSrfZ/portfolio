@@ -20,7 +20,7 @@ Analyzing real-time fraud mitigation architectures across high-velocity networks
 
 ## 01. Defense Strategy: Multi-Tiered Perimeter Defense
 
-Static heuristic rules introduce severe operational bottlenecks. Malicious entities adapt rapidly to velocity checks and country blacklists, while legitimate buyers face elevated false rejection rates during traffic surges.
+Static heuristic rules introduce severe operational bottlenecks. Malicious entities adapt rapidly to velocity checks and country blacklists, while legitimate buyers face increased false rejection rates during traffic surges.
 
 Modern platforms deploy multi-layered perimeter architectures:
 - **Deterministic Filtering at Ingress:** Drops malformed payloads, compromised IP subnets, and blacklisted BINs.
@@ -37,7 +37,7 @@ Modern platforms deploy multi-layered perimeter architectures:
 
 ### Heuristic Rule Filtering
 
-Evaluates rigid static parameters, including velocity caps per card token, geographic IP mismatches, and compromised BIN tables. Executes in under 5 ms, but yields elevated false-positive rates during marketing campaigns or legitimate traffic surges.
+Evaluates rigid static parameters, including velocity caps per card token, geographic IP mismatches, and compromised BIN tables. Executes in under 5 ms, but yields higher false-positive rates during marketing campaigns or legitimate traffic surges.
 
 ### Behavioral ML Scoring
 

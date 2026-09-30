@@ -9,8 +9,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 ---
 
 <Layout 
-  title="آریا صراف‌زاده | معماری سامانه‌های سازمانی و سوییچ‌های پرحجم" 
-  description="معمار سامانه‌های زیرساخت و ارتباطات و مدیر ارشد محصول فنی. سوییچ‌های پرداخت، هاب‌های مسیریابی پیامک ملی، و جداسازی تقلب در مقیاس عملیاتی."
+  title="آریا صراف‌زاده | معماری سیستم‌های پرترافیک و راهبری محصول فنی" 
+  description="معمار ارشد سامانه‌های توزیع‌شده و مدیر ارشد محصول فنی. طراحی سوییچ‌های پرداخت بانکی، هاب‌های ملی پیام‌رسانی در مقیاس مگفا و فرستار، و خطوط پردازش کلان‌داده سازمانی."
   lang="fa"
   dir="rtl"
 >
@@ -25,31 +25,31 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <aside class="hidden lg:block lg:col-span-3 sticky top-24 space-y-4">
         <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl ring-1 ring-white/5">
           <div class="text-xs font-bold text-[#e2c974] tracking-wider uppercase mb-3 border-b border-white/10 pb-2.5 flex justify-between items-center">
-            <span>فهرست سامانه‌ها</span>
+            <span>فهرست نقشه‌ها و سامانه‌ها</span>
             <span class="w-2 h-2 rounded-full bg-[#38bdf8] shadow-[0_0_8px_rgba(201,212,168,0.6)] animate-signal"></span>
           </div>
           
           <nav class="space-y-1 text-xs">
             <a href="#payment-settlement" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۱ · تسویه حساب و دفاتر کل
+              ۰۱ · سوییچ پرداخت و دفاتر کل مالی
             </a>
             <a href="#fraud-forensics" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۲ · مهار تقلب و تله‌متری لبه
+              ۰۲ · مهار بلادرنگ تقلب و گراف ارتباطات
             </a>
             <a href="#sms-gateway" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۳ · هاب ملی پیامک (SMPP)
+              ۰۳ · زیرساخت مقیاس‌پذیر پیام‌رسانی (SMPP)
             </a>
             <a href="#data-pipeline" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۴ · خط داده و موتور تحلیلی
+              ۰۴ · خط داده و موتور تحلیلی ۱۰۰M رکوردی
             </a>
             <a href="#incident-dossiers" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۵ · پرونده‌های بحران‌های عملیاتی
+              ۰۵ · پرونده‌های بحران‌های زنده در پروداکشن
             </a>
             <a href="#lifecycle" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
               ۰۶ · چرخه حیات محصول فنی
             </a>
             <a href={`${baseUrl}fa/whitepapers/`} class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۷ · مستندات معماری و مقالات
+              ۰۷ · مستندات معماری و وایت‌پیپرها
             </a>
             <a href="#book" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
               ۰۸ · جلسه بررسی معماری
@@ -64,10 +64,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 01: Payment Settlement -->
         <section id="payment-settlement" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۱ · مسیریابی تراکنش و دفاتر کل</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۱ · سوییچ پرداخت و دفاتر کل مالی</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">موتور تسویه پرداخت رویدادمحور و اصول دفتر کل</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">موتور تسویه رویدادمحور و سوییچ تراکنش‌های هم‌روند</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -75,13 +75,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">حالت درخواست &ne; واقعیت تسویه. حذف کامل تسویه مضاعف در پنجره‌های بازپخش ۸۶٬۴۰۰ ثانیه‌ای.</p>
+            <p class="text-[#f8fafc] leading-relaxed">حالت درخواست &ne; واقعیت تسویه. حذف قطعی تسویه مضاعف و تضمین مغایرت مالی صفر در پنجره‌های بازپخش ۸۶٬۴۰۰ ثانیه‌ای.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لبه ورودی با پروتکل TLS 1.3 قفل توزیع‌شده اتمی Redis با دستور <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">SETNX</code> و انقضای ۸۶٬۴۰۰ ثانیه را ثبت می‌کند. داده‌ها به ساختار بیت‌مپ باینری ISO 8583 جهت اتصال مستقیم به سوییچ‌های بانکی تبدیل می‌شوند. محاسبه موجودی تنها از طریق بازپخش ترتیبی رویدادها در کلاستر دفتر کل فقط‌افزودنی ScyllaDB مجهز به استاندارد ACID صورت می‌پذیرد.
+              لبه ورودی با پروتکل TLS 1.3 قفل توزیع‌شده اتمی Redis با دستور <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">SETNX</code> و انقضای ۸۶٬۴۰۰ ثانیه را ثبت می‌کند. داده‌ها مستقیماً به ساختار بیت‌مپ باینری ISO 8583 جهت اتصال به سوییچ‌های شاپرک و شبکه‌های شتاب تبدیل می‌شوند. مانده‌حساب‌ها صرفاً از طریق بازپخش ترتیبی رویدادها در کلاستر دفتر کل فقط‌افزودنی ScyllaDB مجهز به استاندارد ACID محاسبه می‌گردند.
             </p>
           </div>
 
@@ -92,7 +92,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              قطعی ارتباط شبکه بین درگاه و سوییچ تسویه بالادست. پیشگیری از شارژ یا تسویه مضاعف از طریق جداسازی بازپخش؛ ثبت خودکار سند برگشت (۰۴۲۰) به عنوان یک ردیف جدید در دفتر کل بدون بازنویسی وضعیت‌های پیشین.
+              قطعی ارتباط درگاه با سوییچ بالادست و هجوم درخواست‌های بازپردازش (Retry Storm). مهار شارژ مضاعف با تفکیک لایه پذیرش از لایه تسویه و ثبت خودکار سند معکوس و اصلاحیه (۰۴۲۰) به صورت ردیف جدید در دفتر کل دوبل بدون دستکاری داده‌های پیشین.
             </p>
           </div>
 
@@ -115,7 +115,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
-            <span class="text-[#94a3b8]">مشخصات فنی و معماری پروتکل در پرونده ۰۱ تدوین شده است.</span>
+            <span class="text-[#94a3b8]">مشخصات فنی و تحلیل پروتکل در سند ۰۱ تدوین شده است.</span>
             <a href={`${baseUrl}fa/blog/payment-gateway/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 hover:border-[#06b6d4] hover:bg-[#06b6d4]/10 hover:-translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
               مشاهده سند فنی ۰۱ &larr;
             </a>
@@ -125,7 +125,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 02: Fraud Forensics -->
         <section id="fraud-forensics" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۲ · ردیابی تهدید و پایش ریسک</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۲ · مهار بلادرنگ تقلب و گراف ارتباطات</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
           <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">کشف تقلب در لحظه و ردیابی گراف قضایی</h2>
@@ -136,13 +136,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">زمان پاسخ حلقه ارزیابی ریسک کمتر از ۱۵ میلی‌ثانیه؛ شواهد باید در مراجع قضایی قابل استناد باشد.</p>
+            <p class="text-[#f8fafc] leading-relaxed">زمان پاسخ حلقه ارزیابی ریسک کمتر از ۱۵ میلی‌ثانیه؛ کلیه زنجیره‌های ردگیری تراکنش باید در مراجع نظارتی و بانکی قابل استناد و بازتولید باشد.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لبه ورودی با استخراج انتروپی بوم (Canvas)، شتاب دستگاه و ریتم کلیدزنی، بردارهای چندبعدی ریسک [۰٫۰۰ تا ۱٫۰۰] را در کمتر از ۱۵ میلی‌ثانیه تولید می‌کند. تراکنش‌های زیر ۰٫۳۰ بدون اصطکاک عبور می‌کنند؛ ۰٫۳۰ تا ۰٫۷۵ اعتبارسنجی بیومتریک 3DS 2.0 را فعال می‌سازد (انتقال مسئولیت مالی به بانک صادرکننده)؛ امتیازهای بالای ۰٫۷۵ در کلاستر گراف Neo4j قرنطینه و تحلیل می‌شوند.
+              لبه ورودی با استخراج انتروپی بوم (Canvas)، شتاب دستگاه و ریتم کلیدزنی، بردارهای چندبعدی ریسک [۰٫۰۰ تا ۱٫۰۰] را در کمتر از ۱۵ میلی‌ثانیه تولید می‌کند. تراکنش‌های زیر ۰٫۳۰ بدون اصطکاک عبور می‌کنند؛ ۰٫۳۰ تا ۰٫۷۵ اعتبارسنجی بیومتریک و پیامکی 3DS 2.0 را فعال می‌سازد (انتقال مسئولیت مالی به بانک صادرکننده)؛ امتیازهای بالای ۰٫۷۵ در کلاستر گراف Neo4j قرنطینه و تحلیل می‌شوند.
             </p>
           </div>
 
@@ -186,10 +186,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 03: Telecom SMS Gateway -->
         <section id="sms-gateway" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۳ · سوییچ‌های مخابراتی و صفوف</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۳ · زیرساخت مقیاس‌پذیر پیام‌رسانی (SMPP)</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">زیرساخت مسیریابی و تجمیع پیامک ملی</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">زیرساخت مسیریابی و تجمیع پیامک ملی در مقیاس مگفا و فرستار</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -197,13 +197,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">عدم تاخیر در تحویل پیامک‌های اعتبارسنجی بانکی (OTP) در اوج ترافیک کمپین‌های تبلیغاتی میلیونی. بیش از ۱B پیامک در سال.</p>
+            <p class="text-[#f8fafc] leading-relaxed">تحویل بلادرنگ رمزهای یکبارمصرف بانکی (OTP) با تاخیر زیر ۵ ثانیه حتی در اوج ترافیک کمپین‌های تبلیغاتی میلیونی؛ بیش از ۱ میلیارد پیامک سالانه.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              نشست‌های پایدار SMPP 3.4 با اپراتورها روی باندهای پیش‌شماره (۱۰۰۰ تا ۹۰۰۰) متوازن می‌شوند. کنترل جریان پنجره لغزان پویا (۱۶ تا ۶۴ PDU) همراه با استعلام بلادرنگ HLR برای پالایش شماره‌های خاموش و خطوط مسدود (*800#) پیش از ورود به صف ارسال.
+              مدیریت نشست‌های موازی SMPP 3.4 با اتصال به گیت‌وی اپراتورها (همراه اول، ایرانسل و رایتل) روی سرشماره‌های ۱۰۰۰، ۲۰۰۰، ۳۰۰۰ و ۹۰۰۰. مجهز به کنترل پویای پنجره لغزان (Sliding Window از ۱۶ تا ۶۴ PDU)، تعادل بار هوشمند بر اساس ظرفیت پاسخ‌دهی SMSC، و استعلام پیش‌دستانه HLR و شاهکار جهت غربالگری خطوط مسدود (*800#) پیش از اشغال پهنای باند و کسر هزینه.
             </p>
           </div>
 
@@ -214,7 +214,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              اشباع لوله‌های اپراتور زیر بار محدودیت ۷۰ نویسه‌ای یونیکد UCS-2 فارسی. برطرف‌شده با جداسازی دقیق صف‌های اولویت‌دار بانکی از کمپین‌های انبوه بازاریابی.
+              اشباع لوله‌های اپراتور زیر بار محدودیت ۷۰ نویسه‌ای یونیکد UCS-2 فارسی و تاخیر در دریافت DLR. برطرف‌شده با جداسازی دقیق صف‌های اولویت‌دار خدماتی/بانکی از کمپین‌های انبوه بازاریابی و تنظیم خودکار نرخ ارسال (Adaptive Backpressure).
             </p>
           </div>
 
@@ -250,7 +250,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۴ · تحلیل کلان‌داده و پالایش</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">تجمیع ۱۰۰ میلیون رکورد و پایگاه داده Smart DB v1</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">سامانه پالایش و تحلیل ۱۰۰ میلیون رکورد (Smart DB v1)</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -258,13 +258,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">پیش‌بینی رفتار و ترجیحات کاربران با دقت ۷۰٪ پیش از بارگذاری داده‌های احراز هویت (KYC).</p>
+            <p class="text-[#f8fafc] leading-relaxed">پیش‌بینی رفتار و ترجیحات کاربران با دقت ۷۰٪ پیش از ثبت نهایی اطلاعات هویتی و ثبت‌نام بانکی (KYC).</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              موتور برداری DuckDB بر بستر فایل‌های ستونی Apache Parquet جهت پردازش داده‌های غیرساختاریافته خروجی اپراتورها. تولید ماتریس امتیازدهی رفتار با دقت ۷۰٪ پیش از ثبت هویت و کاهش ۷۰ درصدی حجم ذخیره‌سازی با فشرده‌سازی Snappy.
+              موتور تحلیلی DuckDB بر بستر فایل‌های ستونی Apache Parquet جهت پردازش داده‌های عظیم و غیرساختاریافته خروجی اپراتورها و سامانه‌های تراکنشی. نرمال‌سازی عمیق کاراکترهای عربی/فارسی (ی/ک/تنوین)، کلیدگذاری واج‌شناختی چندمرحله‌ای (Phonetic Keys) و کاهش ۷۰ درصدی حجم ذخیره‌سازی با فشرده‌سازی Snappy.
             </p>
           </div>
 
@@ -275,7 +275,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              افت شدید پایگاه‌های داده رابطه‌ای سنتی در پیوندهای چندویژگی روی بیش از ۹۴ میلیون رکورد. برطرف‌شده با جداسازی کامل مسیر پرس‌وجو به کلاستر Elasticsearch مجهز به API Gateway اختصاصی.
+              افت شدید پایگاه‌های داده رابطه‌ای سنتی در پیوندهای چندویژگی روی بیش از ۹۴٫۷ میلیون رکورد. برطرف‌شده با جداسازی کامل مسیر پرس‌وجو به کلاستر توزیع‌شده Elasticsearch مجهز به API Gateway اختصاصی.
             </p>
           </div>
 
@@ -311,9 +311,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۵ · پرونده‌های بحران‌های عملیاتی</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">حل بحران‌های مستند در سوییچ‌های زنده</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">حل بحران‌های مستند در سوییچ‌های زنده پروداکشن</h2>
           <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed">
-            معماری تجربی و میدانی: حل قطعی خطاهای محیط عملیاتی تحت محدودیت‌های سختگیرانه SLA بانکی و مخابراتی.
+            معماری تجربی و میدانی: حل قطعی خطاهای محیط عملیاتی تحت محدودیت‌های سختگیرانه SLA بانکی و مخابراتی بدون توقف سرویس.
           </p>
 
           <div class="space-y-4 mt-4">
@@ -326,7 +326,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   حل‌شده
                 </span>
               </div>
-              <h3 class="text-sm font-bold text-[#f8fafc] tracking-tight">بازیابی خطای مهلت زمانی سوییچ بانکی ISO 8583</h3>
+              <h3 class="text-sm font-bold text-[#f8fafc] tracking-tight">بازیابی خطای مهلت زمانی سوییچ بانکی ISO 8583 (شاپرک/شتاب)</h3>
               <div class="text-xs text-[#94a3b8] mt-2.5 space-y-1.5 leading-relaxed">
                 <p><strong class="text-[#e2c974]">شرایط وقوع:</strong> هجوم درخواست‌های ارسال مجدد از سمت پذیرندگان و خطر ثبت سند دوبل هنگام قطعی سوییچ بالادست.</p>
                 <p><strong class="text-[#06b6d4]">اصل تخطی‌ناپذیر:</strong> قفل یکتایی (Idempotency Key) باید طولانی‌تر از بیشترین مهلت زمانی اپراتور پایدار بماند (۸۶٬۴۰۰ ثانیه).</p>
@@ -343,7 +343,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   حل‌شده
                 </span>
               </div>
-              <h3 class="text-sm font-bold text-[#f8fafc] tracking-tight">انسداد پنجره لغزان SMPP اپراتورها</h3>
+              <h3 class="text-sm font-bold text-[#f8fafc] tracking-tight">مهار اشباع و انسداد پنجره لغزان SMPP در کمپین‌های میلیونی</h3>
               <div class="text-xs text-[#94a3b8] mt-2.5 space-y-1.5 leading-relaxed">
                 <p><strong class="text-[#e2c974]">شرایط وقوع:</strong> کمپین‌های ارسال انبوه میلیونی و تاخیر در رمزهای یک‌بارمصرف بانکی (OTP).</p>
                 <p><strong class="text-[#06b6d4]">اصل تخطی‌ناپذیر:</strong> ترافیک حیاتی احراز هویت نباید لوله مشترک با پیام‌های انبوه تبلیغاتی داشته باشد.</p>
@@ -360,7 +360,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   حل‌شده
                 </span>
               </div>
-              <h3 class="text-sm font-bold text-[#f8fafc] tracking-tight">امتیازدهی پیش از احراز هویت در سامانه Smart DB v1</h3>
+              <h3 class="text-sm font-bold text-[#f8fafc] tracking-tight">امتیازدهی سریع ویژگی‌ها روی ۹۴٫۷ میلیون رکورد پیش از فرآیند KYC</h3>
               <div class="text-xs text-[#94a3b8] mt-2.5 space-y-1.5 leading-relaxed">
                 <p><strong class="text-[#e2c974]">شرایط وقوع:</strong> ۹۴٫۷ میلیون رکورد یتیم و بدون ایندکس با ساختار ناهمگون که موجب افت کارایی پایگاه‌های داده رابطه‌ای می‌شدند.</p>
                 <p><strong class="text-[#06b6d4]">اصل تخطی‌ناپذیر:</strong> غنی‌سازی سریع ویژگی‌ها بدون افت کارایی سوییچ تراکنش اصلی.</p>
@@ -373,7 +373,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 06: TECHNICAL PRODUCT LIFECYCLE (FA) -->
         <section id="lifecycle" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl" dir="rtl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۶ · چرخه حیات محصول فنی فنی</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۶ · چرخه حیات محصول فنی</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
           <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">چرخه حیات محصول فنی (Technical Product Lifecycle Arc)</h2>
@@ -390,7 +390,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
                 </div>
                 <h3 class="text-sm font-semibold text-[#f8fafc] mb-2.5">
-                  کشف و تعریف الزامات
+                  کشف الزامات و مرزهای سیستم
                 </h3>
                 <p class="text-xs text-[#94a3b8] leading-relaxed">
                   تدوین مستندات محصول (PRD)، تعریف دقیق محدودیت‌های سیستم و ارزیابی زیرساخت‌های قدیمی پیش از آغاز توسعه.
@@ -409,7 +409,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974]"></span>
                 </div>
                 <h3 class="text-sm font-semibold text-[#f8fafc] mb-2.5">
-                  معماری و طراحی توپولوژی
+                  معماری توپولوژی و قراردادها
                 </h3>
                 <p class="text-xs text-[#94a3b8] leading-relaxed">
                   طراحی نمودارهای توالی، قراردادهای API و مکانیزم‌های کنترل همروندی (مانند قفل‌های توزیع‌شده) برای تضمین مقیاس‌پذیری.
@@ -428,7 +428,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
                 </div>
                 <h3 class="text-sm font-semibold text-[#f8fafc] mb-2.5">
-                  راهبری و اجرای یکپارچه
+                  راهبری محصول و همگام‌سازی تیم‌ها
                 </h3>
                 <p class="text-xs text-[#94a3b8] leading-relaxed">
                   ایفای نقش به عنوان پل ارتباطی فنی میان مدیران ارشد و تیم‌های مهندسی. همگام‌سازی بک‌اند، فرانت‌اند و طراحی رابط کاربری در اسپرینت‌ها.
@@ -447,7 +447,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
                 </div>
                 <h3 class="text-sm font-semibold text-[#f8fafc] mb-2.5">
-                  مانیتورینگ و استقرار
+                  استقرار پیوسته و پایداری SLA
                 </h3>
                 <p class="text-xs text-[#94a3b8] leading-relaxed">
                   استقرار سیستم بدون قطعی (Zero-downtime). پیاده‌سازی مانیتورینگ با Prometheus/Grafana و تضمین پایداری در محیط عملیاتی.

@@ -12,10 +12,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 const proofMatrix = isFa
   ? [
-      { val: "۱۵+ سال", label: "زیرساخت عملیاتی و مقیاس‌پذیر" },
-      { val: "۱٬۰۰۰٬۰۰۰٬۰۰۰+", label: "پیامک مسیریابی‌شده در سال (SMPP)" },
-      { val: "۵۰٬۰۰۰ TPS", label: "ظرفیت اوج پردازش هم‌روند" },
-      { val: "زیر ۱۵ms", label: "SLA حلقه بلادرنگ مهار تقلب" },
+      { val: "۱۵+ سال", label: "معماری زیرساخت و راهبری محصول" },
+      { val: "۱B+ پیامک", label: "هاب ملی مخابرات و SMPP سالانه" },
+      { val: "۵۰K TPS", label: "ظرفیت اوج پردازش هم‌روند" },
+      { val: "زیر ۱۵ms", label: "مهلت حلقه بلادرنگ مهار تقلب" },
     ]
   : [
       { val: "15+ YEARS", label: "Production Infrastructure" },
@@ -82,14 +82,14 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
           <!-- Headline matching sample -->
           <h1 class="text-2xl sm:text-3xl lg:text-[2.6rem] font-bold tracking-tight text-[#f8fafc] leading-[1.18] mt-1">
             {isFa 
-              ? 'معماری سوییچ‌های پرحجم مالی و زیرساخت مخابراتی مقیاس میلیاردی' 
+              ? 'معماری سیستم‌های پرترافیک، سوییچ‌های مالی و زیرساخت مخابراتی' 
               : 'High-Throughput Financial Switches & Telecom Infrastructure'}
           </h1>
           
           <!-- Role Subtitle -->
           <p class="text-xs sm:text-sm font-medium text-[#e2c974] mt-2.5 tracking-wide">
             {isFa 
-              ? 'معمار ارشد زیرساخت · هدایت فنی سوییچ‌های پرداخت، هاب‌های ملی پیامک و خطوط داده' 
+              ? 'معمار ارشد زیرساخت و مدیر ارشد محصول فنی · سوییچ‌های پرداخت بانکی، هاب‌های ملی پیام‌رسانی و خطوط داده' 
               : 'Principal Systems Architect & Technical Product Leader · Telecom, Payments & AI Infrastructure'}
           </p>
 
@@ -97,12 +97,12 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
           <div class="mt-5 text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl space-y-3">
             <p>
               {isFa
-                ? 'نقشه‌های محصول در لبه‌های شبکه و گلوگاه‌های توزیع‌شده سنجیده می‌شوند. هنگامی که یک سوییچ شتاب یا سامانه بالادستی بانکی با تاخیر مواجه می‌شود، یا اپراتور مخابرات تاییدیه ارسال پیامک را معلق می‌گذارد، مدل‌های سنتی داده به سرعت دچار مغایرت و صف‌های بازبینی دستی می‌شوند.'
+                ? 'بلوغ و کارآمدی نقشه‌های محصول در گلوگاه‌های توزیع‌شده شبکه و لبه‌های اتصال زیرساختی محک می‌خورند. هنگامی که درگاه شاپرک یا سوییچ شتاب تحت فشار ترافیک پاسخ نمی‌دهد، یا مرکز پیامک اپراتور تاییدیه تحویل (DLR) را معلق می‌کند، ساختارهای خام به سرعت به مغایرت مانده‌حساب و بحران‌های مالی بدل می‌شوند.'
                 : 'Production roadmaps live or die at distributed network boundaries. When upstream banking switches time out under load, or telecom aggregators silently delay SMS delivery receipts, naive application architectures quickly collapse into balance drift and manual recovery queues.'}
             </p>
             <p>
               {isFa
-                ? 'تمرکز من بر هدایت محصول و مهندسی سامانه‌های حیاتی در سه لایه است: سوییچ‌های پیامک با مقیاس بیش از ۱ میلیارد پیام در سال با کنترل پنجره‌های لغزان SMPP 3.4؛ درگاه‌های پرداخت ISO 8583 و دفاتر کل فقط‌افزودنی با قفل‌های نامتقارن توزیع‌شده؛ و خطوط توسعه عامل‌محور (Agentic AI Dev) که فرآیند مهندسی نرم‌افزار را با نظارت بلادرنگ تله‌متری متحول می‌کنند.'
+                ? 'تمرکز من بر پیوند زدن استراتژی محصول با معماری سامانه‌های حیاتی در سه محور است: هاب‌های پیام‌رسانی مخابراتی در مقیاس بیش از یک میلیارد پیام در سال و کنترل پیشرفته پنجره لغزان SMPP 3.4؛ سوییچ‌های پرداخت ISO 8583 و دفاتر کل فقط‌افزودنی با تضمین عدم مغایرت حتی یک ریال؛ و پلتفرم‌های کلان‌داده با پردازش ستونی که تصمیم‌گیری‌های محصول را مستقیماً به تله‌متری داده‌های واقعی زنجیره می‌کنند.'
                 : 'I bridge technical product leadership with hands-on systems architecture across three core domains: billion-scale SMPP 3.4 telecom hubs handling 50,000 TPS burst traffic; ISO 8583 payment gateways and append-only ledgers where financial truth is mathematically verified; and agentic engineering workflows that accelerate delivery while anchoring every decision in production telemetry.'}
             </p>
           </div>
