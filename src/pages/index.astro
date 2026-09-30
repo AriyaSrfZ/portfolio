@@ -13,41 +13,41 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
   <Hero />
 
-  <main class="max-w-[1600px] mx-auto px-6 py-12 font-['IBM_Plex_Mono',monospace]" id="blueprints">
+  <main class="max-w-[1600px] mx-auto px-6 py-12 font-sans" id="blueprints">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
       <!-- Sticky Sidebar Index -->
       <aside class="hidden lg:block lg:col-span-3 sticky top-24 space-y-4">
         <div class="bg-[#1c1916]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl ring-1 ring-white/5">
-          <div class="text-xs font-bold text-[#c9a15a] tracking-wider uppercase mb-3 border-b border-white/10 pb-2.5 flex justify-between items-center">
-            <span>SYSTEM INDEX</span>
+          <div class="text-xs font-semibold text-[#c9a15a] tracking-wider uppercase mb-3 border-b border-white/10 pb-2.5 flex justify-between items-center">
+            <span>System Index</span>
             <span class="w-2 h-2 rounded-full bg-[#c9d4a8] shadow-[0_0_8px_rgba(201,212,168,0.6)] animate-signal"></span>
           </div>
           
           <nav class="space-y-1 text-xs">
             <a href="#payment-settlement" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
-              01 // Settlements
+              01 · Settlements
             </a>
             <a href="#fraud-forensics" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
-              02 // Fraud Risk
+              02 · Fraud Risk
             </a>
             <a href="#sms-gateway" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
-              03 // SMS Switch
+              03 · SMS Switch
             </a>
             <a href="#data-pipeline" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
-              04 // Data Pipeline
+              04 · Data Pipeline
             </a>
             <a href="#incident-dossiers" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
-              05 // Incident Dossiers
+              05 · Incident Dossiers
             </a>
             <a href="#lifecycle" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
-              06 // Product Lifecycle
+              06 · Product Lifecycle
             </a>
             <a href={`${baseUrl}whitepapers/`} class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
-              07 // Whitepapers (3)
+              07 · Technical Whitepapers
             </a>
             <a href="#book" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
-              08 // Architecture Intake
+              08 · Architecture Intake
             </a>
           </nav>
         </div>
@@ -59,10 +59,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 01: Payment Settlement -->
         <section id="payment-settlement" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">01 // TRANSACTION ROUTING &amp; LEDGERS</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase font-mono">01 // Transaction Routing & Ledgers</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">Event-Driven Payment Settlement Engine</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] tracking-tight">Event-Driven Payment Settlement Engine</h2>
           
           <!-- Invariant Box: Refined Badge (No side-tab slop) -->
           <div class="mt-4 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -120,10 +120,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 02: Fraud Forensics -->
         <section id="fraud-forensics" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">02 // SURVEILLANCE &amp; THREAT ISOLATION</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase font-mono">02 // Threat Isolation & Surveillance</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">Real-Time Fraud Mitigation &amp; Forensic Graph Tracing</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] tracking-tight">Real-Time Fraud Mitigation &amp; Forensic Graph Tracing</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -181,10 +181,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 03: Telecom SMS Gateway -->
         <section id="sms-gateway" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">03 // TELECOM SWITCHING &amp; QUEUES</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase font-mono">03 // Telecom Switching &amp; Queues</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">National Telecom Routing &amp; Aggregator Infrastructure</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] tracking-tight">National Telecom Routing &amp; Aggregator Infrastructure</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -242,10 +242,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 04: Data Pipeline -->
         <section id="data-pipeline" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">04 // HIGH-VOLUME ANALYTICS &amp; ENRICHMENT</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase font-mono">04 // Analytics &amp; Data Pipeline</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">National Contact Consolidation &amp; Smart DB v1</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] tracking-tight">National Contact Consolidation &amp; Smart DB v1</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -303,10 +303,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- PRODUCTION INCIDENT DOSSIERS -->
         <section id="incident-dossiers" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">05 // PRODUCTION INCIDENT DOSSIERS</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase font-mono">05 // Incident Dossiers &amp; Recovery</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">Battle-Tested Failure Resolution</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] tracking-tight">Battle-Tested Failure Resolution</h2>
           <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed">
             Hands-on systems architecture: production failure resolution and incident mitigation under strict SLA constraints.
           </p>
@@ -315,13 +315,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <!-- Dossier 01 -->
             <div class="bg-[#141210]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
               <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
-                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 01 // PAYMENT GATEWAY</span>
+                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">Dossier 01 // Payment Gateway</span>
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-mono font-medium">
                   <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
                   RESOLVED
                 </span>
               </div>
-              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase tracking-tight">Upstream ISO 8583 Timeout Recovery</h3>
+              <h3 class="text-sm font-semibold text-[#e8e2d5] tracking-tight">Upstream ISO 8583 Timeout Recovery</h3>
               <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
                 <p><strong class="text-[#c9a15a]">Context:</strong> Merchant retry storms triggering duplicate captures during banking host timeouts.</p>
                 <p><strong class="text-[#c4562e]">Invariant:</strong> An idempotent lock must outlive the longest carrier retry window (86,400s).</p>
@@ -332,13 +332,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <!-- Dossier 02 -->
             <div class="bg-[#141210]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
               <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
-                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 02 // TELECOM SWITCH</span>
+                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">Dossier 02 // Telecom Switch</span>
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-mono font-medium">
                   <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
                   RESOLVED
                 </span>
               </div>
-              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase tracking-tight">Carrier SMPP Sliding-Window Choke</h3>
+              <h3 class="text-sm font-semibold text-[#e8e2d5] tracking-tight">Carrier SMPP Sliding-Window Choke</h3>
               <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
                 <p><strong class="text-[#c9a15a]">Context:</strong> High-volume marketing runs delaying critical banking OTP verification codes.</p>
                 <p><strong class="text-[#c4562e]">Invariant:</strong> Critical authentication traffic cannot share worker pipes with bulk broadcast queues.</p>
@@ -349,13 +349,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <!-- Dossier 03 -->
             <div class="bg-[#141210]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
               <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
-                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 03 // SMART DB v1</span>
+                <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">Dossier 03 // Smart DB v1</span>
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-mono font-medium">
                   <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
                   RESOLVED
                 </span>
               </div>
-              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase tracking-tight">Smart DB v1 100M Pre-KYC Scoring</h3>
+              <h3 class="text-sm font-semibold text-[#e8e2d5] tracking-tight">Smart DB v1 100M Pre-KYC Scoring</h3>
               <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
                 <p><strong class="text-[#c9a15a]">Context:</strong> 94.7M orphaned, unindexed records with inconsistent schemas causing RDBMS lock degradation.</p>
                 <p><strong class="text-[#c4562e]">Invariant:</strong> Fast attribute enrichment without slowing down the primary transaction switch.</p>
@@ -368,10 +368,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- SECTION 06: TECHNICAL PRODUCT LIFECYCLE -->
         <section id="lifecycle" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">06 // TECHNICAL PRODUCT LIFECYCLE</span>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase font-mono">06 // Product Lifecycle Arc</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">Technical Product Lifecycle Arc</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] tracking-tight">Technical Product Lifecycle Arc</h2>
           <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl">
             Bridging engineering architecture with product management execution across four disciplined operational phases.
           </p>
@@ -381,11 +381,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-[10px] font-mono font-bold text-[#c4562e] uppercase tracking-wider">PHASE 01</span>
+                  <span class="text-[10px] font-mono font-semibold text-[#c4562e] uppercase tracking-wider">Phase 01</span>
                   <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e]"></span>
                 </div>
-                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
-                  01 // DISCOVERY &amp; INVARIANTS
+                <h3 class="text-sm font-semibold text-[#e8e2d5] tracking-tight mb-2.5">
+                  Discovery &amp; Invariants
                 </h3>
                 <p class="text-xs text-[#a8a196] leading-relaxed">
                   Authoring executable PRDs, defining strict system invariants, and auditing legacy network boundaries before a single line of code is written.
@@ -400,11 +400,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-[10px] font-mono font-bold text-[#c9a15a] uppercase tracking-wider">PHASE 02</span>
+                  <span class="text-[10px] font-mono font-semibold text-[#c9a15a] uppercase tracking-wider">Phase 02</span>
                   <span class="w-1.5 h-1.5 rounded-full bg-[#c9a15a]"></span>
                 </div>
-                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
-                  02 // TOPOLOGY BLUEPRINTING
+                <h3 class="text-sm font-semibold text-[#e8e2d5] tracking-tight mb-2.5">
+                  Topology Blueprinting
                 </h3>
                 <p class="text-xs text-[#a8a196] leading-relaxed">
                   Architecting sequence diagrams, API contracts, and concurrency guardrails (e.g., distributed locks) to ensure scale and idempotency.
@@ -419,11 +419,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-[10px] font-mono font-bold text-[#c9d4a8] uppercase tracking-wider">PHASE 03</span>
+                  <span class="text-[10px] font-mono font-semibold text-[#c9d4a8] uppercase tracking-wider">Phase 03</span>
                   <span class="w-1.5 h-1.5 rounded-full bg-[#c9d4a8]"></span>
                 </div>
-                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
-                  03 // CROSS-FUNCTIONAL EXECUTION
+                <h3 class="text-sm font-semibold text-[#e8e2d5] tracking-tight mb-2.5">
+                  Cross-Functional Execution
                 </h3>
                 <p class="text-xs text-[#a8a196] leading-relaxed">
                   Acting as the single technical liaison between executive leadership and engineering teams. Synchronizing backend, telecom, and UI delivery sprints.
@@ -438,11 +438,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-[10px] font-mono font-bold text-[#c4562e] uppercase tracking-wider">PHASE 04</span>
+                  <span class="text-[10px] font-mono font-semibold text-[#c4562e] uppercase tracking-wider">Phase 04</span>
                   <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e]"></span>
                 </div>
-                <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
-                  04 // TELEMETRY &amp; AGENTIC OPS
+                <h3 class="text-sm font-semibold text-[#e8e2d5] tracking-tight mb-2.5">
+                  Telemetry &amp; Agentic Ops
                 </h3>
                 <p class="text-xs text-[#a8a196] leading-relaxed">
                   Executing zero-downtime deployments. Establishing Prometheus/Grafana monitoring, agentic triage loops, and enforcing strict sub-15ms SLAs.

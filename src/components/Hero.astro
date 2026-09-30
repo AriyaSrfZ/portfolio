@@ -29,7 +29,7 @@ const mailtoHref = `mailto:ariasg2002@gmail.com?subject=${mailtoSubject}`;
 const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 ---
 
-<header id="overview" class="relative pt-28 pb-12 border-b border-white/10 bg-[#141210]/40 backdrop-blur-sm overflow-hidden font-['IBM_Plex_Mono',monospace]">
+<header id="overview" class="relative pt-28 pb-12 border-b border-white/10 bg-[#141210]/40 backdrop-blur-sm overflow-hidden font-sans">
   <!-- Subtle warm organic ambient glow (no generic purple/cyan) -->
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-72 bg-[radial-gradient(ellipse_at_top,rgba(196,86,46,0.12),transparent_70%)] pointer-events-none"></div>
 
@@ -39,8 +39,8 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
       <!-- Identity Card: Warm Organic Surface -->
       <div class="xl:col-span-4 flex flex-col justify-between bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
         <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4 text-[11px] uppercase">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4 text-[11px]">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono font-medium">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>{isFa ? 'فعال در تولید' : 'PRODUCTION ACTIVE'}</span>
             </span>
@@ -56,13 +56,13 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
             <div class="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-85 pointer-events-none"></div>
 
             <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#141210]/85 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2.5 shadow-lg">
-              <span class="text-sm font-bold text-[#e8e2d5]">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
+              <span class="text-sm font-semibold text-[#e8e2d5] tracking-tight">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
               <span class="text-[11px] text-[#c9a15a] font-mono">{isFa ? 'مدیر ارشد محصول و معمار سیستم' : 'Product Leader & Architect'}</span>
             </div>
           </div>
         </div>
 
-        <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-[11px] text-[#a8a196] uppercase">
+        <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-[11px] text-[#a8a196]">
           <span>{isFa ? 'پروتکل‌ها و دفاتر کل' : 'Protocols & Ledgers'}</span>
           <span class="text-[#c9d4a8] font-mono font-medium">ISO 8583 · SMPP 3.4 · gRPC</span>
         </div>
@@ -77,15 +77,15 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
             <span>{isFa ? 'مهندسی محصول و معماری سامانه‌های مقیاس‌پذیر' : 'SYSTEMS ARCHITECT & PRODUCT LEADER'}</span>
           </div>
 
-          <!-- Headline -->
+          <!-- Headline with Authentic Human Casing -->
           <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#e8e2d5] leading-tight mt-1">
             {isFa 
               ? 'معماری سامانه‌های پرحجم، سوییچ‌های مقیاس میلیاردی و مهندسی عامل‌محور' 
-              : 'ENTERPRISE SYSTEMS ARCHITECTURE, BILLION-SCALE SWITCHES & AGENTIC DEV'}
+              : 'Enterprise Systems Architecture, Billion-Scale Telecom & High-Throughput Financial Infra'}
           </h1>
           
           <!-- Role Subtitle -->
-          <p class="text-xs sm:text-sm font-medium text-[#c9a15a] mt-2 tracking-wide uppercase">
+          <p class="text-xs sm:text-sm font-medium text-[#c9a15a] mt-2 tracking-wide">
             {isFa 
               ? 'معمار ارشد زیرساخت · مدیر محصول فنی سوییچ‌های مخابرات، پرداخت و خطوط داده' 
               : 'Principal Systems Architect & Technical Product Leader · Telecom, Payments & AI Infrastructure'}

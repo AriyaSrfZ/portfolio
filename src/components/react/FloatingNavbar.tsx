@@ -105,7 +105,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
   return (
     <motion.header
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-[1500px] font-['IBM_Plex_Mono',monospace]"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-[1500px] font-sans"
       animate={{ y: visible ? 0 : -90, opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.22, ease: 'easeOut' }}
     >

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.3/misc/Farsi-Digits/font-face.css');
 @import "tailwindcss";
 
@@ -18,20 +18,21 @@
   --color-rugged-paper: #e8e2d5;
   --color-rugged-muted: #a8a196;
   --font-mono-rugged: "IBM Plex Mono", monospace;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--color-rugged-bg-nav);
-  color: var(--color-rugged-paper);
+  background-color: #141210;
+  color: #e8e2d5;
 }
 
 body {
   background-color: #141210;
   background-image: radial-gradient(circle at 50% -10%, rgba(196, 86, 46, 0.08) 0%, rgba(20, 18, 16, 0) 65%);
   background-attachment: fixed;
-  color: var(--color-rugged-paper);
-  font-family: 'IBM Plex Mono', monospace;
+  color: #e8e2d5;
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: hidden;
   margin: 0;
 }
@@ -47,14 +48,13 @@ body {
   --rugged-paper: #e8e2d5;
   --rugged-muted: #a8a196;
 
-  font-family: 'IBM Plex Mono', monospace;
-  background-color: var(--rugged-bg-nav);
-  color: var(--rugged-paper);
+  background-color: #141210;
+  color: #e8e2d5;
 }
 
 [data-theme="rugged"] body {
-  background-color: var(--rugged-bg-nav);
-  color: var(--rugged-paper);
+  background-color: #141210;
+  color: #e8e2d5;
 }
 
 .rugged-hatch {
