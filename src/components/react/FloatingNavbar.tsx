@@ -1,33 +1,34 @@
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
+import { useTranslations, getLangFromUrl, type ui } from '../../i18n/ui';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
-const whitepaperDossiers = [
+const getWhitepaperDossiers = (isFa: boolean) => [
   {
-    spec: 'Spec 01',
-    title: 'Payment Switch & Ledgers',
-    desc: 'ISO 8583 timeouts, Redis locks & double-settlement guards',
-    href: `${baseUrl}blog/payment-gateway/`,
+    spec: isFa ? 'سند ۰۱' : 'Spec 01',
+    title: isFa ? 'سوییچ پرداخت و دفاتر کل' : 'Payment Switch & Ledgers',
+    desc: isFa ? 'تایم‌اوت ISO 8583، قفل‌های ردیس و گارد تسویه مضاعف' : 'ISO 8583 timeouts, Redis locks & double-settlement guards',
+    href: isFa ? `${baseUrl}fa/blog/payment-gateway/` : `${baseUrl}blog/payment-gateway/`,
   },
   {
-    spec: 'Spec 02',
-    title: 'Forensic Fraud Mitigation',
-    desc: 'Edge telemetry, 3DS 2.0 & sub-15ms risk loops',
-    href: `${baseUrl}blog/fraud-tracing/`,
+    spec: isFa ? 'سند ۰۲' : 'Spec 02',
+    title: isFa ? 'مهار جرم‌شناسانه تقلب' : 'Forensic Fraud Mitigation',
+    desc: isFa ? 'تله‌متری لبه، 3DS 2.0 و حلقه ریسک زیر ۱۵ میلی‌ثانیه' : 'Edge telemetry, 3DS 2.0 & sub-15ms risk loops',
+    href: isFa ? `${baseUrl}fa/blog/fraud-tracing/` : `${baseUrl}blog/fraud-tracing/`,
   },
   {
-    spec: 'Spec 03',
-    title: 'Telecom & SMS Infrastructure',
-    desc: 'SMPP 3.4 aggregators & UCS-2 windowing',
-    href: `${baseUrl}blog/sms-infrastructure/`,
+    spec: isFa ? 'سند ۰۳' : 'Spec 03',
+    title: isFa ? 'زیرساخت پیامک مخابراتی' : 'Telecom & SMS Infrastructure',
+    desc: isFa ? 'تجمیع‌کنندگان SMPP 3.4 و پنجره‌های UCS-2' : 'SMPP 3.4 aggregators & UCS-2 windowing',
+    href: isFa ? `${baseUrl}fa/blog/sms-infrastructure/` : `${baseUrl}blog/sms-infrastructure/`,
   },
   {
-    spec: 'Spec 04',
-    title: 'Web3 & Crypto State Machines',
-    desc: 'Deterministic EVM compute & rollup finality',
+    spec: isFa ? 'سند ۰۴' : 'Spec 04',
+    title: isFa ? 'ماشین‌های وضعیت وب۳' : 'Web3 & Crypto State Machines',
+    desc: isFa ? 'محاسبات قطعی EVM و نهایی‌سازی رول‌آپ' : 'Deterministic EVM compute & rollup finality',
     href: `${baseUrl}blog/web3-infrastructure/`,
   },
 ];
@@ -37,24 +38,29 @@ interface FloatingNavbarProps {
 }
 
 export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
-  const isFa = locale === 'fa';
+  const [currentLang, setCurrentLang] = useState<'en' | 'fa'>(locale);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const detected = getLangFromUrl(new URL(window.location.href));
+      setCurrentLang(detected);
+    }
+  }, []);
+
+  const isFa = currentLang === 'fa';
+  const t = useTranslations(currentLang);
   const homePath = isFa ? `${baseUrl}fa/` : baseUrl;
   const switchTarget = isFa ? baseUrl : `${baseUrl}fa/`;
   const switchLabel = isFa ? 'EN' : 'FA';
 
-  const inPageAnchors = isFa
-    ? [
-        { href: `${baseUrl}fa/#payment-settlement`, label: '۰۱ // تسویه' },
-        { href: `${baseUrl}fa/#fraud-forensics`, label: '۰۲ // تقلب' },
-        { href: `${baseUrl}fa/#sms-gateway`, label: '۰۳ // سوییچ پیامک' },
-        { href: `${baseUrl}fa/#data-pipeline`, label: '۰۴ // خط داده' },
-      ]
-    : [
-        { href: `${baseUrl}#payment-settlement`, label: '01 // Settlements' },
-        { href: `${baseUrl}#fraud-forensics`, label: '02 // Fraud Risk' },
-        { href: `${baseUrl}#sms-gateway`, label: '03 // SMS Switch' },
-        { href: `${baseUrl}#data-pipeline`, label: '04 // Data Pipeline' },
-      ];
+  const inPageAnchors = [
+    { href: isFa ? `${baseUrl}fa/#payment-settlement` : `${baseUrl}#payment-settlement`, label: t('nav.settlements') },
+    { href: isFa ? `${baseUrl}fa/#fraud-forensics` : `${baseUrl}#fraud-forensics`, label: t('nav.fraud') },
+    { href: isFa ? `${baseUrl}fa/#sms-gateway` : `${baseUrl}#sms-gateway`, label: t('nav.sms') },
+    { href: isFa ? `${baseUrl}fa/#data-pipeline` : `${baseUrl}#data-pipeline`, label: t('nav.data') },
+  ];
+
+  const dossiers = getWhitepaperDossiers(isFa);
 
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(true);
@@ -138,7 +144,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
               }}
               className="flex items-center gap-1.5 py-1 text-[#a8a196] hover:text-[#c9a15a] text-xs uppercase transition-colors cursor-pointer"
             >
-              <span>{isFa ? '۰۵ // مقالات فنی' : '05 // Whitepapers'}</span>
+              <span>{t('nav.whitepapers')}</span>
               <span className="text-[10px]">{dropdownOpen ? '▲' : '▼'}</span>
             </button>
 
@@ -159,7 +165,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   </div>
 
                   <div className="space-y-1">
-                    {whitepaperDossiers.map((doc) => (
+                    {dossiers.map((doc) => (
                       <a
                         key={doc.href}
                         href={doc.href}
@@ -184,7 +190,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
             href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
             className="hover:text-[#e8e2d5] text-[#a8a196] transition-colors py-1"
           >
-            {isFa ? '۰۶ // تماس' : '06 // Contact'}
+            {t('nav.contact')}
           </a>
         </div>
 
@@ -201,7 +207,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
             href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
             className="hidden sm:inline-flex px-3 py-1.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition"
           >
-            {isFa ? 'بررسی معماری' : 'Schedule Review'}
+            {t('nav.schedule')}
           </a>
 
           <button
@@ -215,7 +221,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
               setDropdownOpen(false);
             }}
           >
-            {mobileOpen ? 'Close' : 'Menu'}
+            {mobileOpen ? (isFa ? 'بستن' : 'Close') : (isFa ? 'منو' : 'Menu')}
           </button>
 
           <AnimatePresence>
@@ -246,16 +252,16 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                     onClick={closeMenus}
                     className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
                   >
-                    {isFa ? '۰۵ // مقالات فنی' : '05 // Whitepapers'}
+                    {t('nav.whitepapers')}
                   </a>
-                  {whitepaperDossiers.map((doc) => (
+                  {dossiers.map((doc) => (
                     <a
                       key={doc.href}
                       href={doc.href}
                       onClick={closeMenus}
                       className="block px-5 py-1.5 text-[10px] uppercase tracking-wider text-[#c9a15a] hover:text-[#e8e2d5]"
                     >
-                      {doc.spec} — {doc.title}
+                      {doc.spec} // {doc.title}
                     </a>
                   ))}
                   <a
@@ -263,7 +269,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                     onClick={closeMenus}
                     className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
                   >
-                    {isFa ? '۰۶ // تماس' : '06 // Contact'}
+                    {t('nav.contact')}
                   </a>
                 </div>
               </motion.div>

@@ -3,7 +3,7 @@ title: "مهار و ردیابی جرم‌شناسانه تقلب: تله‌مت
 description: "معماری‌های مهار تقلب در لحظه در شبکه‌های پرسرعت با ارزیابی اکتشاف ایستا، تله‌متری لبه شبکه، یادگیری ماشین رفتاری و انتقال مسئولیت در 3DS 2.0."
 pubDate: 2026-09-30
 category: "fintech"
-technologies: ["Architecture", "Whitepaper", "Fraud Detection", "Machine Learning", "Graph Analysis"]
+technologies: ["معماری سیستم", "مقاله فنی", "کشف تقلب", "یادگیری ماشین", "تحلیل گراف"]
 metric: "SLA ارزیابی ریسک لبه کمتر از ۳۰ میلی‌ثانیه"
 lang: "fa"
 ---

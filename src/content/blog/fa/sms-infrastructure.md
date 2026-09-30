@@ -3,7 +3,7 @@ title: "سوییچینگ پیامک مخابراتی ملی و زیرساخت ت
 description: "کالبدشکافی معماری اکوسیستم مسیریابی پیامک داخلی، مدیریت چرخه حیات نشست‌های SMPP 3.4، کنترل جریان پنجره لغزان، و محدودیت‌های کدگذاری GSM-7 در برابر UCS-2."
 pubDate: 2026-09-30
 category: "network-infrastructure"
-technologies: ["Architecture", "Whitepaper", "Telecom", "SMPP 3.4", "Infrastructure"]
+technologies: ["معماری سیستم", "مقاله فنی", "مخابرات", "SMPP 3.4", "زیرساخت"]
 metric: "ظرفیت ۵۰٬۰۰۰+ تراکنش در ثانیه (TPS) در پیک مخابراتی پیامک ملی"
 lang: "fa"
 ---

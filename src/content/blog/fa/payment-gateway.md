@@ -3,7 +3,7 @@ title: "معماری درگاه پرداخت: سوییچ‌های پرظرفیت
 description: "سوییچ‌های High-Availability نیازمند سازگاری قطعی، سقف تأخیر زیر ثانیه، و تفکیک مطلق بین وضعیت‌های تغییرپذیر و رخدادهای مالی تغییرناپذیر هستند."
 pubDate: 2026-09-30
 category: "fintech"
-technologies: ["Architecture", "Whitepaper", "ISO 8583", "Redis", "Distributed Ledgers"]
+technologies: ["معماری سیستم", "مقاله فنی", "ISO 8583", "Redis", "دفاتر کل توزیع‌شده"]
 metric: "SLA تأخیر درگاه کمتر از ۲۵۰ میلی‌ثانیه"
 lang: "fa"
 ---
