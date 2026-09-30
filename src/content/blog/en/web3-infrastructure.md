@@ -18,7 +18,7 @@ Analyzing the architectural transition from centralized database switches to cry
 
 ---
 
-## 01 // Architectural Shift: Deterministic State Machines vs. Relational Switches
+## 01. Architectural Shift: Deterministic State Machines vs. Relational Switches
 
 Decentralized ledgers replace mutable relational database switches with cryptographically verified state machines. State transition validity relies on cryptographic consensus rather than centralized administrative authority:
 
@@ -31,7 +31,7 @@ While public ledgers provide continuous global settlement and composability, the
 
 ---
 
-## 02 // Core Protocol Mechanics: EVM & Layer 2 Scaling
+## 02. Core Protocol Mechanics: EVM & Layer 2 Scaling
 
 ### EVM Gas Metering
 Every opcode execution step consumes gas to prevent infinite execution loops and denial-of-service vectors:
@@ -54,25 +54,25 @@ Assets transfer across disparate networks through lock-and-mint or burn-and-rele
 
 ---
 
-## 03 // Settlement Topologies: Global vs. Capital-Controlled Environments
+## 03. Settlement Topologies: Global vs. Capital-Controlled Environments
 
 - **Global Permissionless Infrastructure:** Public smart contracts function as continuous global settlement engines. Automated market makers and peer-to-peer liquidity protocols provide non-custodial clearing without intermediary approval.
 - **Restricted Economic Geographies:** Under foreign sanctions, capital controls, and domestic currency volatility, decentralized networks serve as non-custodial settlement rails. Peer-to-peer cryptocurrency networks circumvent correspondent banking restrictions, providing verifiable cross-border trade settlement.
 
 ---
 
-## 04 // Layer 2 Batch Settlement Pipeline
+## 04. Layer 2 Batch Settlement Pipeline
 
 ```
-01 // INTENT
+01 · INTENT
 Signed Transaction -> Client Secp256k1 Signature & Nonce Verification
       ↓
-02 // SEQUENCER
+02 · SEQUENCER
 Batch Engine -> Off-Chain Transaction Ordering & State Compression
       ↓
-03 // PROVER
+03 · PROVER
 Proof Generation -> SNARK Validity Proof or Fraud-Proof State Commitment
       ↓
-04 // FINALITY
+04 · FINALITY
 L1 Settlement -> Calldata Blob Storage & Smart Contract State Confirmation
 ```

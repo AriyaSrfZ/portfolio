@@ -29,22 +29,22 @@ const mailtoHref = `mailto:ariasg2002@gmail.com?subject=${mailtoSubject}`;
 const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 ---
 
-<header id="overview" class="relative pt-28 pb-12 border-b border-white/10 bg-[#141210]/40 backdrop-blur-sm overflow-hidden font-sans">
-  <!-- Subtle warm organic ambient glow (no generic purple/cyan) -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-72 bg-[radial-gradient(ellipse_at_top,rgba(196,86,46,0.12),transparent_70%)] pointer-events-none"></div>
+<header id="overview" class="relative pt-28 pb-12 border-b border-white/10 bg-[#0b1120]/60 backdrop-blur-sm overflow-hidden font-sans">
+  <!-- Subtle cyan & oceanic ambient glow -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-5xl h-72 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.12),transparent_70%)] pointer-events-none"></div>
 
   <div class="max-w-[1600px] mx-auto px-6 relative z-10">
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-stretch">
       
-      <!-- Identity Card: Warm Organic Surface -->
-      <div class="xl:col-span-4 flex flex-col justify-between bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+      <!-- Identity Card: Frosted Midnight Glass -->
+      <div class="xl:col-span-4 flex flex-col justify-between bg-[#111827]/75 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
         <div>
           <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4 text-[11px]">
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono font-medium">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>{isFa ? 'فعال در تولید' : 'PRODUCTION ACTIVE'}</span>
             </span>
-            <span class="text-[#c9a15a] font-mono">NODE: TEHRAN, IR</span>
+            <span class="text-[#94a3b8] font-mono">{isFa ? 'تهران · دورکاری / جهانی' : 'Tehran, IR · Global'}</span>
           </div>
 
           <div class="relative w-full aspect-[4/5] max-h-[430px] rounded-xl overflow-hidden border border-white/10 my-2 group">
@@ -53,46 +53,46 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
               alt="Ariya Sarrafzadeh"
               class="w-full h-full object-cover object-top filter contrast-105 brightness-100 transition-transform duration-700 group-hover:scale-[1.02]"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-85 pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-transparent to-transparent opacity-85 pointer-events-none"></div>
 
-            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#141210]/85 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2.5 shadow-lg">
-              <span class="text-sm font-semibold text-[#e8e2d5] tracking-tight">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
-              <span class="text-[11px] text-[#c9a15a] font-mono">{isFa ? 'مدیر ارشد محصول و معمار سیستم' : 'Product Leader & Architect'}</span>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#0b1120]/85 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2.5 shadow-lg">
+              <span class="text-sm font-semibold text-[#f8fafc] tracking-tight">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
+              <span class="text-[11px] text-[#e2c974] font-medium">{isFa ? 'مدیر ارشد محصول و معمار سیستم' : 'Product Leader & Architect'}</span>
             </div>
           </div>
         </div>
 
-        <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-[11px] text-[#a8a196]">
+        <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-[11px] text-[#94a3b8]">
           <span>{isFa ? 'پروتکل‌ها و دفاتر کل' : 'Protocols & Ledgers'}</span>
-          <span class="text-[#c9d4a8] font-mono font-medium">ISO 8583 · SMPP 3.4 · gRPC</span>
+          <span class="text-[#38bdf8] font-mono font-medium">ISO 8583 · SMPP 3.4 · gRPC</span>
         </div>
       </div>
 
       <!-- Main Narrative & Proof Matrix -->
-      <div class="xl:col-span-8 flex flex-col justify-between bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+      <div class="xl:col-span-8 flex flex-col justify-between bg-[#111827]/75 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
         <div>
           <!-- Header Tag -->
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-[#c4562e] font-medium mb-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e] animate-pulse"></span>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-[#06b6d4] font-medium mb-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4] animate-pulse"></span>
             <span>{isFa ? 'مهندسی محصول و معماری سامانه‌های مقیاس‌پذیر' : 'SYSTEMS ARCHITECT & PRODUCT LEADER'}</span>
           </div>
 
           <!-- Headline with Authentic Human Casing -->
-          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#e8e2d5] leading-tight mt-1">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#f8fafc] leading-tight mt-1">
             {isFa 
               ? 'معماری سامانه‌های پرحجم، سوییچ‌های مقیاس میلیاردی و مهندسی عامل‌محور' 
               : 'Enterprise Systems Architecture, Billion-Scale Telecom & High-Throughput Financial Infra'}
           </h1>
           
           <!-- Role Subtitle -->
-          <p class="text-xs sm:text-sm font-medium text-[#c9a15a] mt-2 tracking-wide">
+          <p class="text-xs sm:text-sm font-medium text-[#e2c974] mt-2 tracking-wide">
             {isFa 
               ? 'معمار ارشد زیرساخت · مدیر محصول فنی سوییچ‌های مخابرات، پرداخت و خطوط داده' 
               : 'Principal Systems Architect & Technical Product Leader · Telecom, Payments & AI Infrastructure'}
           </p>
 
           <!-- Authentic Human-Crafted Narrative: 3 Structured Pillars -->
-          <div class="mt-5 text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl space-y-3">
+          <div class="mt-5 text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl space-y-3">
             <p>
               {isFa
                 ? 'نقشه‌های محصول در لبه‌های شبکه و گلوگاه‌های توزیع‌شده سنجیده می‌شوند. هنگامی که یک سوییچ شتاب یا سامانه بالادستی بانکی با تاخیر مواجه می‌شود، یا اپراتور مخابرات تاییدیه ارسال پیامک را معلق می‌گذارد، مدل‌های سنتی داده به سرعت دچار مغایرت و صف‌های بازبینی دستی می‌شوند.'
@@ -107,14 +107,14 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 
           <!-- Proof Matrix: 4-Cell Tactile Grid -->
           <div class="mt-6 pt-5 border-t border-white/10">
-            <div class="text-[10px] font-bold text-[#c9a15a] uppercase tracking-widest mb-3">
-              {isFa ? 'ماتریس شاخص‌های عملیاتی و داده‌های عملکرد // TELEMETRY PROOF MATRIX' : 'AUDITABLE PRODUCTION TELEMETRY // PERFORMANCE MATRIX'}
+            <div class="text-[10px] font-bold text-[#e2c974] uppercase tracking-widest mb-3">
+              {isFa ? 'ماتریس شاخص‌های عملیاتی و داده‌های عملکرد' : 'Production Telemetry & Performance Matrix'}
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {proofMatrix.map(cell => (
-                <div class="bg-white/[0.02] border border-white/10 rounded-xl p-4 flex flex-col justify-between transition-all duration-300 hover:bg-white/[0.05] hover:border-white/20 hover:-translate-y-0.5">
-                  <span class="text-xl sm:text-2xl font-bold font-mono text-[#e8e2d5] tracking-tight">{cell.val}</span>
-                  <span class="text-[11px] sm:text-xs text-[#a8a196] uppercase mt-1 tracking-wide">{cell.label}</span>
+                <div class="bg-white/[0.02] border border-white/10 rounded-xl p-4 flex flex-col justify-between transition-all duration-300 hover:bg-white/[0.05] hover:border-cyan-500/30 hover:-translate-y-0.5">
+                  <span class="text-xl sm:text-2xl font-bold font-mono text-[#f8fafc] tracking-tight">{cell.val}</span>
+                  <span class="text-[11px] sm:text-xs text-[#94a3b8] uppercase mt-1 tracking-wide">{cell.label}</span>
                 </div>
               ))}
             </div>
@@ -124,18 +124,18 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
         <!-- Action CTAs -->
         <div class="mt-6 pt-5 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
           <div class="flex flex-wrap gap-3">
-            <a href="#blueprints" class="px-5 py-2.5 rounded-xl bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#c4562e]/20 transition-all duration-300 hover:-translate-y-0.5">
+            <a href="#blueprints" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#d4af37]/25 transition-all duration-300 hover:-translate-y-0.5">
               {isFa ? 'مشاهده نقشه‌های معماری ↓' : 'Inspect Blueprints ↓'}
             </a>
-            <a href={`${baseUrl}whitepapers/`} class="px-5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-[#e8e2d5] font-bold text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] hover:bg-white/[0.06] transition-all duration-300 hover:-translate-y-0.5">
-              {isFa ? 'اسناد مشخصات فنی (۴) →' : 'Technical Whitepapers (4) →'}
+            <a href={`${baseUrl}whitepapers/`} class="px-5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-[#f8fafc] font-bold text-xs uppercase tracking-wider hover:border-[#06b6d4] hover:text-[#06b6d4] hover:bg-white/[0.06] transition-all duration-300 hover:-translate-y-0.5">
+              {isFa ? 'مستندات معماری و مقالات (۴) →' : 'Technical Whitepapers (4) →'}
             </a>
           </div>
 
           <div class="flex items-center gap-4 text-xs font-mono">
-            <a href={mailtoHref} class="text-[#c9a15a] hover:underline transition-colors">ariasg2002@gmail.com</a>
+            <a href={mailtoHref} class="text-[#e2c974] hover:underline transition-colors">ariasg2002@gmail.com</a>
             <span class="text-white/20">|</span>
-            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="text-[#a8a196] hover:text-[#e8e2d5] transition-colors">LinkedIn ↗</a>
+            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors">LinkedIn ↗</a>
           </div>
         </div>
       </div>

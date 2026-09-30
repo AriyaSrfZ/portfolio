@@ -17,7 +17,7 @@ A rigorous architectural taxonomy dissecting the transition from open-loop stoch
 
 ---
 
-## 00 // Foundational Concepts: Open-Loop vs. Closed-Loop Control
+## 00. Foundational Concepts: Open-Loop vs. Closed-Loop Control
 
 Traditional Large Language Model (LLM) serving follows an open-loop feed-forward pipeline:
 
@@ -38,7 +38,7 @@ Where:
 
 ---
 
-## 01 // The Reflection Pattern: Dual-Agent Evaluator-Critic Loops
+## 01. The Reflection Pattern: Dual-Agent Evaluator-Critic Loops
 
 The Reflection pattern decouples generation from quality assurance, addressing the fundamental limitation of single-pass auto-regressive decoding:
 
@@ -51,7 +51,7 @@ The Reflection pattern decouples generation from quality assurance, addressing t
 
 ---
 
-## 02 // The Tool Use Pattern: Schema-Enforced Function Calling
+## 02. The Tool Use Pattern: Schema-Enforced Function Calling
 
 Grounding probabilistic inference in deterministic compute and external API gateways:
 - **Schema Enforcement:** Pydantic models or JSON Schema specifications passed directly into the model context.
@@ -60,7 +60,7 @@ Grounding probabilistic inference in deterministic compute and external API gate
 
 ---
 
-## 03 // The ReAct Pattern: Interleaved Reasoning and Action
+## 03. The ReAct Pattern: Interleaved Reasoning and Action
 
 Coupling dynamic thought synthesis with environment feedback via persistent scratchpad memory:
 - **Thought:** Internal reasoning trace planning the next discrete step.
@@ -71,7 +71,7 @@ This loop prevents blind execution by forcing the model to evaluate the conseque
 
 ---
 
-## 04 // The Planning Pattern: Directed Acyclic Graph (DAG) Execution
+## 04. The Planning Pattern: Directed Acyclic Graph (DAG) Execution
 
 Decomposing complex strategic objectives into dependency graphs with dynamic replanning triggers:
 - **Plan Decomposition:** High-level objective mapped into discrete sub-tasks with explicit input/output contracts.
@@ -80,7 +80,7 @@ Decomposing complex strategic objectives into dependency graphs with dynamic rep
 
 ---
 
-## 05 // The Multi-Agent Collaboration Pattern: Hierarchical Topologies
+## 05. The Multi-Agent Collaboration Pattern: Hierarchical Topologies
 
 Distributed specialization, message buses, and consensus aggregation across heterogeneous agents:
 - **Supervisor-Worker Topologies:** A lead supervisor agent delegates sub-tasks to specialized sub-agents and aggregates outputs.
@@ -89,7 +89,7 @@ Distributed specialization, message buses, and consensus aggregation across hete
 
 ---
 
-## 06 // Quantitative Architectural Matrix
+## 06. Quantitative Architectural Matrix
 
 | Pattern | Token Overhead | Latency SLA | Reliability Delta | Cost Multiple |
 | :--- | :--- | :--- | :--- | :--- |
@@ -102,7 +102,7 @@ Distributed specialization, message buses, and consensus aggregation across hete
 
 ---
 
-## 07 // Production Hardening: Operational Guardrails
+## 07. Production Hardening: Operational Guardrails
 
 - **Step & Token Deadlines:** Enforce a maximum step limit (`MAX_STEPS = 10`) and hard wall-clock timeout (`TIMEOUT = 30s`) to prevent unbounded token drain.
 - **Loop & Oscillation Detection:** Hash recent tool arguments and scratchpad traces to detect cyclic traps and break loops automatically.

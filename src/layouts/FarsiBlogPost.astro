@@ -18,38 +18,38 @@ const { title, description, date, technologies, metric } = Astro.props;
     class="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-24 font-['Vazirmatn',sans-serif] tracking-normal"
   >
     <a
-      href={`${import.meta.env.BASE_URL}fa/#work`}
-      class="text-xs uppercase tracking-normal text-[#a8a196] hover:text-[#e8e2d5] inline-flex items-center gap-1"
+      href={`${import.meta.env.BASE_URL}fa/#blueprints`}
+      class="text-xs uppercase tracking-normal text-[#94a3b8] hover:text-[#e2c974] inline-flex items-center gap-1.5 transition-colors"
     >
-      → بازگشت به پرونده‌های عملیاتی
+      → بازگشت به نقشه‌های معماری
     </a>
 
-    <h1 class="text-3xl font-bold mt-6 mb-2 text-[#e8e2d5] tracking-normal">{title}</h1>
-    <p class="text-xs text-[#a8a196] uppercase mb-4 tracking-normal">
+    <h1 class="text-3xl font-bold mt-6 mb-2 text-[#f8fafc] tracking-normal">{title}</h1>
+    <p class="text-xs text-[#94a3b8] mb-4 tracking-normal">
       {date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}
     </p>
 
     <div class="flex flex-wrap gap-2 mb-6">
       {technologies.map((tech) => (
-        <span class="text-xs px-2.5 py-1 bg-[#1c1916] border border-[#5c6650] text-[#c9d4a8] tracking-normal">{tech}</span>
+        <span class="text-xs px-3 py-1 rounded-lg bg-white/[0.03] border border-white/10 text-[#38bdf8] font-mono tracking-normal">{tech}</span>
       ))}
     </div>
 
-    {metric && <p class="bg-[#1c1916] border border-[#5c6650] px-4 py-3 text-[#c9a15a] font-bold text-xs uppercase mb-8 inline-block tracking-normal">{metric}</p>}
+    {metric && <p class="bg-[#111827]/80 border border-white/10 rounded-xl px-4 py-3 text-[#e2c974] font-bold text-xs uppercase mb-8 inline-block tracking-normal shadow-lg">{metric}</p>}
 
     <div class="max-w-none text-sm leading-relaxed tracking-normal
-      [&_h2]:text-[#c9a15a] [&_h2]:text-xl [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:border-b [&_h2]:border-[#5c6650] [&_h2]:pb-2 [&_h2]:font-bold [&_h2]:tracking-normal
-      [&_h3]:text-[#c4562e] [&_h3]:text-lg [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:font-bold [&_h3]:tracking-normal
-      [&_p]:mb-6 [&_p]:text-[#e8e2d5] [&_p]:leading-relaxed [&_p]:tracking-normal
+      [&_h2]:text-[#e2c974] [&_h2]:text-xl [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:border-b [&_h2]:border-white/10 [&_h2]:pb-2 [&_h2]:font-bold [&_h2]:tracking-normal
+      [&_h3]:text-[#06b6d4] [&_h3]:text-lg [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:font-bold [&_h3]:tracking-normal
+      [&_p]:mb-6 [&_p]:text-[#f8fafc] [&_p]:leading-relaxed [&_p]:tracking-normal
       [&_ul]:list-disc [&_ul]:ps-5 [&_ul]:mb-6
-      [&_li]:mb-2 [&_li]:text-[#a8a196] [&_li]:tracking-normal
+      [&_li]:mb-2 [&_li]:text-[#94a3b8] [&_li]:tracking-normal
       [&_table]:[direction:ltr] [&_table]:text-left [&_table]:w-full [&_table]:border-collapse [&_table]:mb-8 [&_table]:text-sm
-      [&_th]:[direction:ltr] [&_th]:text-left [&_th]:border [&_th]:border-[#5c6650] [&_th]:p-3 [&_th]:text-[#c9a15a] [&_th]:bg-[#1c1916] [&_th]:tracking-normal
-      [&_td]:[direction:ltr] [&_td]:text-left [&_td]:border [&_td]:border-[#5c6650] [&_td]:p-3 [&_td]:text-[#e8e2d5] [&_td]:tracking-normal
-      [&_strong]:text-[#c9d4a8] [&_strong]:font-bold
-      [&_pre]:[direction:ltr] [&_pre]:text-left [&_pre]:!whitespace-pre [&_pre]:overflow-x-auto [&_pre]:!bg-[#1c1916] [&_pre]:!border [&_pre]:!border-[#5c6650] [&_pre]:p-4 [&_pre]:my-6 [&_pre]:max-w-full
-      [&_code]:[direction:ltr] [&_code]:text-left [&_code]:!text-[#c9d4a8] [&_code]:!font-mono [&_code]:!bg-transparent [&_code]:!p-0 [&_code]:tracking-normal
-      [&_blockquote]:border-s-2 [&_blockquote]:border-[#c4562e] [&_blockquote]:bg-[#141210] [&_blockquote]:p-4 [&_blockquote]:my-6">
+      [&_th]:[direction:ltr] [&_th]:text-left [&_th]:border [&_th]:border-white/10 [&_th]:p-3 [&_th]:text-[#e2c974] [&_th]:bg-[#111827] [&_th]:tracking-normal
+      [&_td]:[direction:ltr] [&_td]:text-left [&_td]:border [&_td]:border-white/10 [&_td]:p-3 [&_td]:text-[#f8fafc] [&_td]:tracking-normal
+      [&_strong]:text-[#38bdf8] [&_strong]:font-bold
+      [&_pre]:[direction:ltr] [&_pre]:text-left [&_pre]:!whitespace-pre [&_pre]:overflow-x-auto [&_pre]:!bg-[#0b1120] [&_pre]:!border [&_pre]:!border-white/10 [&_pre]:p-4 [&_pre]:my-6 [&_pre]:rounded-xl [&_pre]:max-w-full
+      [&_code]:[direction:ltr] [&_code]:text-left [&_code]:!text-[#38bdf8] [&_code]:!font-mono [&_code]:!bg-transparent [&_code]:!p-0 [&_code]:tracking-normal
+      [&_blockquote]:border [&_blockquote]:border-white/10 [&_blockquote]:bg-[#111827]/60 [&_blockquote]:p-4 [&_blockquote]:my-6 [&_blockquote]:rounded-xl [&_blockquote]:italic [&_blockquote]:text-[#e2c974]">
       <slot />
     </div>
   </article>

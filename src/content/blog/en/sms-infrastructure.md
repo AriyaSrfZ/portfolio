@@ -18,7 +18,7 @@ A rigorous architectural breakdown of the Iranian domestic SMS routing ecosystem
 
 ---
 
-## 01 // Macro Topology: The Domestic Aggregation Model
+## 01. Macro Topology: The Domestic Aggregation Model
 
 The telecommunications landscape in Iran operates under a rigid, state-supervised aggregation hierarchy. Unlike western ecosystems where Communication Platforms as a Service (CPaaS) vendors like Twilio integrate via cloud-native APIs, Iranian enterprise traffic routes through licensed wholesale aggregators under state telecommunications oversight.
 
@@ -32,7 +32,7 @@ The primary underlying carriers:
 
 ---
 
-## 02 // Network Hierarchy & Shortcode Prefix Partitioning
+## 02. Network Hierarchy & Shortcode Prefix Partitioning
 
 Every programmatic SMS in Iran is routed through an explicit numeric prefix. This prefix dictates the underlying wholesale aggregator, the physical SMSC bridge, delivery latency SLAs, and filtering rules:
 
@@ -51,7 +51,7 @@ Every programmatic SMS in Iran is routed through an explicit numeric prefix. Thi
 
 ---
 
-## 03 // Low-Level Protocol Engineering: SMPP 3.4 Mechanics
+## 03. Low-Level Protocol Engineering: SMPP 3.4 Mechanics
 
 While international systems abstract transmission behind HTTP/2 or HTTP/3 REST APIs, high-throughput enterprise gateways interfacing with domestic aggregators must maintain persistent, bi-directional TCP socket connections using the Short Message Peer-to-Peer (SMPP 3.4) protocol.
 
@@ -85,7 +85,7 @@ To prevent intermediate stateful firewalls from terminating idle TCP sockets, th
 
 ---
 
-## 04 // Protocol Encoding: GSM-7 vs. UCS-2
+## 04. Protocol Encoding: GSM-7 vs. UCS-2
 
 Because Rich Communication Services (RCS) and MMS are blocked at national network gateways, all enterprise communication is forced into standard SMS text channels. This triggers severe character encoding constraints:
 
@@ -99,7 +99,7 @@ Because Rich Communication Services (RCS) and MMS are blocked at national networ
 
 ---
 
-## 05 // Delivery Telemetry: DLR State Machines & LBS Filtering
+## 05. Delivery Telemetry: DLR State Machines & LBS Filtering
 
 When an enterprise submits a `submit_sm` PDU, the aggregator returns a `message_id` in the synchronous `submit_sm_resp`. This only confirms aggregator buffer receipt, not device delivery. Final delivery status returns asynchronously via `deliver_sm` PDUs.
 
@@ -115,14 +115,14 @@ When an enterprise submits a `submit_sm` PDU, the aggregator returns a `message_
 
 ---
 
-## 06 // Architecture Trade-offs: Latency, Resilience & Rate-Limiting Dilemmas
+## 06. Architecture Trade-offs: Latency, Resilience & Rate-Limiting Dilemmas
 
 - **Aggregator Failover vs. Message Deduplication:** When an upstream aggregator (e.g., Magfa 3000) experiences an outage or TCP socket stall during a national traffic spike, an enterprise system must decide whether to reroute pending OTPs to a secondary aggregator. If the first aggregator later drains its queue and emits the delayed message, the subscriber receives duplicate OTPs, invalidating the active session hash. Systems must trade off failover speed against client confusion.
 - **Synchronous Ingestion vs. Backpressure Buffering:** Enterprise microservices generate bursts of 10,000+ requests per second during promotional flashes or authentication surges. Domestic aggregator bindings cap ingestion at 100-300 TPS. Gateways must implement persistent distributed queues (Kafka or RabbitMQ) with leaky-bucket rate shapers. If backpressure retention exceeds 5 minutes, delayed OTPs arrive after the client-side UI timer expires, destroying conversion.
 
 ---
 
-## 07 // Segment Split & Throughput Calculation
+## 07. Segment Split & Throughput Calculation
 
 | Metric | Persian UCS-2 (145 Chars) | Latin GSM-7 (145 Chars) | Delta & Impact |
 | :--- | :--- | :--- | :--- |

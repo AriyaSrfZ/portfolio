@@ -429,7 +429,7 @@ export const copy: Record<Locale, Copy> = {
         "Peak throughput in TPS and finality latency across traditional card schemes, national switches, telecom routing fabrics, and distributed ledgers — as published on the live suite.",
     },
     process: {
-      kicker: "05 // Engagement",
+      kicker: "05 · Engagement",
       title: "Architecture review",
       lead: "Bring the failure already on the board. Fifteen minutes is enough to tell whether the work is architecture, operations, or both.",
       steps: [
@@ -451,7 +451,7 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     book: {
-      kicker: "05 // Calendar",
+      kicker: "05 · Calendar",
       title: "Direct engagement",
       lead: "Architecture assessments, platform audits, and product reviews. Fifteen minutes.",
       bringTitle: "Bring this",
@@ -881,7 +881,7 @@ export const copy: Record<Locale, Copy> = {
         "اوج TPS و تأخیر قطعیت در طرح‌های کارتی، سوییچ‌های ملی، مسیریابی مخابرات و دفترهای توزیع‌شده — همان‌طور که در مجموعه زنده منتشر شده است.",
     },
     process: {
-      kicker: "۰۵ // همکاری",
+      kicker: "۰۵ · همکاری",
       title: "بررسی معماری",
       lead: "همان شکستی را بیاورید که الان روی میز است. پانزده دقیقه کافی است تا معلوم شود کار معماری است، عملیات، یا هر دو.",
       steps: [
@@ -903,7 +903,7 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     book: {
-      kicker: "۰۵ // تقویم",
+      kicker: "۰۵ · تقویم",
       title: "هماهنگی مستقیم",
       lead: "بررسی معماری، ممیزی سکو، مرور محصول. جلسه پانزده دقیقه‌ای.",
       bringTitle: "چه بیاورید",

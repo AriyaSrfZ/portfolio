@@ -18,7 +18,7 @@ Analyzing real-time fraud mitigation architectures across high-velocity networks
 
 ---
 
-## 01 // Defense Strategy: Multi-Tiered Perimeter Defense
+## 01. Defense Strategy: Multi-Tiered Perimeter Defense
 
 Static heuristic rules introduce severe operational bottlenecks. Malicious entities adapt rapidly to velocity checks and country blacklists, while legitimate buyers face elevated false rejection rates during traffic surges.
 
@@ -33,7 +33,7 @@ Modern platforms deploy multi-layered perimeter architectures:
 
 ---
 
-## 02 // Detection Engines: Heuristics vs. Behavioral ML
+## 02. Detection Engines: Heuristics vs. Behavioral ML
 
 ### Heuristic Rule Filtering
 
@@ -61,25 +61,25 @@ The detection threshold represents an optimization tradeoff along the ROC (Recei
 
 ---
 
-## 03 // Edge Risk Pipeline
+## 03. Edge Risk Pipeline
 
 ```
-01 // INGRESS
+01 · INGRESS
 Edge Telemetry -> Screen Entropy, Browser Canvas, IP Subnet (< 15ms)
       ↓
-02 // HEURISTICS
+02 · HEURISTICS
 Rule Engine -> Velocity Check, Card Expiry Format, BIN Blacklist (< 5ms)
       ↓
-03 // SCORING
+03 · SCORING
 Behavioral ML -> High-Dimensional Vector Inference, Entity Graphs (< 25ms)
       ↓
-04 // OUTCOME
+04 · OUTCOME
 3DS 2.0 Decision -> Low Risk: Frictionless Pass | High Risk: Biometric Challenge / Rejection
 ```
 
 ---
 
-## 04 // Chargeback Monitoring & Program Standing
+## 04. Chargeback Monitoring & Program Standing
 
 Card schemes (Visa VDMP and Mastercard ECP) impose strict thresholds on merchant transaction volume:
 

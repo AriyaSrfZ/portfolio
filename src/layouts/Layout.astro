@@ -31,14 +31,14 @@ const isFa = lang === 'fa';
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
 </head>
-<body class="min-h-screen bg-[#141210] text-[#e8e2d5] selection:bg-[#c4562e]/30 selection:text-[#c9a15a] font-sans antialiased">
+<body class="min-h-screen bg-[#0b1120] text-[#f8fafc] selection:bg-[#06b6d4]/30 selection:text-[#e2c974] font-sans antialiased">
   <FloatingNavbar client:load locale={isFa ? 'fa' : 'en'} />
 
   <main class="relative">
     <slot />
   </main>
 
-  <footer class="relative z-10 border-t border-white/10 mt-24 py-12 px-6 text-center text-xs text-[#a8a196] uppercase tracking-wider">
+  <footer class="relative z-10 border-t border-white/10 mt-24 py-12 px-6 text-center text-xs text-[#94a3b8] uppercase tracking-wider">
     {isFa ? (
       <p>© {new Date().getFullYear()} آریا صراف‌زاده. تمامی سامانه‌ها در وضعیت عملیاتی.</p>
     ) : (

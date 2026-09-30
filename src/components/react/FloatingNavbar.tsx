@@ -109,20 +109,20 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       animate={{ y: visible ? 0 : -90, opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.22, ease: 'easeOut' }}
     >
-      <nav className="relative bg-[#141210]/80 backdrop-blur-xl border border-white/10 rounded-2xl px-5 sm:px-6 py-3 flex items-center justify-between shadow-2xl ring-1 ring-white/5">
+      <nav className="relative bg-[#0b1120]/85 backdrop-blur-xl border border-white/10 rounded-2xl px-5 sm:px-6 py-3 flex items-center justify-between shadow-2xl ring-1 ring-white/5">
         <div className="flex items-center gap-3">
-          <span className="w-2 h-2 rounded-full bg-[#c9a15a] shadow-[0_0_8px_rgba(201,161,90,0.6)] animate-pulse" />
-          <a href={homePath} className="font-bold text-xs sm:text-sm tracking-wider text-[#e8e2d5] uppercase hover:text-[#c9a15a] transition-colors">
-            {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}<span className="text-[#c4562e]">.</span>
+          <span className="w-2 h-2 rounded-full bg-[#06b6d4] shadow-[0_0_10px_rgba(6,182,212,0.8)] animate-pulse" />
+          <a href={homePath} className="font-bold text-xs sm:text-sm tracking-wider text-[#f8fafc] uppercase hover:text-[#e2c974] transition-colors">
+            {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}<span className="text-[#06b6d4]">.</span>
           </a>
         </div>
 
-        <div className="hidden lg:flex items-center gap-6 text-xs uppercase tracking-wider text-[#a8a196]">
+        <div className="hidden lg:flex items-center gap-6 text-xs uppercase tracking-wider text-[#94a3b8]">
           {inPageAnchors.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="hover:text-[#c9a15a] transition-colors py-1 focus-visible:outline-1 focus-visible:outline-[#c9a15a]"
+              className="hover:text-[#e2c974] transition-colors py-1 focus-visible:outline-1 focus-visible:outline-[#e2c974]"
             >
               {item.label}
             </a>
@@ -137,7 +137,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                 e.stopPropagation();
                 setDropdownOpen(!dropdownOpen);
               }}
-              className="flex items-center gap-1.5 py-1 text-[#a8a196] hover:text-[#c9a15a] text-xs uppercase transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 py-1 text-[#94a3b8] hover:text-[#e2c974] text-xs uppercase transition-colors cursor-pointer"
             >
               <span>{t('nav.whitepapers')}</span>
               <span className="text-[10px]">{dropdownOpen ? '▲' : '▼'}</span>
@@ -150,12 +150,12 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 6, scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full mt-2 w-96 bg-[#1c1916]/95 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl p-2.5 z-50 ring-1 ring-white/5"
+                  className="absolute right-0 top-full mt-2 w-96 bg-[#111827]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/5"
                 >
-                  <div className="px-3 py-2 border-b border-white/10 mb-2 flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
-                    <span className="text-[#c4562e] font-bold">{isFa ? 'اسناد مشخصات فنی' : 'Technical Specifications'}</span>
-                    <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} onClick={closeMenus} className="text-[#c9a15a] hover:underline font-bold">
-                      {isFa ? 'فهرست اسناد ←' : 'Open Index →'}
+                  <div className="px-3 py-2 border-b border-white/10 mb-2 flex justify-between items-center text-[10px] text-[#94a3b8] uppercase">
+                    <span className="text-[#06b6d4] font-bold">{isFa ? 'مستندات معماری و مشخصات فنی' : 'Technical Specifications'}</span>
+                    <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} onClick={closeMenus} className="text-[#e2c974] hover:underline font-bold">
+                      {isFa ? 'فهرست مقالات ←' : 'Open Index →'}
                     </a>
                   </div>
 
@@ -165,14 +165,14 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                         key={doc.href}
                         href={doc.href}
                         onClick={closeMenus}
-                        className="block p-3 rounded-lg bg-white/[0.02] border border-white/5 hover:border-[#c4562e]/50 hover:bg-white/[0.05] transition-all duration-300 group"
+                        className="block p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#06b6d4]/40 hover:bg-white/[0.05] transition-all duration-300 group"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-bold text-[#c9a15a] uppercase">{doc.spec}</span>
-                          <span className="text-[10px] text-white/30 group-hover:text-[#c4562e] transition">&rarr;</span>
+                          <span className="text-[10px] font-bold text-[#e2c974] uppercase">{doc.spec}</span>
+                          <span className="text-[10px] text-white/30 group-hover:text-[#06b6d4] transition">&rarr;</span>
                         </div>
-                        <p className="text-xs font-bold text-[#e8e2d5] uppercase group-hover:text-[#c9a15a] transition mt-1">{doc.title}</p>
-                        <p className="text-[10px] text-[#a8a196] mt-0.5 line-clamp-1">{doc.desc}</p>
+                        <p className="text-xs font-bold text-[#f8fafc] group-hover:text-[#e2c974] transition mt-1">{doc.title}</p>
+                        <p className="text-[10px] text-[#94a3b8] mt-0.5 line-clamp-1">{doc.desc}</p>
                       </a>
                     ))}
                   </div>
@@ -183,7 +183,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
           <a
             href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
-            className="hover:text-[#e8e2d5] text-[#a8a196] transition-colors py-1"
+            className="hover:text-[#f8fafc] text-[#94a3b8] transition-colors py-1"
           >
             {t('nav.contact')}
           </a>
@@ -192,7 +192,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         <div className="flex items-center gap-3" ref={mobileRef}>
           <a
             href={switchTarget}
-            className="px-3 py-1 rounded-lg border border-white/10 bg-white/[0.03] text-[#c9a15a] hover:border-[#c9a15a] hover:text-[#e8e2d5] font-bold text-xs uppercase transition tracking-wider"
+            className="px-3 py-1 rounded-lg border border-white/10 bg-white/[0.03] text-[#e2c974] hover:border-[#e2c974] hover:text-[#f8fafc] font-bold text-xs uppercase transition tracking-wider"
             title={isFa ? 'Switch to English' : 'تغییر به فارسی'}
           >
             {switchLabel}
@@ -200,14 +200,14 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
           <a
             href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
-            className="hidden sm:inline-flex px-4 py-1.5 rounded-lg bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#c4562e]/20 transition-all duration-300 hover:-translate-y-0.5"
+            className="hidden sm:inline-flex px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#d4af37]/25 transition-all duration-300 hover:-translate-y-0.5"
           >
             {t('nav.schedule')}
           </a>
 
           <button
             type="button"
-            className="lg:hidden px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-[#e8e2d5] text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] transition"
+            className="lg:hidden px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-[#f8fafc] text-xs uppercase tracking-wider hover:border-[#e2c974] hover:text-[#e2c974] transition"
             aria-expanded={mobileOpen}
             aria-label="Open navigation"
             onClick={(e) => {
@@ -226,10 +226,10 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 6, scale: 0.98 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-3 top-full mt-2 w-[min(24rem,calc(100%-1.5rem))] bg-[#1c1916]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-3 z-50 lg:hidden ring-1 ring-white/5"
+                className="absolute right-3 top-full mt-2 w-[min(24rem,calc(100%-1.5rem))] bg-[#111827]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-3 z-50 lg:hidden ring-1 ring-white/5"
               >
-                <div className="px-3 py-2 border-b border-white/10 mb-2 text-[10px] text-[#a8a196] uppercase font-bold tracking-wider">
-                  {isFa ? 'فهرست سامانه‌ها' : 'System Index'}
+                <div className="px-3 py-2 border-b border-white/10 mb-2 text-[10px] text-[#94a3b8] uppercase font-bold tracking-wider">
+                  {isFa ? 'فهرست سامانه‌ها' : 'Architecture Index'}
                 </div>
                 <div className="space-y-1">
                   {inPageAnchors.map((item) => (
@@ -237,7 +237,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                       key={item.href}
                       href={item.href}
                       onClick={closeMenus}
-                      className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#a8a196] hover:bg-white/[0.05] hover:text-[#e8e2d5] transition-colors"
+                      className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#94a3b8] hover:bg-white/[0.05] hover:text-[#f8fafc] transition-colors"
                     >
                       {item.label}
                     </a>
@@ -245,7 +245,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   <a
                     href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
                     onClick={closeMenus}
-                    className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#a8a196] hover:bg-white/[0.05] hover:text-[#e8e2d5] transition-colors"
+                    className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#94a3b8] hover:bg-white/[0.05] hover:text-[#f8fafc] transition-colors"
                   >
                     {t('nav.whitepapers')}
                   </a>
@@ -254,15 +254,15 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                       key={doc.href}
                       href={doc.href}
                       onClick={closeMenus}
-                      className="block px-4 py-1.5 rounded-md text-[10px] uppercase tracking-wider text-[#c9a15a] hover:text-[#e8e2d5] hover:bg-white/[0.03] transition-colors"
+                      className="block px-4 py-1.5 rounded-md text-[10px] tracking-wider text-[#e2c974] hover:text-[#f8fafc] hover:bg-white/[0.03] transition-colors"
                     >
-                      {doc.spec} // {doc.title}
+                      {doc.spec} · {doc.title}
                     </a>
                   ))}
                   <a
                     href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
                     onClick={closeMenus}
-                    className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#a8a196] hover:bg-white/[0.05] hover:text-[#e8e2d5] transition-colors"
+                    className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#94a3b8] hover:bg-white/[0.05] hover:text-[#f8fafc] transition-colors"
                   >
                     {t('nav.contact')}
                   </a>

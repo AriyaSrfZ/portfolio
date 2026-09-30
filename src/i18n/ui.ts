@@ -1,20 +1,20 @@
 export const ui = {
   en: {
-    'nav.settlements': '01 // SETTLEMENTS',
-    'nav.fraud': '02 // FRAUD RISK',
-    'nav.sms': '03 // SMS SWITCH',
-    'nav.data': '04 // DATA PIPELINE',
-    'nav.whitepapers': '05 // WHITEPAPERS',
-    'nav.contact': '06 // CONTACT',
-    'nav.schedule': 'SCHEDULE REVIEW',
+    'nav.settlements': 'Settlements',
+    'nav.fraud': 'Fraud Risk',
+    'nav.sms': 'SMS Switch',
+    'nav.data': 'Data Pipeline',
+    'nav.whitepapers': 'Whitepapers',
+    'nav.contact': 'Contact',
+    'nav.schedule': 'Schedule Review',
   },
   fa: {
-    'nav.settlements': '۰۱ // تسویه',
-    'nav.fraud': '۰۲ // تقلب',
-    'nav.sms': '۰۳ // سوییچ پیامک',
-    'nav.data': '۰۴ // خط داده',
-    'nav.whitepapers': '۰۵ // مقالات فنی',
-    'nav.contact': '۰۶ // تماس',
+    'nav.settlements': 'تسویه حساب',
+    'nav.fraud': 'تشخیص تقلب',
+    'nav.sms': 'سوییچ پیامک',
+    'nav.data': 'خط داده',
+    'nav.whitepapers': 'مستندات معماری',
+    'nav.contact': 'ارتباط',
     'nav.schedule': 'بررسی معماری',
   }
 } as const;

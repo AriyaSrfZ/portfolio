@@ -18,7 +18,7 @@ The modern payment gateway operates as a translation and routing boundary betwee
 
 ---
 
-## 01 // Architectural Purpose: The Fact vs. State Model
+## 01. Architectural Purpose: The Fact vs. State Model
 
 Legacy monolithic switches failed due to destructive row updates. Overwriting database records during live transaction processing leads to irrecoverable race conditions and database deadlocks during network blips or banking host timeouts.
 
@@ -32,7 +32,7 @@ Modern payment platforms decouple execution into transient States and immutable 
 
 ---
 
-## 02 // Core Protocol Mechanics
+## 02. Core Protocol Mechanics
 
 ### Idempotency & State Locks
 Clients transmit a unique UUIDv4 token in request headers. The gateway executes an atomic `SETNX` command against a Redis cluster with an expiration TTL of 86,400 seconds (24 hours). If the key exists, subsequent duplicate attempts are dropped or returned the cached execution outcome, preventing catastrophic double-settlement loops.
@@ -59,7 +59,7 @@ High-throughput payment gateways allocate roundtrip network overhead across stri
 
 ---
 
-## 03 // Topology Comparison: Shaparak Switch vs. Global Standard
+## 03. Topology Comparison: Shaparak Switch vs. Global Standard
 
 | Architectural Vector | Global Acquirers (Stripe / Adyen) | Iranian Switch (Shaparak / PSPs) |
 | :--- | :--- | :--- |
@@ -71,7 +71,7 @@ High-throughput payment gateways allocate roundtrip network overhead across stri
 
 ---
 
-## 04 // Switch Transaction Pipeline
+## 04. Switch Transaction Pipeline
 
 - **Ingress:** Merchant Client initiates HTTPS TLS 1.3 POST request with unique idempotency key.
 - **Cache Lock:** In-memory Redis cluster validates token via atomic `SETNX`. Duplicate requests short-circuit immediately.
@@ -81,7 +81,7 @@ High-throughput payment gateways allocate roundtrip network overhead across stri
 
 ---
 
-## 05 // Failure Modes & Operational Resilience
+## 05. Failure Modes & Operational Resilience
 
 - **Banking Host Timeouts:** When the upstream acquirer fails to respond within 15 seconds, the switch automatically generates an ISO 8583 Message Type Identifier (MTI) 0400 reversal packet, guaranteeing funds are unblocked on the consumer card.
 - **Lock Lifetime Management:** Distributed Redis locks must outlive the longest banking retry window (86,400s) to absorb delayed retries safely.

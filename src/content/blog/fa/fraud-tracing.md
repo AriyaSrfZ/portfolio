@@ -19,7 +19,7 @@ lang: "fa"
 
 ---
 
-## ۰۱ // راهبرد دفاع: کنترل چندلایه در مرز شبکه
+## ۰۱. راهبرد دفاع: کنترل چندلایه در مرز شبکه
 
 قواعد ابتکاری ایستا، گلوگاه عملیاتی ایجاد می‌کنند. مهاجمان به‌سرعت رفتار خود را با کنترل نرخ تراکنش و فهرست کشورهای مسدود تطبیق می‌دهند. هم‌زمان، جهش ترافیک نرخ رد اشتباه خریداران واقعی را بالا می‌برد.
 
@@ -34,7 +34,7 @@ lang: "fa"
 
 ---
 
-## ۰۲ // موتورهای کشف تقلب و کنترل ریسک: قواعد ابتکاری در برابر یادگیری ماشین رفتاری
+## ۰۲. موتورهای کشف تقلب و کنترل ریسک: قواعد ابتکاری در برابر یادگیری ماشین رفتاری
 
 ### فیلتر مبتنی بر قواعد ابتکاری
 
@@ -62,21 +62,21 @@ lang: "fa"
 
 ---
 
-## ۰۳ // زنجیره پردازش ریسک در لبه
+## ۰۳. زنجیره پردازش ریسک در لبه
 
 <div dir="ltr">
 
 ```
-01 // INGRESS
+01 · INGRESS
 Edge Telemetry -> Screen Entropy, Browser Canvas, IP Subnet (< 15ms)
       ↓
-02 // HEURISTICS
+02 · HEURISTICS
 Rule Engine -> Velocity Check, Card Expiry Format, BIN Blacklist (< 5ms)
       ↓
-03 // SCORING
+03 · SCORING
 Behavioral ML -> High-Dimensional Vector Inference, Entity Graphs (< 25ms)
       ↓
-04 // OUTCOME
+04 · OUTCOME
 3DS 2.0 Decision -> Low Risk: Frictionless Pass | High Risk: Biometric Challenge / Rejection
 ```
 
@@ -84,7 +84,7 @@ Behavioral ML -> High-Dimensional Vector Inference, Entity Graphs (< 25ms)
 
 ---
 
-## ۰۴ // پایش برگشت وجه ناشی از اعتراض و وضعیت پذیرنده در برنامه نظارتی
+## ۰۴. پایش برگشت وجه ناشی از اعتراض و وضعیت پذیرنده در برنامه نظارتی
 
 برنامه‌های شبکه کارت، Visa VDMP و Mastercard ECP، آستانه‌های سخت‌گیرانه‌ای بر حجم تراکنش پذیرنده اعمال می‌کنند:
 
