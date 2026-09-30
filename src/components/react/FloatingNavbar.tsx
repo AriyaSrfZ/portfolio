@@ -205,22 +205,23 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         <div className="flex items-center gap-3" ref={mobileRef}>
           <a
             href={switchTarget}
-            className="px-3 py-1 rounded-lg border border-white/10 bg-white/[0.03] text-[#e2c974] hover:border-[#e2c974] hover:text-[#f8fafc] font-bold text-xs uppercase transition tracking-wider"
+            className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-[#e2c974] hover:border-[#e2c974] hover:text-[#f8fafc] font-bold text-xs uppercase transition tracking-wider active:scale-[0.95] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2c974]"
             title={isFa ? 'Switch to English' : 'تغییر به فارسی'}
+            aria-label={isFa ? 'Switch to English' : 'تغییر به فارسی'}
           >
             {switchLabel}
           </a>
 
           <a
             href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
-            className="hidden sm:inline-flex px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#d4af37]/25 transition-all duration-300 hover:-translate-y-0.5"
+            className="hidden sm:inline-flex px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#d4af37]/25 transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2c974]"
           >
             {t('nav.schedule')}
           </a>
 
           <button
             type="button"
-            className="lg:hidden px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-[#f8fafc] text-xs uppercase tracking-wider hover:border-[#e2c974] hover:text-[#e2c974] transition"
+            className="lg:hidden px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-[#f8fafc] text-xs uppercase tracking-wider hover:border-[#e2c974] hover:text-[#e2c974] transition active:scale-[0.95] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2c974]"
             aria-expanded={mobileOpen}
             aria-label="Open navigation"
             onClick={(e) => {

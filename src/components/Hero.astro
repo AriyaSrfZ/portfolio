@@ -107,13 +107,13 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
             </p>
           </div>
 
-          <!-- Glassy Metric Tabs With Icons (Exact sample implementation) -->
+          <!-- Glassy Metric Tabs With Icons (Interactive jump cards) -->
           <div class="mt-8 pt-6 border-t border-white/10">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
               <!-- Tab 1: Years Experience -->
-              <div class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 shadow-xl group">
+              <a href="#blueprints" aria-label={isFa ? 'مشاهده سوابق و نقشه‌ها' : 'Jump to Experience & Blueprints'} class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4] shadow-xl group block">
                 <div>
-                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 transition-transform">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
                     </svg>
@@ -121,13 +121,13 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
                   <div class="text-2xl sm:text-3xl font-bold font-mono text-[#f8fafc] tracking-tight">{isFa ? '۱۵+ سال' : '15+'}</div>
                   <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'سابقه مهندسی' : 'Years Experience'}</div>
                 </div>
-                <div class="text-[11px] text-[#94a3b8] mt-2">{isFa ? 'زیرساخت با پایداری ۹۹٫۹۹٪' : 'Proven Industry Expertise'}</div>
-              </div>
+                <div class="text-[11px] text-[#94a3b8] mt-2 group-hover:text-cyan-400 transition-colors">{isFa ? 'زیرساخت با پایداری ۹۹٫۹۹٪' : 'Proven Industry Expertise'} &rarr;</div>
+              </a>
 
               <!-- Tab 2: Messages Routed -->
-              <div class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 shadow-xl group">
+              <a href="#sms-gateway" aria-label={isFa ? 'مشاهده سوییچ پیامک ملی' : 'Jump to Telecom & SMS Infrastructure'} class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4] shadow-xl group block">
                 <div>
-                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 transition-transform">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                     </svg>
@@ -135,13 +135,13 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
                   <div class="text-2xl sm:text-3xl font-bold font-mono text-[#f8fafc] tracking-tight">{isFa ? '۱B+' : '1B+'}</div>
                   <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'پیامک سالانه' : 'Messages Routed'}</div>
                 </div>
-                <div class="text-[11px] text-[#94a3b8] mt-2">{isFa ? 'هاب ملی مخابرات و SMPP' : 'Secure Global Routing'}</div>
-              </div>
+                <div class="text-[11px] text-[#94a3b8] mt-2 group-hover:text-cyan-400 transition-colors">{isFa ? 'هاب ملی مخابرات و SMPP' : 'Secure Global Routing'} &rarr;</div>
+              </a>
 
               <!-- Tab 3: Peak TPS (Champagne Gold Highlight Tab) -->
-              <div class="bg-[#111827]/80 backdrop-blur-xl border border-[#d4af37]/40 ring-1 ring-[#d4af37]/20 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-[#e2c974] hover:-translate-y-1 shadow-xl shadow-[#d4af37]/5 group">
+              <a href="#payment-settlement" aria-label={isFa ? 'مشاهده سوییچ پرداخت و تسویه' : 'Jump to High-Performance Payment Switch'} class="bg-[#111827]/80 backdrop-blur-xl border border-[#d4af37]/40 ring-1 ring-[#d4af37]/20 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-[#e2c974] hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2c974] shadow-xl shadow-[#d4af37]/5 group block">
                 <div>
-                  <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-[#e2c974] mb-3 group-hover:scale-105 transition-transform">
+                  <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-[#e2c974] mb-3 group-hover:scale-105 group-hover:bg-amber-500/25 transition-all">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                     </svg>
@@ -149,13 +149,13 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
                   <div class="text-2xl sm:text-3xl font-bold font-mono text-[#e2c974] tracking-tight">{isFa ? '۵۰K' : '50k'}</div>
                   <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'اوج پردازش TPS' : 'Peak TPS'}</div>
                 </div>
-                <div class="text-[11px] text-[#e2c974]/80 mt-2">{isFa ? 'سوییچ تراکنش هم‌روند' : 'High-Performance Switches'}</div>
-              </div>
+                <div class="text-[11px] text-[#e2c974]/80 mt-2 group-hover:text-[#e2c974] transition-colors">{isFa ? 'سوییچ تراکنش هم‌روند' : 'High-Performance Switches'} &rarr;</div>
+              </a>
 
               <!-- Tab 4: Fraud SLA -->
-              <div class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 shadow-xl group">
+              <a href="#fraud-forensics" aria-label={isFa ? 'مشاهده حلقه ارزیابی ریسک' : 'Jump to Fraud Forensics & Risk Loop'} class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4] shadow-xl group block">
                 <div>
-                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 transition-transform">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                     </svg>
@@ -163,8 +163,8 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
                   <div class="text-2xl sm:text-3xl font-bold font-mono text-[#f8fafc] tracking-tight">{isFa ? 'زیر ۱۵ms' : '<15ms'}</div>
                   <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'مهلت ارزیابی ریسک' : 'Fraud SLA'}</div>
                 </div>
-                <div class="text-[11px] text-[#94a3b8] mt-2">{isFa ? 'شناسایی و مهار در لحظه' : 'Real-Time Fraud Loop'}</div>
-              </div>
+                <div class="text-[11px] text-[#94a3b8] mt-2 group-hover:text-cyan-400 transition-colors">{isFa ? 'شناسایی و مهار در لحظه' : 'Real-Time Fraud Loop'} &rarr;</div>
+              </a>
             </div>
           </div>
         </div>
@@ -172,18 +172,18 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
         <!-- Action CTAs -->
         <div class="mt-8 pt-5 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
           <div class="flex flex-wrap gap-3">
-            <a href="#blueprints" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#d4af37]/25 transition-all duration-300 hover:-translate-y-0.5">
+            <a href="#blueprints" aria-label={isFa ? 'مشاهده نقشه‌های معماری' : 'Inspect Architecture Blueprints'} class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#d4af37]/25 transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2c974]">
               {isFa ? 'مشاهده نقشه‌های معماری ↓' : 'Inspect Blueprints ↓'}
             </a>
-            <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} class="px-5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-[#f8fafc] font-bold text-xs uppercase tracking-wider hover:border-[#06b6d4] hover:text-[#06b6d4] hover:bg-white/[0.06] transition-all duration-300 hover:-translate-y-0.5">
+            <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} aria-label={isFa ? 'مستندات معماری و مقالات فنی' : 'Technical Whitepapers'} class="px-5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-[#f8fafc] font-bold text-xs uppercase tracking-wider hover:border-[#06b6d4] hover:text-[#06b6d4] hover:bg-white/[0.06] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4]">
               {isFa ? 'مستندات معماری و مقالات (۴) →' : 'Technical Whitepapers (4) →'}
             </a>
           </div>
 
           <div class="flex items-center gap-4 text-xs font-mono">
-            <a href={mailtoHref} class="text-[#e2c974] hover:underline transition-colors">ariasg2002@gmail.com</a>
+            <a href={mailtoHref} aria-label="Direct Email" class="text-[#e2c974] hover:underline transition-colors focus-visible:outline-1 focus-visible:outline-[#e2c974]">ariasg2002@gmail.com</a>
             <span class="text-white/20">|</span>
-            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors">LinkedIn ↗</a>
+            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors focus-visible:outline-1 focus-visible:outline-[#f8fafc]">LinkedIn ↗</a>
           </div>
         </div>
       </div>
