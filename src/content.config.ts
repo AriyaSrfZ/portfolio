@@ -12,10 +12,12 @@ const blog = defineCollection({
     technologies: z.array(z.string()),
     metric: z.string().optional(),
     diagram: z.string().optional(),
+    lang: z.enum(['en', 'fa']).default('en'),
   }).transform((data) => ({
     ...data,
     date: data.date ?? data.pubDate ?? new Date('2026-09-29'),
     pubDate: data.pubDate ?? data.date ?? new Date('2026-09-29'),
+    lang: data.lang ?? 'en',
   })),
 });
 

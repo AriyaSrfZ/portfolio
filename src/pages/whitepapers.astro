@@ -8,7 +8,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 const allPosts = await getCollection('blog');
 const whitepapers = allPosts
-  .filter((post) => post.data.technologies.includes('Whitepaper'))
+  .filter((post) => (post.data.lang === 'en' || post.id.startsWith('en/')) && post.data.technologies.includes('Whitepaper'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
@@ -53,7 +53,7 @@ const whitepapers = allPosts
             </div>
 
             <h2 class="text-base sm:text-lg font-bold text-[#e8e2d5] uppercase group-hover:text-[#c9a15a] transition mb-2">
-              <a href={`${baseUrl}blog/${doc.id}/`}>
+              <a href={`${baseUrl}blog/${doc.id.replace(/^en\//, '')}/`}>
                 {doc.data.title}
               </a>
             </h2>
@@ -76,7 +76,7 @@ const whitepapers = allPosts
               {doc.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
             </span>
             <a
-              href={`${baseUrl}blog/${doc.id}/`}
+              href={`${baseUrl}blog/${doc.id.replace(/^en\//, '')}/`}
               class="text-xs font-bold text-[#c4562e] uppercase group-hover:underline flex items-center gap-1"
             >
               Read Specification &rarr;
