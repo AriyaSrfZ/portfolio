@@ -1,48 +1,92 @@
 ---
-const entries = [
+interface Props {
+  locale?: 'en' | 'fa';
+}
+
+const { locale = 'en' } = Astro.props;
+const isFa = locale === 'fa';
+
+const entriesEn = [
   {
-    year: '2025 — Now',
-    title: 'Systems Architect & Infrastructure Engineer',
+    year: '2022 — Present',
+    title: 'Lead Product Manager (Payments, SMS, Fraud)',
     org: 'P.G IT Solutions / Persia Fava Gostaresh',
-    desc: 'Designing the API gateway and identity (UAA) standard used across products. Built a multi-petabyte SMS advertising Smart DB on Elasticsearch. Work is production architecture: auth isolation, query path scaling, and a 12-month platform roadmap tied to live traffic, not slide decks.',
+    desc: 'Directing multi-tenant payment gateways, national SMS switching backbones, and real-time fraud mitigation forensics. Defining API gateway contracts, UAA isolation standards, and bridging executive growth mandates with core distributed systems invariants.',
   },
   {
-    year: '2018 — 2025',
-    title: 'Payments, Fraud & Tech-Ops Engineer',
+    year: '2018 — 2022',
+    title: 'Technical Product Manager — SuperApp Core',
     org: 'Digipay Co. (Digikala Group)',
-    desc: 'Owned the fraud and judicial vertical: 30,000+ cases, sole technical expert in 30+ court matters, and cut FATA reporting from 3 working days to under 3 hours. Advised Digikala’s ~45M-customer platform on payments and abuse. Built the first monitoring stack (Prometheus, Grafana) and logging standard. Failure modes: ISO 8583 timeouts, retry storms, and double-settlement races.',
+    desc: 'Led platform reliability and core transaction flows for a 45M-customer ecosystem. Managed 30,000+ fraud forensic cases, reduced incident reporting from 3 business days to under 3 hours, and engineered Prometheus/Grafana observability to isolate ISO 8583 timeouts and retry storms.',
   },
   {
     year: '2016 — 2018',
-    title: 'Founding Operations Engineer',
+    title: 'Core Developer / Architect — SMS Gateway',
     org: 'Homapay Co.',
-    desc: 'One of the first 10 employees. Operated and debugged C2C, billing, and top-up platforms in production while the codebase was still incomplete. Kept settlement and wallet flows alive through outages; that operational stability supported a 3x funding increase and the Digikala acquisition.',
+    desc: 'Early infrastructure engineer operating and architecting high-throughput SMPP aggregator pipelines, C2C wallets, and carrier failover routing under rapid consumer adoption.',
   },
   {
-    year: '2010 — 2016',
-    title: 'Sales Area Manager',
-    org: 'Gd Retail Sell',
-    desc: 'Ran a 30+ agent sales division with P&L responsibility. Translator and technical liaison for international partners—bridging commercial commitments to what the infrastructure could actually deliver.',
+    year: '2012 — 2016',
+    title: 'Core Developer — E-Commerce Engine',
+    org: '[TODO: Company / Retail Platform — e.g. Gd Retail Systems]',
+    desc: 'Engineered inventory synchronization, merchant transaction ledgers, and database query paths for high-traffic commerce infrastructure.',
   },
   {
-    year: '2005 — 2012',
-    title: 'Founder / Systems Administrator',
-    org: 'Aida Faraz Gostaresh',
-    desc: 'Founded an IT consultancy serving 15+ SME clients. Designed and administered mixed Windows/Red Hat networks, identity, and mail—hands-on infrastructure rather than outsourced ops.',
+    year: '2008 — 2012',
+    title: 'Full-Stack Developer — Agency / Early Career',
+    org: 'Aida Faraz Gostaresh / IT Consultancy',
+    desc: 'Designed bespoke web architectures, multi-tenant database schemas, and client-server networks for commercial and SME enterprise clients.',
   },
 ];
+
+const entriesFa = [
+  {
+    year: '۱۴۰۱ تا کنون',
+    title: 'مدیر ارشد محصول (پرداخت، پیامک، تقلب) — Lead Product Manager',
+    org: 'P.G IT Solutions / شرکت فوا گسترش',
+    desc: 'راهبری درگاه‌های پرداخت چندمستأجره، سوییچ ملی پیامک و موتور تحلیل بلادرنگ تقلب و تعامل با مراجع نظارتی. تعریف قراردادهای API Gateway، استانداردهای احراز هویت UAA و ایجاد پل ارتباطی میان اهداف کسب‌وکار و الزامات تغییرناپذیر سیستم‌های توزیع‌شده.',
+  },
+  {
+    year: '۱۳۹۷ تا ۱۴۰۱',
+    title: 'مدیر محصول فنی (هسته سوپراپ) — Technical Product Manager',
+    org: 'دیجی‌پی (گروه دیجی‌کالا)',
+    desc: 'مدیریت پایداری پلتفرم و جریان تراکنش‌های اصلی برای اکوسیستم ۴۵ میلیونی کاربران دیجی‌کالا. بررسی بیش از ۳۰ هزار پرونده مشکوک، کاهش زمان پاسخ‌دهی به استعلامات از ۳ روز کاری به کمتر از ۳ ساعت، و راه‌اندازی استک مانیتورینگ Prometheus/Grafana برای مهار خطاهای ISO 8583 و طوفان‌های تلاش مجدد.',
+  },
+  {
+    year: '۱۳۹۵ تا ۱۳۹۷',
+    title: 'توسعه‌دهنده ارشد و معمار سامانه — SMS Gateway',
+    org: 'هماپی (Homapay Co.)',
+    desc: 'از نخستین مهندسان زیرساخت، طراح و گرداننده پایپ‌لاین‌های تجمیع پیامک بر بستر SMPP، کیف‌پول‌های C2C و مسیریابی خطاگیر اپراتورهای مخابراتی در دوران رشد شتابان کاربران.',
+  },
+  {
+    year: '۱۳۹۱ تا ۱۳۹۵',
+    title: 'توسعه‌دهنده هسته مرکزی — E-Commerce Engine',
+    org: '[TODO: Company / Retail Platform — e.g. Gd Retail Systems]',
+    desc: 'پیاده‌سازی همگام‌سازی لحظه‌ای موجودی کالا، دفاتر کل تراکنش‌های پذیرندگان و بهینه‌سازی کوئری‌های دیتابیس در زیرساخت‌های فروشگاهی با حجم بالای درخواست.',
+  },
+  {
+    year: '۱۳۸۷ تا ۱۳۹۱',
+    title: 'توسعه‌دهنده فول‌استک — سال‌های ابتدایی فعالیت',
+    org: 'آیدا فراز گسترش / مشاوره فناوری اطلاعات',
+    desc: 'طراحی معماری‌های وب سفارشی، اسکماهای دیتابیس چندمستأجره و راه‌اندازی شبکه‌های کلاینت-سرور برای مشتریان تجاری و سازمان‌های کوچک و متوسط.',
+  },
+];
+
+const entries = isFa ? entriesFa : entriesEn;
 ---
 
-<section id="experience" class="relative z-10 max-w-3xl mx-auto px-6 py-20 font-sans">
-  <h2 class="text-3xl font-bold text-center mb-12 tracking-tight text-[#f8fafc]">Experience</h2>
+<section id="experience" class={`relative z-10 max-w-3xl mx-auto px-6 py-20 ${isFa ? "font-['Vazirmatn',sans-serif]" : "font-sans"}`} dir={isFa ? 'rtl' : 'ltr'}>
+  <h2 class="text-3xl font-bold text-center mb-12 tracking-tight text-[#f8fafc]">
+    {isFa ? 'سوابق و مسیر حرفه‌ای' : 'Career Trajectory & Experience'}
+  </h2>
 
-  <div class="relative pl-8 border-l border-white/10 space-y-10">
+  <div class={`relative ${isFa ? 'pr-8 border-r' : 'pl-8 border-l'} border-white/10 space-y-10`}>
     {entries.map((entry) => (
       <div class="relative group">
-        <span class="absolute -left-[39px] top-1.5 w-3.5 h-3.5 rounded-full bg-[#06b6d4] border-2 border-[#0b1120] shadow-[0_0_10px_rgba(6,182,212,0.6)]"></span>
-        <p class="text-xs text-[#e2c974] uppercase tracking-wider mb-1 font-semibold">{entry.year}</p>
+        <span class={`absolute ${isFa ? '-right-[39px]' : '-left-[39px]'} top-1.5 w-3.5 h-3.5 rounded-full bg-[#06b6d4] border-2 border-[#0b1120] shadow-[0_0_10px_rgba(6,182,212,0.6)]`}></span>
+        <p class="text-xs text-[#e2c974] uppercase tracking-wider mb-1 font-semibold font-mono">{entry.year}</p>
         <h3 class="font-bold text-lg text-[#f8fafc] group-hover:text-[#38bdf8] transition-colors">{entry.title}</h3>
-        <p class="text-xs uppercase text-[#94a3b8] font-medium mb-2 tracking-wide">{entry.org}</p>
+        <p class="text-xs uppercase text-[#94a3b8] font-medium mb-2 tracking-wide font-mono">{entry.org}</p>
         <p class="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">{entry.desc}</p>
       </div>
     ))}

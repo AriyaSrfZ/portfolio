@@ -1,27 +1,61 @@
 ---
-const groups = [
+interface Props {
+  locale?: 'en' | 'fa';
+}
+
+const { locale = 'en' } = Astro.props;
+const isFa = locale === 'fa';
+
+const groupsEn = [
   {
     title: 'Systems Architecture',
     items: ['ISO 8583 Switches', 'SMPP 3.4 Windowing', 'Redis Distributed Locks', 'Double-Entry Ledgers', 'Timeout & Retry Isolation', 'High-Availability Routing'],
   },
   {
     title: 'Fraud & Risk',
-    items: ['Sub-15ms Risk Loops', 'Forensic Graph Tracing', '3DS 2.0 Liability Shift', 'AML Case Pipelines', 'Device Telemetry Scoring', 'FATA & Shaparak Compliance'],
+    items: ['Sub-15ms Risk Loops', 'Forensic Graph Tracing', '3DS 2.0 Liability Shift', 'AML Case Pipelines', 'Device Telemetry Scoring', 'Regulatory Audit Compliance'],
   },
   {
     title: 'Data & Observability',
-    items: ['DuckDB / Parquet Enrichment', 'Elasticsearch at Petabyte Scale', 'Prometheus / Grafana', 'Python / PyArrow Pipelines', 'MongoDB / MySQL / PostgreSQL'],
+    items: ['DuckDB / Parquet Enrichment', 'Elasticsearch at Scale', 'Prometheus / Grafana', 'Python / PyArrow Pipelines', 'PostgreSQL / ScyllaDB'],
   },
   {
-    title: 'Production Delivery',
-    items: ['Incident Response', 'API Gateway Design', 'Identity / UAA Isolation', 'Capacity & Queue Isolation', 'Roadmaps Tied to Live Traffic'],
+    title: 'Product & Production Delivery',
+    items: ['Technical PRD Authoring', 'API Gateway Design', 'Identity / UAA Isolation', 'Capacity & Queue Isolation', 'Roadmaps Tied to Live Traffic'],
   },
 ];
+
+const groupsFa = [
+  {
+    title: 'معماری سیستم‌های توزیع‌شده',
+    items: ['سوییچ‌های ISO 8583', 'ویندوینگ SMPP 3.4', 'قفل‌های توزیع‌شده Redis', 'دفاتر کل دوطرفه (Double-Entry)', 'ایزوله‌سازی Timeout و تکرار', 'مسیریابی با دسترسی بالا (HA)'],
+  },
+  {
+    title: 'مدیریت ریسک و جرائم مالی',
+    items: ['حلقه‌های ریسک زیر ۱۵ میلی‌ثانیه', 'ردیابی گراف فارنزیک', 'انتقال مسئولیت 3DS 2.0', 'پایپ‌لاین پرونده‌های AML', 'امتیازدهی تله‌متری دستگاه', 'انطباق با رگولاتوری'],
+  },
+  {
+    title: 'داده و قابلیت مشاهده‌پذیری (Observability)',
+    items: ['غنی‌سازی داده با DuckDB / Parquet', 'الاستیک‌سرچ در مقیاس بالا', 'داشبوردهای Prometheus / Grafana', 'پایپ‌لاین‌های Python / PyArrow', 'پایگاه‌های داده PostgreSQL / ScyllaDB'],
+  },
+  {
+    title: 'راهبری محصول و تحویل عملیاتی',
+    items: ['تدوین مستندات فنی محصول (PRD)', 'معماری API Gateway', 'تفکیک دسترسی و UAA', 'ایزوله‌سازی صف‌ها و ظرفیت شبکه', 'نقشه راه منطبق بر ترافیک زنده'],
+  },
+];
+
+const groups = isFa ? groupsFa : groupsEn;
 ---
 
-<section class="relative z-10 max-w-6xl mx-auto px-6 py-20 font-sans">
-  <h2 class="text-3xl font-bold text-center mb-2 tracking-tight text-[#f8fafc]">Core Competencies</h2>
-  <p class="text-center text-[#94a3b8] text-xs sm:text-sm mb-12">What 15 years of production switches, fraud loops, and SMS infrastructure actually adds up to.</p>
+<section class={`relative z-10 max-w-6xl mx-auto px-6 py-16 ${isFa ? "font-['Vazirmatn',sans-serif]" : "font-sans"}`} dir={isFa ? 'rtl' : 'ltr'}>
+  <h2 class="text-3xl font-bold text-center mb-2 tracking-tight text-[#f8fafc]">
+    {isFa ? 'شایستگی‌های کلیدی و تخصص‌ها' : 'Core Competencies'}
+  </h2>
+  <p class="text-center text-[#94a3b8] text-xs sm:text-sm mb-12 max-w-2xl mx-auto">
+    {isFa
+      ? 'حاصل بیش از ۱۵ سال تجربه عملیاتی در سوییچ‌های پرداخت، موتورهای تقلب و زیرساخت‌های مخابراتی تحت بار ترافیک واقعی.'
+      : 'What 15+ years of production switches, fraud loops, and SMS infrastructure actually adds up to.'}
+  </p>
 
   <div class="grid sm:grid-cols-2 gap-6">
     {groups.map((group) => (

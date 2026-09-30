@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Timeline from '../../components/Timeline.astro';
+import CoreCompetencies from '../../components/CoreCompetencies.astro';
+---
+
+<Layout
+  title="درباره آریا صراف‌زاده"
+  description="بیش از ۱۵ سال تجربه در معماری و راهبری محصول سامانه‌های پرداخت، سوییچ‌های مخابراتی، کشف تقلب و پایپ‌لاین‌های داده."
+  lang="fa"
+  dir="rtl"
+>
+  <!-- Bio Header Section -->
+  <section class="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-12 text-center font-['Vazirmatn',sans-serif]" dir="rtl">
+    <div class="relative inline-block mx-auto mb-6">
+      <div class="w-28 h-28 rounded-2xl p-1 bg-gradient-to-b from-white/20 to-white/5 border border-white/10 shadow-2xl overflow-hidden">
+        <img
+          src={`${import.meta.env.BASE_URL}photos/ariya.jpg`}
+          alt="آریا صراف‌زاده"
+          class="w-full h-full object-cover rounded-xl"
+        />
+      </div>
+    </div>
+    
+    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3 text-[#f8fafc]">آریا صراف‌زاده</h1>
+    
+    <!-- Sub-head positioning statement placeholder -->
+    <div class="max-w-2xl mx-auto mb-6">
+      <div class="inline-block p-3 px-4 rounded-xl bg-[#0b1120]/80 border border-dashed border-[#e2c974]/40 text-xs sm:text-sm text-[#e2c974] font-medium leading-relaxed">
+        <span class="block text-[10px] uppercase tracking-wider text-[#94a3b8] mb-1">بیانیه جایگاه‌سازی محصول (Positioning) · پیش‌نویس</span>
+        <span dir="ltr" class="font-mono text-xs">[TODO: one-line positioning statement — the cornerstone/founder-level framing, not "Systems Architect"]</span>
+      </div>
+    </div>
+
+    <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+      بیش از ۱۵ سال طراحی، پیاده‌سازی و راهبری زیرساخت‌های با دسترسی بالا در حوزه‌های پرداخت،
+      سوییچ‌های پیامک و سیستم‌های مبارزه با تقلب. تمرکز کار بر معماری عملیاتی سیستم و مدیریت فنی محصول است:
+      بازیابی خطای تایم‌اوت‌های ISO 8583، ویندوینگ SMPP در کاراکترهای فارسی و لاتین، جلوگیری از تسویه مضاعف در Redis،
+      و پردازش تحلیلی DuckDB/Parquet در زیر بار ترافیک سنگین واقعی.
+    </p>
+  </section>
+
+  <!-- Cornerstone Section: The 0-to-Scale Story -->
+  <section class="relative z-10 max-w-4xl mx-auto px-6 py-8 font-['Vazirmatn',sans-serif]" dir="rtl">
+    <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 shadow-xl ring-1 ring-white/5">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+        <div class="flex items-center gap-3">
+          <span class="w-2 h-2 rounded-full bg-[#06b6d4]"></span>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-[#f8fafc]">
+            داستان تحول سیستم از صفر به مقیاس کشوری
+          </h2>
+        </div>
+        <span class="text-[10px] text-[#94a3b8] px-2.5 py-1 rounded bg-white/[0.04] border border-white/5">
+          پیش‌نویس: در انتظار داده‌های نهایی
+        </span>
+      </div>
+
+      <!-- Cornerstone Content Placeholder -->
+      <div class="p-6 bg-[#0b1120]/80 border border-dashed border-[#06b6d4]/40 rounded-xl">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs font-bold uppercase text-[#38bdf8]">روایت پایه‌ای تحول معماری</span>
+        </div>
+        <p class="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed font-mono whitespace-pre-line" dir="ltr">
+          [TODO: the 0-to-mega-superapp story: what you walked into, what the scale was when you started, what you had to tear down, what you built to replace it, and where the system was when you handed it off. 2-3 paragraphs, specific numbers.]
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CoreCompetencies locale="fa" />
+  <Timeline locale="fa" />
+</Layout>

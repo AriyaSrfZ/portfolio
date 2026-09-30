@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const caseStudies = [
+  {
+    id: '01',
+    category: 'Risk & Forensics',
+    title: 'Real-Time Fraud Mitigation & Judicial Response',
+    summary: 'Sub-15ms risk engine evaluating transactional anomalies, frozen ledger forensics, and regulatory audit compliance under active exploitation.',
+    problem: '[TODO: 1 sentence on the business/technical problem before your work — e.g. account takeovers, manual fraud reviews choking operations, or audit latency]',
+    decision: '[TODO: 1 sentence on the key architecture/product decision you made — e.g. moving from batch analysis to in-memory CEP graph rules with deterministic replay]',
+    tradeoff: '[TODO: what you gave up or risked to make that decision — e.g. higher memory footprint and stricter developer invariants in exchange for zero false-negative bypasses]',
+    outcome: '[TODO: 1 sentence outcome, preferably business-level — e.g. slashed illicit drain by 94%, reduced regulatory audit prep from 3 weeks to 40 seconds]',
+    link: `${baseUrl}blog/fraud-tracing/`,
+    badge: 'Sub-15ms SLA',
+  },
+  {
+    id: '02',
+    category: 'Financial Infrastructure',
+    title: 'Event-Driven Payment Settlement Engine',
+    summary: 'Distributed transactional ledger processing multi-gateway clearing with idempotent guarantees and automated bank reconciliation.',
+    problem: '[TODO: 1 sentence on the business/technical problem before your work — e.g. reconciliation discrepancies during PSP gateway drops, phantom settlements]',
+    decision: '[TODO: 1 sentence on the key architecture/product decision you made — e.g. transactional outbox over CDC paired with two-phase idempotent settlement locks]',
+    tradeoff: '[TODO: what you gave up or risked to make that decision — e.g. accepted eventual consistency latency of 200ms across bank batch rails to guarantee zero double-credits]',
+    outcome: '[TODO: 1 sentence outcome, preferably business-level — e.g. zero financial drift across 50K+ daily clearing events, eliminating weekly manual reconciliations]',
+    link: `${baseUrl}blog/payment-gateway/`,
+    badge: 'Zero Financial Drift',
+  },
+  {
+    id: '03',
+    category: 'Telecom Infrastructure',
+    title: 'National Telecom SMS Routing Switch',
+    summary: 'High-throughput SMPP aggregator managing multi-operator trunk failover, delivery receipt reconciliation, and sub-10ms queuing.',
+    problem: '[TODO: 1 sentence on the business/technical problem before your work — e.g. upstream carrier throttles causing OTP delays and cascading checkout abandonment]',
+    decision: '[TODO: 1 sentence on the key architecture/product decision you made — e.g. dynamic least-cost routing with sliding-window circuit breakers per telco trunk]',
+    tradeoff: '[TODO: what you gave up or risked to make that decision — e.g. dropped non-critical promotional traffic queues automatically to guarantee OTP delivery SLAs]',
+    outcome: '[TODO: 1 sentence outcome, preferably business-level — e.g. 99.98% OTP delivery within 4 seconds during nationwide peak traffic, protecting core revenue conversion]',
+    link: `${baseUrl}blog/sms-infrastructure/`,
+    badge: '10K+ TPS Aggregation',
+  },
+  {
+    id: '04',
+    category: 'Data Engineering',
+    title: 'National Contact Consolidation (Smart DB)',
+    summary: 'High-performance data pipeline transforming 100M+ heterogeneous contact records into an indexed, deduplicated query engine.',
+    problem: '[TODO: 1 sentence on the business/technical problem before your work — e.g. fragmented legacy silos with duplicate, conflicting identity records causing 40% query misses]',
+    decision: '[TODO: 1 sentence on the key architecture/product decision you made — e.g. embedded DuckDB and columnar Parquet clustering with deterministic fuzzy matching]',
+    tradeoff: '[TODO: what you gave up or risked to make that decision — e.g. decoupled real-time write path from the analytics lakehouse to keep indexation cost sub-linear]',
+    outcome: '[TODO: 1 sentence outcome, preferably business-level — e.g. consolidated 100M+ records with 99.4% deduplication accuracy, saving 60% compute overhead]',
+    link: `${baseUrl}data-cleaning/`,
+    badge: '100M+ Records',
+  },
+];
+---
+
+<Layout
+  title="Case Studies & Engineering Initiatives — Ariya Sarrafzadeh"
+  description="High-throughput, mission-critical infrastructure under real regulatory, operational, and scale constraints."
+>
+  <main class="max-w-[1400px] mx-auto px-6 pt-32 pb-24 font-sans">
+    
+    <!-- Hero / Header Banner -->
+    <div class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 mb-10 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">SELECTED WORK · ENGINEERING CASE STUDIES</span>
+        <div class="h-px flex-1 bg-white/10"></div>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold uppercase text-[#f8fafc] mb-4 tracking-tight">
+        Systems Architecture &amp; Case Studies
+      </h1>
+      <p class="text-[#94a3b8] text-sm sm:text-base leading-relaxed max-w-3xl">
+        High-throughput, mission-critical infrastructure engineered under strict regulatory compliance, tight operational tolerances, and national-scale concurrency constraints.
+      </p>
+    </div>
+
+    <!-- 4 Case Study Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {caseStudies.map((study) => (
+        <article class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-xl ring-1 ring-white/5 group hover:border-[#06b6d4]/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+          <div>
+            <!-- Top Tag & Badge -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
+              <span class="text-[11px] font-bold text-[#e2c974] uppercase tracking-wider font-mono">
+                Initiative {study.id} · {study.category}
+              </span>
+              <span class="text-[10px] font-mono text-[#38bdf8] uppercase px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/5">
+                {study.badge}
+              </span>
+            </div>
+
+            <!-- Title & One-Line Summary -->
+            <h2 class="text-xl font-bold text-[#f8fafc] uppercase tracking-tight mb-3 group-hover:text-[#e2c974] transition-colors">
+              <a href={study.link}>
+                {study.title}
+              </a>
+            </h2>
+
+            <p class="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed mb-6">
+              {study.summary}
+            </p>
+
+            <!-- Structured Quadrant: Problem, Decision, Tradeoff, Outcome -->
+            <div class="p-4 bg-[#0b1120]/80 border border-white/10 border-dashed rounded-xl text-xs space-y-3 mb-6">
+              <div class="flex items-center justify-between pb-1 border-b border-white/5">
+                <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#38bdf8]">Core Engineering Breakdown</span>
+                <span class="text-[10px] text-[#94a3b8] font-mono uppercase px-2 py-0.5 rounded bg-white/[0.04] border border-white/5">Draft — pending real content</span>
+              </div>
+              
+              <div class="space-y-2 text-[#94a3b8] leading-relaxed">
+                <div>
+                  <strong class="text-[#f8fafc] font-medium block text-[11px] uppercase tracking-wide text-white/90">The problem:</strong>
+                  <span class="text-[#cbd5e1]">{study.problem}</span>
+                </div>
+                <div>
+                  <strong class="text-[#f8fafc] font-medium block text-[11px] uppercase tracking-wide text-white/90">The decision:</strong>
+                  <span class="text-[#cbd5e1]">{study.decision}</span>
+                </div>
+                <div>
+                  <strong class="text-[#f8fafc] font-medium block text-[11px] uppercase tracking-wide text-white/90">The tradeoff:</strong>
+                  <span class="text-[#cbd5e1]">{study.tradeoff}</span>
+                </div>
+                <div>
+                  <strong class="text-[#f8fafc] font-medium block text-[11px] uppercase tracking-wide text-white/90">The outcome:</strong>
+                  <span class="text-[#cbd5e1]">{study.outcome}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action -->
+          <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
+            <span class="text-[11px] text-[#94a3b8] font-mono uppercase">Full Technical Dossier</span>
+            <a
+              href={study.link}
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold uppercase transition-all duration-300 hover:border-[#06b6d4] hover:bg-[#06b6d4]/10 hover:translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-[#06b6d4]"
+            >
+              Read technical dossier &rarr;
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Whitepapers Note Banner -->
+    <div class="mt-12 p-6 bg-[#0b1120]/70 border border-white/10 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="flex items-start gap-3">
+        <span class="w-2 h-2 rounded-full bg-[#06b6d4] mt-1.5 shrink-0"></span>
+        <p class="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+          For architectural deep-dives with sequence diagrams, network topologies, and schema definitions, explore the
+          <a href={`${baseUrl}whitepapers/`} class="text-[#38bdf8] font-semibold underline decoration-dotted underline-offset-4 hover:text-[#06b6d4] transition-colors ml-1">
+            Whitepapers &amp; Engineering Specifications index
+          </a>.
+        </p>
+      </div>
+      <a
+        href={`${baseUrl}whitepapers/`}
+        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs font-mono font-medium text-[#f8fafc] hover:border-[#38bdf8] hover:bg-white/[0.08] transition-all shrink-0 self-start sm:self-auto"
+      >
+        <span>View All Whitepapers</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+
+  </main>
+</Layout>
