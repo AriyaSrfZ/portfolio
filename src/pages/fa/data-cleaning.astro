@@ -9,94 +9,94 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 ---
 
 <Layout title={`${fa.title} — آریا صراف‌زاده`} description={fa.lead} lang="fa" dir="rtl">
-  <article class="max-w-4xl mx-auto px-6 pt-32 pb-24 font-['IBM_Plex_Mono',monospace]" dir="rtl">
+  <article class="max-w-4xl mx-auto px-6 pt-32 pb-24 font-sans" dir="rtl">
     <div class="flex justify-between items-center mb-4">
-      <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a15a]">{fa.kicker}</p>
-      <a href={`${baseUrl}data-cleaning/`} class="px-2.5 py-1 text-xs border border-[#5c6650] text-[#c9a15a] hover:border-[#c4562e] uppercase font-bold transition">
+      <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#06b6d4]">{fa.kicker}</p>
+      <a href={`${baseUrl}data-cleaning/`} class="px-3 py-1.5 text-xs rounded-lg border border-white/10 bg-white/[0.03] text-[#e2c974] hover:border-[#e2c974] hover:text-[#f8fafc] uppercase font-bold transition">
         English Version
       </a>
     </div>
 
-    <h1 class="text-3xl sm:text-4xl font-bold text-[#e8e2d5] mt-2">{fa.title}</h1>
-    <p class="mt-4 text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.lead}</p>
+    <h1 class="text-3xl sm:text-4xl font-bold text-[#f8fafc] tracking-tight mt-2">{fa.title}</h1>
+    <p class="mt-4 text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.lead}</p>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s1Title}</h2>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s1Body1}</p>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s1Body2}</p>
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s1Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s1Body1}</p>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s1Body2}</p>
     </section>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s2Title}</h2>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s2Lead}</p>
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s2Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s2Lead}</p>
       <div class="space-y-3">
         {(fa.s2Items ?? []).map((item) => (
-          <div class="bg-[#1c1916] border border-[#5c6650] p-4">
-            <h3 class="text-sm font-bold text-[#c9a15a]">{item?.title ?? ''}</h3>
-            <p class="text-xs leading-relaxed text-[#a8a196] mt-2">{item?.body ?? ''}</p>
+          <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-xl p-5 hover:border-white/20 transition-colors">
+            <h3 class="text-sm font-bold uppercase text-[#e2c974]">{item?.title ?? ''}</h3>
+            <p class="text-xs leading-relaxed text-[#94a3b8] mt-2">{item?.body ?? ''}</p>
           </div>
         ))}
       </div>
     </section>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s3Title}</h2>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s3Body}</p>
-      <ol class="list-decimal pr-5 space-y-2 text-xs sm:text-sm text-[#a8a196]">
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s3Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s3Body}</p>
+      <ol class="list-decimal pr-5 space-y-2 text-xs sm:text-sm text-[#94a3b8]">
         {(fa.s3Steps ?? []).map((step) => (
           <li>{step}</li>
         ))}
       </ol>
-      <p class="text-[11px] text-[#5c6650] mt-2">{fa.fig1Caption}</p>
+      <p class="text-[11px] text-[#64748b] mt-2">{fa.fig1Caption}</p>
     </section>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s4Title}</h2>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s4Body}</p>
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s4Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s4Body}</p>
       {(fa.s4Items ?? []).map((item) => (
-        <div class="bg-[#1c1916] border border-[#5c6650] p-4">
-          <h3 class="text-sm font-bold text-[#c9a15a]">{item?.title ?? ''}</h3>
-          <p class="text-xs leading-relaxed text-[#a8a196] mt-2">{item?.body ?? ''}</p>
+        <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-xl p-5 hover:border-white/20 transition-colors">
+          <h3 class="text-sm font-bold uppercase text-[#e2c974]">{item?.title ?? ''}</h3>
+          <p class="text-xs leading-relaxed text-[#94a3b8] mt-2">{item?.body ?? ''}</p>
         </div>
       ))}
     </section>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s5Title}</h2>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s5Body}</p>
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s5Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s5Body}</p>
       {(fa.s5Items ?? []).map((item) => (
-        <div class="bg-[#1c1916] border border-[#5c6650] p-4">
-          <h3 class="text-sm font-bold text-[#c9a15a]">{item?.title ?? ''}</h3>
-          <p class="text-xs leading-relaxed text-[#a8a196] mt-2">{item?.body ?? ''}</p>
+        <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-xl p-5 hover:border-white/20 transition-colors">
+          <h3 class="text-sm font-bold uppercase text-[#e2c974]">{item?.title ?? ''}</h3>
+          <p class="text-xs leading-relaxed text-[#94a3b8] mt-2">{item?.body ?? ''}</p>
         </div>
       ))}
-      <p class="text-[11px] text-[#5c6650] mt-2">{fa.fig2Caption}</p>
+      <p class="text-[11px] text-[#64748b] mt-2">{fa.fig2Caption}</p>
     </section>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s6Title}</h2>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s6Body}</p>
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s6Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s6Body}</p>
     </section>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s7Title}</h2>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s7Body}</p>
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s7Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s7Body}</p>
     </section>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s8Title}</h2>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#a8a196]">{fa.s8Body}</p>
-      <p class="text-[11px] text-[#5c6650] mt-2">{fa.fig3Caption}</p>
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s8Title}</h2>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#94a3b8]">{fa.s8Body}</p>
+      <p class="text-[11px] text-[#64748b] mt-2">{fa.fig3Caption}</p>
     </section>
 
     <section class="mt-12 space-y-4">
-      <h2 class="text-xl font-bold text-[#e8e2d5]">{fa.s9Title}</h2>
-      <ul class="space-y-2 text-xs sm:text-sm text-[#a8a196] list-disc pr-5">
+      <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{fa.s9Title}</h2>
+      <ul class="space-y-2 text-xs sm:text-sm text-[#94a3b8] list-disc pr-5">
         {(fa.s9Items ?? []).map((item) => (
           <li>{item}</li>
         ))}
       </ul>
-      <p class="text-xs sm:text-sm leading-relaxed text-[#c9a15a] mt-3 font-semibold">{fa.s9Note}</p>
+      <p class="text-xs sm:text-sm leading-relaxed text-[#e2c974] mt-3 font-semibold">{fa.s9Note}</p>
     </section>
   </article>
 </Layout>

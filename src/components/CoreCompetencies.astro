@@ -19,17 +19,20 @@ const groups = [
 ];
 ---
 
-<section class="relative z-10 max-w-6xl mx-auto px-6 py-24 font-['IBM_Plex_Mono',monospace]">
-  <h2 class="text-3xl font-bold text-center mb-2 uppercase text-[#e8e2d5]">Core Competencies</h2>
-  <p class="text-center text-[#a8a196] text-xs sm:text-sm mb-12">What 15 years of production switches, fraud loops, and SMS infrastructure actually adds up to.</p>
+<section class="relative z-10 max-w-6xl mx-auto px-6 py-20 font-sans">
+  <h2 class="text-3xl font-bold text-center mb-2 tracking-tight text-[#f8fafc]">Core Competencies</h2>
+  <p class="text-center text-[#94a3b8] text-xs sm:text-sm mb-12">What 15 years of production switches, fraud loops, and SMS infrastructure actually adds up to.</p>
 
-  <div class="grid sm:grid-cols-2 gap-4">
+  <div class="grid sm:grid-cols-2 gap-6">
     {groups.map((group) => (
-      <div class="bg-[#1c1916] border border-[#5c6650] p-6">
-        <h3 class="font-bold text-sm uppercase mb-3 text-[#c9a15a]">{group.title}</h3>
+      <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl ring-1 ring-white/5 hover:border-white/20 transition-all duration-300">
+        <h3 class="font-bold text-sm uppercase tracking-wider mb-4 text-[#e2c974] flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
+          {group.title}
+        </h3>
         <div class="flex flex-wrap gap-2">
           {group.items.map((item) => (
-            <span class="text-xs px-2.5 py-1 bg-[#141210] border border-[#5c6650] text-[#a8a196]">{item}</span>
+            <span class="text-xs px-3 py-1.5 bg-[#0b1120]/80 border border-white/10 rounded-lg text-[#38bdf8] font-medium hover:bg-white/[0.08] transition-colors">{item}</span>
           ))}
         </div>
       </div>

@@ -29,7 +29,7 @@ const getWhitepaperDossiers = (isFa: boolean) => [
     spec: isFa ? 'سند ۰۴' : 'Spec 04',
     title: isFa ? 'ماشین‌های وضعیت وب۳' : 'Web3 & Crypto State Machines',
     desc: isFa ? 'محاسبات قطعی EVM و نهایی‌سازی رول‌آپ' : 'Deterministic EVM compute & rollup finality',
-    href: `${baseUrl}blog/web3-infrastructure/`,
+    href: isFa ? `${baseUrl}fa/blog/web3-infrastructure/` : `${baseUrl}blog/web3-infrastructure/`,
   },
 ];
 
@@ -39,18 +39,31 @@ interface FloatingNavbarProps {
 
 export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   const [currentLang, setCurrentLang] = useState<'en' | 'fa'>(locale);
+  const isFa = currentLang === 'fa';
+  const defaultSwitchTarget = locale === 'fa' ? baseUrl : `${baseUrl}fa/`;
+  const [switchTarget, setSwitchTarget] = useState<string>(defaultSwitchTarget);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const detected = getLangFromUrl(new URL(window.location.href));
       setCurrentLang(detected);
+
+      const path = window.location.pathname;
+      const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+      let rel = path.startsWith(normalizedBase) ? path.slice(normalizedBase.length) : path.replace(/^\//, '');
+
+      if (detected === 'fa') {
+        if (rel.startsWith('fa/')) rel = rel.slice(3);
+        else if (rel === 'fa') rel = '';
+        setSwitchTarget(`${normalizedBase}${rel}${window.location.search}${window.location.hash}`);
+      } else {
+        setSwitchTarget(`${normalizedBase}fa/${rel}${window.location.search}${window.location.hash}`);
+      }
     }
   }, []);
 
-  const isFa = currentLang === 'fa';
   const t = useTranslations(currentLang);
   const homePath = isFa ? `${baseUrl}fa/` : baseUrl;
-  const switchTarget = isFa ? baseUrl : `${baseUrl}fa/`;
   const switchLabel = isFa ? 'EN' : 'FA';
 
   const inPageAnchors = [
