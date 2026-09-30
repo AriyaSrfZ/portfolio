@@ -150,6 +150,7 @@ body {
   font-family: 'Vazirmatn', sans-serif !important;
 }
 
-:lang(fa), :lang(fa) * {
-  letter-spacing: normal !important;
+html[lang="fa"] *,
+[dir="rtl"] * {
+  letter-spacing: 0px !important;
 }
