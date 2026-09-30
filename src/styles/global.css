@@ -27,7 +27,9 @@ html {
 }
 
 body {
-  background-color: var(--color-rugged-bg-nav);
+  background-color: #141210;
+  background-image: radial-gradient(circle at 50% -10%, rgba(196, 86, 46, 0.08) 0%, rgba(20, 18, 16, 0) 65%);
+  background-attachment: fixed;
   color: var(--color-rugged-paper);
   font-family: 'IBM Plex Mono', monospace;
   overflow-x: hidden;
@@ -53,26 +55,22 @@ body {
 [data-theme="rugged"] body {
   background-color: var(--rugged-bg-nav);
   color: var(--rugged-paper);
-  font-family: 'IBM Plex Mono', monospace;
-}
-
-[data-theme="rugged"] * {
-  border-radius: 0px !important;
 }
 
 .rugged-hatch {
   background-image: repeating-linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.02) 0px,
-    rgba(255, 255, 255, 0.02) 1px,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
     transparent 1px,
-    transparent 12px
+    transparent 14px
   );
 }
 
 .rugged-panel {
-  background-color: var(--rugged-bg-panel);
-  border: 1px solid var(--rugged-olive-border);
+  background-color: rgba(28, 25, 22, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
 }
 

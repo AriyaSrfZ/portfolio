@@ -8,31 +8,25 @@ const isFa = locale === 'fa';
 const CAL_LINK = 'ariya-sarrafzadeh/15min';
 ---
 
-<div class="relative bg-[var(--rugged-bg-panel)] border border-[var(--rugged-olive-border)] p-6 sm:p-8 font-['IBM_Plex_Mono',monospace]">
-  <!-- Corner Rivets -->
-  <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-  <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-  <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-  <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] pointer-events-none"></span>
-
+<div class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 font-['IBM_Plex_Mono',monospace]">
   <div class="flex items-center gap-3 mb-2">
-    <span class="text-xs text-[var(--rugged-rust)] tracking-wider font-semibold">
-      {isFa ? '۰۶ // تماس و جلسه فنی' : '06 // CONTACT'}
+    <span class="text-xs text-[#c4562e] tracking-wider font-semibold">
+      {isFa ? '۰۸ // تماس و جلسه فنی' : '08 // ARCHITECTURE REVIEW & CONTACT'}
     </span>
-    <div class="h-px flex-1 bg-[var(--rugged-olive-border)]"></div>
+    <div class="h-px flex-1 bg-white/10"></div>
   </div>
 
-  <h2 class="text-2xl font-bold text-[var(--rugged-paper)] uppercase">
+  <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">
     {isFa ? 'بررسی معماری و جلسه فنی' : 'Architecture Review & Contact'}
   </h2>
   
-  <p class="text-[var(--rugged-muted)] text-xs sm:text-sm mt-2 mb-6 leading-relaxed">
+  <p class="text-[#a8a196] text-xs sm:text-sm mt-2 mb-6 leading-relaxed">
     {isFa 
       ? 'انتخاب بازه زمانی برای ارزیابی معماری فنی، ممیزی پلتفرم یا بازبینی حالت‌های خرابی در سامانه‌های پرداخت، پیامک و خطوط داده.'
       : 'Select an operating window for technical architecture assessments, platform audits, or failure-mode reviews of payment, SMS, and data platforms.'}
   </p>
 
-  <div class="relative bg-[var(--rugged-bg-nav)] border border-[var(--rugged-olive-border)] p-2 sm:p-4 shadow-inner">
+  <div class="bg-[#141210]/80 border border-white/10 rounded-xl p-3 sm:p-5 overflow-hidden">
     <div id="cal-inline" class="w-full min-h-[600px]"></div>
   </div>
 </div>

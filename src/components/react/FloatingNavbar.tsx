@@ -107,22 +107,17 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
     <motion.header
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-[1500px] font-['IBM_Plex_Mono',monospace]"
       animate={{ y: visible ? 0 : -90, opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.18, ease: 'easeOut' }}
+      transition={{ duration: 0.22, ease: 'easeOut' }}
     >
-      <nav className="relative bg-[#141210] border-2 border-[#5c6650] px-5 py-2.5 flex items-center justify-between shadow-2xl rugged-hatch">
-        <span className="absolute -top-[4px] -left-[4px] w-[7px] h-[7px] bg-[#141210] border border-[#c4562e] pointer-events-none" />
-        <span className="absolute -top-[4px] -right-[4px] w-[7px] h-[7px] bg-[#141210] border border-[#c4562e] pointer-events-none" />
-        <span className="absolute -bottom-[4px] -left-[4px] w-[7px] h-[7px] bg-[#141210] border border-[#c4562e] pointer-events-none" />
-        <span className="absolute -bottom-[4px] -right-[4px] w-[7px] h-[7px] bg-[#141210] border border-[#c4562e] pointer-events-none" />
-
+      <nav className="relative bg-[#141210]/80 backdrop-blur-xl border border-white/10 rounded-2xl px-5 sm:px-6 py-3 flex items-center justify-between shadow-2xl ring-1 ring-white/5">
         <div className="flex items-center gap-3">
-          <span className="w-2 h-2 bg-[#c9a15a] animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#c9a15a] shadow-[0_0_8px_rgba(201,161,90,0.6)] animate-pulse" />
           <a href={homePath} className="font-bold text-xs sm:text-sm tracking-wider text-[#e8e2d5] uppercase hover:text-[#c9a15a] transition-colors">
             {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}<span className="text-[#c4562e]">.</span>
           </a>
         </div>
 
-        <div className="hidden lg:flex items-center gap-5 text-xs uppercase tracking-wider text-[#a8a196]">
+        <div className="hidden lg:flex items-center gap-6 text-xs uppercase tracking-wider text-[#a8a196]">
           {inPageAnchors.map((item) => (
             <a
               key={item.href}
@@ -151,13 +146,13 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
             <AnimatePresence>
               {dropdownOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 6 }}
-                  transition={{ duration: 0.12 }}
-                  className="absolute right-0 top-full mt-2 w-96 bg-[#1c1916] border-2 border-[#5c6650] shadow-2xl p-2 z-50 rugged-hatch"
+                  initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full mt-2 w-96 bg-[#1c1916]/95 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl p-2.5 z-50 ring-1 ring-white/5"
                 >
-                  <div className="px-3 py-1.5 border-b border-[#5c6650] mb-2 flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
+                  <div className="px-3 py-2 border-b border-white/10 mb-2 flex justify-between items-center text-[10px] text-[#a8a196] uppercase">
                     <span className="text-[#c4562e] font-bold">{isFa ? 'اسناد مشخصات فنی' : 'Technical Specifications'}</span>
                     <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} onClick={closeMenus} className="text-[#c9a15a] hover:underline font-bold">
                       {isFa ? 'فهرست اسناد ←' : 'Open Index →'}
@@ -170,13 +165,13 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                         key={doc.href}
                         href={doc.href}
                         onClick={closeMenus}
-                        className="block p-2.5 bg-[#141210] border border-[#5c6650]/60 hover:border-[#c4562e] hover:bg-[#1c1916] transition group"
+                        className="block p-3 rounded-lg bg-white/[0.02] border border-white/5 hover:border-[#c4562e]/50 hover:bg-white/[0.05] transition-all duration-300 group"
                       >
                         <div className="flex items-center justify-between">
                           <span className="text-[10px] font-bold text-[#c9a15a] uppercase">{doc.spec}</span>
-                          <span className="text-[10px] text-[#5c6650] group-hover:text-[#c4562e] transition">&rarr;</span>
+                          <span className="text-[10px] text-white/30 group-hover:text-[#c4562e] transition">&rarr;</span>
                         </div>
-                        <p className="text-xs font-bold text-[#e8e2d5] uppercase group-hover:text-[#c9a15a] transition mt-0.5">{doc.title}</p>
+                        <p className="text-xs font-bold text-[#e8e2d5] uppercase group-hover:text-[#c9a15a] transition mt-1">{doc.title}</p>
                         <p className="text-[10px] text-[#a8a196] mt-0.5 line-clamp-1">{doc.desc}</p>
                       </a>
                     ))}
@@ -197,7 +192,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         <div className="flex items-center gap-3" ref={mobileRef}>
           <a
             href={switchTarget}
-            className="px-2.5 py-1 border border-[#5c6650] text-[#c9a15a] hover:border-[#c4562e] hover:text-[#e8e2d5] font-bold text-xs uppercase transition tracking-wider"
+            className="px-3 py-1 rounded-lg border border-white/10 bg-white/[0.03] text-[#c9a15a] hover:border-[#c9a15a] hover:text-[#e8e2d5] font-bold text-xs uppercase transition tracking-wider"
             title={isFa ? 'Switch to English' : 'تغییر به فارسی'}
           >
             {switchLabel}
@@ -205,14 +200,14 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
           <a
             href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
-            className="hidden sm:inline-flex px-3 py-1.5 bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-90 transition"
+            className="hidden sm:inline-flex px-4 py-1.5 rounded-lg bg-[#c4562e] text-[#141210] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#c4562e]/20 transition-all duration-300 hover:-translate-y-0.5"
           >
             {t('nav.schedule')}
           </a>
 
           <button
             type="button"
-            className="lg:hidden px-2.5 py-1.5 border border-[#5c6650] text-[#e8e2d5] text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] transition"
+            className="lg:hidden px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-[#e8e2d5] text-xs uppercase tracking-wider hover:border-[#c9a15a] hover:text-[#c9a15a] transition"
             aria-expanded={mobileOpen}
             aria-label="Open navigation"
             onClick={(e) => {
@@ -227,13 +222,13 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           <AnimatePresence>
             {mobileOpen && (
               <motion.div
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.12 }}
-                className="absolute right-3 top-full mt-2 w-[min(24rem,calc(100%-1.5rem))] bg-[#1c1916] border-2 border-[#5c6650] shadow-2xl p-2 z-50 lg:hidden rugged-hatch"
+                initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                className="absolute right-3 top-full mt-2 w-[min(24rem,calc(100%-1.5rem))] bg-[#1c1916]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-3 z-50 lg:hidden ring-1 ring-white/5"
               >
-                <div className="px-3 py-1.5 border-b border-[#5c6650] mb-2 text-[10px] text-[#a8a196] uppercase">
+                <div className="px-3 py-2 border-b border-white/10 mb-2 text-[10px] text-[#a8a196] uppercase font-bold tracking-wider">
                   {isFa ? 'فهرست سامانه‌ها' : 'System Index'}
                 </div>
                 <div className="space-y-1">
@@ -242,7 +237,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                       key={item.href}
                       href={item.href}
                       onClick={closeMenus}
-                      className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
+                      className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#a8a196] hover:bg-white/[0.05] hover:text-[#e8e2d5] transition-colors"
                     >
                       {item.label}
                     </a>
@@ -250,7 +245,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   <a
                     href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
                     onClick={closeMenus}
-                    className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
+                    className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#a8a196] hover:bg-white/[0.05] hover:text-[#e8e2d5] transition-colors"
                   >
                     {t('nav.whitepapers')}
                   </a>
@@ -259,7 +254,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                       key={doc.href}
                       href={doc.href}
                       onClick={closeMenus}
-                      className="block px-5 py-1.5 text-[10px] uppercase tracking-wider text-[#c9a15a] hover:text-[#e8e2d5]"
+                      className="block px-4 py-1.5 rounded-md text-[10px] uppercase tracking-wider text-[#c9a15a] hover:text-[#e8e2d5] hover:bg-white/[0.03] transition-colors"
                     >
                       {doc.spec} // {doc.title}
                     </a>
@@ -267,7 +262,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   <a
                     href={isFa ? `${baseUrl}fa/#book` : `${baseUrl}#book`}
                     onClick={closeMenus}
-                    className="block px-3 py-2 text-xs uppercase tracking-wider text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] border border-transparent hover:border-[#c4562e]"
+                    className="block px-3 py-2 rounded-lg text-xs uppercase tracking-wider text-[#a8a196] hover:bg-white/[0.05] hover:text-[#e8e2d5] transition-colors"
                   >
                     {t('nav.contact')}
                   </a>

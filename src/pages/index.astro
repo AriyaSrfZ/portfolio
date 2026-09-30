@@ -9,49 +9,44 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 ---
 
 <Layout title="Ariya Sarrafzadeh | Systems Architect & Infrastructure Engineer">
-  <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-[#c4562e] z-50 transition-all duration-75"></div>
+  <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-[#c4562e] via-[#c9a15a] to-[#c9d4a8] z-50 transition-all duration-100"></div>
 
   <Hero />
 
-  <main class="max-w-[1600px] mx-auto px-6 py-10 font-['IBM_Plex_Mono',monospace]" id="blueprints">
+  <main class="max-w-[1600px] mx-auto px-6 py-12 font-['IBM_Plex_Mono',monospace]" id="blueprints">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- Sticky Sidebar Index (Strict 01 to 06 sequence) -->
-      <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
-        <div class="relative bg-[#1c1916] border border-[#5c6650] p-4 shadow-xl rugged-hatch rounded-none">
-          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-
-          <div class="text-[11px] font-bold text-[#c9a15a] tracking-widest uppercase mb-3 border-b border-[#5c6650] pb-2 flex justify-between items-center">
+      <!-- Sticky Sidebar Index -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-24 space-y-4">
+        <div class="bg-[#1c1916]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl ring-1 ring-white/5">
+          <div class="text-xs font-bold text-[#c9a15a] tracking-wider uppercase mb-3 border-b border-white/10 pb-2.5 flex justify-between items-center">
             <span>SYSTEM INDEX</span>
-            <span class="w-1.5 h-1.5 bg-[#c9d4a8] animate-signal"></span>
+            <span class="w-2 h-2 rounded-full bg-[#c9d4a8] shadow-[0_0_8px_rgba(201,212,168,0.6)] animate-signal"></span>
           </div>
           
-          <nav class="space-y-1.5 text-xs">
-            <a href="#payment-settlement" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+          <nav class="space-y-1 text-xs">
+            <a href="#payment-settlement" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
               01 // Settlements
             </a>
-            <a href="#fraud-forensics" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+            <a href="#fraud-forensics" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
               02 // Fraud Risk
             </a>
-            <a href="#sms-gateway" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+            <a href="#sms-gateway" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
               03 // SMS Switch
             </a>
-            <a href="#data-pipeline" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+            <a href="#data-pipeline" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
               04 // Data Pipeline
             </a>
-            <a href="#incident-dossiers" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+            <a href="#incident-dossiers" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
               05 // Incident Dossiers
             </a>
-            <a href="#lifecycle" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+            <a href="#lifecycle" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
               06 // Product Lifecycle
             </a>
-            <a href={`${baseUrl}whitepapers/`} class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+            <a href={`${baseUrl}whitepapers/`} class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
               07 // Whitepapers (3)
             </a>
-            <a href="#book" class="block px-3 py-1.5 text-[#a8a196] hover:bg-[#141210] hover:text-[#e8e2d5] transition border-l border-transparent hover:border-[#c4562e]">
+            <a href="#book" class="block px-3 py-2 rounded-lg text-[#a8a196] hover:bg-white/[0.06] hover:text-[#e8e2d5] transition-all duration-200">
               08 // Architecture Intake
             </a>
           </nav>
@@ -62,82 +57,81 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="lg:col-span-9 space-y-10">
         
         <!-- SECTION 01: Payment Settlement -->
-        <section id="payment-settlement" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 rounded-none">
-          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-
+        <section id="payment-settlement" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">01 // TRANSACTION ROUTING &amp; LEDGERS</span>
-            <div class="h-px flex-1 bg-[#5c6650]"></div>
+            <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Event-Driven Payment Settlement Engine</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">Event-Driven Payment Settlement Engine</h2>
           
-          <!-- Invariant Box -->
-          <div class="mt-4 p-3 bg-[#141210] border-l-2 border-[#c4562e] text-xs space-y-1">
-            <span class="text-[#c4562e] font-bold uppercase tracking-wider block">Architectural Invariant</span>
-            <p class="text-[#e8e2d5] font-mono">Request State &ne; Settlement Fact. Zero double-settlements across 86,400s replay windows.</p>
+          <!-- Invariant Box: Refined Badge (No side-tab slop) -->
+          <div class="mt-4 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e]"></span>
+              <span class="text-[#c4562e] font-bold uppercase tracking-wider">Architectural Invariant</span>
+            </div>
+            <p class="text-[#e8e2d5] font-mono leading-relaxed">Request State &ne; Settlement Fact. Zero double-settlements across 86,400s replay windows.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#a8a196] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              TLS 1.3 ingress claims an atomic Redis distributed lock (<code class="text-[#c9a15a]">SETNX</code>, TTL 86,400s). Payloads serialize into ISO 8583 binary bitmaps for direct host-to-host clearing switches. Balances compute strictly through append-only log replay across an ACID-compliant ScyllaDB cluster.
+              TLS 1.3 ingress claims an atomic Redis distributed lock (<code class="text-[#c9a15a] bg-white/[0.04] px-1.5 py-0.5 rounded">SETNX</code>, TTL 86,400s). Payloads serialize into ISO 8583 binary bitmaps for direct host-to-host clearing switches. Balances compute strictly through append-only log replay across an ACID-compliant ScyllaDB cluster.
             </p>
           </div>
 
-          <!-- Failure Mode -->
-          <div class="mt-3 p-3 bg-[#141210] border-l-2 border-[#c9a15a] text-xs space-y-1">
-            <span class="text-[#c9a15a] font-bold uppercase tracking-wider block">Failure Mode &amp; Mitigation</span>
+          <!-- Failure Mode: Refined Badge (No side-tab slop) -->
+          <div class="mt-3 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#c9a15a]"></span>
+              <span class="text-[#c9a15a] font-bold uppercase tracking-wider">Failure Mode &amp; Mitigation</span>
+            </div>
             <p class="text-[#a8a196] leading-relaxed">
               Network drops between gateway and upstream clearing switch. Zero duplicate charges via replay isolation; automatic 0420 reverse commits post as a new immutable ledger row without state overwrites.
             </p>
           </div>
 
           <!-- Tactical Tags -->
-          <div class="flex flex-wrap gap-2 my-4">
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-50ms SLA</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Redis O(1) Idempotency</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">ISO 8583 Bitmaps</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">ScyllaDB Double-Entry</span>
+          <div class="flex flex-wrap gap-2 my-5">
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Sub-50ms SLA</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Redis O(1) Idempotency</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">ISO 8583 Bitmaps</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">ScyllaDB Double-Entry</span>
           </div>
 
           <!-- Linked SVG Diagram -->
-          <div class="bg-[#141210] border border-[#5c6650] p-2 sm:p-4 my-4 overflow-hidden rounded-none">
+          <div class="bg-[#141210]/80 border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden">
             <img 
               src={`${baseUrl}diagrams/placeholder-1.svg`} 
               alt="Payment Switch and Settlement Engine Topology Schematic"
-              class="w-full h-auto object-contain rounded-none"
+              class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
           </div>
 
-          <div class="mt-4 flex justify-between items-center text-xs">
+          <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
             <span class="text-[#a8a196]">Full protocol specification documented in Dossier 01.</span>
-            <a href={`${baseUrl}blog/payment-gateway/`} class="text-[#c4562e] font-bold hover:underline uppercase">
+            <a href={`${baseUrl}blog/payment-gateway/`} class="text-[#c4562e] font-bold hover:underline uppercase transition-colors">
               Open Spec 01 Dossier &rarr;
             </a>
           </div>
         </section>
 
         <!-- SECTION 02: Fraud Forensics -->
-        <section id="fraud-forensics" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 rounded-none">
-          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-
+        <section id="fraud-forensics" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">02 // SURVEILLANCE &amp; THREAT ISOLATION</span>
-            <div class="h-px flex-1 bg-[#5c6650]"></div>
+            <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Real-Time Fraud Mitigation &amp; Forensic Graph Tracing</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">Real-Time Fraud Mitigation &amp; Forensic Graph Tracing</h2>
           
-          <!-- Invariant Box -->
-          <div class="mt-4 p-3 bg-[#141210] border-l-2 border-[#c4562e] text-xs space-y-1">
-            <span class="text-[#c4562e] font-bold uppercase tracking-wider block">Architectural Invariant</span>
-            <p class="text-[#e8e2d5] font-mono">Checkout latency &lt; 15ms SLA; dispute packet must withstand judicial intake.</p>
+          <!-- Invariant Box: Refined Badge -->
+          <div class="mt-4 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e]"></span>
+              <span class="text-[#c4562e] font-bold uppercase tracking-wider">Architectural Invariant</span>
+            </div>
+            <p class="text-[#e8e2d5] font-mono leading-relaxed">Checkout latency &lt; 15ms SLA; dispute packet must withstand judicial intake.</p>
           </div>
 
           <!-- Mechanism -->
@@ -147,57 +141,58 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </p>
           </div>
 
-          <!-- Failure Mode -->
-          <div class="mt-3 p-3 bg-[#141210] border-l-2 border-[#c9a15a] text-xs space-y-1">
-            <span class="text-[#c9a15a] font-bold uppercase tracking-wider block">Failure Mode &amp; Mitigation</span>
+          <!-- Failure Mode: Refined Badge -->
+          <div class="mt-3 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#c9a15a]"></span>
+              <span class="text-[#c9a15a] font-bold uppercase tracking-wider">Failure Mode &amp; Mitigation</span>
+            </div>
             <p class="text-[#a8a196] leading-relaxed">
               Distributed account takeover and promo abuse rings. Heuristic bypasses eliminated by recursive money-flow tracing across 40+ microservices in Neo4j.
             </p>
           </div>
 
           <!-- Tactical Tags -->
-          <div class="flex flex-wrap gap-2 my-4">
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Sub-15ms Risk Loop</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">3DS 2.0 Liability Shift</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">&lt; 0.5% False Positives</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Neo4j Forensic Graph</span>
+          <div class="flex flex-wrap gap-2 my-5">
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Sub-15ms Risk Loop</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">3DS 2.0 Liability Shift</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">&lt; 0.5% False Positives</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Neo4j Forensic Graph</span>
           </div>
 
           <!-- Linked SVG Diagram -->
-          <div class="bg-[#141210] border border-[#5c6650] p-2 sm:p-4 my-4 overflow-hidden rounded-none">
+          <div class="bg-[#141210]/80 border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden">
             <img 
               src={`${baseUrl}diagrams/placeholder-2.svg`} 
               alt="Real-Time Fraud Mitigation and Forensic Graph Tracing Schematic"
-              class="w-full h-auto object-contain rounded-none"
+              class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
           </div>
 
-          <div class="mt-4 flex justify-between items-center text-xs">
+          <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
             <span class="text-[#a8a196]">Detailed mitigation logic documented in Dossier 02.</span>
-            <a href={`${baseUrl}blog/fraud-tracing/`} class="text-[#c4562e] font-bold hover:underline uppercase">
+            <a href={`${baseUrl}blog/fraud-tracing/`} class="text-[#c4562e] font-bold hover:underline uppercase transition-colors">
               Open Spec 02 Dossier &rarr;
             </a>
           </div>
         </section>
 
         <!-- SECTION 03: Telecom SMS Gateway -->
-        <section id="sms-gateway" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 rounded-none">
-          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-
+        <section id="sms-gateway" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">03 // TELECOM SWITCHING &amp; QUEUES</span>
-            <div class="h-px flex-1 bg-[#5c6650]"></div>
+            <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">National Telecom Routing &amp; Aggregator Infrastructure</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">National Telecom Routing &amp; Aggregator Infrastructure</h2>
           
-          <!-- Invariant Box -->
-          <div class="mt-4 p-3 bg-[#141210] border-l-2 border-[#c4562e] text-xs space-y-1">
-            <span class="text-[#c4562e] font-bold uppercase tracking-wider block">Architectural Invariant</span>
-            <p class="text-[#e8e2d5] font-mono">Zero OTP blockage during multi-million marketing broadcast surges. 1B+ SMS routed/year.</p>
+          <!-- Invariant Box: Refined Badge -->
+          <div class="mt-4 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e]"></span>
+              <span class="text-[#c4562e] font-bold uppercase tracking-wider">Architectural Invariant</span>
+            </div>
+            <p class="text-[#e8e2d5] font-mono leading-relaxed">Zero OTP blockage during multi-million marketing broadcast surges. 1B+ SMS routed/year.</p>
           </div>
 
           <!-- Mechanism -->
@@ -207,57 +202,58 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </p>
           </div>
 
-          <!-- Failure Mode -->
-          <div class="mt-3 p-3 bg-[#141210] border-l-2 border-[#c9a15a] text-xs space-y-1">
-            <span class="text-[#c9a15a] font-bold uppercase tracking-wider block">Failure Mode &amp; Mitigation</span>
+          <!-- Failure Mode: Refined Badge -->
+          <div class="mt-3 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#c9a15a]"></span>
+              <span class="text-[#c9a15a] font-bold uppercase tracking-wider">Failure Mode &amp; Mitigation</span>
+            </div>
             <p class="text-[#a8a196] leading-relaxed">
               Carrier pipe saturation under UCS-2 Persian 70-character segmentation limits. Resolved through strict priority queue partitioning separating transactional OTPs from bulk marketing campaigns.
             </p>
           </div>
 
           <!-- Tactical Tags -->
-          <div class="flex flex-wrap gap-2 my-4">
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">50K+ TPS Capacity</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">SMPP 3.4 Sockets</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">UCS-2 Segmentation</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">*800# DND Bypass</span>
+          <div class="flex flex-wrap gap-2 my-5">
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">50K+ TPS Capacity</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">SMPP 3.4 Sockets</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">UCS-2 Segmentation</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">*800# DND Bypass</span>
           </div>
 
           <!-- Linked SVG Diagram -->
-          <div class="bg-[#141210] border border-[#5c6650] p-2 sm:p-4 my-4 overflow-hidden rounded-none">
+          <div class="bg-[#141210]/80 border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden">
             <img 
               src={`${baseUrl}diagrams/placeholder-3.svg`} 
               alt="National Telecom SMS Routing Hub Topology Schematic"
-              class="w-full h-auto object-contain rounded-none"
+              class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
           </div>
 
-          <div class="mt-4 flex justify-between items-center text-xs">
+          <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
             <span class="text-[#a8a196]">Telecom routing and aggregator specs documented in Dossier 03.</span>
-            <a href={`${baseUrl}blog/sms-infrastructure/`} class="text-[#c4562e] font-bold hover:underline uppercase">
+            <a href={`${baseUrl}blog/sms-infrastructure/`} class="text-[#c4562e] font-bold hover:underline uppercase transition-colors">
               Open Spec 03 Dossier &rarr;
             </a>
           </div>
         </section>
 
         <!-- SECTION 04: Data Pipeline -->
-        <section id="data-pipeline" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 rounded-none">
-          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-
+        <section id="data-pipeline" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">04 // HIGH-VOLUME ANALYTICS &amp; ENRICHMENT</span>
-            <div class="h-px flex-1 bg-[#5c6650]"></div>
+            <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">National Contact Consolidation &amp; Smart DB v1</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">National Contact Consolidation &amp; Smart DB v1</h2>
           
-          <!-- Invariant Box -->
-          <div class="mt-4 p-3 bg-[#141210] border-l-2 border-[#c4562e] text-xs space-y-1">
-            <span class="text-[#c4562e] font-bold uppercase tracking-wider block">Architectural Invariant</span>
-            <p class="text-[#e8e2d5] font-mono">70% predictive behavioral accuracy for user preferences prior to formal KYC data ingestion.</p>
+          <!-- Invariant Box: Refined Badge -->
+          <div class="mt-4 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e]"></span>
+              <span class="text-[#c4562e] font-bold uppercase tracking-wider">Architectural Invariant</span>
+            </div>
+            <p class="text-[#e8e2d5] font-mono leading-relaxed">70% predictive behavioral accuracy for user preferences prior to formal KYC data ingestion.</p>
           </div>
 
           <!-- Mechanism -->
@@ -267,59 +263,65 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </p>
           </div>
 
-          <!-- Failure Mode -->
-          <div class="mt-3 p-3 bg-[#141210] border-l-2 border-[#c9a15a] text-xs space-y-1">
-            <span class="text-[#c9a15a] font-bold uppercase tracking-wider block">Failure Mode &amp; Mitigation</span>
+          <!-- Failure Mode: Refined Badge -->
+          <div class="mt-3 p-4 bg-[#141210]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#c9a15a]"></span>
+              <span class="text-[#c9a15a] font-bold uppercase tracking-wider">Failure Mode &amp; Mitigation</span>
+            </div>
             <p class="text-[#a8a196] leading-relaxed">
               Relational database degradation during multi-attribute joins on 94M+ records. Solved by decoupling query paths into an Elasticsearch cluster fronted by an API gateway.
             </p>
           </div>
 
           <!-- Tactical Tags -->
-          <div class="flex flex-wrap gap-2 my-4">
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">100M Records</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Columnar Parquet</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">DuckDB In-Memory</span>
-            <span class="px-2.5 py-1 bg-[#3d4632] border border-[#5c6650] text-[#c9d4a8] text-[11px] font-bold uppercase">Elasticsearch Decoupled</span>
+          <div class="flex flex-wrap gap-2 my-5">
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">100M Records</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Columnar Parquet</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">DuckDB In-Memory</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#c9d4a8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Elasticsearch Decoupled</span>
           </div>
 
           <!-- Linked SVG Diagram -->
-          <div class="bg-[#141210] border border-[#5c6650] p-2 sm:p-4 my-4 overflow-hidden rounded-none">
+          <div class="bg-[#141210]/80 border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden">
             <img 
               src={`${baseUrl}diagrams/placeholder-4.svg`} 
               alt="Smart DB v1 Contact Consolidation and Data Pipeline Schematic"
-              class="w-full h-auto object-contain rounded-none"
+              class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
           </div>
 
-          <div class="mt-4 flex justify-between items-center text-xs">
+          <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
             <span class="text-[#a8a196]">Columnar normalization and DuckDB benchmarks documented in Case Study.</span>
-            <a href={`${baseUrl}data-cleaning/`} class="text-[#c4562e] font-bold hover:underline uppercase">
+            <a href={`${baseUrl}data-cleaning/`} class="text-[#c4562e] font-bold hover:underline uppercase transition-colors">
               View Name-Cleaning Blueprint &rarr;
             </a>
           </div>
         </section>
 
         <!-- PRODUCTION INCIDENT DOSSIERS -->
-        <section id="incident-dossiers" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6 rounded-none">
+        <section id="incident-dossiers" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">PRODUCTION INCIDENT DOSSIERS</span>
-            <div class="h-px flex-1 bg-[#5c6650]"></div>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">05 // PRODUCTION INCIDENT DOSSIERS</span>
+            <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Battle-Tested Failure Resolution</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">Battle-Tested Failure Resolution</h2>
           <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed">
             Hands-on systems architecture: production failure resolution and incident mitigation under strict SLA constraints.
           </p>
 
           <div class="space-y-4 mt-4">
             <!-- Dossier 01 -->
-            <div class="bg-[#141210] border border-[#5c6650] p-5 rounded-none">
-              <div class="flex items-center justify-between border-b border-[#5c6650] pb-2 mb-3">
+            <div class="bg-[#141210]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
+              <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
                 <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 01 // PAYMENT GATEWAY</span>
-                <span class="text-[9px] text-[#c9d4a8] font-mono">STATUS: RESOLVED</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-mono font-medium">
+                  <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+                  RESOLVED
+                </span>
               </div>
-              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase">Upstream ISO 8583 Timeout Recovery</h3>
+              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase tracking-tight">Upstream ISO 8583 Timeout Recovery</h3>
               <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
                 <p><strong class="text-[#c9a15a]">Context:</strong> Merchant retry storms triggering duplicate captures during banking host timeouts.</p>
                 <p><strong class="text-[#c4562e]">Invariant:</strong> An idempotent lock must outlive the longest carrier retry window (86,400s).</p>
@@ -328,12 +330,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
 
             <!-- Dossier 02 -->
-            <div class="bg-[#141210] border border-[#5c6650] p-5 rounded-none">
-              <div class="flex items-center justify-between border-b border-[#5c6650] pb-2 mb-3">
+            <div class="bg-[#141210]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
+              <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
                 <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 02 // TELECOM SWITCH</span>
-                <span class="text-[9px] text-[#c9d4a8] font-mono">STATUS: RESOLVED</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-mono font-medium">
+                  <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+                  RESOLVED
+                </span>
               </div>
-              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase">Carrier SMPP Sliding-Window Choke</h3>
+              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase tracking-tight">Carrier SMPP Sliding-Window Choke</h3>
               <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
                 <p><strong class="text-[#c9a15a]">Context:</strong> High-volume marketing runs delaying critical banking OTP verification codes.</p>
                 <p><strong class="text-[#c4562e]">Invariant:</strong> Critical authentication traffic cannot share worker pipes with bulk broadcast queues.</p>
@@ -342,12 +347,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
 
             <!-- Dossier 03 -->
-            <div class="bg-[#141210] border border-[#5c6650] p-5 rounded-none">
-              <div class="flex items-center justify-between border-b border-[#5c6650] pb-2 mb-3">
+            <div class="bg-[#141210]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
+              <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
                 <span class="text-[10px] font-mono text-[#c4562e] uppercase font-bold tracking-widest">DOSSIER 03 // SMART DB v1</span>
-                <span class="text-[9px] text-[#c9d4a8] font-mono">STATUS: RESOLVED</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-mono font-medium">
+                  <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+                  RESOLVED
+                </span>
               </div>
-              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase">Smart DB v1 100M Pre-KYC Scoring</h3>
+              <h3 class="text-sm font-bold text-[#e8e2d5] uppercase tracking-tight">Smart DB v1 100M Pre-KYC Scoring</h3>
               <div class="text-xs text-[#a8a196] mt-2.5 space-y-1.5 leading-relaxed font-mono">
                 <p><strong class="text-[#c9a15a]">Context:</strong> 94.7M orphaned, unindexed records with inconsistent schemas causing RDBMS lock degradation.</p>
                 <p><strong class="text-[#c4562e]">Invariant:</strong> Fast attribute enrichment without slowing down the primary transaction switch.</p>
@@ -357,29 +365,24 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
         </section>
 
-        <!-- SECTION 05: TECHNICAL PRODUCT LIFECYCLE -->
-        <section id="lifecycle" class="relative bg-[#1c1916] border border-[#5c6650] p-6 sm:p-8 space-y-6 rounded-none">
-          <span class="absolute -top-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -top-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -left-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-          <span class="absolute -bottom-[3px] -right-[3px] w-[6px] h-[6px] bg-[#141210] border border-[#5c6650] pointer-events-none"></span>
-
+        <!-- SECTION 06: TECHNICAL PRODUCT LIFECYCLE -->
+        <section id="lifecycle" class="bg-[#1c1916]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">05 // TECHNICAL PRODUCT LIFECYCLE</span>
-            <div class="h-px flex-1 bg-[#5c6650]"></div>
+            <span class="text-xs text-[#c4562e] tracking-wider font-semibold uppercase">06 // TECHNICAL PRODUCT LIFECYCLE</span>
+            <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase">Technical Product Lifecycle Arc</h2>
+          <h2 class="text-2xl font-bold text-[#e8e2d5] uppercase tracking-tight">Technical Product Lifecycle Arc</h2>
           <p class="text-[#a8a196] text-xs sm:text-sm leading-relaxed max-w-3xl">
             Bridging engineering architecture with product management execution across four disciplined operational phases.
           </p>
 
-          <div class="grid grid-cols-1 lg:grid-cols-4 border border-[#5c6650] divide-y lg:divide-y-0 lg:divide-x divide-[#5c6650] bg-[#141210] mt-6">
+          <div class="grid grid-cols-1 lg:grid-cols-4 border border-white/10 rounded-2xl divide-y lg:divide-y-0 lg:divide-x divide-white/10 bg-[#141210]/70 mt-6 overflow-hidden">
             <!-- Phase 1 -->
-            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+            <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
                 <div class="flex items-center justify-between mb-3">
                   <span class="text-[10px] font-mono font-bold text-[#c4562e] uppercase tracking-wider">PHASE 01</span>
-                  <span class="w-1.5 h-1.5 bg-[#c4562e]"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e]"></span>
                 </div>
                 <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
                   01 // DISCOVERY &amp; INVARIANTS
@@ -388,17 +391,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   Authoring executable PRDs, defining strict system invariants, and auditing legacy network boundaries before a single line of code is written.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+              <div class="mt-4 pt-3 border-t border-white/10 text-[10px] text-[#c9a15a] uppercase font-mono">
                 System Boundary Audit
               </div>
             </div>
 
             <!-- Phase 2 -->
-            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+            <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
                 <div class="flex items-center justify-between mb-3">
                   <span class="text-[10px] font-mono font-bold text-[#c9a15a] uppercase tracking-wider">PHASE 02</span>
-                  <span class="w-1.5 h-1.5 bg-[#c9a15a]"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#c9a15a]"></span>
                 </div>
                 <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
                   02 // TOPOLOGY BLUEPRINTING
@@ -407,45 +410,45 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   Architecting sequence diagrams, API contracts, and concurrency guardrails (e.g., distributed locks) to ensure scale and idempotency.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+              <div class="mt-4 pt-3 border-t border-white/10 text-[10px] text-[#c9a15a] uppercase font-mono">
                 Idempotency &amp; SLAs
               </div>
             </div>
 
             <!-- Phase 3 -->
-            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+            <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
                 <div class="flex items-center justify-between mb-3">
                   <span class="text-[10px] font-mono font-bold text-[#c9d4a8] uppercase tracking-wider">PHASE 03</span>
-                  <span class="w-1.5 h-1.5 bg-[#c9d4a8]"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#c9d4a8]"></span>
                 </div>
                 <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
                   03 // CROSS-FUNCTIONAL EXECUTION
                 </h3>
                 <p class="text-xs text-[#a8a196] leading-relaxed">
-                  Acting as the single technical liaison between the C-suite and engineering. Synchronizing backend, frontend, and UI/UX sprint deliveries.
+                  Acting as the single technical liaison between executive leadership and engineering teams. Synchronizing backend, telecom, and UI delivery sprints.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+              <div class="mt-4 pt-3 border-t border-white/10 text-[10px] text-[#c9a15a] uppercase font-mono">
                 Engineering Alignment
               </div>
             </div>
 
             <!-- Phase 4 -->
-            <div class="p-5 sm:p-6 bg-[#141210] flex flex-col justify-between rounded-none">
+            <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
                 <div class="flex items-center justify-between mb-3">
                   <span class="text-[10px] font-mono font-bold text-[#c4562e] uppercase tracking-wider">PHASE 04</span>
-                  <span class="w-1.5 h-1.5 bg-[#c4562e]"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#c4562e]"></span>
                 </div>
                 <h3 class="text-xs sm:text-sm font-bold text-[#e8e2d5] uppercase font-mono tracking-tight mb-2.5">
-                  04 // TELEMETRY &amp; LAUNCH
+                  04 // TELEMETRY &amp; AGENTIC OPS
                 </h3>
                 <p class="text-xs text-[#a8a196] leading-relaxed">
-                  Executing zero-downtime deployments. Establishing Prometheus/Grafana monitoring and enforcing strict sub-15ms SLAs in production.
+                  Executing zero-downtime deployments. Establishing Prometheus/Grafana monitoring, agentic triage loops, and enforcing strict sub-15ms SLAs.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-[#5c6650]/40 text-[9px] text-[#c9a15a] uppercase font-mono">
+              <div class="mt-4 pt-3 border-t border-white/10 text-[10px] text-[#c9a15a] uppercase font-mono">
                 Production Durability
               </div>
             </div>
