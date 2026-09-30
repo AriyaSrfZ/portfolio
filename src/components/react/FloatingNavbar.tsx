@@ -10,25 +10,25 @@ const whitepaperDossiers = [
     spec: 'Spec 01',
     title: 'Payment Switch & Ledgers',
     desc: 'ISO 8583 timeouts, Redis locks & double-settlement guards',
-    href: `${baseUrl}whitepapers/payment-gateway.html`,
+    href: `${baseUrl}blog/payment-gateway/`,
   },
   {
     spec: 'Spec 02',
     title: 'Forensic Fraud Mitigation',
     desc: 'Edge telemetry, 3DS 2.0 & sub-15ms risk loops',
-    href: `${baseUrl}whitepapers/fraud-tracing.html`,
+    href: `${baseUrl}blog/fraud-tracing/`,
   },
   {
     spec: 'Spec 03',
     title: 'Telecom & SMS Infrastructure',
     desc: 'SMPP 3.4 aggregators & UCS-2 windowing',
-    href: `${baseUrl}whitepapers/sms-infrastructure.html`,
+    href: `${baseUrl}blog/sms-infrastructure/`,
   },
   {
     spec: 'Spec 04',
     title: 'Web3 & Crypto State Machines',
     desc: 'Deterministic EVM compute & rollup finality',
-    href: `${baseUrl}whitepapers/web3-infrastructure.html`,
+    href: `${baseUrl}blog/web3-infrastructure/`,
   },
 ];
 
