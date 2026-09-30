@@ -42,9 +42,9 @@ Where:
 
 The Reflection pattern decouples generation from quality assurance, addressing the fundamental limitation of single-pass auto-regressive decoding:
 
-1. **Generator ($\pi_{\text{gen}}$):** Unconstrained generation focused on creative, analytical, or algorithmic synthesis given task objective $X$.
-2. **Evaluator / Critic ($\pi_{\text{eval}}$):** Rubric-based assessment verifying factual grounding, edge-case coverage, and schema compliance.
-3. **State Revision Memory:** Explicit diffs and structured feedback injected back into the Generator context until acceptance criteria are satisfied.
+- **Generator ($\pi_{\text{gen}}$):** Unconstrained generation focused on creative, analytical, or algorithmic synthesis given task objective $X$.
+- **Evaluator / Critic ($\pi_{\text{eval}}$):** Rubric-based assessment verifying factual grounding, edge-case coverage, and schema compliance.
+- **State Revision Memory:** Explicit diffs and structured feedback injected back into the Generator context until acceptance criteria are satisfied.
 
 ```
 CRITICAL PRODUCTION FAILURE MODE:
@@ -106,6 +106,6 @@ Distributed specialization, message buses, and consensus aggregation across hete
 
 ## 07 // Production Hardening: Operational Guardrails
 
-1. **Step & Token Deadlines:** Enforce a maximum step limit (`MAX_STEPS = 10`) and hard wall-clock timeout (`TIMEOUT = 30s`) to prevent unbounded token drain.
-2. **Loop & Oscillation Detection:** Hash recent tool arguments and scratchpad traces to detect cyclic traps and break loops automatically.
-3. **Deterministic State Checkpoints:** Snapshot working state before executing critical external mutations, enabling zero-loss recovery upon node failure.
+- **Step & Token Deadlines:** Enforce a maximum step limit (`MAX_STEPS = 10`) and hard wall-clock timeout (`TIMEOUT = 30s`) to prevent unbounded token drain.
+- **Loop & Oscillation Detection:** Hash recent tool arguments and scratchpad traces to detect cyclic traps and break loops automatically.
+- **Deterministic State Checkpoints:** Snapshot working state before executing critical external mutations, enabling zero-loss recovery upon node failure.

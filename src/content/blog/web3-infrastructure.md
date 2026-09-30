@@ -45,8 +45,8 @@ Because block space on L1 mainnet is capped at 30M gas per block, high-throughpu
 
 ### Layer 2 Rollup Topologies
 To scale execution while preserving base-layer security, execution is shifted off-chain to Layer 2 rollups:
-1. **Optimistic Rollups (Arbitrum, Optimism):** Assume off-chain execution batches are valid by default. Enforce a 7-day challenge window during which verifiers can submit interactive fraud proofs to dispute malicious state transitions.
-2. **Zero-Knowledge Rollups (Starknet, zkSync):** Generate cryptographic validity proofs (STARKs or SNARKs) off-chain. Layer 1 smart contracts verify these proofs in polynomial time, enabling immediate finality without dispute delay windows.
+- **Optimistic Rollups (Arbitrum, Optimism):** Assume off-chain execution batches are valid by default. Enforce a 7-day challenge window during which verifiers can submit interactive fraud proofs to dispute malicious state transitions.
+- **Zero-Knowledge Rollups (Starknet, zkSync):** Generate cryptographic validity proofs (STARKs or SNARKs) off-chain. Layer 1 smart contracts verify these proofs in polynomial time, enabling immediate finality without dispute delay windows.
 
 ### Cross-Chain Bridge Vulnerabilities
 Assets transfer across disparate networks through lock-and-mint or burn-and-release smart contracts. Bridges introduce severe attack surfaces:

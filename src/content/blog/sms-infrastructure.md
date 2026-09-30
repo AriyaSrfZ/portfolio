@@ -47,8 +47,9 @@ Every programmatic SMS in Iran is routed through an explicit numeric prefix. Thi
 | **021 / 026 Series** | Asanak Fixed-Line Gateway | HTTP / SMPP | 50 - 150 TPS | Local Business Inquiries, Branch-Specific Two-Way Messaging |
 
 ### Commercial vs. Service Line Classification
-1. **Commercial Lines (خطوط تبلیغاتی):** Subject to the national Do-Not-Disturb blacklist (*800#). If an end-user dials *800# to mute SMS advertisements, the operator drops commercial messages at the SMSC without refunding transmission fees.
-2. **Service Lines (خطوط خدماتی):** Exempt from the *800# DND blacklist. Strictly restricted to transactional receipts, authentication OTPs, and urgent service alerts. Unauthorized promotional broadcasts on service lines result in immediate regulatory revocation and severe financial penalties.
+
+- **Commercial Lines (خطوط تبلیغاتی):** Subject to the national Do-Not-Disturb blacklist (*800#). If an end-user dials *800# to mute SMS advertisements, the operator drops commercial messages at the SMSC without refunding transmission fees.
+- **Service Lines (خطوط خدماتی):** Exempt from the *800# DND blacklist. Strictly restricted to transactional receipts, authentication OTPs, and urgent service alerts. Unauthorized promotional broadcasts on service lines result in immediate regulatory revocation and severe financial penalties.
 
 ---
 
@@ -57,12 +58,14 @@ Every programmatic SMS in Iran is routed through an explicit numeric prefix. Thi
 While international systems abstract transmission behind HTTP/2 or HTTP/3 REST APIs, high-throughput enterprise gateways interfacing with domestic aggregators must maintain persistent, bi-directional TCP socket connections using the Short Message Peer-to-Peer (SMPP 3.4) protocol.
 
 ### Binding Session Topology
+
 Enterprise clients bind as an External Short Message Entity (ESME) using three distinct connection modes:
 - **Transmitter (TX):** Dedicated exclusively to issuing `submit_sm` PDUs.
 - **Receiver (RX):** Dedicated exclusively to consuming inbound delivery receipts (`deliver_sm` PDUs) and user responses.
 - **Transceiver (TRX):** Bi-directional full-duplex session handling submission and receipt acknowledgement simultaneously.
 
 ### Sliding Window & Backpressure
+
 To prevent socket buffer overflow and aggregator SMSC queuing saturation, gateways enforce a sliding window flow control algorithm:
 - The ESME maintains an in-memory queue of transmitted `submit_sm` PDUs waiting for a corresponding `submit_sm_resp`.
 - The sliding window size is bounded between 16 and 64 unacknowledged requests.
@@ -70,7 +73,17 @@ To prevent socket buffer overflow and aggregator SMSC queuing saturation, gatewa
 - Breaching the aggregator rate threshold returns an immediate error: `ESME_RTHROTTLED` (`0x00000058`).
 
 ### Heartbeat & Session Health
+
 To prevent intermediate stateful firewalls from terminating idle TCP sockets, the gateway emits periodic `enquire_link` keep-alive PDUs every 30 to 60 seconds. A missing `enquire_link_resp` within 10 seconds triggers immediate socket reset and failover to secondary bindings.
+
+### CPaaS Architecture: International vs. Domestic Stack
+
+| Architectural Layer | Global CPaaS (Twilio / Sinch / Infobip) | Domestic Model (Magfa / Rahyab / Direct MNO) |
+| :--- | :--- | :--- |
+| **Primary Ingress Interface** | Edge-distributed JSON REST APIs, WebSocket streams, SDK abstractions. | Stateful SMPP 3.4 TCP Sockets; legacy SOAP XML proxies. |
+| **Delivery Callback Pipeline** | Asynchronous HTTPS webhooks signed with cryptographic HMAC headers. | SMPP `deliver_sm` PDUs or polling-based batch HTTP queries. |
+| **Route Redundancy** | Automated dynamic Least-Cost Routing (LCR) across 800+ tier-1 telecom carriers. | Manual prefix configuration; failover requires application-level circuit breakers. |
+| **Traffic Channels** | Omnichannel: SMS, WhatsApp Business API, RCS Business Messaging, Viber. | Strictly GSM SMS; data-based channels banned or throttled. |
 
 ---
 
@@ -90,13 +103,33 @@ A 140-character Persian message exceeds the 70-character single-segment ceiling,
 
 ---
 
-## 05 // Delivery Telemetry & State Machines
+## 05 // Delivery Telemetry: DLR State Machines & LBS Filtering
 
-When an enterprise submits a `submit_sm` PDU, the aggregator returns a `message_id` in the synchronous `submit_sm_resp`. This only confirms aggregator buffer receipt, not device delivery.
+When an enterprise submits a `submit_sm` PDU, the aggregator returns a `message_id` in the synchronous `submit_sm_resp`. This only confirms aggregator buffer receipt, not device delivery. Final delivery status returns asynchronously via `deliver_sm` PDUs.
 
-Final delivery status returns asynchronously via `deliver_sm` PDUs:
-- `DELIVRD`: Successfully delivered to mobile terminal.
-- `EXPIRED`: Message validity period elapsed before handset reconnect.
-- `DELETED`: Message purged by carrier routing policy.
-- `UNDELIV`: Destination terminal unreachable or subscriber line suspended.
-- `REJECTD`: Aggregator dropped message due to DND blacklist or content violation.
+| DLR Status Code | Delivery State | Description & Handling |
+| :--- | :--- | :--- |
+| `DELIVRD` | Terminal Delivered | Successfully delivered to destination mobile terminal; billing acknowledged. |
+| `EXPIRED` | Expired in Transit | Message validity period elapsed before destination handset reconnected to network. |
+| `DELETED` | Network Purged | Message purged by carrier routing policy or downstream SMSC buffer overflow. |
+| `UNDELIV` | Undeliverable | Destination terminal unreachable, invalid MSISDN, or subscriber suspended. |
+| `ACCEPTD` | Buffer Accepted | Intermediate aggregator node accepted PDU; final handset delivery pending. |
+| `UNKNOWN` | Status Unknown | Routing state indeterminate across upstream telecom interconnect boundaries. |
+| `REJECTD` | Aggregator Rejected | Aggregator dropped message due to *800# DND blacklist or content violation. |
+
+---
+
+## 06 // Architecture Trade-offs: Latency, Resilience & Rate-Limiting Dilemmas
+
+- **Aggregator Failover vs. Message Deduplication:** When an upstream aggregator (e.g., Magfa 3000) experiences an outage or TCP socket stall during a national traffic spike, an enterprise system must decide whether to reroute pending OTPs to a secondary aggregator. If the first aggregator later drains its queue and emits the delayed message, the subscriber receives duplicate OTPs, invalidating the active session hash. Systems must trade off failover speed against client confusion.
+- **Synchronous Ingestion vs. Backpressure Buffering:** Enterprise microservices generate bursts of 10,000+ requests per second during promotional flashes or authentication surges. Domestic aggregator bindings cap ingestion at 100-300 TPS. Gateways must implement persistent distributed queues (Kafka or RabbitMQ) with leaky-bucket rate shapers. If backpressure retention exceeds 5 minutes, delayed OTPs arrive after the client-side UI timer expires, destroying conversion.
+
+---
+
+## 07 // Segment Split & Throughput Calculation
+
+| Metric | Persian UCS-2 (145 Chars) | Latin GSM-7 (145 Chars) | Delta & Impact |
+| :--- | :--- | :--- | :--- |
+| **Segments Per Recipient** | 3 Segments (Concatenation UDH active) | 1 Segment (Direct single payload) | +200% PDU Overhead |
+| **Billing Hits (50k Batch)** | 150,000 Total Billable PDUs | 50,000 Total Billable PDUs | 3.0x Financial Cost |
+| **Dispatch Time (@ 200 TPS)** | 12.5 Minutes (Unthrottled socket) | 4.2 Minutes (Unthrottled socket) | 3.0x Delivery Delay |

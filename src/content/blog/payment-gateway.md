@@ -75,11 +75,11 @@ High-throughput payment gateways allocate roundtrip network overhead across stri
 
 ## 04 // Switch Transaction Pipeline
 
-1. **Ingress:** Merchant Client initiates HTTPS TLS 1.3 POST request with unique idempotency key.
-2. **Cache Lock:** In-memory Redis cluster validates token via atomic `SETNX`. Duplicate requests short-circuit immediately.
-3. **Serializer:** Protocol translation engine converts JSON fields into packed ISO 8583 binary bitmaps.
-4. **Core Switch:** ISO packet dispatches over APN / VPN lines to card host.
-5. **Settlement Ledger:** Response unmarshals, updating mutable state and appending debits/credits to immutable double-entry books.
+- **Ingress:** Merchant Client initiates HTTPS TLS 1.3 POST request with unique idempotency key.
+- **Cache Lock:** In-memory Redis cluster validates token via atomic `SETNX`. Duplicate requests short-circuit immediately.
+- **Serializer:** Protocol translation engine converts JSON fields into packed ISO 8583 binary bitmaps.
+- **Core Switch:** ISO packet dispatches over APN / VPN lines to card host.
+- **Settlement Ledger:** Response unmarshals, updating mutable state and appending debits/credits to immutable double-entry books.
 
 ---
 
