@@ -46,10 +46,8 @@ The Reflection pattern decouples generation from quality assurance, addressing t
 - **Evaluator / Critic ($\pi_{\text{eval}}$):** Rubric-based assessment verifying factual grounding, edge-case coverage, and schema compliance.
 - **State Revision Memory:** Explicit diffs and structured feedback injected back into the Generator context until acceptance criteria are satisfied.
 
-```
-CRITICAL PRODUCTION FAILURE MODE:
-Critique Saturation occurs when the generator and critic enter an infinite oscillating loop over subjective stylistic preferences. Systems must enforce bounded iteration limits (N <= 3) and monotonic convergence checks.
-```
+> **CRITICAL PRODUCTION FAILURE MODE:**  
+> Critique Saturation occurs when the generator and critic enter an infinite oscillating loop over subjective stylistic preferences. Systems must enforce bounded iteration limits (N <= 3) and monotonic convergence checks.
 
 ---
 

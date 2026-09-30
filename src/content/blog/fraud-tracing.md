@@ -28,10 +28,8 @@ Modern platforms deploy multi-layered perimeter architectures:
 - **Behavioral Machine Learning:** Computes real-time risk scores from transaction graphs and historical user patterns.
 - **Post-Transaction Graph Forensics:** Identifies synthetic identity rings and laundering paths across multiple hops.
 
-```
-MATHEMATICAL STANDARD:
-Chargeback Ratio = (Chargebacks Received in Month N / Total Transactions in Month N-1) * 100
-```
+> **MATHEMATICAL STANDARD:**  
+> `Chargeback Ratio = (Chargebacks Received in Month N / Total Transactions in Month N-1) * 100`
 
 ---
 

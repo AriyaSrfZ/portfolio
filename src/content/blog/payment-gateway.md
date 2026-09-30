@@ -27,10 +27,8 @@ Modern payment platforms decouple execution into transient States and immutable 
 - **State:** Represents mutable lifecycle phases (`Pending`, `Authorized`, `Captured`, `Settled`). These are cached in in-memory distributed stores with optimistic locking.
 - **Fact:** Represents an immutable, append-only business event (`AuthRequested`, `FundsReserved`, `CaptureConfirmed`). Facts are permanently written to double-entry ledgers and cannot be altered.
 
-```
-EXECUTION INVARIANT:
-Edge gateways must verify request idempotency via atomic distributed locks before dispatching transaction payloads.
-```
+> **EXECUTION INVARIANT:**  
+> Edge gateways must verify request idempotency via atomic distributed locks before dispatching transaction payloads.
 
 ---
 

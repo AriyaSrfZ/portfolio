@@ -26,10 +26,8 @@ $$S' = \text{Apply}(S, Tx)$$
 
 While public ledgers provide continuous global settlement and composability, they enforce strict computational limits, finality wait times, and execution metering:
 
-```
-EVM GAS METERING FORMULA:
-Gas Total = 21000 + Sum(Opcode Compute Costs) + Calldata Size Cost
-```
+> **EVM GAS METERING FORMULA:**  
+> `Gas Total = 21000 + Sum(Opcode Compute Costs) + Calldata Size Cost`
 
 ---
 

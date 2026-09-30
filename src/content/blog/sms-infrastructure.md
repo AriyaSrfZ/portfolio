@@ -27,10 +27,8 @@ The primary underlying carriers:
 - **MTN Irancell:** Modernized IP-centric infrastructure, primary provider for sub-10 second transactional banking OTPs.
 - **RighTel:** Third mobile operator, historically optimized for high-speed packet data.
 
-```
-ARCHITECTURAL REALITY:
-Due to structural sanctions and national cyber governance mandates, global CPaaS providers do not route inside Iranian IP boundaries. High-throughput platforms must interface directly via bare-metal SMPP 3.4 TCP socket pipelines into licensed domestic aggregators.
-```
+> **ARCHITECTURAL REALITY:**  
+> Due to structural sanctions and national cyber governance mandates, global CPaaS providers do not route inside Iranian IP boundaries. High-throughput platforms must interface directly via bare-metal SMPP 3.4 TCP socket pipelines into licensed domestic aggregators.
 
 ---
 
@@ -96,10 +94,8 @@ Because Rich Communication Services (RCS) and MMS are blocked at national networ
 | **GSM-7 (Latin / English)** | 160 Characters | 153 Characters / Part | English technical notifications, basic alphanumeric codes |
 | **UCS-2 (Persian / UTF-16)** | 70 Characters | 67 Characters / Part | Persian transactional texts, customer support receipts |
 
-```
-COST & CAPACITY PENALTY:
-A 140-character Persian message exceeds the 70-character single-segment ceiling, splitting into three billable concatenated segments (67 + 67 + 6 characters). This triples infrastructural costs and increases delivery failure probability by 300% across carrier boundaries.
-```
+> **COST & CAPACITY PENALTY:**  
+> A 140-character Persian message exceeds the 70-character single-segment ceiling, splitting into three billable concatenated segments (67 + 67 + 6 characters). This triples infrastructural costs and increases delivery failure probability by 300% across carrier boundaries.
 
 ---
 
