@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BlogPost from '../../../layouts/BlogPost.astro';
+import FarsiBlogPost from '../../../layouts/FarsiBlogPost.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data, id }) => id.startsWith('fa/') || data.lang === 'fa');
@@ -14,13 +14,12 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost
+<FarsiBlogPost
   title={post.data.title}
   description={post.data.description}
   date={post.data.date}
   technologies={post.data.technologies}
   metric={post.data.metric}
-  lang="fa"
 >
   <Content />
-</BlogPost>
+</FarsiBlogPost>
