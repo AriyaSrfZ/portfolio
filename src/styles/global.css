@@ -149,3 +149,7 @@ body {
 :lang(fa) h1, :lang(fa) h2, :lang(fa) h3, :lang(fa) h4, :lang(fa) h5, :lang(fa) h6, :lang(fa) a, :lang(fa) p, :lang(fa) span, :lang(fa) div {
   font-family: 'Vazirmatn', sans-serif !important;
 }
+
+:lang(fa), :lang(fa) * {
+  letter-spacing: normal !important;
+}
