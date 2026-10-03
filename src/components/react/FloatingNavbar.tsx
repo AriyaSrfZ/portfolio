@@ -1,6 +1,5 @@
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
-import { useTranslations, getLangFromUrl } from '../../i18n/ui';
+import { useState, useEffect } from 'react';
+import { getLangFromUrl } from '../../i18n/ui';
 import type { ActiveEnvironment } from './BackgroundController';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
@@ -16,13 +15,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   const isFa = currentLang === 'fa';
   const defaultSwitchTarget = locale === 'fa' ? baseUrl : `${baseUrl}fa/`;
   const [switchTarget, setSwitchTarget] = useState<string>(defaultSwitchTarget);
-  const [activeTab, setActiveTab] = useState<ActiveEnvironment>('core');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const { scrollY } = useScroll();
-  const [visible, setVisible] = useState(true);
-  const [lastY, setLastY] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -43,34 +36,27 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
     }
   }, []);
 
-  // Update active tab on scroll
-  useEffect(() => {
-    const handleEnvChange = (e: Event) => {
-      const customEvent = e as CustomEvent<ActiveEnvironment>;
-      if (customEvent.detail) {
-        setActiveTab(customEvent.detail);
-      }
-    };
-    window.addEventListener('ambient-env-change', handleEnvChange);
-    return () => window.removeEventListener('ambient-env-change', handleEnvChange);
-  }, []);
+  const navItems = isFa
+    ? [
+        { label: '۰۱. دفتر کل', target: 'payment-settlement', env: 'core' as ActiveEnvironment },
+        { label: '۰۲. سوییچ', target: 'payment-switch', env: 'switch' as ActiveEnvironment },
+        { label: '۰۳. احراز هویت', target: 'fraud-forensics', env: 'switch' as ActiveEnvironment },
+        { label: '۰۴. مغایرت‌گیری', target: 'reconciliation-engine', env: 'recon' as ActiveEnvironment },
+        { label: '۰۵. بحران‌ها', target: 'incident-dossiers', env: 'incidents' as ActiveEnvironment },
+        { label: '۰۶. مشاوره', target: 'book', env: 'core' as ActiveEnvironment },
+      ]
+    : [
+        { label: '01. Ledger', target: 'payment-settlement', env: 'core' as ActiveEnvironment },
+        { label: '02. Switch', target: 'payment-switch', env: 'switch' as ActiveEnvironment },
+        { label: '03. eKYC', target: 'fraud-forensics', env: 'switch' as ActiveEnvironment },
+        { label: '04. Reconcile', target: 'reconciliation-engine', env: 'recon' as ActiveEnvironment },
+        { label: '05. Incidents', target: 'incident-dossiers', env: 'incidents' as ActiveEnvironment },
+        { label: '06. Consultation', target: 'book', env: 'core' as ActiveEnvironment },
+      ];
 
-  useMotionValueEvent(scrollY, 'change', (current) => {
-    const diff = current - lastY;
-    if (current < 50) {
-      setVisible(true);
-    } else if (diff > 10) {
-      setVisible(false);
-      setMenuOpen(false);
-    } else if (diff < -10) {
-      setVisible(true);
-    }
-    setLastY(current);
-  });
-
-  const selectTab = (tab: ActiveEnvironment, targetId: string) => {
-    setActiveTab(tab);
-    window.dispatchEvent(new CustomEvent('ambient-env-change', { detail: tab }));
+  const handleNavClick = (targetId: string, env: ActiveEnvironment) => {
+    setMobileMenuOpen(false);
+    window.dispatchEvent(new CustomEvent('ambient-env-change', { detail: env }));
     const el = document.getElementById(targetId);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -79,142 +65,105 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
     }
   };
 
-  const tabs: { id: ActiveEnvironment; label: string; target: string }[] = [
-    { id: 'core', label: isFa ? 'دفتر کل' : 'ARCH', target: 'payment-settlement' },
-    { id: 'switch', label: isFa ? 'سوییچ' : 'SWITCH', target: 'payment-switch' },
-    { id: 'recon', label: isFa ? 'مغایرت‌گیری' : 'RECON', target: 'reconciliation-engine' },
-    { id: 'incidents', label: isFa ? 'پرونده‌ها' : 'DOSSIERS', target: 'incident-dossiers' },
-  ];
-
-  const moreLinks = [
-    { href: isFa ? `${baseUrl}fa/work/` : `${baseUrl}work/`, label: isFa ? 'مطالعات موردی' : 'Case Studies' },
-    { href: isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`, label: isFa ? 'وایت‌پیپرها' : 'Whitepapers' },
-    { href: isFa ? `${baseUrl}fa/blog/` : `${baseUrl}blog/`, label: isFa ? 'وبلاگ مهندسی' : 'Blog' },
-    { href: isFa ? `${baseUrl}fa/about/` : `${baseUrl}about/`, label: isFa ? 'درباره من' : 'About' },
-  ];
-
   return (
-    <>
-      {/* Sub-44px Compact Data HUD */}
-      <motion.header
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: visible ? 0 : -60, opacity: visible ? 1 : 0 }}
-        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-3 inset-x-0 mx-auto max-w-4xl h-11 px-3.5 z-50 rounded-full border border-white/[0.08] bg-black/60 backdrop-blur-xl flex items-center justify-between shadow-2xl ring-1 ring-white/[0.04]"
-        dir="ltr"
-      >
-        {/* Brand mark & Telemetry status */}
-        <div className="flex items-center gap-2 font-mono text-[11px] text-neutral-400 shrink-0">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+    <header className="fixed top-0 inset-x-0 w-full h-14 z-50 backdrop-blur-md bg-[#0b0d11]/85 border-b border-white/5 transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
+        
+        {/* Left: Brand + Status Badge */}
+        <div className="flex items-center gap-3">
           <a
             href={isFa ? `${baseUrl}fa/` : baseUrl}
-            className="font-semibold tracking-wider text-neutral-200 hover:text-white transition-colors"
+            className="text-xs sm:text-sm font-semibold tracking-wider text-white hover:text-neutral-300 transition-colors uppercase font-mono"
           >
             ARIYA SARRAFZADEH
           </a>
-          <span className="text-neutral-700 hidden sm:inline">/</span>
-          <span className="text-neutral-500 text-[10px] hidden md:inline tracking-wider">
-            UTC+3:30 · NOMINAL
+          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/10 text-[10px] font-mono text-neutral-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>[TPM · FINTECH &amp; SWITCHES]</span>
           </span>
         </div>
 
-        {/* Segmented Pill Tabs for Ambient Architecture Switch */}
-        <nav className="hidden sm:flex items-center bg-white/[0.03] border border-white/[0.06] rounded-full p-0.5 gap-0.5">
-          {tabs.map((tab) => {
-            const isActive = activeTab === tab.id;
-            return (
+        {/* Right: Horizontal Section Pills + Language Toggle */}
+        <div className="flex items-center gap-2">
+          {/* Desktop Nav Pills */}
+          <nav className="hidden lg:flex items-center gap-1 font-mono text-xs">
+            {navItems.map((item) => (
               <button
-                key={tab.id}
+                key={item.target}
                 type="button"
-                onClick={() => selectTab(tab.id, tab.target)}
-                className={`px-2.5 py-1 rounded-full text-[11px] font-mono transition-all duration-200 ${
-                  isActive
-                    ? 'bg-white/10 text-white font-medium shadow-sm'
-                    : 'text-neutral-400 hover:text-neutral-200 hover:bg-white/[0.04]'
-                }`}
+                onClick={() => handleNavClick(item.target, item.env)}
+                className="px-2.5 py-1 rounded-md text-neutral-400 hover:text-white hover:bg-white/[0.05] transition-colors"
               >
-                {tab.label}
+                {item.label}
               </button>
-            );
-          })}
-        </nav>
+            ))}
+          </nav>
 
-        {/* Right side: Nav Dropdown + Language Switcher */}
-        <div className="flex items-center gap-1.5">
-          {/* Menu Trigger */}
-          <div className="relative" ref={menuRef}>
-            <button
-              type="button"
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="px-2.5 py-1 rounded-full text-[11px] font-mono text-neutral-400 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] transition-all flex items-center gap-1"
-            >
-              <span>INDEX</span>
-              <svg
-                className={`w-3 h-3 text-neutral-500 transition-transform ${menuOpen ? 'rotate-180' : ''}`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+          {/* Divider */}
+          <span className="hidden lg:block w-px h-4 bg-white/10 mx-1"></span>
 
-            {/* Dropdown Menu */}
-            <AnimatePresence>
-              {menuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 6, scale: 0.96 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute right-0 mt-2 w-48 py-1.5 rounded-2xl border border-white/10 bg-[#090a0c]/90 backdrop-blur-2xl shadow-2xl z-50 flex flex-col"
-                >
-                  <div className="px-3 py-1 text-[10px] font-mono uppercase text-neutral-500 tracking-wider border-b border-white/[0.06]">
-                    Navigation
-                  </div>
-                  {moreLinks.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="px-3 py-1.5 text-xs text-neutral-300 hover:text-white hover:bg-white/[0.06] transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                  <div className="sm:hidden border-t border-white/[0.06] pt-1 mt-1">
-                    <div className="px-3 py-1 text-[10px] font-mono uppercase text-neutral-500 tracking-wider">
-                      Architectural Pillars
-                    </div>
-                    {tabs.map((tab) => (
-                      <button
-                        key={tab.id}
-                        type="button"
-                        onClick={() => {
-                          setMenuOpen(false);
-                          selectTab(tab.id, tab.target);
-                        }}
-                        className="w-full text-left px-3 py-1.5 text-xs text-neutral-400 hover:text-white hover:bg-white/[0.06]"
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* Secondary Links (Whitepapers / Case Studies) */}
+          <a
+            href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
+            className="hidden sm:inline-block px-2.5 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
+          >
+            {isFa ? 'وایت‌پیپرها' : 'Dossiers'}
+          </a>
 
-          {/* Compact Language Toggle */}
+          {/* Language Switcher */}
           <a
             href={switchTarget}
-            aria-label={isFa ? 'Switch to English' : 'تغییر به فارسی'}
-            className="px-2 py-1 rounded-full text-[10px] font-mono font-semibold text-neutral-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] transition-all tracking-wider"
+            className="px-2.5 py-1 rounded-md bg-white/[0.05] hover:bg-white/10 border border-white/10 text-[11px] font-mono font-medium text-white transition-all tracking-wider"
           >
             {isFa ? 'EN' : 'FA'}
           </a>
+
+          {/* Mobile Hamburger */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-1.5 rounded-md text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
+            aria-label="Toggle Navigation Menu"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
-      </motion.header>
-    </>
+      </div>
+
+      {/* Mobile Dropdown */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden w-full bg-[#0b0d11]/95 border-b border-white/10 px-6 py-4 space-y-2 backdrop-blur-xl">
+          <div className="grid grid-cols-2 gap-2 font-mono text-xs">
+            {navItems.map((item) => (
+              <button
+                key={item.target}
+                type="button"
+                onClick={() => handleNavClick(item.target, item.env)}
+                className="text-left px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5 text-neutral-300 hover:text-white"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+          <div className="pt-3 border-t border-white/5 flex gap-4 text-xs font-mono">
+            <a href={isFa ? `${baseUrl}fa/work/` : `${baseUrl}work/`} className="text-neutral-400 hover:text-white">
+              {isFa ? 'پروژه‌ها' : 'Case Studies'}
+            </a>
+            <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} className="text-neutral-400 hover:text-white">
+              {isFa ? 'وایت‌پیپرها' : 'Whitepapers'}
+            </a>
+            <a href={isFa ? `${baseUrl}fa/blog/` : `${baseUrl}blog/`} className="text-neutral-400 hover:text-white">
+              {isFa ? 'وبلاگ' : 'Blog'}
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
   );
 }

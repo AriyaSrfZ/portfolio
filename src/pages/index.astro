@@ -13,651 +13,557 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
   <Hero />
 
-  <main class="max-w-[1500px] mx-auto px-6 py-10 font-sans" id="blueprints">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      
-      <!-- Sticky Sidebar Index -->
-      <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
-        <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-4 shadow-2xl ring-1 ring-white/[0.03]">
-          <div class="text-[11px] font-mono font-semibold text-[#ededed] uppercase tracking-wider mb-3 border-b border-white/[0.06] pb-2.5 flex justify-between items-center">
-            <span>Architecture Index</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-12 font-sans" id="blueprints">
+
+    <!-- DOSSIER 01: Double-Entry Ledger & Two-Phase Balance Engine -->
+    <section id="payment-settlement" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>01 · SETTLEMENTS &amp; LEDGERS</span>
           </div>
-          
-          <nav class="space-y-1 text-xs font-mono">
-            <a href="#payment-settlement" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              01 · Dual-Entry Ledger &amp; 2PC
-            </a>
-            <a href="#fraud-forensics" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              02 · eKYC &amp; Token Vault
-            </a>
-            <a href="#payment-switch" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              03 · Smart PSP Switch &amp; ISO 8583
-            </a>
-            <a href="#reconciliation-engine" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              04 · Multi-Pass Reconciliation
-            </a>
-            <a href="#incident-dossiers" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              05 · Incident Postmortems
-            </a>
-            <a href="#lifecycle" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              06 · Product Delivery Arc
-            </a>
-            <a href={`${baseUrl}whitepapers/`} class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              07 · Engineering Whitepapers
-            </a>
-            <a href="#book" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              08 · Architecture Intake
-            </a>
-          </nav>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded">
+            SPECIFICATION DOSSIER 01
+          </span>
         </div>
-      </aside>
-
-      <!-- Main Blueprint Sections -->
-      <div class="lg:col-span-9 space-y-8">
-        
-        <!-- SECTION 01: Double-Entry Ledger & Settlements -->
-        <section id="payment-settlement" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
-          <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
-            <!-- Left: Breakdown -->
-            <div class="xl:col-span-7 space-y-3.5">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">01 · Settlements &amp; Ledgers</span>
-                <div class="h-px flex-1 bg-white/[0.06]"></div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400">DOSSIER 01</span>
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-                The Double-Entry Ledger &amp; Two-Phase Balance Reservation Engine
-              </h2>
-
-              <div class="p-3.5 bg-[#090a0c]/80 border border-white/[0.07] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">Architectural Invariant</span>
-                <p class="text-[#ededed] font-mono text-[11px] leading-relaxed">
-                  Single Source of Financial Truth. Zero double-settlements across 86,400s replay windows with two-phase balance reservation (AVAILABLE &rarr; RESERVED) and mathematical &Sigma; Debits &minus; &Sigma; Credits = 0 balance enforcement.
-                </p>
-              </div>
-
-              <div class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2">
-                <p>
-                  Client mutations enter via Spring Cloud Gateway with strict UUIDv4 <code class="text-[#ededed] font-mono text-[11px] bg-white/[0.04] px-1 py-0.5 rounded border border-white/[0.06]">Idempotency-Key</code> and Redis atomic <code class="text-[#ededed] font-mono text-[11px] bg-white/[0.04] px-1 py-0.5 rounded border border-white/[0.06]">SETNX</code> mutex locks (24h TTL). Direct balance allocations execute a Two-Phase Reservation State Machine transitioning funds from <code class="text-[#d97706] font-mono text-[11px] bg-white/[0.04] px-1 py-0.5 rounded border border-white/[0.06]">AVAILABLE</code> to <code class="text-neutral-200 font-mono text-[11px] bg-white/[0.04] px-1 py-0.5 rounded border border-white/[0.06]">RESERVED</code> status before dispatch. Final settlement writes append-only balanced debit/credit legs into an immutable ACID ledger in ScyllaDB and PostgreSQL, guaranteeing zero unrecorded floating capital.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#d97706]">Failure Mode &amp; Mitigation</span>
-                <p class="text-[#94a3b8] leading-relaxed text-[11.5px]">
-                  Partial network timeouts or broker partitions during multi-leg bank ledger updates. Solved by transactional outbox pattern and Raft-backed distributed state recovery, rejecting uncommitted transient states.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">Product Decision · DigiPay Core Ledger</span>
-                <div class="text-[#cbd5e1] space-y-1 text-[11.5px] leading-relaxed">
-                  <p><strong class="text-[#ededed]">Why this, why then:</strong> Inconsistent ledger states and ghost balances during high-concurrency wallet checkouts threatened regulatory standing.</p>
-                  <p><strong class="text-[#ededed]">Tradeoff:</strong> Enforced strict synchronous two-phase balance reservation over raw optimistic write throughput.</p>
-                  <p><strong class="text-[#ededed]">Outcome:</strong> 100% mathematical ledger parity across 50,000+ daily transactions with zero duplicate payouts.</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[ACID]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[2PC RESERVATION]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[REDIS SETNX]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[SCYLLADB]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[ZERO DRIFT]</span>
-              </div>
-
-              <div class="pt-2 flex items-center justify-between text-xs border-t border-white/[0.06]">
-                <span class="text-neutral-500 font-mono text-[10px]">SPECIFICATION: DOSSIER 01</span>
-                <a href={`${baseUrl}blog/payment-gateway/`} class="font-mono text-xs font-medium text-[#ededed] hover:text-white inline-flex items-center gap-1 group">
-                  <span>Inspect Full Dossier</span>
-                  <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right: Flow Diagram & Parameters -->
-            <div class="xl:col-span-5 space-y-3">
-              <div class="bg-[#090a0c] border border-white/[0.08] rounded-xl p-3 sm:p-4 shadow-inner">
-                <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pb-2 border-b border-white/[0.06] mb-3">
-                  <span>TOPOLOGY SCHEMATIC</span>
-                  <span class="text-emerald-500">2PC · VERIFIED</span>
-                </div>
-                <img 
-                  src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-2026`} 
-                  alt="Double-Entry Ledger and Two-Phase Reservation Topology Schematic"
-                  class="w-full h-auto object-contain rounded filter contrast-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-[10px] font-mono">
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">REPLAY WINDOW</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">86,400s (24h)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">MUTEX LOCK TTL</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">15,000ms</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">LEDGER STORE</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">ScyllaDB / Postgres</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">DRIFT AUDIT</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">0.00 IRR (ZERO)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- SECTION 02: Fraud Forensics & eKYC -->
-        <section id="fraud-forensics" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
-          <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
-            <!-- Left: Breakdown -->
-            <div class="xl:col-span-7 space-y-3.5">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">02 · Threat Isolation &amp; eKYC</span>
-                <div class="h-px flex-1 bg-white/[0.06]"></div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400">DOSSIER 02</span>
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-                eKYC, Central Bank Harim OTP &amp; PCI-DSS Token Vault
-              </h2>
-
-              <div class="p-3.5 bg-[#090a0c]/80 border border-white/[0.07] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">Architectural Invariant</span>
-                <p class="text-[#ededed] font-mono text-[11px] leading-relaxed">
-                  Zero storage of raw CVV2/PIN data post-authorization (PCI-DSS compliance); Central Bank 4-parameter Harim OTP cryptographically bound to National Identity &amp; Card PAN.
-                </p>
-              </div>
-
-              <div class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2">
-                <p>
-                  Card data enters an isolated PCI-DSS bank demilitarized zone where the Token Vault exchanges raw PANs for opaque tokens; raw CVV2 codes are purged immediately after authorization. Seamlessly integrates national eKYC (Shahkar mobile-to-national-ID verification and Sabt-Ahval queries) with Central Bank Harim dynamic OTP services. Device intelligence and behavioral telemetry compute sub-15ms risk vectors [0.00, 1.00] in Neo4j graph clusters to trigger 3DS 2.0 biometric challenges or freeze illicit accounts.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#d97706]">Failure Mode &amp; Mitigation</span>
-                <p class="text-[#94a3b8] leading-relaxed text-[11.5px]">
-                  Distributed account takeovers, SIM-swap attacks, and dynamic OTP phishing rings. Mitigated by cryptographic correlation of Shahkar SIM issuance timestamp against dynamic Harim OTP generation requests.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">Product Decision · Bank Zone Compliance</span>
-                <div class="text-[#cbd5e1] space-y-1 text-[11.5px] leading-relaxed">
-                  <p><strong class="text-[#ededed]">Why this, why then:</strong> Static rules caused high false positives and fraudsters exploited SIM-swap delays to bypass legacy OTPs.</p>
-                  <p><strong class="text-[#ededed]">Tradeoff:</strong> Refused to cache CVV2 credentials for one-click checkout convenience, enforcing strict zero-storage PCI-DSS tokenization.</p>
-                  <p><strong class="text-[#ededed]">Outcome:</strong> Slashed illicit drain by 94 percent while shifting financial liability to issuing banks via 3DS 2.0.</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[PCI-DSS]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[HARIM OTP]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[SHAHKAR eKYC]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[NEO4J FORENSICS]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[<15MS RISK LOOP]</span>
-              </div>
-
-              <div class="pt-2 flex items-center justify-between text-xs border-t border-white/[0.06]">
-                <span class="text-neutral-500 font-mono text-[10px]">SPECIFICATION: DOSSIER 02</span>
-                <a href={`${baseUrl}blog/fraud-tracing/`} class="font-mono text-xs font-medium text-[#ededed] hover:text-white inline-flex items-center gap-1 group">
-                  <span>Inspect Full Dossier</span>
-                  <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right: Flow Diagram & Parameters -->
-            <div class="xl:col-span-5 space-y-3">
-              <div class="bg-[#090a0c] border border-white/[0.08] rounded-xl p-3 sm:p-4 shadow-inner">
-                <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pb-2 border-b border-white/[0.06] mb-3">
-                  <span>THREAT TOPOLOGY</span>
-                  <span class="text-emerald-500">PCI-DSS · ISOLATED</span>
-                </div>
-                <img 
-                  src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
-                  alt="eKYC, Harim Dynamic OTP and Forensic Graph Tracing Schematic"
-                  class="w-full h-auto object-contain rounded filter contrast-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-[10px] font-mono">
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">RISK EVAL SLA</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">&lt;15ms (P99)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">CVV2 RETENTION</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">0.00s (EPHEMERAL)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">IDENTITY ENGINE</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">Shahkar / Sabt-Ahval</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">FRAUD DRAIN DROP</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">-94% VERIFIED</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- SECTION 03: Smart PSP Switch & Dynamic Weighted Routing -->
-        <section id="payment-switch" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
-          <span id="sms-gateway" class="sr-only"></span>
-          <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
-            <!-- Left: Breakdown -->
-            <div class="xl:col-span-7 space-y-3.5">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">03 · Payment Switch &amp; Routing</span>
-                <div class="h-px flex-1 bg-white/[0.06]"></div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400">DOSSIER 03</span>
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-                Smart PSP Switch &amp; Dynamic Weighted Routing Engine
-              </h2>
-
-              <div class="p-3.5 bg-[#090a0c]/80 border border-white/[0.07] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">Architectural Invariant</span>
-                <p class="text-[#ededed] font-mono text-[11px] leading-relaxed">
-                  Sub-30ms automated gateway failover; dynamic traffic distribution across 4 national PSPs (SEP, PEC, BPM, PEP) and Faravaran Hub with 99.99% payment switch uptime.
-                </p>
-              </div>
-
-              <div class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2">
-                <p>
-                  Enterprise Head-to-Head (H2H) switch unpacking ISO 8583 MTI 0200/0210 financial telegrams. Dynamic weighted routing algorithm evaluates real-time PSP success rates, rolling P99 latency, merchant contractual fee tiers, and bank maintenance windows to steer traffic across SEP (Saman), PEC (Parsian), BPM (Behpardakht Mellat), and PEP (Pasargad). Integrated Faravaran Hub adapters and automated circuit breakers drop degraded connections in sub-30ms to prevent checkout drops.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#d97706]">Failure Mode &amp; Mitigation</span>
-                <p class="text-[#94a3b8] leading-relaxed text-[11.5px]">
-                  Upstream PSP network brownouts and partial HTTP/socket hangs. Resolved through active sliding-window health probes, circuit breaker shedding, and instant fallback to secondary PSP routes within 30ms SLA.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">Product Decision · Multi-PSP Switch</span>
-                <div class="text-[#cbd5e1] space-y-1 text-[11.5px] leading-relaxed">
-                  <p><strong class="text-[#ededed]">Why this, why then:</strong> Single-PSP vendor lock-in created massive checkout drop-offs during bank maintenance windows and national clearing congestion.</p>
-                  <p><strong class="text-[#ededed]">Tradeoff:</strong> Built an agnostic multi-PSP switch topology with dynamic weight allocation rather than relying on a single PSP relationship.</p>
-                  <p><strong class="text-[#ededed]">Outcome:</strong> Achieved 99.99% gateway availability, sub-250ms roundtrip checkout latency, and 30ms automated failover during upstream provider outages.</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[ISO 8583]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[MTI 0200/0210]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[FARAVARAN HUB]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[MULTI-PSP ROUTING]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[30MS FAILOVER]</span>
-              </div>
-
-              <div class="pt-2 flex items-center justify-between text-xs border-t border-white/[0.06]">
-                <span class="text-neutral-500 font-mono text-[10px]">SPECIFICATION: DOSSIER 03</span>
-                <a href={`${baseUrl}blog/sms-infrastructure/`} class="font-mono text-xs font-medium text-[#ededed] hover:text-white inline-flex items-center gap-1 group">
-                  <span>Inspect Full Dossier</span>
-                  <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right: Flow Diagram & Parameters -->
-            <div class="xl:col-span-5 space-y-3">
-              <div class="bg-[#090a0c] border border-white/[0.08] rounded-xl p-3 sm:p-4 shadow-inner">
-                <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pb-2 border-b border-white/[0.06] mb-3">
-                  <span>ROUTING PIPELINE</span>
-                  <span class="text-emerald-500">ISO 8583 · 99.99% UP</span>
-                </div>
-                <img 
-                  src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-2026`} 
-                  alt="Smart PSP Switch and ISO 8583 Pipeline Topology Schematic"
-                  class="w-full h-auto object-contain rounded filter contrast-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-[10px] font-mono">
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">FAILOVER SLA</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">&lt;30ms (CIRCUIT BREAK)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">PSP ADAPTERS</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">SEP · PEC · BPM · PEP</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">SWITCH PROTOCOL</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">ISO 8583 H2H MTI 0200</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">CONVERSION GAIN</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">+14% OPTIMIZED</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- SECTION 04: Multi-Pass Reconciliation & Early Merchant Settlement -->
-        <section id="reconciliation-engine" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
-          <span id="data-pipeline" class="sr-only"></span>
-          <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
-            <!-- Left: Breakdown -->
-            <div class="xl:col-span-7 space-y-3.5">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">04 · Multi-Pass Reconciliation</span>
-                <div class="h-px flex-1 bg-white/[0.06]"></div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400">DOSSIER 04</span>
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-                Event-Driven Multi-Pass Reconciliation &amp; Early Merchant Settlement
-              </h2>
-
-              <div class="p-3.5 bg-[#090a0c]/80 border border-white/[0.07] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">Architectural Invariant</span>
-                <p class="text-[#ededed] font-mono text-[11px] leading-relaxed">
-                  Mathematical 3-way reconciliation parity across internal ledgers, PSP logs, and Central Bank clearing statements; zero uncollected merchant balances.
-                </p>
-              </div>
-
-              <div class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2">
-                <p>
-                  Ingests end-state transaction events asynchronously over RabbitMQ (<code class="text-[#ededed] font-mono text-[11px] bg-white/[0.04] px-1 py-0.5 rounded border border-white/[0.06]">activity.end_state</code>). Spring Batch nightly multi-pass reconciliation workers ingest ISO 20022 and bank clearing SFTP feeds, cross-referencing RRN, STAN, and internal tracking codes. Exceptions trigger the automated <code class="text-[#ededed] font-mono text-[11px] bg-white/[0.04] px-1 py-0.5 rounded border border-white/[0.06]">Refund-MNG</code> self-healing engine to reverse ghost authorizations or disburse compensatory credits. Drives 24h Early Merchant Settlement (Merchant Credit) via automated Paya/Satna batch transfers with dynamic daily floating fee formulas: <code class="text-[#d97706] font-mono text-[11px] bg-white/[0.04] px-1 py-0.5 rounded border border-white/[0.06]">&Delta;Fee = Amount &times; (r_base + d &times; r_daily)</code>.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#d97706]">Failure Mode &amp; Mitigation</span>
-                <p class="text-[#94a3b8] leading-relaxed text-[11.5px]">
-                  Bank statement delays, out-of-order webhook delivery, or intermittent network drops during settlement window. Addressed by idempotent multi-pass reconciliation phases (T+0 instant, T+1 clearing, T+2 judicial dispute resolution).
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">Product Decision · Automated Reconciliation</span>
-                <div class="text-[#cbd5e1] space-y-1 text-[11.5px] leading-relaxed">
-                  <p><strong class="text-[#ededed]">Why this, why then:</strong> Manual reconciliation delayed merchant payouts to 48h+, causing severe cash-flow friction for enterprise merchants.</p>
-                  <p><strong class="text-[#ededed]">Tradeoff:</strong> Shifted from synchronous reconciliation to an asynchronous multi-pass state machine backed by automated bank SFTP pipelines.</p>
-                  <p><strong class="text-[#ededed]">Outcome:</strong> Launched 24h early merchant settlement with automated floating fee collection, eliminated 100% of manual reconciliation overhead, and prevented financial leakage.</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[SPRING BATCH]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[RABBITMQ MESH]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[REFUND-MNG]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[PAYA / SATNA]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[24H EARLY PAYOUT]</span>
-              </div>
-
-              <div class="pt-2 flex items-center justify-between text-xs border-t border-white/[0.06]">
-                <span class="text-neutral-500 font-mono text-[10px]">SPECIFICATION: DOSSIER 04</span>
-                <a href={`${baseUrl}blog/event-driven-migration/`} class="font-mono text-xs font-medium text-[#ededed] hover:text-white inline-flex items-center gap-1 group">
-                  <span>Inspect Full Dossier</span>
-                  <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right: Flow Diagram & Parameters -->
-            <div class="xl:col-span-5 space-y-3">
-              <div class="bg-[#090a0c] border border-white/[0.08] rounded-xl p-3 sm:p-4 shadow-inner">
-                <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pb-2 border-b border-white/[0.06] mb-3">
-                  <span>RECON PIPELINE</span>
-                  <span class="text-emerald-500">SPRING BATCH · PASS 1/2/3</span>
-                </div>
-                <img 
-                  src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-2026`} 
-                  alt="Multi-Bank Multi-Pass Reconciliation and Settlement Pipeline Schematic"
-                  class="w-full h-auto object-contain rounded filter contrast-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-[10px] font-mono">
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">EVENT MESH</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">RabbitMQ activity.end_state</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">BATCH WORKERS</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">Spring Batch (Nightly)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">BANK PROTOCOL</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">Paya / Satna ACH Batches</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">AUTO-HEALING</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">Refund-MNG Engine</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- PRODUCTION INCIDENT DOSSIERS -->
-        <section id="incident-dossiers" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 space-y-5 shadow-2xl ring-1 ring-white/[0.03]">
-          <div class="flex items-center justify-between border-b border-white/[0.06] pb-3">
-            <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-              <span>05 · Incident Postmortems &amp; Recovery</span>
-            </div>
-            <span class="text-[10px] font-mono text-emerald-400 border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 rounded">
-              3/3 RESOLVED IN PROD
-            </span>
-          </div>
-
-          <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-            Battle-Tested Failure Resolution Under Strict SLA Constraints
-          </h2>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
-            <!-- Dossier 01 -->
-            <div class="bg-[#090a0c]/70 border border-white/[0.07] rounded-xl p-4 flex flex-col justify-between hover:border-white/15 transition-all">
-              <div>
-                <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">
-                  <span class="text-[10px] font-mono text-neutral-400 uppercase font-semibold">INCIDENT 01 · SWITCH</span>
-                  <span class="text-[9px] font-mono text-emerald-400">P0 RESOLVED</span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">Upstream ISO 8583 Timeout Recovery</h3>
-                <div class="text-[11px] text-[#94a3b8] space-y-1 font-mono leading-relaxed">
-                  <p><span class="text-neutral-500">CTX:</span> Merchant retry storms triggering duplicate captures during banking host timeouts.</p>
-                  <p><span class="text-neutral-500">INV:</span> Lock must outlive carrier retry window (86,400s).</p>
-                  <p><span class="text-neutral-500">FIX:</span> Distributed Redis mutex with 24h TTL; ScyllaDB append-only double-entry ledger.</p>
-                </div>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/[0.06] text-[10px] font-mono text-emerald-400">
-                0.00 IRR Financial Drift
-              </div>
-            </div>
-
-            <!-- Dossier 02 -->
-            <div class="bg-[#090a0c]/70 border border-white/[0.07] rounded-xl p-4 flex flex-col justify-between hover:border-white/15 transition-all">
-              <div>
-                <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">
-                  <span class="text-[10px] font-mono text-neutral-400 uppercase font-semibold">INCIDENT 02 · TELECOM</span>
-                  <span class="text-[9px] font-mono text-emerald-400">P0 RESOLVED</span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">Carrier SMPP Sliding-Window Choke</h3>
-                <div class="text-[11px] text-[#94a3b8] space-y-1 font-mono leading-relaxed">
-                  <p><span class="text-neutral-500">CTX:</span> High-volume marketing runs delaying critical banking OTP verification codes.</p>
-                  <p><span class="text-neutral-500">INV:</span> Auth traffic cannot share worker pipes with bulk broadcast queues.</p>
-                  <p><span class="text-neutral-500">FIX:</span> Multi-tier queue partitioning; real-time SMPP sliding window throttle (16–64 PDU).</p>
-                </div>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/[0.06] text-[10px] font-mono text-emerald-400">
-                Sub-2s OTP Delivery Guarantee
-              </div>
-            </div>
-
-            <!-- Dossier 03 -->
-            <div class="bg-[#090a0c]/70 border border-white/[0.07] rounded-xl p-4 flex flex-col justify-between hover:border-white/15 transition-all">
-              <div>
-                <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">
-                  <span class="text-[10px] font-mono text-neutral-400 uppercase font-semibold">INCIDENT 03 · BIG DATA</span>
-                  <span class="text-[9px] font-mono text-emerald-400">P1 RESOLVED</span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">Smart DB 100M Pre-KYC Scoring</h3>
-                <div class="text-[11px] text-[#94a3b8] space-y-1 font-mono leading-relaxed">
-                  <p><span class="text-neutral-500">CTX:</span> 94.7M unindexed records with inconsistent schemas causing RDBMS lock degradation.</p>
-                  <p><span class="text-neutral-500">INV:</span> Fast attribute enrichment without slowing down transaction switch.</p>
-                  <p><span class="text-neutral-500">FIX:</span> Layered deterministic normalisation + phonetic blocking. 70% predictive user accuracy.</p>
-                </div>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/[0.06] text-[10px] font-mono text-emerald-400">
-                100% Lock Elimination
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- SECTION 06: TECHNICAL PRODUCT LIFECYCLE -->
-        <section id="lifecycle" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 space-y-5 shadow-2xl ring-1 ring-white/[0.03]">
-          <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-            <span>06 · Product Lifecycle Arc</span>
-          </div>
-
-          <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-            Technical Product Lifecycle Arc
-          </h2>
-          <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl">
-            Bridging engineering architecture with product management execution across four disciplined operational phases.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/[0.07] rounded-xl divide-y sm:divide-y-0 sm:divide-x divide-white/[0.07] bg-[#090a0c]/60 overflow-hidden mt-4">
-            <!-- Phase 1 -->
-            <div class="p-5 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-mono font-semibold text-neutral-400 uppercase tracking-wider">Phase 01</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">Discovery &amp; Invariants</h3>
-                <p class="text-[11px] text-[#94a3b8] leading-relaxed">
-                  Authoring executable PRDs, defining strict system invariants, and auditing legacy network boundaries before a single line of code is written.
-                </p>
-              </div>
-              <div class="mt-4 pt-2 border-t border-white/[0.06] text-[9px] font-mono uppercase text-neutral-500">
-                SYSTEM BOUNDARY AUDIT
-              </div>
-            </div>
-
-            <!-- Phase 2 -->
-            <div class="p-5 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-mono font-semibold text-neutral-400 uppercase tracking-wider">Phase 02</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">Topology Blueprinting</h3>
-                <p class="text-[11px] text-[#94a3b8] leading-relaxed">
-                  Architecting sequence diagrams, API contracts, and concurrency guardrails (e.g., distributed locks) to ensure scale and idempotency.
-                </p>
-              </div>
-              <div class="mt-4 pt-2 border-t border-white/[0.06] text-[9px] font-mono uppercase text-neutral-500">
-                IDEMPOTENCY &amp; SLAS
-              </div>
-            </div>
-
-            <!-- Phase 3 -->
-            <div class="p-5 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-mono font-semibold text-neutral-400 uppercase tracking-wider">Phase 03</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">Engineering Alignment</h3>
-                <p class="text-[11px] text-[#94a3b8] leading-relaxed">
-                  Acting as the single technical liaison between executive leadership and engineering teams. Synchronizing backend, telecom, and UI delivery sprints.
-                </p>
-              </div>
-              <div class="mt-4 pt-2 border-t border-white/[0.06] text-[9px] font-mono uppercase text-neutral-500">
-                CROSS-FUNCTIONAL DELIVERY
-              </div>
-            </div>
-
-            <!-- Phase 4 -->
-            <div class="p-5 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-mono font-semibold text-neutral-400 uppercase tracking-wider">Phase 04</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">Telemetry &amp; Ops</h3>
-                <p class="text-[11px] text-[#94a3b8] leading-relaxed">
-                  Executing zero-downtime deployments. Establishing Prometheus/Grafana monitoring, automated alerts, and enforcing strict sub-15ms SLAs.
-                </p>
-              </div>
-              <div class="mt-4 pt-2 border-t border-white/[0.06] text-[9px] font-mono uppercase text-neutral-500">
-                PRODUCTION DURABILITY
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Booking Section (Anchor: #book) -->
-        <section id="book">
-          <BookingSection />
-        </section>
-
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          The Double-Entry Ledger &amp; Two-Phase Balance Reservation Engine
+        </h2>
       </div>
 
-    </div>
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Peak Throughput</span>
+          <span class="text-white font-semibold">50,000 TPS</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Lock TTL</span>
+          <span class="text-cyan-400 font-semibold">15,000ms SETNX</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Replay Window</span>
+          <span class="text-white font-semibold">86,400s (24h)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Financial Drift</span>
+          <span class="text-emerald-400 font-semibold">0.00% (ZERO)</span>
+        </div>
+      </div>
+
+      <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+          <span class="tracking-wider uppercase">ARCHITECTURE BLUEPRINT · TOPOLOGY SCHEMATIC</span>
+          <span class="text-emerald-400">2PC VERIFIED</span>
+        </div>
+        <img 
+          src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-2026`} 
+          alt="Double-Entry Ledger and Two-Phase Reservation Topology Schematic"
+          class="w-full h-auto object-contain rounded filter contrast-105"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 2-Column Technical Spec (Balanced 50/50 Grid) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Left: Invariants & Mechanism -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Invariants &amp; Business Logic</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Single Source of Financial Truth:</strong> Strict &Sigma; Debits &minus; &Sigma; Credits = 0 mathematical balance enforcement across ScyllaDB and PostgreSQL ACID fact tables.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Two-Phase Reservation:</strong> Transitions capital from <code class="text-amber-400 font-mono text-xs bg-white/5 px-1 py-0.5 rounded">AVAILABLE</code> to <code class="text-cyan-400 font-mono text-xs bg-white/5 px-1 py-0.5 rounded">RESERVED</code> prior to dispatching upstream bank webhooks.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Distributed Idempotency:</strong> Redis atomic <code class="text-white font-mono text-xs bg-white/5 px-1 py-0.5 rounded">SETNX</code> mutex locks keyed by UUIDv4 with a 24-hour expiration window.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Failure Modes & Recovery -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Failure Modes &amp; Recovery</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>Upstream Banking Timeouts:</strong> Handled via transactional outbox pattern and Raft-backed distributed state recovery, rejecting uncommitted transient states.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>Automated Rollback:</strong> Expired balance reservations automatically revert to <code class="text-white font-mono text-xs bg-white/5 px-1 py-0.5 rounded">AVAILABLE</code> upon receipt of failure webhooks or TTL expiry.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>Production Impact:</strong> 100% mathematical parity across 50,000+ daily clearing events with zero duplicate payouts during upstream PSP brownouts.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[ACID]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[2PC RESERVATION]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[REDIS SETNX]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[SCYLLADB]</span>
+        </div>
+        <a href={`${baseUrl}blog/payment-gateway/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>Read Full Whitepaper Specification</span>
+          <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- DOSSIER 02: Smart PSP Switch & Dynamic Weighted Routing -->
+    <section id="payment-switch" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>02 · PAYMENT SWITCH &amp; PROTOCOLS</span>
+          </div>
+          <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 rounded">
+            SPECIFICATION DOSSIER 02
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          Smart PSP Switch &amp; Dynamic Weighted Routing Engine (ISO 8583)
+        </h2>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Failover SLA</span>
+          <span class="text-cyan-400 font-semibold">&lt;30ms Latency</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Protocol</span>
+          <span class="text-white font-semibold">ISO 8583 MTI 0200</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Gateway Uptime</span>
+          <span class="text-emerald-400 font-semibold">99.99% Availability</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Conversion Lift</span>
+          <span class="text-emerald-400 font-semibold">+14% Transaction Gain</span>
+        </div>
+      </div>
+
+      <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+          <span class="tracking-wider uppercase">MULTI-PSP HEAD-TO-HEAD (H2H) ROUTING PIPELINE</span>
+          <span class="text-cyan-400">DYNAMIC WEIGHTED SLAS</span>
+        </div>
+        <img 
+          src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-2026`} 
+          alt="Smart PSP Switch and ISO 8583 Pipeline Topology Schematic"
+          class="w-full h-auto object-contain rounded filter contrast-105"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 2-Column Technical Spec (Balanced 50/50 Grid) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Left: Invariants & Mechanism -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Dynamic Routing Architecture</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Head-to-Head (H2H) Switch:</strong> Unpacks ISO 8583 MTI 0200/0210 financial telegrams, parsing STAN, RRN, and terminal authentication headers in real time.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Multi-PSP Orchestration:</strong> Dynamically balances checkout loads across SEP (Saman), PEC (Parsian), BPM (Mellat), and PEP (Pasargad) through Faravaran Hub adapters.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Score-Based Weighting:</strong> Computes real-time gateway health scores factoring rolling P99 latency, success ratios, and merchant contractual fee tiers.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Failure Modes & Recovery -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Circuit Breakers &amp; Failover</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>Degraded Socket Shedding:</strong> Upstream network brownouts trigger automated circuit breakers shedding failing PSP connections in sub-30ms.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>Zero User Drop:</strong> In-flight requests encountering network disconnects seamlessly reroute to secondary PSP backbones without requiring user re-entry.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>Telecom Throttling:</strong> Controls carrier SMPP 3.4 traffic with sliding window algorithms (16–64 PDU), preventing banking OTP delay under marketing spikes.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[ISO 8583]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[FARAVARAN HUB]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[MULTI-PSP ROUTING]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[CIRCUIT BREAKER]</span>
+        </div>
+        <a href={`${baseUrl}blog/sms-infrastructure/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>Read Full Telecom &amp; Switch Specification</span>
+          <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- DOSSIER 03: eKYC, Central Bank Harim OTP & PCI-DSS Token Vault -->
+    <section id="fraud-forensics" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>03 · FRAUD RISK &amp; EKYC</span>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded">
+            SPECIFICATION DOSSIER 03
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          eKYC, Central Bank Harim OTP &amp; PCI-DSS Token Vault
+        </h2>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Risk Scoring SLA</span>
+          <span class="text-emerald-400 font-semibold">&lt;15ms (P99)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">CVV2 Retention</span>
+          <span class="text-white font-semibold">0.00s (Zero-Storage)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Fraud Reduction</span>
+          <span class="text-emerald-400 font-semibold">-94% Illicit Drain</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">3DS Frictionless</span>
+          <span class="text-cyan-400 font-semibold">&gt;92% Pass Rate</span>
+        </div>
+      </div>
+
+      <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+          <span class="tracking-wider uppercase">PERIMETER ISOLATION &amp; EKYC VERIFICATION SCHEMATIC</span>
+          <span class="text-emerald-400">PCI-DSS COMPLIANT</span>
+        </div>
+        <img 
+          src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
+          alt="eKYC, Harim Dynamic OTP and Forensic Graph Tracing Schematic"
+          class="w-full h-auto object-contain rounded filter contrast-105"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 2-Column Technical Spec (Balanced 50/50 Grid) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Left: Invariants & Mechanism -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Security Invariants &amp; eKYC</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Zero-Storage Token Vault:</strong> Replaces raw PAN with opaque tokens; ephemeral CVV2 codes are purged immediately post-authorization per PCI-DSS.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>National eKYC Integration:</strong> Cryptographically queries Shahkar (SIM-to-National-ID) and Sabt-Ahval APIs, correlating SIM issuance timestamps with Harim OTP.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Neo4j Graph Forensics:</strong> Computes real-time risk vectors [0.00, 1.00] across multi-hop card and device clusters in sub-15ms.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Failure Modes & Recovery -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Attack Mitigation &amp; Liability Shift</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>SIM-Swap &amp; Phishing Rings:</strong> Detected via out-of-band SIM activation audits, triggering instant card account freezes before drain.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>3DS 2.0 Biometric Liability Shift:</strong> Challenges suspicious card mutations with biometric verification, shifting fraudulent liability to issuing banks.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>False Positive Minimization:</strong> Maintained frictionless checkouts for &gt;92% of verified legitimate users without manual review queues.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[PCI-DSS]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[HARIM OTP]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[SHAHKAR eKYC]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[NEO4J FORENSICS]</span>
+        </div>
+        <a href={`${baseUrl}blog/fraud-tracing/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>Read Full Fraud Mitigation Specification</span>
+          <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- DOSSIER 04: Event-Driven Multi-Pass Reconciliation & Early Merchant Settlement -->
+    <section id="reconciliation-engine" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <span id="data-pipeline" class="sr-only"></span>
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>04 · RECONCILIATION &amp; PAYOUTS</span>
+          </div>
+          <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 rounded">
+            SPECIFICATION DOSSIER 04
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          Event-Driven Multi-Pass Reconciliation &amp; Early Merchant Settlement
+        </h2>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Recon Parity</span>
+          <span class="text-emerald-400 font-semibold">100% 3-Way Match</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Payout Window</span>
+          <span class="text-white font-semibold">24h Early Settlement</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Batch Workers</span>
+          <span class="text-cyan-400 font-semibold">Spring Batch (Nightly)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">Manual Overhead</span>
+          <span class="text-emerald-400 font-semibold">-100% Eliminated</span>
+        </div>
+      </div>
+
+      <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+          <span class="tracking-wider uppercase">MULTI-BANK MULTI-PASS RECONCILIATION &amp; PAYOUT MESH</span>
+          <span class="text-emerald-400">AUTO-HEALING REFUND-MNG</span>
+        </div>
+        <img 
+          src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-2026`} 
+          alt="Multi-Bank Multi-Pass Reconciliation and Settlement Pipeline Schematic"
+          class="w-full h-auto object-contain rounded filter contrast-105"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 2-Column Technical Spec (Balanced 50/50 Grid) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Left: Invariants & Mechanism -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Multi-Pass Invariants &amp; Engine</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Event-Driven Ingestion:</strong> Captures end-state events over RabbitMQ (<code class="text-cyan-400 font-mono text-xs bg-white/5 px-1 py-0.5 rounded">activity.end_state</code>), feeding Spring Batch nightly workers.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>3-Way SFTP Cross-Referencing:</strong> Cross-checks internal ledgers, PSP transaction logs, and Shaparak/Bank clearing statements against RRN and STAN.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>Auto-Healing Refund-MNG:</strong> Identifies uncaptured authorizations and automatically issues reverse credits without manual interventions.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Failure Modes & Recovery -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Early Settlement &amp; Payout Mechanics</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>24h Early Merchant Credit:</strong> Disburses early payouts via automated Paya/Satna ACH batches, solving merchant cash-flow bottlenecks.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>Dynamic Floating Fee:</strong> Deducts time-weighted credit fees: <code class="text-amber-400 font-mono text-xs bg-white/5 px-1 py-0.5 rounded">&Delta;Fee = Amount &times; (r_base + d &times; r_daily)</code>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>Dispute Resolution (T+2):</strong> Automatically routes contested charges into judicial dispute resolution queues, preventing balance drift.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[SPRING BATCH]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[RABBITMQ]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[PAYA / SATNA]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[EARLY SETTLEMENT]</span>
+        </div>
+        <a href={`${baseUrl}data-cleaning/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>Inspect Full Reconciliation Blueprint</span>
+          <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- DOSSIER 05: Production Incident Postmortems -->
+    <section id="incident-dossiers" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span>05 · PRODUCTION INCIDENT ARCHIVE</span>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded">
+            3/3 RESOLVED IN PRODUCTION
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          Battle-Tested Failure Resolution &amp; Postmortem Archive
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-3xl">
+          Hands-on systems recovery and architectural hardening under live regulatory, financial, and SLA constraints.
+        </p>
+      </div>
+
+      <!-- 3 Incident Cards Grid (Full-Width Stacked Cards) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Incident 01 -->
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
+              <span class="text-neutral-400 font-semibold">INCIDENT 01 · SWITCH</span>
+              <span class="text-emerald-400">P0 RESOLVED</span>
+            </div>
+            <h3 class="text-sm font-bold text-white">Upstream ISO 8583 Timeout Recovery</h3>
+            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-500">CONTEXT:</span> Merchant retry storms triggering duplicate captures during banking host timeouts.</p>
+              <p><span class="text-neutral-500">INVARIANT:</span> Mutex lock must outlive carrier retry windows (86,400s).</p>
+              <p><span class="text-neutral-500">FIX:</span> Distributed Redis SETNX with 24h TTL; append-only double-entry ledger in ScyllaDB.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
+            &rarr; Zero Financial Drift (0.00 IRR)
+          </div>
+        </div>
+
+        <!-- Incident 02 -->
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
+              <span class="text-neutral-400 font-semibold">INCIDENT 02 · TELECOM</span>
+              <span class="text-emerald-400">P0 RESOLVED</span>
+            </div>
+            <h3 class="text-sm font-bold text-white">Carrier SMPP Sliding-Window Choke</h3>
+            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-500">CONTEXT:</span> Bulk broadcast runs delaying critical dynamic OTP authentication codes.</p>
+              <p><span class="text-neutral-500">INVARIANT:</span> Critical auth queues cannot share worker pipes with marketing traffic.</p>
+              <p><span class="text-neutral-500">FIX:</span> Multi-tiered queue partitioning; real-time SMPP sliding window throttle (16–64 PDU).</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
+            &rarr; Sub-2s Delivery Guarantee
+          </div>
+        </div>
+
+        <!-- Incident 03 -->
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
+              <span class="text-neutral-400 font-semibold">INCIDENT 03 · BIG DATA</span>
+              <span class="text-emerald-400">P1 RESOLVED</span>
+            </div>
+            <h3 class="text-sm font-bold text-white">Smart DB 100M Pre-KYC Scoring</h3>
+            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-500">CONTEXT:</span> 94.7M unindexed records causing RDBMS deadlocks during high-concurrency lookup.</p>
+              <p><span class="text-neutral-500">INVARIANT:</span> Fast attribute enrichment without latency degradation on payment switch.</p>
+              <p><span class="text-neutral-500">FIX:</span> Layered deterministic normalisation + phonetic blocking. 70% predictive user accuracy.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
+            &rarr; 100% Lock Elimination
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 06: Architecture Intake & Consultation (Full-Width) -->
+    <section id="book" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5">
+      <BookingSection />
+    </section>
+
   </main>
 
   <script>

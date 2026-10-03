@@ -18,651 +18,558 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
   <Hero locale="fa" />
 
-  <main class="max-w-[1500px] mx-auto px-6 py-10 font-['Vazirmatn',sans-serif]" id="blueprints" dir="rtl">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      
-      <!-- Sticky Sidebar Index -->
-      <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
-        <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-4 shadow-2xl ring-1 ring-white/[0.03]">
-          <div class="text-[11px] font-mono font-semibold text-[#ededed] uppercase tracking-wider mb-3 border-b border-white/[0.06] pb-2.5 flex justify-between items-center">
-            <span>فهرست نقشه‌ها و سامانه‌ها</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-12 font-['Vazirmatn',sans-serif]" id="blueprints" dir="rtl">
+
+    <!-- DOSSIER 01: Double-Entry Ledger & Two-Phase Balance Engine -->
+    <section id="payment-settlement" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>۰۱ · تسویه مالی و دفاتر کل توزیع‌شده</span>
           </div>
-          
-          <nav class="space-y-1 text-xs">
-            <a href="#payment-settlement" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              ۰۱ · دفتر کل دوطرفه و رزرو دومرحله‌ای
-            </a>
-            <a href="#fraud-forensics" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              ۰۲ · احراز هویت شاهکار و زون بانکی
-            </a>
-            <a href="#payment-switch" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              ۰۳ · سوییچ هوشمند پرداخت و روتینگ پویا
-            </a>
-            <a href="#reconciliation-engine" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              ۰۴ · مغایرت‌گیری خودکار و تسویه زودهنگام
-            </a>
-            <a href="#incident-dossiers" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              ۰۵ · تحلیل بحران‌های عملیاتی پروداکشن
-            </a>
-            <a href="#lifecycle" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              ۰۶ · چرخه حیات محصول فنی
-            </a>
-            <a href={`${baseUrl}fa/whitepapers/`} class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              ۰۷ · مستندات مهندسی و وایت‌پیپرها
-            </a>
-            <a href="#book" class="block px-2.5 py-1.5 rounded-lg text-[#94a3b8] hover:bg-white/[0.04] hover:text-[#ededed] transition-all">
-              ۰۸ · جلسه بررسی معماری
-            </a>
-          </nav>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded" dir="ltr">
+            DOSSIER 01 · ACID
+          </span>
         </div>
-      </aside>
-
-      <!-- Main Blueprint Sections -->
-      <div class="lg:col-span-9 space-y-8">
-        
-        <!-- SECTION 01: Double-Entry Ledger & Settlements -->
-        <section id="payment-settlement" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
-          <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
-            <!-- Right: Breakdown in RTL -->
-            <div class="xl:col-span-7 space-y-3.5">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">۰۱ · تسویه مالی و دفاتر کل</span>
-                <div class="h-px flex-1 bg-white/[0.06]"></div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400" dir="ltr">DOSSIER 01</span>
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-                دفتر کل دوطرفه (<span dir="ltr">Double-Entry</span>) و موتور تخصیص دومرحله‌ای موجودی
-              </h2>
-
-              <div class="p-3.5 bg-[#090a0c]/80 border border-white/[0.07] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">اصل تخطی‌ناپذیر معماری (Invariant)</span>
-                <p class="text-[#ededed] leading-relaxed text-[11.5px]">
-                  منبع یگانه حقیقت مالی (<span dir="ltr">Single Source of Truth</span>). حذف قطعی تسویه مضاعف در پنجره بازپخش ۲۴ ساعته با ماشین حالت تخصیص دومرحله‌ای موجودی (<span dir="ltr">AVAILABLE &rarr; RESERVED</span>) و پایداری قطعی تراز ریاضی بدهکار و بستانکار (<span dir="ltr">&Sigma; Debits &minus; &Sigma; Credits = 0</span>).
-                </p>
-              </div>
-
-              <div class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2">
-                <p>
-                  جهش‌های مالی و شارژ کیف پول با کلید یکتای ایدامپوتنسي (<span dir="ltr">UUIDv4</span>) و قفل توزیع‌شده <span dir="ltr">Redis SETNX</span> با طول عمر ۲۴ ساعته کنترل می‌شوند. تخصیص موجودی از طریق ماشین حالت دومرحله‌ای، وجوه را پیش از ارسال به درگاه از وضعیت موجود (<span dir="ltr">AVAILABLE</span>) به رزروشده (<span dir="ltr">RESERVED</span>) منتقل می‌کند. پس از تایید نهایی، رکوردهای تسویه به‌صورت تغییرناپذیر (<span dir="ltr">Append-Only</span>) در دفتر کل دوطرفه <span dir="ltr">ScyllaDB</span> و <span dir="ltr">PostgreSQL</span> با تضمین <span dir="ltr">ACID</span> ثبت شده و از هرگونه شناوری مالی ثبت‌نشده جلوگیری می‌شود.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#d97706]">حالت خرابی و راهکار تاب‌آوری</span>
-                <p class="text-[#94a3b8] leading-relaxed text-[11.5px]">
-                  تایم‌اوت‌های جزئی شبکه یا قطعی کارگزار پیام هنگام به‌روزرسانی چندبخشی دفاتر کل بانکی. مهارشده با الگوی اوت‌باکس تراکنشی (<span dir="ltr">Transactional Outbox</span>) و بازیابی حالت توزیع‌شده مبتنی بر <span dir="ltr">Raft</span> جهت رد وضعیت‌های تاییدنشده گذرا.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">تصمیم محصولی و تریدآف مهندسی</span>
-                <div class="text-[#cbd5e1] space-y-1 text-[11.5px] leading-relaxed">
-                  <p><strong class="text-[#ededed]">چرا این تصمیم:</strong> مغایرت‌های مقطعی ناشی از هم‌روندی بالای کاربران حین شارژ کیف پول می‌توانست به جریمه‌های رگولاتوری بانکی بینجامد.</p>
-                  <p><strong class="text-[#ededed]">تریدآف:</strong> اولویت دادن به قفل‌های سخت‌گیرانه دومرحله‌ای نسبت به ثبت آپتیمیستیک سریع داده.</p>
-                  <p><strong class="text-[#ededed]">نتیجه کسب‌وکار:</strong> تراز ۱۰۰ درصدی دفاتر کل مالی در بیش از ۵۰ هزار تراکنش روزانه بدون حتی یک ریال پرداخت مضاعف.</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 pt-1" dir="ltr">
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[ACID]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[2PC RESERVATION]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[REDIS SETNX]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[SCYLLADB]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[ZERO DRIFT]</span>
-              </div>
-
-              <div class="pt-2 flex items-center justify-between text-xs border-t border-white/[0.06]">
-                <span class="text-neutral-500 font-mono text-[10px]" dir="ltr">SPECIFICATION: DOSSIER 01</span>
-                <a href={`${baseUrl}fa/blog/payment-gateway/`} class="font-mono text-xs font-medium text-[#ededed] hover:text-white inline-flex items-center gap-1 group">
-                  <span>مطالعه سند کامل پرونده</span>
-                  <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Left in RTL: Flow Diagram & Parameters -->
-            <div class="xl:col-span-5 space-y-3">
-              <div class="bg-[#090a0c] border border-white/[0.08] rounded-xl p-3 sm:p-4 shadow-inner" dir="ltr">
-                <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pb-2 border-b border-white/[0.06] mb-3">
-                  <span>TOPOLOGY SCHEMATIC</span>
-                  <span class="text-emerald-500">2PC · VERIFIED</span>
-                </div>
-                <img 
-                  src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-2026`} 
-                  alt="Double-Entry Ledger and Two-Phase Reservation Topology Schematic"
-                  class="w-full h-auto object-contain rounded filter contrast-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-[10px] font-mono" dir="ltr">
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">REPLAY WINDOW</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">86,400s (24h)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">MUTEX LOCK TTL</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">15,000ms</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">LEDGER STORE</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">ScyllaDB / Postgres</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">DRIFT AUDIT</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">0.00 IRR (ZERO)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- SECTION 02: Fraud Forensics & eKYC -->
-        <section id="fraud-forensics" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
-          <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
-            <!-- Right: Breakdown in RTL -->
-            <div class="xl:col-span-7 space-y-3.5">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">۰۲ · ارزیابی ریسک و احراز هویت</span>
-                <div class="h-px flex-1 bg-white/[0.06]"></div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400" dir="ltr">DOSSIER 02</span>
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-                احراز هویت شاهکار، رمز پویای حریم و زون توکنایزیشن <span dir="ltr">PCI-DSS</span>
-              </h2>
-
-              <div class="p-3.5 bg-[#090a0c]/80 border border-white/[0.07] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">اصل تخطی‌ناپذیر معماری (Invariant)</span>
-                <p class="text-[#ededed] leading-relaxed text-[11.5px]">
-                  ذخیره‌سازی صفر داده‌های حساس <span dir="ltr">CVV2/PIN</span> پس از اخذ تاییدیه بانکی و تطبیق رمز پویای ۴مولفه‌ای حریم بانک مرکزی با هویت ملی و شماره کارت.
-                </p>
-              </div>
-
-              <div class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2">
-                <p>
-                  اطلاعات کارت مستقیماً وارد زون ایزوله بانکی شده و سامانه توکن‌ساز، شماره کارت خام را با توکن‌های امن جایگزین می‌کند؛ کدهای <span dir="ltr">CVV2</span> بلافاصله پس از تراکنش پاکسازی می‌شوند. احراز هویت شاهکار (تطبیق کدملی با شماره موبایل) و استعلام ثبت‌احوال با سامانه رمز پویای حریم تلفیق شده و بردارهای ریسک بلادرنگ زیر ۱۵ میلی‌ثانیه در خوشه‌های گراف <span dir="ltr">Neo4j</span> محاسبه می‌شوند.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#d97706]">حالت خرابی و راهکار تاب‌آوری</span>
-                <p class="text-[#94a3b8] leading-relaxed text-[11.5px]">
-                  حملات تعویض سیم‌کارت (<span dir="ltr">SIM-Swap</span>) و شبکه‌های فیشینگ رمز پویا. مهارشده با اعتبارسنجی رمزنگاری‌شده تاریخ صدور سیم‌کارت در سامانه شاهکار حین درخواست رمز پویا.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">تصمیم محصولی و تریدآف مهندسی</span>
-                <div class="text-[#cbd5e1] space-y-1 text-[11.5px] leading-relaxed">
-                  <p><strong class="text-[#ededed]">چرا این تصمیم:</strong> ذخیره آسان داده‌های پرداخت باعث سهولت کاربر می‌شد اما ریسک نشت داده و مسئولیت مالی جبران‌ناپذیر به همراه داشت.</p>
-                  <p><strong class="text-[#ededed]">تریدآف:</strong> عدم ذخیره‌سازی داده‌های کارت خام و تبعیت بدون اغماض از الزامات شاپرک و استانداردهای ایزولاسیون.</p>
-                  <p><strong class="text-[#ededed]">نتیجه کسب‌وکار:</strong> کاهش ۹۴ درصدی تراکنش‌های مشکوک و انتقال بار حقوقی تقلب به بانک‌های صادرکننده با پروتکل <span dir="ltr">3DS 2.0</span>.</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 pt-1" dir="ltr">
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[PCI-DSS]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[HARIM OTP]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[SHAHKAR eKYC]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[NEO4J FORENSICS]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[&lt;15MS RISK LOOP]</span>
-              </div>
-
-              <div class="pt-2 flex items-center justify-between text-xs border-t border-white/[0.06]">
-                <span class="text-neutral-500 font-mono text-[10px]" dir="ltr">SPECIFICATION: DOSSIER 02</span>
-                <a href={`${baseUrl}fa/blog/fraud-tracing/`} class="font-mono text-xs font-medium text-[#ededed] hover:text-white inline-flex items-center gap-1 group">
-                  <span>مطالعه سند کامل پرونده</span>
-                  <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Left in RTL: Flow Diagram & Parameters -->
-            <div class="xl:col-span-5 space-y-3">
-              <div class="bg-[#090a0c] border border-white/[0.08] rounded-xl p-3 sm:p-4 shadow-inner" dir="ltr">
-                <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pb-2 border-b border-white/[0.06] mb-3">
-                  <span>THREAT TOPOLOGY</span>
-                  <span class="text-emerald-500">PCI-DSS · ISOLATED</span>
-                </div>
-                <img 
-                  src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
-                  alt="eKYC, Harim Dynamic OTP and Forensic Graph Tracing Schematic"
-                  class="w-full h-auto object-contain rounded filter contrast-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-[10px] font-mono" dir="ltr">
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">RISK EVAL SLA</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">&lt;15ms (P99)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">CVV2 RETENTION</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">0.00s (EPHEMERAL)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">IDENTITY ENGINE</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">Shahkar / Sabt-Ahval</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">FRAUD DRAIN DROP</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">-94% VERIFIED</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- SECTION 03: Smart PSP Switch & Dynamic Weighted Routing -->
-        <section id="payment-switch" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
-          <span id="sms-gateway" class="sr-only"></span>
-          <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
-            <!-- Right: Breakdown in RTL -->
-            <div class="xl:col-span-7 space-y-3.5">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">۰۳ · سوییچ پرداخت و روتینگ درگاه‌ها</span>
-                <div class="h-px flex-1 bg-white/[0.06]"></div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400" dir="ltr">DOSSIER 03</span>
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-                سوییچ هوشمند پرداخت و موتور روتینگ پویای وزنی (<span dir="ltr">ISO 8583</span>)
-              </h2>
-
-              <div class="p-3.5 bg-[#090a0c]/80 border border-white/[0.07] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">اصل تخطی‌ناپذیر معماری (Invariant)</span>
-                <p class="text-[#ededed] leading-relaxed text-[11.5px]">
-                  تغییر مسیر خودکار درگاه در کمتر از ۳۰ میلی‌ثانیه؛ توزیع پویای ترافیک بین ۴ شرکت <span dir="ltr">PSP</span> معتبر کشور (سامان، پارسیان، به‌پرداخت، پاسارگاد) و هاب فناوران با آپ‌تایم ۹۹٫۹۹ درصدی سوییچ.
-                </p>
-              </div>
-
-              <div class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2">
-                <p>
-                  سوییچ سازمانی <span dir="ltr">Host-to-Host (H2H)</span> پیام‌های مالی استاندارد <span dir="ltr">ISO 8583 MTI 0200/0210</span> را پردازش می‌کند. الگوریتم روتینگ وزنی با تحلیل برخط نرخ موفقیت تراکنش‌ها، تاخیر <span dir="ltr">P99</span>، کارمزدهای تجاری و دوره‌های نگهداری بانکی، ترافیک را هدایت می‌کند. در صورت افت سلامت یک درگاه، فیوزهای قطع مدار ظرف کمتر از ۳۰ میلی‌ثانیه ترافیک را بدون افت سبد خرید به مسیر ثانویه منتقل می‌نمایند.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#d97706]">حالت خرابی و راهکار تاب‌آوری</span>
-                <p class="text-[#94a3b8] leading-relaxed text-[11.5px]">
-                  افت کیفیت یا قطعی سوکت‌های شبکه <span dir="ltr">PSP</span> بالادست. حل‌شده با پروب‌های سلامت الگوریتم پنجره لغزان، فیوز محافظتی و جایگزینی آنی مسیر در کمتر از ۳۰ میلی‌ثانیه.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">تصمیم محصولی و تریدآف مهندسی</span>
-                <div class="text-[#cbd5e1] space-y-1 text-[11.5px] leading-relaxed">
-                  <p><strong class="text-[#ededed]">چرا این تصمیم:</strong> وابستگی انحصاری به یک درگاه واحد هنگام اختلالات شاپرکی موجب ریزش شدید فروش می‌شد.</p>
-                  <p><strong class="text-[#ededed]">تریدآف:</strong> توسعه ساختار سوییچ مستقل با قابلیت اتصال چنددرگاهی به جای تکیه بر درگاه واسط تک‌مسیری.</p>
-                  <p><strong class="text-[#ededed]">نتیجه کسب‌وکار:</strong> دسترسی‌پذیری ۹۹٫۹۹ درصدی، تاخیر کمتر از ۲۵۰ میلی‌ثانیه در تراکنش و رشد ۱۴ درصدی نرخ تبدیل پرداخت.</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 pt-1" dir="ltr">
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[ISO 8583]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[MTI 0200/0210]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[FARAVARAN HUB]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[MULTI-PSP ROUTING]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[30MS FAILOVER]</span>
-              </div>
-
-              <div class="pt-2 flex items-center justify-between text-xs border-t border-white/[0.06]">
-                <span class="text-neutral-500 font-mono text-[10px]" dir="ltr">SPECIFICATION: DOSSIER 03</span>
-                <a href={`${baseUrl}fa/blog/sms-infrastructure/`} class="font-mono text-xs font-medium text-[#ededed] hover:text-white inline-flex items-center gap-1 group">
-                  <span>مطالعه سند کامل پرونده</span>
-                  <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Left in RTL: Flow Diagram & Parameters -->
-            <div class="xl:col-span-5 space-y-3">
-              <div class="bg-[#090a0c] border border-white/[0.08] rounded-xl p-3 sm:p-4 shadow-inner" dir="ltr">
-                <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pb-2 border-b border-white/[0.06] mb-3">
-                  <span>ROUTING PIPELINE</span>
-                  <span class="text-emerald-500">ISO 8583 · 99.99% UP</span>
-                </div>
-                <img 
-                  src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-2026`} 
-                  alt="Smart PSP Switch and ISO 8583 Pipeline Topology Schematic"
-                  class="w-full h-auto object-contain rounded filter contrast-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-[10px] font-mono" dir="ltr">
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">FAILOVER SLA</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">&lt;30ms (CIRCUIT BREAK)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">PSP ADAPTERS</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">SEP · PEC · BPM · PEP</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">SWITCH PROTOCOL</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">ISO 8583 H2H MTI 0200</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">CONVERSION GAIN</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">+14% OPTIMIZED</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- SECTION 04: Multi-Pass Reconciliation & Early Merchant Settlement -->
-        <section id="reconciliation-engine" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
-          <span id="data-pipeline" class="sr-only"></span>
-          <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
-            <!-- Right: Breakdown in RTL -->
-            <div class="xl:col-span-7 space-y-3.5">
-              <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">۰۴ · مغایرت‌گیری و تسویه زودهنگام</span>
-                <div class="h-px flex-1 bg-white/[0.06]"></div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400" dir="ltr">DOSSIER 04</span>
-              </div>
-
-              <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-                مغایرت‌گیری چندمرحله‌ای رویدادمحور و تسویه زودهنگام پذیرندگان
-              </h2>
-
-              <div class="p-3.5 bg-[#090a0c]/80 border border-white/[0.07] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">اصل تخطی‌ناپذیر معماری (Invariant)</span>
-                <p class="text-[#ededed] leading-relaxed text-[11.5px]">
-                  تطبیق ریاضی ۳طرفه میان دفاتر کل داخلی، لاگ‌های درگاه و فایل‌های تسویه بانکی؛ مهار قطعی انحراف نقدینگی و تسویه بدون مغایرت.
-                </p>
-              </div>
-
-              <div class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2">
-                <p>
-                  رویدادهای نهایی تراکنش‌ها به‌صورت غیرهمگام از بستر <span dir="ltr">RabbitMQ</span> دریافت می‌شوند. ورکر‌های شبانه <span dir="ltr">Spring Batch</span> با پردازش فایل‌های <span dir="ltr">SFTP</span> بانکی و کدهای پیگیری، مغایرت‌ها را پالایش می‌کنند. موارد استثنا توسط موتور خودترمیم <span dir="ltr">Refund-MNG</span> اصلاح یا بازگشت وجه داده می‌شوند. این سامانه تسویه زودهنگام ۲۴ ساعته پذیرندگان را از طریق حوالجات خودکار پایا و ساتنا با فرمول کارمزد شناور روزانه میسر می‌سازد: <code class="text-[#ededed] font-mono text-[11px] bg-white/[0.04] px-1 py-0.5 rounded border border-white/[0.06]" dir="ltr">&Delta;Fee = Amount &times; (r_base + d &times; r_daily)</code>.
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#d97706]">حالت خرابی و راهکار تاب‌آوری</span>
-                <p class="text-[#94a3b8] leading-relaxed text-[11.5px]">
-                  تاخیر در ارسال فایل صورت‌حساب بانکی یا ناهماهنگی در وب‌هوک‌های تسویه. مهارشده با معماری چندمرحله‌ای ایدامپوتنت (مرحله آنی T+0، پالایش T+1 و حل تعارض قضایی T+2).
-                </p>
-              </div>
-
-              <div class="p-3 bg-[#090a0c]/60 border border-white/[0.06] rounded-xl text-xs space-y-1">
-                <span class="text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-300">تصمیم محصولی و تریدآف مهندسی</span>
-                <div class="text-[#cbd5e1] space-y-1 text-[11.5px] leading-relaxed">
-                  <p><strong class="text-[#ededed]">چرا این تصمیم:</strong> مغایرت‌گیری سنتی و دستی بیش از ۴۸ ساعت زمان می‌برد و چرخه نقدینگی فروشگاه‌های بزرگ را مختل می‌کرد.</p>
-                  <p><strong class="text-[#ededed]">تریدآف:</strong> جایگزینی سیستم‌های بازبینی دستی با پایپ‌لاین‌های خودکار دسته‌ای <span dir="ltr">Spring Batch</span>.</p>
-                  <p><strong class="text-[#ededed]">نتیجه کسب‌وکار:</strong> راه‌اندازی موفق تسویه زودهنگام ۲۴ ساعته، حذف کامل خطای انسانی در تسویه‌ها و پیشگیری قطعی از نشت مالی.</p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-1.5 pt-1" dir="ltr">
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[SPRING BATCH]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[RABBITMQ MESH]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[REFUND-MNG]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[PAYA / SATNA]</span>
-                <span class="px-2 py-0.5 bg-white/[0.03] border border-white/[0.07] rounded text-neutral-300 text-[10px] font-mono">[24H EARLY PAYOUT]</span>
-              </div>
-
-              <div class="pt-2 flex items-center justify-between text-xs border-t border-white/[0.06]">
-                <span class="text-neutral-500 font-mono text-[10px]" dir="ltr">SPECIFICATION: DOSSIER 04</span>
-                <a href={`${baseUrl}fa/blog/event-driven-migration/`} class="font-mono text-xs font-medium text-[#ededed] hover:text-white inline-flex items-center gap-1 group">
-                  <span>مطالعه سند کامل پرونده</span>
-                  <span class="group-hover:-translate-x-0.5 transition-transform">&larr;</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Left in RTL: Flow Diagram & Parameters -->
-            <div class="xl:col-span-5 space-y-3">
-              <div class="bg-[#090a0c] border border-white/[0.08] rounded-xl p-3 sm:p-4 shadow-inner" dir="ltr">
-                <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500 pb-2 border-b border-white/[0.06] mb-3">
-                  <span>RECON PIPELINE</span>
-                  <span class="text-emerald-500">SPRING BATCH · PASS 1/2/3</span>
-                </div>
-                <img 
-                  src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-2026`} 
-                  alt="Multi-Bank Multi-Pass Reconciliation and Settlement Pipeline Schematic"
-                  class="w-full h-auto object-contain rounded filter contrast-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-[10px] font-mono" dir="ltr">
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">EVENT MESH</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">RabbitMQ activity.end_state</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">BATCH WORKERS</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">Spring Batch (Nightly)</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">BANK PROTOCOL</div>
-                  <div class="text-[#ededed] font-semibold mt-0.5">Paya / Satna ACH Batches</div>
-                </div>
-                <div class="p-2.5 bg-[#090a0c]/60 border border-white/[0.06] rounded-lg">
-                  <div class="text-neutral-500 uppercase">AUTO-HEALING</div>
-                  <div class="text-[#10b981] font-semibold mt-0.5">Refund-MNG Engine</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- PRODUCTION INCIDENT DOSSIERS -->
-        <section id="incident-dossiers" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 space-y-5 shadow-2xl ring-1 ring-white/[0.03]">
-          <div class="flex items-center justify-between border-b border-white/[0.06] pb-3">
-            <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-              <span>۰۵ · پرونده‌های بحران‌های زنده در پروداکشن</span>
-            </div>
-            <span class="text-[10px] font-mono text-emerald-400 border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 rounded" dir="ltr">
-              3/3 RESOLVED IN PROD
-            </span>
-          </div>
-
-          <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-            حل تجربی بحران‌های زیرساختی در گلوگاه‌های عملیاتی
-          </h2>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
-            <!-- Dossier 01 -->
-            <div class="bg-[#090a0c]/70 border border-white/[0.07] rounded-xl p-4 flex flex-col justify-between hover:border-white/15 transition-all">
-              <div>
-                <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">
-                  <span class="text-[10px] font-mono text-neutral-400 uppercase font-semibold">پرونده ۰۱ · سوییچ پرداخت</span>
-                  <span class="text-[9px] font-mono text-emerald-400" dir="ltr">P0 RESOLVED</span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">مهار تایم‌اوت‌های ISO 8583 بالادست</h3>
-                <div class="text-[11px] text-[#94a3b8] space-y-1 font-mono leading-relaxed">
-                  <p><span class="text-neutral-500">زمینه:</span> ارسال مجدد مکرر توسط پذیرندگان در زمان تایم‌اوت سوییچ بانکی.</p>
-                  <p><span class="text-neutral-500">اصل:</span> قفل ایدامپوتنت باید بیش از طولانی‌ترین بازه مجدد (۸۶,۴۰۰ ثانیه) معتبر بماند.</p>
-                  <p><span class="text-neutral-500">راهکار:</span> قفل توزیع‌شده Redis با عمر ۲۴ ساعته؛ دفتر کل فقط‌افزودنی در ScyllaDB.</p>
-                </div>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/[0.06] text-[10px] font-mono text-emerald-400">
-                مغایرت مالی: صفر ریال
-              </div>
-            </div>
-
-            <!-- Dossier 02 -->
-            <div class="bg-[#090a0c]/70 border border-white/[0.07] rounded-xl p-4 flex flex-col justify-between hover:border-white/15 transition-all">
-              <div>
-                <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">
-                  <span class="text-[10px] font-mono text-neutral-400 uppercase font-semibold">پرونده ۰۲ · سوییچ مخابراتی</span>
-                  <span class="text-[9px] font-mono text-emerald-400" dir="ltr">P0 RESOLVED</span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">افت خروجی پنجره لغزان SMPP</h3>
-                <div class="text-[11px] text-[#94a3b8] space-y-1 font-mono leading-relaxed">
-                  <p><span class="text-neutral-500">زمینه:</span> ترافیک انبوه تبلیغاتی مانع ارسال به‌موقع کدهای حساس رمز پویا شد.</p>
-                  <p><span class="text-neutral-500">اصل:</span> صفوف پیامک‌های حیاتی نباید با پیامک‌های انبوه کانال مشترک داشته باشند.</p>
-                  <p><span class="text-neutral-500">راهکار:</span> تفکیک صفوف؛ تراتلینگ پنجره لغزان SMPP (بین ۱۶ تا ۶۴ PDU).</p>
-                </div>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/[0.06] text-[10px] font-mono text-emerald-400">
-                ارسال تضمینی زیر ۲ ثانیه
-              </div>
-            </div>
-
-            <!-- Dossier 03 -->
-            <div class="bg-[#090a0c]/70 border border-white/[0.07] rounded-xl p-4 flex flex-col justify-between hover:border-white/15 transition-all">
-              <div>
-                <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">
-                  <span class="text-[10px] font-mono text-neutral-400 uppercase font-semibold">پرونده ۰۳ · داده‌های کلان</span>
-                  <span class="text-[9px] font-mono text-emerald-400" dir="ltr">P1 RESOLVED</span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">پالایش ۱۰۰ میلیون رکورد Smart DB</h3>
-                <div class="text-[11px] text-[#94a3b8] space-y-1 font-mono leading-relaxed">
-                  <p><span class="text-neutral-500">زمینه:</span> ۹۴٫۷ میلیون رکورد بی‌ساختار و بدون ایندکس که پایگاه داده را قفل می‌کردند.</p>
-                  <p><span class="text-neutral-500">اصل:</span> غنی‌سازی داده بدون ایجاد کندی در سوییچ تراکنش‌های اصلی.</p>
-                  <p><span class="text-neutral-500">راهکار:</span> نرمال‌سازی چندلایه و الگوریتم‌های فونتیک با دقت پیش‌بینی ۷۰ درصدی پیش از eKYC.</p>
-                </div>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/[0.06] text-[10px] font-mono text-emerald-400">
-                حذف کامل قفل‌های دیتابیس
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="flex items-center justify-center gap-4 my-1 opacity-60">
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"></div>
-        </div>
-
-        <!-- SECTION 06: TECHNICAL PRODUCT LIFECYCLE -->
-        <section id="lifecycle" class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 space-y-5 shadow-2xl ring-1 ring-white/[0.03]">
-          <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
-            <span>۰۶ · چرخه حیات محصول فنی</span>
-          </div>
-
-          <h2 class="text-xl sm:text-2xl font-bold text-[#ededed] tracking-tight">
-            چرخه حیات محصول فنی و اتصال معماری به اجرای کسب‌وکار
-          </h2>
-          <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl">
-            پیوند زدن استراتژی محصول با معماری عملیاتی سامانه‌ها در ۴ فاز ساختاریافته.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/[0.07] rounded-xl divide-y sm:divide-y-0 sm:divide-x sm:divide-x-reverse divide-white/[0.07] bg-[#090a0c]/60 overflow-hidden mt-4">
-            <!-- Phase 1 -->
-            <div class="p-5 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-mono font-semibold text-neutral-400 uppercase tracking-wider">فاز ۰۱</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">اکتشاف و تعیین اصول تخطی‌ناپذیر</h3>
-                <p class="text-[11px] text-[#94a3b8] leading-relaxed">
-                  نگارش اسناد فنی، تعریف دقیق <span dir="ltr">Invariant</span>ها و تحلیل گلوگاه‌های شبکه پیش از نگارش خطوط کد.
-                </p>
-              </div>
-              <div class="mt-4 pt-2 border-t border-white/[0.06] text-[9px] font-mono uppercase text-neutral-500">
-                ممیزی مرزهای سیستم
-              </div>
-            </div>
-
-            <!-- Phase 2 -->
-            <div class="p-5 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-mono font-semibold text-neutral-400 uppercase tracking-wider">فاز ۰۲</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">طراحی توپولوژی و قراردادها</h3>
-                <p class="text-[11px] text-[#94a3b8] leading-relaxed">
-                  ترسیم دیاگرام‌های توالی، قراردادهای API، و تعیین قفل‌های توزیع‌شده جهت تضمین عدم دوباره‌پرداخت.
-                </p>
-              </div>
-              <div class="mt-4 pt-2 border-t border-white/[0.06] text-[9px] font-mono uppercase text-neutral-500">
-                قفل‌های هم‌روندی و SLA
-              </div>
-            </div>
-
-            <!-- Phase 3 -->
-            <div class="p-5 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-mono font-semibold text-neutral-400 uppercase tracking-wider">فاز ۰۳</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">هماهنگی فنی بین‌تیمی</h3>
-                <p class="text-[11px] text-[#94a3b8] leading-relaxed">
-                  ارتباط موثر میان رهبران ارشد سازمان و تیم‌های مهندسی. همگام‌سازی اسپرینت‌های بک‌اند، مخابرات و UI.
-                </p>
-              </div>
-              <div class="mt-4 pt-2 border-t border-white/[0.06] text-[9px] font-mono uppercase text-neutral-500">
-                تحویل چابک و بدون اصطکاک
-              </div>
-            </div>
-
-            <!-- Phase 4 -->
-            <div class="p-5 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-mono font-semibold text-neutral-400 uppercase tracking-wider">فاز ۰۴</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
-                </div>
-                <h3 class="text-xs font-bold text-[#ededed] tracking-tight mb-2">پایش تله‌متری و پایداری</h3>
-                <p class="text-[11px] text-[#94a3b8] leading-relaxed">
-                  دیپلوی بدون قطعی (<span dir="ltr">Zero-Downtime</span>)، پایش مستمر با پرومتئوس و گرافانا و تضمین تاخیر زیر ۱۵ میلی‌ثانیه.
-                </p>
-              </div>
-              <div class="mt-4 pt-2 border-t border-white/[0.06] text-[9px] font-mono uppercase text-neutral-500">
-                پایداری در مقیاس بالا
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Booking Section (Anchor: #book) -->
-        <section id="book">
-          <BookingSection locale="fa" />
-        </section>
-
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          دفتر کل دوطرفه (<span dir="ltr">Double-Entry</span>) و موتور تخصیص دومرحله‌ای موجودی
+        </h2>
       </div>
 
-    </div>
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">ظرفیت اوج پردازش</span>
+          <span class="text-white font-semibold" dir="ltr">50,000 TPS</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">طول عمر قفل ردیس</span>
+          <span class="text-cyan-400 font-semibold" dir="ltr">15,000ms SETNX</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">پنجره بازپخش مجدد</span>
+          <span class="text-white font-semibold">۲۴ ساعت (۸۶,۴۰۰s)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">انحراف مالی در تراز</span>
+          <span class="text-emerald-400 font-semibold">۰٫۰۰٪ (صفر مطلق)</span>
+        </div>
+      </div>
+
+      <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner" dir="ltr">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+          <span class="tracking-wider uppercase">ARCHITECTURE BLUEPRINT · TOPOLOGY SCHEMATIC</span>
+          <span class="text-emerald-400">2PC VERIFIED</span>
+        </div>
+        <img 
+          src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-2026`} 
+          alt="Double-Entry Ledger and Two-Phase Reservation Topology Schematic"
+          class="w-full h-auto object-contain rounded filter contrast-105"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 2-Column Technical Spec (Balanced 50/50 Grid in RTL) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Right: Invariants & Mechanism -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>اصول تخطی‌ناپذیر معماری و منطق تسویه</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>منبع یگانه حقیقت مالی (SSOT):</strong> تضمین ریاضی پایدار <span dir="ltr">&Sigma; Debits &minus; &Sigma; Credits = 0</span> روی جداول وقایع تغییرناپذیر در <span dir="ltr">ScyllaDB</span> و <span dir="ltr">PostgreSQL</span>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>ماشین حالت رزرو دومرحله‌ای:</strong> انتقال سرمایه از وضعیت <code class="text-amber-400 font-mono text-xs bg-white/5 px-1 py-0.5 rounded" dir="ltr">AVAILABLE</code> به <code class="text-cyan-400 font-mono text-xs bg-white/5 px-1 py-0.5 rounded" dir="ltr">RESERVED</code> پیش از فراخوانی وب‌هوک‌های بانکی بالادست.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>ایدامپوتنسي توزیع‌شده:</strong> قفل‌های موقت اتمیک <span dir="ltr">Redis SETNX</span> مبتنی بر <span dir="ltr">UUIDv4</span> با پنجره بازپخش ۲۴ ساعته جهت پیشگیری از کسر تکراری.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Left: Failure Modes & Recovery -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>حالات خرابی و بازیابی خودکار</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>تایم‌اوت‌های شبکه بانکی:</strong> مهارشده با الگوی <span dir="ltr">Transactional Outbox</span> و بازیابی وضعیت توزیع‌شده مبتنی بر <span dir="ltr">Raft</span> برای رد حالت‌های گذرا.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>رول‌بک خودکار تراز:</strong> آزادسازی آنی موجودی بلوکه‌شده به وضعیت قابل‌مصرف در صورت انقضای زمان تراکنش یا رسیدن پاسخ عدم تایید از شاپرک.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>دستاورد پروداکشن:</strong> تراز کامل ۱۰۰ درصدی در بیش از ۵۰ هزار تراکنش روزانه بدون حتی یک مورد واریز تکراری یا مغایرت پولی.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5" dir="ltr">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[ACID]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[2PC RESERVATION]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[REDIS SETNX]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[SCYLLADB]</span>
+        </div>
+        <a href={`${baseUrl}fa/blog/payment-gateway/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>مطالعه کامل وایت‌پیپر و مستندات فنی</span>
+          <span class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- DOSSIER 02: Smart PSP Switch & Dynamic Weighted Routing -->
+    <section id="payment-switch" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <span id="sms-gateway" class="sr-only"></span>
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>۰۲ · سوییچ پرداخت و پروتکل‌های مخابراتی</span>
+          </div>
+          <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 rounded" dir="ltr">
+            DOSSIER 02 · ISO 8583
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          سوییچ هوشمند پرداخت و موتور روتینگ پویای چنددرگاهی (<span dir="ltr">ISO 8583</span>)
+        </h2>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">سرعت تغییر مسیر</span>
+          <span class="text-cyan-400 font-semibold" dir="ltr">&lt;30ms Failover</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">پروتکل سوییچ</span>
+          <span class="text-white font-semibold" dir="ltr">ISO 8583 MTI 0200</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">دسترسی‌پذیری سوییچ</span>
+          <span class="text-emerald-400 font-semibold" dir="ltr">99.99% Uptime</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">رشد نرخ تبدیل</span>
+          <span class="text-emerald-400 font-semibold" dir="ltr">+14% Conversion</span>
+        </div>
+      </div>
+
+      <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner" dir="ltr">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+          <span class="tracking-wider uppercase">MULTI-PSP HEAD-TO-HEAD (H2H) ROUTING PIPELINE</span>
+          <span class="text-cyan-400">DYNAMIC WEIGHTED SLAS</span>
+        </div>
+        <img 
+          src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-2026`} 
+          alt="Smart PSP Switch and ISO 8583 Pipeline Topology Schematic"
+          class="w-full h-auto object-contain rounded filter contrast-105"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 2-Column Technical Spec (Balanced 50/50 Grid in RTL) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Right: Invariants & Mechanism -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>معماری روتینگ و اتصال چنددرگاهی</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>سوییچ Head-to-Head (H2H):</strong> پردازش مستقیم تلگرام‌های مالی <span dir="ltr">ISO 8583</span> با استخراج بلادرنگ کدهای <span dir="ltr">STAN</span> و <span dir="ltr">RRN</span> و هدرهای احراز هویت.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>هدایت هوشمند چنددرگاهی:</strong> توزیع ترافیک میان شرکت‌های پرداخت ملی (سامان، پارسیان، به‌پرداخت، پاسارگاد) از طریق آداپتورهای هاب فناوران.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>اوزان پویا بر پایه سلامت:</strong> ارزیابی لحظه‌ای تاخیر <span dir="ltr">P99</span>، نرخ موفقیت، و کارمزدهای تجاری پذیرندگان پیش از ارسال درخواست پرداخت.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Left: Failure Modes & Recovery -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>فیوزهای قطع مدار و مهار افت کیفیت</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>سقوط سوکت درگاه:</strong> با افزایش خطاهای ارتباطی، فیوز مدار در کمتر از ۳۰ میلی‌ثانیه درگاه ناسالم را از چرخه پردازش خارج می‌کند.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>عدم ریزش سبد خرید:</strong> درخواست‌های جاری بدون نیاز به ورود مجدد کاربر بلافاصله به درگاه‌های پشتیبان هدایت می‌شوند.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>کنترل جریان مخابراتی SMPP:</strong> کنترل نرخ ارسال با پنجره لغزان (۱۶ تا ۶۴ PDU) جهت تضمین رسیدن پیامک رمز پویا در کمتر از ۲ ثانیه.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5" dir="ltr">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[ISO 8583]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[FARAVARAN HUB]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[MULTI-PSP ROUTING]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[CIRCUIT BREAKER]</span>
+        </div>
+        <a href={`${baseUrl}fa/blog/sms-infrastructure/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>مطالعه کامل وایت‌پیپر سوییچ و مخابرات</span>
+          <span class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- DOSSIER 03: eKYC, Central Bank Harim OTP & PCI-DSS Token Vault -->
+    <section id="fraud-forensics" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>۰۳ · مدیریت ریسک، احراز هویت و مهار تقلب</span>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded" dir="ltr">
+            DOSSIER 03 · PCI-DSS
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          احراز هویت شاهکار، رمز پویای حریم و زون توکنایزیشن <span dir="ltr">PCI-DSS</span>
+        </h2>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">مهلت ارزیابی ریسک</span>
+          <span class="text-emerald-400 font-semibold" dir="ltr">&lt;15ms (P99)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">ذخیره داده CVV2</span>
+          <span class="text-white font-semibold">۰٫۰۰ ثانیه (عدم ذخیره)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">مهار تخلیه مالی</span>
+          <span class="text-emerald-400 font-semibold">۹۴- درصد کاهش تقلب</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">نرخ عبور 3DS 2.0</span>
+          <span class="text-cyan-400 font-semibold">بیش از ۹۲٪ بدون چالش</span>
+        </div>
+      </div>
+
+      <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner" dir="ltr">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+          <span class="tracking-wider uppercase">PERIMETER ISOLATION &amp; EKYC VERIFICATION SCHEMATIC</span>
+          <span class="text-emerald-400">PCI-DSS COMPLIANT</span>
+        </div>
+        <img 
+          src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
+          alt="eKYC, Harim Dynamic OTP and Forensic Graph Tracing Schematic"
+          class="w-full h-auto object-contain rounded filter contrast-105"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 2-Column Technical Spec (Balanced 50/50 Grid in RTL) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Right: Invariants & Mechanism -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>اصول امنیتی زون بانکی و شاهکار</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>توکن‌سازی با ذخیره صفر:</strong> شماره کارت خام وارد زون ایزوله <span dir="ltr">PCI-DSS</span> شده و کدهای <span dir="ltr">CVV2</span> بلافاصله پس از تراکنش پاکسازی می‌شوند.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>یکپارچگی شاهکار و ثبت‌احوال:</strong> تطبیق برخط کدملی با مالک سیم‌کارت و مقایسه زمان صدور سیم‌کارت با درخواست رمز پویای حریم بانک مرکزی.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>تحلیل گرافی ناهنجاری‌ها:</strong> محاسبه بردار ریسک لحظه‌ای در پایگاه داده گرافی <span dir="ltr">Neo4j</span> در کمتر از ۱۵ میلی‌ثانیه برای هر تراکنش مشکوک.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Left: Failure Modes & Recovery -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>مهار تعویض سیم‌کارت و انتقال مسئولیت</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>حملات تعویض سیم‌کارت (SIM-Swap):</strong> مهار سرقت حساب از طریق اعتبارسنجی تاریخ صدور سیم‌کارت در شاهکار پیش از فعال‌سازی کیف پول.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>انتقال مسئولیت حقوقی با 3DS 2.0:</strong> ارجاع تراکنش‌های پرریسک به چالش‌های بیومتریک و سلب مسئولیت مالی از پلتفرم به بانک صادرکننده.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>پایداری تجربه کاربری:</strong> حفظ نرخ عبور بدون چالش بالای ۹۲ درصدی برای تراکنش‌های مشروع بدون نیاز به بررسی دستی اپراتور.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5" dir="ltr">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[PCI-DSS]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[HARIM OTP]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[SHAHKAR eKYC]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[NEO4J FORENSICS]</span>
+        </div>
+        <a href={`${baseUrl}fa/blog/fraud-tracing/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>مطالعه کامل وایت‌پیپر کشف تقلب و شاهکار</span>
+          <span class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- DOSSIER 04: Event-Driven Multi-Pass Reconciliation & Early Merchant Settlement -->
+    <section id="reconciliation-engine" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <span id="data-pipeline" class="sr-only"></span>
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>۰۴ · مغایرت‌گیری و تسویه زودهنگام پذیرندگان</span>
+          </div>
+          <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 rounded" dir="ltr">
+            DOSSIER 04 · RECON
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          مغایرت‌گیری چندمرحله‌ای رویدادمحور و تسویه زودهنگام پذیرندگان
+        </h2>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">دقت مغایرت‌گیری</span>
+          <span class="text-emerald-400 font-semibold">تطبیق ۱۰۰٪ سه‌طرفه</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">بازه تسویه پذیرنده</span>
+          <span class="text-white font-semibold">تسویه ۲۴ ساعته</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">ورکر‌های پردازش</span>
+          <span class="text-cyan-400 font-semibold" dir="ltr">Spring Batch (Nightly)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+          <span class="text-neutral-500 block text-[10px] uppercase">خطای دستی تسویه</span>
+          <span class="text-emerald-400 font-semibold">۱۰۰- درصد حذف کامل</span>
+        </div>
+      </div>
+
+      <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner" dir="ltr">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+          <span class="tracking-wider uppercase">MULTI-BANK MULTI-PASS RECONCILIATION &amp; PAYOUT MESH</span>
+          <span class="text-emerald-400">AUTO-HEALING REFUND-MNG</span>
+        </div>
+        <img 
+          src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-2026`} 
+          alt="Multi-Bank Multi-Pass Reconciliation and Settlement Pipeline Schematic"
+          class="w-full h-auto object-contain rounded filter contrast-105"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- 2-Column Technical Spec (Balanced 50/50 Grid in RTL) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Right: Invariants & Mechanism -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>موتور پالایش داده و مغایرت‌گیری ۳طرفه</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>مش رویداد ناهمگام:</strong> دریافت بی‌درنگ وقایع نهایی از طریق <span dir="ltr">RabbitMQ</span> و تغذیه جاب‌های شبانه پردازش دسته‌ای <span dir="ltr">Spring Batch</span>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>تطبیق سه‌طرفه بانکی:</strong> تطبیق اتوماتیک رکوردهای دفتر کل داخلی با گزارش‌های درگاه و فایل‌های صورت‌حساب <span dir="ltr">SFTP</span> شاپرک.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-400 font-mono mt-0.5">•</span>
+              <span><strong>موتور خودترمیم Refund-MNG:</strong> شناسایی تراکنش‌های کسرشده بدون خدمات و صدور خودکار حواله بازگشت وجه بدون دخالت پشتیبانی.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Left: Failure Modes & Recovery -->
+        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>تسویه پیش از موعد پذیرندگان و حوالجات پایا</span>
+          </div>
+          <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>تسویه زودتر از موعد ۲۴ ساعته:</strong> واریز مبالغ فروش پذیرندگان از طریق حوالجات دسته‌ای پایا و ساتنا برای رفع چالش نقدینگی فروشگاه‌ها.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>محاسبه کارمزد شناور:</strong> کسر کارمزد منصفانه بر مبنای روزهای زودتر از موعد با فرمول: <code class="text-amber-400 font-mono text-xs bg-white/5 px-1 py-0.5 rounded" dir="ltr">&Delta;Fee = Amount &times; (r_base + d &times; r_daily)</code>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-400 font-mono mt-0.5">•</span>
+              <span><strong>پالایش سه‌مرحله‌ای (T+0 تا T+2):</strong> تفکیک تراکنش‌های قطعی از موارد اختلافی جهت تضمین عدم انحراف سرمایه.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5" dir="ltr">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[SPRING BATCH]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[RABBITMQ]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[PAYA / SATNA]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[EARLY SETTLEMENT]</span>
+        </div>
+        <a href={`${baseUrl}fa/data-cleaning/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>مشاهده پایپ‌لاین کامل مغایرت‌گیری</span>
+          <span class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- DOSSIER 05: Production Incident Postmortems -->
+    <section id="incident-dossiers" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span>۰۵ · آرشیو بحران‌های زنده در پروداکشن</span>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded" dir="ltr">
+            3/3 RESOLVED IN PROD
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          تحلیل و مهار عملیاتی بحران‌های زیرساخت در ترافیک زنده
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-3xl">
+          سوابق واقعی بازطراحی و پایدارسازی سیستم‌ها در شرایط فشار کاری و الزامات سخت‌گیرانه SLA.
+        </p>
+      </div>
+
+      <!-- 3 Incident Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Incident 01 -->
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
+              <span class="text-neutral-400 font-semibold">بحران ۰۱ · سوییچ پرداخت</span>
+              <span class="text-emerald-400" dir="ltr">P0 RESOLVED</span>
+            </div>
+            <h3 class="text-sm font-bold text-white">مهار تایم‌اوت‌های ISO 8583 بالادست</h3>
+            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-500">زمینه:</span> ارسال مجدد مکرر توسط پذیرندگان در زمان تایم‌اوت سوییچ بانکی.</p>
+              <p><span class="text-neutral-500">اصل:</span> قفل ایدامپوتنت باید بیش از طولانی‌ترین بازه مجدد (۸۶,۴۰۰ ثانیه) معتبر بماند.</p>
+              <p><span class="text-neutral-500">راهکار:</span> قفل توزیع‌شده Redis با عمر ۲۴ ساعته؛ دفتر کل فقط‌افزودنی در ScyllaDB.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
+            &larr; انحراف مالی: صفر ریال (0.00 IRR)
+          </div>
+        </div>
+
+        <!-- Incident 02 -->
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
+              <span class="text-neutral-400 font-semibold">بحران ۰۲ · سوییچ مخابراتی</span>
+              <span class="text-emerald-400" dir="ltr">P0 RESOLVED</span>
+            </div>
+            <h3 class="text-sm font-bold text-white">افت خروجی پنجره لغزان SMPP</h3>
+            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-500">زمینه:</span> ترافیک انبوه تبلیغاتی مانع ارسال به‌موقع کدهای حساس رمز پویا شد.</p>
+              <p><span class="text-neutral-500">اصل:</span> صفوف پیامک‌های حیاتی نباید با پیامک‌های انبوه کانال مشترک داشته باشند.</p>
+              <p><span class="text-neutral-500">راهکار:</span> تفکیک صفوف؛ تراتلینگ پنجره لغزان SMPP (بین ۱۶ تا ۶۴ PDU).</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
+            &larr; ارسال تضمینی زیر ۲ ثانیه
+          </div>
+        </div>
+
+        <!-- Incident 03 -->
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
+              <span class="text-neutral-400 font-semibold">بحران ۰۳ · پایگاه داده کلان</span>
+              <span class="text-emerald-400" dir="ltr">P1 RESOLVED</span>
+            </div>
+            <h3 class="text-sm font-bold text-white">پالایش ۱۰۰ میلیون رکورد Smart DB</h3>
+            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-500">زمینه:</span> ۹۴٫۷ میلیون رکورد بی‌ساختار و بدون ایندکس که پایگاه داده را قفل می‌کردند.</p>
+              <p><span class="text-neutral-500">اصل:</span> غنی‌سازی داده بدون ایجاد کندی در سوییچ تراکنش‌های اصلی.</p>
+              <p><span class="text-neutral-500">راهکار:</span> نرمال‌سازی چندلایه و الگوریتم‌های فونتیک با دقت پیش‌بینی ۷۰ درصدی پیش از eKYC.</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
+            &larr; حذف ۱۰۰ درصدی قفل‌های دیتابیس
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 06: Architecture Intake & Consultation (Full-Width) -->
+    <section id="book" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5">
+      <BookingSection locale="fa" />
+    </section>
+
   </main>
 
   <script>
