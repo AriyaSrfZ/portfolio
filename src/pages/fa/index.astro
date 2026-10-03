@@ -75,13 +75,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">حالت درخواست &ne; واقعیت تسویه. حذف قطعی تسویه مضاعف و تضمین مغایرت مالی صفر در پنجره‌های بازپخش ۸۶٬۴۰۰ ثانیه‌ای.</p>
+            <p class="text-[#f8fafc] leading-relaxed">حالت درخواست &ne; واقعیت تسویه. حذف قطعی تسویه مضاعف و تضمین مغایرت مالی صفر در پنجره‌های بازپخش ۸۶٬۴۰۰ ثانیه‌ای با تراز دقیق دفتر کل دوطرفه.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لبه ورودی با پروتکل TLS 1.3 قفل توزیع‌شده اتمی Redis با دستور <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">SETNX</code> و انقضای ۸۶٬۴۰۰ ثانیه را ثبت می‌کند. داده‌ها مستقیماً به ساختار بیت‌مپ باینری ISO 8583 جهت اتصال به سوییچ‌های شاپرک و شبکه‌های شتاب تبدیل می‌شوند. مانده‌حساب‌ها صرفاً از طریق بازپخش ترتیبی رویدادها در کلاستر دفتر کل فقط‌افزودنی ScyllaDB مجهز به استاندارد ACID محاسبه می‌گردند.
+              لبه ورودی با پروتکل TLS 1.3 قفل توزیع‌شده اتمیک Redis با دستور <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">SETNX</code> و انقضای ۸۶٬۴۰۰ ثانیه را ثبت می‌کند. داده‌ها مستقیماً به ساختار بیت‌مپ باینری ISO 8583 جهت اتصال به سوییچ‌های شاپرک و شبکه‌های شتاب تبدیل می‌شوند. مانده‌حساب‌ها صرفاً از طریق بازپخش ترتیبی رویدادها در کلاستر دفتر کل دوطرفه فقط‌افزودنی ScyllaDB مجهز به استاندارد ACID محاسبه می‌گردند.
             </p>
           </div>
 
@@ -92,7 +92,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              قطعی ارتباط درگاه با سوییچ بالادست و هجوم درخواست‌های بازپردازش (Retry Storm). مهار شارژ مضاعف با تفکیک لایه پذیرش از لایه تسویه و ثبت خودکار سند معکوس و اصلاحیه (۰۴۲۰) به صورت ردیف جدید در دفتر کل دوبل بدون دستکاری داده‌های پیشین.
+              قطعی ارتباط درگاه با سوییچ بالادست و هجوم درخواست‌های بازپردازش (Retry Storm). مهار شارژ مضاعف با تفکیک لایه پذیرش از لایه تسویه و ثبت خودکار سند معکوس و اصلاحیه (۰۴۲۰) به صورت ردیف جدید در دفتر کل دوطرفه بدون دستکاری داده‌های پیشین.
             </p>
           </div>
 
@@ -106,7 +106,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> تایم‌اوت درگاه‌ها هنگام ترافیک بالا باعث مغایرت در تسویه و تراکنش‌های شبح می‌شد.</p>
               <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> پذیرش تأخیر ۲۰۰ میلی‌ثانیه‌ای در همگامی نهایی برای تضمین عدم واریز تکراری.</p>
               <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم عملیات خواستار بازخورد همزمان بود. من برای جلوگیری از زیان مالی سیستماتیک، پایداری ناهمزمان را تحمیل کردم.</p>
-              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> حذف کامل نیاز به رفع مغایرت دستی و تضمین دقت مطلق دفتر کل.</p>
+              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> حذف کامل نیاز به رفع مغایرت دستی و تضمین دقت مطلق دفتر کل دوطرفه در بیش از ۵۰ هزار رویداد تسویه روزانه.</p>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">SLA زیر ۵۰ میلی‌ثانیه</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">قفل اتمی Redis O(1)</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">بیت‌مپ ISO 8583</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">دفترکل دوبل ScyllaDB</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">دفتر کل دوطرفه</span>
           </div>
 
           <!-- Linked SVG Diagram -->
@@ -247,7 +247,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              مدیریت نشست‌های موازی SMPP 3.4 با اتصال به گیت‌وی اپراتورها (همراه اول، ایرانسل و رایتل) روی سرشماره‌های ۱۰۰۰، ۲۰۰۰، ۳۰۰۰ و ۹۰۰۰. مجهز به کنترل پویای پنجره لغزان (Sliding Window از ۱۶ تا ۶۴ PDU)، تعادل بار هوشمند بر اساس ظرفیت پاسخ‌دهی SMSC، و استعلام پیش‌دستانه HLR و شاهکار جهت غربالگری خطوط مسدود (*800#) پیش از اشغال پهنای باند و کسر هزینه.
+              مدیریت نشست‌های موازی SMPP 3.4 با اتصال به گیت‌وی اپراتورها (همراه اول، ایرانسل و رایتل) روی سرشماره‌های ۱۰۰۰، ۲۰۰۰، ۳۰۰۰ و ۹۰۰۰. مجهز به کنترل پویای پنجره لغزان (Sliding Window از ۱۶ تا ۶۴ PDU)، تعادل بار هوشمند بر اساس ظرفیت پاسخ‌دهی SMSC، و استعلام پیش‌دستانه HLR و احراز هویت شاهکار جهت غربالگری خطوط مسدود (*800#) پیش از اشغال پهنای باند و کسر هزینه.
             </p>
           </div>
 
@@ -262,7 +262,6 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </p>
           </div>
 
-          <!-- Product Decision: Refined Badge (FA) -->
           <!-- Product Decision: Refined Badge (FA) -->
           <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
@@ -325,13 +324,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">پیش‌بینی رفتار و ترجیحات کاربران با دقت ۷۰٪ پیش از ثبت نهایی اطلاعات هویتی و ثبت‌نام بانکی (KYC).</p>
+            <p class="text-[#f8fafc] leading-relaxed">پیش‌بینی رفتار و ترجیحات کاربران با دقت ۷۰٪ پیش از ثبت نهایی اطلاعات هویتی و استعلامات احراز هویت شاهکار و ثبت‌احوال.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              موتور تحلیلی DuckDB بر بستر فایل‌های ستونی Apache Parquet جهت پردازش داده‌های عظیم و غیرساختاریافته خروجی اپراتورها و سامانه‌های تراکنشی. نرمال‌سازی عمیق کاراکترهای عربی/فارسی (ی/ک/تنوین)، کلیدگذاری واج‌شناختی چندمرحله‌ای (Phonetic Keys) و کاهش ۷۰ درصدی حجم ذخیره‌سازی با فشرده‌سازی Snappy.
+              موتور تحلیلی DuckDB بر بستر فایل‌های ستونی Apache Parquet جهت پردازش داده‌های عظیم و غیرساختاریافته خروجی اپراتورها و سامانه‌های تراکنشی پیش از ورود به فرآیند احراز هویت شاهکار. نرمال‌سازی عمیق کاراکترهای عربی/فارسی (ی/ک/تنوین)، کلیدگذاری واج‌شناختی چندمرحله‌ای (Phonetic Keys) و کاهش ۷۰ درصدی حجم ذخیره‌سازی با فشرده‌سازی Snappy.
             </p>
           </div>
 

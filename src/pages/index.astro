@@ -101,7 +101,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Gateway timeouts during peak traffic caused reconciliation discrepancies and phantom settlements.</p>
               <p><strong class="text-[#f8fafc]">What I traded off:</strong> Accepted 200ms eventual consistency across bank batch rails to guarantee zero double credits.</p>
               <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Operations demanded synchronous feedback. I enforced asynchronous reliability to prevent systemic financial loss.</p>
-              <p><strong class="text-[#f8fafc]">Business result:</strong> Eliminated manual reconciliations and secured absolute ledger accuracy.</p>
+              <p><strong class="text-[#f8fafc]">Business result:</strong> Eliminated manual reconciliations and secured absolute double-entry ledger accuracy across 50,000+ daily clearing events.</p>
             </div>
           </div>
 
@@ -110,7 +110,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Sub-50ms SLA</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Redis O(1) Idempotency</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">ISO 8583 Bitmaps</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">ScyllaDB Double-Entry</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Double-Entry Ledger</span>
           </div>
 
           <!-- Linked SVG Diagram -->
@@ -340,7 +340,6 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </p>
           </div>
 
-          <!-- Product Decision: Refined Badge -->
           <!-- Product Decision: Refined Badge -->
           <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
