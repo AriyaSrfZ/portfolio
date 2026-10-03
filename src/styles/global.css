@@ -155,33 +155,21 @@ html[lang="fa"] *,
   letter-spacing: normal !important;
 }
 
-/* 1. ABSOLUTE TYPOGRAPHY OVERRIDE FOR FARSI LIGATURES */
-html[lang="fa"] *:not(code):not(pre), 
-[dir="rtl"] *:not(code):not(pre) {
+/* RTL Hardening & Typography Overrides */
+html[lang="fa"] *:not(code):not(pre), [dir="rtl"] *:not(code):not(pre) {
     letter-spacing: normal !important;
-    word-spacing: normal !important;
 }
-
-/* 2. FORCE TABLES TO LEFT-TO-RIGHT IN FARSI MARKDOWN */
-html[lang="fa"] article table,
-html[lang="fa"] .markdown-body table {
+html[lang="fa"] article table, html[lang="fa"] .markdown-body table {
     direction: ltr !important;
     text-align: left !important;
     width: 100% !important;
 }
-html[lang="fa"] article th, 
-html[lang="fa"] article td {
+html[lang="fa"] article th, html[lang="fa"] article td {
     text-align: left !important;
     direction: ltr !important;
 }
-
-/* 3. CONTAIN WIDE CODE BLOCKS AND DIAGRAMS */
-pre.astro-code, 
-pre[class*="language-"] {
+pre.astro-code, pre[class*="language-"] {
     max-width: 100% !important;
-    width: 100% !important;
     overflow-x: auto !important;
     direction: ltr !important;
-    white-space: pre !important;
-    word-wrap: normal !important;
 }

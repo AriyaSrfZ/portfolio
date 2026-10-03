@@ -81,7 +81,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لبه ورودی با پروتکل TLS 1.3 قفل توزیع‌شده اتمیک Redis با دستور <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">SETNX</code> و انقضای ۸۶٬۴۰۰ ثانیه را ثبت می‌کند. داده‌ها مستقیماً به ساختار بیت‌مپ باینری ISO 8583 جهت اتصال به سوییچ‌های شاپرک و شبکه‌های شتاب تبدیل می‌شوند. مانده‌حساب‌ها صرفاً از طریق بازپخش ترتیبی رویدادها در کلاستر دفتر کل دوطرفه فقط‌افزودنی ScyllaDB مجهز به استاندارد ACID محاسبه می‌گردند.
+              لبه ورودی با پروتکل TLS 1.3 قفل توزیع‌شده اتمیک Redis با دستور <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">SETNX</code> و انقضای ۸۶٬۴۰۰ ثانیه را ثبت می‌کند. داده‌ها مستقیماً به ساختار بیت‌مپ باینری ISO 8583 جهت اتصال به سوییچ‌های شاپرک و شبکه‌های شتاب تبدیل می‌شوند. تخصیص دومرحله‌ای و محاسبه مانده‌حساب‌ها صرفاً از طریق بازپخش ترتیبی رویدادها در کلاستر دفتر کل دوطرفه فقط‌افزودنی ScyllaDB مجهز به استاندارد ACID انجام می‌پذیرد.
             </p>
           </div>
 
@@ -114,7 +114,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="flex flex-wrap gap-2 my-5">
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">SLA زیر ۵۰ میلی‌ثانیه</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">قفل اتمی Redis O(1)</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">بیت‌مپ ISO 8583</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تخصیص دومرحله‌ای</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">دفتر کل دوطرفه</span>
           </div>
 
@@ -164,7 +164,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لبه ورودی با استخراج انتروپی بوم (Canvas)، شتاب دستگاه و ریتم کلیدزنی، بردارهای چندبعدی ریسک [۰٫۰۰ تا ۱٫۰۰] را در کمتر از ۱۵ میلی‌ثانیه تولید می‌کند. تراکنش‌های زیر ۰٫۳۰ بدون اصطکاک عبور می‌کنند؛ ۰٫۳۰ تا ۰٫۷۵ اعتبارسنجی بیومتریک و پیامکی 3DS 2.0 را فعال می‌سازد (انتقال مسئولیت مالی به بانک صادرکننده)؛ امتیازهای بالای ۰٫۷۵ در کلاستر گراف Neo4j قرنطینه و تحلیل می‌شوند.
+              لبه ورودی در زون ایزوله بانکی با استخراج انتروپی بوم (Canvas)، شتاب دستگاه و ریتم کلیدزنی، بردارهای چندبعدی ریسک [۰٫۰۰ تا ۱٫۰۰] را در کمتر از ۱۵ میلی‌ثانیه تولید می‌کند. تراکنش‌های زیر ۰٫۳۰ بدون اصطکاک عبور می‌کنند؛ ۰٫۳۰ تا ۰٫۷۵ اعتبارسنجی بیومتریک و پیامکی 3DS 2.0 را فعال می‌سازد (انتقال مسئولیت مالی به بانک صادرکننده)؛ امتیازهای بالای ۰٫۷۵ در کلاستر گراف Neo4j قرنطینه و تحلیل می‌شوند.
             </p>
           </div>
 
@@ -195,9 +195,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">زون ایزوله بانکی</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">حلقه ریسک زیر ۱۵ms</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">انتقال مسئولیت با 3DS 2.0</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">مثبت کاذب زیر ۰٫۵٪</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">گراف قضایی Neo4j</span>
           </div>
 

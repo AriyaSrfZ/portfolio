@@ -1,27 +1,30 @@
----
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
 const diagrams = [
   {
     title: 'Fraud Detection & Forensic Tracing',
     subtitle: 'Event-driven ingestion, temporal graph analysis, and real-time AML screening pipeline.',
-    file: 'placeholder-1.svg',
+    file: 'fraud-tracing-architecture.svg',
     tags: ['Kafka', 'Neo4j', 'Flink', 'PostgreSQL'],
   },
   {
     title: 'Event-Driven Payment Settlement',
     subtitle: 'Idempotent transaction log, two-phase commit reconciliation, and ledger immutability.',
-    file: 'placeholder-2.svg',
+    file: 'payment-switch-architecture.svg',
     tags: ['Outbox Pattern', 'gRPC', 'Redis', 'ScyllaDB'],
   },
   {
     title: 'National Telecom SMS Routing Switch',
     subtitle: 'High-throughput SMPP aggregator managing multi-operator trunk failover, delivery receipt reconciliation.',
-    file: 'placeholder-3.svg',
+    file: 'sms-routing-architecture.svg',
     tags: ['SMPP', 'Sliding Window', 'Least Cost Routing'],
   },
 ];
 ---
 
-<section class="max-w-7xl mx-auto px-6 sm:px-8 py-16 font-mono">
+<section class="max-w-7xl mx-auto px-6 sm:px-8 py-16 font-mono" dir="ltr">
   <div class="mb-10">
     <h2 class="text-xs uppercase tracking-widest text-[#06b6d4] font-bold mb-2">Architectural Blueprints</h2>
     <h3 class="text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#f8fafc]">Core System Topologies</h3>
@@ -36,7 +39,7 @@ const diagrams = [
         <div>
           <div class="overflow-hidden bg-[#0b1120] border border-white/10 mb-4 p-2 flex items-center justify-center min-h-[190px] rounded-lg">
             <img 
-              src={`/diagrams/${d.file}`} 
+              src={`${baseUrl}diagrams/${d.file}`} 
               alt={d.title}
               class="w-full h-auto max-h-48 object-contain"
               loading="lazy"
