@@ -17,6 +17,7 @@ const caseStudies = [
     outcome: 'Slashed illicit drain by 94 percent and maintained a frictionless pass rate above 92 percent in 3DS 2.0.',
     link: `${baseUrl}blog/fraud-tracing/`,
     badge: 'Sub-15ms SLA',
+    tags: ['Sub-15ms Risk Loop', '3DS 2.0 Liability Shift', '< 0.5% False Positives', 'Neo4j Forensic Graph']
   },
   {
     id: '02',
@@ -29,6 +30,7 @@ const caseStudies = [
     outcome: 'Eliminated manual reconciliations and secured absolute ledger accuracy across 50,000+ daily clearing events.',
     link: `${baseUrl}blog/payment-gateway/`,
     badge: 'Zero Financial Drift',
+    tags: ['Sub-50ms SLA', 'Redis O(1) Idempotency', 'ISO 8583 Bitmaps', 'ScyllaDB Double-Entry']
   },
   {
     id: '03',
@@ -41,6 +43,7 @@ const caseStudies = [
     outcome: 'Achieved 99.98 percent OTP delivery under 4 seconds during nationwide 50,000 TPS burst capacities.',
     link: `${baseUrl}blog/sms-infrastructure/`,
     badge: '10K+ TPS Aggregation',
+    tags: ['SMPP UCS-2', 'Sliding Window', 'Sub-10ms Queuing', 'Least Cost Routing']
   },
   {
     id: '04',
@@ -53,6 +56,7 @@ const caseStudies = [
     outcome: 'Consolidated 100M+ records with 99.4 percent deduplication accuracy and saved 60 percent in compute overhead.',
     link: `${baseUrl}data-cleaning/`,
     badge: '100M+ Records',
+    tags: ['DuckDB', 'Columnar Parquet', 'Deterministic Fuzzy Matching', 'Lakehouse Decoupling']
   },
 ];
 ---
@@ -128,6 +132,15 @@ const caseStudies = [
                   <span class="text-[#cbd5e1]">{study.outcome}</span>
                 </div>
               </div>
+            </div>
+
+            <!-- Tactical Tags -->
+            <div class="flex flex-wrap gap-2 mb-6">
+              {study.tags.map(tag => (
+                <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 

@@ -172,7 +172,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 6, scale: 0.98 }}
                   transition={{ duration: 0.15 }}
-                  className={`absolute ${isFa ? 'left-0' : 'right-0'} top-full mt-2 w-96 bg-[#111827]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/5 text-right`}
+                  className={`absolute ${isFa ? 'left-0' : 'right-0'} top-full mt-2 w-96 bg-[#111827]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 ring-1 ring-white/5 ${isFa ? 'text-right' : 'text-left'}`}
                   dir={isFa ? 'rtl' : 'ltr'}
                 >
                   <div className="px-3 py-2 border-b border-white/10 mb-2 flex justify-between items-center text-[10px] text-[#94a3b8] uppercase">
@@ -188,12 +188,12 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                         key={doc.href}
                         href={doc.href}
                         onClick={closeMenus}
-                        className="block p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#06b6d4]/40 hover:bg-white/[0.05] transition-all duration-300 group text-left"
+                        className={`block p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#06b6d4]/40 hover:bg-white/[0.05] transition-all duration-300 group ${isFa ? 'text-right' : 'text-left'}`}
                         dir={isFa ? 'rtl' : 'ltr'}
                       >
                         <div className="flex items-center justify-between">
                           <span className="text-[10px] font-bold text-[#e2c974] uppercase">{doc.spec}</span>
-                          <span className="text-[10px] text-white/30 group-hover:text-[#06b6d4] transition">&rarr;</span>
+                          <span className="text-[10px] text-white/30 group-hover:text-[#06b6d4] transition">{isFa ? '←' : '→'}</span>
                         </div>
                         <p className="text-xs font-bold text-[#f8fafc] group-hover:text-[#e2c974] transition mt-1">{doc.title}</p>
                         <p className="text-[10px] text-[#94a3b8] mt-0.5 line-clamp-1">{doc.desc}</p>
@@ -319,7 +319,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                         onClick={closeMenus}
                         className="block px-3 py-1.5 rounded-lg bg-white/[0.02] border border-white/5 text-[11px] tracking-wider text-[#cbd5e1] hover:text-[#e2c974] hover:bg-white/[0.05] transition-colors"
                       >
-                        <span className="text-[10px] text-[#e2c974] font-mono mr-2">{doc.spec}:</span>
+                        <span className="text-[10px] text-[#e2c974] font-mono me-2">{doc.spec}:</span>
                         <span>{doc.title}</span>
                       </a>
                     ))}

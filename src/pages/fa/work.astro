@@ -17,6 +17,7 @@ const caseStudies = [
     outcome: 'کاهش ۹۴ درصدی نشت مالی و حفظ نرخ عبور بدون چالش بالای ۹۲ درصد در 3DS 2.0.',
     link: `${baseUrl}fa/blog/fraud-tracing/`,
     badge: 'تأخیر کمتر از ۱۵ms',
+    tags: ['Sub-15ms Risk Loop', '3DS 2.0 Liability Shift', '< 0.5% False Positives', 'Neo4j Forensic Graph']
   },
   {
     id: '۰۲',
@@ -29,6 +30,7 @@ const caseStudies = [
     outcome: 'حذف کامل نیاز به رفع مغایرت دستی و تضمین دقت مطلق دفتر کل در بیش از ۵۰ هزار تسویه روزانه.',
     link: `${baseUrl}fa/blog/payment-gateway/`,
     badge: 'عدم انحراف مالی (Zero Drift)',
+    tags: ['Sub-50ms SLA', 'Redis O(1) Idempotency', 'ISO 8583 Bitmaps', 'ScyllaDB Double-Entry']
   },
   {
     id: '۰۳',
@@ -41,6 +43,7 @@ const caseStudies = [
     outcome: 'تحویل ۹۹٫۹۸ درصدی پیامک‌های OTP زیر ۴ ثانیه در زمان پیک ترافیک ۵۰ هزار TPS در سطح شبکه ملی.',
     link: `${baseUrl}fa/blog/sms-infrastructure/`,
     badge: 'ظرفیت بیش از 10K TPS',
+    tags: ['SMPP UCS-2', 'Sliding Window', 'Sub-10ms Queuing', 'Least Cost Routing']
   },
   {
     id: '۰۴',
@@ -53,6 +56,7 @@ const caseStudies = [
     outcome: 'تجمیع بیش از ۱۰۰ میلیون رکورد با دقت ۹۹٫۴ درصد و کاهش ۶۰ درصدی هزینه‌های پردازشی.',
     link: `${baseUrl}fa/data-cleaning/`,
     badge: 'بیش از ۱۰۰ میلیون رکورد',
+    tags: ['DuckDB', 'Columnar Parquet', 'Deterministic Fuzzy Matching', 'Lakehouse Decoupling']
   },
 ];
 ---
@@ -130,6 +134,15 @@ const caseStudies = [
                   <span class="text-[#cbd5e1]">{study.outcome}</span>
                 </div>
               </div>
+            </div>
+
+            <!-- Tactical Tags -->
+            <div class="flex flex-wrap gap-2 mb-6" dir="ltr">
+              {study.tags.map(tag => (
+                <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 

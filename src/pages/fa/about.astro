@@ -13,7 +13,8 @@ import CoreCompetencies from '../../components/CoreCompetencies.astro';
   <!-- Bio Header Section -->
   <section class="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-12 text-center font-['Vazirmatn',sans-serif]" dir="rtl">
     <div class="relative inline-block mx-auto mb-6">
-      <div class="w-28 h-28 rounded-2xl p-1 bg-gradient-to-b from-white/20 to-white/5 border border-white/10 shadow-2xl overflow-hidden">
+      <div class="absolute -inset-8 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.14),transparent_50%)] blur-2xl z-0"></div>
+      <div class="relative z-10 w-28 h-28 rounded-2xl p-1 bg-gradient-to-b from-white/20 to-white/5 border border-white/10 shadow-2xl overflow-hidden">
         <img
           src={`${import.meta.env.BASE_URL}photos/ariya.jpg`}
           alt="آریا صراف‌زاده"
@@ -26,22 +27,22 @@ import CoreCompetencies from '../../components/CoreCompetencies.astro';
     
     <!-- Sub-head positioning statement -->
     <div class="max-w-2xl mx-auto mb-6">
-      <p class="text-xs sm:text-sm font-semibold text-[#e2c974] tracking-wide">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs sm:text-sm font-semibold text-[#e2c974] tracking-wide">
         مدیر ارشد محصول و معمار سیستم‌های فنی
-      </p>
+      </span>
     </div>
 
     <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
       بیش از ۱۵ سال طراحی، پیاده‌سازی و راهبری زیرساخت‌های با دسترسی بالا در حوزه‌های پرداخت،
       سوییچ‌های پیامک و سیستم‌های مبارزه با تقلب. تمرکز کار بر معماری عملیاتی سیستم و مدیریت فنی محصول است:
-      بازیابی خطای تایم‌اوت‌های ISO 8583، ویندوینگ SMPP در کاراکترهای فارسی و لاتین، جلوگیری از تسویه مضاعف در Redis،
-      و پردازش تحلیلی DuckDB/Parquet در زیر بار ترافیک سنگین واقعی.
+      <span dir="ltr">ISO 8583</span> بازیابی خطای تایم‌اوت‌های، <span dir="ltr">SMPP UCS-2</span> ویندوینگ در کاراکترهای فارسی و لاتین، جلوگیری از تسویه مضاعف در <span dir="ltr">Redis</span>،
+      و پردازش تحلیلی <span dir="ltr">DuckDB/Parquet</span> در زیر بار ترافیک سنگین واقعی.
     </p>
   </section>
 
   <!-- Cornerstone Section: The 0-to-Scale Story -->
   <section class="relative z-10 max-w-4xl mx-auto px-6 py-8 font-['Vazirmatn',sans-serif]" dir="rtl">
-    <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 shadow-xl ring-1 ring-white/5">
+    <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
       <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
         <div class="flex items-center gap-3">
           <span class="w-2 h-2 rounded-full bg-[#06b6d4]"></span>
@@ -57,7 +58,7 @@ import CoreCompetencies from '../../components/CoreCompetencies.astro';
       <!-- Cornerstone Content -->
       <div class="p-6 bg-[#0b1120]/80 border border-white/10 rounded-xl">
         <p class="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed">
-          من وارد محیط‌هایی شدم که با سیستم‌های قدیمی جزیره‌ای و گلوگاه‌های همزمان درگیر بودند. زیرساخت‌ها زیر بار ترافیک ملی دچار افت عملکرد می‌شدند؛ تایم‌اوت درگاه‌ها مغایرت‌های مالی ایجاد می‌کرد و قواعد غیربهینه کنترل ریسک، جلوی درآمدهای مشروع را می‌گرفت. من این گلوگاه‌ها را به صورت سیستماتیک حذف کردم. معماری‌های یکپارچه و صلب با ماشین‌های حالت رویدادمحور جایگزین شدند. کنترل‌های مبتنی بر پنجره لغزان را اعمال کردم و مسیرهای نوشتن را از بخش تحلیلی جدا کردم. ما از پردازش چند هزار رویداد محلی به مدیریت پیک‌های ترافیک بالای ۵۰ هزار TPS رسیدیم. خروجی کار من، یک معماری پایدار و با دسترسی بالا بود که برای واقعیت‌های بی‌رحم عملیاتی بهینه‌سازی شد.
+          من وارد محیط‌هایی شدم که با سیستم‌های قدیمی جزیره‌ای و گلوگاه‌های همزمان درگیر بودند. زیرساخت‌ها زیر بار ترافیک ملی دچار افت عملکرد می‌شدند؛ تایم‌اوت درگاه‌ها مغایرت‌های مالی ایجاد می‌کرد و قواعد غیربهینه کنترل ریسک، جلوی درآمدهای مشروع را می‌گرفت. من این گلوگاه‌ها را به صورت سیستماتیک حذف کردم. معماری‌های یکپارچه و صلب با ماشین‌های حالت رویدادمحور جایگزین شدند. کنترل‌های مبتنی بر پنجره لغزان را اعمال کردم و مسیرهای نوشتن را از بخش تحلیلی جدا کردم. ما از پردازش چند هزار رویداد محلی به مدیریت پیک‌های ترافیک بالای ۵۰ هزار <span dir="ltr">TPS</span> رسیدیم. خروجی کار من، یک معماری پایدار و با دسترسی بالا بود که برای واقعیت‌های بی‌رحم عملیاتی بهینه‌سازی شد.
         </p>
       </div>
     </div>
@@ -65,4 +66,10 @@ import CoreCompetencies from '../../components/CoreCompetencies.astro';
 
   <CoreCompetencies locale="fa" />
   <Timeline locale="fa" />
+
+  <section class="max-w-4xl mx-auto px-6 py-12 text-center font-['Vazirmatn',sans-serif]" dir="rtl">
+    <a href="#book" class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37]">
+      رزرو جلسه بررسی معماری ↓
+    </a>
+  </section>
 </Layout>

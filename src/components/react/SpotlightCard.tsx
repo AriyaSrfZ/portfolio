@@ -18,13 +18,13 @@ export default function SpotlightCard({
     mouseY.set(e.clientY - rect.top);
   }
 
-  const background = useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, rgba(124, 58, 237, 0.18), transparent 65%)`;
+  const background = useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, rgba(6, 182, 212, 0.18), transparent 65%)`;
 
   return (
     <BorderBeam size="pulse-inner" colorVariant="ocean" theme="dark" strength={0.6}>
       <div
         onMouseMove={handleMouseMove}
-        className={`relative overflow-hidden glass rounded-2xl p-6 group ${className}`}
+        className={`relative overflow-hidden bg-[#111827]/75 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 rounded-2xl p-6 group ${className}`}
       >
         <motion.div
           className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
