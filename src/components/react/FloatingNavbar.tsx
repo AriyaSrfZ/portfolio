@@ -90,7 +90,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
   return (
     <header className="fixed top-0 inset-x-0 w-full h-14 z-50 backdrop-blur-md bg-[#0b0d11]/85 border-b border-white/5 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         
         {/* Left: Brand + Status Badge */}
         <div className="flex items-center gap-3">

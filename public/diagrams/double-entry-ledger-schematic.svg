@@ -1,142 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg 
-  xmlns="http://www.w3.org/2000/svg" 
-  class="w-full h-auto" 
-  viewBox="0 0 960 300" 
-  preserveAspectRatio="xMidYMid meet"
-  shape-rendering="geometricPrecision" 
-  text-rendering="geometricPrecision"
-  dir="ltr"
->
-  <defs>
-    <style>
-      .mono-txt { font-family: 'Geist Mono', 'JetBrains Mono', 'Fira Code', ui-monospace, monospace; }
-      @keyframes dashAnim { to { stroke-dashoffset: -20; } }
-      .flow-line { stroke-dasharray: 6 4; animation: dashAnim 1.2s linear infinite; }
-    </style>
-    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
-    </marker>
-    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
-    </marker>
-    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#F59E0B"/>
-    </marker>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="auto" class="w-full h-auto font-mono text-[11px]" dir="ltr">
+    <defs>
+      <linearGradient id="ledger-cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.02"/>
+      </linearGradient>
+      <linearGradient id="ledger-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#e2c974" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#e2c974" stop-opacity="0.02"/>
+      </linearGradient>
+      <pattern id="grid-dots-ledger" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="#ffffff" fill-opacity="0.04"/>
+      </pattern>
+      <marker id="arrow-cyan-led" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#06b6d4"/>
+      </marker>
+      <marker id="arrow-gold-led" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 8 5 L 0 9 z" fill="#e2c974"/>
+      </marker>
+    </defs>
 
-  <!-- Background Base -->
-  <rect width="960" height="300" fill="#0C0E12" rx="12" stroke="#1E232D" stroke-width="1.5"/>
+    <!-- Canvas Background -->
+    <rect width="800" height="400" fill="#0b1120" rx="12"/>
+    <rect width="800" height="400" fill="url(#grid-dots-ledger)" rx="12"/>
+    <rect width="798" height="398" x="1" y="1" fill="none" stroke="#ffffff" stroke-opacity="0.08" rx="11"/>
 
-  <!-- Top System Header Bar -->
-  <g transform="translate(24, 20)">
-    <circle cx="6" cy="10" r="4" fill="#10B981"/>
-    <text x="20" y="14" fill="#E2E8F0" font-size="12" font-weight="700" letter-spacing="1" class="mono-txt">
-      DOUBLE-ENTRY LEDGER &amp; TWO-PHASE RESERVATION ENGINE
-    </text>
-    <text x="540" y="14" fill="#94A3B8" font-size="11" font-weight="500" class="mono-txt">
-      SYSTEM INVARIANT:
-    </text>
-    <rect x="660" y="0" width="250" height="26" rx="4" fill="#151921" stroke="#2A303C"/>
-    <text x="785" y="17" fill="#10B981" font-size="11" font-weight="600" text-anchor="middle" class="mono-txt">
-      Σ DEBITS - Σ CREDITS = 0 (ACID)
-    </text>
-  </g>
+    <!-- Header & Invariant Title -->
+    <g transform="translate(30, 24)">
+      <circle cx="5" cy="5" r="4" fill="#06b6d4" />
+      <text x="18" y="9" fill="#06b6d4" font-weight="700" letter-spacing="1.5">ARCHITECTURE SCHEMATIC · DOUBLE-ENTRY LEDGER</text>
+      <text x="18" y="24" fill="#94a3b8" font-size="10">IMMUTABLE FACT STORE &amp; TWO-PHASE BALANCE RESERVATION</text>
+      <rect x="520" y="-3" width="220" height="24" rx="6" fill="#06b6d4" fill-opacity="0.1" stroke="#06b6d4" stroke-opacity="0.3"/>
+      <text x="532" y="13" fill="#38bdf8" font-size="10" font-weight="600">INVARIANT: Σ DEBITS - Σ CREDITS = 0</text>
+    </g>
 
-  <!-- Flow Conduits between Stages -->
-  <path d="M 235 160 L 260 160" stroke="#38BDF8" stroke-width="2" class="flow-line" marker-end="url(#arrow-cyan)"/>
-  <path d="M 475 160 L 500 160" stroke="#10B981" stroke-width="2" class="flow-line" marker-end="url(#arrow-emerald)"/>
-  <path d="M 715 160 L 740 160" stroke="#F59E0B" stroke-width="2" class="flow-line" marker-end="url(#arrow-amber)"/>
+    <!-- Column 1: Ingress & Mutation Request -->
+    <g transform="translate(30, 75)">
+      <rect width="160" height="285" rx="8" fill="#111827" fill-opacity="0.8" stroke="#ffffff" stroke-opacity="0.1"/>
+      <rect width="160" height="28" rx="8" fill="#ffffff" fill-opacity="0.03"/>
+      <text x="12" y="18" fill="#e2c974" font-weight="700">01. MUTATION INGRESS</text>
+      
+      <!-- Sub-card: Client Token -->
+      <rect x="12" y="42" width="136" height="58" rx="6" fill="#0b1120" stroke="#06b6d4" stroke-opacity="0.3"/>
+      <text x="20" y="58" fill="#f8fafc" font-weight="600">POST /checkout</text>
+      <text x="20" y="73" fill="#94a3b8" font-size="9">Idempotency-Key:</text>
+      <text x="20" y="87" fill="#06b6d4" font-size="9">uuid-v4-tx-9942a</text>
 
-  <!-- STAGE 01: Ingress & Idempotency -->
-  <g transform="translate(24, 60)">
-    <rect width="210" height="215" rx="8" fill="#151921" stroke="#2A303C" stroke-width="1.5"/>
-    <rect x="0" y="0" width="210" height="32" rx="8" fill="#1A202C"/>
-    <text x="14" y="20" fill="#38BDF8" font-size="11" font-weight="700" class="mono-txt">01 · INGRESS &amp; MUTEX</text>
-    
-    <!-- Item 1: Client Ingress -->
-    <rect x="12" y="44" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="60" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">POST /v1/checkout</text>
-    <text x="22" y="76" fill="#94A3B8" font-size="9" class="mono-txt">Payload: Idempotency-Key</text>
+      <!-- Sub-card: Atomic SETNX -->
+      <rect x="12" y="115" width="136" height="70" rx="6" fill="#0b1120" stroke="#e2c974" stroke-opacity="0.3"/>
+      <text x="20" y="131" fill="#e2c974" font-weight="600">Redis SETNX</text>
+      <text x="20" y="146" fill="#94a3b8" font-size="9">TTL: 86,400s (24h)</text>
+      <text x="20" y="160" fill="#cbd5e1" font-size="9">Status: MUTEX_ACQUIRED</text>
+      <text x="20" y="173" fill="#10b981" font-size="9">Replay Attack: BLOCKED</text>
 
-    <!-- Item 2: Redis Mutex Lock -->
-    <rect x="12" y="96" width="186" height="52" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="114" fill="#38BDF8" font-size="11" font-weight="600" class="mono-txt">Redis SETNX (Lock)</text>
-    <text x="22" y="128" fill="#94A3B8" font-size="9.5" class="mono-txt">TTL: 24h · Mutex Granted</text>
-    <text x="22" y="140" fill="#10B981" font-size="9" class="mono-txt">Replay Blocked (Zero Dupes)</text>
+      <!-- Sub-card: Transient State -->
+      <rect x="12" y="200" width="136" height="70" rx="6" fill="#0b1120" stroke="#ffffff" stroke-opacity="0.1"/>
+      <text x="20" y="216" fill="#f8fafc" font-weight="600">Mutable State</text>
+      <text x="20" y="231" fill="#94a3b8" font-size="9">Phase: PENDING</text>
+      <text x="20" y="245" fill="#94a3b8" font-size="9">Optimistic Lock: v1</text>
+      <text x="20" y="259" fill="#06b6d4" font-size="9">In-Memory Cache</text>
+    </g>
 
-    <!-- Item 3: Status -->
-    <rect x="12" y="158" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="175" fill="#94A3B8" font-size="9.5" class="mono-txt">Ingress Latency SLA</text>
-    <text x="22" y="190" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">&lt; 3.2ms (P99 Gate)</text>
-  </g>
+    <!-- Connector: Ingress -> Two-Phase -->
+    <path d="M 190 145 L 245 145" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow-cyan-led)"/>
+    <text x="200" y="138" fill="#06b6d4" font-size="8">DISPATCH</text>
 
-  <!-- STAGE 02: Two-Phase Balance Reservation -->
-  <g transform="translate(264, 60)">
-    <rect width="210" height="215" rx="8" fill="#151921" stroke="#2A303C" stroke-width="1.5"/>
-    <rect x="0" y="0" width="210" height="32" rx="8" fill="#1A202C"/>
-    <text x="14" y="20" fill="#10B981" font-size="11" font-weight="700" class="mono-txt">02 · TWO-PHASE 2PC</text>
-    
-    <!-- Item 1: State Machine -->
-    <rect x="12" y="44" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="60" fill="#94A3B8" font-size="9.5" class="mono-txt">Account State Transition</text>
-    <text x="22" y="76" fill="#10B981" font-size="10.5" font-weight="600" class="mono-txt">AVAILABLE &rarr; RESERVED</text>
+    <!-- Column 2: Two-Phase Balance Reservation Machine -->
+    <g transform="translate(250, 75)">
+      <rect width="245" height="285" rx="8" fill="#111827" fill-opacity="0.8" stroke="#06b6d4" stroke-opacity="0.4"/>
+      <rect width="245" height="28" rx="8" fill="url(#ledger-cyan-grad)"/>
+      <text x="14" y="18" fill="#38bdf8" font-weight="700">02. 2-PHASE RESERVATION</text>
+      
+      <!-- State 1: Available -->
+      <rect x="14" y="42" width="217" height="48" rx="6" fill="#0b1120" stroke="#10b981" stroke-opacity="0.4"/>
+      <circle cx="26" cy="58" r="4" fill="#10b981"/>
+      <text x="36" y="62" fill="#f8fafc" font-weight="600">AVAILABLE: $1,000.00</text>
+      <text x="36" y="77" fill="#94a3b8" font-size="9">Unrestricted user balance pool</text>
 
-    <!-- Item 2: Concurrency Isolation -->
-    <rect x="12" y="96" width="186" height="52" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="114" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">Optimistic Versioning</text>
-    <text x="22" y="128" fill="#94A3B8" font-size="9.5" class="mono-txt">Compare-And-Swap (CAS)</text>
-    <text x="22" y="140" fill="#F59E0B" font-size="9" class="mono-txt">Zero Overdraft Invariant</text>
+      <!-- Arrow down to Reserved -->
+      <path d="M 122 90 L 122 110" fill="none" stroke="#e2c974" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrow-gold-led)"/>
+      <text x="128" y="103" fill="#e2c974" font-size="8">HOLD $250.00</text>
 
-    <!-- Item 3: Hold Timeout Engine -->
-    <rect x="12" y="158" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="175" fill="#94A3B8" font-size="9.5" class="mono-txt">Hold Auto-Expiration</text>
-    <text x="22" y="190" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">TTL: 15,000ms Reversion</text>
-  </g>
+      <!-- State 2: Reserved -->
+      <rect x="14" y="114" width="217" height="60" rx="6" fill="#0b1120" stroke="#e2c974" stroke-opacity="0.5"/>
+      <circle cx="26" cy="132" r="4" fill="#e2c974"/>
+      <text x="36" y="136" fill="#e2c974" font-weight="600">RESERVED: $250.00</text>
+      <text x="36" y="151" fill="#94a3b8" font-size="9">Ring-fenced during settlement window</text>
+      <text x="36" y="163" fill="#cbd5e1" font-size="8">Remaining Available: $750.00</text>
 
-  <!-- STAGE 03: Upstream Bank / Clearing Dispatch -->
-  <g transform="translate(504, 60)">
-    <rect width="210" height="215" rx="8" fill="#151921" stroke="#2A303C" stroke-width="1.5"/>
-    <rect x="0" y="0" width="210" height="32" rx="8" fill="#1A202C"/>
-    <text x="14" y="20" fill="#F59E0B" font-size="11" font-weight="700" class="mono-txt">03 · CLEARING DISPATCH</text>
-    
-    <!-- Item 1: ISO 8583 Switch Relay -->
-    <rect x="12" y="44" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="60" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">ISO 8583 / mTLS Mesh</text>
-    <text x="22" y="76" fill="#94A3B8" font-size="9.5" class="mono-txt">Upstream PSP / Central Bank</text>
+      <!-- Dual Branch: Commit or Rollback -->
+      <path d="M 70 174 L 70 205" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrow-cyan-led)"/>
+      <path d="M 175 174 L 175 205" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3 3"/>
 
-    <!-- Item 2: Timeout Circuit Breaker -->
-    <rect x="12" y="96" width="186" height="52" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="114" fill="#F59E0B" font-size="11" font-weight="600" class="mono-txt">Timeout Circuit Breaker</text>
-    <text x="22" y="128" fill="#94A3B8" font-size="9.5" class="mono-txt">Adaptive Exponential Jitter</text>
-    <text x="22" y="140" fill="#38BDF8" font-size="9" class="mono-txt">Auto-Reverse on Rejection</text>
+      <!-- Branch A: Commit -->
+      <rect x="14" y="208" width="102" height="62" rx="6" fill="#0b1120" stroke="#10b981" stroke-opacity="0.3"/>
+      <text x="22" y="225" fill="#10b981" font-weight="700">SETTLED</text>
+      <text x="22" y="240" fill="#94a3b8" font-size="8">AuthConfirmed</text>
+      <text x="22" y="253" fill="#cbd5e1" font-size="8">Burn Reservation</text>
+      <text x="22" y="264" fill="#06b6d4" font-size="8">Credit Merchant</text>
 
-    <!-- Item 3: Confirmation -->
-    <rect x="12" y="158" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="175" fill="#94A3B8" font-size="9.5" class="mono-txt">Capture Confirmation</text>
-    <text x="22" y="190" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">200 OK / RRN: 8940122</text>
-  </g>
+      <!-- Branch B: Rollback -->
+      <rect x="129" y="208" width="102" height="62" rx="6" fill="#0b1120" stroke="#f43f5e" stroke-opacity="0.3"/>
+      <text x="137" y="225" fill="#f43f5e" font-weight="700">COMPENSATE</text>
+      <text x="137" y="240" fill="#94a3b8" font-size="8">Host Timeout / 0400</text>
+      <text x="137" y="253" fill="#cbd5e1" font-size="8">Release Reserve</text>
+      <text x="137" y="264" fill="#e2c974" font-size="8">Refund Available</text>
+    </g>
 
-  <!-- STAGE 04: Immutable Fact Store & Audit Log -->
-  <g transform="translate(744, 60)">
-    <rect width="192" height="215" rx="8" fill="#151921" stroke="#2A303C" stroke-width="1.5"/>
-    <rect x="0" y="0" width="192" height="32" rx="8" fill="#1A202C"/>
-    <text x="14" y="20" fill="#E2E8F0" font-size="11" font-weight="700" class="mono-txt">04 · IMMUTABLE FACT</text>
-    
-    <!-- Item 1: Append-Only Fact Journal -->
-    <rect x="12" y="44" width="168" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="20" y="60" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">ScyllaDB / Postgres</text>
-    <text x="20" y="76" fill="#94A3B8" font-size="9.5" class="mono-txt">Append-Only Transactions</text>
+    <!-- Connector: Two-Phase -> Ledger Books -->
+    <path d="M 495 145 L 530 145" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow-cyan-led)"/>
+    <text x="500" y="138" fill="#06b6d4" font-size="8">APPEND</text>
 
-    <!-- Item 2: Double-Entry Balancing -->
-    <rect x="12" y="96" width="168" height="52" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="20" y="114" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">Dual Line Journal</text>
-    <text x="20" y="128" fill="#94A3B8" font-size="9" class="mono-txt">Dr: Merchant +10,000,000</text>
-    <text x="20" y="140" fill="#94A3B8" font-size="9" class="mono-txt">Cr: Customer -10,000,000</text>
+    <!-- Column 3: Append-Only Immutable Journal -->
+    <g transform="translate(535, 75)">
+      <rect width="235" height="285" rx="8" fill="#111827" fill-opacity="0.8" stroke="#ffffff" stroke-opacity="0.1"/>
+      <rect width="235" height="28" rx="8" fill="#ffffff" fill-opacity="0.03"/>
+      <text x="14" y="18" fill="#e2c974" font-weight="700">03. IMMUTABLE JOURNAL</text>
+      
+      <!-- Journal Table Header -->
+      <rect x="12" y="42" width="211" height="22" rx="4" fill="#0b1120"/>
+      <text x="18" y="57" fill="#94a3b8" font-size="8" font-weight="600">ID / EVENT</text>
+      <text x="120" y="57" fill="#94a3b8" font-size="8" font-weight="600">DEBIT (DR)</text>
+      <text x="172" y="57" fill="#94a3b8" font-size="8" font-weight="600">CREDIT (CR)</text>
 
-    <!-- Item 3: Drift Zero Metric -->
-    <rect x="12" y="158" width="168" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="20" y="175" fill="#94A3B8" font-size="9.5" class="mono-txt">Reconciliation Drift</text>
-    <text x="20" y="190" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">0.00 IRR (Mathematical)</text>
-  </g>
-</svg>
+      <!-- Row 1: AuthRequested -->
+      <rect x="12" y="68" width="211" height="34" rx="4" fill="#0b1120" stroke="#ffffff" stroke-opacity="0.05"/>
+      <text x="18" y="82" fill="#38bdf8" font-size="9" font-weight="600">E1: AuthHold</text>
+      <text x="18" y="94" fill="#94a3b8" font-size="8">User:CashPool</text>
+      <text x="120" y="87" fill="#f8fafc" font-size="9">$250.00</text>
+      <text x="172" y="87" fill="#94a3b8" font-size="9">-</text>
+
+      <!-- Row 2: ReserveCreated -->
+      <rect x="12" y="106" width="211" height="34" rx="4" fill="#0b1120" stroke="#ffffff" stroke-opacity="0.05"/>
+      <text x="18" y="120" fill="#e2c974" font-size="9" font-weight="600">E2: EscrowLock</text>
+      <text x="18" y="132" fill="#94a3b8" font-size="8">Vault:Reserved</text>
+      <text x="120" y="125" fill="#94a3b8" font-size="9">-</text>
+      <text x="172" y="125" fill="#f8fafc" font-size="9">$250.00</text>
+
+      <!-- Row 3: CaptureConfirmed -->
+      <rect x="12" y="144" width="211" height="34" rx="4" fill="#0b1120" stroke="#ffffff" stroke-opacity="0.05"/>
+      <text x="18" y="158" fill="#10b981" font-size="9" font-weight="600">E3: CaptureSettle</text>
+      <text x="18" y="170" fill="#94a3b8" font-size="8">Merchant:Settled</text>
+      <text x="120" y="163" fill="#94a3b8" font-size="9">-</text>
+      <text x="172" y="163" fill="#10b981" font-size="9">$250.00</text>
+
+      <!-- Row 4: NetworkFee -->
+      <rect x="12" y="182" width="211" height="34" rx="4" fill="#0b1120" stroke="#ffffff" stroke-opacity="0.05"/>
+      <text x="18" y="196" fill="#38bdf8" font-size="9" font-weight="600">E4: SwitchFee</text>
+      <text x="18" y="208" fill="#94a3b8" font-size="8">Network:FeePool</text>
+      <text x="120" y="201" fill="#f8fafc" font-size="9">$2.50</text>
+      <text x="172" y="201" fill="#f8fafc" font-size="9">$2.50</text>
+
+      <!-- Bottom Invariant Proof Badge -->
+      <rect x="12" y="224" width="211" height="46" rx="6" fill="#06b6d4" fill-opacity="0.08" stroke="#06b6d4" stroke-opacity="0.3"/>
+      <text x="20" y="240" fill="#38bdf8" font-weight="700" font-size="9">AUDIT CHECK: ZERO DRIFT</text>
+      <text x="20" y="254" fill="#cbd5e1" font-size="8">DR: $252.50  |  CR: $252.50</text>
+      <text x="20" y="264" fill="#10b981" font-size="8">DELTA: $0.000000 (EXACT REPLAY)</text>
+    </g>
+
+    <!-- Footer Bar -->
+    <g transform="translate(30, 372)">
+      <line x1="0" y1="0" x2="740" y2="0" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="0" y="15" fill="#94a3b8" font-size="9">PROTOCOL SPECIFICATION · SHARED RAFT / SCYLLADB ACID CONSENSUS LOG</text>
+      <text x="610" y="15" fill="#06b6d4" font-size="9" font-weight="600">ZERO BALANCE OVERWRITE</text>
+    </g>
+  </svg>

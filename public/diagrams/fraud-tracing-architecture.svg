@@ -1,142 +1,176 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg 
-  xmlns="http://www.w3.org/2000/svg" 
-  class="w-full h-auto" 
-  viewBox="0 0 960 300" 
-  preserveAspectRatio="xMidYMid meet"
-  shape-rendering="geometricPrecision" 
-  text-rendering="geometricPrecision"
-  dir="ltr"
->
+<svg dir="ltr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 380" width="100%" height="100%" fill="none">
   <defs>
+    <pattern id="grid-p2" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <linearGradient id="chartGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+    </linearGradient>
     <style>
-      .mono-txt { font-family: 'Geist Mono', 'JetBrains Mono', 'Fira Code', ui-monospace, monospace; }
-      @keyframes dashAnim { to { stroke-dashoffset: -20; } }
-      .flow-line { stroke-dasharray: 6 4; animation: dashAnim 1.2s linear infinite; }
+      text { font-family: 'IBM Plex Mono', -apple-system, monospace; user-select: none; }
     </style>
-    <marker id="arrow-emerald-fr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
-    </marker>
-    <marker id="arrow-cyan-fr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
-    </marker>
-    <marker id="arrow-amber-fr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#F59E0B"/>
-    </marker>
   </defs>
 
-  <!-- Background Base -->
-  <rect width="960" height="300" fill="#0C0E12" rx="12" stroke="#1E232D" stroke-width="1.5"/>
+  <!-- Background Canvas -->
+  <rect width="740" height="380" fill="#0b1120" rx="12"/>
+  <rect width="740" height="380" fill="url(#grid-p2)" rx="12"/>
+  <rect x="0.5" y="0.5" width="739" height="379" stroke="#334155" stroke-width="1" rx="12"/>
+  <rect x="8" y="8" width="724" height="364" stroke="#334155" stroke-width="0.5" stroke-opacity="0.4" rx="8"/>
 
-  <!-- Top System Header Bar -->
-  <g transform="translate(24, 20)">
-    <circle cx="6" cy="10" r="4" fill="#F59E0B"/>
-    <text x="20" y="14" fill="#E2E8F0" font-size="12" font-weight="700" letter-spacing="1" class="mono-txt">
-      REAL-TIME FRAUD FORENSICS, GRAPH ENGINE &amp; eKYC IDENTITY MESH
-    </text>
-    <text x="600" y="14" fill="#94A3B8" font-size="11" font-weight="500" class="mono-txt">
-      EVALUATION SLA:
-    </text>
-    <rect x="710" y="0" width="200" height="26" rx="4" fill="#151921" stroke="#2A303C"/>
-    <text x="810" y="17" fill="#10B981" font-size="11" font-weight="600" text-anchor="middle" class="mono-txt">
-      &lt; 15MS SLA · ZERO CVV2
-    </text>
+  <!-- Tactical Corner Crosshairs -->
+  <path d="M 4 14 L 4 4 L 14 4" stroke="#e2c974" stroke-width="1.5" fill="none"/>
+  <path d="M 726 4 L 736 4 L 736 14" stroke="#e2c974" stroke-width="1.5" fill="none"/>
+  <path d="M 4 366 L 4 376 L 14 376" stroke="#e2c974" stroke-width="1.5" fill="none"/>
+  <path d="M 726 376 L 736 376 L 736 366" stroke="#e2c974" stroke-width="1.5" fill="none"/>
+
+  <!-- Telemetry Header Bar -->
+  <line x1="8" y1="36" x2="732" y2="36" stroke="#334155" stroke-width="1" stroke-opacity="0.6"/>
+  <rect x="18" y="16" width="6" height="6" fill="#06b6d4" rx="2"/>
+  <text x="32" y="23" fill="#06b6d4" font-size="9" font-weight="700" letter-spacing="1.2">SPEC-ID: 8409-AS · 02 · FORENSIC EDGE FRAUD &amp; GRAPH TRACING</text>
+  <text x="440" y="23" fill="#94a3b8" font-size="8" letter-spacing="0.5">REAL-TIME BEHAVIORAL VECTORS</text>
+  <rect x="620" y="13" width="102" height="17" fill="#111827" stroke="#334155" stroke-width="1" rx="4"/>
+  <rect x="626" y="18" width="6" height="6" fill="#10b981" rx="2"/>
+  <text x="638" y="24" fill="#10b981" font-size="7.5" font-weight="700" letter-spacing="0.5">LOOP: &lt;15MS SLA</text>
+
+  <!-- ================= MODULE 01: EDGE TELEMETRY ================= -->
+  <g id="mod-telemetry">
+    <rect x="24" y="48" width="144" height="142" fill="#111827" stroke="#06b6d4" stroke-width="1.5" rx="6"/>
+    <rect x="24" y="48" width="144" height="22" fill="#06b6d4" rx="6"/>
+    <text x="96" y="63" fill="#0b1120" font-size="8.5" font-weight="700" text-anchor="middle" letter-spacing="1">01 · EDGE SENSORS</text>
+    <text x="96" y="88" fill="#f8fafc" font-size="10" font-weight="700" text-anchor="middle">CLIENT TELEMETRY</text>
+    <text x="96" y="103" fill="#06b6d4" font-size="8" font-weight="700" text-anchor="middle">Entropy Hash / WebGL</text>
+    <line x1="36" y1="112" x2="156" y2="112" stroke="#334155" stroke-width="0.8" stroke-dasharray="2 2"/>
+    <text x="96" y="126" fill="#94a3b8" font-size="7.5" text-anchor="middle">Canvas Fingerprint</text>
+    <text x="96" y="140" fill="#94a3b8" font-size="7.5" text-anchor="middle">Keystroke Dynamics</text>
+    <text x="96" y="154" fill="#e2c974" font-size="7.5" text-anchor="middle">IP Cluster Velocity</text>
+    <rect x="36" y="163" width="120" height="18" fill="#0b1120" stroke="#334155" stroke-width="1" rx="4"/>
+    <text x="96" y="175" fill="#10b981" font-size="7" font-weight="700" text-anchor="middle">ENTROPY: 0.94 VALID</text>
   </g>
 
-  <!-- Flow Conduits between Stages -->
-  <path d="M 235 160 L 260 160" stroke="#38BDF8" stroke-width="2" class="flow-line" marker-end="url(#arrow-cyan-fr)"/>
-  <path d="M 475 160 L 500 160" stroke="#10B981" stroke-width="2" class="flow-line" marker-end="url(#arrow-emerald-fr)"/>
-  <path d="M 715 160 L 740 160" stroke="#F59E0B" stroke-width="2" class="flow-line" marker-end="url(#arrow-amber-fr)"/>
+  <!-- Conduit 1 -> 2 -->
+  <path d="M 168 119 L 202 119" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="204,119 194,114 194,124" fill="#06b6d4"/>
+  <text x="186" y="111" fill="#06b6d4" font-size="7" font-weight="700" text-anchor="middle">TENSOR</text>
 
-  <!-- STAGE 01: Client Sensors & Edge Telemetry -->
-  <g transform="translate(24, 60)">
-    <rect width="210" height="215" rx="8" fill="#151921" stroke="#2A303C" stroke-width="1.5"/>
-    <rect x="0" y="0" width="210" height="32" rx="8" fill="#1A202C"/>
-    <text x="14" y="20" fill="#38BDF8" font-size="11" font-weight="700" class="mono-txt">01 · EDGE SENSORS</text>
+  <!-- ================= MODULE 02: RISK MATRIX ================= -->
+  <g id="mod-vector">
+    <rect x="204" y="48" width="150" height="142" fill="#111827" stroke="#e2c974" stroke-width="1.5" rx="6"/>
+    <rect x="204" y="48" width="150" height="22" fill="#e2c974" rx="6"/>
+    <text x="279" y="63" fill="#0b1120" font-size="8.5" font-weight="700" text-anchor="middle" letter-spacing="1">02 · SCORING ENGINE</text>
+    <text x="279" y="88" fill="#f8fafc" font-size="10" font-weight="700" text-anchor="middle">VECTOR SCORER</text>
+    <text x="279" y="103" fill="#e2c974" font-size="8" font-weight="700" text-anchor="middle">Vector [0.00 - 1.00]</text>
+    <line x1="216" y1="112" x2="342" y2="112" stroke="#334155" stroke-width="0.8" stroke-dasharray="2 2"/>
+    <text x="279" y="126" fill="#94a3b8" font-size="7.5" text-anchor="middle">Bayesian Threat Engine</text>
+    <text x="279" y="140" fill="#94a3b8" font-size="7.5" text-anchor="middle">Behavior Anomaly Scorer</text>
+    <text x="279" y="154" fill="#f8fafc" font-size="7.5" text-anchor="middle">Execution Time: 4.2ms</text>
+    <rect x="216" y="163" width="126" height="18" fill="#0b1120" stroke="#334155" stroke-width="1" rx="4"/>
+    <text x="279" y="175" fill="#e2c974" font-size="7" font-weight="700" text-anchor="middle">SCORE: 0.18 NORMAL</text>
+  </g>
+
+  <!-- Conduit 2 -> 3 -->
+  <path d="M 354 119 L 388 119" stroke="#e2c974" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="390,119 380,114 380,124" fill="#e2c974"/>
+  <text x="372" y="111" fill="#e2c974" font-size="7" font-weight="700" text-anchor="middle">ROUTING</text>
+
+  <!-- ================= MODULE 03: 3DS 2.0 PROTOCOL ================= -->
+  <g id="mod-3ds">
+    <rect x="390" y="48" width="150" height="142" fill="#111827" stroke="#10b981" stroke-width="1.5" rx="6"/>
+    <rect x="390" y="48" width="150" height="22" fill="#10b981" rx="6"/>
+    <text x="465" y="63" fill="#0b1120" font-size="8.5" font-weight="700" text-anchor="middle" letter-spacing="1">03 · AUTH GATEWAY</text>
+    <text x="465" y="88" fill="#f8fafc" font-size="10" font-weight="700" text-anchor="middle">3DS 2.0 GATEWAY</text>
+    <text x="465" y="103" fill="#10b981" font-size="8" font-weight="700" text-anchor="middle">Liability Shift Engine</text>
+    <line x1="402" y1="112" x2="528" y2="112" stroke="#334155" stroke-width="0.8" stroke-dasharray="2 2"/>
+    <text x="465" y="126" fill="#94a3b8" font-size="7.5" text-anchor="middle">Frictionless (&lt;0.30)</text>
+    <text x="465" y="140" fill="#94a3b8" font-size="7.5" text-anchor="middle">Biometric (0.30-0.75)</text>
+    <text x="465" y="154" fill="#06b6d4" font-size="7.5" text-anchor="middle">Issuer ACS Direct Trunk</text>
+    <rect x="402" y="163" width="126" height="18" fill="#0b1120" stroke="#334155" stroke-width="1" rx="4"/>
+    <text x="465" y="175" fill="#10b981" font-size="7" font-weight="700" text-anchor="middle">GATE: PASSED [0.18]</text>
+  </g>
+
+  <!-- Conduit 3 -> 4 -->
+  <path d="M 540 119 L 574 119" stroke="#334155" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="576,119 566,114 566,124" fill="#334155"/>
+  <text x="558" y="111" fill="#334155" font-size="7" font-weight="700" text-anchor="middle">GRAPH</text>
+
+  <!-- ================= MODULE 04: NEO4J FORENSIC GRAPH ================= -->
+  <g id="mod-graph">
+    <rect x="576" y="48" width="140" height="142" fill="#111827" stroke="#38bdf8" stroke-width="1.5" rx="6"/>
+    <rect x="576" y="48" width="140" height="22" fill="#38bdf8" rx="6"/>
+    <text x="646" y="63" fill="#0b1120" font-size="8.5" font-weight="700" text-anchor="middle" letter-spacing="1">04 · FORENSICS</text>
+    <text x="646" y="88" fill="#f8fafc" font-size="10" font-weight="700" text-anchor="middle">NEO4J CLUSTER</text>
+    <text x="646" y="103" fill="#38bdf8" font-size="8" font-weight="700" text-anchor="middle">Temporal Graph Hop</text>
+    <line x1="588" y1="112" x2="704" y2="112" stroke="#334155" stroke-width="0.8" stroke-dasharray="2 2"/>
+    <text x="646" y="126" fill="#94a3b8" font-size="7.5" text-anchor="middle">Recursive Fund Tracing</text>
+    <text x="646" y="140" fill="#f8fafc" font-size="7.5" text-anchor="middle">40+ Service Topology</text>
+    <text x="646" y="154" fill="#e2c974" font-size="7.5" text-anchor="middle">Syndicate Quarantine</text>
+    <rect x="588" y="163" width="116" height="18" fill="#0b1120" stroke="#334155" stroke-width="1" rx="4"/>
+    <text x="646" y="175" fill="#10b981" font-size="7" font-weight="700" text-anchor="middle">ISOLATION: READY</text>
+  </g>
+
+  <!-- ================= MATHEMATICAL DATA GRAPH (y=202 to 318) ================= -->
+  <g id="data-graph-2">
+    <rect x="24" y="202" width="692" height="116" fill="#111827" stroke="#334155" stroke-width="1" rx="8"/>
     
-    <!-- Item 1: Hardware Telemetry -->
-    <rect x="12" y="44" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="60" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">Canvas / WebGL Fingerprint</text>
-    <text x="22" y="76" fill="#94A3B8" font-size="9.5" class="mono-txt">Entropy: 0.94 Confidence</text>
+    <!-- Graph Header -->
+    <text x="40" y="220" fill="#10b981" font-size="8" font-weight="700" letter-spacing="1">DISTRIBUTION: REAL-TIME TRANSACTION RISK DENSITY &amp; 15MS BUDGET</text>
+    <text x="480" y="220" fill="#94a3b8" font-size="7.5">INGRESS: <tspan fill="#f8fafc" font-weight="700">1.8ms</tspan> · LOOKUP: <tspan fill="#f8fafc" font-weight="700">4.1ms</tspan> · MODEL: <tspan fill="#10b981" font-weight="700">4.8ms</tspan> · TOTAL: <tspan fill="#e2c974" font-weight="700">10.7ms</tspan></text>
+    <line x1="24" y1="228" x2="716" y2="228" stroke="#334155" stroke-width="0.5"/>
 
-    <!-- Item 2: Behavioral Dynamics -->
-    <rect x="12" y="96" width="186" height="52" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="114" fill="#38BDF8" font-size="11" font-weight="600" class="mono-txt">Behavioral Dynamics</text>
-    <text x="22" y="128" fill="#94A3B8" font-size="9.5" class="mono-txt">Keystroke Flight &amp; Dwell Time</text>
-    <text x="22" y="140" fill="#10B981" font-size="9" class="mono-txt">Bot Emulation: Rejected</text>
+    <!-- Three Risk Zones Shading -->
+    <!-- Zone 1: Frictionless (0 to 0.30) -->
+    <rect x="44" y="232" width="220" height="72" fill="#10b981" fill-opacity="0.08"/>
+    <text x="154" y="244" fill="#10b981" font-size="7" font-weight="700" text-anchor="middle">FRICTIONLESS PASS (&lt;0.30) · 94.2%</text>
 
-    <!-- Item 3: IP Velocity -->
-    <rect x="12" y="158" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="175" fill="#94A3B8" font-size="9.5" class="mono-txt">IP Cluster Velocity</text>
-    <text x="22" y="190" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">ASN / Geo-Hop Score: 98/100</text>
+    <!-- Zone 2: 3DS 2.0 Challenge (0.30 to 0.75) -->
+    <rect x="264" y="232" width="260" height="72" fill="#e2c974" fill-opacity="0.08"/>
+    <text x="394" y="244" fill="#e2c974" font-size="7" font-weight="700" text-anchor="middle">3DS 2.0 STEP-UP (0.30 - 0.75) · 5.3%</text>
+
+    <!-- Zone 3: Quarantine (>0.75) -->
+    <rect x="524" y="232" width="172" height="72" fill="#06b6d4" fill-opacity="0.08"/>
+    <text x="610" y="244" fill="#06b6d4" font-size="7" font-weight="700" text-anchor="middle">NEO4J QUARANTINE (&gt;0.75) · 0.5%</text>
+
+    <!-- Baseline & Guides -->
+    <line x1="44" y1="304" x2="696" y2="304" stroke="#334155" stroke-width="0.75"/>
+    <line x1="264" y1="232" x2="264" y2="304" stroke="#e2c974" stroke-width="0.75" stroke-dasharray="3 3"/>
+    <line x1="524" y1="232" x2="524" y2="304" stroke="#06b6d4" stroke-width="0.75" stroke-dasharray="3 3"/>
+
+    <!-- Mathematical Gaussian Bell Curve Area -->
+    <path d="M 44 304 
+             L 44 300 
+             C 90 300, 130 260, 170 248 
+             C 210 236, 240 252, 280 274 
+             C 340 300, 420 302, 500 303 
+             C 580 304, 650 304, 696 304 Z" 
+          fill="url(#chartGrad2)"/>
+
+    <!-- Smooth Mathematical Curve Line -->
+    <path d="M 44 300 
+             C 90 300, 130 260, 170 248 
+             C 210 236, 240 252, 280 274 
+             C 340 300, 420 302, 500 303 
+             C 580 304, 650 304, 696 304" 
+          stroke="#10b981" stroke-width="2" fill="none"/>
+
+    <!-- Current Transaction Point (Score 0.18) -->
+    <circle cx="170" cy="248" r="4.5" fill="#10b981"/>
+    <circle cx="170" cy="248" r="8" stroke="#10b981" stroke-width="0.75" stroke-opacity="0.6" fill="none"/>
+    <rect x="130" y="258" width="80" height="12" fill="#0b1120" stroke="#10b981" stroke-width="0.75" rx="3"/>
+    <text x="170" y="266" fill="#10b981" font-size="6.5" font-weight="700" text-anchor="middle">ACTIVE: SCORE 0.18</text>
+
+    <!-- Execution Timeline Bar (Bottom) -->
+    <text x="44" y="313" fill="#94a3b8" font-size="6.5">EXECUTION TIMELINE (10.7ms of 15ms SLA):</text>
+    <rect x="220" y="308" width="30" height="5" fill="#06b6d4" rx="1"/>
+    <rect x="252" y="308" width="60" height="5" fill="#e2c974" rx="1"/>
+    <rect x="314" y="308" width="70" height="5" fill="#10b981" rx="1"/>
+    <rect x="386" y="308" width="64" height="5" fill="#334155" rx="1"/>
+    <text x="456" y="313" fill="#10b981" font-size="6.5" font-weight="700">PASS (MARGIN: 4.3ms)</text>
   </g>
 
-  <!-- STAGE 02: Identity & eKYC Verification -->
-  <g transform="translate(264, 60)">
-    <rect width="210" height="215" rx="8" fill="#151921" stroke="#2A303C" stroke-width="1.5"/>
-    <rect x="0" y="0" width="210" height="32" rx="8" fill="#1A202C"/>
-    <text x="14" y="20" fill="#10B981" font-size="11" font-weight="700" class="mono-txt">02 · eKYC &amp; HARIM OTP</text>
-    
-    <!-- Item 1: Shahkar Verification -->
-    <rect x="12" y="44" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="60" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">Shahkar SIM Match</text>
-    <text x="22" y="76" fill="#94A3B8" font-size="9.5" class="mono-txt">National ID &harr; MSISDN 1:1</text>
-
-    <!-- Item 2: Dynamic OTP & Sabt-Ahval -->
-    <rect x="12" y="96" width="186" height="52" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="114" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">Harim OTP Pipeline</text>
-    <text x="22" y="128" fill="#94A3B8" font-size="9.5" class="mono-txt">120s Dynamic Cryptographic Token</text>
-    <text x="22" y="140" fill="#E2E8F0" font-size="9" class="mono-txt">Sabt-Ahval Real-Time KYC</text>
-
-    <!-- Item 3: Identity SLA -->
-    <rect x="12" y="158" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="175" fill="#94A3B8" font-size="9.5" class="mono-txt">Lookup Overhead</text>
-    <text x="22" y="190" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">&lt; 4.5ms Cached Verification</text>
-  </g>
-
-  <!-- STAGE 03: Graph Fraud Engine & Syndicate Detection -->
-  <g transform="translate(504, 60)">
-    <rect width="210" height="215" rx="8" fill="#151921" stroke="#2A303C" stroke-width="1.5"/>
-    <rect x="0" y="0" width="210" height="32" rx="8" fill="#1A202C"/>
-    <text x="14" y="20" fill="#F59E0B" font-size="11" font-weight="700" class="mono-txt">03 · GRAPH FORENSICS</text>
-    
-    <!-- Item 1: Neo4j / Graph Topology -->
-    <rect x="12" y="44" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="60" fill="#E2E8F0" font-size="11" font-weight="600" class="mono-txt">Neo4j Graph Traversal</text>
-    <text x="22" y="76" fill="#94A3B8" font-size="9.5" class="mono-txt">Account &harr; Device &harr; Card Mesh</text>
-
-    <!-- Item 2: Mule Detection -->
-    <rect x="12" y="96" width="186" height="52" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="114" fill="#F59E0B" font-size="11" font-weight="600" class="mono-txt">Syndicate &amp; Mule Detection</text>
-    <text x="22" y="128" fill="#94A3B8" font-size="9.5" class="mono-txt">Rapid Circular Flow Analysis</text>
-    <text x="22" y="140" fill="#10B981" font-size="9" class="mono-txt">Sybil Ring Auto-Quarantine</text>
-
-    <!-- Item 3: Graph SLA -->
-    <rect x="12" y="158" width="186" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="22" y="175" fill="#94A3B8" font-size="9.5" class="mono-txt">3-Hop Neighborhood Query</text>
-    <text x="22" y="190" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">&lt; 8.0ms In-Memory Graph</text>
-  </g>
-
-  <!-- STAGE 04: Decision Engine & Zero-CVV2 Vault -->
-  <g transform="translate(744, 60)">
-    <rect width="192" height="215" rx="8" fill="#151921" stroke="#2A303C" stroke-width="1.5"/>
-    <rect x="0" y="0" width="192" height="32" rx="8" fill="#1A202C"/>
-    <text x="14" y="20" fill="#E2E8F0" font-size="11" font-weight="700" class="mono-txt">04 · SECURE VAULT</text>
-    
-    <!-- Item 1: Decision Gate -->
-    <rect x="12" y="44" width="168" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="20" y="60" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">ALLOW / CHALLENGE</text>
-    <text x="20" y="76" fill="#94A3B8" font-size="9.5" class="mono-txt">Risk Score: 12/100 (Pass)</text>
-
-    <!-- Item 2: Zero-Storage CVV2 Token Vault -->
-    <rect x="12" y="96" width="168" height="52" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="20" y="114" fill="#38BDF8" font-size="11" font-weight="600" class="mono-txt">Zero CVV2 Storage</text>
-    <text x="20" y="128" fill="#94A3B8" font-size="9" class="mono-txt">Ephemeral Tokenization</text>
-    <text x="20" y="140" fill="#10B981" font-size="9" class="mono-txt">PCI-DSS Level 1 Hardware</text>
-
-    <!-- Item 3: Loop SLA Verification -->
-    <rect x="12" y="158" width="168" height="42" rx="5" fill="#0C0E12" stroke="#2A303C"/>
-    <text x="20" y="175" fill="#94A3B8" font-size="9.5" class="mono-txt">Total Loop Latency</text>
-    <text x="20" y="190" fill="#10B981" font-size="11" font-weight="600" class="mono-txt">13.8ms &lt; 15ms SLA</text>
-  </g>
+  <!-- ================= INVARIANT TELEMETRY FOOTER ================= -->
+  <rect x="24" y="328" width="692" height="40" fill="#111827" stroke="#334155" stroke-width="1" rx="6"/>
+  <rect x="24" y="328" width="4" height="40" fill="#10b981" rx="2"/>
+  <text x="36" y="343" fill="#10b981" font-size="7.5" font-weight="700" letter-spacing="0.8">ARCHITECTURAL INVARIANT:</text>
+  <text x="172" y="343" fill="#f8fafc" font-size="7.5">RISK EVALUATION LOOP SLA &lt; 15MS. FORENSIC EVIDENCE COURT-ADMISSIBLE UNDER SECTION 30.</text>
+  <text x="36" y="358" fill="#94a3b8" font-size="7">FAILURE MODE MITIGATION: GRAPH-ISOLATED SYNDICATE QUARANTINE BLOCKS 100% DISTRIBUTED TAKEOVER DRIFT.</text>
 </svg>
