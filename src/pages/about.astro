@@ -31,16 +31,16 @@ import CoreCompetencies from '../components/CoreCompetencies.astro';
     </div>
 
     <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-      15+ years designing, building, and operating high-availability payment,
-      SMS, and fraud platforms. The work is hands-on systems architecture and product leadership:
-      ISO 8583 timeout recovery, SMPP UCS-2 windowing, Redis double-settlement
-      guards, and DuckDB/Parquet enrichment under massive production load.
+      15+ years designing, building, and operating high-availability financial switches,
+      telecom aggregators, and forensic fraud platforms. The work is hands-on systems architecture and product leadership:
+      Spring Cloud Gateway reactive routing, UAA stateless JWT delegation, Switch-PSP dynamic routing across 4 national PSPs (SEP, PEC, BPM, PEP),
+      two-phase balance reservations in Double-Entry ACID Ledgers, PCI-DSS card vault encryption, and 24h early merchant settlements.
     </p>
   </section>
 
   <!-- Cornerstone Section: The 0-to-Scale Story -->
   <section class="relative z-10 max-w-4xl mx-auto px-6 py-8 font-sans">
-    <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+    <div class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-10 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
       <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
         <div class="flex items-center gap-3">
           <span class="w-2 h-2 rounded-full bg-[#06b6d4]"></span>
@@ -54,9 +54,9 @@ import CoreCompetencies from '../components/CoreCompetencies.astro';
       </div>
 
       <!-- Cornerstone Content -->
-      <div class="p-6 bg-[#0b1120]/80 border border-white/10 rounded-xl">
+      <div class="p-6 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl">
         <p class="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed">
-          I joined environments hampered by fragmented legacy systems and synchronous bottlenecks. Infrastructure was failing under the weight of national traffic spikes; gateway timeouts caused financial discrepancies, and untuned fraud rules choked legitimate revenue. I systematically tore down these bottlenecks. I replaced rigid monoliths with event-driven state machines, enforced sliding window flow controls, and decoupled write paths from analytics. We scaled from handling thousands of localized events to processing 50,000+ TPS bursts globally. I handed over a stabilized, highly available architecture optimized for brutal operational reality.
+          I joined environments hampered by fragmented legacy systems and synchronous bottlenecks. Infrastructure was failing under the weight of national traffic spikes; gateway timeouts caused financial discrepancies, and untuned fraud rules choked legitimate revenue. I systematically tore down these bottlenecks: deployed Switch-PSP for dynamic routing across 4 national payment providers, built Double-Entry ACID Ledgers with two-phase reservations (AVAILABLE to RESERVED), enforced Redis token-bucket rate limiters, isolated PCI-DSS card data vaults, and unified credit/BNPL scoring with RabbitMQ eventual consistency. We scaled from handling thousands of localized events to processing 50,000+ TPS bursts with zero financial drift.
         </p>
       </div>
     </div>
@@ -66,7 +66,7 @@ import CoreCompetencies from '../components/CoreCompetencies.astro';
   <Timeline locale="en" />
 
   <section class="max-w-4xl mx-auto px-6 py-12 text-center">
-    <a href="#book" class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37]">
+    <a href="#book" class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37]">
       Book an Architecture Review ↓
     </a>
   </section>

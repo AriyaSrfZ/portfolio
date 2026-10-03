@@ -10,37 +10,37 @@ const caseStudies = [
     id: '۰۱',
     category: 'مدیریت ریسک و جرائم مالی',
     title: 'سامانه پایش بلادرنگ تخلفات و تحلیل قضایی',
-    summary: 'موتور ارزیابی ناهنجاری‌های مالی در کمتر از ۱۵ میلی‌ثانیه، جرم‌شناسی زون ایزوله بانکی و استعلامات رگولاتوری در شرایط بهره‌برداری غیرمجاز.',
+    summary: 'موتور ارزیابی ناهنجاری‌های مالی در کمتر از ۱۵ میلی‌ثانیه، جرم‌شناسی زون ایزوله بانکی (PCI-DSS) و استعلامات رگولاتوری در شرایط بهره‌برداری غیرمجاز.',
     problem: 'بررسی دستی تقلب گلوگاه عملیاتی ایجاد کرده بود و قواعد ایستا باعث رد اشتباه تراکنش‌های سالم می‌شد.',
-    decision: 'استقرار یادگیری ماشین رفتاری در زون ایزوله بانکی با SLA ارزیابی ۳۰ میلی‌ثانیه و انتقال مسئولیت در 3DS 2.0.',
+    decision: 'استقرار یادگیری ماشین رفتاری در زون ایزوله بانکی (PCI-DSS) با <span dir="ltr">SLA</span> ارزیابی ۳۰ میلی‌ثانیه و انتقال مسئولیت در <span dir="ltr">3DS 2.0</span>.',
     tradeoff: 'افزایش بار پردازشی و مصرف حافظه در ازای کاهش خطای مثبت کاذب به نزدیک صفر.',
-    outcome: 'کاهش ۹۴ درصدی نشت مالی و حفظ نرخ عبور بدون چالش بالای ۹۲ درصد در 3DS 2.0.',
+    outcome: 'کاهش ۹۴ درصدی نشت مالی و حفظ نرخ عبور بدون چالش بالای ۹۲ درصد در <span dir="ltr">3DS 2.0</span>.',
     link: `${baseUrl}fa/blog/fraud-tracing/`,
     badge: 'تأخیر کمتر از ۱۵ms',
-    tags: ['زون ایزوله بانکی', 'Sub-15ms Risk Loop', '3DS 2.0 Liability Shift', 'Neo4j Forensic Graph']
+    tags: ['زون ایزوله بانکی (PCI-DSS)', 'Sub-15ms Risk Loop', '3DS 2.0 Liability Shift', 'Neo4j Forensic Graph']
   },
   {
     id: '۰۲',
     category: 'زیرساخت پرداخت و تسویه',
-    title: 'موتور تسویه مالی و تسهیم رویدادمحور',
-    summary: 'دفتر کل دوطرفه توزیع‌شده برای تسویه تراکنش‌ها در درگاه‌های مختلف بانکی با تضمین تخصیص دومرحله‌ای و عدم تکرار (Idempotency) و مغایرت‌گیری خودکار بانکی.',
-    problem: 'تایم‌اوت درگاه‌ها هنگام ترافیک بالا باعث مغایرت در تسویه و تراکنش‌های شبح می‌شد.',
-    decision: 'پیاده‌سازی الگوی Transactional Outbox بر بستر CDC همراه با تخصیص دومرحله‌ای و قفل Idempotency برای تسویه.',
-    tradeoff: 'پذیرش تأخیر ۲۰۰ میلی‌ثانیه‌ای در همگامی نهایی برای تضمین عدم واریز تکراری.',
-    outcome: 'حذف کامل نیاز به رفع مغایرت دستی و تضمین دقت مطلق دفتر کل دوطرفه در بیش از ۵۰ هزار تسویه روزانه.',
+    title: 'موتور تسویه مالی، سوییچ پرداخت (Switch-PSP) و تخصیص دومرحله‌ای موجودی',
+    summary: 'سوییچ پرداخت پرترافیک با مسیریابی هوشمند میان ۴ ارائه‌دهنده پرداخت ملی (سپ، پک، به‌پرداخت، پی‌پینگ)، تخصیص دومرحله‌ای موجودی در دفتر کل دوطرفه و مغایرت‌گیری خودکار شبانه با <span dir="ltr">Spring Batch</span>.',
+    problem: 'تایم‌اوت درگاه‌ها هنگام ترافیک بالا، وابستگی انحصاری به یک <span dir="ltr">PSP</span> و قفل شدن وجوه پذیرندگان باعث افت تسویه و تراکنش‌های ناموفق می‌شد.',
+    decision: 'معماری و استقرار <span dir="ltr">Switch-PSP</span> با مسیریابی پویا، رمزنگاری کامل کارت‌ها در زون ایزوله بانکی (PCI-DSS) با <span dir="ltr">Vault-Coordinator</span> و اعمال تخصیص دومرحله‌ای موجودی (تبدیل به <span dir="ltr">RESERVED</span>) در دفتر کل دوطرفه.',
+    tradeoff: 'پذیرش پنجره ۲۰۰ میلی‌ثانیه‌ای در همگامی نهایی <span dir="ltr">RabbitMQ</span> جهت تضمین عدم واریز تکراری و امکان تسویه زودتر از موعد پذیرندگان (Merchant Credit) در کمتر از ۲۴ ساعت با کارمزد شناور روزانه.',
+    outcome: 'حذف کامل نیاز به رفع مغایرت دستی، اجرای تسویه زودتر از موعد پذیرندگان (Merchant Credit) با ارسال خودکار فایل‌های دسته‌ای <span dir="ltr">SFTP</span> به بانک‌ها و تضمین دقت مطلق دفتر کل دوطرفه در بیش از ۵۰ هزار تسویه روزانه.',
     link: `${baseUrl}fa/blog/payment-gateway/`,
     badge: 'عدم انحراف مالی (Zero Drift)',
-    tags: ['دفتر کل دوطرفه', 'تخصیص دومرحله‌ای', 'Redis SETNX Idempotency', 'ISO 8583 Bitmaps']
+    tags: ['Switch-PSP (SEP/PEC/BPM/PEP)', 'تخصیص دومرحله‌ای موجودی', 'دفتر کل دوطرفه', 'زون ایزوله بانکی (PCI-DSS)', 'تسویه زودتر از موعد پذیرندگان (Merchant Credit)']
   },
   {
     id: '۰۳',
     category: 'زیرساخت مخابراتی',
     title: 'سوییچ ملی مسیریابی و مدیریت پیامک انبوه',
-    summary: 'سوییچ تجمیع پیامک مبتنی بر پروتکل SMPP با قابلیت مدیریت ترافیک چند اپراتور، تطبیق DLR و صف‌بندی در کمتر از ۱۰ میلی‌ثانیه.',
-    problem: 'محدودیت‌های اپراتورهای بالادست باعث تأخیر در ارسال پیامک‌های OTP و ریزش کاربران در مرحله پرداخت می‌شد.',
+    summary: 'سوییچ تجمیع پیامک مبتنی بر پروتکل <span dir="ltr">SMPP</span> با قابلیت مدیریت ترافیک چند اپراتور، تطبیق <span dir="ltr">DLR</span> و صف‌بندی در کمتر از ۱۰ میلی‌ثانیه.',
+    problem: 'محدودیت‌های اپراتورهای بالادست باعث تأخیر در ارسال پیامک‌های <span dir="ltr">OTP</span> و ریزش کاربران در مرحله پرداخت می‌شد.',
     decision: 'طراحی مسیریابی پویا با استفاده از مدارشکن‌های مبتنی بر پنجره لغزان برای هر مسیر مخابراتی.',
-    tradeoff: 'حذف خودکار ترافیک تبلیغاتی غیربحرانی برای تضمین SLA تحویل پیامک‌های رمز پویا.',
-    outcome: 'تحویل ۹۹٫۹۸ درصدی پیامک‌های OTP زیر ۴ ثانیه در زمان پیک ترافیک ۵۰ هزار TPS در سطح شبکه ملی.',
+    tradeoff: 'حذف خودکار ترافیک تبلیغاتی غیربحرانی برای تضمین <span dir="ltr">SLA</span> تحویل پیامک‌های رمز پویا.',
+    outcome: 'تحویل ۹۹٫۹۸ درصدی پیامک‌های <span dir="ltr">OTP</span> زیر ۴ ثانیه در زمان پیک ترافیک ۵۰ هزار <span dir="ltr">TPS</span> در سطح شبکه ملی.',
     link: `${baseUrl}fa/blog/sms-infrastructure/`,
     badge: 'ظرفیت بیش از 10K TPS',
     tags: ['SMPP UCS-2', 'Sliding Window', 'Sub-10ms Queuing', 'Least Cost Routing']
@@ -51,7 +51,7 @@ const caseStudies = [
     title: 'پایپ‌لاین یکپارچه‌سازی و پاک‌سازی داده‌های ملی (Smart DB)',
     summary: 'پایپ‌لاین پردازش تحلیلی داده برای پاک‌سازی، حذف رکوردهای تکراری و استعلامات پیش‌دستانه احراز هویت شاهکار و نمایه‌سازی بیش از ۱۰۰ میلیون رکورد هویتی.',
     problem: 'پایگاه‌های داده جزیره‌ای با رکوردهای تکراری باعث افت شدید عملکرد دیتابیس و خطای جستجو می‌شد.',
-    decision: 'طراحی پایپ‌لاین مبتنی بر DuckDB و ساختار ستونی Parquet با تطابق فازی قطعی پیش از استعلامات احراز هویت شاهکار.',
+    decision: 'طراحی پایپ‌لاین مبتنی بر <span dir="ltr">DuckDB</span> و ساختار ستونی <span dir="ltr">Parquet</span> با تطابق فازی قطعی پیش از استعلامات احراز هویت شاهکار.',
     tradeoff: 'جداسازی مسیر نوشتن درلحظه از دریاچه داده تحلیلی برای پایین نگه‌داشتن هزینه نمایه‌سازی.',
     outcome: 'تجمیع بیش از ۱۰۰ میلیون رکورد با دقت ۹۹٫۴ درصد و کاهش ۶۰ درصدی هزینه‌های پردازشی.',
     link: `${baseUrl}fa/data-cleaning/`,
@@ -70,7 +70,7 @@ const caseStudies = [
   <main class="max-w-[1400px] mx-auto px-6 pt-32 pb-24 font-['Vazirmatn',sans-serif]" dir="rtl">
     
     <!-- Hero / Header Banner -->
-    <div class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 mb-10 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+    <div class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-10 mb-10 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
       <div class="flex items-center gap-3 mb-3">
         <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">پروژه‌های منتخب · نمونه‌های موردی معماری</span>
         <div class="h-px flex-1 bg-white/10"></div>
@@ -86,7 +86,7 @@ const caseStudies = [
     <!-- 4 Case Study Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {caseStudies.map((study) => (
-        <article class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-xl ring-1 ring-white/5 group hover:border-[#06b6d4]/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <article class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-xl ring-1 ring-white/5 group hover:border-[#06b6d4]/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div>
             <!-- Top Tag & Badge -->
             <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
@@ -110,7 +110,7 @@ const caseStudies = [
             </p>
 
             <!-- Structured Quadrant: Problem, Decision, Tradeoff, Outcome -->
-            <div class="p-4 bg-[#0b1120]/80 border border-white/10 rounded-xl text-xs space-y-3 mb-6">
+            <div class="p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-3 mb-6">
               <div class="flex items-center justify-between pb-1 border-b border-white/5">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-[#38bdf8]">تحلیل ساختار تصمیم و مهندسی</span>
                 <span class="text-[10px] text-[#06b6d4] px-2 py-0.5 rounded bg-[#06b6d4]/10 border border-[#06b6d4]/20">تأییدشده در محیط عملیاتی</span>
@@ -151,7 +151,7 @@ const caseStudies = [
             <span class="text-[11px] text-[#94a3b8]">مستندات کامل فنی</span>
             <a
               href={study.link}
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold uppercase transition-all duration-300 hover:border-[#06b6d4] hover:bg-[#06b6d4]/10 hover:-translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-[#06b6d4]"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold uppercase transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]"
             >
               مطالعه مستند فنی &larr;
             </a>
@@ -161,7 +161,7 @@ const caseStudies = [
     </div>
 
     <!-- Whitepapers Note Banner -->
-    <div class="mt-12 p-6 bg-[#0b1120]/70 border border-white/10 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="mt-12 p-6 bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <div class="flex items-start gap-3">
         <span class="w-2 h-2 rounded-full bg-[#06b6d4] mt-1.5 shrink-0"></span>
         <p class="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
@@ -174,7 +174,7 @@ const caseStudies = [
       </div>
       <a
         href={`${baseUrl}fa/whitepapers/`}
-        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs font-medium text-[#f8fafc] hover:border-[#38bdf8] hover:bg-white/[0.08] transition-all shrink-0 self-start sm:self-auto"
+        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs font-medium text-[#f8fafc] transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-white/[0.08] shrink-0 self-start sm:self-auto"
       >
         <span>مشاهده همه مستندات</span>
         <span>&larr;</span>

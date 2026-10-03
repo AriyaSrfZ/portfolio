@@ -61,65 +61,66 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- Main Blueprint Sections -->
       <div class="lg:col-span-9 space-y-10">
         
-        <!-- SECTION 01: Payment Settlement -->
-        <section id="payment-settlement" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <!-- SECTION 01: Payment Settlement & Switch-PSP -->
+        <section id="payment-settlement" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۱ · سوییچ پرداخت و دفاتر کل مالی</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">موتور تسویه رویدادمحور و سوییچ تراکنش‌های هم‌روند</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">موتور تسویه رویدادمحور و سوییچ پرداخت ملی (Switch-PSP)</h2>
           
           <!-- Invariant Box: Refined Badge -->
-          <div class="mt-4 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+          <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">حالت درخواست &ne; واقعیت تسویه. حذف قطعی تسویه مضاعف و تضمین مغایرت مالی صفر در پنجره‌های بازپخش ۸۶٬۴۰۰ ثانیه‌ای با تراز دقیق دفتر کل دوطرفه.</p>
+            <p class="text-[#f8fafc] leading-relaxed">حالت درخواست &ne; واقعیت تسویه. حذف قطعی تسویه مضاعف و تضمین مغایرت مالی صفر در پنجره‌های بازپخش با تراز دقیق دفتر کل دوطرفه و تخصیص دومرحله‌ای موجودی.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لبه ورودی با پروتکل TLS 1.3 قفل توزیع‌شده اتمیک Redis با دستور <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">SETNX</code> و انقضای ۸۶٬۴۰۰ ثانیه را ثبت می‌کند. داده‌ها مستقیماً به ساختار بیت‌مپ باینری ISO 8583 جهت اتصال به سوییچ‌های شاپرک و شبکه‌های شتاب تبدیل می‌شوند. تخصیص دومرحله‌ای و محاسبه مانده‌حساب‌ها صرفاً از طریق بازپخش ترتیبی رویدادها در کلاستر دفتر کل دوطرفه فقط‌افزودنی ScyllaDB مجهز به استاندارد ACID انجام می‌پذیرد.
+              لایه ورودی واکنشی بر بستر <span dir="ltr">Spring Cloud Gateway</span> همراه با احراز هویت بدون حالت <span dir="ltr">UAA/JWT</span>، محدودکننده نرخ توکن‌باکت <span dir="ltr">Redis</span> و صدور بلیت‌های تراکنشی یک‌بارمصرف جهت جلوگیری از حملات بازپخش. سامانه <span dir="ltr">Switch-PSP</span> تراکنش‌ها را به شکل هوشمند میان ۴ شرکت <span dir="ltr">PSP</span> ملی (سپ، پک، به‌پرداخت، پی‌پینگ) توزیع می‌کند و داده‌های کارت درون زون ایزوله بانکی (PCI-DSS) از طریق <span dir="ltr">Vault-Coordinator</span> رمزنگاری کامل (<span dir="ltr">E2E</span>) می‌شوند. درگاه پرداخت مستقیم (<span dir="ltr">DPG</span>) بر پایه رمز پویا ۴‌پارامتری سامانه هریم بانک مرکزی عمل می‌کند. موجودی با تخصیص دومرحله‌ای موجودی (انتقال از وضعیت موجود به رزرو) با کلید یکتای <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">trackingCode</code> در دیتابیس‌های <span dir="ltr">MySQL/MongoDB</span> مدیریت شده و در دفتر کل دوطرفه <span dir="ltr">ScyllaDB</span> با تضمین <span dir="ltr">ACID</span> ثبت می‌گردد.
             </p>
           </div>
 
           <!-- Failure Mode: Refined Badge -->
-          <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+          <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974]"></span>
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              قطعی ارتباط درگاه با سوییچ بالادست و هجوم درخواست‌های بازپردازش (Retry Storm). مهار شارژ مضاعف با تفکیک لایه پذیرش از لایه تسویه و ثبت خودکار سند معکوس و اصلاحیه (۰۴۲۰) به صورت ردیف جدید در دفتر کل دوطرفه بدون دستکاری داده‌های پیشین.
+              قطعی ارتباط درگاه با سوییچ‌های بانکی و هجوم درخواست‌های بازپردازش (<span dir="ltr">Retry Storm</span>). مهار شارژ مضاعف با گذرگاه پیام <span dir="ltr">RabbitMQ</span> (<span dir="ltr">activity.end_state</span>)، مغایرت‌گیری چندمرحله‌ای شبانه توسط <span dir="ltr">Spring Batch</span> میان لاگ‌های درگاه‌ها و دیتابیس داخلی، و سامانه خودترمیم تسویه و استرداد وجه (<span dir="ltr">Refund-MNG</span>).
             </p>
           </div>
 
           <!-- Product Decision: Refined Badge (FA) -->
-          <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-2">
+          <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
               <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · دوره دیجی‌پی (DigiPay)</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> تایم‌اوت درگاه‌ها هنگام ترافیک بالا باعث مغایرت در تسویه و تراکنش‌های شبح می‌شد.</p>
-              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> پذیرش تأخیر ۲۰۰ میلی‌ثانیه‌ای در همگامی نهایی برای تضمین عدم واریز تکراری.</p>
-              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم عملیات خواستار بازخورد همزمان بود. من برای جلوگیری از زیان مالی سیستماتیک، پایداری ناهمزمان را تحمیل کردم.</p>
-              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> حذف کامل نیاز به رفع مغایرت دستی و تضمین دقت مطلق دفتر کل دوطرفه در بیش از ۵۰ هزار رویداد تسویه روزانه.</p>
+              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> تایم‌اوت درگاه‌های بانکی و وابستگی به یک <span dir="ltr">PSP</span> باعث مغایرت در تسویه و تراکنش‌های شبح می‌شد.</p>
+              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> پذیرش پنجره ۲۰۰ میلی‌ثانیه‌ای در همگامی نهایی <span dir="ltr">RabbitMQ</span> برای تضمین عدم واریز تکراری و امکان تسویه زودتر از موعد پذیرندگان (Merchant Credit) در کمتر از ۲۴ ساعت با کارمزد شناور روزانه.</p>
+              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم عملیات و بازرگانی بازخورد آنی و تسویه سنتی می‌خواست؛ من با ارائه گزارش‌های مغایرت و ریسک، پایداری ناهمزمان و توزیع هوشمند میان چند <span dir="ltr">PSP</span> را تحمیل کردم.</p>
+              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> حذف کامل رفع مغایرت دستی، راه‌اندازی تسویه زودتر از موعد پذیرندگان (Merchant Credit) با ارسال خودکار فایل‌های دسته‌ای <span dir="ltr">SFTP</span> به بانک‌های تجاری و تضمین دقت مطلق دفتر کل دوطرفه در بیش از ۵۰ هزار رویداد تسویه روزانه.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">SLA زیر ۵۰ میلی‌ثانیه</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">قفل اتمی Redis O(1)</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تخصیص دومرحله‌ای</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">Switch-PSP (SEP/PEC/BPM/PEP)</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تخصیص دومرحله‌ای موجودی</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">دفتر کل دوطرفه</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">زون ایزوله بانکی (PCI-DSS)</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تسویه زودتر از موعد پذیرندگان (Merchant Credit)</span>
           </div>
 
           <!-- Linked SVG Diagram -->
-          <div class="bg-[#0b1120]/80 border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
+          <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
             <img 
               src={`${baseUrl}diagrams/payment-switch-architecture.svg?v=fintech-2026`} 
               alt="نقشه شماتیک سوییچ و تسویه حساب مالی"
@@ -130,7 +131,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
             <span class="text-[#94a3b8]">مشخصات فنی و تحلیل پروتکل در سند ۰۱ تدوین شده است.</span>
-            <a href={`${baseUrl}fa/blog/payment-gateway/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 hover:border-[#06b6d4] hover:bg-[#06b6d4]/10 hover:-translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
+            <a href={`${baseUrl}fa/blog/payment-gateway/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
               مشاهده سند فنی ۰۱ &larr;
             </a>
           </div>
@@ -145,7 +146,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
         <!-- SECTION 02: Fraud Forensics -->
-        <section id="fraud-forensics" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <section id="fraud-forensics" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۲ · مهار بلادرنگ تقلب و گراف ارتباطات</span>
             <div class="h-px flex-1 bg-white/10"></div>
@@ -153,7 +154,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">کشف تقلب در لحظه و ردیابی گراف قضایی</h2>
           
           <!-- Invariant Box: Refined Badge -->
-          <div class="mt-4 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+          <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
@@ -164,12 +165,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لبه ورودی در زون ایزوله بانکی با استخراج انتروپی بوم (Canvas)، شتاب دستگاه و ریتم کلیدزنی، بردارهای چندبعدی ریسک [۰٫۰۰ تا ۱٫۰۰] را در کمتر از ۱۵ میلی‌ثانیه تولید می‌کند. تراکنش‌های زیر ۰٫۳۰ بدون اصطکاک عبور می‌کنند؛ ۰٫۳۰ تا ۰٫۷۵ اعتبارسنجی بیومتریک و پیامکی 3DS 2.0 را فعال می‌سازد (انتقال مسئولیت مالی به بانک صادرکننده)؛ امتیازهای بالای ۰٫۷۵ در کلاستر گراف Neo4j قرنطینه و تحلیل می‌شوند.
+              لبه ورودی در زون ایزوله بانکی (PCI-DSS) با استخراج انتروپی بوم (Canvas)، شتاب دستگاه و ریتم کلیدزنی، بردارهای چندبعدی ریسک [۰٫۰۰ تا ۱٫۰۰] را در کمتر از ۱۵ میلی‌ثانیه تولید می‌کند. تراکنش‌های زیر ۰٫۳۰ بدون اصطکاک عبور می‌کنند؛ ۰٫۳۰ تا ۰٫۷۵ اعتبارسنجی بیومتریک و پیامکی <span dir="ltr">3DS 2.0</span> را فعال می‌سازد (انتقال مسئولیت مالی به بانک صادرکننده)؛ امتیازهای بالای ۰٫۷۵ در کلاستر گراف <span dir="ltr">Neo4j</span> قرنطینه و تحلیل می‌شوند.
             </p>
           </div>
 
           <!-- Failure Mode: Refined Badge -->
-          <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+          <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974]"></span>
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
@@ -180,7 +181,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
 
           <!-- Product Decision: Refined Badge (FA) -->
-          <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-2">
+          <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
               <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · مهار بلادرنگ تقلب</span>
@@ -189,20 +190,20 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> بررسی دستی تقلب گلوگاه عملیاتی ایجاد کرده بود و قواعد ایستا باعث رد اشتباه تراکنش‌های سالم می‌شد.</p>
               <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> افزایش بار پردازشی و مصرف حافظه در ازای کاهش خطای مثبت کاذب به نزدیک صفر.</p>
               <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> زیرساخت به هزینه‌های پردازشی اعتراض کرد. من ثابت کردم هزینه برگشت وجه بسیار بیشتر از هزینه سخت‌افزار است.</p>
-              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> کاهش ۹۴ درصدی نشت مالی و حفظ نرخ عبور بدون چالش بالای ۹۲ درصد در 3DS 2.0.</p>
+              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> کاهش ۹۴ درصدی نشت مالی و حفظ نرخ عبور بدون چالش بالای ۹۲ درصد در <span dir="ltr">3DS 2.0</span>.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">زون ایزوله بانکی</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">زون ایزوله بانکی (PCI-DSS)</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">حلقه ریسک زیر ۱۵ms</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">انتقال مسئولیت با 3DS 2.0</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">گراف قضایی Neo4j</span>
           </div>
 
           <!-- Linked SVG Diagram -->
-          <div class="bg-[#0b1120]/80 border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
+          <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
             <img 
               src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
               alt="نقشه شماتیک سامانه کشف تقلب و ردیابی گراف"
@@ -213,7 +214,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
             <span class="text-[#94a3b8]">منطق دقیق کاهش ریسک و پرونده‌های قضایی در سند ۰۲ تدوین شده است.</span>
-            <a href={`${baseUrl}fa/blog/fraud-tracing/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 hover:border-[#06b6d4] hover:bg-[#06b6d4]/10 hover:-translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
+            <a href={`${baseUrl}fa/blog/fraud-tracing/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
               مشاهده سند فنی ۰۲ &larr;
             </a>
           </div>
@@ -228,7 +229,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
         <!-- SECTION 03: Telecom SMS Gateway -->
-        <section id="sms-gateway" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <section id="sms-gateway" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۳ · زیرساخت مقیاس‌پذیر پیام‌رسانی (SMPP)</span>
             <div class="h-px flex-1 bg-white/10"></div>
@@ -236,7 +237,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">زیرساخت مسیریابی و تجمیع پیامک ملی در مقیاس مگفا و فرستار</h2>
           
           <!-- Invariant Box: Refined Badge -->
-          <div class="mt-4 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+          <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
@@ -247,12 +248,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              مدیریت نشست‌های موازی SMPP 3.4 با اتصال به گیت‌وی اپراتورها (همراه اول، ایرانسل و رایتل) روی سرشماره‌های ۱۰۰۰، ۲۰۰۰، ۳۰۰۰ و ۹۰۰۰. مجهز به کنترل پویای پنجره لغزان (Sliding Window از ۱۶ تا ۶۴ PDU)، تعادل بار هوشمند بر اساس ظرفیت پاسخ‌دهی SMSC، و استعلام پیش‌دستانه HLR و احراز هویت شاهکار جهت غربالگری خطوط مسدود (*800#) پیش از اشغال پهنای باند و کسر هزینه.
+              مدیریت نشست‌های موازی <span dir="ltr">SMPP 3.4</span> با اتصال به گیت‌وی اپراتورها (همراه اول، ایرانسل و رایتل) روی سرشماره‌های ۱۰۰۰، ۲۰۰۰، ۳۰۰۰ و ۹۰۰۰. مجهز به کنترل پویای پنجره لغزان (<span dir="ltr">Sliding Window</span> از ۱۶ تا ۶۴ PDU)، تعادل بار هوشمند بر اساس ظرفیت پاسخ‌دهی SMSC، و استعلام پیش‌دستانه HLR و احراز هویت شاهکار جهت غربالگری خطوط مسدود (*800#) پیش از اشغال پهنای باند و کسر هزینه.
             </p>
           </div>
 
           <!-- Failure Mode: Refined Badge -->
-          <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+          <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974]"></span>
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
@@ -263,7 +264,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
 
           <!-- Product Decision: Refined Badge (FA) -->
-          <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-2">
+          <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
               <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · شرکت فوا گسترش</span>
@@ -285,7 +286,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
 
           <!-- Linked SVG Diagram -->
-          <div class="bg-[#0b1120]/80 border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
+          <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
             <img 
               src={`${baseUrl}diagrams/sms-routing-architecture.svg?v=fintech-2026`} 
               alt="نقشه شماتیک هاب مسیریابی پیامک ملی"
@@ -296,7 +297,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
             <span class="text-[#94a3b8]">مشخصات تجمیع‌کننده‌ها و مسیریابی مخابراتی در سند ۰۳ تدوین شده است.</span>
-            <a href={`${baseUrl}fa/blog/sms-infrastructure/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 hover:border-[#06b6d4] hover:bg-[#06b6d4]/10 hover:-translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
+            <a href={`${baseUrl}fa/blog/sms-infrastructure/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
               مشاهده سند فنی ۰۳ &larr;
             </a>
           </div>
@@ -311,7 +312,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
         <!-- SECTION 04: Data Pipeline -->
-        <section id="data-pipeline" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <section id="data-pipeline" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۴ · تحلیل کلان‌داده و پالایش</span>
             <div class="h-px flex-1 bg-white/10"></div>
@@ -319,7 +320,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">سامانه پالایش و تحلیل ۱۰۰ میلیون رکورد (Smart DB v1)</h2>
           
           <!-- Invariant Box: Refined Badge -->
-          <div class="mt-4 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+          <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
@@ -330,23 +331,23 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              موتور تحلیلی DuckDB بر بستر فایل‌های ستونی Apache Parquet جهت پردازش داده‌های عظیم و غیرساختاریافته خروجی اپراتورها و سامانه‌های تراکنشی پیش از ورود به فرآیند احراز هویت شاهکار. نرمال‌سازی عمیق کاراکترهای عربی/فارسی (ی/ک/تنوین)، کلیدگذاری واج‌شناختی چندمرحله‌ای (Phonetic Keys) و کاهش ۷۰ درصدی حجم ذخیره‌سازی با فشرده‌سازی Snappy.
+              موتور تحلیلی <span dir="ltr">DuckDB</span> بر بستر فایل‌های ستونی <span dir="ltr">Apache Parquet</span> جهت پردازش داده‌های عظیم و غیرساختاریافته خروجی اپراتورها و سامانه‌های تراکنشی پیش از ورود به فرآیند احراز هویت شاهکار. نرمال‌سازی عمیق کاراکترهای عربی/فارسی (ی/ک/تنوین)، کلیدگذاری واج‌شناختی چندمرحله‌ای (Phonetic Keys) و کاهش ۷۰ درصدی حجم ذخیره‌سازی با فشرده‌سازی <span dir="ltr">Snappy</span>.
             </p>
           </div>
 
           <!-- Failure Mode: Refined Badge -->
-          <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-1.5">
+          <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974]"></span>
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              افت شدید پایگاه‌های داده رابطه‌ای سنتی در پیوندهای چندویژگی روی بیش از ۹۴٫۷ میلیون رکورد. برطرف‌شده با جداسازی کامل مسیر پرس‌وجو به کلاستر توزیع‌شده Elasticsearch مجهز به API Gateway اختصاصی.
+              افت شدید پایگاه‌های داده رابطه‌ای سنتی در پیوندهای چندویژگی روی بیش از ۹۴٫۷ میلیون رکورد. برطرف‌شده با جداسازی کامل مسیر پرس‌وجو به کلاستر توزیع‌شده <span dir="ltr">Elasticsearch</span> مجهز به <span dir="ltr">API Gateway</span> اختصاصی.
             </p>
           </div>
 
           <!-- Product Decision: Refined Badge (FA) -->
-          <div class="mt-3 p-4 bg-[#0b1120]/70 border border-white/10 rounded-xl text-xs space-y-2">
+          <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
               <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · پایگاه داده SmartDB</span>
@@ -368,7 +369,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           </div>
 
           <!-- Linked SVG Diagram -->
-          <div class="bg-[#0b1120]/80 border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
+          <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
             <img 
               src={`${baseUrl}diagrams/data-pipeline-architecture.svg?v=fintech-2026`} 
               alt="نقشه شماتیک خط داده و پایگاه داده Smart DB v1"
@@ -379,7 +380,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
             <span class="text-[#94a3b8]">نرمال‌سازی ستونی و معیارهای DuckDB در نمونه‌کار فنی مستند شده است.</span>
-            <a href={`${baseUrl}fa/data-cleaning/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 hover:border-[#06b6d4] hover:bg-[#06b6d4]/10 hover:-translate-x-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
+            <a href={`${baseUrl}fa/data-cleaning/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
               مشاهده مستند پالایش نام‌ها &larr;
             </a>
           </div>
@@ -394,7 +395,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
         <!-- PRODUCTION INCIDENT DOSSIERS -->
-        <section id="incident-dossiers" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <section id="incident-dossiers" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۵ · پرونده‌های بحران‌های عملیاتی</span>
             <div class="h-px flex-1 bg-white/10"></div>
@@ -406,7 +407,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
           <div class="space-y-4 mt-4">
             <!-- Dossier 01 -->
-            <div class="bg-[#0b1120]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
+            <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
               <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
                 <span class="text-[10px] text-[#06b6d4] uppercase font-bold tracking-widest">پرونده ۰۱ · سوییچ پرداخت</span>
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-medium">
@@ -423,7 +424,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
 
             <!-- Dossier 02 -->
-            <div class="bg-[#0b1120]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
+            <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
               <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
                 <span class="text-[10px] text-[#06b6d4] uppercase font-bold tracking-widest">پرونده ۰۲ · سوییچ مخابراتی</span>
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-medium">
@@ -440,7 +441,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
 
             <!-- Dossier 03 -->
-            <div class="bg-[#0b1120]/70 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
+            <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300">
               <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
                 <span class="text-[10px] text-[#06b6d4] uppercase font-bold tracking-widest">پرونده ۰۳ · پایگاه داده SMART DB</span>
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-medium">
@@ -467,7 +468,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
         <!-- SECTION 06: TECHNICAL PRODUCT LIFECYCLE (FA) -->
-        <section id="lifecycle" class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl" dir="rtl">
+        <section id="lifecycle" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl" dir="rtl">
           <div class="flex items-center gap-3 mb-2">
             <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۶ · چرخه حیات محصول فنی</span>
             <div class="h-px flex-1 bg-white/10"></div>
@@ -477,7 +478,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             پیوند دادن معماری مهندسی با راهبری و اجرای مدیریت محصول در چهار فاز عملیاتی منضبط.
           </p>
 
-          <div class="grid grid-cols-1 lg:grid-cols-4 border border-white/10 rounded-2xl divide-y lg:divide-y-0 lg:divide-x lg:divide-x-reverse divide-white/10 bg-[#0b1120]/70 mt-6 overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-4 border border-white/10 rounded-2xl divide-y lg:divide-y-0 lg:divide-x lg:divide-x-reverse divide-white/10 bg-[#141210]/60 backdrop-blur-md mt-6 overflow-hidden">
             <!-- Phase 1 -->
             <div class="p-6 bg-white/[0.01] hover:bg-white/[0.03] flex flex-col justify-between transition-colors">
               <div>
