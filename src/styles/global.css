@@ -150,11 +150,6 @@ body {
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif !important;
 }
 
-html[lang="fa"] *,
-[dir="rtl"] * {
-  letter-spacing: normal !important;
-}
-
 /* RTL Hardening & Typography Overrides */
 html[lang="fa"] *:not(code):not(pre), [dir="rtl"] *:not(code):not(pre) {
     letter-spacing: normal !important;
