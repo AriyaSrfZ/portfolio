@@ -29,13 +29,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               01 · Settlements
             </a>
             <a href="#fraud-forensics" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              02 · Fraud Risk
+              02 · Fraud &amp; eKYC
             </a>
-            <a href="#sms-gateway" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              03 · SMS Switch
+            <a href="#payment-switch" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
+              03 · Smart PSP Switch
             </a>
-            <a href="#data-pipeline" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              04 · Data Pipeline
+            <a href="#reconciliation-engine" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
+              04 · Multi-Pass Reconciliation
             </a>
             <a href="#incident-dossiers" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
               05 · Incident Dossiers
@@ -56,13 +56,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- Main Blueprint Sections -->
       <div class="lg:col-span-9 space-y-10">
         
-        <!-- SECTION 01: Payment Settlement & Switch-PSP -->
+        <!-- SECTION 01: Double-Entry Ledger & Settlements -->
         <section id="payment-settlement" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">01 · Transaction Routing & Ledgers</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">01 · Settlements &amp; Ledgers</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">Event-Driven Payment Settlement Engine &amp; Switch-PSP</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">The Double-Entry Ledger &amp; Two-Phase Balance Reservation Engine</h2>
           
           <!-- Invariant Box: Refined Badge (No side-tab slop) -->
           <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -70,13 +70,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">Architectural Invariant</span>
             </div>
-            <p class="text-[#f8fafc] font-mono leading-relaxed">Request State &ne; Settlement Fact. Zero double-settlements across 86,400s replay windows with two-phase balance reservation and strict Double-Entry balancing.</p>
+            <p class="text-[#f8fafc] font-mono leading-relaxed">Single Source of Financial Truth. Zero double-settlements across 86,400s replay windows with two-phase balance reservation (AVAILABLE &rarr; RESERVED) and mathematical &Sigma; Debits &minus; &Sigma; Credits = 0 balance enforcement.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              Reactive ingress via Spring Cloud Gateway with UAA stateless JWT delegation, Redis token-bucket rate limiting, and single-use transactional tickets to block replay attacks. Deployed Switch-PSP for dynamic routing across 4 national payment providers (SEP, PEC, BPM, PEP), paired with a PCI-DSS Vault-Coordinator for end-to-end PAN encryption. Direct Payment Gateway (DPG) integrates Central Bank 4-parameter Harim OTP. Wallet balances execute two-phase balance reservations (AVAILABLE to RESERVED) with strict trackingCode idempotency across MySQL/MongoDB, recording into an immutable Double-Entry ACID Ledger in ScyllaDB.
+              Client mutations enter via Spring Cloud Gateway with strict UUIDv4 <code class="text-[#38bdf8] font-mono text-[11px]">Idempotency-Key</code> and Redis atomic <code class="text-[#38bdf8] font-mono text-[11px]">SETNX</code> mutex locks (24h TTL). Direct balance allocations execute a Two-Phase Reservation State Machine transitioning funds from <code class="text-[#e2c974] font-mono text-[11px]">AVAILABLE</code> to <code class="text-[#06b6d4] font-mono text-[11px]">RESERVED</code> status before dispatch. Final settlement writes append-only balanced debit/credit legs into an immutable ACID ledger in ScyllaDB and PostgreSQL, guaranteeing zero unrecorded floating capital.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">Failure Mode &amp; Mitigation</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              Network drops between gateway and upstream PSP clearing switches during traffic surges. Mitigated by asynchronous RabbitMQ event bus (<code class="text-[#38bdf8] font-mono text-[11px]">activity.end_state</code>), Spring Batch nightly multi-pass reconciliation cross-checking internal ledgers against bank clearing logs, and automated Refund-MNG self-healing.
+              Partial network timeouts or broker partitions during multi-leg bank ledger updates. Solved by transactional outbox pattern and Raft-backed distributed state recovery, rejecting uncommitted transient states.
             </p>
           </div>
 
@@ -95,30 +95,30 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-              <span class="text-[#38bdf8] font-bold uppercase tracking-wider font-mono">Product Decision · DigiPay Era</span>
+              <span class="text-[#38bdf8] font-bold uppercase tracking-wider font-mono">Product Decision · DigiPay Core Ledger</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Gateway timeouts and single-PSP outages during peak traffic caused reconciliation discrepancies, vendor lock-in, and delayed payouts.</p>
-              <p><strong class="text-[#f8fafc]">What I traded off:</strong> Accepted a 200ms eventual consistency window over RabbitMQ activity queues to guarantee zero double credits and enable 24h early merchant settlements with dynamic daily floating fees (Merchant Credit).</p>
-              <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Operations and commercial teams demanded synchronous bank confirmations. I enforced asynchronous reliability to prevent systemic financial loss.</p>
-              <p><strong class="text-[#f8fafc]">Business result:</strong> Eliminated manual reconciliations, launched 24h early merchant settlement via automated bank SFTP, and secured absolute Double-Entry Ledger accuracy across 50,000+ daily clearing events.</p>
+              <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Inconsistent ledger states and ghost balances during high-concurrency wallet checkouts threatened regulatory standing.</p>
+              <p><strong class="text-[#f8fafc]">What I traded off:</strong> Enforced strict synchronous two-phase balance reservation over raw optimistic write throughput.</p>
+              <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Growth stakeholders favored sub-10ms unreserved checkouts. I demonstrated that preventing unbacked overdraws was mandatory for Central Bank audit.</p>
+              <p><strong class="text-[#f8fafc]">Business result:</strong> Maintained 100% mathematical ledger parity across 50,000+ daily transactions with zero duplicate payouts.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Switch-PSP (SEP/PEC/BPM/PEP)</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Two-Phase Reservation</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Double-Entry Ledger</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">PCI-DSS Vault</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Spring Batch Reconciler</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Two-Phase Reservation</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">ACID Compliance</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Redis SETNX Idempotency</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">ScyllaDB Fact Store</span>
           </div>
 
           <!-- Linked SVG Diagram -->
           <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden">
             <img 
-              src={`${baseUrl}diagrams/payment-switch-architecture.svg?v=fintech-2026`} 
-              alt="Payment Switch and Settlement Engine Topology Schematic"
+              src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-2026`} 
+              alt="Double-Entry Ledger and Two-Phase Reservation Topology Schematic"
               class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
@@ -140,13 +140,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
 
-        <!-- SECTION 02: Fraud Forensics -->
+        <!-- SECTION 02: Fraud Forensics & eKYC -->
         <section id="fraud-forensics" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">02 · Threat Isolation & Surveillance</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">02 · Threat Isolation &amp; eKYC</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">Real-Time Fraud Mitigation &amp; Forensic Graph Tracing</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">eKYC, Central Bank Harim OTP &amp; PCI-DSS Token Vault</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -154,13 +154,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">Architectural Invariant</span>
             </div>
-            <p class="text-[#f8fafc] font-mono leading-relaxed">Checkout latency &lt; 15ms SLA; dispute packet must withstand judicial intake.</p>
+            <p class="text-[#f8fafc] font-mono leading-relaxed">Zero storage of raw CVV2/PIN data post-authorization (PCI-DSS compliance); Central Bank 4-parameter Harim OTP bound to National Identity &amp; Card PAN.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              Ingress within the isolated PCI-DSS bank zone extracts canvas entropy, device acceleration, and typing cadence to generate high-dimensional risk vectors [0.00, 1.00] in sub-15ms. Transactions under 0.30 execute friction-free; 0.30–0.75 triggers biometric 3DS 2.0 (shifting financial liability to issuing banks); &gt;0.75 quarantines into forensic Neo4j graph clusters.
+              Card data enters an isolated PCI-DSS bank demilitarized zone where the Token Vault exchanges raw PANs for opaque tokens; raw CVV2 codes are purged immediately after authorization. Seamlessly integrates national eKYC (Shahkar mobile-to-national-ID verification and Sabt-Ahval queries) with Central Bank Harim dynamic OTP services. Device intelligence and behavioral telemetry compute sub-15ms risk vectors [0.00, 1.00] in Neo4j graph clusters to trigger 3DS 2.0 biometric challenges or freeze illicit accounts.
             </p>
           </div>
 
@@ -171,7 +171,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">Failure Mode &amp; Mitigation</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              Distributed account takeover and promo abuse rings. Heuristic bypasses eliminated by recursive money-flow tracing across 40+ microservices in Neo4j.
+              Distributed account takeovers, SIM-swap attacks, and dynamic OTP phishing rings. Mitigated by cryptographic correlation of Shahkar SIM issuance timestamp against dynamic Harim OTP generation requests.
             </p>
           </div>
 
@@ -179,29 +179,30 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-              <span class="text-[#38bdf8] font-bold uppercase tracking-wider font-mono">Product Decision · Real-Time Fraud Mitigation</span>
+              <span class="text-[#38bdf8] font-bold uppercase tracking-wider font-mono">Product Decision · Bank Zone Compliance</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Manual fraud reviews choked operations and static rules caused high false positives during legitimate traffic spikes.</p>
-              <p><strong class="text-[#f8fafc]">What I traded off:</strong> Increased compute overhead and memory footprint to drop false negatives to near zero.</p>
-              <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Infrastructure flagged the compute cost. I proved the cost of unchecked chargebacks outweighed the hardware expense.</p>
-              <p><strong class="text-[#f8fafc]">Business result:</strong> Slashed illicit drain by 94 percent and maintained a frictionless pass rate above 92 percent in 3DS 2.0.</p>
+              <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Static rules caused high false positives and fraudsters exploited SIM-swap delays to bypass legacy OTPs.</p>
+              <p><strong class="text-[#f8fafc]">What I traded off:</strong> Refused to cache CVV2 credentials for one-click checkout convenience, enforcing strict zero-storage PCI-DSS tokenization.</p>
+              <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Commercial teams pushed for frictionless CVV2 storage. I proved the liability of regulatory penalties and card credential breach far outweighed the checkout friction.</p>
+              <p><strong class="text-[#f8fafc]">Business result:</strong> Slashed illicit drain by 94 percent while shifting financial liability to issuing banks via 3DS 2.0.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Sub-15ms Risk Loop</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">3DS 2.0 Liability Shift</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">&lt; 0.5% False Positives</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Neo4j Forensic Graph</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Zero-Storage CVV2 Vault</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Harim Dynamic OTP</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Shahkar National eKYC</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">PCI-DSS Compliance</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Neo4j Graph Forensics</span>
           </div>
 
           <!-- Linked SVG Diagram -->
           <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden">
             <img 
               src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
-              alt="Real-Time Fraud Mitigation and Forensic Graph Tracing Schematic"
+              alt="eKYC, Harim Dynamic OTP and Forensic Graph Tracing Schematic"
               class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
@@ -223,13 +224,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
 
-        <!-- SECTION 03: Telecom SMS Gateway -->
-        <section id="sms-gateway" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <!-- SECTION 03: Smart PSP Switch & Dynamic Weighted Routing -->
+        <section id="payment-switch" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+          <span id="sms-gateway" class="sr-only"></span>
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">03 · Telecom Switching &amp; Queues</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">03 · Payment Switch &amp; Routing</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">National Telecom Routing &amp; Aggregator Infrastructure</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">Smart PSP Switch &amp; Dynamic Weighted Routing Engine</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -237,13 +239,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">Architectural Invariant</span>
             </div>
-            <p class="text-[#f8fafc] font-mono leading-relaxed">Zero OTP blockage during multi-million marketing broadcast surges. 1B+ SMS routed/year.</p>
+            <p class="text-[#f8fafc] font-mono leading-relaxed">Sub-30ms automated gateway failover; dynamic traffic distribution across 4 national PSPs (SEP, PEC, BPM, PEP) and Faravaran Hub with 99.99% payment switch uptime.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              Stateful SMPP 3.4 TCP sessions balanced over prefix bands (1000–9000). Dynamic sliding-window flow control (16–64 PDU) paired with upstream HLR lookups to filter dead numbers and Do-Not-Disturb (*800#) numbers before dispatch.
+              Enterprise Head-to-Head (H2H) switch unpacking ISO 8583 MTI 0200/0210 financial telegrams. Dynamic weighted routing algorithm evaluates real-time PSP success rates, rolling P99 latency, merchant contractual fee tiers, and bank maintenance windows to steer traffic across SEP (Saman), PEC (Parsian), BPM (Behpardakht Mellat), and PEP (Pasargad). Integrated Faravaran Hub adapters and automated circuit breakers drop degraded connections in sub-30ms to prevent checkout drops.
             </p>
           </div>
 
@@ -254,7 +256,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">Failure Mode &amp; Mitigation</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              Carrier pipe saturation under UCS-2 Persian 70-character segmentation limits. Resolved through strict priority queue partitioning separating transactional OTPs from bulk marketing campaigns.
+              Upstream PSP network brownouts and partial HTTP/socket hangs. Resolved through active sliding-window health probes, circuit breaker shedding, and instant fallback to secondary PSP routes within 30ms SLA.
             </p>
           </div>
 
@@ -262,36 +264,37 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-              <span class="text-[#38bdf8] font-bold uppercase tracking-wider font-mono">Product Decision · Persia Fava Gostaresh</span>
+              <span class="text-[#38bdf8] font-bold uppercase tracking-wider font-mono">Product Decision · Multi-PSP Switch</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Upstream carrier throttles caused transactional OTP delays and cascading checkout abandonment.</p>
-              <p><strong class="text-[#f8fafc]">What I traded off:</strong> Dropped non-critical promotional traffic automatically to guarantee OTP delivery SLAs.</p>
-              <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Marketing stakeholders resisted promotional throttling. I prioritized core transactional revenue over marketing broadcasts.</p>
-              <p><strong class="text-[#f8fafc]">Business result:</strong> Achieved 99.98 percent OTP delivery under 4 seconds during nationwide 50,000 TPS burst capacities.</p>
+              <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Single-PSP vendor lock-in created massive checkout drop-offs during bank maintenance windows and national clearing congestion.</p>
+              <p><strong class="text-[#f8fafc]">What I traded off:</strong> Built an agnostic multi-PSP switch topology with dynamic weight allocation rather than relying on a single PSP relationship.</p>
+              <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Legacy PSP account managers resisted routing diversification. I proved that dynamic failover boosted overall transaction conversion by 14%.</p>
+              <p><strong class="text-[#f8fafc]">Business result:</strong> Achieved 99.99% gateway availability, sub-250ms roundtrip checkout latency, and 30ms automated failover during upstream provider outages.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">50K+ TPS Capacity</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">SMPP 3.4 Sockets</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">UCS-2 Segmentation</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">*800# DND Bypass</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Smart PSP Switch</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Dynamic Weighted Routing</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Faravaran Hub Integration</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">ISO 8583 H2H Pipeline</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Sub-30ms Failover SLA</span>
           </div>
 
           <!-- Linked SVG Diagram -->
           <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden">
             <img 
-              src={`${baseUrl}diagrams/sms-routing-architecture.svg?v=fintech-2026`} 
-              alt="National Telecom SMS Routing Hub Topology Schematic"
+              src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-2026`} 
+              alt="Smart PSP Switch and ISO 8583 Pipeline Topology Schematic"
               class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
           </div>
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
-            <span class="text-[#94a3b8]">Telecom routing and aggregator specs documented in Dossier 03.</span>
+            <span class="text-[#94a3b8]">Smart PSP Switch and ISO 8583 specs documented in Dossier 03.</span>
             <a href={`${baseUrl}blog/sms-infrastructure/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold uppercase transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
               Open Spec 03 Dossier &rarr;
             </a>
@@ -306,13 +309,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
 
-        <!-- SECTION 04: Data Pipeline -->
-        <section id="data-pipeline" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <!-- SECTION 04: Multi-Pass Reconciliation & Early Merchant Settlement -->
+        <section id="reconciliation-engine" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+          <span id="data-pipeline" class="sr-only"></span>
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">04 · Analytics &amp; Data Pipeline</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase font-mono">04 · Multi-Pass Reconciliation</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">National Contact Consolidation &amp; Smart DB v1</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">Event-Driven Multi-Pass Reconciliation &amp; Early Merchant Settlement</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -320,13 +324,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">Architectural Invariant</span>
             </div>
-            <p class="text-[#f8fafc] font-mono leading-relaxed">70% predictive behavioral accuracy for user preferences prior to formal KYC data ingestion.</p>
+            <p class="text-[#f8fafc] font-mono leading-relaxed">Mathematical 3-way reconciliation parity across internal ledgers, PSP logs, and Central Bank clearing statements; zero uncollected merchant balances.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              Vectorized DuckDB engine ingesting unstructured operator CSV/TSV dumps. Generates dynamic scoring matrices with 70% predictive accuracy for user preferences prior to identity verification. Storage overhead reduced by 70% via Snappy-compressed Apache Parquet.
+              Ingests end-state transaction events asynchronously over RabbitMQ (<code class="text-[#38bdf8] font-mono text-[11px]">activity.end_state</code>). Spring Batch nightly multi-pass reconciliation workers ingest ISO 20022 and bank clearing SFTP feeds, cross-referencing RRN, STAN, and internal tracking codes. Exceptions trigger the automated <code class="text-[#38bdf8] font-mono text-[11px]">Refund-MNG</code> self-healing engine to reverse ghost authorizations or disburse compensatory credits. Drives 24h Early Merchant Settlement (Merchant Credit) via automated Paya/Satna batch transfers with dynamic daily floating fee formulas: <code class="text-[#e2c974] font-mono text-[11px]">&Delta;Fee = Amount &times; (r_base + d &times; r_daily)</code>.
             </p>
           </div>
 
@@ -337,7 +341,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">Failure Mode &amp; Mitigation</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              Relational database degradation during multi-attribute joins on 94M+ records. Solved by decoupling query paths into an Elasticsearch cluster fronted by an API gateway.
+              Bank statement delays, out-of-order webhook delivery, or intermittent network drops during settlement window. Addressed by idempotent multi-pass reconciliation phases (T+0 instant, T+1 clearing, T+2 judicial dispute resolution).
             </p>
           </div>
 
@@ -345,38 +349,39 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-              <span class="text-[#38bdf8] font-bold uppercase tracking-wider font-mono">Product Decision · SmartDB</span>
+              <span class="text-[#38bdf8] font-bold uppercase tracking-wider font-mono">Product Decision · Automated Reconciliation</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Fragmented legacy silos with duplicate records caused severe database exhaustion and query misses.</p>
-              <p><strong class="text-[#f8fafc]">What I traded off:</strong> Decoupled the real-time write path from the analytics lakehouse to keep indexation costs sub-linear.</p>
-              <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Data engineering preferred a standard relational model. I proved the columnar approach was mandatory for this scale.</p>
-              <p><strong class="text-[#f8fafc]">Business result:</strong> Consolidated 100M+ records with 99.4 percent deduplication accuracy and saved 60 percent in compute overhead.</p>
+              <p><strong class="text-[#f8fafc]">Why this, why then:</strong> Manual reconciliation delayed merchant payouts to 48h+, causing severe cash-flow friction for enterprise merchants.</p>
+              <p><strong class="text-[#f8fafc]">What I traded off:</strong> Shifted from synchronous reconciliation to an asynchronous multi-pass state machine backed by automated bank SFTP pipelines.</p>
+              <p><strong class="text-[#f8fafc]">Who pushed back, and how it resolved:</strong> Accounting teams hesitated to trust automated batch payouts. I instituted a shadow-run trial showing zero reconciliation drift across 50,000+ daily events.</p>
+              <p><strong class="text-[#f8fafc]">Business result:</strong> Launched 24h early merchant settlement with automated floating fee collection, eliminated 100% of manual reconciliation overhead, and prevented financial leakage.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">100M Records</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Columnar Parquet</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">DuckDB In-Memory</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Elasticsearch Decoupled</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Spring Batch Reconciler</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Auto-Healing Refund-MNG</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">RabbitMQ Event Mesh</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Paya/Satna Bank-Proxy</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-mono font-medium hover:bg-white/[0.07] transition-colors">Early Merchant Settlement</span>
           </div>
 
           <!-- Linked SVG Diagram -->
           <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden">
             <img 
-              src={`${baseUrl}diagrams/data-pipeline-architecture.svg?v=fintech-2026`} 
-              alt="Smart DB v1 Contact Consolidation and Data Pipeline Schematic"
+              src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-2026`} 
+              alt="Multi-Bank Multi-Pass Reconciliation and Settlement Pipeline Schematic"
               class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
           </div>
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
-            <span class="text-[#94a3b8]">Columnar normalization and DuckDB benchmarks documented in Case Study.</span>
+            <span class="text-[#94a3b8]">Reconciliation pipelines and automated settlement specs documented in Dossier 04.</span>
             <a href={`${baseUrl}data-cleaning/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold uppercase transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
-              View Name-Cleaning Blueprint &rarr;
+              View Reconciliation Blueprint &rarr;
             </a>
           </div>
         </section>

@@ -9,27 +9,27 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 const getWhitepaperDossiers = (isFa: boolean) => [
   {
     spec: isFa ? 'سند ۰۱' : 'Spec 01',
-    title: isFa ? 'سوییچ پرداخت و دفاتر کل' : 'Payment Switch & Ledgers',
-    desc: isFa ? 'تایم‌اوت ISO 8583، قفل‌های ردیس و گارد تسویه مضاعف' : 'ISO 8583 timeouts, Redis locks & double-settlement guards',
+    title: isFa ? 'دفاتر کل و تسویه مالی' : 'Double-Entry Ledgers & Settlements',
+    desc: isFa ? 'تخصیص دومرحله‌ای، قفل‌های ردیس و گارد تسویه مضاعف' : 'Two-Phase reservation, Redis locks & zero-drift ledgers',
     href: isFa ? `${baseUrl}fa/blog/payment-gateway/` : `${baseUrl}blog/payment-gateway/`,
   },
   {
     spec: isFa ? 'سند ۰۲' : 'Spec 02',
-    title: isFa ? 'مهار جرم‌شناسانه تقلب' : 'Forensic Fraud Mitigation',
-    desc: isFa ? 'تله‌متری لبه، 3DS 2.0 و حلقه ریسک زیر ۱۵ میلی‌ثانیه' : 'Edge telemetry, 3DS 2.0 & sub-15ms risk loops',
+    title: isFa ? 'احراز هویت و مهار تقلب' : 'eKYC & Forensic Fraud Defense',
+    desc: isFa ? 'احراز هویت شاهکار، 3DS 2.0 و زون ایزوله بانکی' : 'Shahkar eKYC, 3DS 2.0 & PCI-DSS token vault',
     href: isFa ? `${baseUrl}fa/blog/fraud-tracing/` : `${baseUrl}blog/fraud-tracing/`,
   },
   {
     spec: isFa ? 'سند ۰۳' : 'Spec 03',
-    title: isFa ? 'زیرساخت پیامک مخابراتی' : 'Telecom & SMS Infrastructure',
-    desc: isFa ? 'تجمیع‌کنندگان SMPP 3.4 و پنجره‌های UCS-2' : 'SMPP 3.4 aggregators & UCS-2 windowing',
+    title: isFa ? 'سوییچ هوشمند پرداخت' : 'Smart PSP Switch & Routing',
+    desc: isFa ? 'روتینگ پویا، هاب فناوران و پروتکل ISO 8583' : 'Dynamic weighted routing, Faravaran Hub & ISO 8583',
     href: isFa ? `${baseUrl}fa/blog/sms-infrastructure/` : `${baseUrl}blog/sms-infrastructure/`,
   },
   {
     spec: isFa ? 'سند ۰۴' : 'Spec 04',
-    title: isFa ? 'ماشین‌های وضعیت وب۳' : 'Web3 & Crypto State Machines',
-    desc: isFa ? 'محاسبات قطعی EVM و نهایی‌سازی رول‌آپ' : 'Deterministic EVM compute & rollup finality',
-    href: isFa ? `${baseUrl}fa/blog/web3-infrastructure/` : `${baseUrl}blog/web3-infrastructure/`,
+    title: isFa ? 'مغایرت‌گیری و ریل‌های بانکی' : 'Multi-Pass Reconciliation & Payouts',
+    desc: isFa ? 'مغایرت‌گیری شبانه، پایا، ساتنا و بازیابی Refund-MNG' : 'Spring Batch multi-pass reconciler & Paya/Satna bank proxy',
+    href: isFa ? `${baseUrl}fa/blog/event-driven-migration/` : `${baseUrl}blog/event-driven-migration/`,
   },
 ];
 
@@ -70,11 +70,12 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
     { href: isFa ? `${baseUrl}fa/about/` : `${baseUrl}about/`, label: t('nav.about') },
     { href: isFa ? `${baseUrl}fa/#payment-settlement` : `${baseUrl}#payment-settlement`, label: t('nav.settlements') },
     { href: isFa ? `${baseUrl}fa/#fraud-forensics` : `${baseUrl}#fraud-forensics`, label: t('nav.fraud') },
-    { href: isFa ? `${baseUrl}fa/#sms-gateway` : `${baseUrl}#sms-gateway`, label: t('nav.sms') },
-    { href: isFa ? `${baseUrl}fa/#data-pipeline` : `${baseUrl}#data-pipeline`, label: t('nav.data') },
+    { href: isFa ? `${baseUrl}fa/#payment-switch` : `${baseUrl}#payment-switch`, label: t('nav.switch') },
+    { href: isFa ? `${baseUrl}fa/#reconciliation-engine` : `${baseUrl}#reconciliation-engine`, label: t('nav.reconciliation') },
     { href: isFa ? `${baseUrl}fa/#incident-dossiers` : `${baseUrl}#incident-dossiers`, label: t('nav.dossiers') },
     { href: isFa ? `${baseUrl}fa/#lifecycle` : `${baseUrl}#lifecycle`, label: t('nav.lifecycle') },
     { href: isFa ? `${baseUrl}fa/work/` : `${baseUrl}work/`, label: t('nav.work') },
+    { href: isFa ? `${baseUrl}fa/blog/` : `${baseUrl}blog/`, label: t('nav.blog') },
   ];
 
   const dossiers = getWhitepaperDossiers(isFa);

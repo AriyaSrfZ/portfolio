@@ -8,7 +8,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 const allPosts = await getCollection('blog');
 const whitepapers = allPosts
-  .filter((post) => (post.data.lang === 'en' || post.id.startsWith('en/')) && post.data.technologies.includes('Whitepaper'))
+  .filter((post) => post.data.lang === 'en' || post.id.startsWith('en/'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 

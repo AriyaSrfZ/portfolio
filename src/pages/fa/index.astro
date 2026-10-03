@@ -31,16 +31,16 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           
           <nav class="space-y-1 text-xs">
             <a href="#payment-settlement" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۱ · سوییچ پرداخت و دفاتر کل مالی
+              ۰۱ · دفتر کل دوطرفه و تسویه
             </a>
             <a href="#fraud-forensics" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۲ · مهار بلادرنگ تقلب و گراف ارتباطات
+              ۰۲ · احراز هویت شاهکار و زون بانکی
             </a>
-            <a href="#sms-gateway" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۳ · زیرساخت مقیاس‌پذیر پیام‌رسانی (SMPP)
+            <a href="#payment-switch" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
+              ۰۳ · سوییچ هوشمند پرداخت (PSP Switch)
             </a>
-            <a href="#data-pipeline" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
-              ۰۴ · خط داده و موتور تحلیلی ۱۰۰M رکوردی
+            <a href="#reconciliation-engine" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
+              ۰۴ · مغایرت‌گیری و تسویه زودهنگام
             </a>
             <a href="#incident-dossiers" class="block px-3 py-2 rounded-lg text-[#94a3b8] hover:bg-white/[0.06] hover:text-[#f8fafc] transition-all duration-200">
               ۰۵ · پرونده‌های بحران‌های زنده در پروداکشن
@@ -61,13 +61,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- Main Blueprint Sections -->
       <div class="lg:col-span-9 space-y-10">
         
-        <!-- SECTION 01: Payment Settlement & Switch-PSP -->
+        <!-- SECTION 01: Double-Entry Ledger & Settlements -->
         <section id="payment-settlement" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۱ · سوییچ پرداخت و دفاتر کل مالی</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۱ · تسویه مالی و دفاتر کل</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">موتور تسویه رویدادمحور و سوییچ پرداخت ملی (Switch-PSP)</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">دفتر کل دوطرفه (Double-Entry) و موتور تخصیص دومرحله‌ای موجودی</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -75,13 +75,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">حالت درخواست &ne; واقعیت تسویه. حذف قطعی تسویه مضاعف و تضمین مغایرت مالی صفر در پنجره‌های بازپخش با تراز دقیق دفتر کل دوطرفه و تخصیص دومرحله‌ای موجودی.</p>
+            <p class="text-[#f8fafc] leading-relaxed">منبع یگانه حقیقت مالی (Single Source of Truth). حذف قطعی تسویه مضاعف در پنجره بازپخش ۲۴ ساعته با ماشین حالت تخصیص دومرحله‌ای موجودی (<span dir="ltr">AVAILABLE &rarr; RESERVED</span>) و پایداری قطعی تراز ریاضی بدهکار و بستانکار (<span dir="ltr">&Sigma; Debits &minus; &Sigma; Credits = 0</span>).</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لایه ورودی واکنشی بر بستر <span dir="ltr">Spring Cloud Gateway</span> همراه با احراز هویت بدون حالت <span dir="ltr">UAA/JWT</span>، محدودکننده نرخ توکن‌باکت <span dir="ltr">Redis</span> و صدور بلیت‌های تراکنشی یک‌بارمصرف جهت جلوگیری از حملات بازپخش. سامانه <span dir="ltr">Switch-PSP</span> تراکنش‌ها را به شکل هوشمند میان ۴ شرکت <span dir="ltr">PSP</span> ملی (سپ، پک، به‌پرداخت، پی‌پینگ) توزیع می‌کند و داده‌های کارت درون زون ایزوله بانکی (PCI-DSS) از طریق <span dir="ltr">Vault-Coordinator</span> رمزنگاری کامل (<span dir="ltr">E2E</span>) می‌شوند. درگاه پرداخت مستقیم (<span dir="ltr">DPG</span>) بر پایه رمز پویا ۴‌پارامتری سامانه هریم بانک مرکزی عمل می‌کند. موجودی با تخصیص دومرحله‌ای موجودی (انتقال از وضعیت موجود به رزرو) با کلید یکتای <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono">trackingCode</code> در دیتابیس‌های <span dir="ltr">MySQL/MongoDB</span> مدیریت شده و در دفتر کل دوطرفه <span dir="ltr">ScyllaDB</span> با تضمین <span dir="ltr">ACID</span> ثبت می‌گردد.
+              جهش‌های مالی و شارژ کیف پول با کلید یکتای ایدامپوتنسي (<span dir="ltr">UUIDv4</span>) و قفل توزیع‌شده <span dir="ltr">Redis SETNX</span> با طول عمر ۲۴ ساعته کنترل می‌شوند. تخصیص موجودی از طریق ماشین حالت دومرحله‌ای، وجوه را پیش از ارسال به درگاه از وضعیت موجود (<span dir="ltr">AVAILABLE</span>) به رزروشده (<span dir="ltr">RESERVED</span>) منتقل می‌کند. پس از تایید نهایی، رکوردهای تسویه به‌صورت تغییرناپذیر (<span dir="ltr">Append-Only</span>) در دفتر کل دوطرفه <span dir="ltr">ScyllaDB</span> و <span dir="ltr">PostgreSQL</span> با تضمین <span dir="ltr">ACID</span> ثبت شده و از هرگونه شناوری مالی ثبت‌نشده جلوگیری می‌شود.
             </p>
           </div>
 
@@ -92,7 +92,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              قطعی ارتباط درگاه با سوییچ‌های بانکی و هجوم درخواست‌های بازپردازش (<span dir="ltr">Retry Storm</span>). مهار شارژ مضاعف با گذرگاه پیام <span dir="ltr">RabbitMQ</span> (<span dir="ltr">activity.end_state</span>)، مغایرت‌گیری چندمرحله‌ای شبانه توسط <span dir="ltr">Spring Batch</span> میان لاگ‌های درگاه‌ها و دیتابیس داخلی، و سامانه خودترمیم تسویه و استرداد وجه (<span dir="ltr">Refund-MNG</span>).
+              تایم‌اوت‌های جزئی شبکه یا قطعی کارگزار پیام هنگام به‌روزرسانی چندبخشی دفاتر کل بانکی. مهارشده با الگوی اوت‌باکس تراکنشی (<span dir="ltr">Transactional Outbox</span>) و بازیابی حالت توزیع‌شده مبتنی بر <span dir="ltr">Raft</span> جهت رد وضعیت‌های تاییدنشده گذرا.
             </p>
           </div>
 
@@ -100,30 +100,30 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-              <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · دوره دیجی‌پی (DigiPay)</span>
+              <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · دوره دیجی‌پی (DigiPay Core Ledger)</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> تایم‌اوت درگاه‌های بانکی و وابستگی به یک <span dir="ltr">PSP</span> باعث مغایرت در تسویه و تراکنش‌های شبح می‌شد.</p>
-              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> پذیرش پنجره ۲۰۰ میلی‌ثانیه‌ای در همگامی نهایی <span dir="ltr">RabbitMQ</span> برای تضمین عدم واریز تکراری و امکان تسویه زودتر از موعد پذیرندگان (Merchant Credit) در کمتر از ۲۴ ساعت با کارمزد شناور روزانه.</p>
-              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم عملیات و بازرگانی بازخورد آنی و تسویه سنتی می‌خواست؛ من با ارائه گزارش‌های مغایرت و ریسک، پایداری ناهمزمان و توزیع هوشمند میان چند <span dir="ltr">PSP</span> را تحمیل کردم.</p>
-              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> حذف کامل رفع مغایرت دستی، راه‌اندازی تسویه زودتر از موعد پذیرندگان (Merchant Credit) با ارسال خودکار فایل‌های دسته‌ای <span dir="ltr">SFTP</span> به بانک‌های تجاری و تضمین دقت مطلق دفتر کل دوطرفه در بیش از ۵۰ هزار رویداد تسویه روزانه.</p>
+              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> ناهمخوانی دفاتر کل و مانده‌های شبح هنگام تراکنش‌های همزمان بالا، جایگاه شرکت نزد مراجع نظارتی و بانک مرکزی را به خطر می‌انداخت.</p>
+              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> اولویت‌دادن به تخصیص دومرحله‌ای همگام موجودی و تراز قطعی دفاتر کل بر سرعت خام پردازش تراکنش‌ها.</p>
+              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم رشد و بازاریابی خواستار تراکنش‌های بدون رزرو زیر ۱۰ میلی‌ثانیه بود؛ من اثبات کردم جلوگیری از اضافه برداشت بدون پشتوانه برای حسابرسی بانک مرکزی اجتناب‌ناپذیر است.</p>
+              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> حفظ ۱۰۰ درصدی تراز ریاضی دفاتر کل در بیش از ۵۰ هزار تراکنش روزانه بدون حتی یک مورد واریز تکراری یا نشت مالی.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">Switch-PSP (SEP/PEC/BPM/PEP)</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تخصیص دومرحله‌ای موجودی</span>
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">دفتر کل دوطرفه</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">زون ایزوله بانکی (PCI-DSS)</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تسویه زودتر از موعد پذیرندگان (Merchant Credit)</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تخصیص دومرحله‌ای موجودی</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">انطباق ACID</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">ایدامپوتنسي Redis SETNX</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">مخزن داده ScyllaDB</span>
           </div>
 
           <!-- Linked SVG Diagram -->
           <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
             <img 
-              src={`${baseUrl}diagrams/payment-switch-architecture.svg?v=fintech-2026`} 
-              alt="نقشه شماتیک سوییچ و تسویه حساب مالی"
+              src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-2026`} 
+              alt="نقشه شماتیک دفتر کل دوطرفه و تخصیص دومرحله‌ای موجودی"
               class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
@@ -145,13 +145,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
 
-        <!-- SECTION 02: Fraud Forensics -->
+        <!-- SECTION 02: Fraud Forensics & eKYC -->
         <section id="fraud-forensics" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۲ · مهار بلادرنگ تقلب و گراف ارتباطات</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۲ · مهار تهدیدات و احراز هویت</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">کشف تقلب در لحظه و ردیابی گراف قضایی</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">احراز هویت شاهکار، رمز پویای هریم و زون ایزوله بانکی (PCI-DSS)</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -159,13 +159,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">زمان پاسخ حلقه ارزیابی ریسک کمتر از ۱۵ میلی‌ثانیه؛ کلیه زنجیره‌های ردگیری تراکنش باید در مراجع نظارتی و بانکی قابل استناد و بازتولید باشد.</p>
+            <p class="text-[#f8fafc] leading-relaxed">عدم ذخیره‌سازی داده‌های حساس <span dir="ltr">CVV2</span> پس از احراز تراکنش (انطباق کامل با استاندارد <span dir="ltr">PCI-DSS</span> شاپرک)؛ اعتبارسنجی رمز پویای ۴ پارامتری سامانه هریم بانک مرکزی متصل به کد ملی و شماره کارت.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              لبه ورودی در زون ایزوله بانکی (PCI-DSS) با استخراج انتروپی بوم (Canvas)، شتاب دستگاه و ریتم کلیدزنی، بردارهای چندبعدی ریسک [۰٫۰۰ تا ۱٫۰۰] را در کمتر از ۱۵ میلی‌ثانیه تولید می‌کند. تراکنش‌های زیر ۰٫۳۰ بدون اصطکاک عبور می‌کنند؛ ۰٫۳۰ تا ۰٫۷۵ اعتبارسنجی بیومتریک و پیامکی <span dir="ltr">3DS 2.0</span> را فعال می‌سازد (انتقال مسئولیت مالی به بانک صادرکننده)؛ امتیازهای بالای ۰٫۷۵ در کلاستر گراف <span dir="ltr">Neo4j</span> قرنطینه و تحلیل می‌شوند.
+              اطلاعات کارت مستقیماً در زون ایزوله بانکی (<span dir="ltr">PCI-DSS DMZ</span>) وارد شده و در والت توکن‌سازی (<span dir="ltr">Token Vault</span>) به توکن‌های امن غیرقابل‌ردگیری تبدیل می‌شود؛ کدهای <span dir="ltr">CVV2</span> بلافاصله پس از تراکنش پاکسازی می‌گردند. اتصال برخط با سامانه شاهکار (تطبیق کدملی با شماره موبایل) و ثبت‌احوال با زیرساخت رمز پویای ۴ پارامتری هریم بانک مرکزی یکپارچه شده است. موتور ارزیابی ریسک با پردازش بلادرنگ داده‌های رفتاری، بردار ریسک [۰٫۰۰ تا ۱٫۰۰] را در کمتر از ۱۵ میلی‌ثانیه در کلاستر گرافی <span dir="ltr">Neo4j</span> تحلیل کرده و با پروتکل <span dir="ltr">3DS 2.0</span> مسئولیت مالی را به بانک صادرکننده منتقل می‌کند.
             </p>
           </div>
 
@@ -176,7 +176,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              حملات تصاحب توزیع‌شده حساب و سوءاستفاده هماهنگ از کدهای تخفیف. عبور از قواعد ایستا با ردیابی بازگشتی جریان وجوه در کلاستر گراف میان بیش از ۴۰ میکروسرویس مسدود می‌شود.
+              حملات توزیع‌شده تصاحب حساب، تعویض غیرمجاز سیم‌کارت (<span dir="ltr">SIM Swap</span>) و شبکه‌های فیشینگ رمز پویا. مهارشده با تطبیق رمزی زمان صدور سیم‌کارت در شاهکار با درخواست صدور رمز پویای هریم.
             </p>
           </div>
 
@@ -184,29 +184,30 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-              <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · مهار بلادرنگ تقلب</span>
+              <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · انطباق زون بانکی (PCI-DSS)</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> بررسی دستی تقلب گلوگاه عملیاتی ایجاد کرده بود و قواعد ایستا باعث رد اشتباه تراکنش‌های سالم می‌شد.</p>
-              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> افزایش بار پردازشی و مصرف حافظه در ازای کاهش خطای مثبت کاذب به نزدیک صفر.</p>
-              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> زیرساخت به هزینه‌های پردازشی اعتراض کرد. من ثابت کردم هزینه برگشت وجه بسیار بیشتر از هزینه سخت‌افزار است.</p>
-              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> کاهش ۹۴ درصدی نشت مالی و حفظ نرخ عبور بدون چالش بالای ۹۲ درصد در <span dir="ltr">3DS 2.0</span>.</p>
+              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> قواعد ایستا خطای مثبت کاذب بالایی داشتند و کلاهبرداران با سوءاستفاده از تاخیر تعویض سیم‌کارت، رمزهای سنتی را دور می‌زدند.</p>
+              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> امتناع از کش‌کردن کدهای <span dir="ltr">CVV2</span> به بهانه راحتی خرید، و اعمال توکن‌سازی سخت‌گیرانه در زون ایزوله بانکی.</p>
+              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم تجاری خواستار ذخیره‌سازی <span dir="ltr">CVV2</span> برای خرید تک‌کلیکی بود؛ من اثبات کردم ریسک جرایم نظارتی و نقض امنیتی کارت‌ها بسیار فراتر از اصطکاک پرداخت است.</p>
+              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> کاهش ۹۴ درصدی نشت مالی و انتقال موفق مسئولیت حقوقی به بانک‌های صادرکننده با پروتکل <span dir="ltr">3DS 2.0</span>.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
             <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">زون ایزوله بانکی (PCI-DSS)</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">حلقه ریسک زیر ۱۵ms</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">انتقال مسئولیت با 3DS 2.0</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">گراف قضایی Neo4j</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">رمز پویای ۴ پارامتری هریم</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">احراز هویت شاهکار</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">توکن‌سازی امن کارت</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تحلیل گرافی Neo4j</span>
           </div>
 
           <!-- Linked SVG Diagram -->
           <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
             <img 
               src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
-              alt="نقشه شماتیک سامانه کشف تقلب و ردیابی گراف"
+              alt="نقشه شماتیک احراز هویت شاهکار، رمز پویای هریم و زون بانکی"
               class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
@@ -228,13 +229,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
 
-        <!-- SECTION 03: Telecom SMS Gateway -->
-        <section id="sms-gateway" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <!-- SECTION 03: Smart PSP Switch & Dynamic Weighted Routing -->
+        <section id="payment-switch" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+          <span id="sms-gateway" class="sr-only"></span>
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۳ · زیرساخت مقیاس‌پذیر پیام‌رسانی (SMPP)</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۳ · سوییچ پرداخت و روتینگ پویا</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">زیرساخت مسیریابی و تجمیع پیامک ملی در مقیاس مگفا و فرستار</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">سوییچ هوشمند پرداخت (Smart PSP Switch) و روتینگ پویای تراکنش</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -242,13 +244,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">تحویل بلادرنگ رمزهای یکبارمصرف بانکی (OTP) با تاخیر زیر ۵ ثانیه حتی در اوج ترافیک کمپین‌های تبلیغاتی میلیونی؛ بیش از ۱ میلیارد پیامک سالانه.</p>
+            <p class="text-[#f8fafc] leading-relaxed">تغییر مسیر خودکار در کمتر از ۳۰ میلی‌ثانیه در زمان افت یا خطای درگاه؛ توزیع پویای بار میان ۴ شرکت <span dir="ltr">PSP</span> ملی (سپ، پک، به‌پرداخت، پی‌پینگ) و هاب فناوران با آپ‌تایم ۹۹٫۹۹ درصدی سوییچ.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              مدیریت نشست‌های موازی <span dir="ltr">SMPP 3.4</span> با اتصال به گیت‌وی اپراتورها (همراه اول، ایرانسل و رایتل) روی سرشماره‌های ۱۰۰۰، ۲۰۰۰، ۳۰۰۰ و ۹۰۰۰. مجهز به کنترل پویای پنجره لغزان (<span dir="ltr">Sliding Window</span> از ۱۶ تا ۶۴ PDU)، تعادل بار هوشمند بر اساس ظرفیت پاسخ‌دهی SMSC، و استعلام پیش‌دستانه HLR و احراز هویت شاهکار جهت غربالگری خطوط مسدود (*800#) پیش از اشغال پهنای باند و کسر هزینه.
+              سوییچ اختصاصی <span dir="ltr">Head-to-Head (H2H)</span> با بسته‌بندی پیام‌های مالی استاندارد <span dir="ltr">ISO 8583</span> (کدهای <span dir="ltr">MTI 0200</span> و <span dir="ltr">0210</span>). الگوریتم روتینگ پویای وزنی با تحلیل بلادرنگ نرخ موفقیت درگاه‌ها، تاخیر <span dir="ltr">P99</span>، تعرفه کارمزد پذیرنده و پنجره‌های نگهداری بانکی، ترافیک را میان سامان (سپ)، پارسیان (پک)، به‌پرداخت ملت (BPM) و پاسارگاد (PEP) توزیع می‌کند. اتصال مستقیم به هاب فناوران و مدارشکن‌های پنجره لغزان در صورت بروز افت کیفیت، مسیر تراکنش را در کمتر از ۳۰ میلی‌ثانیه جایگزین می‌کنند.
             </p>
           </div>
 
@@ -259,7 +261,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              اشباع لوله‌های اپراتور زیر بار محدودیت ۷۰ نویسه‌ای یونیکد UCS-2 فارسی و تاخیر در دریافت DLR. برطرف‌شده با جداسازی دقیق صف‌های اولویت‌دار خدماتی/بانکی از کمپین‌های انبوه بازاریابی و تنظیم خودکار نرخ ارسال (Adaptive Backpressure).
+              افت شبکه و فریز سوکت‌های ارتباطی درگاه‌های بالادست شاپرک. برطرف‌شده با ارسال پروب‌های پایش سلامت در پنجره لغزان، ایزولاسیون مسیر با <span dir="ltr">Circuit Breaker</span> و انتقال آنی به درگاه پشتیبان در کمتر از ۳۰ میلی‌ثانیه.
             </p>
           </div>
 
@@ -267,36 +269,37 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-              <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · شرکت فوا گسترش</span>
+              <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · سوییچ چنددرگاهی آگنوستیک</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> محدودیت‌های اپراتورهای بالادست باعث تأخیر در ارسال پیامک‌های OTP و ریزش کاربران در مرحله پرداخت می‌شد.</p>
-              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> حذف خودکار ترافیک تبلیغاتی غیربحرانی برای تضمین SLA تحویل پیامک‌های رمز پویا.</p>
-              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> مارکتینگ با محدودسازی پیامک‌های تبلیغاتی مخالفت کرد. من درآمد هسته تراکنشی را بر کمپین‌های بازاریابی ترجیح دادم.</p>
-              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> تحویل ۹۹٫۹۸ درصدی پیامک‌های OTP زیر ۴ ثانیه در زمان پیک ترافیک ۵۰ هزار TPS در سطح شبکه ملی.</p>
+              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> وابستگی به یک <span dir="ltr">PSP</span> انحصاری در زمان اختلالات شاپرک و تسویه بانکی باعث ریزش شدید خریدهای کاربران می‌شد.</p>
+              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> توسعه سوییچ چنددرگاهی آگنوستیک با تخصیص پویای اوزان به جای تکیه بر قرارداد با یک شرکت <span dir="ltr">PSP</span> منفرد.</p>
+              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> مدیران حساب درگاه‌های سنتی با تنوع‌بخشی به مسیرها مخالفت داشتند؛ من نشان دادم روتینگ پویا نرخ تبدیل پرداخت را ۱۴ درصد افزایش داده است.</p>
+              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> دست‌یابی به آپ‌تایم ۹۹٫۹۹ درصدی درگاه، تاخیر رفت‌وبرگشت زیر ۲۵۰ میلی‌ثانیه و بازگشت خودکار ۳۰ میلی‌ثانیه‌ای در قطعی‌های شبکه شاپرک.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">ظرفیت ۵۰K+ TPS</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">سوکت‌های SMPP 3.4</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">قطعه‌بندی UCS-2</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">پشتیبانی *800# DND</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">سوییچ هوشمند پرداخت</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">روتینگ پویای تراکنش</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">اتصال به هاب فناوران</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">پروتکل ISO 8583 شاپرک</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تغییر مسیر خودکار ۳۰ms</span>
           </div>
 
           <!-- Linked SVG Diagram -->
           <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
             <img 
-              src={`${baseUrl}diagrams/sms-routing-architecture.svg?v=fintech-2026`} 
-              alt="نقشه شماتیک هاب مسیریابی پیامک ملی"
+              src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-2026`} 
+              alt="نقشه شماتیک سوییچ هوشمند پرداخت و پایپ‌لاین ISO 8583"
               class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
           </div>
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
-            <span class="text-[#94a3b8]">مشخصات تجمیع‌کننده‌ها و مسیریابی مخابراتی در سند ۰۳ تدوین شده است.</span>
+            <span class="text-[#94a3b8]">مشخصات سوییچ هوشمند و پروتکل‌های ISO 8583 در سند ۰۳ تدوین شده است.</span>
             <a href={`${baseUrl}fa/blog/sms-infrastructure/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
               مشاهده سند فنی ۰۳ &larr;
             </a>
@@ -311,13 +314,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
 
-        <!-- SECTION 04: Data Pipeline -->
-        <section id="data-pipeline" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <!-- SECTION 04: Multi-Pass Reconciliation & Early Merchant Settlement -->
+        <section id="reconciliation-engine" class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+          <span id="data-pipeline" class="sr-only"></span>
           <div class="flex items-center gap-3 mb-2">
-            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۴ · تحلیل کلان‌داده و پالایش</span>
+            <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">۰۴ · مغایرت‌گیری و تسویه زودهنگام</span>
             <div class="h-px flex-1 bg-white/10"></div>
           </div>
-          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">سامانه پالایش و تحلیل ۱۰۰ میلیون رکورد (Smart DB v1)</h2>
+          <h2 class="text-2xl font-bold text-[#f8fafc] tracking-tight">مغایرت‌گیری چندمرحله‌ای رویدادمحور و تسویه ۲۴ ساعته پذیرندگان</h2>
           
           <!-- Invariant Box: Refined Badge -->
           <div class="mt-4 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-1.5">
@@ -325,13 +329,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
               <span class="text-[#06b6d4] font-bold uppercase tracking-wider">اصل تخطی‌ناپذیر معماری (Invariant)</span>
             </div>
-            <p class="text-[#f8fafc] leading-relaxed">پیش‌بینی رفتار و ترجیحات کاربران با دقت ۷۰٪ پیش از ثبت نهایی اطلاعات هویتی و استعلامات احراز هویت شاهکار و ثبت‌احوال.</p>
+            <p class="text-[#f8fafc] leading-relaxed">تطبیق قطعی سه‌طرفه میان دفاتر کل داخلی، لاگ‌های سوئیچ <span dir="ltr">PSP</span> و فایل‌های تسویه شاپرک/بانک مرکزی؛ به صفر رساندن کامل مانده‌های وصول‌نشده پذیرندگان.</p>
           </div>
 
           <!-- Mechanism -->
           <div class="text-[#94a3b8] text-xs sm:text-sm mt-3 space-y-2 leading-relaxed">
             <p>
-              موتور تحلیلی <span dir="ltr">DuckDB</span> بر بستر فایل‌های ستونی <span dir="ltr">Apache Parquet</span> جهت پردازش داده‌های عظیم و غیرساختاریافته خروجی اپراتورها و سامانه‌های تراکنشی پیش از ورود به فرآیند احراز هویت شاهکار. نرمال‌سازی عمیق کاراکترهای عربی/فارسی (ی/ک/تنوین)، کلیدگذاری واج‌شناختی چندمرحله‌ای (Phonetic Keys) و کاهش ۷۰ درصدی حجم ذخیره‌سازی با فشرده‌سازی <span dir="ltr">Snappy</span>.
+              دریافت ناهمزمان رویدادهای پایانی تراکنش از طریق گذرگاه پیام <span dir="ltr">RabbitMQ</span> (<code class="text-[#38bdf8] font-mono text-[11px]" dir="ltr">activity.end_state</code>). پردازش‌های دسته‌ای شبانه <span dir="ltr">Spring Batch</span> صورتحساب‌های <span dir="ltr">ISO 20022</span> و فایل‌های تسویه بانکی را از طریق <span dir="ltr">SFTP</span> دریافت کرده و با کد رهگیری (<span dir="ltr">RRN/STAN</span>) دفاتر کل تطبیق می‌دهند. هرگونه مغایرت بلافاصله سرویس خودکار خودترمیمی (<code class="text-[#38bdf8] font-mono text-[11px]" dir="ltr">Refund-MNG</code>) را برای برگشت وجه یا تسویه جبرانی فعال می‌سازد. همچنین موتور تسویه پیش از موعد پذیرندگان (Merchant Credit) با صدور خودکار حواله‌های پایا و ساتنا از طریق <span dir="ltr">Bank-Proxy</span> و محاسبه روزانه کارمزد شناور: <code class="text-[#e2c974] bg-white/[0.04] px-1.5 py-0.5 rounded font-mono" dir="ltr">&Delta;Fee = Amount &times; (r_base + d &times; r_daily)</code> وجوه را ظرف ۲۴ ساعت تسویه می‌کند.
             </p>
           </div>
 
@@ -342,7 +346,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-[#e2c974] font-bold uppercase tracking-wider">حالت خرابی و راهکار تاب‌آوری</span>
             </div>
             <p class="text-[#94a3b8] leading-relaxed">
-              افت شدید پایگاه‌های داده رابطه‌ای سنتی در پیوندهای چندویژگی روی بیش از ۹۴٫۷ میلیون رکورد. برطرف‌شده با جداسازی کامل مسیر پرس‌وجو به کلاستر توزیع‌شده <span dir="ltr">Elasticsearch</span> مجهز به <span dir="ltr">API Gateway</span> اختصاصی.
+              تاخیر در دریافت صورت‌حساب‌های بانکی، نامرتب رسیدن وب‌هوک‌ها یا قطعی مقطعی در پنجره تسویه پایا. مهارشده با فازهای چندمرحله‌ای ایدامپوتنت مغایرت‌گیری (T+0 بلادرنگ، T+1 پایا، و T+2 رفع اختلاف حقوقی).
             </p>
           </div>
 
@@ -350,38 +354,39 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <div class="mt-3 p-4 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl text-xs space-y-2">
             <div class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-              <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · پایگاه داده SmartDB</span>
+              <span class="text-[#38bdf8] font-bold uppercase tracking-wider">تصمیم محصول · مغایرت‌گیری خودکار</span>
             </div>
             <div class="text-[#cbd5e1] space-y-1.5 leading-relaxed">
-              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> پایگاه‌های داده جزیره‌ای با رکوردهای تکراری باعث افت شدید عملکرد دیتابیس و خطای جستجو می‌شد.</p>
-              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> جداسازی مسیر نوشتن درلحظه از دریاچه داده تحلیلی برای پایین نگه‌داشتن هزینه نمایه‌سازی.</p>
-              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم داده مدل رابطه‌ای استاندارد را ترجیح می‌داد. من ثابت کردم معماری ستونی برای این مقیاس الزامی است.</p>
-              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> تجمیع بیش از ۱۰۰ میلیون رکورد با دقت ۹۹٫۴ درصد و کاهش ۶۰ درصدی هزینه‌های پردازشی.</p>
+              <p><strong class="text-[#f8fafc]">چرا این تصمیم و چرا در آن مقطع:</strong> مغایرت‌گیری دستی اکسل تسویه حساب پذیرندگان را تا بیش از ۴۸ ساعت به تاخیر می‌انداخت و جریان نقدینگی فروشندگان را قفل می‌کرد.</p>
+              <p><strong class="text-[#f8fafc]">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> مهاجرت از مغایرت‌گیری دستی و همگام به ماشین حالت ناهمزمان چندمرحله‌ای متصل به پایپ‌لاین‌های خودکار <span dir="ltr">SFTP</span> بانکی.</p>
+              <p><strong class="text-[#f8fafc]">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم‌های حسابداری نگران خطای حواله‌های خودکار بودند؛ من با اجرای یک دوره آزمایشی موازی و اثبات خطای صفر در بیش از ۵۰ هزار تراکنش، رضایت آنها را جلب کردم.</p>
+              <p><strong class="text-[#f8fafc]">دست‌آورد و خروجی کسب‌وکاری:</strong> راه‌اندازی تسویه زودهنگام ۲۴ ساعته پذیرندگان با کسر هوشمند کارمزد شناور، حذف ۱۰۰ درصدی هزینه‌های مغایرت‌گیری دستی و جلوگیری از نشت مالی.</p>
             </div>
           </div>
 
           <!-- Tactical Tags -->
           <div class="flex flex-wrap gap-2 my-5">
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">۱۰۰ میلیون رکورد</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">فرمت ستونی Parquet</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">موتور در حافظه DuckDB</span>
-            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">کلاستر Elasticsearch</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">مغایرت‌گیری Spring Batch</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">سرویس خودترمیمی Refund-MNG</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">مش رویداد RabbitMQ</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">تسویه پیش از موعد پذیرندگان</span>
+            <span class="px-3 py-1 bg-white/[0.03] border border-white/10 rounded-lg text-[#38bdf8] text-[11px] font-medium hover:bg-white/[0.07] transition-colors">پایپ‌لاین پایا و ساتنا</span>
           </div>
 
           <!-- Linked SVG Diagram -->
           <div class="bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 sm:p-5 my-4 overflow-hidden" dir="ltr">
             <img 
-              src={`${baseUrl}diagrams/data-pipeline-architecture.svg?v=fintech-2026`} 
-              alt="نقشه شماتیک خط داده و پایگاه داده Smart DB v1"
+              src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-2026`} 
+              alt="نقشه شماتیک مغایرت‌گیری چندمرحله‌ای بانکی و تسویه خودکار"
               class="w-full h-auto object-contain rounded-lg"
               loading="lazy"
             />
           </div>
 
           <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs">
-            <span class="text-[#94a3b8]">نرمال‌سازی ستونی و معیارهای DuckDB در نمونه‌کار فنی مستند شده است.</span>
+            <span class="text-[#94a3b8]">پایپ‌لاین‌های مغایرت‌گیری و تسویه خودکار در سند ۰۴ تدوین شده است.</span>
             <a href={`${baseUrl}fa/data-cleaning/`} class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-[#06b6d4] font-bold transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:border-[#06b6d4]/40 hover:bg-[#06b6d4]/10 focus-visible:outline-2 focus-visible:outline-[#06b6d4]">
-              مشاهده مستند پالایش نام‌ها &larr;
+              مشاهده مستند مغایرت‌گیری &larr;
             </a>
           </div>
         </section>

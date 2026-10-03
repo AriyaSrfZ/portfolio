@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((post) => post.data.lang === 'fa' || post.id.startsWith('fa/'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categoryLabels: Record<string, string> = {
+  'fintech': 'فین‌تک و پرداخت',
+  'network-infrastructure': 'زیرساخت شبکه و مخابرات',
+  'system-architecture': 'معماری سیستم‌های توزیع‌شده',
+  'data-engineering': 'مهندسی داده',
+  'product-management': 'استراتژی محصول فنی',
+  'api-products': 'پلتفرم‌های API',
+};
+
+const categories = ['all', 'fintech', 'network-infrastructure', 'system-architecture', 'data-engineering', 'product-management'];
+---
+
+<Layout
+  title="وبلاگ مهندسی و مستندات فنی معماری — آریا صراف‌زاده"
+  description="یادداشت‌های میدانی، پیاده‌سازی دفتر کل توزیع‌شده، سوییچینگ مخابراتی، و استراتژی زیرساخت‌های بانکی ایران."
+  lang="fa"
+  dir="rtl"
+>
+  <main class="max-w-[1400px] mx-auto px-6 pt-32 pb-24 font-['Vazirmatn',sans-serif]" dir="rtl">
+    <!-- Header -->
+    <div class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 mb-10 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">تحقیقات سیستمی · یادداشت‌های میدانی معماری · مقالات فنی</span>
+        <div class="h-px flex-1 bg-white/10"></div>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold uppercase text-[#f8fafc] mb-4 tracking-tight">
+        وبلاگ مهندسی و مقالات تخصصی
+      </h1>
+      <p class="text-[#94a3b8] text-sm sm:text-base leading-relaxed max-w-3xl">
+        بررسی عمیق معماری سوییچ‌های پرداخت شاپرکی <span dir="ltr">ISO 8583</span>، دفاتر کل دوطرفه <span dir="ltr">ACID</span>، مسیریابی مخابراتی <span dir="ltr">SMPP</span>، پایش ریسک و رهبری مهندسی در مقیاس ملی.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 mt-6 pt-6 border-t border-white/10">
+        <button
+          type="button"
+          class="cat-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all duration-200 bg-[#06b6d4]/20 border border-[#06b6d4]/40 text-[#38bdf8]"
+          data-category="all"
+        >
+          همه مقالات ({posts.length})
+        </button>
+        {categories.filter(c => c !== 'all').map((cat) => {
+          const count = posts.filter(p => p.data.category === cat).length;
+          if (count === 0) return null;
+          return (
+            <button
+              type="button"
+              class="cat-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all duration-200 bg-white/[0.03] border border-white/10 text-[#94a3b8] hover:text-[#f8fafc] hover:border-white/20"
+              data-category={cat}
+            >
+              {categoryLabels[cat] || cat} ({count})
+            </button>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Articles Grid -->
+    <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((doc, idx) => (
+        <article
+          class="article-card bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-xl ring-1 ring-white/5 group hover:border-cyan-500/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
+          data-cat={doc.data.category}
+        >
+          <div>
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+              <span class="text-[11px] font-bold text-[#e2c974] uppercase tracking-wider">
+                سند ۰{idx < 9 ? `۰${idx + 1}` : idx + 1} · {categoryLabels[doc.data.category] || doc.data.category}
+              </span>
+              {doc.data.metric && (
+                <span class="text-[10px] font-mono text-[#38bdf8] uppercase px-2 py-0.5 rounded bg-white/[0.04] border border-white/5" dir="ltr">
+                  {doc.data.metric}
+                </span>
+              )}
+            </div>
+
+            <h2 class="text-lg font-bold text-[#f8fafc] uppercase group-hover:text-[#e2c974] transition mb-2.5 leading-snug">
+              <a href={`${baseUrl}fa/blog/${doc.id.replace(/^fa\//, '')}/`}>
+                {doc.data.title}
+              </a>
+            </h2>
+
+            <p class="text-xs text-[#94a3b8] leading-relaxed mb-5 line-clamp-3">
+              {doc.data.description}
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              {doc.data.technologies.slice(0, 4).map((t) => (
+                <span class="text-[10px] px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/10 text-[#38bdf8]" dir="ltr">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
+            <span class="text-[11px] text-[#94a3b8] uppercase font-mono" dir="ltr">
+              {doc.data.date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'short' })}
+            </span>
+            <a
+              href={`${baseUrl}fa/blog/${doc.id.replace(/^fa\//, '')}/`}
+              class="font-bold text-[#06b6d4] uppercase group-hover:underline flex items-center gap-1.5 transition-colors"
+            >
+              مطالعه سند تخصصی &larr;
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.cat-filter-btn');
+      const cards = document.querySelectorAll('.article-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selectedCat = btn.getAttribute('data-category');
+
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-[#06b6d4]/20', 'border-[#06b6d4]/40', 'text-[#38bdf8]');
+            b.classList.add('bg-white/[0.03]', 'border-white/10', 'text-[#94a3b8]');
+          });
+          btn.classList.add('bg-[#06b6d4]/20', 'border-[#06b6d4]/40', 'text-[#38bdf8]');
+          btn.classList.remove('bg-white/[0.03]', 'border-white/10', 'text-[#94a3b8]');
+
+          cards.forEach(card => {
+            const cardCat = card.getAttribute('data-cat');
+            if (selectedCat === 'all' || cardCat === selectedCat) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</Layout>
