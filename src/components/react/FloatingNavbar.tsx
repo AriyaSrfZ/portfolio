@@ -17,6 +17,8 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   const [switchTarget, setSwitchTarget] = useState<string>(defaultSwitchTarget);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const [activeSection, setActiveSection] = useState<string>('payment-settlement');
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const detected = getLangFromUrl(new URL(window.location.href));
@@ -33,6 +35,26 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       } else {
         setSwitchTarget(`${normalizedBase}fa/${rel}${window.location.search}${window.location.hash}`);
       }
+
+      // Scroll Spy / Intersection Observer for Active Section
+      const sectionIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'book'];
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+      );
+
+      sectionIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+
+      return () => observer.disconnect();
     }
   }, []);
 
@@ -55,6 +77,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       ];
 
   const handleNavClick = (targetId: string, env: ActiveEnvironment) => {
+    setActiveSection(targetId);
     setMobileMenuOpen(false);
     window.dispatchEvent(new CustomEvent('ambient-env-change', { detail: env }));
     const el = document.getElementById(targetId);
@@ -73,12 +96,12 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         <div className="flex items-center gap-3">
           <a
             href={isFa ? `${baseUrl}fa/` : baseUrl}
-            className="text-xs sm:text-sm font-semibold tracking-wider text-white hover:text-neutral-300 transition-colors uppercase font-mono"
+            className="text-xs sm:text-sm font-semibold tracking-wider text-white hover:text-neutral-200 transition-colors uppercase font-mono"
           >
             ARIYA SARRAFZADEH
           </a>
-          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/10 text-[10px] font-mono text-neutral-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/15 text-[11px] font-mono text-neutral-200">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>[TPM · FINTECH &amp; SWITCHES]</span>
           </span>
         </div>
@@ -87,16 +110,23 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         <div className="flex items-center gap-2">
           {/* Desktop Nav Pills */}
           <nav className="hidden lg:flex items-center gap-1 font-mono text-xs">
-            {navItems.map((item) => (
-              <button
-                key={item.target}
-                type="button"
-                onClick={() => handleNavClick(item.target, item.env)}
-                className="px-2.5 py-1 rounded-md text-neutral-400 hover:text-white hover:bg-white/[0.05] transition-colors"
-              >
-                {item.label}
-              </button>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.target;
+              return (
+                <button
+                  key={item.target}
+                  type="button"
+                  onClick={() => handleNavClick(item.target, item.env)}
+                  className={`px-3 py-1.5 rounded-md transition-all font-mono ${
+                    isActive
+                      ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
+                      : 'text-neutral-200 hover:text-white hover:bg-white/[0.08] border border-transparent'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </nav>
 
           {/* Divider */}
@@ -105,7 +135,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           {/* Secondary Links (Whitepapers / Case Studies) */}
           <a
             href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
+            className="hidden sm:inline-block px-2.5 py-1 text-xs font-mono text-neutral-200 hover:text-white transition-colors"
           >
             {isFa ? 'وایت‌پیپرها' : 'Dossiers'}
           </a>
@@ -113,7 +143,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           {/* Language Switcher */}
           <a
             href={switchTarget}
-            className="px-2.5 py-1 rounded-md bg-white/[0.05] hover:bg-white/10 border border-white/10 text-[11px] font-mono font-medium text-white transition-all tracking-wider"
+            className="px-2.5 py-1 rounded-md bg-white/[0.08] hover:bg-white/15 border border-white/15 text-[11px] font-mono font-semibold text-white transition-all tracking-wider"
           >
             {isFa ? 'EN' : 'FA'}
           </a>
@@ -122,7 +152,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 rounded-md text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
+            className="lg:hidden p-1.5 rounded-md text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

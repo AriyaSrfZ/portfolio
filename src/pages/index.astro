@@ -13,10 +13,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
   <Hero />
 
-  <main class="max-w-5xl mx-auto px-6 py-12 space-y-12 font-sans" id="blueprints">
+  <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 font-sans" id="blueprints">
 
     <!-- DOSSIER 01: Double-Entry Ledger & Two-Phase Balance Engine -->
-    <section id="payment-settlement" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="payment-settlement" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -54,16 +54,16 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner">
-        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner w-full">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">ARCHITECTURE BLUEPRINT · TOPOLOGY SCHEMATIC</span>
-          <span class="text-emerald-400">2PC VERIFIED</span>
+          <span class="text-emerald-400 font-semibold">2PC VERIFIED</span>
         </div>
         <img 
           src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-2026`} 
           alt="Double-Entry Ledger and Two-Phase Reservation Topology Schematic"
-          class="w-full h-auto object-contain rounded filter contrast-105"
-          loading="lazy"
+          class="w-full h-auto object-contain rounded"
+          loading="eager"
         />
       </div>
 
@@ -131,11 +131,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 02: Smart PSP Switch & Dynamic Weighted Routing -->
-    <section id="payment-switch" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="payment-switch" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
             <span>02 · PAYMENT SWITCH &amp; PROTOCOLS</span>
           </div>
@@ -150,35 +150,35 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Failover SLA</span>
-          <span class="text-cyan-400 font-semibold">&lt;30ms Latency</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Failover SLA</span>
+          <span class="text-cyan-400 font-semibold text-sm">&lt;30ms Latency</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Protocol</span>
-          <span class="text-white font-semibold">ISO 8583 MTI 0200</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Protocol</span>
+          <span class="text-white font-semibold text-sm">ISO 8583 MTI 0200</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Gateway Uptime</span>
-          <span class="text-emerald-400 font-semibold">99.99% Availability</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Gateway Uptime</span>
+          <span class="text-emerald-400 font-semibold text-sm">99.99% Availability</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Conversion Lift</span>
-          <span class="text-emerald-400 font-semibold">+14% Transaction Gain</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Conversion Lift</span>
+          <span class="text-emerald-400 font-semibold text-sm">+14% Gain</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner">
-        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner w-full">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">MULTI-PSP HEAD-TO-HEAD (H2H) ROUTING PIPELINE</span>
-          <span class="text-cyan-400">DYNAMIC WEIGHTED SLAS</span>
+          <span class="text-cyan-400 font-semibold">DYNAMIC WEIGHTED SLAS</span>
         </div>
         <img 
           src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-2026`} 
           alt="Smart PSP Switch and ISO 8583 Pipeline Topology Schematic"
-          class="w-full h-auto object-contain rounded filter contrast-105"
-          loading="lazy"
+          class="w-full h-auto object-contain rounded"
+          loading="eager"
         />
       </div>
 
@@ -246,11 +246,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 03: eKYC, Central Bank Harim OTP & PCI-DSS Token Vault -->
-    <section id="fraud-forensics" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="fraud-forensics" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span>03 · FRAUD RISK &amp; EKYC</span>
           </div>
@@ -265,35 +265,35 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Risk Scoring SLA</span>
-          <span class="text-emerald-400 font-semibold">&lt;15ms (P99)</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Risk Scoring SLA</span>
+          <span class="text-emerald-400 font-semibold text-sm">&lt;15ms (P99)</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">CVV2 Retention</span>
-          <span class="text-white font-semibold">0.00s (Zero-Storage)</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">CVV2 Retention</span>
+          <span class="text-white font-semibold text-sm">0.00s (Zero-Storage)</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Fraud Reduction</span>
-          <span class="text-emerald-400 font-semibold">-94% Illicit Drain</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Fraud Reduction</span>
+          <span class="text-emerald-400 font-semibold text-sm">-94% Drain</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">3DS Frictionless</span>
-          <span class="text-cyan-400 font-semibold">&gt;92% Pass Rate</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">3DS Frictionless</span>
+          <span class="text-cyan-400 font-semibold text-sm">&gt;92% Pass Rate</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner">
-        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner w-full">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">PERIMETER ISOLATION &amp; EKYC VERIFICATION SCHEMATIC</span>
-          <span class="text-emerald-400">PCI-DSS COMPLIANT</span>
+          <span class="text-emerald-400 font-semibold">PCI-DSS COMPLIANT</span>
         </div>
         <img 
           src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
           alt="eKYC, Harim Dynamic OTP and Forensic Graph Tracing Schematic"
-          class="w-full h-auto object-contain rounded filter contrast-105"
-          loading="lazy"
+          class="w-full h-auto object-contain rounded"
+          loading="eager"
         />
       </div>
 
@@ -361,12 +361,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 04: Event-Driven Multi-Pass Reconciliation & Early Merchant Settlement -->
-    <section id="reconciliation-engine" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="reconciliation-engine" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <span id="data-pipeline" class="sr-only"></span>
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
             <span>04 · RECONCILIATION &amp; PAYOUTS</span>
           </div>
@@ -381,35 +381,35 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Recon Parity</span>
-          <span class="text-emerald-400 font-semibold">100% 3-Way Match</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Recon Parity</span>
+          <span class="text-emerald-400 font-semibold text-sm">100% 3-Way Match</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Payout Window</span>
-          <span class="text-white font-semibold">24h Early Settlement</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Payout Window</span>
+          <span class="text-white font-semibold text-sm">24h Early Settle</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Batch Workers</span>
-          <span class="text-cyan-400 font-semibold">Spring Batch (Nightly)</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Batch Workers</span>
+          <span class="text-cyan-400 font-semibold text-sm">Spring Batch</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Manual Overhead</span>
-          <span class="text-emerald-400 font-semibold">-100% Eliminated</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Manual Overhead</span>
+          <span class="text-emerald-400 font-semibold text-sm">-100% Eliminated</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner">
-        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner w-full">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">MULTI-BANK MULTI-PASS RECONCILIATION &amp; PAYOUT MESH</span>
-          <span class="text-emerald-400">AUTO-HEALING REFUND-MNG</span>
+          <span class="text-emerald-400 font-semibold">AUTO-HEALING REFUND-MNG</span>
         </div>
         <img 
           src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-2026`} 
           alt="Multi-Bank Multi-Pass Reconciliation and Settlement Pipeline Schematic"
-          class="w-full h-auto object-contain rounded filter contrast-105"
-          loading="lazy"
+          class="w-full h-auto object-contain rounded"
+          loading="eager"
         />
       </div>
 
@@ -477,11 +477,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 05: Production Incident Postmortems -->
-    <section id="incident-dossiers" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="incident-dossiers" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-amber-400"></span>
             <span>05 · PRODUCTION INCIDENT ARCHIVE</span>
           </div>
@@ -500,17 +500,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- 3 Incident Cards Grid (Full-Width Stacked Cards) -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Incident 01 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-2">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-400 font-semibold">INCIDENT 01 · SWITCH</span>
-              <span class="text-emerald-400">P0 RESOLVED</span>
+              <span class="text-neutral-300 font-semibold">INCIDENT 01 · SWITCH</span>
+              <span class="text-emerald-400 font-medium">P0 RESOLVED</span>
             </div>
             <h3 class="text-sm font-bold text-white">Upstream ISO 8583 Timeout Recovery</h3>
-            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-500">CONTEXT:</span> Merchant retry storms triggering duplicate captures during banking host timeouts.</p>
-              <p><span class="text-neutral-500">INVARIANT:</span> Mutex lock must outlive carrier retry windows (86,400s).</p>
-              <p><span class="text-neutral-500">FIX:</span> Distributed Redis SETNX with 24h TTL; append-only double-entry ledger in ScyllaDB.</p>
+            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-400">CONTEXT:</span> Merchant retry storms triggering duplicate captures during banking host timeouts.</p>
+              <p><span class="text-neutral-400">INVARIANT:</span> Mutex lock must outlive carrier retry windows (86,400s).</p>
+              <p><span class="text-neutral-400">FIX:</span> Distributed Redis SETNX with 24h TTL; append-only double-entry ledger in ScyllaDB.</p>
             </div>
           </div>
           <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
@@ -519,17 +519,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Incident 02 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-2">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-400 font-semibold">INCIDENT 02 · TELECOM</span>
-              <span class="text-emerald-400">P0 RESOLVED</span>
+              <span class="text-neutral-300 font-semibold">INCIDENT 02 · TELECOM</span>
+              <span class="text-emerald-400 font-medium">P0 RESOLVED</span>
             </div>
             <h3 class="text-sm font-bold text-white">Carrier SMPP Sliding-Window Choke</h3>
-            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-500">CONTEXT:</span> Bulk broadcast runs delaying critical dynamic OTP authentication codes.</p>
-              <p><span class="text-neutral-500">INVARIANT:</span> Critical auth queues cannot share worker pipes with marketing traffic.</p>
-              <p><span class="text-neutral-500">FIX:</span> Multi-tiered queue partitioning; real-time SMPP sliding window throttle (16–64 PDU).</p>
+            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-400">CONTEXT:</span> Bulk broadcast runs delaying critical dynamic OTP authentication codes.</p>
+              <p><span class="text-neutral-400">INVARIANT:</span> Critical auth queues cannot share worker pipes with marketing traffic.</p>
+              <p><span class="text-neutral-400">FIX:</span> Multi-tiered queue partitioning; real-time SMPP sliding window throttle (16–64 PDU).</p>
             </div>
           </div>
           <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
@@ -538,17 +538,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Incident 03 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-2">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-400 font-semibold">INCIDENT 03 · BIG DATA</span>
-              <span class="text-emerald-400">P1 RESOLVED</span>
+              <span class="text-neutral-300 font-semibold">INCIDENT 03 · BIG DATA</span>
+              <span class="text-emerald-400 font-medium">P1 RESOLVED</span>
             </div>
             <h3 class="text-sm font-bold text-white">Smart DB 100M Pre-KYC Scoring</h3>
-            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-500">CONTEXT:</span> 94.7M unindexed records causing RDBMS deadlocks during high-concurrency lookup.</p>
-              <p><span class="text-neutral-500">INVARIANT:</span> Fast attribute enrichment without latency degradation on payment switch.</p>
-              <p><span class="text-neutral-500">FIX:</span> Layered deterministic normalisation + phonetic blocking. 70% predictive user accuracy.</p>
+            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-400">CONTEXT:</span> 94.7M unindexed records causing RDBMS deadlocks during high-concurrency lookup.</p>
+              <p><span class="text-neutral-400">INVARIANT:</span> Fast attribute enrichment without latency degradation on payment switch.</p>
+              <p><span class="text-neutral-400">FIX:</span> Layered deterministic normalisation + phonetic blocking. 70% predictive user accuracy.</p>
             </div>
           </div>
           <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
@@ -560,7 +560,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- SECTION 06: Architecture Intake & Consultation (Full-Width) -->
-    <section id="book" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5">
+    <section id="book" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 hover:border-white/20 transition-all">
       <BookingSection />
     </section>
 

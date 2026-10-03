@@ -18,14 +18,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
   <Hero locale="fa" />
 
-  <main class="max-w-5xl mx-auto px-6 py-12 space-y-12 font-['Vazirmatn',sans-serif]" id="blueprints" dir="rtl">
+  <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 font-['Vazirmatn',sans-serif]" id="blueprints" dir="rtl">
 
     <!-- DOSSIER 01: Double-Entry Ledger & Two-Phase Balance Engine -->
-    <section id="payment-settlement" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="payment-settlement" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span>۰۱ · تسویه مالی و دفاتر کل توزیع‌شده</span>
           </div>
@@ -40,35 +40,35 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">ظرفیت اوج پردازش</span>
-          <span class="text-white font-semibold" dir="ltr">50,000 TPS</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">ظرفیت اوج پردازش</span>
+          <span class="text-white font-semibold text-sm" dir="ltr">50,000 TPS</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">طول عمر قفل ردیس</span>
-          <span class="text-cyan-400 font-semibold" dir="ltr">15,000ms SETNX</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">طول عمر قفل ردیس</span>
+          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">15,000ms SETNX</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">پنجره بازپخش مجدد</span>
-          <span class="text-white font-semibold">۲۴ ساعت (۸۶,۴۰۰s)</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">پنجره بازپخش مجدد</span>
+          <span class="text-white font-semibold text-sm">۲۴ ساعت (۸۶,۴۰۰s)</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">انحراف مالی در تراز</span>
-          <span class="text-emerald-400 font-semibold">۰٫۰۰٪ (صفر مطلق)</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">انحراف مالی در تراز</span>
+          <span class="text-emerald-400 font-semibold text-sm">۰٫۰۰٪ (صفر مطلق)</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner" dir="ltr">
-        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner w-full" dir="ltr">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">ARCHITECTURE BLUEPRINT · TOPOLOGY SCHEMATIC</span>
-          <span class="text-emerald-400">2PC VERIFIED</span>
+          <span class="text-emerald-400 font-semibold">2PC VERIFIED</span>
         </div>
         <img 
           src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-2026`} 
           alt="Double-Entry Ledger and Two-Phase Reservation Topology Schematic"
-          class="w-full h-auto object-contain rounded filter contrast-105"
-          loading="lazy"
+          class="w-full h-auto object-contain rounded"
+          loading="eager"
         />
       </div>
 
@@ -136,12 +136,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 02: Smart PSP Switch & Dynamic Weighted Routing -->
-    <section id="payment-switch" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="payment-switch" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <span id="sms-gateway" class="sr-only"></span>
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
             <span>۰۲ · سوییچ پرداخت و پروتکل‌های مخابراتی</span>
           </div>
@@ -156,35 +156,35 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">سرعت تغییر مسیر</span>
-          <span class="text-cyan-400 font-semibold" dir="ltr">&lt;30ms Failover</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">سرعت تغییر مسیر</span>
+          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">&lt;30ms Failover</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">پروتکل سوییچ</span>
-          <span class="text-white font-semibold" dir="ltr">ISO 8583 MTI 0200</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">پروتکل سوییچ</span>
+          <span class="text-white font-semibold text-sm" dir="ltr">ISO 8583 MTI 0200</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">دسترسی‌پذیری سوییچ</span>
-          <span class="text-emerald-400 font-semibold" dir="ltr">99.99% Uptime</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">دسترسی‌پذیری سوییچ</span>
+          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">99.99% Uptime</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">رشد نرخ تبدیل</span>
-          <span class="text-emerald-400 font-semibold" dir="ltr">+14% Conversion</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">رشد نرخ تبدیل</span>
+          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">+14% Gain</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner" dir="ltr">
-        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner w-full" dir="ltr">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">MULTI-PSP HEAD-TO-HEAD (H2H) ROUTING PIPELINE</span>
-          <span class="text-cyan-400">DYNAMIC WEIGHTED SLAS</span>
+          <span class="text-cyan-400 font-semibold">DYNAMIC WEIGHTED SLAS</span>
         </div>
         <img 
           src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-2026`} 
           alt="Smart PSP Switch and ISO 8583 Pipeline Topology Schematic"
-          class="w-full h-auto object-contain rounded filter contrast-105"
-          loading="lazy"
+          class="w-full h-auto object-contain rounded"
+          loading="eager"
         />
       </div>
 
@@ -252,11 +252,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 03: eKYC, Central Bank Harim OTP & PCI-DSS Token Vault -->
-    <section id="fraud-forensics" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="fraud-forensics" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span>۰۳ · مدیریت ریسک، احراز هویت و مهار تقلب</span>
           </div>
@@ -271,35 +271,35 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">مهلت ارزیابی ریسک</span>
-          <span class="text-emerald-400 font-semibold" dir="ltr">&lt;15ms (P99)</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">مهلت ارزیابی ریسک</span>
+          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">&lt;15ms (P99)</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">ذخیره داده CVV2</span>
-          <span class="text-white font-semibold">۰٫۰۰ ثانیه (عدم ذخیره)</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">ذخیره داده CVV2</span>
+          <span class="text-white font-semibold text-sm">۰٫۰۰ ثانیه (عدم ذخیره)</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">مهار تخلیه مالی</span>
-          <span class="text-emerald-400 font-semibold">۹۴- درصد کاهش تقلب</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">مهار تخلیه مالی</span>
+          <span class="text-emerald-400 font-semibold text-sm">۹۴- درصد کاهش</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">نرخ عبور 3DS 2.0</span>
-          <span class="text-cyan-400 font-semibold">بیش از ۹۲٪ بدون چالش</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">نرخ عبور 3DS 2.0</span>
+          <span class="text-cyan-400 font-semibold text-sm">بیش از ۹۲٪ عبور</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner" dir="ltr">
-        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner w-full" dir="ltr">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">PERIMETER ISOLATION &amp; EKYC VERIFICATION SCHEMATIC</span>
-          <span class="text-emerald-400">PCI-DSS COMPLIANT</span>
+          <span class="text-emerald-400 font-semibold">PCI-DSS COMPLIANT</span>
         </div>
         <img 
           src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-2026`} 
           alt="eKYC, Harim Dynamic OTP and Forensic Graph Tracing Schematic"
-          class="w-full h-auto object-contain rounded filter contrast-105"
-          loading="lazy"
+          class="w-full h-auto object-contain rounded"
+          loading="eager"
         />
       </div>
 
@@ -367,12 +367,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 04: Event-Driven Multi-Pass Reconciliation & Early Merchant Settlement -->
-    <section id="reconciliation-engine" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="reconciliation-engine" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <span id="data-pipeline" class="sr-only"></span>
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
             <span>۰۴ · مغایرت‌گیری و تسویه زودهنگام پذیرندگان</span>
           </div>
@@ -387,35 +387,35 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">دقت مغایرت‌گیری</span>
-          <span class="text-emerald-400 font-semibold">تطبیق ۱۰۰٪ سه‌طرفه</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">دقت مغایرت‌گیری</span>
+          <span class="text-emerald-400 font-semibold text-sm">تطبیق ۱۰۰٪ سه‌طرفه</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">بازه تسویه پذیرنده</span>
-          <span class="text-white font-semibold">تسویه ۲۴ ساعته</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">بازه تسویه پذیرنده</span>
+          <span class="text-white font-semibold text-sm">تسویه ۲۴ ساعته</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">ورکر‌های پردازش</span>
-          <span class="text-cyan-400 font-semibold" dir="ltr">Spring Batch (Nightly)</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">ورکر‌های پردازش</span>
+          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">Spring Batch</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">خطای دستی تسویه</span>
-          <span class="text-emerald-400 font-semibold">۱۰۰- درصد حذف کامل</span>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">خطای دستی تسویه</span>
+          <span class="text-emerald-400 font-semibold text-sm">۱۰۰- درصد حذف</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner" dir="ltr">
-        <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-2 border-b border-white/5">
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-6 shadow-inner w-full" dir="ltr">
+        <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">MULTI-BANK MULTI-PASS RECONCILIATION &amp; PAYOUT MESH</span>
-          <span class="text-emerald-400">AUTO-HEALING REFUND-MNG</span>
+          <span class="text-emerald-400 font-semibold">AUTO-HEALING REFUND-MNG</span>
         </div>
         <img 
           src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-2026`} 
           alt="Multi-Bank Multi-Pass Reconciliation and Settlement Pipeline Schematic"
-          class="w-full h-auto object-contain rounded filter contrast-105"
-          loading="lazy"
+          class="w-full h-auto object-contain rounded"
+          loading="eager"
         />
       </div>
 
@@ -483,11 +483,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 05: Production Incident Postmortems -->
-    <section id="incident-dossiers" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6">
+    <section id="incident-dossiers" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
-          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-amber-400"></span>
             <span>۰۵ · آرشیو بحران‌های زنده در پروداکشن</span>
           </div>
@@ -506,17 +506,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- 3 Incident Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Incident 01 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-2">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-400 font-semibold">بحران ۰۱ · سوییچ پرداخت</span>
-              <span class="text-emerald-400" dir="ltr">P0 RESOLVED</span>
+              <span class="text-neutral-300 font-semibold">بحران ۰۱ · سوییچ پرداخت</span>
+              <span class="text-emerald-400 font-medium" dir="ltr">P0 RESOLVED</span>
             </div>
             <h3 class="text-sm font-bold text-white">مهار تایم‌اوت‌های ISO 8583 بالادست</h3>
-            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-500">زمینه:</span> ارسال مجدد مکرر توسط پذیرندگان در زمان تایم‌اوت سوییچ بانکی.</p>
-              <p><span class="text-neutral-500">اصل:</span> قفل ایدامپوتنت باید بیش از طولانی‌ترین بازه مجدد (۸۶,۴۰۰ ثانیه) معتبر بماند.</p>
-              <p><span class="text-neutral-500">راهکار:</span> قفل توزیع‌شده Redis با عمر ۲۴ ساعته؛ دفتر کل فقط‌افزودنی در ScyllaDB.</p>
+            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-400">زمینه:</span> ارسال مجدد مکرر توسط پذیرندگان در زمان تایم‌اوت سوییچ بانکی.</p>
+              <p><span class="text-neutral-400">اصل:</span> قفل ایدامپوتنت باید بیش از طولانی‌ترین بازه مجدد (۸۶,۴۰۰ ثانیه) معتبر بماند.</p>
+              <p><span class="text-neutral-400">راهکار:</span> قفل توزیع‌شده Redis با عمر ۲۴ ساعته؛ دفتر کل فقط‌افزودنی در ScyllaDB.</p>
             </div>
           </div>
           <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
@@ -525,17 +525,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Incident 02 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-2">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-400 font-semibold">بحران ۰۲ · سوییچ مخابراتی</span>
-              <span class="text-emerald-400" dir="ltr">P0 RESOLVED</span>
+              <span class="text-neutral-300 font-semibold">بحران ۰۲ · سوییچ مخابراتی</span>
+              <span class="text-emerald-400 font-medium" dir="ltr">P0 RESOLVED</span>
             </div>
             <h3 class="text-sm font-bold text-white">افت خروجی پنجره لغزان SMPP</h3>
-            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-500">زمینه:</span> ترافیک انبوه تبلیغاتی مانع ارسال به‌موقع کدهای حساس رمز پویا شد.</p>
-              <p><span class="text-neutral-500">اصل:</span> صفوف پیامک‌های حیاتی نباید با پیامک‌های انبوه کانال مشترک داشته باشند.</p>
-              <p><span class="text-neutral-500">راهکار:</span> تفکیک صفوف؛ تراتلینگ پنجره لغزان SMPP (بین ۱۶ تا ۶۴ PDU).</p>
+            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-400">زمینه:</span> ترافیک انبوه تبلیغاتی مانع ارسال به‌موقع کدهای حساس رمز پویا شد.</p>
+              <p><span class="text-neutral-400">اصل:</span> صفوف پیامک‌های حیاتی نباید با پیامک‌های انبوه کانال مشترک داشته باشند.</p>
+              <p><span class="text-neutral-400">راهکار:</span> تفکیک صفوف؛ تراتلینگ پنجره لغزان SMPP (بین ۱۶ تا ۶۴ PDU).</p>
             </div>
           </div>
           <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
@@ -544,17 +544,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Incident 03 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4">
+        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-2">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-400 font-semibold">بحران ۰۳ · پایگاه داده کلان</span>
-              <span class="text-emerald-400" dir="ltr">P1 RESOLVED</span>
+              <span class="text-neutral-300 font-semibold">بحران ۰۳ · پایگاه داده کلان</span>
+              <span class="text-emerald-400 font-medium" dir="ltr">P1 RESOLVED</span>
             </div>
             <h3 class="text-sm font-bold text-white">پالایش ۱۰۰ میلیون رکورد Smart DB</h3>
-            <div class="text-xs text-neutral-300 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-500">زمینه:</span> ۹۴٫۷ میلیون رکورد بی‌ساختار و بدون ایندکس که پایگاه داده را قفل می‌کردند.</p>
-              <p><span class="text-neutral-500">اصل:</span> غنی‌سازی داده بدون ایجاد کندی در سوییچ تراکنش‌های اصلی.</p>
-              <p><span class="text-neutral-500">راهکار:</span> نرمال‌سازی چندلایه و الگوریتم‌های فونتیک با دقت پیش‌بینی ۷۰ درصدی پیش از eKYC.</p>
+            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
+              <p><span class="text-neutral-400">زمینه:</span> ۹۴٫۷ میلیون رکورد بی‌ساختار و بدون ایندکس که پایگاه داده را قفل می‌کردند.</p>
+              <p><span class="text-neutral-400">اصل:</span> غنی‌سازی داده بدون ایجاد کندی در سوییچ تراکنش‌های اصلی.</p>
+              <p><span class="text-neutral-400">راهکار:</span> نرمال‌سازی چندلایه و الگوریتم‌های فونتیک با دقت پیش‌بینی ۷۰ درصدی پیش از eKYC.</p>
             </div>
           </div>
           <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
@@ -566,7 +566,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- SECTION 06: Architecture Intake & Consultation (Full-Width) -->
-    <section id="book" class="bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5">
+    <section id="book" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 hover:border-white/20 transition-all">
       <BookingSection locale="fa" />
     </section>
 
