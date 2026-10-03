@@ -1,59 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0b1120;
-  --color-bg-elevated: #111827;
-  --color-text: #f8fafc;
+  --color-obsidian: #090a0c;
+  --color-basalt: #111317;
+  --color-graphite: #101114;
+  --color-bone: #ededed;
+  --color-titanium: #94a3b8;
+  --color-copper: #d97706;
+  --color-emerald-nominal: #10b981;
+
+  --color-bg: #090a0c;
+  --color-bg-elevated: #111317;
+  --color-text: #ededed;
   --color-text-muted: #94a3b8;
 
-  --color-fintech-bg: #0b1120;
-  --color-fintech-card: #111827;
-  --color-fintech-gold: #e2c974;
-  --color-fintech-gold-bright: #fbbf24;
-  --color-fintech-cyan: #06b6d4;
-  --color-fintech-cobalt: #3b82f6;
-  --color-fintech-emerald: #10b981;
-  --color-fintech-text: #f8fafc;
-  --color-fintech-muted: #94a3b8;
   --font-mono-fintech: "IBM Plex Mono", monospace;
-  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #0b1120;
-  color: #f8fafc;
+  background-color: #090a0c;
+  color: #ededed;
 }
 
 body {
-  background-color: #0b1120;
-  background-image: radial-gradient(ellipse at 50% -10%, rgba(6, 182, 212, 0.09) 0%, rgba(14, 165, 233, 0.04) 35%, rgba(11, 17, 32, 0) 70%);
-  background-attachment: fixed;
-  color: #f8fafc;
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #090a0c;
+  color: #ededed;
+  font-family: 'Inter', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: hidden;
   margin: 0;
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-theme="rugged"] {
-  --rugged-bg-panel: #111827;
-  --rugged-bg-nav: #0b1120;
-  --rugged-rust: #06b6d4;
-  --rugged-brass: #e2c974;
-  --rugged-olive-bg: #1e293b;
-  --rugged-olive-text: #38bdf8;
-  --rugged-olive-border: rgba(255, 255, 255, 0.1);
-  --rugged-paper: #f8fafc;
-  --rugged-muted: #94a3b8;
-
-  background-color: #0b1120;
-  color: #f8fafc;
+/* Background Atmospheric Layers */
+.grid-blueprint-16 {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-[data-theme="rugged"] body {
-  background-color: #0b1120;
-  color: #f8fafc;
+.copper-edge-reflection {
+  background: radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.05) 0%, transparent 60%);
+}
+
+.slate-telemetry-gradient {
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(148, 163, 184, 0.06) 0%, transparent 70%);
 }
 
 .rugged-hatch {
@@ -67,9 +61,9 @@ body {
 }
 
 .rugged-panel {
-  background-color: rgba(17, 24, 39, 0.7);
+  background-color: rgba(17, 19, 23, 0.75);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 1rem;
   position: relative;
 }
@@ -78,9 +72,9 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background-color: rgba(255, 255, 255, 0.03);
-  color: #e2c974;
+  color: #ededed;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.05em;

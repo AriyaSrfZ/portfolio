@@ -57,16 +57,18 @@ const groups = isFa ? groupsFa : groupsEn;
       : 'What 15+ years of production switches, fraud loops, and SMS infrastructure actually adds up to.'}
   </p>
 
-  <div class="grid sm:grid-cols-2 gap-6">
+  <div class="grid sm:grid-cols-2 gap-5">
     {groups.map((group) => (
-      <div class="bg-[#111827]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl ring-1 ring-white/5 hover:border-white/20 transition-all duration-300">
-        <h3 class="font-bold text-sm uppercase tracking-wider mb-4 text-[#e2c974] flex items-center gap-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4]"></span>
+      <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-xl p-5 shadow-2xl ring-1 ring-white/[0.03] hover:border-white/15 transition-all">
+        <h3 class="font-bold text-xs uppercase tracking-wider mb-3.5 text-[#ededed] flex items-center gap-2 font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
           {group.title}
         </h3>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-1.5">
           {group.items.map((item) => (
-            <span class="text-xs px-3 py-1.5 bg-[#0b1120]/80 border border-white/10 rounded-lg text-[#38bdf8] font-medium hover:bg-white/[0.08] transition-colors">{item}</span>
+            <span class="text-[11px] font-mono px-2.5 py-1 bg-[#090a0c]/80 border border-white/[0.06] rounded-md text-[#94a3b8] hover:text-[#ededed] hover:border-white/15 transition-colors">
+              [{item}]
+            </span>
           ))}
         </div>
       </div>

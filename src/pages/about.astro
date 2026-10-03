@@ -9,52 +9,52 @@ import CoreCompetencies from '../components/CoreCompetencies.astro';
   description="Senior Product Manager & Technical Systems Architect leading high-throughput payment infrastructure, SMS switches, fraud forensics, and data pipelines."
 >
   <!-- Bio Header Section -->
-  <section class="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-12 text-center font-sans">
-    <div class="relative inline-block mx-auto mb-6">
-      <div class="absolute -inset-8 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.14),transparent_50%)] blur-2xl z-0"></div>
-      <div class="relative z-10 w-28 h-28 rounded-2xl p-1 bg-gradient-to-b from-white/20 to-white/5 border border-white/10 shadow-2xl overflow-hidden">
+  <section class="relative z-10 max-w-4xl mx-auto px-6 pt-24 pb-10 text-center font-sans">
+    <div class="relative inline-block mx-auto mb-5">
+      <div class="relative z-10 w-24 h-24 rounded-2xl p-1 bg-[#111317] border border-white/[0.08] shadow-2xl overflow-hidden">
         <img
           src={`${import.meta.env.BASE_URL}photos/ariya.jpg`}
           alt="Ariya Sarrafzadeh"
-          class="w-full h-full object-cover rounded-xl"
+          class="w-full h-full object-cover rounded-xl filter grayscale contrast-110 brightness-95"
         />
       </div>
     </div>
     
-    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3 text-[#f8fafc]">Ariya Sarrafzadeh</h1>
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2 text-[#ededed]">Ariya Sarrafzadeh</h1>
     
     <!-- Sub-head positioning statement -->
-    <div class="max-w-2xl mx-auto mb-6">
-      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#e2c974] font-mono">
-        Senior Product Manager &amp; Technical Systems Architect
+    <div class="max-w-2xl mx-auto mb-4">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.07] text-xs font-semibold uppercase tracking-wider text-[#94a3b8] font-mono">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+        Principal Systems Architect &amp; Technical Product Leader
       </span>
     </div>
 
     <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
       15+ years designing, building, and operating high-availability financial switches,
-      telecom aggregators, and forensic fraud platforms. The work is hands-on systems architecture and product leadership:
+      telecom aggregators, and forensic fraud platforms. Hands-on systems architecture and product leadership:
       Spring Cloud Gateway reactive routing, UAA stateless JWT delegation, Switch-PSP dynamic routing across 4 national PSPs (SEP, PEC, BPM, PEP),
       two-phase balance reservations in Double-Entry ACID Ledgers, PCI-DSS card vault encryption, and 24h early merchant settlements.
     </p>
   </section>
 
   <!-- Cornerstone Section: The 0-to-Scale Story -->
-  <section class="relative z-10 max-w-4xl mx-auto px-6 py-8 font-sans">
-    <div class="bg-[#141210]/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-10 shadow-xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
-      <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-        <div class="flex items-center gap-3">
-          <span class="w-2 h-2 rounded-full bg-[#06b6d4]"></span>
-          <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-[#f8fafc]">
+  <section class="relative z-10 max-w-4xl mx-auto px-6 py-6 font-sans">
+    <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-white/[0.03]">
+      <div class="flex items-center justify-between border-b border-white/[0.06] pb-3 mb-5">
+        <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
+          <h2 class="text-base sm:text-lg font-bold text-[#ededed]">
             The 0-to-Scale Story
           </h2>
         </div>
-        <span class="text-[10px] font-mono text-[#06b6d4] uppercase px-2.5 py-1 rounded bg-[#06b6d4]/10 border border-[#06b6d4]/20">
+        <span class="text-[10px] font-mono text-neutral-400 uppercase px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]">
           Executive Foundation
         </span>
       </div>
 
       <!-- Cornerstone Content -->
-      <div class="p-6 bg-[#141210]/60 backdrop-blur-md border border-white/10 rounded-xl">
+      <div class="p-5 bg-[#090a0c]/80 border border-white/[0.06] rounded-xl">
         <p class="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed">
           I joined environments hampered by fragmented legacy systems and synchronous bottlenecks. Infrastructure was failing under the weight of national traffic spikes; gateway timeouts caused financial discrepancies, and untuned fraud rules choked legitimate revenue. I systematically tore down these bottlenecks: deployed Switch-PSP for dynamic routing across 4 national payment providers, built Double-Entry ACID Ledgers with two-phase reservations (AVAILABLE to RESERVED), enforced Redis token-bucket rate limiters, isolated PCI-DSS card data vaults, and unified credit/BNPL scoring with RabbitMQ eventual consistency. We scaled from handling thousands of localized events to processing 50,000+ TPS bursts with zero financial drift.
         </p>
@@ -65,8 +65,8 @@ import CoreCompetencies from '../components/CoreCompetencies.astro';
   <CoreCompetencies locale="en" />
   <Timeline locale="en" />
 
-  <section class="max-w-4xl mx-auto px-6 py-12 text-center">
-    <a href="#book" class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] transition-all duration-300 active:scale-[0.98] hover:-translate-y-1 hover:shadow-2xl hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37]">
+  <section class="max-w-4xl mx-auto px-6 py-10 text-center font-mono">
+    <a href="#book" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider bg-[#ededed] text-[#090a0c] hover:bg-white transition-all shadow-md active:scale-[0.98]">
       Book an Architecture Review ↓
     </a>
   </section>

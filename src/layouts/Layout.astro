@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import FloatingNavbar from '../components/react/FloatingNavbar';
+import BackgroundController from '../components/react/BackgroundController';
 
 interface Props {
   title: string;
@@ -22,7 +23,7 @@ const isFa = lang === 'fa';
 ---
 
 <!DOCTYPE html>
-<html lang={lang} dir={dir} data-theme={theme}>
+<html lang={lang} dir={dir} data-theme={theme} class="dark bg-[#090a0c]">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,19 +32,40 @@ const isFa = lang === 'fa';
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
 </head>
-<body class="min-h-screen bg-[#0b1120] text-[#f8fafc] selection:bg-[#06b6d4]/30 selection:text-[#e2c974] font-sans antialiased">
+<body class="min-h-screen bg-[#090a0c] text-[#ededed] selection:bg-white/10 selection:text-white font-sans antialiased overflow-x-hidden">
+  <BackgroundController client:load />
   <FloatingNavbar client:load locale={isFa ? 'fa' : 'en'} />
 
-  <main class="relative">
+  <main class="relative z-10">
     <slot />
   </main>
 
-  <footer class="relative z-10 border-t border-white/10 mt-24 py-12 px-6 text-center text-xs text-[#94a3b8] uppercase tracking-wider">
+  <footer class="relative z-10 border-t border-white/[0.07] mt-24 py-12 px-6 text-center text-xs text-[#94a3b8] uppercase tracking-wider font-mono">
     {isFa ? (
-      <p>© {new Date().getFullYear()} آریا صراف‌زاده. تمامی سامانه‌ها در وضعیت عملیاتی.</p>
+      <p>© {new Date().getFullYear()} آریا صراف‌زاده · کلیه سامانه‌ها عملیاتی</p>
     ) : (
-      <p>© {new Date().getFullYear()} Ariya Sarrafzadeh. All systems operational.</p>
+      <p>© {new Date().getFullYear()} Ariya Sarrafzadeh · NODE: NOMINAL · PRODUCTION READY</p>
     )}
   </footer>
+
+  <script>
+    import Lenis from 'lenis';
+
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  </script>
 </body>
 </html>

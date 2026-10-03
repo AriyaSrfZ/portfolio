@@ -10,16 +10,63 @@ const allPosts = await getCollection('blog');
 const whitepapers = allPosts
   .filter((post) => post.data.lang === 'en' || post.id.startsWith('en/'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// 4 Core Architectural Dossiers
+const primaryDossiers = [
+  {
+    num: "01",
+    tag: "LEDGERS & ACID",
+    title: "Payment Gateway Architecture: High-Throughput Switches & Distributed Ledgers",
+    slug: "payment-gateway",
+    metric: "50,000 TPS",
+    spec: "Two-Phase Balance Reservation (AVAILABLE ➔ RESERVED), ScyllaDB + Postgres ACID Ledgers, and Redis SETNX mutex locks with zero financial drift.",
+    chips: ["ISO 8583", "2PC RESERVATION", "REDIS SETNX", "SCYLLADB", "ACID"],
+  },
+  {
+    num: "02",
+    tag: "PSP ROUTING & SWITCH",
+    title: "National Telecom SMS Switching & Aggregator Infrastructure",
+    slug: "sms-infrastructure",
+    metric: "1B+ MSG / YR",
+    spec: "Carrier-level SMPP 3.4 sliding-window throttling (16–64 PDU), multi-tier queue isolation for banking OTPs, and sub-30ms automated gateway failovers.",
+    chips: ["SMPP 3.4", "ISO 8583", "SLIDING WINDOW", "QUEUE ISOLATION", "<30MS FAILOVER"],
+  },
+  {
+    num: "03",
+    tag: "SECURITY & EKYC",
+    title: "Forensic Fraud Mitigation: Edge Telemetry, 3DS 2.0 & Risk Graphs",
+    slug: "fraud-tracing",
+    metric: "<15ms SLA",
+    spec: "Central Bank 4-parameter Harim dynamic OTP, national Shahkar & Sabt-Ahval identity verification, and zero-storage CVV2/PIN token vault topology.",
+    chips: ["PCI-DSS", "HARIM OTP", "SHAHKAR eKYC", "NEO4J", "3DS 2.0"],
+  },
+  {
+    num: "04",
+    tag: "EVENT-DRIVEN CLEARING",
+    title: "Migrating a Monolithic Payments Flow to Event-Driven Architecture",
+    slug: "event-driven-migration",
+    metric: "0.00 IRR DRIFT",
+    spec: "RabbitMQ activity.end_state event mesh, Spring Batch nightly multi-pass reconciliation workers, and automated Paya/Satna clearing payouts.",
+    chips: ["RABBITMQ", "SPRING BATCH", "REFUND-MNG", "PAYA / SATNA", "EARLY PAYOUT"],
+  },
+];
 ---
 
-<Layout title="Engineering Whitepaper Suite — Ariya Sarrafzadeh" description="High-throughput switches, telecom aggregator mechanics, perimeter fraud defense, and distributed ledgers.">
-  <main class="max-w-[1400px] mx-auto px-6 pt-32 pb-24 font-sans">
-    <div class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-10 mb-10 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-xs text-[#06b6d4] tracking-wider font-semibold uppercase">SPECIFICATION SUITE · TECHNICAL INTELLIGENCE</span>
-        <div class="h-px flex-1 bg-white/10"></div>
+<Layout 
+  title="Engineering Whitepaper Suite — Ariya Sarrafzadeh" 
+  description="Production dossiers on ISO 8583 payment switches, double-entry ledgers, telecom aggregation, and automated reconciliation."
+>
+  <main class="max-w-[1400px] mx-auto px-6 pt-24 pb-20 font-sans">
+    
+    <!-- Header -->
+    <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl ring-1 ring-white/[0.03]">
+      <div class="flex items-center gap-2 mb-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
+        <span>PRODUCTION SPECIFICATIONS · TECHNICAL INTELLIGENCE</span>
+        <div class="h-px flex-1 bg-white/[0.06]"></div>
+        <span class="text-[10px] text-neutral-500 font-mono">14 DOSSIERS</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-bold uppercase text-[#f8fafc] mb-4 tracking-tight">
+      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[#ededed] mb-3 tracking-tight">
         Engineering Whitepaper Suite
       </h1>
       <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl">
@@ -27,53 +74,106 @@ const whitepapers = allPosts
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {whitepapers.map((doc, idx) => (
-        <article class="bg-[#111827]/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-xl ring-1 ring-white/5 group hover:border-cyan-500/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
-          <div>
-            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
-              <span class="text-[11px] font-bold text-[#e2c974] uppercase tracking-wider">
-                Spec 0{idx + 1} · {doc.data.category}
-              </span>
-              {doc.data.metric && (
-                <span class="text-[10px] font-mono text-[#38bdf8] uppercase px-2 py-0.5 rounded bg-white/[0.04] border border-white/5">
-                  {doc.data.metric}
+    <!-- 4 Core Featured Blueprint Dossiers -->
+    <div class="mb-10 space-y-3">
+      <div class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center gap-2">
+        <span class="w-1 h-1 rounded-full bg-emerald-500"></span>
+        <span>CORE ARCHITECTURAL DOSSIERS (MISSION-CRITICAL)</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {primaryDossiers.map((item) => (
+          <article class="bg-[#111317]/90 border border-white/[0.08] rounded-xl p-5 flex flex-col justify-between hover:border-white/20 transition-all duration-200 group">
+            <div>
+              <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-white/[0.06] font-mono text-[10px]">
+                <span class="text-[#ededed] font-semibold tracking-wider">
+                  DOSSIER {item.num} · {item.tag}
                 </span>
-              )}
+                <span class="text-[#10b981] px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]">
+                  {item.metric}
+                </span>
+              </div>
+
+              <h2 class="text-base font-bold text-[#ededed] group-hover:text-white transition-colors mb-2 leading-snug">
+                <a href={`${baseUrl}blog/${item.slug}/`}>
+                  {item.title}
+                </a>
+              </h2>
+
+              <p class="text-xs text-[#94a3b8] leading-relaxed mb-4">
+                {item.spec}
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {item.chips.map((chip) => (
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-300">
+                    [{chip}]
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <h2 class="text-lg font-bold text-[#f8fafc] uppercase group-hover:text-[#e2c974] transition mb-2">
-              <a href={`${baseUrl}blog/${doc.id.replace(/^en\//, '')}/`}>
-                {doc.data.title}
+            <div class="pt-3 border-t border-white/[0.06] flex justify-between items-center text-xs font-mono">
+              <span class="text-[10px] text-neutral-500 uppercase">ACID VERIFIED</span>
+              <a
+                href={`${baseUrl}blog/${item.slug}/`}
+                class="font-semibold text-[#ededed] hover:text-white flex items-center gap-1 group-hover:translate-x-0.5 transition-all"
+              >
+                Inspect Specification &rarr;
               </a>
-            </h2>
-
-            <p class="text-xs text-[#94a3b8] leading-relaxed mb-5">
-              {doc.data.description}
-            </p>
-
-            <div class="flex flex-wrap gap-2 mb-5">
-              {doc.data.technologies.map((t) => (
-                <span class="text-[10px] px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-[#38bdf8]">
-                  {t}
-                </span>
-              ))}
             </div>
-          </div>
+          </article>
+        ))}
+      </div>
+    </div>
 
-          <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
-            <span class="text-[11px] text-[#94a3b8] uppercase font-mono">
-              {doc.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
-            </span>
-            <a
-              href={`${baseUrl}blog/${doc.id.replace(/^en\//, '')}/`}
-              class="font-bold text-[#06b6d4] uppercase group-hover:underline flex items-center gap-1.5 transition-colors"
-            >
-              Read Specification &rarr;
-            </a>
-          </div>
-        </article>
-      ))}
+    <!-- Complete Specification Library -->
+    <div class="space-y-3">
+      <div class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center gap-2">
+        <span class="w-1 h-1 rounded-full bg-white/40"></span>
+        <span>ALL FIELD NOTES &amp; ARCHITECTURAL SPECIFICATIONS ({whitepapers.length})</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {whitepapers.map((doc, idx) => (
+          <article class="bg-[#111317]/70 border border-white/[0.06] rounded-xl p-4 flex flex-col justify-between hover:border-white/15 transition-all group">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/[0.06] pb-2 mb-3 font-mono text-[10px]">
+                <span class="text-neutral-400 uppercase">
+                  SPEC {idx < 9 ? `0${idx + 1}` : idx + 1} · {doc.data.category}
+                </span>
+                {doc.data.metric && (
+                  <span class="text-neutral-300 px-1.5 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]">
+                    {doc.data.metric}
+                  </span>
+                )}
+              </div>
+
+              <h3 class="text-sm font-bold text-[#ededed] group-hover:text-white transition-colors mb-2 leading-snug">
+                <a href={`${baseUrl}blog/${doc.id.replace(/^en\//, '')}/`}>
+                  {doc.data.title}
+                </a>
+              </h3>
+
+              <p class="text-xs text-[#94a3b8] leading-relaxed mb-4 line-clamp-2">
+                {doc.data.description}
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-white/[0.06] flex justify-between items-center text-[11px] font-mono">
+              <span class="text-neutral-500">
+                {doc.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+              </span>
+              <a
+                href={`${baseUrl}blog/${doc.id.replace(/^en\//, '')}/`}
+                class="text-[#ededed] hover:text-white flex items-center gap-1 font-medium"
+              >
+                Read &rarr;
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </main>
 </Layout>

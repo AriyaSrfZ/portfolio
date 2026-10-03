@@ -12,199 +12,169 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 const proofMatrix = isFa
   ? [
-      { val: "۱۵+ سال", label: "معماری زیرساخت و راهبری محصول" },
-      { val: "۱B+ پیامک", label: "هاب ملی مخابرات و SMPP سالانه" },
-      { val: "۵۰K TPS", label: "ظرفیت اوج پردازش هم‌روند" },
-      { val: "زیر ۱۵ms", label: "مهلت حلقه بلادرنگ مهار تقلب" },
-      { val: "مغایرت مالی صفر", label: "در بیش از ۵۰ هزار رویداد تسویه روزانه" },
+      { val: "۱۵+ سال", label: "معماری سامانه‌های مقیاس‌پذیر", tag: "زیرساخت حیاتی", href: "#payment-settlement" },
+      { val: "۱B+ پیامک", label: "هاب ملی مخابرات و SMPP 3.4", tag: "کنترل جریان", href: "#payment-switch" },
+      { val: "۵۰K TPS", label: "ظرفیت اوج پردازش هم‌روند", tag: "سوییچ شتاب", href: "#payment-switch" },
+      { val: "زیر ۱۵ms", label: "مهلت حلقه ارزیابی ریسک", tag: "گارد تقلب", href: "#fraud-forensics" },
+      { val: "مغایرت صفر", label: "در ۵۰,۰۰۰+ رویداد تسویه روزانه", tag: "تراز ریاضی", href: "#reconciliation-engine" },
     ]
   : [
-      { val: "15+ YEARS", label: "Production Infrastructure" },
-      { val: "1,000,000,000+", label: "SMS Messages Routed / Year" },
-      { val: "50,000 TPS", label: "Combined Peak Throughput" },
-      { val: "<15ms", label: "Real-Time Fraud Loop SLA" },
-      { val: "Zero Financial Drift", label: "Across 50,000+ daily clearing events" },
+      { val: "15+ YRS", label: "Production Infrastructure", tag: "CRITICAL CORE", href: "#payment-settlement" },
+      { val: "1B+ SMS", label: "SMPP 3.4 Hub Messages / Year", tag: "FLOW CONTROL", href: "#payment-switch" },
+      { val: "50K TPS", label: "Peak Concurrent Throughput", tag: "H2H SWITCH", href: "#payment-switch" },
+      { val: "<15ms SLA", label: "Real-Time Fraud Risk Loop", tag: "GRAPH FORENSICS", href: "#fraud-forensics" },
+      { val: "ZERO DRIFT", label: "Across 50K+ Daily Clearing Batches", tag: "ACID BALANCED", href: "#reconciliation-engine" },
     ];
 
-const mailtoSubject = encodeURIComponent("Inquiry: Systems Architecture & Product Leadership");
+const chips = ["ISO 8583", "IDEMPOTENCY", "ACID LEDGERS", "SMPP 3.4", "SCYLLADB", "RABBITMQ"];
+
+const mailtoSubject = encodeURIComponent("Inquiry: Systems Architecture & Technical Product Leadership");
 const mailtoHref = `mailto:ariasg2002@gmail.com?subject=${mailtoSubject}`;
 const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 ---
 
-<header id="overview" class="relative pt-28 pb-12 border-b border-white/10 bg-[#0b1120]/70 backdrop-blur-md overflow-hidden font-sans">
-  <!-- Ethereal cyan & oceanic specular glow matching sample -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4/5 max-w-6xl h-80 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.14),rgba(14,165,233,0.05)_45%,transparent_75%)] pointer-events-none"></div>
-
-  <div class="max-w-[1600px] mx-auto px-6 relative z-10">
-    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-stretch">
+<header id="overview" class="relative pt-20 pb-10 border-b border-white/[0.07] bg-[#090a0c]/90 overflow-hidden font-sans">
+  <div class="max-w-[1500px] mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
       
-      <!-- Identity Card: Frosted Midnight Glass matching sample -->
-      <div class="xl:col-span-4 flex flex-col justify-between bg-[#111827]/75 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(6,182,212,0.12)]">
+      <!-- Identity & Node Telemetry Card -->
+      <div class="lg:col-span-4 flex flex-col justify-between bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-5 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
         <div>
-          <!-- Clean Portrait Container -->
-          <div class="relative w-full aspect-[4/5] max-h-[440px] rounded-2xl overflow-hidden border border-white/10 shadow-lg group">
+          <!-- Compact Portrait Container -->
+          <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden border border-white/[0.08] bg-[#090a0c] shadow-inner group">
             <img
               src={`${baseUrl}photos/ariya.jpg`}
               alt="Ariya Sarrafzadeh"
-              class="w-full h-full object-cover object-top filter contrast-105 brightness-100 transition-transform duration-700 group-hover:scale-[1.02]"
+              class="w-full h-full object-cover object-top filter grayscale contrast-110 brightness-95 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.02]"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#111317] via-transparent to-transparent pointer-events-none opacity-80"></div>
+            
+            <!-- Floating Operational Status Pip -->
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono font-medium text-neutral-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
+              <span>NODE: NOMINAL</span>
+            </div>
           </div>
 
-          <!-- Profile Details & Status Pill (Sample layout) -->
-          <div class="mt-4 pt-3 flex items-start justify-between gap-3">
+          <!-- Name & Title -->
+          <div class="mt-4 pt-1 flex items-start justify-between gap-3">
             <div>
-              <h2 class="text-xl font-bold text-[#f8fafc] tracking-tight">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</h2>
-              <p class="text-xs text-[#94a3b8] mt-0.5">{isFa ? 'مدیر ارشد محصول فنی و معمار سیستم' : 'Principal Systems Architect & Product Leader'}</p>
+              <h1 class="text-xl font-bold text-[#ededed] tracking-tight">
+                {isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}
+              </h1>
+              <p class="text-xs text-[#94a3b8] mt-0.5 font-mono">
+                {isFa ? 'مدیر ارشد محصول فنی و معمار سیستم' : 'Technical Product Leader · Systems Architect'}
+              </p>
             </div>
-
-            <!-- Glowing Emerald Status Pill -->
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold shadow-[0_0_12px_rgba(16,185,129,0.25)] shrink-0">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>{isFa ? 'فعال در تولید' : 'Active / Expert'}</span>
+            
+            <span class="text-[10px] font-mono text-neutral-500 border border-white/[0.06] px-2 py-0.5 rounded bg-white/[0.02]">
+              UTC+3:30
             </span>
           </div>
         </div>
 
-        <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-[11px] text-[#94a3b8]">
-          <span>{isFa ? 'پروتکل‌ها و دفاتر کل' : 'Protocols & Ledgers'}</span>
-          <span class="text-[#38bdf8] font-mono font-medium">ISO 8583 · SMPP 3.4 · ScyllaDB</span>
+        <!-- Code Chips -->
+        <div class="mt-5 pt-3.5 border-t border-white/[0.06]">
+          <div class="text-[10px] font-mono uppercase text-neutral-500 tracking-wider mb-2">
+            {isFa ? 'پروتکل‌ها و موتورهای توزیع‌شده' : 'Protocols & Distributed Engines'}
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            {chips.map((chip) => (
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-[#94a3b8]">
+                [{chip}]
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
-      <!-- Main Narrative & Proof Matrix matching sample -->
-      <div class="xl:col-span-8 flex flex-col justify-between bg-[#111827]/75 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+      <!-- Main Narrative & Proof Matrix -->
+      <div class="lg:col-span-8 flex flex-col justify-between bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-7 shadow-2xl ring-1 ring-white/[0.03] transition-all duration-300 hover:border-white/15">
         <div>
-          <!-- Header Tag -->
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-[#06b6d4] font-medium mb-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#06b6d4] animate-pulse"></span>
-            <span>{isFa ? 'معمار ارشد زیرساخت و مدیر محصول فنی' : 'SYSTEMS ARCHITECT & PRODUCT LEADER'}</span>
+          <!-- Header Status Pip -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.07] text-[10px] font-mono text-[#94a3b8] tracking-wider uppercase mb-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
+            <span>{isFa ? 'معماری زیرساخت‌های بانکی و مخابراتی' : 'MISSION-CRITICAL SYSTEMS · FINTECH & TELECOM'}</span>
           </div>
 
-          <!-- Headline matching sample -->
-          <h1 class="text-2xl sm:text-3xl lg:text-[2.6rem] font-bold tracking-tight text-[#f8fafc] leading-[1.18] mt-1">
+          <!-- Main Headline -->
+          <h2 class="text-2xl sm:text-3xl lg:text-[2.2rem] font-bold tracking-tight text-[#ededed] leading-snug mt-1">
             {isFa 
-              ? 'معماری سیستم‌های پرترافیک، سوییچ‌های مالی و زیرساخت مخابراتی' 
-              : 'High-Throughput Financial Switches & Telecom Infrastructure'}
-          </h1>
+              ? 'معماری سوییچ‌های مالی، دفاتر کل دوطرفه و روتینگ مخابراتی در مقیاس بالا' 
+              : 'High-Throughput Financial Switches, Double-Entry Ledgers & Telecom Routing'}
+          </h2>
           
           <!-- Role Subtitle -->
-          <p class="text-xs sm:text-sm font-medium text-[#e2c974] mt-2.5 tracking-wide">
+          <p class="text-xs sm:text-sm text-[#94a3b8] mt-2 font-mono">
             {isFa 
-              ? 'معمار ارشد زیرساخت و مدیر ارشد محصول فنی · سوییچ‌های پرداخت بانکی، هاب‌های ملی پیام‌رسانی و خطوط داده' 
-              : 'Principal Systems Architect & Technical Product Leader · Telecom, Payments & AI Infrastructure'}
+              ? 'راهبری محصول فنی در سامانه‌های بانکی شاپرک، هاب‌های ملی پیام‌رسانی و دفاتر کل فقط‌افزودنی' 
+              : 'Principal Systems Architect & Technical Product Leader · Banking Switches, Telecom Hubs & Distributed Ledgers'}
           </p>
 
-          <!-- Authentic Human-Crafted Narrative -->
-          <div class="mt-5 text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl space-y-3">
+          <!-- Authentic Human Narrative -->
+          <div class="mt-4 text-[#94a3b8] text-xs sm:text-sm leading-relaxed space-y-2.5 max-w-3xl">
             <p>
               {isFa
-                ? 'بلوغ و کارآمدی نقشه‌های محصول در گلوگاه‌های توزیع‌شده شبکه و لبه‌های اتصال زیرساختی محک می‌خورند. هنگامی که درگاه شاپرک یا سوییچ شتاب تحت فشار ترافیک پاسخ نمی‌دهد، یا مرکز پیامک اپراتور تاییدیه تحویل (DLR) را معلق می‌کند، ساختارهای خام به سرعت به مغایرت مانده‌حساب و بحران‌های مالی بدل می‌شوند.'
-                : 'Production roadmaps live or die at distributed network boundaries. When upstream banking switches time out under load, or telecom aggregators silently delay SMS delivery receipts, naive application architectures quickly collapse into balance drift and manual recovery queues.'}
+                ? 'بلوغ محصول زمانی سنجیده می‌شود که سوییچ‌های بالا‌دستی بانکی در اوج ترافیک با تاخیر مواجه می‌شوند، یا اپراتورهای مخابراتی رسید تحویل (DLR) را متوقف می‌کنند. طراحی یک سیستم قابل اتکا نیازمند ایزوله‌سازی دقیق گسل‌ها، جلوگیری قاطع از دوباره‌پرداخت و تضمین ریاضی تراز حساب‌ها است.'
+                : 'Production roadmaps are validated at distributed boundaries. When upstream banking switches timeout under peak traffic or telecom aggregators throttle delivery receipts, application layers without strict concurrency controls collapse into unresolvable balance drift and manual recovery backlogs.'}
             </p>
             <p>
               {isFa
-                ? 'تمرکز من بر پیوند زدن استراتژی محصول با معماری سامانه‌های حیاتی در سه محور است: هاب‌های پیام‌رسانی مخابراتی در مقیاس بیش از یک میلیارد پیام در سال و کنترل پیشرفته پنجره لغزان SMPP 3.4؛ سوییچ‌های پرداخت ISO 8583 و دفاتر کل فقط‌افزودنی با تضمین عدم مغایرت حتی یک ریال؛ و پلتفرم‌های کلان‌داده با پردازش ستونی که تصمیم‌گیری‌های محصول را مستقیماً به تله‌متری داده‌های واقعی زنجیره می‌کنند.'
-                : 'I bridge technical product leadership with hands-on systems architecture across three core domains: billion-scale SMPP 3.4 telecom hubs handling 50,000 TPS burst traffic; ISO 8583 payment gateways and append-only ledgers where financial truth is mathematically verified; and agentic engineering workflows that accelerate delivery while anchoring every decision in production telemetry.'}
+                ? 'تمرکز من بر یکپارچه‌سازی مدیریت محصول فنی با معماری عملیاتی است: سوییچ‌های پرداخت ISO 8583 با تاخیر زیر ۳۰ میلی‌ثانیه، تخصیص دومرحله‌ای موجودی و دفاتر کل ACID، و هاب‌های مخابراتی SMPP با ظرفیت ۵۰ هزار تراکنش هم‌روند.'
+                : 'I bridge technical product management with low-latency infrastructure engineering: ISO 8583 multi-PSP routing with sub-30ms failovers, two-phase balance reservation machines with append-only ScyllaDB ledgers, and national SMPP 3.4 telecom gateways engineered for 50,000 TPS burst capacity.'}
             </p>
           </div>
 
-          <!-- Glassy Metric Tabs With Icons (Interactive jump cards) -->
-          <div class="mt-8 pt-6 border-t border-white/10">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5">
-              <!-- Tab 1: Years Experience -->
-              <a href="#blueprints" aria-label={isFa ? 'مشاهده سوابق و نقشه‌ها' : 'Jump to Experience & Blueprints'} class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4] shadow-xl group block">
-                <div>
-                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" dir="ltr">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                    </svg>
+          <!-- Proof Matrix: Asymmetrical Industrial Metric Cards -->
+          <div class="mt-6 pt-5 border-t border-white/[0.06]">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {proofMatrix.map((item) => (
+                <a
+                  href={item.href}
+                  class="bg-[#090a0c]/70 border border-white/[0.07] rounded-xl p-3 flex flex-col justify-between transition-all duration-200 hover:border-white/20 hover:-translate-y-0.5 group block"
+                >
+                  <div>
+                    <div class="text-[9px] font-mono uppercase tracking-wider text-neutral-500 mb-1">
+                      {item.tag}
+                    </div>
+                    <div class="text-xl sm:text-2xl font-bold font-mono text-[#ededed] tracking-tight group-hover:text-white transition-colors">
+                      {item.val}
+                    </div>
                   </div>
-                  <div class="text-2xl sm:text-3xl font-bold font-mono text-[#f8fafc] tracking-tight">{isFa ? '۱۵+ سال' : '15+'}</div>
-                  <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'سابقه مهندسی' : 'Years Experience'}</div>
-                </div>
-                <div class="text-[11px] text-[#94a3b8] mt-2 group-hover:text-cyan-400 transition-colors">{isFa ? 'زیرساخت با پایداری ۹۹٫۹۹٪' : 'Proven Industry Expertise'} {isFa ? '←' : '→'}</div>
-              </a>
-
-              <!-- Tab 2: Messages Routed -->
-              <a href="#sms-gateway" aria-label={isFa ? 'مشاهده سوییچ پیامک ملی' : 'Jump to Telecom & SMS Infrastructure'} class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4] shadow-xl group block">
-                <div>
-                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" dir="ltr">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                    </svg>
+                  <div class="text-[11px] text-[#94a3b8] mt-2 leading-tight">
+                    {item.label}
                   </div>
-                  <div class="text-2xl sm:text-3xl font-bold font-mono text-[#f8fafc] tracking-tight">{isFa ? '۱B+' : '1B+'}</div>
-                  <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'پیامک سالانه' : 'Messages Routed'}</div>
-                </div>
-                <div class="text-[11px] text-[#94a3b8] mt-2 group-hover:text-cyan-400 transition-colors">{isFa ? 'هاب ملی مخابرات و SMPP' : 'Secure Global Routing'} {isFa ? '←' : '→'}</div>
-              </a>
-
-              <!-- Tab 3: Peak TPS (Champagne Gold Highlight Tab) -->
-              <a href="#payment-settlement" aria-label={isFa ? 'مشاهده سوییچ پرداخت و تسویه' : 'Jump to High-Performance Payment Switch'} class="bg-[#111827]/80 backdrop-blur-xl border border-[#d4af37]/40 ring-1 ring-[#d4af37]/20 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-[#e2c974] hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2c974] shadow-xl shadow-[#d4af37]/5 group block">
-                <div>
-                  <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-[#e2c974] mb-3 group-hover:scale-105 group-hover:bg-amber-500/25 transition-all">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" dir="ltr">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                    </svg>
-                  </div>
-                  <div class="text-2xl sm:text-3xl font-bold font-mono text-[#e2c974] tracking-tight">{isFa ? '۵۰K' : '50k'}</div>
-                  <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'اوج پردازش TPS' : 'Peak TPS'}</div>
-                </div>
-                <div class="text-[11px] text-[#e2c974]/80 mt-2 group-hover:text-[#e2c974] transition-colors">{isFa ? 'سوییچ تراکنش هم‌روند' : 'High-Performance Switches'} {isFa ? '←' : '→'}</div>
-              </a>
-
-              <!-- Tab 4: Fraud SLA -->
-              <a href="#fraud-forensics" aria-label={isFa ? 'مشاهده حلقه ارزیابی ریسک' : 'Jump to Fraud Forensics & Risk Loop'} class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4] shadow-xl group block">
-                <div>
-                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" dir="ltr">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                    </svg>
-                  </div>
-                  <div class="text-2xl sm:text-3xl font-bold font-mono text-[#f8fafc] tracking-tight">{isFa ? 'زیر ۱۵ms' : '<15ms'}</div>
-                  <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'مهلت ارزیابی ریسک' : 'Fraud SLA'}</div>
-                </div>
-                <div class="text-[11px] text-[#94a3b8] mt-2 group-hover:text-cyan-400 transition-colors">{isFa ? 'شناسایی و مهار در لحظه' : 'Real-Time Fraud Loop'} {isFa ? '←' : '→'}</div>
-              </a>
-
-              <!-- Tab 5: Business Outcome -->
-              <a href="#payment-settlement" aria-label={isFa ? 'مغایرت مالی صفر در تسویه' : 'Zero Financial Drift in Settlements'} class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-1 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4] shadow-xl group block">
-                <div>
-                  <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-[#06b6d4] mb-3 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" dir="ltr">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-                    </svg>
-                  </div>
-                  <div class="text-lg sm:text-xl font-bold font-mono text-[#f8fafc] tracking-tight">{isFa ? 'مغایرت مالی صفر' : 'Zero Drift'}</div>
-                  <div class="text-xs font-semibold text-[#f8fafc] mt-1">{isFa ? 'دقت دفاتر کل' : 'Zero Financial Drift'}</div>
-                </div>
-                <div class="text-[11px] text-[#94a3b8] mt-2 group-hover:text-cyan-400 transition-colors">
-                  {isFa ? 'در بیش از ۵۰ هزار رویداد تسویه روزانه' : 'Across 50,000+ daily clearing events'} {isFa ? '←' : '→'}
-                </div>
-              </a>
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         <!-- Action CTAs -->
-        <div class="mt-8 pt-5 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
+        <div class="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-4 items-center justify-between">
           <div class="flex flex-wrap gap-3">
-            <a href="#blueprints" aria-label={isFa ? 'مشاهده نقشه‌های معماری' : 'Inspect Architecture Blueprints'} class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#e2c974] text-[#0b1120] font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg shadow-[#d4af37]/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e2c974]">
+            <a
+              href="#payment-settlement"
+              class="px-4 py-2 rounded-lg bg-[#ededed] text-[#090a0c] font-semibold text-xs uppercase tracking-wider hover:bg-white transition-all duration-200 hover:-translate-y-0.5 shadow-md active:scale-[0.98]"
+            >
               {isFa ? 'مشاهده نقشه‌های معماری ↓' : 'Inspect Blueprints ↓'}
             </a>
-            <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} aria-label={isFa ? 'مستندات معماری و مقالات فنی' : 'Technical Whitepapers'} class="px-5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 text-[#f8fafc] font-bold text-xs uppercase tracking-wider hover:border-[#06b6d4]/40 hover:text-[#06b6d4] hover:bg-white/[0.06] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06b6d4]">
-              {isFa ? 'مستندات معماری و مقالات (۴) →' : 'Technical Whitepapers (4) →'}
+            <a
+              href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
+              class="px-4 py-2 rounded-lg bg-white/[0.03] border border-white/[0.08] text-[#ededed] font-medium text-xs uppercase tracking-wider hover:border-white/20 hover:bg-white/[0.06] transition-all duration-200 hover:-translate-y-0.5"
+            >
+              {isFa ? 'مستندات مهندسی (۱۴) →' : 'Technical Dossiers (14) →'}
             </a>
           </div>
 
-          <div class="flex items-center gap-4 text-xs font-mono">
-            <a href={mailtoHref} aria-label="Direct Email" class="text-[#e2c974] hover:underline transition-colors focus-visible:outline-1 focus-visible:outline-[#e2c974]">ariasg2002@gmail.com</a>
-            <span class="text-white/20">|</span>
-            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="text-[#94a3b8] hover:text-[#f8fafc] transition-colors focus-visible:outline-1 focus-visible:outline-[#f8fafc]">LinkedIn ↗</a>
+          <div class="flex items-center gap-3 text-xs font-mono text-neutral-400">
+            <a href={mailtoHref} class="hover:text-white transition-colors">ariasg2002@gmail.com</a>
+            <span class="text-white/20">/</span>
+            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn ↗</a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </header>

@@ -17,31 +17,38 @@ const isFa = lang === 'fa';
 <Layout title={`${title} — Ariya Sarrafzadeh`} description={description}>
   <article
     dir={isFa ? 'rtl' : 'ltr'}
-    class="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-24 font-sans"
+    class="relative z-10 max-w-3xl mx-auto px-6 pt-24 pb-20 font-sans"
   >
     <a
       href={isFa ? `${import.meta.env.BASE_URL}fa/#blueprints` : `${import.meta.env.BASE_URL}#blueprints`}
-      class="text-xs uppercase tracking-wider text-[#94a3b8] hover:text-[#e2c974] inline-flex items-center gap-1.5 transition-colors"
+      class="text-xs uppercase tracking-wider text-[#94a3b8] hover:text-[#ededed] inline-flex items-center gap-1.5 transition-colors font-mono"
     >
       {isFa ? '→ بازگشت به نقشه‌های معماری' : '← Back to architecture blueprints'}
     </a>
 
-    <h1 class="text-3xl font-bold tracking-tight mt-6 mb-2 text-[#f8fafc]">{title}</h1>
-    <p class="text-xs text-[#94a3b8] mb-4">
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight mt-5 mb-2 text-[#ededed]">{title}</h1>
+    <p class="text-xs text-[#94a3b8] mb-4 font-mono">
       {isFa
         ? date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })
         : date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
     </p>
 
-    <div class="flex flex-wrap gap-2 mb-6">
+    <div class="flex flex-wrap gap-1.5 mb-6">
       {technologies.map((tech) => (
-        <span class="text-xs px-3 py-1 rounded-lg bg-white/[0.03] border border-white/10 text-[#38bdf8] font-mono">{tech}</span>
+        <span class="text-[10px] px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-400 font-mono">
+          [{tech}]
+        </span>
       ))}
     </div>
 
-    {metric && <p class="bg-[#111827]/80 border border-white/10 rounded-xl px-4 py-3 text-[#e2c974] font-bold text-xs uppercase mb-8 inline-block shadow-lg">{metric}</p>}
+    {metric && (
+      <div class="bg-[#111317]/90 border border-white/[0.07] rounded-xl px-4 py-2.5 text-[#10b981] font-bold text-xs uppercase mb-8 inline-flex items-center gap-2 font-mono shadow-lg">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
+        <span>{metric}</span>
+      </div>
+    )}
 
-    <div class="max-w-none text-sm leading-relaxed [&_h2]:text-[#e2c974] [&_h2]:text-xl [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:border-b [&_h2]:border-white/10 [&_h2]:pb-2 [&_h2]:font-bold [&_h3]:text-[#06b6d4] [&_h3]:text-lg [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:font-bold [&_p]:mb-6 [&_p]:text-[#f8fafc] [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:ps-5 [&_ul]:mb-6 [&_li]:mb-2 [&_li]:text-[#94a3b8] [&_table]:w-full [&_table]:border-collapse [&_table]:mb-8 [&_table]:text-sm [&_th]:border [&_th]:border-white/10 [&_th]:p-3 [&_th]:text-start [&_th]:text-[#e2c974] [&_th]:bg-[#111827] [&_td]:border [&_td]:border-white/10 [&_td]:p-3 [&_td]:text-[#f8fafc] [&_strong]:text-[#38bdf8] [&_strong]:font-bold [&_pre]:!whitespace-pre-wrap [&_pre]:!break-words [&_pre]:!bg-[#0b1120] [&_pre]:!border [&_pre]:!border-white/10 [&_pre]:p-4 [&_pre]:my-6 [&_pre]:rounded-xl [&_pre]:[direction:ltr] [&_pre]:text-left [&_code]:!text-[#38bdf8] [&_code]:!font-mono [&_code]:!bg-transparent [&_code]:!p-0 [&_code]:[direction:ltr] [&_blockquote]:border [&_blockquote]:border-white/10 [&_blockquote]:bg-[#111827]/60 [&_blockquote]:p-4 [&_blockquote]:my-6 [&_blockquote]:rounded-xl [&_blockquote]:italic [&_blockquote]:text-[#e2c974]">
+    <div class="max-w-none text-xs sm:text-sm leading-relaxed [&_h2]:text-[#ededed] [&_h2]:text-lg [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:border-b [&_h2]:border-white/[0.07] [&_h2]:pb-2 [&_h2]:font-bold [&_h3]:text-[#ededed] [&_h3]:text-base [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:font-bold [&_p]:mb-5 [&_p]:text-[#cbd5e1] [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:ps-5 [&_ul]:mb-5 [&_li]:mb-1.5 [&_li]:text-[#94a3b8] [&_table]:w-full [&_table]:border-collapse [&_table]:mb-6 [&_table]:text-xs [&_th]:border [&_th]:border-white/[0.07] [&_th]:p-2.5 [&_th]:text-start [&_th]:text-[#ededed] [&_th]:bg-[#111317] [&_td]:border [&_td]:border-white/[0.07] [&_td]:p-2.5 [&_td]:text-[#cbd5e1] [&_strong]:text-[#ededed] [&_strong]:font-semibold [&_pre]:!whitespace-pre-wrap [&_pre]:!break-words [&_pre]:!bg-[#090a0c] [&_pre]:!border [&_pre]:!border-white/[0.08] [&_pre]:p-4 [&_pre]:my-5 [&_pre]:rounded-xl [&_pre]:[direction:ltr] [&_pre]:text-left [&_code]:!text-[#ededed] [&_code]:!font-mono [&_code]:!bg-transparent [&_code]:!p-0 [&_code]:[direction:ltr] [&_blockquote]:border-l-2 [&_blockquote]:border-[#d97706] [&_blockquote]:bg-[#111317]/60 [&_blockquote]:p-3.5 [&_blockquote]:my-5 [&_blockquote]:rounded-r-xl [&_blockquote]:text-[#ededed]">
       <slot />
     </div>
   </article>
