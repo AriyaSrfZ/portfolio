@@ -37,7 +37,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       }
 
       // Scroll Spy / Intersection Observer for Active Section
-      const sectionIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'book'];
+      const sectionIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'book'];
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -65,7 +65,8 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         { label: '۰۳. احراز هویت', target: 'fraud-forensics', env: 'switch' as ActiveEnvironment },
         { label: '۰۴. مغایرت‌گیری', target: 'reconciliation-engine', env: 'recon' as ActiveEnvironment },
         { label: '۰۵. بحران‌ها', target: 'incident-dossiers', env: 'incidents' as ActiveEnvironment },
-        { label: '۰۶. مشاوره', target: 'book', env: 'core' as ActiveEnvironment },
+        { label: '۰۶. چرخه محصول', target: 'lifecycle', env: 'core' as ActiveEnvironment },
+        { label: '۰۷. مشاوره', target: 'book', env: 'core' as ActiveEnvironment },
       ]
     : [
         { label: '01. Ledger', target: 'payment-settlement', env: 'core' as ActiveEnvironment },
@@ -73,7 +74,8 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         { label: '03. eKYC', target: 'fraud-forensics', env: 'switch' as ActiveEnvironment },
         { label: '04. Reconcile', target: 'reconciliation-engine', env: 'recon' as ActiveEnvironment },
         { label: '05. Incidents', target: 'incident-dossiers', env: 'incidents' as ActiveEnvironment },
-        { label: '06. Consultation', target: 'book', env: 'core' as ActiveEnvironment },
+        { label: '06. Lifecycle', target: 'lifecycle', env: 'core' as ActiveEnvironment },
+        { label: '07. Consultation', target: 'book', env: 'core' as ActiveEnvironment },
       ];
 
   const handleNavClick = (targetId: string, env: ActiveEnvironment) => {
