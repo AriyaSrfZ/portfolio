@@ -35,31 +35,27 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
       ];
 
   useEffect(() => {
-    const sectionIds = sections.map((s) => s.id);
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
-
-    if (elements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter((e) => e.isIntersecting);
-        if (visibleEntries.length > 0) {
-          // Sort by intersection ratio or proximity to top
-          visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-          setActiveSection(visibleEntries[0].target.id);
+    const handleScroll = () => {
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 260 && rect.bottom > 180) {
+            setActiveSection(s.id);
+            return;
+          }
         }
-      },
-      {
-        rootMargin: '-15% 0px -40% 0px',
-        threshold: [0.1, 0.3, 0.6],
       }
-    );
+    };
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [sections]);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [isFa]);
 
   const currentIndex = sections.findIndex((s) => s.id === activeSection);
   const activeItem = sections[currentIndex] || sections[0];
@@ -94,59 +90,61 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
   return (
     <aside className="hidden lg:block lg:col-span-3 sticky top-18 space-y-3 font-sans select-none" dir={isFa ? 'rtl' : 'ltr'}>
       
-      {/* 1. MINIMIZED 1ST-PAGE BIO CARD (Fills the upper left side on scroll) */}
-      <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl relative overflow-hidden group">
-        <div className="flex items-center gap-3">
-          <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-white/20 shrink-0 bg-[#13161c]">
-            <img
-              src={`${baseUrl}photos/ariya.jpg`}
-              alt="Ariya Sarrafzadeh"
-              className="w-full h-full object-cover object-top"
-              loading="lazy"
-            />
+      {/* 1. MINIMIZED 1ST-PAGE BIO CARD (Appears on pages other than main page) */}
+      {activeSection !== 'overview' && (
+        <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl relative overflow-hidden group transition-all duration-300 animate-fadeIn">
+          <div className="flex items-center gap-3">
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-white/20 shrink-0 bg-[#13161c]">
+              <img
+                src={`${baseUrl}photos/ariya.jpg`}
+                alt="Ariya Sarrafzadeh"
+                className="w-full h-full object-cover object-top"
+                loading="lazy"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-white truncate font-mono">
+                {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}
+              </div>
+              <div className="text-[10px] text-neutral-400 truncate font-mono">
+                {isFa ? 'معمار ارشد سیستم و TPM' : 'Principal Systems Architect'}
+              </div>
+              <div className="flex items-center gap-1.5 text-[9px] font-mono text-emerald-400 mt-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>{isFa ? 'تهران · عملیاتی' : 'TEHRAN, IR · NOMINAL'}</span>
+              </div>
+            </div>
           </div>
-          <div className="min-w-0 flex-1">
-            <div className="text-xs font-bold text-white truncate font-mono">
-              {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}
-            </div>
-            <div className="text-[10px] text-neutral-400 truncate font-mono">
-              {isFa ? 'معمار ارشد سیستم و TPM' : 'Principal Systems Architect'}
-            </div>
-            <div className="flex items-center gap-1.5 text-[9px] font-mono text-emerald-400 mt-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{isFa ? 'تهران · عملیاتی' : 'TEHRAN, IR · NOMINAL'}</span>
-            </div>
-          </div>
-        </div>
 
-        <div className="flex items-center justify-between pt-3 mt-3 border-t border-white/5 text-[10px] font-mono text-neutral-300">
-          <a
-            href="#overview"
-            onClick={(e) => handleNavClick(e, 'overview')}
-            className="hover:text-white transition-colors flex items-center gap-1"
-          >
-            <span>↑</span>
-            <span>{isFa ? 'صفحه نخست' : 'Page 01 Overview'}</span>
-          </a>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between pt-3 mt-3 border-t border-white/5 text-[10px] font-mono text-neutral-300">
             <a
-              href="mailto:ariasg2002@gmail.com"
-              className="hover:text-white transition-colors"
+              href="#overview"
+              onClick={(e) => handleNavClick(e, 'overview')}
+              className="hover:text-white transition-colors flex items-center gap-1"
             >
-              Email
+              <span>↑</span>
+              <span>{isFa ? 'صفحه نخست' : 'Page 01 Overview'}</span>
             </a>
-            <span className="text-white/20">·</span>
-            <a
-              href="https://www.linkedin.com/in/ariya-sarrafzadeh/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              LinkedIn
-            </a>
+            <div className="flex items-center gap-2">
+              <a
+                href="mailto:ariasg2002@gmail.com"
+                className="hover:text-white transition-colors"
+              >
+                Email
+              </a>
+              <span className="text-white/20">·</span>
+              <a
+                href="https://www.linkedin.com/in/ariya-sarrafzadeh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* 2. ARCHITECTURE INDEX LIST */}
       <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl space-y-3">

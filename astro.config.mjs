@@ -11,5 +11,8 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'react-dom/client'],
+    },
   },
 });

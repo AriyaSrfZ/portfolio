@@ -35,25 +35,30 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         setSwitchTarget(`${normalizedBase}fa/${rel}${window.location.search}${window.location.hash}`);
       }
 
-      // Scroll Spy / Intersection Observer for Active Section
+      // Deterministic Scroll Spy
       const sectionIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'book'];
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(entry.target.id);
+      const handleNavScroll = () => {
+        for (const id of sectionIds) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 260 && rect.bottom > 180) {
+              setActiveSection(id);
+              return;
             }
-          });
-        },
-        { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
-      );
+          }
+        }
+        setActiveSection('');
+      };
 
-      sectionIds.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) observer.observe(el);
-      });
+      window.addEventListener('scroll', handleNavScroll, { passive: true });
+      window.addEventListener('resize', handleNavScroll, { passive: true });
+      handleNavScroll();
 
-      return () => observer.disconnect();
+      return () => {
+        window.removeEventListener('scroll', handleNavScroll);
+        window.removeEventListener('resize', handleNavScroll);
+      };
     }
   }, []);
 
@@ -90,7 +95,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
   return (
     <header className="fixed top-0 inset-x-0 w-full h-14 z-50 backdrop-blur-md bg-[#0b0d11]/85 border-b border-white/5 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+      <div className="w-full max-w-[1920px] 2xl:max-w-[2160px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-full flex items-center justify-between">
         
         {/* Left: Brand + Status Badge */}
         <div className="flex items-center gap-3">
