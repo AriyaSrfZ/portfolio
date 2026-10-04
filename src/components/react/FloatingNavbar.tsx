@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { getLangFromUrl } from '../../i18n/ui';
-import type { ActiveEnvironment } from './BackgroundController';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -16,13 +15,13 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   const defaultSwitchTarget = locale === 'fa' ? baseUrl : `${baseUrl}fa/`;
   const [switchTarget, setSwitchTarget] = useState<string>(defaultSwitchTarget);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const [activeSection, setActiveSection] = useState<string>('payment-settlement');
+  const [activePath, setActivePath] = useState<string>('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const detected = getLangFromUrl(new URL(window.location.href));
       setCurrentLang(detected);
+      setActivePath(window.location.pathname);
 
       const path = window.location.pathname;
       const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
@@ -35,59 +34,20 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       } else {
         setSwitchTarget(`${normalizedBase}fa/${rel}${window.location.search}${window.location.hash}`);
       }
-
-      // Scroll Spy / Intersection Observer for Active Section
-      const sectionIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'book'];
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(entry.target.id);
-            }
-          });
-        },
-        { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
-      );
-
-      sectionIds.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) observer.observe(el);
-      });
-
-      return () => observer.disconnect();
     }
   }, []);
 
   const navItems = isFa
     ? [
-        { label: '۰۱. دفتر کل', target: 'payment-settlement', env: 'core' as ActiveEnvironment },
-        { label: '۰۲. سوییچ', target: 'payment-switch', env: 'switch' as ActiveEnvironment },
-        { label: '۰۳. احراز هویت', target: 'fraud-forensics', env: 'switch' as ActiveEnvironment },
-        { label: '۰۴. مغایرت‌گیری', target: 'reconciliation-engine', env: 'recon' as ActiveEnvironment },
-        { label: '۰۵. بحران‌ها', target: 'incident-dossiers', env: 'incidents' as ActiveEnvironment },
-        { label: '۰۶. چرخه محصول', target: 'lifecycle', env: 'core' as ActiveEnvironment },
-        { label: '۰۷. مشاوره', target: 'book', env: 'core' as ActiveEnvironment },
+        { label: 'درباره من', href: '/fa/about/' },
+        { label: 'نمونهکارها', href: '/fa/work/' },
+        { label: 'مستندات معماری', href: '/fa/whitepapers/' },
       ]
     : [
-        { label: '01. Ledger', target: 'payment-settlement', env: 'core' as ActiveEnvironment },
-        { label: '02. Switch', target: 'payment-switch', env: 'switch' as ActiveEnvironment },
-        { label: '03. eKYC', target: 'fraud-forensics', env: 'switch' as ActiveEnvironment },
-        { label: '04. Reconcile', target: 'reconciliation-engine', env: 'recon' as ActiveEnvironment },
-        { label: '05. Incidents', target: 'incident-dossiers', env: 'incidents' as ActiveEnvironment },
-        { label: '06. Lifecycle', target: 'lifecycle', env: 'core' as ActiveEnvironment },
-        { label: '07. Consultation', target: 'book', env: 'core' as ActiveEnvironment },
+        { label: 'About', href: '/about/' },
+        { label: 'Case Studies', href: '/work/' },
+        { label: 'Whitepapers', href: '/whitepapers/' },
       ];
-
-  const handleNavClick = (e: React.MouseEvent, targetId: string, env: ActiveEnvironment) => {
-    setActiveSection(targetId);
-    setMobileMenuOpen(false);
-    window.dispatchEvent(new CustomEvent('ambient-env-change', { detail: env }));
-    const el = document.getElementById(targetId);
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <header className="fixed top-0 inset-x-0 w-full h-14 z-50 backdrop-blur-md bg-[#0b0d11]/85 border-b border-white/5 transition-all">
@@ -101,47 +61,34 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           >
             ARIYA SARRAFZADEH
           </a>
-          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/15 text-[11px] font-mono text-neutral-200">
+          <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/15 text-[11px] font-mono text-neutral-200">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>[TPM · FINTECH &amp; SWITCHES]</span>
           </span>
         </div>
 
-        {/* Right: Horizontal Section Pills + Language Toggle */}
+        {/* Center: Clean, Centered Navigation Pill */}
+        <nav className="hidden md:flex items-center gap-1 font-mono text-xs bg-white/[0.04] border border-white/10 rounded-full px-1.5 py-1">
+          {navItems.map((item) => {
+            const isActive = activePath === item.href || (item.href !== '/' && activePath.startsWith(item.href));
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`px-3 py-1 rounded-full transition-all font-mono ${
+                  isActive
+                    ? 'bg-white/15 text-white font-semibold shadow-sm'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.08]'
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Right: Language Switcher & Mobile Menu Button */}
         <div className="flex items-center gap-2">
-          {/* Desktop Nav Pills */}
-          <nav className="hidden lg:flex items-center gap-1 font-mono text-xs">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.target;
-              const targetHref = isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`;
-              return (
-                <a
-                  key={item.target}
-                  href={targetHref}
-                  onClick={(e) => handleNavClick(e, item.target, item.env)}
-                  className={`px-3 py-1.5 rounded-md transition-all font-mono ${
-                    isActive
-                      ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
-                      : 'text-neutral-200 hover:text-white hover:bg-white/[0.08] border border-transparent'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
-          </nav>
-
-          {/* Divider */}
-          <span className="hidden lg:block w-px h-4 bg-white/10 mx-1"></span>
-
-          {/* Secondary Links (Whitepapers / Case Studies) */}
-          <a
-            href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-mono text-neutral-200 hover:text-white transition-colors"
-          >
-            {isFa ? 'وایت‌پیپرها' : 'Dossiers'}
-          </a>
-
           {/* Language Switcher */}
           <a
             href={switchTarget}
@@ -154,7 +101,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 rounded-md text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
+            className="md:hidden p-1.5 rounded-md text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -170,29 +117,18 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
       {/* Mobile Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden w-full bg-[#0b0d11]/95 border-b border-white/10 px-6 py-4 space-y-2 backdrop-blur-xl">
-          <div className="grid grid-cols-2 gap-2 font-mono text-xs">
+        <div className="md:hidden w-full bg-[#0b0d11]/95 border-b border-white/10 px-6 py-4 space-y-2 backdrop-blur-xl">
+          <div className="flex flex-col gap-2 font-mono text-xs">
             {navItems.map((item) => (
               <a
-                key={item.target}
-                href={isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`}
-                onClick={(e) => handleNavClick(e, item.target, item.env)}
-                className="text-left px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5 text-neutral-300 hover:text-white block"
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-left px-3.5 py-2.5 rounded-lg bg-white/[0.03] border border-white/5 text-neutral-200 hover:text-white block"
               >
                 {item.label}
               </a>
             ))}
-          </div>
-          <div className="pt-3 border-t border-white/5 flex gap-4 text-xs font-mono">
-            <a href={isFa ? `${baseUrl}fa/work/` : `${baseUrl}work/`} className="text-neutral-400 hover:text-white">
-              {isFa ? 'پروژه‌ها' : 'Case Studies'}
-            </a>
-            <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} className="text-neutral-400 hover:text-white">
-              {isFa ? 'وایت‌پیپرها' : 'Whitepapers'}
-            </a>
-            <a href={isFa ? `${baseUrl}fa/blog/` : `${baseUrl}blog/`} className="text-neutral-400 hover:text-white">
-              {isFa ? 'وبلاگ' : 'Blog'}
-            </a>
           </div>
         </div>
       )}
