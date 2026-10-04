@@ -8,10 +8,22 @@ interface Props {
   technologies: string[];
   metric?: string;
   lang?: 'en' | 'fa';
+  slug?: string;
 }
 
-const { title, description, date, technologies, metric, lang = 'en' } = Astro.props;
+const { title, description, date, technologies, metric, lang = 'en', slug } = Astro.props;
 const isFa = lang === 'fa';
+
+const specNumberMap: Record<string, string> = {
+  'payment-gateway': '01',
+  'sms-infrastructure': '02',
+  'fraud-tracing': '03',
+  'fraud-detection-forensic-tracing': '03',
+  'event-driven-migration': '04',
+  'contact-enrichment-pipeline': '05',
+};
+
+const specNum = slug && specNumberMap[slug] ? specNumberMap[slug] : null;
 ---
 
 <Layout title={`${title} — Ariya Sarrafzadeh`} description={description}>
@@ -26,7 +38,13 @@ const isFa = lang === 'fa';
       {isFa ? '→ بازگشت به نقشه‌های معماری' : '← Back to architecture blueprints'}
     </a>
 
-    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight mt-5 mb-2 text-[#ededed]">{title}</h1>
+    {specNum && (
+      <div class="mt-5 mb-1 font-mono text-[11px] font-semibold text-[#06b6d4] uppercase tracking-wider">
+        SPEC {specNum} · PRODUCTION SPECIFICATION
+      </div>
+    )}
+
+    <h1 class={`text-2xl sm:text-3xl font-bold tracking-tight ${specNum ? 'mt-1' : 'mt-5'} mb-2 text-[#ededed]`}>{title}</h1>
     <p class="text-xs text-[#94a3b8] mb-4 font-mono">
       {isFa
         ? date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })

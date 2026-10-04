@@ -78,15 +78,14 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         { label: '07. Consultation', target: 'book', env: 'core' as ActiveEnvironment },
       ];
 
-  const handleNavClick = (targetId: string, env: ActiveEnvironment) => {
+  const handleNavClick = (e: React.MouseEvent, targetId: string, env: ActiveEnvironment) => {
     setActiveSection(targetId);
     setMobileMenuOpen(false);
     window.dispatchEvent(new CustomEvent('ambient-env-change', { detail: env }));
     const el = document.getElementById(targetId);
     if (el) {
+      e.preventDefault();
       el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.location.href = isFa ? `${baseUrl}fa/#${targetId}` : `${baseUrl}#${targetId}`;
     }
   };
 
@@ -114,11 +113,12 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           <nav className="hidden lg:flex items-center gap-1 font-mono text-xs">
             {navItems.map((item) => {
               const isActive = activeSection === item.target;
+              const targetHref = isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`;
               return (
-                <button
+                <a
                   key={item.target}
-                  type="button"
-                  onClick={() => handleNavClick(item.target, item.env)}
+                  href={targetHref}
+                  onClick={(e) => handleNavClick(e, item.target, item.env)}
                   className={`px-3 py-1.5 rounded-md transition-all font-mono ${
                     isActive
                       ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
@@ -126,7 +126,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   }`}
                 >
                   {item.label}
-                </button>
+                </a>
               );
             })}
           </nav>
@@ -173,14 +173,14 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         <div className="lg:hidden w-full bg-[#0b0d11]/95 border-b border-white/10 px-6 py-4 space-y-2 backdrop-blur-xl">
           <div className="grid grid-cols-2 gap-2 font-mono text-xs">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.target}
-                type="button"
-                onClick={() => handleNavClick(item.target, item.env)}
-                className="text-left px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5 text-neutral-300 hover:text-white"
+                href={isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`}
+                onClick={(e) => handleNavClick(e, item.target, item.env)}
+                className="text-left px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5 text-neutral-300 hover:text-white block"
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </div>
           <div className="pt-3 border-t border-white/5 flex gap-4 text-xs font-mono">

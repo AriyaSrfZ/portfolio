@@ -7,9 +7,21 @@ interface Props {
   date: Date;
   technologies: string[];
   metric?: string;
+  slug?: string;
 }
 
-const { title, description, date, technologies, metric } = Astro.props;
+const { title, description, date, technologies, metric, slug } = Astro.props;
+
+const specNumberMap: Record<string, string> = {
+  'payment-gateway': '۰۱',
+  'sms-infrastructure': '۰۲',
+  'fraud-tracing': '۰۳',
+  'fraud-detection-forensic-tracing': '۰۳',
+  'event-driven-migration': '۰۴',
+  'contact-enrichment-pipeline': '۰۵',
+};
+
+const specNum = slug && specNumberMap[slug] ? specNumberMap[slug] : null;
 ---
 
 <Layout title={`${title} — آریا صراف‌زاده`} description={description} lang="fa" dir="rtl">
@@ -24,7 +36,13 @@ const { title, description, date, technologies, metric } = Astro.props;
       → بازگشت به نقشه‌های معماری
     </a>
 
-    <h1 class="text-2xl sm:text-3xl font-bold mt-5 mb-2 text-[#ededed] tracking-normal">{title}</h1>
+    {specNum && (
+      <div class="mt-5 mb-1 font-mono text-[11px] font-semibold text-[#06b6d4] uppercase tracking-wider" dir="rtl">
+        SPEC {specNum} · مشخصات فنی سامانه
+      </div>
+    )}
+
+    <h1 class={`text-2xl sm:text-3xl font-bold ${specNum ? 'mt-1' : 'mt-5'} mb-2 text-[#ededed] tracking-normal`}>{title}</h1>
     <p class="text-xs text-[#94a3b8] mb-4 tracking-normal font-mono">
       {date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}
     </p>

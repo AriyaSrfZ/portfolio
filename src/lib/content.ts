@@ -513,7 +513,7 @@ export const copy: Record<Locale, Copy> = {
     },
 
     dataCleaning: {
-      kicker: "Engineering whitepaper · Data systems",
+      kicker: "SPEC 05 · DATA SYSTEMS",
       title: "Persian contact enrichment and name resolution",
       lead: "Production specification for sanitising, indexing and matching high-volume Persian name and location datasets. Deterministic normalisation first, then blocking keys, lightweight scoring, and residual embedding only where needed — at tens to hundreds of millions of records.",
       s1Title: "1. Introduction and scope",
@@ -952,7 +952,7 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     dataCleaning: {
-      kicker: "مقاله مهندسی · سامانه‌های داده",
+      kicker: "SPEC ۰۵ · سامانه‌های داده",
       title: "پاکسازی و یکسان‌سازی نام فارسی در مقیاس عملیاتی",
       lead: "مشخصات تولید برای پاکسازی، نمایه‌سازی و تطبیق مجموعه‌های نام و مکان فارسی در حجم بالا. اول نرمال‌سازی قطعی، سپس کلید مسدودسازی، امتیاز سبک، و فقط در صورت نیاز مدل معنایی برای باقی‌مانده.",
       s1Title: "۱. مقدمه و دامنه",

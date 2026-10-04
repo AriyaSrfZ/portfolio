@@ -57,6 +57,14 @@ const primaryDossiers = [
     chips: ["RABBITMQ", "SPRING BATCH", "REFUND-MNG", "PAYA / SATNA", "EARLY PAYOUT"],
   },
 ];
+
+const toPersianNum = (n: number | string) => {
+  const pNums = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  return n.toString().split('').map(d => {
+    const parsed = parseInt(d);
+    return isNaN(parsed) ? d : pNums[parsed];
+  }).join('');
+};
 ---
 
 <Layout
@@ -96,7 +104,7 @@ const primaryDossiers = [
             <div>
               <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-white/[0.06] font-mono text-[10px]">
                 <span class="text-[#ededed] font-semibold tracking-wider">
-                  پرونده {item.num} · {item.tag}
+                  SPEC {item.num} · {item.tag}
                 </span>
                 <span class="text-[#10b981] px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]" dir="ltr">
                   {item.metric}
@@ -149,7 +157,7 @@ const primaryDossiers = [
             <div>
               <div class="flex items-center justify-between border-b border-white/[0.06] pb-2 mb-3 font-mono text-[10px]">
                 <span class="text-neutral-400 uppercase">
-                  سند ۰{idx < 9 ? `۰${idx + 1}` : idx + 1} · {categoryLabels[doc.data.category] || doc.data.category}
+                  SPEC {idx < 9 ? `۰${toPersianNum(idx + 1)}` : toPersianNum(idx + 1)} · {categoryLabels[doc.data.category] || doc.data.category}
                 </span>
                 {doc.data.metric && (
                   <span class="text-neutral-300 px-1.5 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]" dir="ltr">

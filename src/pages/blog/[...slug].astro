@@ -20,6 +20,7 @@ const { Content } = await render(post);
   date={post.data.date}
   technologies={post.data.technologies}
   metric={post.data.metric}
+  slug={post.id.replace(/^en\//, '')}
   lang="en"
 >
   <Content />
