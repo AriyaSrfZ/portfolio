@@ -52,13 +52,13 @@
       .ps-conduit-gold { stroke: #e2c974; stroke-width: 1.75; stroke-dasharray: 6 4; animation: psFlow 1.6s linear infinite; }
       .ps-conduit-emerald { stroke: #10b981; stroke-width: 1.75; stroke-dasharray: 6 4; animation: psFlow 1.6s linear infinite; }
       .ps-conduit-rose { stroke: #f43f5e; stroke-width: 1.5; stroke-dasharray: 4 4; animation: psFlow 2s linear infinite; }
-      text { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'IBM Plex Mono', monospace; }
+      text { font-family: 'IBM Plex Mono', system-ui, -apple-system, monospace; }
       .code-font { font-family: 'IBM Plex Mono', monospace; }
     </style>
   </defs>
 
   <!-- Background Base Canvas -->
-  <rect width="1000" height="620" fill="#0b1120" rx="14"/>
+  <rect width="1000" height="620" fill="#0b0e14" rx="14"/>
   <rect width="1000" height="620" fill="url(#ps-grid-dots)" rx="14"/>
   <rect width="998" height="618" x="1" y="1" fill="none" stroke="#ffffff" stroke-opacity="0.08" rx="13"/>
 
@@ -76,12 +76,12 @@
     <circle cx="6" cy="11" r="8" fill="none" stroke="#06b6d4" stroke-opacity="0.3"/>
     
     <text x="24" y="16" fill="#06b6d4" font-size="13" font-weight="700" letter-spacing="1.2">SMART PSP SWITCH &amp; DYNAMIC ROUTING MESH</text>
-    <text x="24" y="32" fill="#94a3b8" font-size="9.5" letter-spacing="0.4">ISO 8583 H2H PIPELINE · SUB-250MS ROUNDTRIP SLA · WEIGHTED LOAD DISPATCH</text>
+    <text x="24" y="32" fill="#94a3b8" font-size="10" letter-spacing="0.4">ISO 8583 H2H PIPELINE · SUB-250MS ROUNDTRIP SLA · WEIGHTED LOAD DISPATCH</text>
 
     <!-- Top Right Status Badges -->
-    <rect x="750" y="2" width="202" height="24" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
-    <circle cx="762" cy="14" r="3" fill="#10b981"/>
-    <text x="772" y="18" fill="#10b981" font-size="9.5" font-weight="700" letter-spacing="0.5">HIGH AVAILABILITY 99.99%</text>
+    <rect x="740" y="2" width="212" height="26" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
+    <circle cx="754" cy="15" r="3.5" fill="#10b981"/>
+    <text x="766" y="19" fill="#10b981" font-size="10" font-weight="700" letter-spacing="0.5">HIGH AVAILABILITY 99.99%</text>
   </g>
 
   <!-- ========================================== -->
@@ -92,32 +92,32 @@
   <g transform="translate(28, 68)">
     <rect width="236" height="206" rx="8" fill="#111827" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.1"/>
     <rect width="236" height="28" rx="8" fill="#ffffff" fill-opacity="0.03"/>
-    <text x="12" y="18" fill="#e2c974" font-size="11" font-weight="700" letter-spacing="0.8">01. INGRESS &amp; VALIDATION</text>
+    <text x="12" y="19" fill="#e2c974" font-size="12" font-weight="700" letter-spacing="0.8">01. INGRESS &amp; VALIDATION</text>
     
     <!-- Sub-item 1: TLS 1.3 / mTLS -->
     <g transform="translate(10, 36)">
-      <rect width="216" height="46" rx="6" fill="#0b1120" stroke="#06b6d4" stroke-opacity="0.35"/>
-      <text x="12" y="18" fill="#f8fafc" font-size="10" font-weight="600">TLS 1.3 / mTLS Ingress</text>
-      <text x="12" y="32" fill="#94a3b8" font-size="8.5">Merchant H2H REST · JSON Payload</text>
-      <rect x="156" y="8" width="50" height="15" rx="3" fill="#06b6d4" fill-opacity="0.15"/>
-      <text x="162" y="19" fill="#38bdf8" font-size="7.5" font-weight="600">ZERO TRUST</text>
+      <rect width="216" height="46" rx="6" fill="#0b0e14" stroke="#06b6d4" stroke-opacity="0.35"/>
+      <text x="12" y="18" fill="#f8fafc" font-size="12" font-weight="600">TLS 1.3 / mTLS Ingress</text>
+      <text x="12" y="33" fill="#94a3b8" font-size="10">Merchant H2H REST · JSON Payload</text>
+      <rect x="144" y="6" width="64" height="16" rx="3" fill="#06b6d4" fill-opacity="0.15"/>
+      <text x="150" y="18" fill="#38bdf8" font-size="8.5" font-weight="600">ZERO TRUST</text>
     </g>
 
     <!-- Sub-item 2: Rate Limiter -->
     <g transform="translate(10, 88)">
-      <rect width="216" height="48" rx="6" fill="#0b1120" stroke="#ffffff" stroke-opacity="0.08"/>
-      <text x="12" y="18" fill="#f8fafc" font-size="10" font-weight="600">Distributed Rate Limiter</text>
-      <text x="12" y="32" fill="#94a3b8" font-size="8.5">Token Bucket (Redis) · P99 &lt; 3ms</text>
-      <rect x="150" y="8" width="56" height="15" rx="3" fill="#10b981" fill-opacity="0.15"/>
-      <text x="156" y="19" fill="#10b981" font-size="7.5" font-weight="600">429 SHIELD</text>
+      <rect width="216" height="48" rx="6" fill="#0b0e14" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="12" y="18" fill="#f8fafc" font-size="12" font-weight="600">Distributed Rate Limiter</text>
+      <text x="12" y="34" fill="#94a3b8" font-size="10">Token Bucket (Redis) · P99 &lt; 3ms</text>
+      <rect x="140" y="6" width="68" height="16" rx="3" fill="#10b981" fill-opacity="0.15"/>
+      <text x="146" y="18" fill="#10b981" font-size="8.5" font-weight="600">429 SHIELD</text>
     </g>
 
     <!-- Sub-item 3: Idempotency Engine -->
     <g transform="translate(10, 142)">
-      <rect width="216" height="54" rx="6" fill="#0b1120" stroke="#e2c974" stroke-opacity="0.35"/>
-      <text x="12" y="18" fill="#e2c974" font-size="10" font-weight="600">Idempotency Guard (SETNX)</text>
-      <text x="12" y="32" fill="#94a3b8" font-size="8.5">Key: UUIDv4 · TTL: 86,400s</text>
-      <text x="12" y="45" fill="#10b981" font-size="8">Execution Lock Budget: 15ms</text>
+      <rect width="216" height="54" rx="6" fill="#0b0e14" stroke="#e2c974" stroke-opacity="0.35"/>
+      <text x="12" y="18" fill="#e2c974" font-size="12" font-weight="600">Idempotency Guard (SETNX)</text>
+      <text x="12" y="33" fill="#94a3b8" font-size="10">Key: UUIDv4 · TTL: 86,400s</text>
+      <text x="12" y="46" fill="#10b981" font-size="9.5">Execution Lock Budget: 15ms</text>
     </g>
   </g>
 
@@ -125,30 +125,30 @@
   <g transform="translate(28, 286)">
     <rect width="236" height="224" rx="8" fill="#111827" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.1"/>
     <rect width="236" height="28" rx="8" fill="#ffffff" fill-opacity="0.03"/>
-    <text x="12" y="18" fill="#e2c974" font-size="11" font-weight="700" letter-spacing="0.8">02. SECURITY &amp; HSM VAULT</text>
+    <text x="12" y="19" fill="#e2c974" font-size="12" font-weight="700" letter-spacing="0.8">02. SECURITY &amp; HSM VAULT</text>
 
     <!-- Sub-item 1: Zero-SAD Card Vault -->
     <g transform="translate(10, 36)">
-      <rect width="216" height="52" rx="6" fill="#0b1120" stroke="#06b6d4" stroke-opacity="0.35"/>
-      <text x="12" y="18" fill="#f8fafc" font-size="10" font-weight="600">Zero-SAD Token Vault</text>
-      <text x="12" y="32" fill="#94a3b8" font-size="8.5">PAN Tokenization · Ephemeral Salt</text>
-      <text x="12" y="44" fill="#06b6d4" font-size="8">No Raw PAN in Core Logs (PCI-DSS)</text>
+      <rect width="216" height="52" rx="6" fill="#0b0e14" stroke="#06b6d4" stroke-opacity="0.35"/>
+      <text x="12" y="18" fill="#f8fafc" font-size="12" font-weight="600">Zero-SAD Token Vault</text>
+      <text x="12" y="33" fill="#94a3b8" font-size="10">PAN Tokenization · Ephemeral Salt</text>
+      <text x="12" y="45" fill="#06b6d4" font-size="9.5">No Raw PAN in Core Logs (PCI-DSS)</text>
     </g>
 
     <!-- Sub-item 2: Hardware HSM -->
     <g transform="translate(10, 94)">
-      <rect width="216" height="54" rx="6" fill="#0b1120" stroke="#e2c974" stroke-opacity="0.35"/>
-      <text x="12" y="18" fill="#e2c974" font-size="10" font-weight="600">Hardware HSM (ANSI X9.8)</text>
-      <text x="12" y="32" fill="#94a3b8" font-size="8.5">PIN Block Encryption · ZMK / ZPK</text>
-      <text x="12" y="45" fill="#cbd5e1" font-size="8">Hardware Key Custody Level 3</text>
+      <rect width="216" height="54" rx="6" fill="#0b0e14" stroke="#e2c974" stroke-opacity="0.35"/>
+      <text x="12" y="18" fill="#e2c974" font-size="12" font-weight="600">Hardware HSM (ANSI X9.8)</text>
+      <text x="12" y="33" fill="#94a3b8" font-size="10">PIN Block Encryption · ZMK / ZPK</text>
+      <text x="12" y="46" fill="#cbd5e1" font-size="9.5">Hardware Key Custody Level 3</text>
     </g>
 
     <!-- Sub-item 3: Risk Engine -->
     <g transform="translate(10, 154)">
-      <rect width="216" height="56" rx="6" fill="#0b1120" stroke="#38bdf8" stroke-opacity="0.35"/>
-      <text x="12" y="18" fill="#38bdf8" font-size="10" font-weight="600">Real-Time Risk Scoring</text>
-      <text x="12" y="32" fill="#94a3b8" font-size="8.5">Sub-15ms ML Vector · Velocity Check</text>
-      <text x="12" y="46" fill="#10b981" font-size="8">Adaptive 3DS 2.0 Harim OTP Shift</text>
+      <rect width="216" height="56" rx="6" fill="#0b0e14" stroke="#38bdf8" stroke-opacity="0.35"/>
+      <text x="12" y="18" fill="#38bdf8" font-size="12" font-weight="600">Real-Time Risk Scoring</text>
+      <text x="12" y="33" fill="#94a3b8" font-size="10">Sub-15ms ML Vector · Velocity Check</text>
+      <text x="12" y="47" fill="#10b981" font-size="9.5">Adaptive 3DS 2.0 Harim OTP Shift</text>
     </g>
   </g>
 
@@ -159,73 +159,73 @@
     <!-- Core Container Box -->
     <rect width="308" height="442" rx="10" fill="#111827" fill-opacity="0.95" stroke="#06b6d4" stroke-opacity="0.5" stroke-width="1.2"/>
     <rect width="308" height="32" rx="10" fill="url(#ps-core-glow)"/>
-    <text x="14" y="21" fill="#38bdf8" font-size="12" font-weight="700" letter-spacing="0.8">03. SMART SWITCH &amp; ROUTING ENGINE</text>
+    <text x="14" y="21" fill="#38bdf8" font-size="12.5" font-weight="700" letter-spacing="0.8">03. SMART SWITCH &amp; ROUTING ENGINE</text>
 
     <!-- Sub-Module A: ISO 8583 Bitmaps & Field Packing -->
     <g transform="translate(12, 42)">
-      <rect width="284" height="120" rx="6" fill="#0b1120" stroke="#ffffff" stroke-opacity="0.1"/>
+      <rect width="284" height="120" rx="6" fill="#0b0e14" stroke="#ffffff" stroke-opacity="0.1"/>
       <rect width="284" height="22" rx="6" fill="#ffffff" fill-opacity="0.04"/>
-      <text x="10" y="15" fill="#f8fafc" font-size="10" font-weight="700">ISO 8583 BITMAP SERIALIZER</text>
-      <text x="210" y="15" fill="#06b6d4" font-size="8.5" font-weight="600">MTI 0200 / 0210</text>
+      <text x="10" y="15" fill="#f8fafc" font-size="11.5" font-weight="700">ISO 8583 BITMAP SERIALIZER</text>
+      <text x="194" y="15" fill="#06b6d4" font-size="10" font-weight="600">MTI 0200 / 0210</text>
       
-      <text x="10" y="36" fill="#06b6d4" font-size="9" font-weight="600">MTI 0200:</text>
-      <text x="72" y="36" fill="#e2e8f0" font-size="9">Financial Purchase Request Telegram</text>
+      <text x="10" y="36" fill="#06b6d4" font-size="10" font-weight="600">MTI 0200:</text>
+      <text x="76" y="36" fill="#e2e8f0" font-size="10">Financial Purchase Request Telegram</text>
       
-      <text x="10" y="52" fill="#10b981" font-size="9" font-weight="600">MTI 0210:</text>
-      <text x="72" y="52" fill="#e2e8f0" font-size="9">Acquirer Authorization Response</text>
+      <text x="10" y="52" fill="#10b981" font-size="10" font-weight="600">MTI 0210:</text>
+      <text x="76" y="52" fill="#e2e8f0" font-size="10">Acquirer Authorization Response</text>
 
       <rect x="8" y="62" width="268" height="48" rx="4" fill="#151921" stroke="#ffffff" stroke-opacity="0.05"/>
-      <text x="14" y="76" fill="#94a3b8" font-size="8">F3: ProcCode 000000</text>
-      <text x="140" y="76" fill="#94a3b8" font-size="8">F4: Amount Zero-Pad</text>
-      <text x="14" y="90" fill="#cbd5e1" font-size="8">F11: STAN System Trace</text>
-      <text x="140" y="90" fill="#cbd5e1" font-size="8">F37: RRN Reference No</text>
-      <text x="14" y="103" fill="#38bdf8" font-size="8">F41/F42: Terminal &amp; Merchant ID</text>
+      <text x="12" y="76" fill="#94a3b8" font-size="9.5">F3: ProcCode 000000</text>
+      <text x="140" y="76" fill="#94a3b8" font-size="9.5">F4: Amount Zero-Pad</text>
+      <text x="12" y="90" fill="#cbd5e1" font-size="9.5">F11: STAN System Trace</text>
+      <text x="140" y="90" fill="#cbd5e1" font-size="9.5">F37: RRN Reference No</text>
+      <text x="12" y="103" fill="#38bdf8" font-size="9.5">F41/F42: Terminal &amp; Merchant ID</text>
     </g>
 
     <!-- Sub-Module B: Dynamic Weighted Routing Matrix -->
     <g transform="translate(12, 172)">
-      <rect width="284" height="152" rx="6" fill="#0b1120" stroke="#e2c974" stroke-opacity="0.4"/>
+      <rect width="284" height="152" rx="6" fill="#0b0e14" stroke="#e2c974" stroke-opacity="0.4"/>
       <rect width="284" height="22" rx="6" fill="#e2c974" fill-opacity="0.08"/>
-      <text x="10" y="15" fill="#e2c974" font-size="10" font-weight="700">DYNAMIC WEIGHTED ROUTING MATRIX</text>
+      <text x="10" y="15" fill="#e2c974" font-size="11.5" font-weight="700">DYNAMIC WEIGHTED ROUTING MATRIX</text>
 
       <!-- Algorithmic Formula Card -->
       <g transform="translate(8, 28)">
         <rect width="268" height="34" rx="4" fill="#171b26" stroke="#e2c974" stroke-opacity="0.2"/>
-        <text x="10" y="14" fill="#94a3b8" font-size="7.5" font-weight="600">SCORING ALGORITHM (EVERY 30 SECONDS):</text>
-        <text x="10" y="27" fill="#e2c974" font-size="8.5" class="code-font" font-weight="600">Score = w₁·SR₅ₘ + w₂·(1/P98_Lat) + w₃·FeeTier</text>
+        <text x="10" y="13" fill="#94a3b8" font-size="9" font-weight="600">SCORING ALGORITHM (EVERY 30 SECONDS):</text>
+        <text x="10" y="27" fill="#e2c974" font-size="10" class="code-font" font-weight="600">Score = w₁·SR₅ₘ + w₂·(1/P98_Lat) + w₃·FeeTier</text>
       </g>
 
       <g transform="translate(10, 72)">
         <circle cx="4" cy="5" r="2.5" fill="#38bdf8"/>
-        <text x="12" y="8" fill="#f8fafc" font-size="8.5">Sliding Health Window:</text>
-        <text x="130" y="8" fill="#38bdf8" font-size="8.5" font-weight="600">5-Min Rolling Sample</text>
+        <text x="12" y="9" fill="#f8fafc" font-size="10">Sliding Health Window:</text>
+        <text x="140" y="9" fill="#38bdf8" font-size="10" font-weight="600">5-Min Rolling Sample</text>
 
         <circle cx="4" cy="23" r="2.5" fill="#10b981"/>
-        <text x="12" y="26" fill="#f8fafc" font-size="8.5">Sub-30ms Automated Failover:</text>
-        <text x="160" y="26" fill="#10b981" font-size="8.5" font-weight="600">Zero Drops</text>
+        <text x="12" y="27" fill="#f8fafc" font-size="10">Sub-30ms Automated Failover:</text>
+        <text x="175" y="27" fill="#10b981" font-size="10" font-weight="600">Zero Drops</text>
 
         <circle cx="4" cy="41" r="2.5" fill="#f43f5e"/>
-        <text x="12" y="44" fill="#f8fafc" font-size="8.5">Adaptive Circuit Breaker:</text>
-        <text x="138" y="44" fill="#f43f5e" font-size="8.5" font-weight="600">Drop Degraded Hops</text>
+        <text x="12" y="45" fill="#f8fafc" font-size="10">Adaptive Circuit Breaker:</text>
+        <text x="150" y="45" fill="#f43f5e" font-size="10" font-weight="600">Drop Degraded Hops</text>
       </g>
 
       <rect x="8" y="128" width="268" height="18" rx="3" fill="#10b981" fill-opacity="0.1"/>
-      <text x="14" y="140" fill="#10b981" font-size="8" font-weight="600">AUTOMATIC WEIGHT RE-BALANCING ACTIVE</text>
+      <text x="14" y="141" fill="#10b981" font-size="9.5" font-weight="600">AUTOMATIC WEIGHT RE-BALANCING ACTIVE</text>
     </g>
 
     <!-- Sub-Module C: Timeout Guard & Auto 0400 Reversal -->
     <g transform="translate(12, 334)">
-      <rect width="284" height="96" rx="6" fill="#0b1120" stroke="#f43f5e" stroke-opacity="0.35"/>
+      <rect width="284" height="96" rx="6" fill="#0b0e14" stroke="#f43f5e" stroke-opacity="0.35"/>
       <rect width="284" height="22" rx="6" fill="#f43f5e" fill-opacity="0.08"/>
-      <text x="10" y="15" fill="#f43f5e" font-size="10" font-weight="700">TIMEOUT GUARD &amp; 0400 REVERSAL</text>
+      <text x="10" y="15" fill="#f43f5e" font-size="11.5" font-weight="700">TIMEOUT GUARD &amp; 0400 REVERSAL</text>
 
       <g transform="translate(10, 30)">
-        <text x="0" y="10" fill="#94a3b8" font-size="8.5">Bank Socket Timeout Threshold: 15.0s</text>
-        <text x="0" y="24" fill="#e2e8f0" font-size="8.5">If Downstream Bank Host hangs or unacks:</text>
+        <text x="0" y="10" fill="#94a3b8" font-size="10">Bank Socket Timeout Threshold: 15.0s</text>
+        <text x="0" y="24" fill="#e2e8f0" font-size="10">If Downstream Bank Host hangs or unacks:</text>
         
         <rect x="0" y="30" width="264" height="26" rx="4" fill="#2d1217" stroke="#f43f5e" stroke-opacity="0.3"/>
-        <text x="8" y="42" fill="#f43f5e" font-size="8" font-weight="700">DISPATCH MTI 0400 AUTOMATED REVERSAL</text>
-        <text x="8" y="52" fill="#fda4af" font-size="7.5">Prevents Phantom Debits · Re-credits Customer Ledger</text>
+        <text x="8" y="42" fill="#f43f5e" font-size="10" font-weight="700">DISPATCH MTI 0400 AUTOMATED REVERSAL</text>
+        <text x="8" y="52" fill="#fda4af" font-size="9">Prevents Phantom Debits · Re-credits Customer Ledger</text>
       </g>
     </g>
   </g>
@@ -238,55 +238,55 @@
   <g transform="translate(636, 68)">
     <rect width="336" height="234" rx="8" fill="#111827" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.1"/>
     <rect width="336" height="28" rx="8" fill="#ffffff" fill-opacity="0.03"/>
-    <text x="12" y="18" fill="#e2c974" font-size="11" font-weight="700" letter-spacing="0.8">04. BANKING MESH · APN / IPSEC</text>
-    <text x="238" y="18" fill="#06b6d4" font-size="8.5" font-weight="600">H2H ISOLATION</text>
+    <text x="12" y="19" fill="#e2c974" font-size="12" font-weight="700" letter-spacing="0.8">04. BANKING MESH · APN / IPSEC</text>
+    <text x="230" y="19" fill="#06b6d4" font-size="9.5" font-weight="600">H2H ISOLATION</text>
 
     <!-- PSP 1: SEP (Saman) -->
     <g transform="translate(10, 36)">
-      <rect width="150" height="58" rx="5" fill="#0b1120" stroke="#10b981" stroke-opacity="0.4"/>
-      <text x="10" y="16" fill="#10b981" font-size="10" font-weight="700">SEP (Saman)</text>
-      <rect x="102" y="6" width="40" height="14" rx="3" fill="#10b981" fill-opacity="0.2"/>
-      <text x="106" y="16" fill="#10b981" font-size="7.5" font-weight="700">38% WT</text>
-      <text x="10" y="32" fill="#cbd5e1" font-size="8">SR: 99.82% · P98: 112ms</text>
-      <text x="10" y="46" fill="#94a3b8" font-size="7.5">Active Direct H2H Tunnel</text>
+      <rect width="150" height="58" rx="5" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="10" y="17" fill="#10b981" font-size="12" font-weight="700">SEP (Saman)</text>
+      <rect x="98" y="5" width="46" height="15" rx="3" fill="#10b981" fill-opacity="0.2"/>
+      <text x="103" y="16" fill="#10b981" font-size="9" font-weight="700">38% WT</text>
+      <text x="10" y="34" fill="#cbd5e1" font-size="10">SR: 99.82% · P98: 112ms</text>
+      <text x="10" y="48" fill="#94a3b8" font-size="9">Active Direct H2H Tunnel</text>
     </g>
 
     <!-- PSP 2: PEC (Parsian) -->
     <g transform="translate(176, 36)">
-      <rect width="150" height="58" rx="5" fill="#0b1120" stroke="#10b981" stroke-opacity="0.4"/>
-      <text x="10" y="16" fill="#10b981" font-size="10" font-weight="700">PEC (Parsian)</text>
-      <rect x="102" y="6" width="40" height="14" rx="3" fill="#10b981" fill-opacity="0.2"/>
-      <text x="106" y="16" fill="#10b981" font-size="7.5" font-weight="700">28% WT</text>
-      <text x="10" y="32" fill="#cbd5e1" font-size="8">SR: 99.65% · P98: 124ms</text>
-      <text x="10" y="46" fill="#94a3b8" font-size="7.5">Active Direct H2H Tunnel</text>
+      <rect width="150" height="58" rx="5" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="10" y="17" fill="#10b981" font-size="12" font-weight="700">PEC (Parsian)</text>
+      <rect x="98" y="5" width="46" height="15" rx="3" fill="#10b981" fill-opacity="0.2"/>
+      <text x="103" y="16" fill="#10b981" font-size="9" font-weight="700">28% WT</text>
+      <text x="10" y="34" fill="#cbd5e1" font-size="10">SR: 99.65% · P98: 124ms</text>
+      <text x="10" y="48" fill="#94a3b8" font-size="9">Active Direct H2H Tunnel</text>
     </g>
 
     <!-- PSP 3: BPM (Mellat) -->
     <g transform="translate(10, 102)">
-      <rect width="150" height="58" rx="5" fill="#0b1120" stroke="#e2c974" stroke-opacity="0.4"/>
-      <text x="10" y="16" fill="#e2c974" font-size="10" font-weight="700">BPM (Mellat)</text>
-      <rect x="102" y="6" width="40" height="14" rx="3" fill="#e2c974" fill-opacity="0.2"/>
-      <text x="106" y="16" fill="#e2c974" font-size="7.5" font-weight="700">24% WT</text>
-      <text x="10" y="32" fill="#cbd5e1" font-size="8">SR: 99.40% · P98: 138ms</text>
-      <text x="10" y="46" fill="#94a3b8" font-size="7.5">Active Direct H2H Tunnel</text>
+      <rect width="150" height="58" rx="5" fill="#0b0e14" stroke="#e2c974" stroke-opacity="0.4"/>
+      <text x="10" y="17" fill="#e2c974" font-size="12" font-weight="700">BPM (Mellat)</text>
+      <rect x="98" y="5" width="46" height="15" rx="3" fill="#e2c974" fill-opacity="0.2"/>
+      <text x="103" y="16" fill="#e2c974" font-size="9" font-weight="700">24% WT</text>
+      <text x="10" y="34" fill="#cbd5e1" font-size="10">SR: 99.40% · P98: 138ms</text>
+      <text x="10" y="48" fill="#94a3b8" font-size="9">Active Direct H2H Tunnel</text>
     </g>
 
     <!-- PSP 4: PEP (Pasargad) -->
     <g transform="translate(176, 102)">
-      <rect width="150" height="58" rx="5" fill="#0b1120" stroke="#10b981" stroke-opacity="0.4"/>
-      <text x="10" y="16" fill="#10b981" font-size="10" font-weight="700">PEP (Pasargad)</text>
-      <rect x="102" y="6" width="40" height="14" rx="3" fill="#10b981" fill-opacity="0.2"/>
-      <text x="106" y="16" fill="#10b981" font-size="7.5" font-weight="700">10% WT</text>
-      <text x="10" y="32" fill="#cbd5e1" font-size="8">SR: 99.71% · P98: 116ms</text>
-      <text x="10" y="46" fill="#94a3b8" font-size="7.5">Active Direct H2H Tunnel</text>
+      <rect width="150" height="58" rx="5" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="10" y="17" fill="#10b981" font-size="12" font-weight="700">PEP (Pasargad)</text>
+      <rect x="98" y="5" width="46" height="15" rx="3" fill="#10b981" fill-opacity="0.2"/>
+      <text x="103" y="16" fill="#10b981" font-size="9" font-weight="700">10% WT</text>
+      <text x="10" y="34" fill="#cbd5e1" font-size="10">SR: 99.71% · P98: 116ms</text>
+      <text x="10" y="48" fill="#94a3b8" font-size="9">Active Direct H2H Tunnel</text>
     </g>
 
     <!-- National Clearing Hub -->
     <g transform="translate(10, 168)">
-      <rect width="316" height="54" rx="5" fill="#0b1120" stroke="#06b6d4" stroke-opacity="0.4"/>
-      <text x="12" y="18" fill="#06b6d4" font-size="10" font-weight="700">Faravaran Hub &amp; Shaparak Switch</text>
-      <text x="12" y="32" fill="#cbd5e1" font-size="8.5">Central Regulatory Clearing · National Shetab Interbank</text>
-      <text x="12" y="45" fill="#94a3b8" font-size="7.5">Encrypted ISO 8583 Transport via Dedicated Fiber APN</text>
+      <rect width="316" height="54" rx="5" fill="#0b0e14" stroke="#06b6d4" stroke-opacity="0.4"/>
+      <text x="12" y="18" fill="#06b6d4" font-size="12" font-weight="700">Faravaran Hub &amp; Shaparak Switch</text>
+      <text x="12" y="33" fill="#cbd5e1" font-size="10">Central Regulatory Clearing · National Shetab Interbank</text>
+      <text x="12" y="46" fill="#94a3b8" font-size="9">Encrypted ISO 8583 Transport via Dedicated Fiber APN</text>
     </g>
   </g>
 
@@ -294,34 +294,34 @@
   <g transform="translate(636, 314)">
     <rect width="336" height="196" rx="8" fill="#111827" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.1"/>
     <rect width="336" height="28" rx="8" fill="#ffffff" fill-opacity="0.03"/>
-    <text x="12" y="18" fill="#10b981" font-size="11" font-weight="700" letter-spacing="0.8">05. SETTLEMENT &amp; POST-AUTH EGRESS</text>
+    <text x="12" y="19" fill="#10b981" font-size="12" font-weight="700" letter-spacing="0.8">05. SETTLEMENT &amp; POST-AUTH EGRESS</text>
 
     <!-- Sub-item A: Double-Entry Ledger Commit -->
     <g transform="translate(10, 36)">
-      <rect width="150" height="66" rx="5" fill="#0b1120" stroke="#10b981" stroke-opacity="0.4"/>
-      <text x="10" y="16" fill="#10b981" font-size="9.5" font-weight="700">Double-Entry Ledger</text>
-      <text x="10" y="30" fill="#94a3b8" font-size="8">Append Fact Journal</text>
-      <text x="10" y="43" fill="#cbd5e1" font-size="8">ScyllaDB / ACID Commit</text>
-      <text x="10" y="56" fill="#10b981" font-size="8">State: RESERVED → COMMITTED</text>
+      <rect width="150" height="66" rx="5" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="10" y="17" fill="#10b981" font-size="12" font-weight="700">Double-Entry Ledger</text>
+      <text x="10" y="32" fill="#94a3b8" font-size="10">Append Fact Journal</text>
+      <text x="10" y="45" fill="#cbd5e1" font-size="10">ScyllaDB / ACID Commit</text>
+      <text x="10" y="58" fill="#10b981" font-size="9.5">State: COMMITTED</text>
     </g>
 
     <!-- Sub-item B: Paya / Satna Clearing -->
     <g transform="translate(176, 36)">
-      <rect width="150" height="66" rx="5" fill="#0b1120" stroke="#e2c974" stroke-opacity="0.4"/>
-      <text x="10" y="16" fill="#e2c974" font-size="9.5" font-weight="700">Paya / Satna Rail</text>
-      <text x="10" y="30" fill="#94a3b8" font-size="8">Batch Settlement Job</text>
-      <text x="10" y="43" fill="#cbd5e1" font-size="8">T+1 Central Bank Cycles</text>
-      <text x="10" y="56" fill="#38bdf8" font-size="8">Spring Batch Reconcile</text>
+      <rect width="150" height="66" rx="5" fill="#0b0e14" stroke="#e2c974" stroke-opacity="0.4"/>
+      <text x="10" y="17" fill="#e2c974" font-size="12" font-weight="700">Paya / Satna Rail</text>
+      <text x="10" y="32" fill="#94a3b8" font-size="10">Batch Settlement Job</text>
+      <text x="10" y="45" fill="#cbd5e1" font-size="10">T+1 Central Bank Cycles</text>
+      <text x="10" y="58" fill="#38bdf8" font-size="9.5">Spring Batch Reconcile</text>
     </g>
 
     <!-- Sub-item C: Client Egress Response -->
     <g transform="translate(10, 110)">
-      <rect width="316" height="74" rx="5" fill="#0b1120" stroke="#38bdf8" stroke-opacity="0.35"/>
-      <text x="12" y="18" fill="#f8fafc" font-size="10" font-weight="700">Client Response &amp; Event Stream</text>
-      <text x="12" y="33" fill="#10b981" font-size="9" font-weight="600">HTTP 200 OK · Payload with RRN, STAN &amp; AuthCode</text>
-      <text x="12" y="49" fill="#94a3b8" font-size="8">Publish RabbitMQ Event:</text>
-      <text x="122" y="49" fill="#38bdf8" font-size="8" class="code-font">payment.transaction.settled</text>
-      <text x="12" y="63" fill="#cbd5e1" font-size="7.5">Merchant Webhook Callback Triggered &lt; 20ms</text>
+      <rect width="316" height="74" rx="5" fill="#0b0e14" stroke="#38bdf8" stroke-opacity="0.35"/>
+      <text x="12" y="18" fill="#f8fafc" font-size="12" font-weight="700">Client Response &amp; Event Stream</text>
+      <text x="12" y="34" fill="#10b981" font-size="10.5" font-weight="600">HTTP 200 OK · Payload with RRN, STAN &amp; AuthCode</text>
+      <text x="12" y="50" fill="#94a3b8" font-size="10">Publish RabbitMQ Event:</text>
+      <text x="144" y="50" fill="#38bdf8" font-size="10" class="code-font">payment.settled</text>
+      <text x="12" y="64" fill="#cbd5e1" font-size="9.5">Merchant Webhook Callback Triggered &lt; 20ms</text>
     </g>
   </g>
 
@@ -348,8 +348,8 @@
 
   <!-- CLOSED-LOOP FEEDBACK: Banking Health Telemetry -> Dynamic Routing Matrix -->
   <path d="M 804 68 C 804 46, 450 46, 450 68" fill="none" class="ps-conduit-gold" marker-end="url(#ps-arrow-gold)"/>
-  <rect x="546" y="40" width="168" height="18" rx="3" fill="#171b26" stroke="#e2c974" stroke-opacity="0.3"/>
-  <text x="552" y="52" fill="#e2c974" font-size="7.5" font-weight="600">LIVE TELEMETRY (SR, LATENCY) FEEDBACK</text>
+  <rect x="536" y="40" width="188" height="18" rx="3" fill="#171b26" stroke="#e2c974" stroke-opacity="0.3"/>
+  <text x="542" y="52" fill="#e2c974" font-size="9" font-weight="600">LIVE TELEMETRY (SR, LATENCY) FEEDBACK</text>
 
   <!-- CLOSED-LOOP TIMEOUT: Timeout Guard -> Bank Mesh Reversal -->
   <path d="M 604 445 C 624 445, 626 400, 646 400" fill="none" class="ps-conduit-rose" marker-end="url(#ps-arrow-rose)"/>
@@ -362,43 +362,43 @@
     
     <!-- Segment 1: Ingress & Validation (20ms) -->
     <rect x="0" y="0" width="100" height="42" rx="7" fill="#06b6d4" fill-opacity="0.14"/>
-    <text x="10" y="18" fill="#38bdf8" font-size="9" font-weight="700">01. INGRESS</text>
-    <text x="10" y="32" fill="#94a3b8" font-size="8">20ms · TLS/mTLS</text>
+    <text x="10" y="18" fill="#38bdf8" font-size="10" font-weight="700">01. INGRESS</text>
+    <text x="10" y="32" fill="#94a3b8" font-size="9.5">20ms · TLS/mTLS</text>
 
     <!-- Segment 2: Security & HSM (35ms) -->
     <rect x="100" y="0" width="140" height="42" fill="#e2c974" fill-opacity="0.14"/>
-    <text x="110" y="18" fill="#e2c974" font-size="9" font-weight="700">02. HSM &amp; RISK</text>
-    <text x="110" y="32" fill="#94a3b8" font-size="8">35ms · PIN Block &amp; ML</text>
+    <text x="110" y="18" fill="#e2c974" font-size="10" font-weight="700">02. HSM &amp; RISK</text>
+    <text x="110" y="32" fill="#94a3b8" font-size="9.5">35ms · PIN Block &amp; ML</text>
 
     <!-- Segment 3: Core Switch & Bitmap Packing (20ms) -->
     <rect x="240" y="0" width="130" height="42" fill="#38bdf8" fill-opacity="0.16"/>
-    <text x="250" y="18" fill="#38bdf8" font-size="9" font-weight="700">03. SWITCH ENGINE</text>
-    <text x="250" y="32" fill="#94a3b8" font-size="8">20ms · Dynamic Route</text>
+    <text x="250" y="18" fill="#38bdf8" font-size="10" font-weight="700">03. SWITCH ENGINE</text>
+    <text x="250" y="32" fill="#94a3b8" font-size="9.5">20ms · Dynamic Route</text>
 
     <!-- Segment 4: Bank Host Authorization Network RTT (130ms) -->
     <rect x="370" y="0" width="374" height="42" fill="#6366f1" fill-opacity="0.2"/>
-    <text x="460" y="18" fill="#f8fafc" font-size="10" font-weight="700">04. SHAPARAK &amp; PSP BANK HOST ROUNDTRIP</text>
-    <text x="475" y="32" fill="#a5b4fc" font-size="8.5">Budget: 130ms · Sub-Second High-Concurrency Acquirer SLA</text>
+    <text x="440" y="18" fill="#f8fafc" font-size="10.5" font-weight="700">04. SHAPARAK &amp; PSP BANK HOST ROUNDTRIP</text>
+    <text x="440" y="32" fill="#a5b4fc" font-size="9.5">Budget: 130ms · Sub-Second High-Concurrency Acquirer SLA</text>
 
     <!-- Segment 5: Ledger Commit & Egress (30ms) -->
     <rect x="744" y="0" width="120" height="42" fill="#10b981" fill-opacity="0.16"/>
-    <text x="754" y="18" fill="#10b981" font-size="9" font-weight="700">05. DB COMMIT</text>
-    <text x="754" y="32" fill="#94a3b8" font-size="8">30ms · ScyllaDB 2PC</text>
+    <text x="754" y="18" fill="#10b981" font-size="10" font-weight="700">05. DB COMMIT</text>
+    <text x="754" y="32" fill="#94a3b8" font-size="9.5">30ms · ScyllaDB 2PC</text>
 
     <!-- Segment 6: Network Buffer (15ms) -->
     <rect x="864" y="0" width="80" height="42" rx="7" fill="#ffffff" fill-opacity="0.06"/>
-    <text x="874" y="18" fill="#cbd5e1" font-size="9" font-weight="700">EGRESS</text>
-    <text x="874" y="32" fill="#94a3b8" font-size="8">15ms Buffer</text>
+    <text x="874" y="18" fill="#cbd5e1" font-size="10" font-weight="700">EGRESS</text>
+    <text x="874" y="32" fill="#94a3b8" font-size="9.5">15ms Buffer</text>
   </g>
 
   <!-- ========================================== -->
   <!-- FOOTER LEGEND                              -->
   <!-- ========================================== -->
   <g transform="translate(28, 595)">
-    <text x="0" y="0" fill="#94a3b8" font-size="9.5" font-weight="500">
+    <text x="0" y="0" fill="#94a3b8" font-size="10.5" font-weight="500">
       TOTAL ROUNDTRIP LATENCY BUDGET: <tspan fill="#38bdf8" font-weight="700">&lt; 250 MS SLA</tspan> · AUTOMATED 0400 REVERSAL ON TIMEOUT · REAL-TIME WEIGHED STEERING
     </text>
-    <text x="735" y="0" fill="#10b981" font-size="9.5" font-weight="600" text-anchor="start">
+    <text x="710" y="0" fill="#10b981" font-size="10.5" font-weight="600" text-anchor="start">
       ● 4-PSP AGNOSTIC ADAPTER ARCHITECTURE
     </text>
   </g>

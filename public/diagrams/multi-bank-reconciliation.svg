@@ -1,65 +1,250 @@
-<svg dir="ltr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="100%" height="100%">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="auto" class="w-full h-auto" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" dir="ltr">
   <defs>
-    <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#15171C"/>
-      <stop offset="100%" stop-color="#0D0E11"/>
+    <!-- Background Grid Pattern -->
+    <pattern id="recon-grid-dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#ffffff" fill-opacity="0.04"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="recon-card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#151921"/>
+      <stop offset="100%" stop-color="#0f1217"/>
     </linearGradient>
-    <marker id="arrowJade3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669" />
+
+    <linearGradient id="recon-emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.02"/>
+    </linearGradient>
+
+    <!-- Markers -->
+    <marker id="recon-arr-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
     </marker>
+    <marker id="recon-arr-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#06b6d4"/>
+    </marker>
+    <marker id="recon-arr-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#e2c974"/>
+    </marker>
+
+    <!-- Flow Animation -->
     <style>
-      @keyframes flowDash { to { stroke-dashoffset: -32; } }
-      .anim-flow { stroke-dasharray: 10, 6; animation: flowDash 1.4s linear infinite; }
-      text { font-family: system-ui, -apple-system, sans-serif; }
+      @keyframes reconFlow { to { stroke-dashoffset: -28; } }
+      .recon-conduit-emerald { stroke: #10b981; stroke-width: 1.75; stroke-dasharray: 6 4; animation: reconFlow 1.6s linear infinite; }
+      .recon-conduit-cyan { stroke: #06b6d4; stroke-width: 1.75; stroke-dasharray: 6 4; animation: reconFlow 1.6s linear infinite; }
+      text { font-family: 'IBM Plex Mono', system-ui, -apple-system, monospace; }
+      .code-font { font-family: 'IBM Plex Mono', monospace; }
     </style>
   </defs>
 
-  <path d="M 230 260 L 315 260" stroke="#059669" stroke-width="3.5" fill="none" class="anim-flow" marker-end="url(#arrowJade3)"/>
-  <path d="M 520 260 L 605 260" stroke="#059669" stroke-width="3.5" fill="none" class="anim-flow" marker-end="url(#arrowJade3)"/>
-  <path d="M 810 260 L 895 260" stroke="#059669" stroke-width="3.5" fill="none" class="anim-flow" marker-end="url(#arrowJade3)"/>
+  <!-- Background Base Canvas -->
+  <rect width="1000" height="520" fill="#0b0e14" rx="14"/>
+  <rect width="1000" height="520" fill="url(#recon-grid-dots)" rx="14"/>
+  <rect width="998" height="518" x="1" y="1" fill="none" stroke="#ffffff" stroke-opacity="0.08" rx="13"/>
 
-  <g transform="translate(40, 150)">
-    <rect width="190" height="220" rx="4" fill="url(#cardGrad3)" stroke="#23262E" stroke-width="1.5"/>
-    <rect x="20" y="20" width="38" height="38" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="1"/>
-    <text x="39" y="44" fill="#10B981" font-size="12" font-weight="bold" text-anchor="middle">BNK</text>
-    <text x="20" y="90" fill="#F0F2F5" font-size="15" font-weight="bold">Bank Feeds</text>
-    <text x="20" y="120" fill="#7E8494" font-size="13">ISO 20022 / MT940</text>
-    <text x="20" y="145" fill="#7E8494" font-size="13">Automated SFTP Pull</text>
-    <text x="20" y="170" fill="#7E8494" font-size="13">Statement Parsing</text>
-    <text x="20" y="195" fill="#10B981" font-size="11" font-weight="bold">Raw Data Ingestion</text>
+  <!-- Tactical Corner Accents -->
+  <path d="M 6 18 L 6 6 L 18 6" stroke="#10b981" stroke-width="1.5" fill="none"/>
+  <path d="M 982 6 L 994 6 L 994 18" stroke="#10b981" stroke-width="1.5" fill="none"/>
+  <path d="M 6 502 L 6 514 L 18 514" stroke="#10b981" stroke-width="1.5" fill="none"/>
+  <path d="M 982 514 L 994 514 L 994 502" stroke="#10b981" stroke-width="1.5" fill="none"/>
+
+  <!-- ========================================== -->
+  <!-- HEADER SECTION                             -->
+  <!-- ========================================== -->
+  <g transform="translate(32, 24)">
+    <circle cx="6" cy="11" r="4.5" fill="#10b981"/>
+    <circle cx="6" cy="11" r="8" fill="none" stroke="#10b981" stroke-opacity="0.3"/>
+    
+    <text x="24" y="16" fill="#10b981" font-size="13" font-weight="700" letter-spacing="1.2">SPEC-ID: 7104-RC · 04 · MULTI-BANK RECONCILIATION &amp; AUTO-HEALING MESH</text>
+    <text x="24" y="32" fill="#94a3b8" font-size="10.5" letter-spacing="0.4">3-WAY MATCHING PIPELINE · PAYA &amp; SATNA CENTRAL BANK CYCLES · AUTO-HEALING DISPUTE RESOLUTION</text>
+
+    <!-- Top Right Status Badge -->
+    <rect x="710" y="2" width="236" height="26" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
+    <circle cx="724" cy="15" r="3.5" fill="#10b981"/>
+    <text x="736" y="19" fill="#10b981" font-size="10" font-weight="700" letter-spacing="0.5">STATUS: ZERO UNMATCHED DISCREPANCY</text>
   </g>
 
-  <g transform="translate(320, 150)">
-    <rect width="200" height="220" rx="4" fill="url(#cardGrad3)" stroke="#23262E" stroke-width="1.5"/>
-    <rect x="20" y="20" width="38" height="38" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="1"/>
-    <text x="39" y="44" fill="#10B981" font-size="12" font-weight="bold" text-anchor="middle">ETL</text>
-    <text x="20" y="90" fill="#F0F2F5" font-size="15" font-weight="bold">Normalizer</text>
-    <text x="20" y="120" fill="#7E8494" font-size="13">Harmonization</text>
-    <text x="20" y="145" fill="#7E8494" font-size="13">Reference Token Hash</text>
-    <text x="20" y="170" fill="#7E8494" font-size="13">Duplicate Filtering</text>
-    <text x="20" y="195" fill="#10B981" font-size="11" font-weight="bold">Standardized Entries</text>
+  <!-- ========================================== -->
+  <!-- 4 PIPELINE STAGE CARDS (y=72 to 330)       -->
+  <!-- ========================================== -->
+
+  <!-- Card 01: Bank Feeds Ingestion -->
+  <g transform="translate(28, 72)">
+    <rect width="216" height="248" rx="8" fill="#111827" fill-opacity="0.9" stroke="#ffffff" stroke-opacity="0.1"/>
+    <rect width="216" height="30" rx="8" fill="#ffffff" fill-opacity="0.03"/>
+    <text x="12" y="20" fill="#e2c974" font-size="12" font-weight="700">01. BANK INGESTION</text>
+
+    <!-- Icon Badge -->
+    <rect x="14" y="42" width="36" height="36" rx="6" fill="#10b981" fill-opacity="0.12" stroke="#10b981" stroke-opacity="0.4"/>
+    <text x="32" y="65" fill="#10b981" font-size="12" font-weight="700" text-anchor="middle">BNK</text>
+    
+    <text x="60" y="56" fill="#f8fafc" font-size="13" font-weight="700">Bank Feeds</text>
+    <text x="60" y="72" fill="#06b6d4" font-size="10.5">Automated Pull</text>
+
+    <line x1="14" y1="88" x2="202" y2="88" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <text x="14" y="110" fill="#cbd5e1" font-size="11" font-weight="600">ISO 20022 / MT940</text>
+    <text x="14" y="126" fill="#94a3b8" font-size="10">Automated SFTP / API Pull</text>
+
+    <text x="14" y="150" fill="#cbd5e1" font-size="11" font-weight="600">Multi-Bank Statement</text>
+    <text x="14" y="166" fill="#94a3b8" font-size="10">SEP, PEC, Mellat, Pasargad</text>
+
+    <text x="14" y="190" fill="#cbd5e1" font-size="11" font-weight="600">Statement Parsing</text>
+    <text x="14" y="206" fill="#94a3b8" font-size="10">Raw Data Normalization</text>
+
+    <rect x="12" y="216" width="192" height="22" rx="4" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.3"/>
+    <text x="108" y="231" fill="#10b981" font-size="10" font-weight="700" text-anchor="middle">INGESTION: 4.8M TX/DAY</text>
   </g>
 
-  <g transform="translate(610, 140)">
-    <rect width="200" height="240" rx="4" fill="url(#cardGrad3)" stroke="#059669" stroke-width="2"/>
-    <rect x="20" y="20" width="38" height="38" rx="3" fill="#059669" fill-opacity="0.25" stroke="#10B981" stroke-width="1"/>
-    <text x="39" y="44" fill="#34D399" font-size="12" font-weight="bold" text-anchor="middle">ACID</text>
-    <text x="20" y="90" fill="#F0F2F5" font-size="15" font-weight="bold">Dual-Entry Ledger</text>
-    <text x="20" y="120" fill="#7E8494" font-size="13">3-Way Match Algorithm</text>
-    <text x="20" y="145" fill="#7E8494" font-size="13">Zero Drift Invariant</text>
-    <text x="20" y="170" fill="#7E8494" font-size="13">Forex and Fee Alignment</text>
-    <rect x="20" y="192" width="125" height="26" rx="3" fill="#059669" fill-opacity="0.25"/>
-    <text x="82" y="209" fill="#F0F2F5" font-size="11" font-weight="bold" text-anchor="middle">99.98% Balanced</text>
+  <!-- Conduit 1 -> 2 -->
+  <path d="M 244 196 L 272 196" fill="none" class="recon-conduit-emerald" marker-end="url(#recon-arr-emerald)"/>
+
+  <!-- Card 02: ETL Normalizer -->
+  <g transform="translate(272, 72)">
+    <rect width="216" height="248" rx="8" fill="#111827" fill-opacity="0.9" stroke="#ffffff" stroke-opacity="0.1"/>
+    <rect width="216" height="30" rx="8" fill="#ffffff" fill-opacity="0.03"/>
+    <text x="12" y="20" fill="#e2c974" font-size="12" font-weight="700">02. PRE-PROCESSING</text>
+
+    <!-- Icon Badge -->
+    <rect x="14" y="42" width="36" height="36" rx="6" fill="#06b6d4" fill-opacity="0.12" stroke="#06b6d4" stroke-opacity="0.4"/>
+    <text x="32" y="65" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">ETL</text>
+    
+    <text x="60" y="56" fill="#f8fafc" font-size="13" font-weight="700">Normalizer</text>
+    <text x="60" y="72" fill="#06b6d4" font-size="10.5">Token Harmonizer</text>
+
+    <line x1="14" y1="88" x2="202" y2="88" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <text x="14" y="110" fill="#cbd5e1" font-size="11" font-weight="600">Harmonization Engine</text>
+    <text x="14" y="126" fill="#94a3b8" font-size="10">Multi-PSP Field Mapping</text>
+
+    <text x="14" y="150" fill="#cbd5e1" font-size="11" font-weight="600">Reference Token Hash</text>
+    <text x="14" y="166" fill="#94a3b8" font-size="10">SHA-256 (STAN + RRN + Date)</text>
+
+    <text x="14" y="190" fill="#cbd5e1" font-size="11" font-weight="600">Duplicate Filtering</text>
+    <text x="14" y="206" fill="#94a3b8" font-size="10">Bloom Filter + Redis TTL</text>
+
+    <rect x="12" y="216" width="192" height="22" rx="4" fill="#0b0e14" stroke="#06b6d4" stroke-opacity="0.3"/>
+    <text x="108" y="231" fill="#38bdf8" font-size="10" font-weight="700" text-anchor="middle">SCHEMA: STANDARDIZED</text>
   </g>
 
-  <g transform="translate(900, 150)">
-    <rect width="200" height="220" rx="4" fill="url(#cardGrad3)" stroke="#23262E" stroke-width="1.5"/>
-    <rect x="20" y="20" width="38" height="38" rx="3" fill="#374151" fill-opacity="0.3" stroke="#4B5563" stroke-width="1"/>
-    <text x="39" y="44" fill="#9CA3AF" font-size="12" font-weight="bold" text-anchor="middle">EXC</text>
-    <text x="20" y="90" fill="#F0F2F5" font-size="15" font-weight="bold">Exception Ledger</text>
-    <text x="20" y="120" fill="#7E8494" font-size="13">Dispute Queue</text>
-    <text x="20" y="145" fill="#7E8494" font-size="13">Automated Resolution</text>
-    <text x="20" y="170" fill="#7E8494" font-size="13">Audit Trace Trail</text>
-    <text x="20" y="195" fill="#7E8494" font-size="11" font-weight="bold">Forensic Log</text>
+  <!-- Conduit 2 -> 3 -->
+  <path d="M 488 196 L 516 196" fill="none" class="recon-conduit-cyan" marker-end="url(#recon-arr-cyan)"/>
+
+  <!-- Card 03: Dual-Entry Core Reconciler -->
+  <g transform="translate(516, 72)">
+    <rect width="216" height="248" rx="8" fill="#111827" fill-opacity="0.9" stroke="#10b981" stroke-opacity="0.5" stroke-width="1.5"/>
+    <rect width="216" height="30" rx="8" fill="url(#recon-emerald-grad)"/>
+    <text x="12" y="20" fill="#10b981" font-size="12" font-weight="700">03. 3-WAY MATCHING</text>
+
+    <!-- Icon Badge -->
+    <rect x="14" y="42" width="36" height="36" rx="6" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-opacity="0.6"/>
+    <text x="32" y="65" fill="#10b981" font-size="12" font-weight="700" text-anchor="middle">ACID</text>
+    
+    <text x="60" y="56" fill="#f8fafc" font-size="13" font-weight="700">Dual-Entry Ledger</text>
+    <text x="60" y="72" fill="#10b981" font-size="10.5">Parity Core</text>
+
+    <line x1="14" y1="88" x2="202" y2="88" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <text x="14" y="110" fill="#cbd5e1" font-size="11" font-weight="600">3-Way Match Algorithm</text>
+    <text x="14" y="126" fill="#94a3b8" font-size="10">Bank ↔ Switch ↔ Ledger</text>
+
+    <text x="14" y="150" fill="#cbd5e1" font-size="11" font-weight="600">Zero Drift Invariant</text>
+    <text x="14" y="166" fill="#94a3b8" font-size="10">Σ Debits - Σ Credits = $0.00</text>
+
+    <text x="14" y="190" fill="#cbd5e1" font-size="11" font-weight="600">Forex &amp; Fee Alignment</text>
+    <text x="14" y="206" fill="#94a3b8" font-size="10">Tiered Interchange Margins</text>
+
+    <rect x="12" y="216" width="192" height="22" rx="4" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.5"/>
+    <text x="108" y="231" fill="#10b981" font-size="10" font-weight="700" text-anchor="middle">99.98% AUTO-MATCHED</text>
+  </g>
+
+  <!-- Conduit 3 -> 4 -->
+  <path d="M 732 196 L 760 196" fill="none" class="recon-conduit-emerald" marker-end="url(#recon-arr-emerald)"/>
+
+  <!-- Card 04: Exception Ledger & Auto-Healing -->
+  <g transform="translate(760, 72)">
+    <rect width="212" height="248" rx="8" fill="#111827" fill-opacity="0.9" stroke="#ffffff" stroke-opacity="0.1"/>
+    <rect width="212" height="30" rx="8" fill="#ffffff" fill-opacity="0.03"/>
+    <text x="12" y="20" fill="#e2c974" font-size="12" font-weight="700">04. AUTO-HEALING</text>
+
+    <!-- Icon Badge -->
+    <rect x="14" y="42" width="36" height="36" rx="6" fill="#374151" fill-opacity="0.3" stroke="#4b5563" stroke-width="1"/>
+    <text x="32" y="65" fill="#cbd5e1" font-size="12" font-weight="700" text-anchor="middle">EXC</text>
+    
+    <text x="60" y="56" fill="#f8fafc" font-size="13" font-weight="700">Exception Ledger</text>
+    <text x="60" y="72" fill="#e2c974" font-size="10.5">Dispute Queue</text>
+
+    <line x1="14" y1="88" x2="198" y2="88" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <text x="14" y="110" fill="#cbd5e1" font-size="11" font-weight="600">Automated Dispute Queue</text>
+    <text x="14" y="126" fill="#94a3b8" font-size="10">Phantom Debit Trap</text>
+
+    <text x="14" y="150" fill="#cbd5e1" font-size="11" font-weight="600">Auto-Resolution Loop</text>
+    <text x="14" y="166" fill="#94a3b8" font-size="10">MTI 0400 Auto-Refund &lt; 45s</text>
+
+    <text x="14" y="190" fill="#cbd5e1" font-size="11" font-weight="600">Forensic Audit Trail</text>
+    <text x="14" y="206" fill="#94a3b8" font-size="10">Cryptographic Proof Export</text>
+
+    <rect x="12" y="216" width="188" height="22" rx="4" fill="#0b0e14" stroke="#e2c974" stroke-opacity="0.3"/>
+    <text x="106" y="231" fill="#e2c974" font-size="10" font-weight="700" text-anchor="middle">AUTO-HEAL: &lt; 45 SECONDS</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- 3-WAY MATCH VERIFICATION MATRIX (y=334)     -->
+  <!-- ========================================== -->
+  <g transform="translate(28, 332)">
+    <rect width="944" height="102" rx="8" fill="#111827" fill-opacity="0.95" stroke="#ffffff" stroke-opacity="0.1"/>
+    
+    <!-- Matrix Header -->
+    <text x="20" y="22" fill="#10b981" font-size="11.5" font-weight="700" letter-spacing="1">3-WAY PARITY VERIFICATION MATRIX · DAILY AUDIT CLOSE</text>
+    <text x="590" y="22" fill="#94a3b8" font-size="10.5">CYCLE: <tspan fill="#f8fafc" font-weight="700">T+1 BATCH (03:45 IRST)</tspan> · DISCREPANCY: <tspan fill="#10b981" font-weight="700">0.00% ZERO</tspan></text>
+    <line x1="0" y1="32" x2="944" y2="32" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <!-- Pillar 1: Bank Statement -->
+    <g transform="translate(20, 42)">
+      <rect width="210" height="48" rx="6" fill="#0b0e14" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="14" y="18" fill="#94a3b8" font-size="10">1. BANK STATEMENT (MT940)</text>
+      <text x="14" y="36" fill="#f8fafc" font-size="12" font-weight="700">124,500,000,000 IRR</text>
+    </g>
+
+    <text x="245" y="72" fill="#10b981" font-size="18" font-weight="700">=</text>
+
+    <!-- Pillar 2: Core Switch Journal -->
+    <g transform="translate(268, 42)">
+      <rect width="210" height="48" rx="6" fill="#0b0e14" stroke="#06b6d4" stroke-opacity="0.3"/>
+      <text x="14" y="18" fill="#06b6d4" font-size="10">2. CORE SWITCH LOGS (ISO)</text>
+      <text x="14" y="36" fill="#f8fafc" font-size="12" font-weight="700">124,500,000,000 IRR</text>
+    </g>
+
+    <text x="493" y="72" fill="#10b981" font-size="18" font-weight="700">=</text>
+
+    <!-- Pillar 3: Double-Entry Ledger -->
+    <g transform="translate(516, 42)">
+      <rect width="210" height="48" rx="6" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.3"/>
+      <text x="14" y="18" fill="#10b981" font-size="10">3. DOUBLE-ENTRY LEDGER</text>
+      <text x="14" y="36" fill="#f8fafc" font-size="12" font-weight="700">124,500,000,000 IRR</text>
+    </g>
+
+    <!-- Parity Result Badge -->
+    <g transform="translate(742, 42)">
+      <rect width="182" height="48" rx="6" fill="#10b981" fill-opacity="0.12" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="91" y="20" fill="#10b981" font-size="10" font-weight="700" text-anchor="middle">PARITY DELTA</text>
+      <text x="91" y="38" fill="#f8fafc" font-size="12" font-weight="700" text-anchor="middle">Δ = 0.00 (PERFECT)</text>
+    </g>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- INVARIANT TELEMETRY FOOTER                 -->
+  <!-- ========================================== -->
+  <g transform="translate(28, 446)">
+    <rect width="944" height="48" rx="8" fill="#111827" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.1"/>
+    <rect width="5" height="48" rx="2" fill="#10b981"/>
+    
+    <text x="20" y="20" fill="#10b981" font-size="11" font-weight="700" letter-spacing="0.8">ARCHITECTURAL INVARIANT:</text>
+    <text x="200" y="20" fill="#f8fafc" font-size="11">DAILY BATCH RUN CLOSURE GUARANTEES 100% AUDIT PROOF · ZERO SILENT ACCRUAL DRIFT</text>
+    
+    <text x="20" y="38" fill="#94a3b8" font-size="10">CENTRAL BANK COMPLIANCE: AUTOMATED REGULATORY CBR SUMMARY DISPATCH · T+1 CLEARING AT 03:45 AM IRST</text>
+    <text x="735" y="38" fill="#10b981" font-size="10" font-weight="700">● CENTRAL BANK AUDIT READY</text>
   </g>
 </svg>
