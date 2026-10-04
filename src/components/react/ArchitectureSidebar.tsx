@@ -14,7 +14,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
 
   const sections = isFa
     ? [
-        { id: 'overview', pageNum: '۰۱', label: 'خلاصه و نمایه اجرایی', tag: 'نمای کلی' },
+        { id: 'overview', pageNum: '۰۱', label: 'نمای کلی معماری سیستم‌ها', tag: 'نمای کلی' },
         { id: 'payment-settlement', pageNum: '۰۲', label: 'دفتر کل دوطرفه و تسویه', tag: 'پرونده ۰۱' },
         { id: 'payment-switch', pageNum: '۰۳', label: 'سوییچ هوشمند پرداخت ISO', tag: 'پرونده ۰۲' },
         { id: 'fraud-forensics', pageNum: '۰۴', label: 'احراز هویت و ضدتقلب Neo4j', tag: 'پرونده ۰۳' },
@@ -24,7 +24,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
         { id: 'book', pageNum: '۰۸', label: 'جلسه بررسی معماری', tag: 'رزرو جلسه' },
       ]
     : [
-        { id: 'overview', pageNum: '01', label: 'Executive Landing Posture', tag: 'OVERVIEW' },
+        { id: 'overview', pageNum: '01', label: 'Systems Architecture Overview', tag: 'OVERVIEW' },
         { id: 'payment-settlement', pageNum: '02', label: 'Settlements & Ledgers', tag: 'DOSSIER 01' },
         { id: 'payment-switch', pageNum: '03', label: 'Smart PSP Switch (ISO 8583)', tag: 'DOSSIER 02' },
         { id: 'fraud-forensics', pageNum: '04', label: 'eKYC & Fraud Forensics', tag: 'DOSSIER 03' },
@@ -88,13 +88,15 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
   };
 
   return (
-    <aside className="hidden lg:block lg:col-span-3 sticky top-18 space-y-3 font-sans select-none" dir={isFa ? 'rtl' : 'ltr'}>
+    <aside className="hidden lg:block lg:col-span-3 sticky top-20 space-y-3.5 pt-0.5 font-sans select-none" dir={isFa ? 'rtl' : 'ltr'}>
       
-      {/* 1. MINIMIZED 1ST-PAGE BIO CARD (Appears on pages other than main page) */}
-      {activeSection !== 'overview' && (
-        <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl relative overflow-hidden group transition-all duration-300 animate-fadeIn">
-          <div className="flex items-center gap-3">
-            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-white/20 shrink-0 bg-[#13161c]">
+      {/* 1. EXECUTIVE IDENTITY CARD:
+             - On Overview (1st page): Clean monogram badge 'AS' (no duplicate portrait)
+             - On Other Pages: Displays avatar photo above the index */}
+      <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl relative overflow-hidden group transition-all duration-300">
+        <div className="flex items-center gap-3">
+          {activeSection !== 'overview' ? (
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-white/20 shrink-0 bg-[#13161c] animate-fadeIn shadow-md">
               <img
                 src={`${baseUrl}photos/ariya.jpg`}
                 alt="Ariya Sarrafzadeh"
@@ -102,49 +104,53 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
                 loading="lazy"
               />
             </div>
-            <div className="min-w-0 flex-1">
-              <div className="text-xs font-bold text-white truncate font-mono">
-                {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}
-              </div>
-              <div className="text-[10px] text-neutral-400 truncate font-mono">
-                {isFa ? 'معمار ارشد سیستم و TPM' : 'Principal Systems Architect'}
-              </div>
-              <div className="flex items-center gap-1.5 text-[9px] font-mono text-emerald-400 mt-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>{isFa ? 'تهران · عملیاتی' : 'TEHRAN, IR · NOMINAL'}</span>
-              </div>
+          ) : (
+            <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center shrink-0 font-mono text-emerald-400 text-xs font-bold shadow-inner">
+              AS
             </div>
-          </div>
-
-          <div className="flex items-center justify-between pt-3 mt-3 border-t border-white/5 text-[10px] font-mono text-neutral-300">
-            <a
-              href="#overview"
-              onClick={(e) => handleNavClick(e, 'overview')}
-              className="hover:text-white transition-colors flex items-center gap-1"
-            >
-              <span>↑</span>
-              <span>{isFa ? 'صفحه نخست' : 'Page 01 Overview'}</span>
-            </a>
-            <div className="flex items-center gap-2">
-              <a
-                href="mailto:ariasg2002@gmail.com"
-                className="hover:text-white transition-colors"
-              >
-                Email
-              </a>
-              <span className="text-white/20">·</span>
-              <a
-                href="https://www.linkedin.com/in/ariya-sarrafzadeh/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
-              >
-                LinkedIn
-              </a>
+          )}
+          <div className="min-w-0 flex-1">
+            <div className="text-xs font-bold text-white truncate font-mono">
+              {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}
+            </div>
+            <div className="text-[10px] text-neutral-400 truncate font-mono">
+              {isFa ? 'معمار ارشد سیستم و TPM' : 'Principal Systems Architect'}
+            </div>
+            <div className="flex items-center gap-1.5 text-[9px] font-mono text-emerald-400 mt-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{isFa ? 'تهران · شاپرک · عملیاتی' : 'TEHRAN, IR · NOMINAL'}</span>
             </div>
           </div>
         </div>
-      )}
+
+        <div className="flex items-center justify-between pt-2.5 mt-2.5 border-t border-white/5 text-[10px] font-mono text-neutral-300">
+          <a
+            href="#overview"
+            onClick={(e) => handleNavClick(e, 'overview')}
+            className="hover:text-white transition-colors flex items-center gap-1"
+          >
+            <span>↑</span>
+            <span>{isFa ? 'نمای کلی پلتفرم' : 'Platform Overview'}</span>
+          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="mailto:ariasg2002@gmail.com"
+              className="hover:text-white transition-colors"
+            >
+              Email
+            </a>
+            <span className="text-white/20">·</span>
+            <a
+              href="https://www.linkedin.com/in/ariya-sarrafzadeh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* 2. ARCHITECTURE INDEX LIST */}
       <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl space-y-3">
@@ -192,7 +198,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
           </button>
           
           <span className="text-[10px] text-neutral-500 font-mono">
-            {isFa ? 'گردش صفحات' : 'ROLLING POSTURE'}
+            {isFa ? 'گردش صفحات' : 'PAGE SELECTOR'}
           </span>
 
           <button

@@ -155,14 +155,14 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
     <div id="overview" className="scroll-mt-20 w-full min-h-[calc(100vh-5.5rem)] flex flex-col justify-start gap-4 xl:gap-5 pb-4 font-sans" dir={isFa ? 'rtl' : 'ltr'}>
       
       {/* =========================================================================
-          ZONE A: EXECUTIVE COMMAND HERO CONSOLE
+          ZONE A: EXECUTIVE COMMAND HERO CONSOLE (Bigger Portrait + Full-Width Narrative)
           ========================================================================= */}
-      <div className="bg-[#0f1217]/95 border border-white/10 rounded-2xl p-5 sm:p-6 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+      <div className="bg-[#0f1217]/95 border border-white/10 rounded-2xl p-5 sm:p-7 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
           
-          {/* Portrait Column */}
-          <div className="md:col-span-4 lg:col-span-3 flex flex-col items-center md:items-start gap-2">
-            <div className="relative w-44 sm:w-48 md:w-full aspect-[4/5] rounded-xl overflow-hidden border border-white/20 bg-[#13161c] shadow-2xl group">
+          {/* Portrait Column: Sized larger, authoritative, commanding */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-center lg:items-start gap-2.5">
+            <div className="relative w-full max-w-[340px] sm:max-w-[360px] lg:max-w-[380px] xl:max-w-[420px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 bg-[#13161c] shadow-2xl group">
               <img
                 src={`${baseUrl}photos/ariya.jpg`}
                 alt="Ariya Sarrafzadeh"
@@ -170,47 +170,63 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
                 loading="eager"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d11]/90 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[10px] font-mono bg-[#0b0d11]/90 backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-white/15">
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono bg-[#0b0d11]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15">
                 <span className="text-neutral-200 font-semibold">{isFa ? 'تهران · شاپرک' : 'TEHRAN, IR'}</span>
-                <span className="text-emerald-400 flex items-center gap-1 font-medium">
+                <span className="text-emerald-400 flex items-center gap-1.5 font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  NOMINAL
+                  NOMINAL · &lt;15MS
                 </span>
               </div>
             </div>
 
-            <div className="text-[10px] font-mono text-neutral-400 text-center md:text-start flex items-center gap-1.5 pt-0.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-              <span className="truncate">{isFa ? 'آماده مشاوره و ارزیابی سیستم' : 'Available for Advisory & System Audits'}</span>
+            <div className="text-[11px] font-mono text-neutral-400 text-center lg:text-start flex items-center gap-2 pt-0.5">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
+              <span className="truncate">{isFa ? 'آماده مشاوره و ممیزی سیستم‌های مقیاس‌پذیر' : 'Available for Advisory & Platform Audits'}</span>
             </div>
           </div>
 
-          {/* Narrative & Authority Column */}
-          <div className="md:col-span-8 lg:col-span-9 space-y-3">
+          {/* Narrative Column: Fills the entire right side purposefully */}
+          <div className="lg:col-span-7 xl:col-span-8 space-y-3.5">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-mono text-neutral-300 tracking-wider uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
               <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'PRINCIPAL SYSTEMS ARCHITECT & TECHNICAL PRODUCT LEADER'}</span>
             </div>
 
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-white leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
               {isFa 
                 ? 'معماری سوییچ‌های مالی، دفاتر کل دوطرفه و روتینگ مخابراتی' 
                 : 'High-Throughput Financial Switches, Double-Entry Ledgers & Telecom Routing'}
             </h1>
 
-            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-4xl">
+            <p className="text-sm text-neutral-300 leading-relaxed max-w-4xl">
               {isFa
                 ? 'بیش از ۱۵ سال تجربه عملیاتی در زیرساخت‌های بانکی شاپرک، سوییچ‌های پرداخت ISO 8583 با تاخیر زیر ۳۰ میلی‌ثانیه، ماشین حالت تخصیص دومرحله‌ای موجودی با تضمین انحراف مالی صفر، و هاب‌های مخابراتی SMPP با ظرفیت ۵۰ هزار تراکنش هم‌روند.'
                 : '15+ years engineering high-availability banking switches, sub-30ms ISO 8583 multi-PSP routing, two-phase balance reservation machines with zero financial drift, and national SMPP 3.4 telecom gateways handling 50,000 TPS burst capacity.'}
             </p>
 
-            {/* Tactical Tags */}
-            <div className="flex flex-wrap gap-1.5 pt-1" dir="ltr">
+            {/* Tactical Chips */}
+            <div className="flex flex-wrap gap-1.5 pt-0.5" dir="ltr">
               {["ISO 8583", "2PC MUTEX", "ACID LEDGERS", "SMPP 3.4", "SCYLLADB", "RABBITMQ CDC", "NEO4J", "REDIS SETNX"].map((chip) => (
-                <span key={chip} className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-neutral-200">
+                <span key={chip} className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-neutral-200">
                   [{chip}]
                 </span>
               ))}
+            </div>
+
+            {/* Strategic Focus Grid: Fills horizontal width with core system capabilities */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 font-mono text-[11px]">
+              <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                <span className="text-neutral-300 truncate">
+                  {isFa ? 'سوییچ پرداخت بانکی: تاخیر زیر ۳۰ms و بازگشت خودکار ۰۴۰۰' : 'Interbank Switch: Sub-30ms failover & auto-0400'}
+                </span>
+              </div>
+              <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                <span className="text-neutral-300 truncate">
+                  {isFa ? 'دفتر کل توزیع‌شده: قفل SETNX با انحراف مالی ۰٫۰۰٪' : 'Ledger Mutex: Zero drift via SETNX & CDC outbox'}
+                </span>
+              </div>
             </div>
 
             {/* Action Row */}
@@ -255,7 +271,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
       </div>
 
       {/* =========================================================================
-          ZONE B: LIVE IMPACT & SLA VITALS RIBBON (Directly docked, zero dead space!)
+          ZONE B: LIVE IMPACT & SLA VITALS RIBBON
           ========================================================================= */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 w-full">
         {proofMatrix.map((item) => (
@@ -445,12 +461,12 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
         </div>
 
-        {/* Rolling Page Stepper Prompt */}
+        {/* Stepper Prompt */}
         <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
           <div className="text-neutral-400 text-[11px] flex items-center gap-2">
             <span className="text-emerald-400 font-semibold">{isFa ? 'صفحه ۱ از ۸' : 'PAGE 01 OF 08'}</span>
             <span>·</span>
-            <span>{isFa ? 'کنسول فرماندهی معماری' : 'EXECUTIVE SYSTEMS CONSOLE'}</span>
+            <span>{isFa ? 'نمای کلی معماری سیستم‌ها' : 'SYSTEM ARCHITECTURE OVERVIEW'}</span>
           </div>
 
           <a
