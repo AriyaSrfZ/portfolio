@@ -1,89 +1,145 @@
 ---
+interface Props {
+  locale?: 'en' | 'fa';
+}
+
 const { locale = 'en' } = Astro.props;
 const isFa = locale === 'fa';
 
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
 const proofMatrix = isFa
   ? [
-      { val: "۱۵+ سال", label: "سابقه مهندسی" },
-      { val: "۱B+", label: "تراکنش پیامک سالانه" },
-      { val: "۵۰K TPS", label: "اوج پردازش سیستم" },
-      { val: "زیر ۱۵ms", label: "مهلت ارزیابی ریسک" },
-      { val: "مغایرت صفر", label: "در تسویه روزانه" },
+      { val: "۱۵+ سال", label: "معماری سامانه‌های مقیاس‌پذیر", tag: "زیرساخت حیاتی", href: "#payment-settlement" },
+      { val: "۱B+ پیامک", label: "هاب ملی مخابرات و SMPP 3.4", tag: "کنترل جریان", href: "#payment-switch" },
+      { val: "۵۰K TPS", label: "ظرفیت اوج پردازش هم‌روند", tag: "سوییچ شتاب", href: "#payment-switch" },
+      { val: "زیر ۱۵ms", label: "مهلت حلقه ارزیابی ریسک", tag: "گارد تقلب", href: "#fraud-forensics" },
+      { val: "۰٫۰۰٪", label: "انحراف مالی در تسویه روزانه", tag: "تراز ریاضی", href: "#reconciliation-engine" },
     ]
   : [
-      { val: "15+ YEARS", label: "Engineering Experience" },
-      { val: "1B+", label: "Messages Routed / Year" },
-      { val: "50K TPS", label: "Peak Concurrent Throughput" },
-      { val: "<15ms SLA", label: "Real-Time Fraud Risk Loop" },
-      { val: "0.00% DRIFT", label: "Zero Financial Drift" },
+      { val: "15+ YRS", label: "Production Infrastructure", tag: "CRITICAL CORE", href: "#payment-settlement" },
+      { val: "1B+ SMS", label: "SMPP 3.4 Hub Messages / Year", tag: "FLOW CONTROL", href: "#payment-switch" },
+      { val: "50K TPS", label: "Peak Concurrent Throughput", tag: "H2H SWITCH", href: "#payment-switch" },
+      { val: "<15ms SLA", label: "Real-Time Fraud Risk Loop", tag: "GRAPH FORENSICS", href: "#fraud-forensics" },
+      { val: "0.00% DRIFT", label: "Across 50K+ Daily Clearing Batches", tag: "ACID BALANCED", href: "#reconciliation-engine" },
     ];
+
+const chips = ["ISO 8583", "IDEMPOTENCY", "ACID LEDGERS", "SMPP 3.4", "SCYLLADB", "RABBITMQ"];
+
+const mailtoSubject = encodeURIComponent("Inquiry: Systems Architecture & Technical Product Leadership");
+const mailtoHref = `mailto:ariasg2002@gmail.com?subject=${mailtoSubject}`;
+const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 ---
 
-<section class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden" dir={isFa ? "rtl" : "ltr"}>
-  <div class="absolute inset-0 bg-[#05060a] z-0"></div>
-  <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#06b6d4]/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
-  
-  <div class="max-w-[1400px] mx-auto px-6 sm:px-8 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<header id="overview" class="relative pt-24 pb-12 border-b border-white/5 bg-[#090a0c] font-sans">
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Top Bio & Identity Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
       
-      <!-- Profile Image Card - Cleaned of all overlays -->
-      <div class="lg:col-span-4 flex justify-center lg:justify-start">
-        <div class="relative w-64 h-80 rounded-2xl p-1 bg-gradient-to-b from-white/10 to-white/5 border border-white/10 shadow-2xl overflow-hidden group">
-          <div class="absolute -inset-8 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.15),transparent_50%)] blur-2xl z-0 transition-all duration-500 group-hover:opacity-70"></div>
+      <!-- Portrait Card: Sharp, Authoritative Frame (md:col-span-4 lg:col-span-4) -->
+      <div class="md:col-span-4 lg:col-span-4 flex justify-center md:justify-start">
+        <div class="relative w-64 h-80 sm:w-72 sm:h-96 md:w-full md:max-w-[320px] lg:max-w-[350px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 bg-[#13161c] shadow-2xl group transition-all">
           <img
-            src={`${import.meta.env.BASE_URL}photos/ariya.jpg`}
+            src={`${baseUrl}photos/ariya.jpg`}
             alt="Ariya Sarrafzadeh"
-            class="relative z-10 w-full h-full object-cover rounded-xl filter grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0"
+            class="w-full h-full object-cover object-top opacity-100 transition-transform duration-500 group-hover:scale-[1.03]"
+            loading="eager"
           />
-          <div class="absolute bottom-4 left-4 z-20 bg-[#0b1120]/80 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg">
-            <div class="text-[10px] font-mono text-[#06b6d4] uppercase tracking-wider">{isFa ? 'تهران، ایران' : 'Tehran, IR'}</div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0b0d11]/85 via-transparent to-transparent pointer-events-none"></div>
+          
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono bg-[#0b0d11]/90 backdrop-blur-md px-3.5 py-2 rounded-lg border border-white/15">
+            <span class="text-neutral-200 font-semibold">{isFa ? 'تهران · ایران' : 'TEHRAN, IR'}</span>
+            <span class="text-emerald-400 flex items-center gap-1.5 font-medium">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              NOMINAL
+            </span>
           </div>
         </div>
       </div>
 
-      <!-- Hero Typography -->
-      <div class="lg:col-span-8 space-y-6 text-center lg:text-start">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/10">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974] animate-pulse"></span>
-          <span class="text-[10px] font-mono text-[#e2c974] uppercase tracking-widest">{isFa ? 'مدیر ارشد محصول و معمار فنی' : 'Principal Systems Architect & Product Leader'}</span>
+      <!-- Narrative & Credentials (md:col-span-8) -->
+      <div class="md:col-span-8 space-y-3.5 text-left" dir={isFa ? 'rtl' : 'ltr'}>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-neutral-300 tracking-wider uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
+          <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'PRINCIPAL SYSTEMS ARCHITECT & TECHNICAL PRODUCT LEADER'}</span>
         </div>
-        
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#f8fafc] tracking-tight leading-tight">
-          {isFa ? 'معماری سیستمهای پرترافیک مالی، دفاتر کل دوطرفه و سوییچهای مخابراتی' : 'High-Throughput Financial Switches, Double-Entry Ledgers & Telecom Routing'}
-        </h1>
-        
-        <p class="text-[#94a3b8] text-sm leading-relaxed max-w-2xl mx-auto lg:mx-0">
+
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
           {isFa 
-            ? 'بیش از ۱۵ سال تجربه در مهندسی سوییچهای بانکی با دسترسی بالا، روتینگ چندگانه PSP، ماشینهای تخصیص دومرحلهای موجودی با مغایرت مالی صفر، و گیتویهای مخابراتی ملی با ظرفیت پردازش ۵۰,۰۰۰ تراکنش همزمان.' 
+            ? 'معماری سوییچ‌های مالی، دفاتر کل دوطرفه و روتینگ مخابراتی' 
+            : 'High-Throughput Financial Switches, Double-Entry Ledgers & Telecom Routing'}
+        </h1>
+
+        <p class="text-sm text-neutral-300 leading-relaxed max-w-3xl">
+          {isFa
+            ? 'بیش از ۱۵ سال تجربه عملیاتی در زیرساخت‌های بانکی شاپرک، سوییچ‌های پرداخت ISO 8583 با تاخیر زیر ۳۰ میلی‌ثانیه، ماشین حالت تخصیص دومرحله‌ای موجودی با تضمین انحراف مالی صفر، و هاب‌های مخابراتی SMPP با ظرفیت ۵۰ هزار تراکنش هم‌روند.'
             : '15+ years engineering high-availability banking switches, sub-30ms ISO 8583 multi-PSP routing, two-phase balance reservation machines with zero financial drift, and national SMPP 3.4 telecom gateways handling 50,000 TPS burst capacity.'}
         </p>
 
-        <!-- Tactical Technology Tags -->
-        <div class="flex flex-wrap gap-2 justify-center lg:justify-start pt-2" dir="ltr">
-          {['ISO 8583', 'IDEMPOTENCY', 'ACID LEDGERS', 'SMPP 3.4', 'SCYLLADB', 'RABBITMQ'].map(tag => (
-            <span class="px-2.5 py-1 bg-[#0b1120] border border-white/10 rounded text-[9px] font-mono text-[#38bdf8]">{`[${tag}]`}</span>
+        <!-- Technical Chips -->
+        <div class="flex flex-wrap gap-1.5 pt-2" dir="ltr">
+          {chips.map((chip) => (
+            <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-neutral-200">
+              [{chip}]
+            </span>
           ))}
         </div>
+
+        <!-- Action Links -->
+        <div class="pt-3 flex flex-wrap gap-4 items-center text-xs font-mono">
+          <a
+            href="#payment-settlement"
+            class="px-4 py-2 rounded-lg bg-white text-black font-semibold uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-md"
+          >
+            {isFa ? 'مشاهده پرونده‌های معماری ↓' : 'Inspect Dossiers ↓'}
+          </a>
+          <a
+            href={mailtoHref}
+            class="text-neutral-300 hover:text-white transition-colors"
+          >
+            ariasg2002@gmail.com
+          </a>
+          <span class="text-white/20">/</span>
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-neutral-300 hover:text-white transition-colors"
+          >
+            LinkedIn ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Solid Single Grid Metric Row (Full-width inside container) -->
+    <div class="mt-12 pt-8 border-t border-white/5">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 w-full">
+        {proofMatrix.map((item) => (
+          <a
+            href={item.href}
+            class="bg-[#111317]/90 border border-white/10 rounded-xl p-4 flex flex-col justify-between hover:border-white/25 transition-all group block shadow-md"
+          >
+            <div>
+              <div class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 mb-1.5 flex items-center justify-between">
+                <span>{item.tag}</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400/80"></span>
+              </div>
+              <div class="text-2xl md:text-3xl font-mono font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+                {item.val}
+              </div>
+            </div>
+            <div class="text-xs text-neutral-400 font-mono tracking-wide mt-3 leading-relaxed">
+              {item.label}
+            </div>
+          </a>
+        ))}
       </div>
     </div>
 
-    <!-- Restored 5-Column Grid for Stat Cards -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-12">
-      {proofMatrix.map((item) => (
-        <div class="bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-xl p-4 flex flex-col justify-between transition-all duration-300 hover:border-[#06b6d4]/40 hover:-translate-y-1 hover:shadow-xl group">
-          <div>
-            <div class="w-8 h-8 rounded-lg bg-[#06b6d4]/10 border border-[#06b6d4]/20 flex items-center justify-center text-[#06b6d4] mb-3">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" dir="ltr">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div class="text-lg sm:text-xl font-bold font-mono text-[#f8fafc] tracking-tight">{item.val}</div>
-          </div>
-          <div class="text-[10px] text-[#94a3b8] mt-2 leading-snug group-hover:text-[#38bdf8] transition-colors">
-            {item.label}
-          </div>
-        </div>
-      ))}
-    </div>
   </div>
-</section>
+</header>
