@@ -172,8 +172,8 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d11]/90 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono bg-[#0b0d11]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15">
                 <span className="text-neutral-200 font-semibold">{isFa ? 'تهران · شاپرک' : 'TEHRAN, IR'}</span>
-                <span className="text-emerald-400 flex items-center gap-1.5 font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-cyan-400 flex items-center gap-1.5 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                   NOMINAL · &lt;15MS
                 </span>
               </div>
@@ -216,7 +216,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
             {/* Strategic Focus Grid: Fills horizontal width with core system capabilities */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 font-mono text-[11px]">
               <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
                 <span className="text-neutral-300 truncate">
                   {isFa ? 'سوییچ پرداخت بانکی: تاخیر زیر ۳۰ms و بازگشت خودکار ۰۴۰۰' : 'Interbank Switch: Sub-30ms failover & auto-0400'}
                 </span>
@@ -279,14 +279,14 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
             key={item.href}
             href={item.href}
             onClick={(e) => handleScrollToDossier(e, item.href)}
-            className="bg-[#0f1217]/95 border border-white/10 rounded-xl p-3.5 flex flex-col justify-between hover:border-emerald-400/50 hover:bg-[#13161c] transition-all group block shadow-xl"
+            className="bg-[#0f1217]/95 border border-white/10 rounded-xl p-3.5 flex flex-col justify-between hover:border-cyan-400/50 hover:bg-[#13161c] transition-all group block shadow-xl"
           >
             <div>
               <div className="text-[9px] font-mono uppercase tracking-wider text-neutral-400 mb-1 flex items-center justify-between">
                 <span>{item.tag}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/80 group-hover:animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/80 group-hover:animate-ping" />
               </div>
-              <div className="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+              <div className="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">
                 {item.val}
               </div>
             </div>
@@ -349,7 +349,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
               <span>{isFa ? 'تاییدیه‌های پروداکشن' : 'Scale Proofs'}</span>
             </button>
           </div>
@@ -357,7 +357,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
           <div className="hidden sm:flex items-center gap-2 font-mono text-[10px] text-neutral-400 uppercase">
             <span>INVARIANTS ACTIVE</span>
             <span className="w-1 h-1 rounded-full bg-neutral-600" />
-            <span className="text-emerald-400">REPLAY-SAFE</span>
+            <span className="text-cyan-400">REPLAY-SAFE</span>
           </div>
         </div>
 
@@ -443,12 +443,12 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
           {activeTab === 'benchmarks' && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full animate-fadeIn">
               {benchmarks.map((bench, idx) => (
-                <div key={idx} className="bg-[#13161c] border border-white/10 rounded-xl p-4 space-y-2 shadow-md hover:border-emerald-400/30 transition-all">
+                <div key={idx} className="bg-[#13161c] border border-white/10 rounded-xl p-4 space-y-2 shadow-md hover:border-cyan-400/30 transition-all">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-white">{bench.title}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
                   </div>
-                  <div className="text-lg font-mono font-bold text-emerald-400">
+                  <div className="text-lg font-mono font-bold text-cyan-400">
                     {bench.metric}
                   </div>
                   <p className="text-[11px] text-neutral-400 leading-relaxed">
@@ -464,7 +464,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
         {/* Stepper Prompt */}
         <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
           <div className="text-neutral-400 text-[11px] flex items-center gap-2">
-            <span className="text-emerald-400 font-semibold">{isFa ? 'صفحه ۱ از ۸' : 'PAGE 01 OF 08'}</span>
+            <span className="text-cyan-400 font-semibold">{isFa ? 'صفحه ۱ از ۸' : 'PAGE 01 OF 08'}</span>
             <span>·</span>
             <span>{isFa ? 'نمای کلی معماری سیستم‌ها' : 'SYSTEM ARCHITECTURE OVERVIEW'}</span>
           </div>

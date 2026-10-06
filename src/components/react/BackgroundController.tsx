@@ -86,11 +86,7 @@ export default function BackgroundController() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none -z-20 overflow-hidden"
-      style={{
-        backgroundColor: getBgColor(),
-        transition: 'background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
-      }}
+      className="fixed inset-0 pointer-events-none z-[1] overflow-hidden bg-transparent"
     >
       {/* Tab 1: Isometric Blueprint Grid Layer */}
       <div

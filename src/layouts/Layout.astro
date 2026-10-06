@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import FloatingNavbar from '../components/react/FloatingNavbar';
 import BackgroundController from '../components/react/BackgroundController';
+import Velaris from '../components/ui/velaris';
 
 interface Props {
   title: string;
@@ -23,7 +24,7 @@ const isFa = lang === 'fa';
 ---
 
 <!DOCTYPE html>
-<html lang={lang} dir={dir} data-theme={theme} class="dark bg-[#090a0c]">
+<html lang={lang} dir={dir} data-theme={theme} class="dark bg-[#07080a]">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,7 +33,19 @@ const isFa = lang === 'fa';
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
 </head>
-<body class="min-h-screen bg-[#090a0c] text-[#ededed] selection:bg-white/10 selection:text-white font-sans antialiased overflow-x-hidden">
+<body class="min-h-screen bg-transparent text-[#ededed] selection:bg-white/10 selection:text-white font-sans antialiased overflow-x-hidden">
+  <!-- Living WebGL Simplex-Noise Telemetry Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+    <Velaris
+      client:only="react"
+      height="100vh"
+      speed={0.8}
+      grain={0.18}
+      colors={["#38bdf8", "#0284c7", "#1e293b", "#07080a"]}
+      bg="#07080a"
+    />
+  </div>
+
   <BackgroundController client:load />
   <FloatingNavbar client:load locale={isFa ? 'fa' : 'en'} />
 
