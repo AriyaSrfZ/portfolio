@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CommunityOrbitDemo from '../components/ui/builders-community-hero-demo';
+---
+
+<Layout title="Builders Community Orbit Hero — 21st.dev Component Showcase">
+  <main class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-20 font-sans">
+    <div class="mb-8">
+      <a
+        href={`${import.meta.env.BASE_URL}`}
+        class="text-xs uppercase tracking-wider text-neutral-400 hover:text-white inline-flex items-center gap-1.5 transition-colors font-mono"
+      >
+        ← Back to Production Dashboard
+      </a>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-4 font-mono">
+        Builders Community Hero (21st.dev)
+      </h1>
+      <p class="text-sm text-neutral-400 mt-2 font-mono">
+        Integrated Framer Motion dual-concentric orbit hero with live SVG arc tracing, floating spring micro-interactions, and counter animations.
+      </p>
+    </div>
+
+    <!-- Live Component Card -->
+    <div class="rounded-2xl border border-white/10 overflow-hidden shadow-2xl bg-neutral-950 p-6 sm:p-10">
+      <CommunityOrbitDemo client:load />
+    </div>
+  </main>
+</Layout>
