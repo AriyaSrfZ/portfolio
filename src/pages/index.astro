@@ -590,7 +590,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 05: Production Incident Postmortems -->
-    <section id="incident-dossiers" class="scroll-mt-20 min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
+    <section id="incident-dossiers" class="scroll-mt-20 min-h-0 lg:min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -606,87 +606,227 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           Battle-Tested Failure Resolution &amp; Postmortem Archive
         </h2>
         <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-3xl">
-          Hands-on systems recovery and architectural hardening under live regulatory, financial, and SLA constraints.
+          Hands-on systems recovery, root-cause forensics, and architectural hardening under live regulatory, financial, and SLA constraints.
         </p>
       </div>
 
-      <!-- 3 Incident Cards Grid (Full-Width Stacked Cards) -->
+      <!-- Telemetry & Recovery SLA Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Incident MTTR</span>
+          <span class="text-emerald-400 font-semibold text-sm">&lt; 8 min Failover</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Financial Drift</span>
+          <span class="text-white font-semibold text-sm">0.00 IRR (Zero Loss)</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Switch Availability</span>
+          <span class="text-cyan-400 font-semibold text-sm">99.99% Core Uptime</span>
+        </div>
+        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+          <span class="text-neutral-400 block text-[10px] uppercase">Resolution SLA</span>
+          <span class="text-emerald-400 font-semibold text-sm">100% P0 Mitigated</span>
+        </div>
+      </div>
+
+      <!-- 3 Incident Deep-Dive Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Incident 01 -->
         <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
-          <div class="space-y-2">
+          <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-300 font-semibold">INCIDENT 01 · SWITCH</span>
-              <span class="text-emerald-400 font-medium">P0 RESOLVED</span>
+              <span class="text-amber-400 font-semibold">INCIDENT 01 · SWITCH-PSP</span>
+              <span class="text-emerald-400 font-medium bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">P0 RESOLVED</span>
             </div>
-            <h3 class="text-sm font-bold text-white">Upstream ISO 8583 Timeout Recovery</h3>
-            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-400">CONTEXT:</span> Merchant retry storms triggering duplicate captures during banking host timeouts.</p>
-              <p><span class="text-neutral-400">INVARIANT:</span> Mutex lock must outlive carrier retry windows (86,400s).</p>
-              <p><span class="text-neutral-400">FIX:</span> Distributed Redis SETNX with 24h TTL; append-only double-entry ledger in ScyllaDB.</p>
+            <div>
+              <h3 class="text-sm font-bold text-white">Upstream ISO 8583 Timeout &amp; Reverse Storms</h3>
+              <p class="text-[11px] font-mono text-neutral-400 mt-0.5">Banking Host Socket Saturation · Duplicate Capture Risk</p>
+            </div>
+            <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
+              <p><strong class="text-amber-400">ROOT CAUSE:</strong> Bank host gateway socket hangs triggered downstream merchant retry storms and duplicate ISO 8583 0200 capture requests.</p>
+              <p><strong class="text-cyan-400">INVARIANT:</strong> Distributed idempotency mutex lock must outlive the longest carrier retry window (86,400s TTL).</p>
+              <p><strong class="text-white">HARDENED FIX:</strong> Redis <code class="text-cyan-400 bg-white/5 px-1 py-0.5 rounded">SETNX</code> distributed lock with 24h TTL + ScyllaDB append-only double-entry fact log. Automatic refund reversal on timeout.</p>
             </div>
           </div>
-          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
-            &rarr; Zero Financial Drift (0.00 IRR)
+          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+            <span class="text-emerald-400 font-semibold">&rarr; Zero Financial Drift (0.00 IRR)</span>
+            <span class="text-[10px] text-neutral-500">[ISO 8583]</span>
           </div>
         </div>
 
         <!-- Incident 02 -->
         <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
-          <div class="space-y-2">
+          <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-300 font-semibold">INCIDENT 02 · TELECOM</span>
-              <span class="text-emerald-400 font-medium">P0 RESOLVED</span>
+              <span class="text-amber-400 font-semibold">INCIDENT 02 · TELECOM MESH</span>
+              <span class="text-emerald-400 font-medium bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">P0 RESOLVED</span>
             </div>
-            <h3 class="text-sm font-bold text-white">Carrier SMPP Sliding-Window Choke</h3>
-            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-400">CONTEXT:</span> Bulk broadcast runs delaying critical dynamic OTP authentication codes.</p>
-              <p><span class="text-neutral-400">INVARIANT:</span> Critical auth queues cannot share worker pipes with marketing traffic.</p>
-              <p><span class="text-neutral-400">FIX:</span> Multi-tiered queue partitioning; real-time SMPP sliding window throttle (16–64 PDU).</p>
+            <div>
+              <h3 class="text-sm font-bold text-white">National Telecom SMPP 3.4 Sliding-Window Choke</h3>
+              <p class="text-[11px] font-mono text-neutral-400 mt-0.5">SMSC Congestion · Dynamic Harim OTP Latency Spike</p>
+            </div>
+            <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
+              <p><strong class="text-amber-400">ROOT CAUSE:</strong> High-volume broadcast runs clogged carrier SMSC binds, delaying dynamic Harim OTP codes required for payment checkouts.</p>
+              <p><strong class="text-cyan-400">INVARIANT:</strong> Critical auth queues must never share sliding windows or worker pipes with asynchronous marketing traffic.</p>
+              <p><strong class="text-white">HARDENED FIX:</strong> Dual-plane RabbitMQ priority queues + dynamic SMPP 3.4 sliding window throttle (16&ndash;64 PDU) with window-overflow backpressure.</p>
             </div>
           </div>
-          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
-            &rarr; Sub-2s Delivery Guarantee
+          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+            <span class="text-emerald-400 font-semibold">&rarr; Sub-2s Delivery Guaranteed</span>
+            <span class="text-[10px] text-neutral-500">[SMPP 3.4]</span>
           </div>
         </div>
 
         <!-- Incident 03 -->
         <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
-          <div class="space-y-2">
+          <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-neutral-300 font-semibold">INCIDENT 03 · BIG DATA</span>
-              <span class="text-emerald-400 font-medium">P1 RESOLVED</span>
+              <span class="text-amber-400 font-semibold">INCIDENT 03 · BIG DATA &amp; eKYC</span>
+              <span class="text-emerald-400 font-medium bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">P1 RESOLVED</span>
             </div>
-            <h3 class="text-sm font-bold text-white">Smart DB 100M Pre-KYC Scoring</h3>
-            <div class="text-xs text-neutral-200 space-y-1.5 font-mono leading-relaxed pt-1">
-              <p><span class="text-neutral-400">CONTEXT:</span> 94.7M unindexed records causing RDBMS deadlocks during high-concurrency lookup.</p>
-              <p><span class="text-neutral-400">INVARIANT:</span> Fast attribute enrichment without latency degradation on payment switch.</p>
-              <p><span class="text-neutral-400">FIX:</span> Layered deterministic normalisation + phonetic blocking. 70% predictive user accuracy.</p>
+            <div>
+              <h3 class="text-sm font-bold text-white">100M Pre-KYC Scoring &amp; Shahkar Deadlock</h3>
+              <p class="text-[11px] font-mono text-neutral-400 mt-0.5">RDBMS Table-Lock Contention · High-Concurrency Queries</p>
+            </div>
+            <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
+              <p><strong class="text-amber-400">ROOT CAUSE:</strong> 94.7M unindexed legacy customer records caused relational database table-level locks during peak concurrent checkout lookups.</p>
+              <p><strong class="text-cyan-400">INVARIANT:</strong> Attribute enrichment must complete in sub-30ms without synchronous locks on core transaction processing rails.</p>
+              <p><strong class="text-white">HARDENED FIX:</strong> Layered deterministic normalization pipeline, Redis Bloom filter for instant existence checks, and phonetic blocking cache.</p>
             </div>
           </div>
-          <div class="pt-2 border-t border-white/5 text-[11px] font-mono text-emerald-400 font-semibold">
-            &rarr; 100% Lock Elimination
+          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+            <span class="text-emerald-400 font-semibold">&rarr; 100% Lock Elimination</span>
+            <span class="text-[10px] text-neutral-500">[SHAHKAR eKYC]</span>
           </div>
         </div>
+      </div>
+
+      <!-- Production Failure Recovery & Circuit Breaker Matrix -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-5 shadow-inner space-y-3">
+        <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Production Failure Modes &amp; Automated Circuit Breaker Matrix</span>
+          </div>
+          <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider hidden sm:inline">
+            Active Fallback Policies
+          </span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left font-mono text-xs text-neutral-300 border-collapse">
+            <thead>
+              <tr class="border-b border-white/10 text-[11px] text-neutral-400 uppercase">
+                <th class="py-2 pr-3 font-semibold">Subsystem / Domain</th>
+                <th class="py-2 px-3 font-semibold">Target SLA / KPI</th>
+                <th class="py-2 px-3 font-semibold">Root Failure Mode</th>
+                <th class="py-2 pl-3 font-semibold">Automated Circuit Breaker &amp; Recovery</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-[11px]">
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  <span>API Gateway Tier</span>
+                </td>
+                <td class="py-2.5 px-3 text-cyan-400">P99 &lt; 50ms &middot; 429 &lt; 0.1%</td>
+                <td class="py-2.5 px-3 text-neutral-300">Socket saturation &amp; token replay bursts</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Scale Redis token buckets; shed low-priority routes automatically</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span>Switch-PSP Core</span>
+                </td>
+                <td class="py-2.5 px-3 text-emerald-400">PSR &gt; 88% per gateway</td>
+                <td class="py-2.5 px-3 text-neutral-300">Upstream bank gateway degradation / 504s</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Zero out PSP weight; instant traffic failover to healthy secondary PSP</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span>Wallet Ledger Engine</span>
+                </td>
+                <td class="py-2.5 px-3 text-amber-400">&Delta;Balance = 0.00 (Strict Invariant)</td>
+                <td class="py-2.5 px-3 text-neutral-300">Concurrent debit race conditions</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Halt account withdrawals immediately; trigger P1 on-call pager</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  <span>Merchant Settlement</span>
+                </td>
+                <td class="py-2.5 px-3 text-cyan-400">&gt; 99.2% in 24h Window</td>
+                <td class="py-2.5 px-3 text-neutral-300">Bank SFTP network disconnects</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Exponential backoff retry with jitter; alert operations for manual clearing</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                  <span>Shahkar eKYC Gateway</span>
+                </td>
+                <td class="py-2.5 px-3 text-purple-400">Latency &lt; 1,200ms</td>
+                <td class="py-2.5 px-3 text-neutral-300">National registry API latency spike</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Fallback to secondary KYC aggregator; non-blocking retry screen for user</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span>SMPP Telecom Mesh</span>
+                </td>
+                <td class="py-2.5 px-3 text-amber-400">OTP Delivery &lt; 2,000ms</td>
+                <td class="py-2.5 px-3 text-neutral-300">Marketing campaign queue collision</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Dynamic sliding-window throttle (16&ndash;64 PDU); priority channel preemption</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Postmortem Governance & Invariant Decision Box -->
+      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+          <span>Postmortem Governance &middot; Correctness Under Failure Principles</span>
+        </div>
+        <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
+          <p><strong class="text-white">Why this, why then:</strong> High-throughput Iranian payment ecosystems suffer from frequent bank switch socket hangs and clearing delays. In banking, an API failure occurring after money departs can corrupt balance ledgers without strict invariant isolation.</p>
+          <p><strong class="text-white">What I traded off:</strong> Prohibited naive client-side retries and blind timeouts. Enforced strict 24-hour distributed mutex locks and automatic reverse compensation flows, trading immediate optimistic responses for guaranteed ledger parity.</p>
+          <p><strong class="text-white">Business result:</strong> Maintained zero financial drift (0.00 IRR discrepancy) across millions of monthly transactions while achieving an MTTR under 8 minutes across all P0 production incidents.</p>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[P0 / P1 PLAYBOOK]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[CIRCUIT BREAKERS]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[REDIS MUTEX]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[ZERO-DRIFT LEDGER]</span>
+        </div>
+        <a href={`${baseUrl}blog/payment-gateway/`} class="text-white hover:text-cyan-400 font-semibold inline-flex items-center gap-1 group transition-colors">
+          <span>Read Switch &amp; Ledger Architecture</span>
+          <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </a>
       </div>
 
       <!-- Rolling Stepper Bar -->
       <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
         <a href="#reconciliation-engine" class="text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors">
-          <span>↑</span>
+          <span>&uarr;</span>
           <span>Previous: Reconciliation</span>
         </a>
-        <span class="text-[10px] text-neutral-500 uppercase">PAGE 06 OF 08 · INCIDENTS</span>
+        <span class="text-[10px] text-neutral-500 uppercase">PAGE 06 OF 08 &middot; INCIDENTS</span>
         <a href="#lifecycle" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-all">
           <span>Next: Product Lifecycle</span>
-          <span>↓</span>
+          <span>&darr;</span>
         </a>
       </div>
     </section>
 
 
     <!-- SECTION 06: Technical Product Lifecycle Arc -->
-    <section id="lifecycle" class="scroll-mt-20 min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
+    <section id="lifecycle" class="scroll-mt-20 min-h-0 lg:min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
           <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
@@ -705,18 +845,26 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+      <!-- 4-Phase Operational Execution Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
         <!-- Phase 1 -->
         <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
-          <div class="space-y-2.5">
+          <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-cyan-400 font-semibold uppercase">Phase 01</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+              <span class="text-neutral-400 font-mono">DISCOVERY</span>
             </div>
-            <h3 class="text-sm font-bold text-white">Discovery &amp; Invariants</h3>
+            <div>
+              <h3 class="text-sm font-bold text-white">Discovery &amp; System Invariants</h3>
+              <p class="text-[11px] font-mono text-cyan-400/90 mt-0.5">JTBD &middot; Double Diamond &middot; Boundary Audit</p>
+            </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
-              Authoring executable PRDs, defining strict system invariants, and auditing legacy network boundaries before writing code.
+              Auditing national banking clearing cycles (Paya batch windows), reverse-engineering legacy PSP socket timeouts, and authoring machine-executable PRDs before writing code.
             </p>
+            <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2.5 space-y-1 font-mono text-[11px]">
+              <div class="text-neutral-400 text-[10px] uppercase">Core Deliverable:</div>
+              <div class="text-white">Executable PRD &amp; Schema RFC</div>
+            </div>
             <div class="pt-1">
               <a href="#payment-settlement" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-cyan-400 text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
                 <span class="text-[#e2c974] font-semibold">Case:</span>
@@ -732,15 +880,22 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
         <!-- Phase 2 -->
         <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
-          <div class="space-y-2.5">
+          <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-[#e2c974] font-semibold uppercase">Phase 02</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974]"></span>
+              <span class="text-neutral-400 font-mono">BLUEPRINTING</span>
             </div>
-            <h3 class="text-sm font-bold text-white">Topology Blueprinting</h3>
+            <div>
+              <h3 class="text-sm font-bold text-white">Topology Blueprinting</h3>
+              <p class="text-[11px] font-mono text-[#e2c974]/90 mt-0.5">RICE Prioritization &middot; Sequence Contracts</p>
+            </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
-              Architecting sequence diagrams, API contracts, and concurrency guardrails (e.g. distributed locks) to ensure scale and idempotency.
+              Architecting sequence diagrams, mTLS bank proxies, and distributed concurrency guardrails (Redis SETNX 24h mutex, two-phase balance reservations) to ensure scale and idempotency.
             </p>
+            <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2.5 space-y-1 font-mono text-[11px]">
+              <div class="text-neutral-400 text-[10px] uppercase">Core Deliverable:</div>
+              <div class="text-white">2PC Balance State Machine</div>
+            </div>
             <div class="pt-1">
               <a href="#payment-switch" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[#e2c974] text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
                 <span class="text-[#e2c974] font-semibold">Case:</span>
@@ -756,15 +911,22 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
         <!-- Phase 3 -->
         <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
-          <div class="space-y-2.5">
+          <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-cyan-400 font-semibold uppercase">Phase 03</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+              <span class="text-neutral-400 font-mono">ALIGNMENT</span>
             </div>
-            <h3 class="text-sm font-bold text-white">Cross-Functional Delivery</h3>
+            <div>
+              <h3 class="text-sm font-bold text-white">Cross-Functional Delivery</h3>
+              <p class="text-[11px] font-mono text-cyan-400/90 mt-0.5">Dual-Track Agile &middot; Shape Up &middot; RACI</p>
+            </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
-              Single technical liaison between executive leadership and engineering teams. Synchronizing backend, telecom, and UI delivery sprints.
+              Single technical liaison between executive leadership, compliance, backend engineering, and external banking partners. Synchronizing microservices, telecom SMPP binds, and client checkouts.
             </p>
+            <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2.5 space-y-1 font-mono text-[11px]">
+              <div class="text-neutral-400 text-[10px] uppercase">Core Deliverable:</div>
+              <div class="text-white">Issue-to-Commit Traceability</div>
+            </div>
             <div class="pt-1">
               <a href="#fraud-forensics" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-cyan-400 text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
                 <span class="text-[#e2c974] font-semibold">Case:</span>
@@ -780,15 +942,22 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
         <!-- Phase 4 -->
         <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
-          <div class="space-y-2.5">
+          <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-emerald-400 font-semibold uppercase">Phase 04</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span class="text-neutral-400 font-mono">OPERATIONS</span>
             </div>
-            <h3 class="text-sm font-bold text-white">Telemetry &amp; Agentic Ops</h3>
+            <div>
+              <h3 class="text-sm font-bold text-white">Telemetry &amp; Agentic Ops</h3>
+              <p class="text-[11px] font-mono text-emerald-400/90 mt-0.5">Prometheus &middot; OEC &middot; P99 Circuit Breakers</p>
+            </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
-              Executing zero-downtime deployments. Establishing Prometheus/Grafana monitoring, automated alerts, and enforcing sub-30ms SLAs.
+              Zero-downtime canary rollouts, Prometheus/Grafana real-time observability, automated error budgeting, circuit breakers, and enforcing sub-30ms SLAs across all microservices.
             </p>
+            <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2.5 space-y-1 font-mono text-[11px]">
+              <div class="text-neutral-400 text-[10px] uppercase">Core Deliverable:</div>
+              <div class="text-white">Live SLO Dashboards &amp; Alerts</div>
+            </div>
             <div class="pt-1">
               <a href="#reconciliation-engine" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-emerald-400 text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
                 <span class="text-[#e2c974] font-semibold">Case:</span>
@@ -803,16 +972,119 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
       </div>
 
+      <!-- Technical PM Execution Matrix Table -->
+      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-5 shadow-inner space-y-3">
+        <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>Fintech Product Management Execution Matrix &middot; Frameworks &amp; Tooling</span>
+          </div>
+          <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider hidden sm:inline">
+            Tactical PM Arsenal
+          </span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left font-mono text-xs text-neutral-300 border-collapse">
+            <thead>
+              <tr class="border-b border-white/10 text-[11px] text-neutral-400 uppercase">
+                <th class="py-2 pr-3 font-semibold">Lifecycle Phase</th>
+                <th class="py-2 px-3 font-semibold">Primary PM Framework</th>
+                <th class="py-2 px-3 font-semibold">Open-Source Arsenal</th>
+                <th class="py-2 pl-3 font-semibold">Tactical Fintech Objective</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-[11px]">
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  <span>Discovery &amp; Feasibility</span>
+                </td>
+                <td class="py-2.5 px-3 text-cyan-400">JTBD &middot; Porter&apos;s 5 Forces</td>
+                <td class="py-2.5 px-3 text-neutral-300">Prompt Engineering Guide &middot; PM Prompts</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Map regulatory constraints (Shaparak, Harim) &amp; evaluate gateway dynamics</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974]"></span>
+                  <span>Technical PRDs</span>
+                </td>
+                <td class="py-2.5 px-3 text-[#e2c974]">RICE &middot; Model &rarr; Outcome</td>
+                <td class="py-2.5 px-3 text-neutral-300">PM AI Toolkit &middot; MCP Jira Prompts</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Author machine-executable PRDs specifying idempotent API schemas &amp; error catalogs</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span>Rapid Prototyping</span>
+                </td>
+                <td class="py-2.5 px-3 text-amber-400">Hypothesis &rarr; Learn Loop</td>
+                <td class="py-2.5 px-3 text-neutral-300">Awesome LLM Apps &middot; AI Dev Toolkit</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Deploy interactive merchant onboarding flows with AI coding assistants to validate UX</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                  <span>Agile Execution</span>
+                </td>
+                <td class="py-2.5 px-3 text-purple-400">Dual-Track Agile &middot; RACI</td>
+                <td class="py-2.5 px-3 text-neutral-300">Huly &middot; Open Product Management</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Maintain bidirectional traceability between product issues, Git commits, &amp; business goals</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span>Telemetry &amp; Metrics</span>
+                </td>
+                <td class="py-2.5 px-3 text-emerald-400">North Star &middot; Input/Output Metrics</td>
+                <td class="py-2.5 px-3 text-neutral-300">Cracking SQL &middot; Metabase &middot; Superset</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Build real-time dashboards tracking PSR, settlement latency, and funnel drop-offs</td>
+              </tr>
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-2.5 pr-3 text-white font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  <span>Customer Feedback</span>
+                </td>
+                <td class="py-2.5 px-3 text-cyan-400">Kano Model &middot; Postmortems</td>
+                <td class="py-2.5 px-3 text-neutral-300">LogChimp &middot; Open API Changelogs</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Aggregate merchant requests (e.g. multi-IBAN payouts) &amp; publish transparent API updates</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Technical PM Operating Philosophy Callout Box -->
+      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+          <span>Operating Philosophy &middot; The Technical Product Manager Invariant</span>
+        </div>
+        <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
+          <p><strong class="text-white">Core Operating Thesis:</strong> Frameworks are cognitive tools designed to organize ambiguity and highlight trade-offs, never substitutes for technical acumen. As distributed systems and financial platforms grow in scale, the boundary between business leadership and software engineering collapses.</p>
+          <p><strong class="text-white">What I hold invariant:</strong> A high-performing Technical PM must understand database consistency, event schemas, API contracts, and distributed concurrency while steering business strategy. Every architectural trade-off directly shapes the unit economics and operational resilience of the product.</p>
+        </div>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex flex-wrap items-center justify-between pt-4 border-t border-white/5 gap-3 font-mono text-xs">
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[DUAL-TRACK AGILE]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[RICE PRIORITIZATION]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[SHAPE UP]</span>
+          <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-300">[PROMETHEUS TELEMETRY]</span>
+        </div>
+      </div>
+
       <!-- Rolling Stepper Bar -->
       <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
         <a href="#incident-dossiers" class="text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors">
-          <span>↑</span>
+          <span>&uarr;</span>
           <span>Previous: Incident Dossiers</span>
         </a>
-        <span class="text-[10px] text-neutral-500 uppercase">PAGE 07 OF 08 · LIFECYCLE</span>
+        <span class="text-[10px] text-neutral-500 uppercase">PAGE 07 OF 08 &middot; LIFECYCLE</span>
         <a href="#book" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-all">
           <span>Next: Intake &amp; Booking</span>
-          <span>↓</span>
+          <span>&darr;</span>
         </a>
       </div>
     </section>
