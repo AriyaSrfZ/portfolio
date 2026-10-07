@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" width="100%" height="100%" fill="none">
+  <defs>
+    <pattern id="grid-vc" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.5"/>
+    </pattern>
+    <style>
+      text { font-family: 'Vazirmatn', 'IBM Plex Mono', system-ui, -apple-system, sans-serif; user-select: none; }
+      .mono { font-family: 'IBM Plex Mono', monospace; }
+    </style>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="880" height="480" fill="#0b1120" rx="10"/>
+  <rect width="880" height="480" fill="url(#grid-vc)" rx="10"/>
+  <rect x="0.5" y="0.5" width="879" height="479" stroke="#334155" stroke-width="1" rx="10"/>
+
+  <!-- Tactical Header -->
+  <line x1="16" y1="42" x2="864" y2="42" stroke="#334155" stroke-width="1"/>
+  <rect x="24" y="18" width="8" height="8" fill="#06b6d4" rx="2"/>
+  <text x="40" y="26" fill="#06b6d4" font-size="11" font-weight="700" letter-spacing="0.5" class="mono">DIAGRAM 01 · ZANJIREH-E-ARZESH</text>
+  <text x="320" y="26" fill="#e2e8f0" font-size="11" font-weight="600">زنجیره ارزش پیامک سازمانی و تجاری ایران (اکوسیستم A2P)</text>
+  <rect x="745" y="14" width="115" height="20" fill="#111827" stroke="#334155" rx="4"/>
+  <text x="753" y="28" fill="#10b981" font-size="9" font-weight="700" class="mono">SMPP 3.4 / REST API</text>
+
+  <!-- LAYER 1: REGULATION & MNOs -->
+  <g id="layer-operators">
+    <rect x="30" y="58" width="820" height="86" fill="#111827" stroke="#3b82f6" stroke-width="1.2" rx="8"/>
+    <rect x="30" y="58" width="180" height="22" fill="#3b82f6" rx="8"/>
+    <text x="120" y="73" fill="#0b1120" font-size="10" font-weight="700" text-anchor="middle">اپراتورهای تلفن همراه و رگولاتوری</text>
+    <text x="815" y="74" fill="#94a3b8" font-size="9" class="mono" text-anchor="end">TIER-0: MNOs &amp; CRA</text>
+
+    <!-- Sub-boxes -->
+    <rect x="46" y="90" width="180" height="42" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="136" y="108" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">همراه اول (MCI)</text>
+    <text x="136" y="122" fill="#94a3b8" font-size="8.5" text-anchor="middle" class="mono">سهم غالب ترانزیت ملی</text>
+
+    <rect x="242" y="90" width="180" height="42" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="332" y="108" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">ایرانسل (MTN Irancell)</text>
+    <text x="332" y="122" fill="#94a3b8" font-size="8.5" text-anchor="middle" class="mono">دومین اپراتور مشترکین</text>
+
+    <rect x="438" y="90" width="180" height="42" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="528" y="108" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">رایتل (RighTel)</text>
+    <text x="528" y="122" fill="#94a3b8" font-size="8.5" text-anchor="middle" class="mono">ترافیک مکمل و MVNO</text>
+
+    <rect x="634" y="90" width="200" height="42" fill="#1e1b4b" stroke="#6366f1" rx="4"/>
+    <text x="734" y="108" fill="#c7d2fe" font-size="10" font-weight="600" text-anchor="middle">سازمان تنظیم مقررات (CRA)</text>
+    <text x="734" y="122" fill="#a5b4fc" font-size="8.5" text-anchor="middle">قوانین لغو ۱۱ و سامانه *800#</text>
+  </g>
+
+  <!-- Connectors Layer 1 -> Layer 2 -->
+  <path d="M 440 144 L 440 166" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="440,170 435,160 445,160" fill="#06b6d4"/>
+  <text x="455" y="160" fill="#06b6d4" font-size="8.5" class="mono">Direct Interconnect / SMPP 3.4</text>
+
+  <!-- LAYER 2: WHOLESALE CPs -->
+  <g id="layer-cps">
+    <rect x="30" y="172" width="820" height="92" fill="#111827" stroke="#06b6d4" stroke-width="1.2" rx="8"/>
+    <rect x="30" y="172" width="200" height="22" fill="#06b6d4" rx="8"/>
+    <text x="130" y="187" fill="#0b1120" font-size="10" font-weight="700" text-anchor="middle">ارائه‌دهندگان اتصال (CPs / عمده‌فروشان)</text>
+    <text x="815" y="188" fill="#94a3b8" font-size="9" class="mono" text-anchor="end">TIER-1: WHOLESALE GATEWAYS</text>
+
+    <!-- Sub-boxes CP companies -->
+    <rect x="46" y="202" width="144" height="50" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="118" y="222" fill="#e2e8f0" font-size="9.5" font-weight="600" text-anchor="middle">مگفا (Magfa)</text>
+    <text x="118" y="240" fill="#06b6d4" font-size="8.5" class="mono" text-anchor="middle">سرشماره ۳۰۰۰</text>
+
+    <rect x="206" y="202" width="144" height="50" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="278" y="222" fill="#e2e8f0" font-size="9.5" font-weight="600" text-anchor="middle">آتیه داده‌پرداز (ADP)</text>
+    <text x="278" y="240" fill="#06b6d4" font-size="8.5" class="mono" text-anchor="middle">سرشماره ۲۰۰۰</text>
+
+    <rect x="366" y="202" width="144" height="50" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="438" y="222" fill="#e2e8f0" font-size="9.5" font-weight="600" text-anchor="middle">آسانک (Asanak)</text>
+    <text x="438" y="240" fill="#06b6d4" font-size="8.5" class="mono" text-anchor="middle">سرشماره ۰۲۱ / ۰۲۶</text>
+
+    <rect x="526" y="202" width="144" height="50" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="598" y="222" fill="#e2e8f0" font-size="9.5" font-weight="600" text-anchor="middle">رهیاب رایانه گستر</text>
+    <text x="598" y="240" fill="#06b6d4" font-size="8.5" class="mono" text-anchor="middle">سرشماره ۱۰۰۰</text>
+
+    <rect x="686" y="202" width="148" height="50" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="760" y="222" fill="#e2e8f0" font-size="9.5" font-weight="600" text-anchor="middle">کیش سل پارس / پیشگامان</text>
+    <text x="760" y="240" fill="#06b6d4" font-size="8.5" class="mono" text-anchor="middle">سرشماره ۵۰۰۰</text>
+  </g>
+
+  <!-- Connectors Layer 2 -> Layer 3 -->
+  <path d="M 440 264 L 440 286" stroke="#e2c974" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="440,290 435,280 445,280" fill="#e2c974"/>
+  <text x="455" y="280" fill="#e2c974" font-size="8.5" class="mono">High-throughput HTTP API / SMPP Client</text>
+
+  <!-- LAYER 3: PANELS & AGGREGATORS -->
+  <g id="layer-aggregators">
+    <rect x="30" y="292" width="820" height="88" fill="#111827" stroke="#e2c974" stroke-width="1.2" rx="8"/>
+    <rect x="30" y="292" width="220" height="22" fill="#e2c974" rx="8"/>
+    <text x="140" y="307" fill="#0b1120" font-size="10" font-weight="700" text-anchor="middle">پنل‌های پیامک و تجمیع‌کنندگان (SPs)</text>
+    <text x="815" y="308" fill="#94a3b8" font-size="9" class="mono" text-anchor="end">TIER-2: PANELS &amp; WEB-SERVICES</text>
+
+    <rect x="46" y="322" width="180" height="46" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="136" y="342" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">کاوه نگار (Kavenegar)</text>
+    <text x="136" y="356" fill="#94a3b8" font-size="8.5" text-anchor="middle">تمرکز بر توسعه‌دهندگان و API</text>
+
+    <rect x="242" y="322" width="180" height="46" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="332" y="342" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">مدیانا (Mediana)</text>
+    <text x="332" y="356" fill="#94a3b8" font-size="8.5" text-anchor="middle">شبکه بزرگ نمایندگی و رسیلر</text>
+
+    <rect x="438" y="322" width="180" height="46" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="528" y="342" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">اس‌ام‌اس دات آی‌آر (SMS.ir)</text>
+    <text x="528" y="356" fill="#94a3b8" font-size="8.5" text-anchor="middle">تنوع راهکار و ماژول‌های سازمانی</text>
+
+    <rect x="634" y="322" width="200" height="46" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="734" y="342" fill="#e2e8f0" font-size="10" font-weight="600" text-anchor="middle">ملی پیامک / فراپیامک / ۱۰۰+ پنل</text>
+    <text x="734" y="356" fill="#94a3b8" font-size="8.5" text-anchor="middle">بازار خرد، اصناف و بازاریابی منطقه‌ای</text>
+  </g>
+
+  <!-- Connectors Layer 3 -> Layer 4 -->
+  <path d="M 440 380 L 440 400" stroke="#10b981" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="440,404 435,394 445,394" fill="#10b981"/>
+
+  <!-- LAYER 4: CONSUMING ENDPOINTS -->
+  <g id="layer-endpoints">
+    <rect x="30" y="406" width="820" height="60" fill="#111827" stroke="#10b981" stroke-width="1.2" rx="8"/>
+    <rect x="30" y="406" width="160" height="20" fill="#10b981" rx="8"/>
+    <text x="110" y="420" fill="#0b1120" font-size="9.5" font-weight="700" text-anchor="middle">متقاضیان نهایی ترافیک</text>
+
+    <text x="210" y="440" fill="#38bdf8" font-size="10" font-weight="700">بانک‌ها و مؤسسات مالی (۷۵٪ ترافیک)</text>
+    <text x="210" y="456" fill="#94a3b8" font-size="8.5">خرید مستقیم از CPها طبق ضوابط بانک مرکزی</text>
+
+    <line x1="420" y1="416" x2="420" y2="456" stroke="#334155" stroke-width="1"/>
+
+    <text x="440" y="440" fill="#fbbf24" font-size="10" font-weight="700">کسب‌وکارهای خصوصی (۱۵٪ ترافیک)</text>
+    <text x="440" y="456" fill="#94a3b8" font-size="8.5">استارتاپ‌ها، فروشگاه‌ها، سامانه‌های OTP و مارکتینگ</text>
+
+    <line x1="640" y1="416" x2="640" y2="456" stroke="#334155" stroke-width="1"/>
+
+    <text x="660" y="440" fill="#a78bfa" font-size="10" font-weight="700">بخش دولتی (۱۰٪ ترافیک)</text>
+    <text x="660" y="456" fill="#94a3b8" font-size="8.5">سامانه پیام ایران (سرشماره ۴۰۴۰)</text>
+  </g>
+</svg>

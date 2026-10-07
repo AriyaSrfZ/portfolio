@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" width="100%" height="100%" fill="none">
+  <defs>
+    <pattern id="grid-cm" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.5"/>
+    </pattern>
+    <style>
+      text { font-family: 'IBM Plex Mono', system-ui, -apple-system, monospace; user-select: none; }
+    </style>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="880" height="480" fill="#0b1120" rx="10"/>
+  <rect width="880" height="480" fill="url(#grid-cm)" rx="10"/>
+  <rect x="0.5" y="0.5" width="879" height="479" stroke="#334155" stroke-width="1" rx="10"/>
+
+  <!-- Tactical Header -->
+  <line x1="16" y1="42" x2="864" y2="42" stroke="#334155" stroke-width="1"/>
+  <rect x="24" y="18" width="8" height="8" fill="#e2c974" rx="2"/>
+  <text x="40" y="26" fill="#e2c974" font-size="11" font-weight="700" letter-spacing="1">EVALUATION // CHANNELS-03</text>
+  <text x="290" y="26" fill="#94a3b8" font-size="10" letter-spacing="0.5">BUSINESS MESSAGING CHANNELS ARCHITECTURAL MATRIX</text>
+  <rect x="740" y="14" width="120" height="20" fill="#111827" stroke="#334155" rx="4"/>
+  <text x="750" y="28" fill="#10b981" font-size="9" font-weight="700">SMS · RCS · OTT</text>
+
+  <!-- 3 CHANNEL COLUMNS -->
+
+  <!-- COLUMN 1: A2P SMS -->
+  <g id="col-sms">
+    <rect x="28" y="58" width="266" height="396" fill="#111827" stroke="#38bdf8" stroke-width="1.2" rx="8"/>
+    <rect x="28" y="58" width="266" height="32" fill="#0284c7" rx="8"/>
+    <text x="161" y="79" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">A2P SMS (TRADITIONAL)</text>
+
+    <!-- Attribute 1: Reach -->
+    <rect x="40" y="98" width="242" height="48" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="50" y="112" fill="#94a3b8" font-size="8">GLOBAL DEVICE REACH:</text>
+    <text x="50" y="127" fill="#38bdf8" font-size="10" font-weight="700">100% OF MOBILE HANDSETS</text>
+    <text x="50" y="139" fill="#64748b" font-size="7.5">Zero app download · Works completely offline</text>
+
+    <!-- Attribute 2: Media & Payload -->
+    <rect x="40" y="152" width="242" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="50" y="166" fill="#94a3b8" font-size="8">FORMAT &amp; PAYLOAD:</text>
+    <text x="50" y="180" fill="#e2e8f0" font-size="9" font-weight="600">Plain Text (160 GSM / 70 UCS-2)</text>
+    <text x="50" y="194" fill="#94a3b8" font-size="7.5">Concatenation overhead (UDH) · No media</text>
+
+    <!-- Attribute 3: Trust & Verification -->
+    <rect x="40" y="212" width="242" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="50" y="226" fill="#94a3b8" font-size="8">SENDER IDENTITY &amp; TRUST:</text>
+    <text x="50" y="240" fill="#f59e0b" font-size="9" font-weight="600">Alphanumeric / Short Code</text>
+    <text x="50" y="254" fill="#94a3b8" font-size="7.5">Vulnerable to smishing · No verification badge</text>
+
+    <!-- Attribute 4: Pricing Model -->
+    <rect x="40" y="272" width="242" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="50" y="286" fill="#94a3b8" font-size="8">PRICING MODEL:</text>
+    <text x="50" y="300" fill="#e2e8f0" font-size="9" font-weight="600">Per-Message Wholesale Fee</text>
+    <text x="50" y="314" fill="#94a3b8" font-size="7.5">Rising carrier termination rates globally</text>
+
+    <!-- Attribute 5: Telemetry & Measurement -->
+    <rect x="40" y="332" width="242" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="50" y="346" fill="#94a3b8" font-size="8">TELEMETRY LEVEL:</text>
+    <text x="50" y="360" fill="#f43f5e" font-size="9" font-weight="600">Radio DLR Only (DELIVRD)</text>
+    <text x="50" y="374" fill="#94a3b8" font-size="7.5">No read receipts · External link click CTR</text>
+
+    <!-- Bottom Verdict -->
+    <rect x="40" y="394" width="242" height="48" fill="#1e293b" stroke="#38bdf8" rx="4"/>
+    <text x="50" y="412" fill="#38bdf8" font-size="8.5" font-weight="700">ROLE: UNIVERSAL FALLBACK &amp; OTP</text>
+    <text x="50" y="426" fill="#cbd5e1" font-size="7.5">Indispensable baseline for 2FA and transactional</text>
+  </g>
+
+  <!-- COLUMN 2: RCS BUSINESS MESSAGING (RBM) -->
+  <g id="col-rcs">
+    <rect x="306" y="58" width="266" height="396" fill="#111827" stroke="#8b5cf6" stroke-width="1.2" rx="8"/>
+    <rect x="306" y="58" width="266" height="32" fill="#6d28d9" rx="8"/>
+    <text x="439" y="79" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">RCS BUSINESS MESSAGING (RBM)</text>
+
+    <!-- Attribute 1: Reach -->
+    <rect x="318" y="98" width="242" height="48" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="328" y="112" fill="#94a3b8" font-size="8">GLOBAL DEVICE REACH:</text>
+    <text x="328" y="127" fill="#a78bfa" font-size="10" font-weight="700">~1.2B+ ANDROID + IOS 18 EXPANSION</text>
+    <text x="328" y="139" fill="#64748b" font-size="7.5">Native messaging client · Requires data connection</text>
+
+    <!-- Attribute 2: Media & Payload -->
+    <rect x="318" y="152" width="242" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="328" y="166" fill="#94a3b8" font-size="8">FORMAT &amp; PAYLOAD:</text>
+    <text x="328" y="180" fill="#e2e8f0" font-size="9" font-weight="600">Rich Cards, Carousels, Action Chips</text>
+    <text x="328" y="194" fill="#94a3b8" font-size="7.5">High-res images, video clips, calendar invites</text>
+
+    <!-- Attribute 3: Trust & Verification -->
+    <rect x="318" y="212" width="242" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="328" y="226" fill="#94a3b8" font-size="8">SENDER IDENTITY &amp; TRUST:</text>
+    <text x="328" y="240" fill="#10b981" font-size="9" font-weight="600">Cryptographically Verified Badge</text>
+    <text x="328" y="254" fill="#94a3b8" font-size="7.5">Official brand name, logo, custom color branding</text>
+
+    <!-- Attribute 4: Pricing Model -->
+    <rect x="318" y="272" width="242" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="328" y="286" fill="#94a3b8" font-size="8">PRICING MODEL:</text>
+    <text x="328" y="300" fill="#e2e8f0" font-size="9" font-weight="600">Basic / Single / Conversational Session</text>
+    <text x="328" y="314" fill="#94a3b8" font-size="7.5">Tiered rates · Automatic fallback to SMS charged</text>
+
+    <!-- Attribute 5: Telemetry & Measurement -->
+    <rect x="318" y="332" width="242" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="328" y="346" fill="#94a3b8" font-size="8">TELEMETRY LEVEL:</text>
+    <text x="328" y="360" fill="#10b981" font-size="9" font-weight="600">Full In-Client Telemetry</text>
+    <text x="328" y="374" fill="#94a3b8" font-size="7.5">Delivered, Read timestamp, Suggested action clicks</text>
+
+    <!-- Bottom Verdict -->
+    <rect x="318" y="394" width="242" height="48" fill="#1e293b" stroke="#8b5cf6" rx="4"/>
+    <text x="328" y="412" fill="#a78bfa" font-size="8.5" font-weight="700">ROLE: NEXT-GEN NATIVE CARRIER</text>
+    <text x="328" y="426" fill="#cbd5e1" font-size="7.5">Replaces promo SMS with high-engagement UI</text>
+  </g>
+
+  <!-- COLUMN 3: WHATSAPP BUSINESS / OTT -->
+  <g id="col-ott">
+    <rect x="584" y="58" width="268" height="396" fill="#111827" stroke="#10b981" stroke-width="1.2" rx="8"/>
+    <rect x="584" y="58" width="268" height="32" fill="#059669" rx="8"/>
+    <text x="718" y="79" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">WHATSAPP BUSINESS (OTT)</text>
+
+    <!-- Attribute 1: Reach -->
+    <rect x="596" y="98" width="244" height="48" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="606" y="112" fill="#94a3b8" font-size="8">GLOBAL DEVICE REACH:</text>
+    <text x="606" y="127" fill="#34d399" font-size="10" font-weight="700">&gt;2.5B USERS (REGIONAL DOMINANCE)</text>
+    <text x="606" y="139" fill="#64748b" font-size="7.5">Requires WhatsApp app · High in LATAM, IN, EU</text>
+
+    <!-- Attribute 2: Media & Payload -->
+    <rect x="596" y="152" width="244" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="606" y="166" fill="#94a3b8" font-size="8">FORMAT &amp; PAYLOAD:</text>
+    <text x="606" y="180" fill="#e2e8f0" font-size="9" font-weight="600">Templates, Catalogs, Quick Replies</text>
+    <text x="606" y="194" fill="#94a3b8" font-size="7.5">In-app shopping carts, location sharing, documents</text>
+
+    <!-- Attribute 3: Trust & Verification -->
+    <rect x="596" y="212" width="244" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="606" y="226" fill="#94a3b8" font-size="8">SENDER IDENTITY &amp; TRUST:</text>
+    <text x="606" y="240" fill="#10b981" font-size="9" font-weight="600">Meta Verified Green Tick Profile</text>
+    <text x="606" y="254" fill="#94a3b8" font-size="7.5">Strict template pre-approval · Spam score limits</text>
+
+    <!-- Attribute 4: Pricing Model -->
+    <rect x="596" y="272" width="244" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="606" y="286" fill="#94a3b8" font-size="8">PRICING MODEL:</text>
+    <text x="606" y="300" fill="#e2e8f0" font-size="9" font-weight="600">24-Hour Conversation Window</text>
+    <text x="606" y="314" fill="#94a3b8" font-size="7.5">Different rates: Auth, Utility, Marketing, Service</text>
+
+    <!-- Attribute 5: Telemetry & Measurement -->
+    <rect x="596" y="332" width="244" height="54" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="606" y="346" fill="#94a3b8" font-size="8">TELEMETRY LEVEL:</text>
+    <text x="606" y="360" fill="#10b981" font-size="9" font-weight="600">Full End-to-End Analytics</text>
+    <text x="606" y="374" fill="#94a3b8" font-size="7.5">Sent, Delivered, Read receipts, Button CTRs</text>
+
+    <!-- Bottom Verdict -->
+    <rect x="596" y="394" width="244" height="48" fill="#1e293b" stroke="#10b981" rx="4"/>
+    <text x="606" y="412" fill="#34d399" font-size="8.5" font-weight="700">ROLE: CONVERSATIONAL COMMERCE</text>
+    <text x="606" y="426" fill="#cbd5e1" font-size="7.5">Dominant in regions where WhatsApp is primary OS</text>
+  </g>
+</svg>

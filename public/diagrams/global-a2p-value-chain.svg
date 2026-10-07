@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" width="100%" height="100%" fill="none">
+  <defs>
+    <pattern id="grid-vc-en" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.5"/>
+    </pattern>
+    <style>
+      text { font-family: 'IBM Plex Mono', system-ui, -apple-system, monospace; user-select: none; }
+    </style>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="880" height="480" fill="#0b1120" rx="10"/>
+  <rect width="880" height="480" fill="url(#grid-vc-en)" rx="10"/>
+  <rect x="0.5" y="0.5" width="879" height="479" stroke="#334155" stroke-width="1" rx="10"/>
+
+  <!-- Tactical Header -->
+  <line x1="16" y1="42" x2="864" y2="42" stroke="#334155" stroke-width="1"/>
+  <rect x="24" y="18" width="8" height="8" fill="#06b6d4" rx="2"/>
+  <text x="40" y="26" fill="#06b6d4" font-size="11" font-weight="700" letter-spacing="1">ARCHITECTURE // GLOBAL-A2P-02</text>
+  <text x="310" y="26" fill="#94a3b8" font-size="10" letter-spacing="0.5">END-TO-END A2P SMS TELECOMMUNICATIONS VALUE CHAIN</text>
+  <rect x="735" y="14" width="125" height="20" fill="#111827" stroke="#334155" rx="4"/>
+  <text x="745" y="28" fill="#38bdf8" font-size="9" font-weight="700">REST &gt; SMPP &gt; SS7</text>
+
+  <!-- VALUE CHAIN STAGES (HORIZONTAL PIPELINE) -->
+
+  <!-- STAGE 1: ENTERPRISE SENDER -->
+  <g id="stage-enterprise">
+    <rect x="28" y="58" width="150" height="260" fill="#111827" stroke="#334155" stroke-width="1.2" rx="6"/>
+    <rect x="28" y="58" width="150" height="24" fill="#1e293b" rx="6"/>
+    <text x="103" y="74" fill="#e2e8f0" font-size="8.5" font-weight="700" text-anchor="middle">1. ENTERPRISE ORIGIN</text>
+
+    <text x="38" y="102" fill="#38bdf8" font-size="9" font-weight="700">Enterprise Apps</text>
+    <text x="38" y="118" fill="#94a3b8" font-size="7.5">Fintech, Banks, Uber,</text>
+    <text x="38" y="130" fill="#94a3b8" font-size="7.5">E-commerce, SaaS</text>
+
+    <line x1="38" y1="142" x2="168" y2="142" stroke="#1e293b" stroke-width="1"/>
+
+    <text x="38" y="160" fill="#e2e8f0" font-size="8" font-weight="600">Protocol &amp; Payload:</text>
+    <text x="38" y="174" fill="#94a3b8" font-size="7.5">• HTTPS / REST API</text>
+    <text x="38" y="188" fill="#94a3b8" font-size="7.5">• JSON Payload</text>
+    <text x="38" y="202" fill="#94a3b8" font-size="7.5">• Idempotency Keys</text>
+    <text x="38" y="216" fill="#94a3b8" font-size="7.5">• Webhook Callbacks</text>
+
+    <rect x="36" y="234" width="134" height="68" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="44" y="250" fill="#10b981" font-size="7.5" font-weight="700">Sender Identity:</text>
+    <text x="44" y="264" fill="#94a3b8" font-size="7">• 10DLC (US/CA)</text>
+    <text x="44" y="276" fill="#94a3b8" font-size="7">• Short Code (5-6 digits)</text>
+    <text x="44" y="288" fill="#94a3b8" font-size="7">• Alphanumeric Sender ID</text>
+  </g>
+
+  <!-- CONNECTOR 1 -> 2 -->
+  <path d="M 178 188 L 196 188" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <polygon points="198,188 191,185 191,191" fill="#06b6d4"/>
+
+  <!-- STAGE 2: CPAAS PLATFORM -->
+  <g id="stage-cpaas">
+    <rect x="198" y="58" width="160" height="260" fill="#111827" stroke="#06b6d4" stroke-width="1.5" rx="6"/>
+    <rect x="198" y="58" width="160" height="24" fill="#0891b2" rx="6"/>
+    <text x="278" y="74" fill="#ffffff" font-size="8.5" font-weight="700" text-anchor="middle">2. GLOBAL CPAAS</text>
+
+    <text x="210" y="102" fill="#22d3ee" font-size="9" font-weight="700">Platform Layer</text>
+    <text x="210" y="118" fill="#94a3b8" font-size="7.5">Twilio, Sinch, Infobip,</text>
+    <text x="210" y="130" fill="#94a3b8" font-size="7.5">Bird (MessageBird)</text>
+
+    <line x1="210" y1="142" x2="348" y2="142" stroke="#1e293b" stroke-width="1"/>
+
+    <text x="210" y="160" fill="#e2e8f0" font-size="8" font-weight="600">Core Services:</text>
+    <text x="210" y="174" fill="#94a3b8" font-size="7.5">• Global Number Pool</text>
+    <text x="210" y="188" fill="#94a3b8" font-size="7.5">• Dynamic LCR Routing</text>
+    <text x="210" y="202" fill="#94a3b8" font-size="7.5">• Regulatory Compliance</text>
+    <text x="210" y="216" fill="#94a3b8" font-size="7.5">• Rate Limiting / Quotas</text>
+
+    <!-- Fraud Shield -->
+    <rect x="206" y="234" width="144" height="68" fill="#1e1b4b" stroke="#6366f1" rx="4"/>
+    <text x="214" y="250" fill="#a5b4fc" font-size="7.5" font-weight="700">AIT / Fraud Shield:</text>
+    <text x="214" y="264" fill="#c7d2fe" font-size="7">• SMS Pumping Firewall</text>
+    <text x="214" y="276" fill="#c7d2fe" font-size="7">• Risk Scoring Engine</text>
+    <text x="214" y="288" fill="#c7d2fe" font-size="7">• Geo-blocking rogue traffic</text>
+  </g>
+
+  <!-- CONNECTOR 2 -> 3 -->
+  <path d="M 358 188 L 376 188" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <polygon points="378,188 371,185 371,191" fill="#06b6d4"/>
+
+  <!-- STAGE 3: TIER-1 AGGREGATOR -->
+  <g id="stage-aggregator">
+    <rect x="378" y="58" width="150" height="260" fill="#111827" stroke="#e2c974" stroke-width="1.2" rx="6"/>
+    <rect x="378" y="58" width="150" height="24" fill="#ca8a04" rx="6"/>
+    <text x="453" y="74" fill="#0b1120" font-size="8.5" font-weight="700" text-anchor="middle">3. TIER-1 AGGREGATORS</text>
+
+    <text x="390" y="102" fill="#facc15" font-size="9" font-weight="700">Wholesale Transit</text>
+    <text x="390" y="118" fill="#94a3b8" font-size="7.5">BICS, Tata Comms,</text>
+    <text x="390" y="130" fill="#94a3b8" font-size="7.5">Syniverse, iBasis</text>
+
+    <line x1="390" y1="142" x2="518" y2="142" stroke="#1e293b" stroke-width="1"/>
+
+    <text x="390" y="160" fill="#e2e8f0" font-size="8" font-weight="600">Protocol Bridges:</text>
+    <text x="390" y="174" fill="#94a3b8" font-size="7.5">• SMPP 3.4 / 5.0 Sessions</text>
+    <text x="390" y="188" fill="#94a3b8" font-size="7.5">• SS7 / SIGTRAN Conduits</text>
+    <text x="390" y="202" fill="#94a3b8" font-size="7.5">• PDU Concatenation</text>
+    <text x="390" y="216" fill="#94a3b8" font-size="7.5">• Carrier Billing Feeds</text>
+
+    <rect x="386" y="234" width="134" height="68" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="394" y="250" fill="#e2c974" font-size="7.5" font-weight="700">Wholesale Commitments:</text>
+    <text x="394" y="264" fill="#94a3b8" font-size="7">• Billions of monthly PDUs</text>
+    <text x="394" y="276" fill="#94a3b8" font-size="7">• Direct carrier bilateral links</text>
+    <text x="394" y="288" fill="#94a3b8" font-size="7">• Grey-route suppression</text>
+  </g>
+
+  <!-- CONNECTOR 3 -> 4 -->
+  <path d="M 528 188 L 546 188" stroke="#e2c974" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <polygon points="548,188 541,185 541,191" fill="#e2c974"/>
+
+  <!-- STAGE 4: MNO & SMSC -->
+  <g id="stage-mno">
+    <rect x="548" y="58" width="154" height="260" fill="#111827" stroke="#3b82f6" stroke-width="1.2" rx="6"/>
+    <rect x="548" y="58" width="154" height="24" fill="#2563eb" rx="6"/>
+    <text x="625" y="74" fill="#ffffff" font-size="8.5" font-weight="700" text-anchor="middle">4. MNO &amp; SMSC CORE</text>
+
+    <text x="560" y="102" fill="#60a5fa" font-size="9" font-weight="700">Mobile Operators</text>
+    <text x="560" y="118" fill="#94a3b8" font-size="7.5">AT&amp;T, Vodafone, Orange,</text>
+    <text x="560" y="130" fill="#94a3b8" font-size="7.5">Telefónica, Jio, Airtel</text>
+
+    <line x1="560" y1="142" x2="692" y2="142" stroke="#1e293b" stroke-width="1"/>
+
+    <text x="560" y="160" fill="#e2e8f0" font-size="8" font-weight="600">Core Network Nodes:</text>
+    <text x="560" y="174" fill="#94a3b8" font-size="7.5">• SMS-C (Short Message SC)</text>
+    <text x="560" y="188" fill="#94a3b8" font-size="7.5">• HLR / HSS Routing Query</text>
+    <text x="560" y="202" fill="#94a3b8" font-size="7.5">• MSC / VLR Subscriber Loc</text>
+    <text x="560" y="216" fill="#94a3b8" font-size="7.5">• SMS Firewall (Spam/Fraud)</text>
+
+    <rect x="556" y="234" width="138" height="68" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="564" y="250" fill="#38bdf8" font-size="7.5" font-weight="700">Carrier Interconnect Fee:</text>
+    <text x="564" y="264" fill="#94a3b8" font-size="7">• Termination charge per PDU</text>
+    <text x="564" y="276" fill="#94a3b8" font-size="7">• Origin-based rating (OBR)</text>
+    <text x="564" y="288" fill="#94a3b8" font-size="7">• DLR emission trigger</text>
+  </g>
+
+  <!-- CONNECTOR 4 -> 5 -->
+  <path d="M 702 188 L 718 188" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <polygon points="720,188 713,185 713,191" fill="#3b82f6"/>
+
+  <!-- STAGE 5: MOBILE HANDSET -->
+  <g id="stage-handset">
+    <rect x="720" y="58" width="132" height="260" fill="#111827" stroke="#10b981" stroke-width="1.2" rx="6"/>
+    <rect x="720" y="58" width="132" height="24" fill="#059669" rx="6"/>
+    <text x="786" y="74" fill="#ffffff" font-size="8.5" font-weight="700" text-anchor="middle">5. HANDSET RADIO</text>
+
+    <text x="730" y="102" fill="#34d399" font-size="9" font-weight="700">Subscriber Device</text>
+    <text x="730" y="118" fill="#94a3b8" font-size="7.5">iOS, Android, KaiOS,</text>
+    <text x="730" y="130" fill="#94a3b8" font-size="7.5">Feature Phones</text>
+
+    <line x1="730" y1="142" x2="842" y2="142" stroke="#1e293b" stroke-width="1"/>
+
+    <text x="730" y="160" fill="#e2e8f0" font-size="8" font-weight="600">Baseband Radio:</text>
+    <text x="730" y="174" fill="#94a3b8" font-size="7.5">• 2G/3G/4G/5G Radio</text>
+    <text x="730" y="188" fill="#94a3b8" font-size="7.5">• PDU Disassembly</text>
+    <text x="730" y="202" fill="#94a3b8" font-size="7.5">• UCS-2 / GSM-7 Dec</text>
+    <text x="730" y="216" fill="#94a3b8" font-size="7.5">• Radio ACK to BTS</text>
+
+    <rect x="726" y="234" width="120" height="68" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="734" y="250" fill="#10b981" font-size="7.5" font-weight="700">Delivery Reality:</text>
+    <text x="734" y="264" fill="#94a3b8" font-size="7">• ACK = DELIVRD DLR</text>
+    <text x="734" y="276" fill="#94a3b8" font-size="7">• Hardware receipt ONLY</text>
+    <text x="734" y="288" fill="#94a3b8" font-size="7">• Zero human read signal</text>
+  </g>
+
+  <!-- BOTTOM RETROGRADE DLR FEEDBACK LOOP & SECURITY AUDIT -->
+  <g id="bottom-feedback-strip">
+    <rect x="28" y="330" width="824" height="136" fill="#111827" stroke="#334155" rx="8"/>
+    <rect x="28" y="330" width="310" height="22" fill="#1f2937" rx="8"/>
+    <text x="183" y="345" fill="#f8fafc" font-size="8.5" font-weight="700" text-anchor="middle">REVERSE DLR TELEMETRY &amp; AIT VULNERABILITY ARCHITECTURE</text>
+
+    <!-- Retrograde DLR Conduit -->
+    <path d="M 786 318 L 786 370 L 103 370 L 103 318" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4 2"/>
+    <text x="445" y="366" fill="#10b981" font-size="8" font-weight="700" text-anchor="middle">RETROGRADE SMPP DLR RECEIPT LOOP: DELIVRD / UNDELIV / EXPIRED (95–99% Latency &lt; 15s)</text>
+
+    <!-- 2 Sub Columns in bottom -->
+    <rect x="42" y="380" width="380" height="74" fill="#0f172a" stroke="#1e293b" rx="4"/>
+    <text x="54" y="398" fill="#38bdf8" font-size="9" font-weight="700">Direct Route vs Grey Route Economics:</text>
+    <text x="54" y="414" fill="#94a3b8" font-size="8">• Direct Routes: Bilateral carrier interconnects, high SLA, reliable DLRs, premium cost.</text>
+    <text x="54" y="428" fill="#94a3b8" font-size="8">• Grey Routes: Exploiting cheap foreign SIMs / SS7 global roaming leaks; high drop rates.</text>
+    <text x="54" y="442" fill="#64748b" font-size="7.5">• Strict enterprise SLAs mandate 100% white/direct routes with carrier compliance.</text>
+
+    <rect x="442" y="380" width="396" height="74" fill="#1f1315" stroke="#991b1b" rx="4"/>
+    <text x="454" y="398" fill="#f87171" font-size="9" font-weight="700">Artificially Inflated Traffic (AIT) / SMS Pumping Threat:</text>
+    <text x="454" y="414" fill="#fca5a5" font-size="8">• Fraud syndicates trigger millions of OTP requests to premium-rate range numbers.</text>
+    <text x="454" y="428" fill="#cbd5e1" font-size="8">• Over $1B+ in enterprise spend leaked globally annually to fraudulent pumping schemes.</text>
+    <text x="454" y="442" fill="#fca5a5" font-size="7.5">• Defense: Rate-limiting by IP/fingerprint, bot CAPTCHA gating, and CPaaS risk scoring.</text>
+  </g>
+</svg>

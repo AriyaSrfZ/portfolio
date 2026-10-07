@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" width="100%" height="100%" fill="none">
+  <defs>
+    <pattern id="grid-mb" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.5"/>
+    </pattern>
+    <style>
+      text { font-family: 'Vazirmatn', 'IBM Plex Mono', system-ui, -apple-system, sans-serif; user-select: none; }
+      .mono { font-family: 'IBM Plex Mono', monospace; }
+    </style>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="880" height="480" fill="#0b1120" rx="10"/>
+  <rect width="880" height="480" fill="url(#grid-mb)" rx="10"/>
+  <rect x="0.5" y="0.5" width="879" height="479" stroke="#334155" stroke-width="1" rx="10"/>
+
+  <!-- Tactical Header -->
+  <line x1="16" y1="42" x2="864" y2="42" stroke="#334155" stroke-width="1"/>
+  <rect x="24" y="18" width="8" height="8" fill="#e2c974" rx="2"/>
+  <text x="40" y="26" fill="#e2c974" font-size="11" font-weight="700" letter-spacing="0.5" class="mono">DIAGRAM 02 · SAHM-E-BAZAR</text>
+  <text x="310" y="26" fill="#e2e8f0" font-size="11" font-weight="600">توزیع سهم حجم و ارزش ترافیک بازار پیامک ایران (داده‌های ۱۴۰۲/۱۴۰۳)</text>
+  <rect x="740" y="14" width="120" height="20" fill="#111827" stroke="#334155" rx="4"/>
+  <text x="750" y="28" fill="#38bdf8" font-size="9" font-weight="700" class="mono">حجم کل: ۱۶۰ میلیارد پیامک</text>
+
+  <!-- TOP SUMMARY CARDS -->
+  <g id="summary-cards">
+    <!-- Card 1: Total Market -->
+    <rect x="30" y="58" width="260" height="74" fill="#111827" stroke="#334155" rx="6"/>
+    <text x="44" y="78" fill="#94a3b8" font-size="9.5">گردش مالی کل بازار پیامک</text>
+    <text x="44" y="104" fill="#38bdf8" font-size="20" font-weight="700" class="mono">۸ همت (۸,۰۰۰ میلیارد تومان)</text>
+    <text x="44" y="122" fill="#64748b" font-size="8.5">کل جریان ترانزیت مخابراتی پیامک در سال ۱۴۰۲</text>
+
+    <!-- Card 2: SMS Panel Submarket -->
+    <rect x="310" y="58" width="260" height="74" fill="#111827" stroke="#334155" rx="6"/>
+    <text x="324" y="78" fill="#94a3b8" font-size="9.5">گردش مالی بخش پنل‌های پیامک</text>
+    <text x="324" y="104" fill="#e2c974" font-size="20" font-weight="700" class="mono">۱.۲ همت (۱,۲۰۰ میلیارد تومان)</text>
+    <text x="324" y="122" fill="#eab308" font-size="8.5">رشد اسمی ۱۱۷٪ (متأثر از تورم تعرفه)</text>
+
+    <!-- Card 3: Traffic Concentration -->
+    <rect x="590" y="58" width="260" height="74" fill="#111827" stroke="#334155" rx="6"/>
+    <text x="604" y="78" fill="#94a3b8" font-size="9.5">تمرکز بازار پنل‌ها (الیگوپولی)</text>
+    <text x="604" y="104" fill="#10b981" font-size="20" font-weight="700" class="mono">&gt; ۷۰٪ در اختیار ۴ بازیگر</text>
+    <text x="604" y="122" fill="#64748b" font-size="8.5">کاوه‌نگار، مدیانا، SMS.ir و ملی‌پیامک</text>
+  </g>
+
+  <!-- MACRO TRAFFIC DISTRIBUTION BAR (160B TOTAL) -->
+  <g id="macro-distribution">
+    <text x="30" y="160" fill="#e2e8f0" font-size="11" font-weight="700">توزیع سهم حجم ترافیک کل (۱۶۰ میلیارد پیامک در سال)</text>
+
+    <!-- The 100% Proportion Bar -->
+    <!-- Width: 820px total. 75% = 615px, 15% = 123px, 10% = 82px -->
+    <rect x="30" y="174" width="615" height="34" fill="#0284c7" rx="4"/>
+    <rect x="647" y="174" width="123" height="34" fill="#f59e0b" rx="4"/>
+    <rect x="772" y="174" width="78" height="34" fill="#8b5cf6" rx="4"/>
+
+    <!-- Bar Labels -->
+    <text x="337" y="196" fill="#f8fafc" font-size="11" font-weight="700" text-anchor="middle">۷۵٪ بانکی و مالی (~۱۲۰ میلیارد پیامک)</text>
+    <text x="708" y="196" fill="#0b1120" font-size="10" font-weight="700" text-anchor="middle">۱۵٪ خصوصی</text>
+    <text x="811" y="196" fill="#f8fafc" font-size="10" font-weight="700" text-anchor="middle">۱۰٪ دولتی</text>
+  </g>
+
+  <!-- DEEP-DIVE: PRIVATE SECTOR TRAFFIC BREAKDOWN -->
+  <g id="deep-dive-private">
+    <rect x="30" y="232" width="480" height="226" fill="#111827" stroke="#334155" rx="8"/>
+    <rect x="30" y="232" width="220" height="24" fill="#f59e0b" rx="8"/>
+    <text x="140" y="249" fill="#0b1120" font-size="10" font-weight="700" text-anchor="middle">کالبدشکافی ترافیک بخش خصوصی (۱۵٪)</text>
+    <text x="495" y="249" fill="#94a3b8" font-size="9" class="mono" text-anchor="end">حجم: ~۲۴ میلیارد پیامک</text>
+
+    <!-- Sub-split: Panels vs Direct Gateways -->
+    <rect x="46" y="270" width="210" height="100" fill="#0f172a" stroke="#e2c974" stroke-width="1.2" rx="6"/>
+    <text x="58" y="292" fill="#e2c974" font-size="11" font-weight="700">۴۵٪ پنل‌های پیامک و وب‌سرویس</text>
+    <text x="58" y="312" fill="#f8fafc" font-size="14" font-weight="700" class="mono">~ ۱۰.۸ میلیارد پیامک</text>
+    <text x="58" y="332" fill="#94a3b8" font-size="8.5">ارزش مالی: ۱.۲ همت</text>
+    <text x="58" y="350" fill="#64748b" font-size="8.5">استفاده توسط SMEها، استارتاپ‌ها و اصناف</text>
+
+    <rect x="276" y="270" width="218" height="100" fill="#0f172a" stroke="#0284c7" stroke-width="1.2" rx="6"/>
+    <text x="288" y="292" fill="#38bdf8" font-size="11" font-weight="700">۵۵٪ درگاه‌های مستقیم و MVNO</text>
+    <text x="288" y="312" fill="#f8fafc" font-size="14" font-weight="700" class="mono">~ ۱۳.۲ میلیارد پیامک</text>
+    <text x="288" y="332" fill="#94a3b8" font-size="8.5">ارتباط مستقیم با CPها و اپراتورها</text>
+    <text x="288" y="350" fill="#64748b" font-size="8.5">سازمان‌های با ترافیک کلان و پلتفرم‌های ملی</text>
+
+    <!-- Inflation caveat notice -->
+    <rect x="46" y="382" width="448" height="62" fill="#1c1917" stroke="#78350f" rx="4"/>
+    <text x="58" y="402" fill="#f59e0b" font-size="9.5" font-weight="700">هشدار استنتاجی: رشد ۱۱۷٪ ارزش اسمی در برابر رشد واقعی ترافیک</text>
+    <text x="58" y="420" fill="#d6d3d1" font-size="8.5">رشد از ۵۴۰ میلیارد تومان در ۱۴۰۱ به ۱,۲۰۰ میلیارد در ۱۴۰۲، تا حد زیادی ناشی از ۲ برابر شدن نرخ پایه</text>
+    <text x="58" y="434" fill="#a8a29e" font-size="8">تعرفه اپراتورها در ۱۴۰۱ و ۱۴۰۲ بوده است؛ نه دو برابر شدن حجم فیزیکی پیامک‌های ارسالی.</text>
+  </g>
+
+  <!-- MARKET STRUCTURE & CONCENTRATION -->
+  <g id="concentration-pie">
+    <rect x="526" y="232" width="324" height="226" fill="#111827" stroke="#334155" rx="8"/>
+    <rect x="526" y="232" width="170" height="24" fill="#10b981" rx="8"/>
+    <text x="611" y="249" fill="#0b1120" font-size="10" font-weight="700" text-anchor="middle">تمرکز بازار پنل‌های پیامک</text>
+    <text x="835" y="249" fill="#94a3b8" font-size="9" class="mono" text-anchor="end">Oligopoly</text>
+
+    <!-- Visual bars for players -->
+    <text x="542" y="282" fill="#e2e8f0" font-size="10" font-weight="600">۴ ارائه‌دهنده پیشرو (&gt;۷۰٪ سهم):</text>
+
+    <text x="542" y="306" fill="#38bdf8" font-size="9" font-weight="600">۱. کاوه‌نگار (Kavenegar)</text>
+    <rect x="542" y="312" width="200" height="8" fill="#0284c7" rx="2"/>
+    <text x="752" y="320" fill="#94a3b8" font-size="8" class="mono">توسعه‌دهندگان</text>
+
+    <text x="542" y="340" fill="#f59e0b" font-size="9" font-weight="600">۲. مدیانا (Mediana)</text>
+    <rect x="542" y="346" width="180" height="8" fill="#d97706" rx="2"/>
+    <text x="732" y="354" fill="#94a3b8" font-size="8" class="mono">شبکه نمایندگی</text>
+
+    <text x="542" y="374" fill="#10b981" font-size="9" font-weight="600">۳. اس‌ام‌اس دات آی‌آر (SMS.ir)</text>
+    <rect x="542" y="380" width="160" height="8" fill="#059669" rx="2"/>
+    <text x="712" y="388" fill="#94a3b8" font-size="8" class="mono">سازمانی / ماژولار</text>
+
+    <text x="542" y="408" fill="#a78bfa" font-size="9" font-weight="600">۴. ملی‌پیامک (Melipayamak)</text>
+    <rect x="542" y="414" width="140" height="8" fill="#7c3aed" rx="2"/>
+    <text x="692" y="422" fill="#94a3b8" font-size="8" class="mono">اصناف / مارکتینگ</text>
+
+    <text x="542" y="446" fill="#64748b" font-size="8.5">بیش از ۱۰۰ پنل کوچک و متوسط سهم باقی‌مانده (&lt;۳۰٪) را تقسیم می‌کنند.</text>
+  </g>
+</svg>
