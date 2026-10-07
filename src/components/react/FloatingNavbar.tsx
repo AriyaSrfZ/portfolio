@@ -138,7 +138,13 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           {/* Divider */}
           <span className="hidden lg:block w-px h-4 bg-white/10 mx-1"></span>
 
-          {/* Secondary Link */}
+          {/* Secondary Links */}
+          <a
+            href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`}
+            className="hidden sm:inline-block px-2.5 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
+          >
+            {isFa ? 'واژه‌نامه' : 'Dictionary'}
+          </a>
           <a
             href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
             className="hidden sm:inline-block px-2.5 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
@@ -187,7 +193,10 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
               </a>
             ))}
           </div>
-          <div className="pt-3 border-t border-white/5 flex gap-4 text-xs font-mono">
+          <div className="pt-3 border-t border-white/5 flex flex-wrap gap-4 text-xs font-mono">
+            <a href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`} className="text-neutral-400 hover:text-white">
+              {isFa ? 'واژه‌نامه' : 'Dictionary'}
+            </a>
             <a href={isFa ? `${baseUrl}fa/work/` : `${baseUrl}work/`} className="text-neutral-400 hover:text-white">
               {isFa ? 'پروژه‌ها' : 'Case Studies'}
             </a>

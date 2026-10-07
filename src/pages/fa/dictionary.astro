@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FintechDictionary from '../../components/react/FintechDictionary';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<Layout 
+  title="واژه‌نامه تخصصی معماری سیستم‌ها و فین‌تک — آریا صراف‌زاده" 
+  description="مرجع مهندسی بیش از ۱,۰۰۰ اصطلاح معماری سوییچ‌های پرداخت، دفاتر کل توزیع‌شده، سوییچینگ مخابراتی، استانداردهای شاپرک و تسویه بانکی."
+  lang="fa"
+  dir="rtl"
+>
+  <main class="max-w-[1400px] mx-auto px-4 sm:px-6 pt-24 pb-20 font-['Vazirmatn',sans-serif]" dir="rtl">
+    
+    <!-- Top Breadcrumb -->
+    <div class="flex items-center gap-2 mb-6 font-mono text-xs text-neutral-400">
+      <a href={`${baseUrl}fa/`} class="hover:text-white transition-colors">خانه</a>
+      <span>/</span>
+      <span class="text-neutral-200">واژه‌نامه تخصصی فین‌تک</span>
+      <span class="me-auto"></span>
+      <a href={`${baseUrl}dictionary/`} class="text-[#06b6d4] hover:text-[#38bdf8] flex items-center gap-1 transition-colors" dir="ltr">
+        <span>&rarr;</span>
+        <span>English Version</span>
+      </a>
+    </div>
+
+    <!-- Interactive Dictionary Component -->
+    <FintechDictionary client:load locale="fa" />
+  </main>
+</Layout>

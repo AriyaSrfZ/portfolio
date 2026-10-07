@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FintechDictionary from '../components/react/FintechDictionary';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<Layout 
+  title="Fintech Systems Architecture Dictionary — Ariya Sarrafzadeh" 
+  description="Bilingual engineering reference dictionary: 1,000+ terms covering payment switches, ledgers, SMPP telecom, ISO 8583 schemas, and regulatory compliance."
+>
+  <main class="max-w-[1400px] mx-auto px-4 sm:px-6 pt-24 pb-20 font-sans">
+    
+    <!-- Top Breadcrumb -->
+    <div class="flex items-center gap-2 mb-6 font-mono text-xs text-neutral-400">
+      <a href={baseUrl} class="hover:text-white transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-neutral-200">Fintech Architecture Dictionary</span>
+      <span>/</span>
+      <a href={`${baseUrl}fa/dictionary/`} class="ms-auto text-[#06b6d4] hover:text-[#38bdf8] flex items-center gap-1 transition-colors">
+        <span>نسخه فارسی</span>
+        <span>&larr;</span>
+      </a>
+    </div>
+
+    <!-- Interactive Dictionary Component -->
+    <FintechDictionary client:load locale="en" />
+  </main>
+</Layout>
