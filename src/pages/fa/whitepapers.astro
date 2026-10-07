@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { stats } from '../../data/stats';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -25,7 +26,7 @@ const primaryDossiers = [
     tag: "دفاتر کل و ACID",
     title: "معماری درگاه پرداخت: سوییچ‌های پرترافیک و دفاتر کل توزیع‌شده",
     slug: "payment-gateway",
-    metric: "۵۰,۰۰۰ TPS",
+    metric: stats.ledgerPeakTps.dossierFa,
     spec: "تخصیص دومرحله‌ای موجودی (AVAILABLE به RESERVED)، دفاتر کل ACID در ScyllaDB و PostgreSQL و قفل‌های توزیع‌شده Redis بدون مغایرت مالی.",
     chips: ["ISO 8583", "2PC RESERVATION", "REDIS SETNX", "SCYLLADB", "ACID"],
   },
@@ -34,16 +35,16 @@ const primaryDossiers = [
     tag: "سوییچینگ مخابرات و SMPP",
     title: "زیرساخت سوییچینگ پیامک کشوری و تجمیع‌کننده مخابراتی",
     slug: "sms-infrastructure",
-    metric: "۱B+ پیامک/سال",
-    spec: "کنترل جریان الگوریتم پنجره لغزان SMPP 3.4، تفکیک صفوف ارسال رمز پویای بانکی از پیامک‌های انبوه و جابجایی زیر ۳۰ میلی‌ثانیه درگاه‌ها.",
-    chips: ["SMPP 3.4", "ISO 8583", "SLIDING WINDOW", "QUEUE ISOLATION", "<30MS FAILOVER"],
+    metric: stats.telecomHubAnnualVolume.badgeFa,
+    spec: `کنترل جریان الگوریتم پنجره لغزان SMPP 3.4، تفکیک صفوف ارسال رمز پویای بانکی از پیامک‌های انبوه و جابجایی ${stats.switchFailoverSla.textFa} درگاه‌ها.`,
+    chips: ["SMPP 3.4", "ISO 8583", "SLIDING WINDOW", "QUEUE ISOLATION", stats.switchFailoverSla.en.toUpperCase()],
   },
   {
     num: "۰۳",
     tag: "امنیت بانکی و شاهکار",
     title: "کاهش تقلب در لبه سیستم: تله‌متری بلادرنگ و گراف‌های ریسک",
     slug: "fraud-tracing",
-    metric: "زیر ۱۵ms",
+    metric: stats.fraudRiskLoopSla.shortFa,
     spec: "سرویس رمز پویای حریم بانک مرکزی، استعلام هویتی شاهکار و ثبت‌احوال، و عدم ذخیره‌سازی داده‌های حساس CVV2/PIN مطابق الزامات شاپرک.",
     chips: ["PCI-DSS", "HARIM OTP", "SHAHKAR eKYC", "NEO4J", "3DS 2.0"],
   },
@@ -52,8 +53,8 @@ const primaryDossiers = [
     tag: "مغایرت‌گیری و تسویه",
     title: "مهاجرت از معماری یکپارچه به معماری رویدادمحور در جریان پرداخت",
     slug: "event-driven-migration",
-    metric: "مغایرت صفر",
-    spec: "مش رویدادی RabbitMQ، ورکر‌های شبانه Spring Batch جهت پالایش مغایرت‌های بانکی و تسویه زودهنگام ۲۴ ساعته پذیرندگان با پایا و ساتنا.",
+    metric: stats.financialDriftPercent.zeroDriftFa,
+    spec: `مش رویدادی RabbitMQ، ورکر‌های شبانه Spring Batch جهت پالایش مغایرت‌های بانکی و تسویه زودهنگام ${stats.merchantPayoutWindow.raw} ساعته پذیرندگان با پایا و ساتنا.`,
     chips: ["RABBITMQ", "SPRING BATCH", "REFUND-MNG", "PAYA / SATNA", "EARLY PAYOUT"],
   },
 ];

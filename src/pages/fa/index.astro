@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import LandingStage from '../../components/react/LandingStage';
 import ArchitectureSidebar from '../../components/react/ArchitectureSidebar';
 import BookingSection from '../../components/BookingSection.astro';
+import { stats } from '../../data/stats';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -51,19 +52,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">ظرفیت اوج پردازش</span>
-          <span class="text-white font-semibold text-sm" dir="ltr">50,000 TPS</span>
+          <span class="text-white font-semibold text-sm" dir="ltr">{stats.ledgerPeakTps.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">طول عمر قفل ردیس</span>
-          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">15,000ms SETNX</span>
+          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.ledgerLockTtl.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">پنجره بازپخش مجدد</span>
-          <span class="text-white font-semibold text-sm">۲۴ ساعت (۸۶,۴۰۰s)</span>
+          <span class="text-white font-semibold text-sm">{stats.ledgerReplayWindow.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">انحراف مالی در تراز</span>
-          <span class="text-emerald-400 font-semibold text-sm">۰٫۰۰٪ (صفر مطلق)</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.financialDriftPercent.fa}</span>
         </div>
       </div>
 
@@ -100,7 +101,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>ایدامپوتنسي توزیع‌شده:</strong> قفل‌های موقت اتمیک <span dir="ltr">Redis SETNX</span> مبتنی بر <span dir="ltr">UUIDv4</span> با پنجره بازپخش ۲۴ ساعته جهت پیشگیری از کسر تکراری.</span>
+              <span><strong>ایدامپوتنسي توزیع‌شده:</strong> قفل‌های موقت اتمیک <span dir="ltr">Redis SETNX</span> مبتنی بر <span dir="ltr">UUIDv4</span> با {stats.ledgerReplayWindow.textFa} جهت پیشگیری از کسر تکراری.</span>
             </li>
           </ul>
         </div>
@@ -122,7 +123,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>دستاورد پروداکشن:</strong> تراز کامل ۱۰۰ درصدی در بیش از ۵۰ هزار تراکنش روزانه بدون حتی یک مورد واریز تکراری یا مغایرت پولی.</span>
+              <span><strong>دستاورد پروداکشن:</strong> تراز کامل ۱۰۰ درصدی در {stats.reconciliationTrialEvents.fa} بدون حتی یک مورد واریز تکراری یا مغایرت پولی.</span>
             </li>
           </ul>
         </div>
@@ -138,7 +139,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <p><strong class="text-white">چرا این تصمیم و چرا در آن مقطع:</strong> ناهمخوانی دفاتر کل و مانده‌های شبح هنگام تراکنش‌های همزمان بالا، جایگاه شرکت نزد مراجع نظارتی و بانک مرکزی را به خطر می‌انداخت.</p>
           <p><strong class="text-white">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> اولویت‌دادن به تخصیص دومرحله‌ای همگام موجودی و تراز قطعی دفاتر کل بر سرعت خام پردازش تراکنش‌ها.</p>
           <p><strong class="text-white">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم رشد و بازاریابی خواستار تراکنش‌های بدون رزرو زیر ۱۰ میلی‌ثانیه بود؛ من اثبات کردم جلوگیری از اضافه برداشت بدون پشتوانه برای حسابرسی بانک مرکزی اجتناب‌ناپذیر است.</p>
-          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> حفظ ۱۰۰ درصدی تراز ریاضی دفاتر کل در بیش از ۵۰ هزار تراکنش روزانه بدون حتی یک مورد واریز تکراری یا نشت مالی.</p>
+          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> حفظ {stats.reconMatchParity.textFa} دفاتر کل در {stats.reconciliationTrialEvents.fa} بدون حتی یک مورد واریز تکراری یا نشت مالی.</p>
         </div>
       </div>
 
@@ -194,19 +195,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">سرعت تغییر مسیر</span>
-          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">&lt;30ms Failover</span>
+          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.switchFailoverSla.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">پروتکل سوییچ</span>
-          <span class="text-white font-semibold text-sm" dir="ltr">ISO 8583 MTI 0200</span>
+          <span class="text-white font-semibold text-sm" dir="ltr">{stats.switchProtocolWireFormat.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">دسترسی‌پذیری سوییچ</span>
-          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">99.99% Uptime</span>
+          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.switchGatewayUptime.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">رشد نرخ تبدیل</span>
-          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">+14% Gain</span>
+          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.switchConversionLift.fa}</span>
         </div>
       </div>
 
@@ -257,7 +258,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>سقوط سوکت درگاه:</strong> با افزایش خطاهای ارتباطی، فیوز مدار در کمتر از ۳۰ میلی‌ثانیه درگاه ناسالم را از چرخه پردازش خارج می‌کند.</span>
+              <span><strong>سقوط سوکت درگاه:</strong> با افزایش خطاهای ارتباطی، فیوز مدار در {stats.switchFailoverSla.textFa} درگاه ناسالم را از چرخه پردازش خارج می‌کند.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
@@ -265,7 +266,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>کنترل جریان مخابراتی SMPP:</strong> کنترل نرخ ارسال با پنجره لغزان (۱۶ تا ۶۴ PDU) جهت تضمین رسیدن پیامک رمز پویا در کمتر از ۲ ثانیه.</span>
+              <span><strong>کنترل جریان مخابراتی SMPP:</strong> کنترل نرخ ارسال با پنجره لغزان ({stats.incident02SlidingWindow.fa}) جهت تضمین رسیدن پیامک رمز پویا در کمتر از {stats.incident02OtpSla.raw / 1000} ثانیه.</span>
             </li>
           </ul>
         </div>
@@ -280,8 +281,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
           <p><strong class="text-white">چرا این تصمیم و چرا در آن مقطع:</strong> وابستگی به یک <span dir="ltr">PSP</span> انحصاری در زمان اختلالات شاپرک و تسویه بانکی باعث ریزش شدید خریدهای کاربران می‌شد.</p>
           <p><strong class="text-white">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> توسعه سوییچ چنددرگاهی آگنوستیک با تخصیص پویای اوزان به جای تکیه بر قرارداد با یک شرکت <span dir="ltr">PSP</span> منفرد.</p>
-          <p><strong class="text-white">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> مدیران حساب درگاه‌های سنتی با تنوع‌بخشی به مسیرها مخالفت داشتند؛ من نشان دادم روتینگ پویا نرخ تبدیل پرداخت را ۱۴ درصد افزایش داده است.</p>
-          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> دست‌یابی به آپ‌تایم ۹۹٫۹۹ درصدی درگاه، تاخیر رفت‌وبرگشت زیر ۲۵۰ میلی‌ثانیه و بازگشت خودکار ۳۰ میلی‌ثانیه‌ای در قطعی‌های شبکه شاپرک.</p>
+          <p><strong class="text-white">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> مدیران حساب درگاه‌های سنتی با تنوع‌بخشی به مسیرها مخالفت داشتند؛ من نشان دادم روتینگ پویا نرخ تبدیل پرداخت را {stats.switchConversionLift.raw} درصد افزایش داده است.</p>
+          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> دست‌یابی به {stats.switchGatewayUptime.textFa} درگاه، تاخیر رفت‌وبرگشت زیر ۲۵۰ میلی‌ثانیه و بازگشت خودکار {stats.switchFailoverSla.raw} میلی‌ثانیه‌ای در قطعی‌های شبکه شاپرک.</p>
         </div>
       </div>
 
@@ -336,19 +337,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">مهلت ارزیابی ریسک</span>
-          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">&lt;15ms (P99)</span>
+          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.fraudRiskLoopSla.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">ذخیره داده CVV2</span>
-          <span class="text-white font-semibold text-sm">۰٫۰۰ ثانیه (عدم ذخیره)</span>
+          <span class="text-white font-semibold text-sm">{stats.cvv2RetentionTime.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">مهار تخلیه مالی</span>
-          <span class="text-emerald-400 font-semibold text-sm">۹۴- درصد کاهش</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.fraudDrainReduction.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">نرخ عبور 3DS 2.0</span>
-          <span class="text-cyan-400 font-semibold text-sm">بیش از ۹۲٪ عبور</span>
+          <span class="text-cyan-400 font-semibold text-sm">{stats.frictionless3dsPassRate.fa}</span>
         </div>
       </div>
 
@@ -385,7 +386,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>تحلیل گرافی ناهنجاری‌ها:</strong> محاسبه بردار ریسک لحظه‌ای در پایگاه داده گرافی <span dir="ltr">Neo4j</span> در کمتر از ۱۵ میلی‌ثانیه برای هر تراکنش مشکوک.</span>
+              <span><strong>تحلیل گرافی ناهنجاری‌ها:</strong> محاسبه بردار ریسک لحظه‌ای در پایگاه داده گرافی <span dir="ltr">Neo4j</span> در {stats.fraudRiskLoopSla.textFa} برای هر تراکنش مشکوک.</span>
             </li>
           </ul>
         </div>
@@ -407,7 +408,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>پایداری تجربه کاربری:</strong> حفظ نرخ عبور بدون چالش بالای ۹۲ درصدی برای تراکنش‌های مشروع بدون نیاز به بررسی دستی اپراتور.</span>
+              <span><strong>پایداری تجربه کاربری:</strong> حفظ نرخ عبور بدون چالش {stats.frictionless3dsPassRate.textFa} برای تراکنش‌های مشروع بدون نیاز به بررسی دستی اپراتور.</span>
             </li>
           </ul>
         </div>
@@ -423,7 +424,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <p><strong class="text-white">چرا این تصمیم و چرا در آن مقطع:</strong> قواعد ایستا خطای مثبت کاذب بالایی داشتند و کلاهبرداران با سوءاستفاده از تاخیر تعویض سیم‌کارت، رمزهای سنتی را دور می‌زدند.</p>
           <p><strong class="text-white">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> امتناع از کش‌کردن کدهای <span dir="ltr">CVV2</span> به بهانه راحتی خرید، و اعمال توکن‌سازی سخت‌گیرانه در زون ایزوله بانکی.</p>
           <p><strong class="text-white">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم تجاری خواستار ذخیره‌سازی <span dir="ltr">CVV2</span> برای خرید تک‌کلیکی بود؛ من اثبات کردم ریسک جرایم نظارتی و نقض امنیتی کارت‌ها بسیار فراتر از اصطکاک پرداخت است.</p>
-          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> کاهش ۹۴ درصدی نشت مالی و انتقال موفق مسئولیت حقوقی به بانک‌های صادرکننده با پروتکل <span dir="ltr">3DS 2.0</span>.</p>
+          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> {stats.fraudDrainReduction.textFa} و انتقال موفق مسئولیت حقوقی به بانک‌های صادرکننده با پروتکل <span dir="ltr">3DS 2.0</span>.</p>
         </div>
       </div>
 
@@ -479,19 +480,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">دقت مغایرت‌گیری</span>
-          <span class="text-emerald-400 font-semibold text-sm">تطبیق ۱۰۰٪ سه‌طرفه</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.reconMatchParity.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">بازه تسویه پذیرنده</span>
-          <span class="text-white font-semibold text-sm">تسویه ۲۴ ساعته</span>
+          <span class="text-white font-semibold text-sm">{stats.merchantPayoutWindow.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">ورکر‌های پردازش</span>
-          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">Spring Batch</span>
+          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.reconBatchEngine.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">خطای دستی تسویه</span>
-          <span class="text-emerald-400 font-semibold text-sm">۱۰۰- درصد حذف</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.manualReconOverhead.fa}</span>
         </div>
       </div>
 
@@ -542,7 +543,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>تسویه زودتر از موعد ۲۴ ساعته:</strong> واریز مبالغ فروش پذیرندگان از طریق حوالجات دسته‌ای پایا و ساتنا برای رفع چالش نقدینگی فروشگاه‌ها.</span>
+              <span><strong>{stats.merchantPayoutWindow.textFa}:</strong> واریز مبالغ فروش پذیرندگان از طریق حوالجات دسته‌ای پایا و ساتنا برای رفع چالش نقدینگی فروشگاه‌ها.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
@@ -550,7 +551,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>پالایش سه‌مرحله‌ای (T+0 تا T+2):</strong> تفکیک تراکنش‌های قطعی از موارد اختلافی جهت تضمین عدم انحراف سرمایه.</span>
+              <span><strong>پالایش سه‌مرحله‌ای {stats.disputeResolutionWindow.fa}:</strong> تفکیک تراکنش‌های قطعی از موارد اختلافی جهت تضمین عدم انحراف سرمایه.</span>
             </li>
           </ul>
         </div>
@@ -563,10 +564,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span>تصمیم محصول · مغایرت‌گیری خودکار و تسویه زودتر</span>
         </div>
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
-          <p><strong class="text-white">چرا این تصمیم و چرا در آن مقطع:</strong> مغایرت‌گیری دستی اکسل تسویه حساب پذیرندگان را تا بیش از ۴۸ ساعت به تاخیر می‌انداخت و جریان نقدینگی فروشندگان را قفل می‌کرد.</p>
+          <p><strong class="text-white">چرا این تصمیم و چرا در آن مقطع:</strong> مغایرت‌گیری دستی اکسل تسویه حساب پذیرندگان را تا {stats.legacyManualPayoutDelay.fa} به تاخیر می‌انداخت و جریان نقدینگی فروشندگان را قفل می‌کرد.</p>
           <p><strong class="text-white">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> مهاجرت از مغایرت‌گیری دستی و همگام به ماشین حالت ناهمزمان چندمرحله‌ای متصل به پایپ‌لاین‌های خودکار <span dir="ltr">SFTP</span> بانکی.</p>
-          <p><strong class="text-white">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم‌های حسابداری نگران خطای حواله‌های خودکار بودند؛ من با اجرای یک دوره آزمایشی موازی و اثبات خطای صفر در بیش از ۵۰ هزار تراکنش، رضایت آنها را جلب کردم.</p>
-          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> راه‌اندازی تسویه زودهنگام ۲۴ ساعته پذیرندگان با کسر هوشمند کارمزد شناور، حذف ۱۰۰ درصدی هزینه‌های مغایرت‌گیری دستی و جلوگیری از نشت مالی.</p>
+          <p><strong class="text-white">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم‌های حسابداری نگران خطای حواله‌های خودکار بودند؛ من با اجرای یک دوره آزمایشی موازی و اثبات خطای صفر در {stats.reconciliationTrialEvents.fa}، رضایت آنها را جلب کردم.</p>
+          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> راه‌اندازی {stats.merchantPayoutWindow.textFa} پذیرندگان با کسر هوشمند کارمزد شناور، {stats.manualReconOverhead.textFa} و جلوگیری از نشت مالی.</p>
         </div>
       </div>
 
@@ -620,19 +621,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">میانگین زمان بازیابی</span>
-          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">&lt; 8 min Failover</span>
+          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.incidentMttr.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">انحراف مالی دفتر کل</span>
-          <span class="text-white font-semibold text-sm" dir="ltr">0.00 IRR (Zero Loss)</span>
+          <span class="text-white font-semibold text-sm" dir="ltr">{stats.incidentFinancialDrift.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">آپ‌تایم هسته سوییچ</span>
-          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">99.99% Core Uptime</span>
+          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.incidentSwitchAvailability.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">شاخص مهار بحران‌ها</span>
-          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">100% P0 Mitigated</span>
+          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.incidentResolutionSla.fa}</span>
         </div>
       </div>
 
@@ -651,12 +652,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
             <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
               <p><strong class="text-amber-400">ریشه خطا:</strong> قطعی سوکت گیت‌وی میزبان بانکی موجب هجوم ارسال مجدد از سوی پذیرندگان و درخواست‌های تکراری کپچر ISO 8583 0200 شد.</p>
-              <p><strong class="text-cyan-400">اصل تغییرناپذیر:</strong> قفل انحصار متقابل ایدامپوتنت باید بیش از طولانی‌ترین بازه تلاش مجدد پذیرنده (۸۶,۴۰۰ ثانیه) معتبر بماند.</p>
-              <p><strong class="text-white">راهکار مقاوم‌سازی:</strong> قفل توزیع‌شده Redis <code class="text-cyan-400 bg-white/5 px-1 py-0.5 rounded" dir="ltr">SETNX</code> با عمر ۲۴ ساعته همراه با لاگ فقط‌افزودنی در ScyllaDB و صدور خودکار تراکنش معکوس در صورت تایم‌اوت.</p>
+              <p><strong class="text-cyan-400">اصل تغییرناپذیر:</strong> قفل انحصار متقابل ایدامپوتنت باید بیش از طولانی‌ترین بازه تلاش مجدد پذیرنده ({stats.ledgerReplayWindow.raw.toLocaleString()} ثانیه) معتبر بماند.</p>
+              <p><strong class="text-white">راهکار مقاوم‌سازی:</strong> قفل توزیع‌شده Redis <code class="text-cyan-400 bg-white/5 px-1 py-0.5 rounded" dir="ltr">SETNX</code> با عمر {stats.incident01LockTtl.fa} همراه با لاگ فقط‌افزودنی در ScyllaDB و صدور خودکار تراکنش معکوس در صورت تایم‌اوت.</p>
             </div>
           </div>
           <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
-            <span class="text-emerald-400 font-semibold">&larr; انحراف مالی: صفر ریال (0.00 IRR)</span>
+            <span class="text-emerald-400 font-semibold">&larr; {stats.incidentFinancialDrift.badgeFa}</span>
             <span class="text-[10px] text-neutral-500" dir="ltr">[ISO 8583]</span>
           </div>
         </div>
@@ -675,11 +676,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
               <p><strong class="text-amber-400">ریشه خطا:</strong> کمپین‌های ارسال انبوه تبلیغاتی کانال‌های پیامک اپراتور را مسدود کرد و تحویل کدهای حیاتی رمز پویا برای تراکنش‌های کارتی را به تعویق انداخت.</p>
               <p><strong class="text-cyan-400">اصل تغییرناپذیر:</strong> صفوف پیامک‌های امنیتی احراز هویت هرگز نباید خط لوله مشترک با پیامک‌های بازاریابی ناهمگام داشته باشند.</p>
-              <p><strong class="text-white">راهکار مقاوم‌سازی:</strong> تفکیک صفوف اولویت‌دار در RabbitMQ و کنترل دینامیک پنجره لغزان SMPP 3.4 (بین ۱۶ تا ۶۴ PDU) همراه با بک‌پرشر جریان ترافیک.</p>
+              <p><strong class="text-white">راهکار مقاوم‌سازی:</strong> تفکیک صفوف اولویت‌دار در RabbitMQ و کنترل دینامیک پنجره لغزان SMPP 3.4 (بین {stats.incident02SlidingWindow.fa}) همراه با بک‌پرشر جریان ترافیک.</p>
             </div>
           </div>
           <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
-            <span class="text-emerald-400 font-semibold">&larr; تحویل تضمینی زیر ۲ ثانیه</span>
+            <span class="text-emerald-400 font-semibold">&larr; تحویل تضمینی زیر {stats.incident02OtpSla.raw / 1000} ثانیه</span>
             <span class="text-[10px] text-neutral-500" dir="ltr">[SMPP 3.4]</span>
           </div>
         </div>
@@ -692,17 +693,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-emerald-400 font-medium bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20" dir="ltr">P1 RESOLVED</span>
             </div>
             <div>
-              <h3 class="text-sm font-bold text-white">پالایش ۱۰۰ میلیون رکورد Smart DB و بن‌بست دیتابیس</h3>
+              <h3 class="text-sm font-bold text-white">{stats.incident03Title.fa}</h3>
               <p class="text-[11px] font-mono text-neutral-400 mt-0.5" dir="ltr">RDBMS Table-Lock Contention · High-Concurrency Queries</p>
             </div>
             <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
-              <p><strong class="text-amber-400">ریشه خطا:</strong> ۹۴٫۷ میلیون رکورد بی‌ساختار و بدون ایندکس، حین استعلام‌های همزمان پرداخت موجب قفل سراسری جداول پایگاه داده رابطه‌ای می‌شدند.</p>
-              <p><strong class="text-cyan-400">اصل تغییرناپذیر:</strong> غنی‌سازی اطلاعات هویتی باید زیر ۳۰ میلی‌ثانیه و بدون تحمیل قفل‌های همگام روی جداول تراکنشی انجام گیرد.</p>
+              <p><strong class="text-amber-400">ریشه خطا:</strong> {stats.preKycUnindexedRecords.fa}، حین استعلام‌های همزمان پرداخت موجب قفل سراسری جداول پایگاه داده رابطه‌ای می‌شدند.</p>
+              <p><strong class="text-cyan-400">اصل تغییرناپذیر:</strong> غنی‌سازی اطلاعات هویتی باید {stats.switchFailoverSla.textFa} و بدون تحمیل قفل‌های همگام روی جداول تراکنشی انجام گیرد.</p>
               <p><strong class="text-white">راهکار مقاوم‌سازی:</strong> پایپ‌لاین چندمرحله‌ای نرمال‌سازی داده، فیلتر بلوم در Redis برای بررسی آنی وجود رکورد، و کش فونتیک پیش‌بینی کاربران با دقت ۷۰ درصدی.</p>
             </div>
           </div>
           <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
-            <span class="text-emerald-400 font-semibold">&larr; حذف ۱۰۰ درصدی قفل‌های دیتابیس</span>
+            <span class="text-emerald-400 font-semibold">&larr; {stats.incident03LockElimination.fa}</span>
             <span class="text-[10px] text-neutral-500" dir="ltr">[SHAHKAR eKYC]</span>
           </div>
         </div>
@@ -735,7 +736,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                   <span>لایه API Gateway</span>
                 </td>
-                <td class="py-2.5 px-3 text-cyan-400" dir="ltr">P99 &lt; 50ms &middot; 429 &lt; 0.1%</td>
+                <td class="py-2.5 px-3 text-cyan-400" dir="ltr">{stats.circuitBreakerApiP99.fa}</td>
                 <td class="py-2.5 px-3 text-neutral-300">اشباع سوکت و هجوم تکرار توکن</td>
                 <td class="py-2.5 pl-3 text-emerald-400">افزایش باکت ردیس و مسدودسازی هوشمند ترافیک کم‌اهمیت</td>
               </tr>
@@ -744,7 +745,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                   <span>هسته Switch-PSP</span>
                 </td>
-                <td class="py-2.5 px-3 text-emerald-400" dir="ltr">PSR &gt; 88% per PSP</td>
+                <td class="py-2.5 px-3 text-emerald-400" dir="ltr">{stats.circuitBreakerSwitchPsr.fa}</td>
                 <td class="py-2.5 px-3 text-neutral-300">افت کیفی گیت‌وی بانکی و خطاهای ۵۰۴</td>
                 <td class="py-2.5 pl-3 text-emerald-400">صفر کردن وزن ارجاع و سوئیچ آنی به درگاه رزرو بدون قطعی</td>
               </tr>
@@ -753,7 +754,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
                   <span>دفتر کل کیف پول</span>
                 </td>
-                <td class="py-2.5 px-3 text-amber-400" dir="ltr">&Delta;Balance = 0.00 (Strict Invariant)</td>
+                <td class="py-2.5 px-3 text-amber-400" dir="ltr">{stats.circuitBreakerLedgerInvariant.fa}</td>
                 <td class="py-2.5 px-3 text-neutral-300">تداخل همزمانی در تراکنش‌های کسر موجودی</td>
                 <td class="py-2.5 pl-3 text-emerald-400">توقف فوری برداشت‌ها و ارسال خودکار هشدار P1 به پیجر آن‌کال</td>
               </tr>
@@ -762,7 +763,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                   <span>تسویه حساب پذیرندگان</span>
                 </td>
-                <td class="py-2.5 px-3 text-cyan-400" dir="ltr">&gt; 99.2% in 24h Window</td>
+                <td class="py-2.5 px-3 text-cyan-400" dir="ltr">{stats.circuitBreakerSettlementWindow.fa}</td>
                 <td class="py-2.5 px-3 text-neutral-300">قطعی کانال انتقال فایل SFTP بانک</td>
                 <td class="py-2.5 pl-3 text-emerald-400">تلاش مجدد با الگوریتم نمایی و جیتر، همراه با آلرت به عملیات مالی</td>
               </tr>
@@ -771,7 +772,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
                   <span>احراز هویت شاهکار</span>
                 </td>
-                <td class="py-2.5 px-3 text-purple-400" dir="ltr">Latency &lt; 1,200ms</td>
+                <td class="py-2.5 px-3 text-purple-400" dir="ltr">{stats.circuitBreakerShahkarLatency.fa}</td>
                 <td class="py-2.5 px-3 text-neutral-300">کندی پاسخگویی سرویس‌های حاکمیتی</td>
                 <td class="py-2.5 pl-3 text-emerald-400">انتقال خودکار به پروایدر رزرو و نمایش لودینگ بدون بن‌بست کاربر</td>
               </tr>
@@ -780,9 +781,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
                   <span>شبکه پیامک SMPP</span>
                 </td>
-                <td class="py-2.5 px-3 text-amber-400" dir="ltr">OTP Delivery &lt; 2,000ms</td>
+                <td class="py-2.5 px-3 text-amber-400" dir="ltr">{stats.circuitBreakerSmppOtp.fa}</td>
                 <td class="py-2.5 px-3 text-neutral-300">تداخل صف‌های پیامک انبوه و تبلیغاتی</td>
-                <td class="py-2.5 pl-3 text-emerald-400">تراتلینگ پنجره لغزان (۱۶ تا ۶۴ PDU) و اولویت مطلق رمز پویا</td>
+                <td class="py-2.5 pl-3 text-emerald-400">تراتلینگ پنجره لغزان ({stats.incident02SlidingWindow.fa}) و اولویت مطلق رمز پویا</td>
               </tr>
             </tbody>
           </table>
@@ -797,8 +798,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
           <p><strong class="text-white">چرا این راهکار و چرا در آن مقطع:</strong> اکوسیستم پرداخت در ایران با قطعی‌های پیش‌بینی‌نشده سوکت‌های بانکی و چرخه‌های تسویه ناهمگام مواجه است. در مهندسی مالی، رخداد خطای API پس از خروج وجه می‌تواند در غیاب کنترل‌های سخت‌گیرانه، دفاتر کل را دچار مغایرت جبران‌ناپذیر کند.</p>
-          <p><strong class="text-white">بده‌بستان فنی:</strong> تلاش‌های مجدد خوش‌بینانه از سمت کلاینت حذف شد و به جای آن، قفل‌های انحصار متقابل ۲۴ ساعته در سرور و مکانیزم خودکار معکوس‌سازی تراکنش جایگزین گردید. بدین ترتیب اولویت مطلق به تطابق صددرصدی اسناد داده شد.</p>
-          <p><strong class="text-white">دستاورد تجاری:</strong> مهار کامل انحراف مالی (ثبت مغایرت صفر ریال) در میلیون‌ها تراکنش ماهانه همراه با ثبت میانگین زمان بازیابی زیر ۸ دقیقه در تمام بحران‌های زیرساختی P0.</p>
+          <p><strong class="text-white">بده‌بستان فنی:</strong> تلاش‌های مجدد خوش‌بینانه از سمت کلاینت حذف شد و به جای آن، قفل‌های انحصار متقابل {stats.incident01LockTtl.fa} در سرور و مکانیزم خودکار معکوس‌سازی تراکنش جایگزین گردید. بدین ترتیب اولویت مطلق به تطابق صددرصدی اسناد داده شد.</p>
+          <p><strong class="text-white">دستاورد تجاری:</strong> مهار کامل انحراف مالی ({stats.incidentFinancialDrift.textFa}) در میلیون‌ها تراکنش ماهانه همراه با ثبت {stats.incidentMttr.textFa} در تمام بحران‌های زیرساختی P0.</p>
         </div>
       </div>
 
@@ -896,7 +897,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <p class="text-[11px] font-mono text-[#e2c974]/90 mt-0.5" dir="ltr">RICE Prioritization &middot; Sequence Contracts</p>
             </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
-              معماری دیاگرام‌های توالی، پروکسی‌های امن بانکی با mTLS، و گاردریل‌های همزمانی (قفل‌های ۲۴ ساعته ردیس و ماشین حالت رزرو دومرحله‌ای موجودی) جهت تضمین مقیاس‌پذیری و ایدامپوتنسی.
+              معماری دیاگرام‌های توالی، پروکسی‌های امن بانکی با mTLS، و گاردریل‌های همزمانی (قفل‌های {stats.incident01LockTtl.fa} ردیس و ماشین حالت رزرو دومرحله‌ای موجودی) جهت تضمین مقیاس‌پذیری و ایدامپوتنسی.
             </p>
             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2.5 space-y-1 font-mono text-[11px]">
               <div class="text-neutral-400 text-[10px] uppercase">خروجی کلیدی فاز:</div>
@@ -958,7 +959,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <p class="text-[11px] font-mono text-emerald-400/90 mt-0.5" dir="ltr">Prometheus &middot; OEC &middot; P99 Circuit Breakers</p>
             </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
-              استقرار تدریجی با قطعی صفر (Canary Deployments)، پایش زنده پرومتئوس و گرافانا، مدیریت خطای خودکار، اعمال کلیدهای قطع اضطراری و تضمین SLAهای زیر ۳۰ میلی‌ثانیه.
+              استقرار تدریجی با قطعی صفر (Canary Deployments)، پایش زنده پرومتئوس و گرافانا، مدیریت خطای خودکار، اعمال کلیدهای قطع اضطراری و تضمین SLAهای {stats.switchFailoverSla.textFa}.
             </p>
             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2.5 space-y-1 font-mono text-[11px]">
               <div class="text-neutral-400 text-[10px] uppercase">خروجی کلیدی فاز:</div>

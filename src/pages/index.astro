@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import LandingStage from '../components/react/LandingStage';
 import ArchitectureSidebar from '../components/react/ArchitectureSidebar';
 import BookingSection from '../components/BookingSection.astro';
+import { stats } from '../data/stats';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -46,19 +47,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
           <span class="text-neutral-500 block text-[10px] uppercase">Peak Throughput</span>
-          <span class="text-white font-semibold">50,000 TPS</span>
+          <span class="text-white font-semibold">{stats.ledgerPeakTps.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
           <span class="text-neutral-500 block text-[10px] uppercase">Lock TTL</span>
-          <span class="text-cyan-400 font-semibold">15,000ms SETNX</span>
+          <span class="text-cyan-400 font-semibold">{stats.ledgerLockTtl.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
           <span class="text-neutral-500 block text-[10px] uppercase">Replay Window</span>
-          <span class="text-white font-semibold">86,400s (24h)</span>
+          <span class="text-white font-semibold">{stats.ledgerReplayWindow.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
           <span class="text-neutral-500 block text-[10px] uppercase">Financial Drift</span>
-          <span class="text-emerald-400 font-semibold">0.00% (ZERO)</span>
+          <span class="text-emerald-400 font-semibold">{stats.financialDriftPercent.en}</span>
         </div>
       </div>
 
@@ -95,7 +96,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>Distributed Idempotency:</strong> Redis atomic <code class="text-white font-mono text-xs bg-white/5 px-1 py-0.5 rounded">SETNX</code> mutex locks keyed by UUIDv4 with a 24-hour expiration window.</span>
+              <span><strong>Distributed Idempotency:</strong> Redis atomic <code class="text-white font-mono text-xs bg-white/5 px-1 py-0.5 rounded">SETNX</code> mutex locks keyed by UUIDv4 with a {stats.ledgerReplayWindow.textEn}.</span>
             </li>
           </ul>
         </div>
@@ -117,7 +118,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>Production Impact:</strong> 100% mathematical parity across 50,000+ daily clearing events with zero duplicate payouts during upstream PSP brownouts.</span>
+              <span><strong>Production Impact:</strong> 100% mathematical parity across {stats.reconciliationTrialEvents.en} with zero duplicate payouts during upstream PSP brownouts.</span>
             </li>
           </ul>
         </div>
@@ -133,7 +134,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <p><strong class="text-white">Why this, why then:</strong> Inconsistent ledger states and ghost balances during high-concurrency wallet checkouts threatened regulatory standing.</p>
           <p><strong class="text-white">What I traded off:</strong> Enforced strict synchronous two-phase balance reservation over raw optimistic write throughput.</p>
           <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Growth stakeholders favored sub-10ms unreserved checkouts. I demonstrated that preventing unbacked overdraws was mandatory for Central Bank audit.</p>
-          <p><strong class="text-white">Business result:</strong> Maintained 100% mathematical ledger parity across 50,000+ daily transactions with zero duplicate payouts.</p>
+          <p><strong class="text-white">Business result:</strong> Maintained {stats.reconMatchParity.textEn} across {stats.reconciliationTrialEvents.en} with zero duplicate payouts.</p>
         </div>
       </div>
 
@@ -188,19 +189,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Failover SLA</span>
-          <span class="text-cyan-400 font-semibold text-sm">&lt;30ms Latency</span>
+          <span class="text-cyan-400 font-semibold text-sm">{stats.switchFailoverSla.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Protocol</span>
-          <span class="text-white font-semibold text-sm">ISO 8583 MTI 0200</span>
+          <span class="text-white font-semibold text-sm">{stats.switchProtocolWireFormat.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Gateway Uptime</span>
-          <span class="text-emerald-400 font-semibold text-sm">99.99% Availability</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.switchGatewayUptime.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Conversion Lift</span>
-          <span class="text-emerald-400 font-semibold text-sm">+14% Gain</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.switchConversionLift.en}</span>
         </div>
       </div>
 
@@ -251,7 +252,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>Degraded Socket Shedding:</strong> Upstream network brownouts trigger automated circuit breakers shedding failing PSP connections in sub-30ms.</span>
+              <span><strong>Degraded Socket Shedding:</strong> Upstream network brownouts trigger automated circuit breakers shedding failing PSP connections in {stats.switchFailoverSla.textEn}.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
@@ -259,7 +260,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>Telecom Throttling:</strong> Controls carrier SMPP 3.4 traffic with sliding window algorithms (16–64 PDU), preventing banking OTP delay under marketing spikes.</span>
+              <span><strong>Telecom Throttling:</strong> Controls carrier SMPP 3.4 traffic with sliding window algorithms ({stats.incident02SlidingWindow.en}), preventing banking OTP delay under marketing spikes.</span>
             </li>
           </ul>
         </div>
@@ -274,8 +275,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
           <p><strong class="text-white">Why this, why then:</strong> Single-PSP vendor lock-in created massive checkout drop-offs during bank maintenance windows and national clearing congestion.</p>
           <p><strong class="text-white">What I traded off:</strong> Built an agnostic multi-PSP switch topology with dynamic weight allocation rather than relying on a single PSP relationship.</p>
-          <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Legacy PSP account managers resisted routing diversification. I proved that dynamic failover boosted overall transaction conversion by 14%.</p>
-          <p><strong class="text-white">Business result:</strong> Achieved 99.99% gateway availability, sub-250ms roundtrip checkout latency, and 30ms automated failover during upstream provider outages.</p>
+          <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Legacy PSP account managers resisted routing diversification. I proved that dynamic failover boosted overall transaction conversion by {stats.switchConversionLift.raw}%.</p>
+          <p><strong class="text-white">Business result:</strong> Achieved {stats.switchGatewayUptime.textEn}, sub-250ms roundtrip checkout latency, and {stats.switchFailoverSla.raw}ms automated failover during upstream provider outages.</p>
         </div>
       </div>
 
@@ -330,19 +331,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Risk Scoring SLA</span>
-          <span class="text-emerald-400 font-semibold text-sm">&lt;15ms (P99)</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.fraudRiskLoopSla.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">CVV2 Retention</span>
-          <span class="text-white font-semibold text-sm">0.00s (Zero-Storage)</span>
+          <span class="text-white font-semibold text-sm">{stats.cvv2RetentionTime.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Fraud Reduction</span>
-          <span class="text-emerald-400 font-semibold text-sm">-94% Drain</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.fraudDrainReduction.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">3DS Frictionless</span>
-          <span class="text-cyan-400 font-semibold text-sm">&gt;92% Pass Rate</span>
+          <span class="text-cyan-400 font-semibold text-sm">{stats.frictionless3dsPassRate.en}</span>
         </div>
       </div>
 
@@ -379,7 +380,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>Neo4j Graph Forensics:</strong> Computes real-time risk vectors [0.00, 1.00] across multi-hop card and device clusters in sub-15ms.</span>
+              <span><strong>Neo4j Graph Forensics:</strong> Computes real-time risk vectors [0.00, 1.00] across multi-hop card and device clusters in {stats.fraudRiskLoopSla.textEn}.</span>
             </li>
           </ul>
         </div>
@@ -401,7 +402,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>False Positive Minimization:</strong> Maintained frictionless checkouts for &gt;92% of verified legitimate users without manual review queues.</span>
+              <span><strong>False Positive Minimization:</strong> Maintained frictionless checkouts for {stats.frictionless3dsPassRate.textEn} without manual review queues.</span>
             </li>
           </ul>
         </div>
@@ -417,7 +418,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <p><strong class="text-white">Why this, why then:</strong> Static rules caused high false positives and fraudsters exploited SIM-swap delays to bypass legacy OTPs.</p>
           <p><strong class="text-white">What I traded off:</strong> Refused to cache CVV2 credentials for one-click checkout convenience, enforcing strict zero-storage PCI-DSS tokenization.</p>
           <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Commercial teams pushed for frictionless CVV2 storage. I proved the liability of regulatory penalties and card credential breach far outweighed the checkout friction.</p>
-          <p><strong class="text-white">Business result:</strong> Slashed illicit drain by 94 percent while shifting financial liability to issuing banks via 3DS 2.0.</p>
+          <p><strong class="text-white">Business result:</strong> Slashed illicit drain by {stats.fraudDrainReduction.textEn} while shifting financial liability to issuing banks via 3DS 2.0.</p>
         </div>
       </div>
 
@@ -473,19 +474,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Recon Parity</span>
-          <span class="text-emerald-400 font-semibold text-sm">100% 3-Way Match</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.reconMatchParity.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Payout Window</span>
-          <span class="text-white font-semibold text-sm">24h Early Settle</span>
+          <span class="text-white font-semibold text-sm">{stats.merchantPayoutWindow.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Batch Workers</span>
-          <span class="text-cyan-400 font-semibold text-sm">Spring Batch</span>
+          <span class="text-cyan-400 font-semibold text-sm">{stats.reconBatchEngine.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Manual Overhead</span>
-          <span class="text-emerald-400 font-semibold text-sm">-100% Eliminated</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.manualReconOverhead.en}</span>
         </div>
       </div>
 
@@ -536,7 +537,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>24h Early Merchant Credit:</strong> Disburses early payouts via automated Paya/Satna ACH batches, solving merchant cash-flow bottlenecks.</span>
+              <span><strong>{stats.merchantPayoutWindow.raw}h Early Merchant Credit:</strong> Disburses early payouts via automated Paya/Satna ACH batches, solving merchant cash-flow bottlenecks.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
@@ -544,7 +545,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>Dispute Resolution (T+2):</strong> Automatically routes contested charges into judicial dispute resolution queues, preventing balance drift.</span>
+              <span><strong>Dispute Resolution {stats.disputeResolutionWindow.en}:</strong> Automatically routes contested charges into judicial dispute resolution queues, preventing balance drift.</span>
             </li>
           </ul>
         </div>
@@ -557,10 +558,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span>Product Decision · Automated Reconciliation &amp; Early Settlement</span>
         </div>
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
-          <p><strong class="text-white">Why this, why then:</strong> Manual reconciliation delayed merchant payouts to 48h+, causing severe cash-flow friction for enterprise merchants.</p>
+          <p><strong class="text-white">Why this, why then:</strong> Manual reconciliation delayed merchant payouts to {stats.legacyManualPayoutDelay.en}, causing severe cash-flow friction for enterprise merchants.</p>
           <p><strong class="text-white">What I traded off:</strong> Shifted from synchronous reconciliation to an asynchronous multi-pass state machine backed by automated bank SFTP pipelines.</p>
-          <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Accounting teams hesitated to trust automated batch payouts. I instituted a shadow-run trial showing zero reconciliation drift across 50,000+ daily events.</p>
-          <p><strong class="text-white">Business result:</strong> Launched 24h early merchant settlement with automated floating fee collection, eliminated 100% of manual reconciliation overhead, and prevented financial leakage.</p>
+          <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Accounting teams hesitated to trust automated batch payouts. I instituted a shadow-run trial showing zero reconciliation drift across {stats.reconciliationTrialEvents.en}.</p>
+          <p><strong class="text-white">Business result:</strong> Launched {stats.merchantPayoutWindow.textEn} with automated floating fee collection, {stats.manualReconOverhead.textEn}, and prevented financial leakage.</p>
         </div>
       </div>
 
@@ -614,19 +615,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Incident MTTR</span>
-          <span class="text-emerald-400 font-semibold text-sm">&lt; 8 min Failover</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.incidentMttr.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Financial Drift</span>
-          <span class="text-white font-semibold text-sm">0.00 IRR (Zero Loss)</span>
+          <span class="text-white font-semibold text-sm">{stats.incidentFinancialDrift.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Switch Availability</span>
-          <span class="text-cyan-400 font-semibold text-sm">99.99% Core Uptime</span>
+          <span class="text-cyan-400 font-semibold text-sm">{stats.incidentSwitchAvailability.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Resolution SLA</span>
-          <span class="text-emerald-400 font-semibold text-sm">100% P0 Mitigated</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.incidentResolutionSla.en}</span>
         </div>
       </div>
 
@@ -645,12 +646,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
             <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
               <p><strong class="text-amber-400">ROOT CAUSE:</strong> Bank host gateway socket hangs triggered downstream merchant retry storms and duplicate ISO 8583 0200 capture requests.</p>
-              <p><strong class="text-cyan-400">INVARIANT:</strong> Distributed idempotency mutex lock must outlive the longest carrier retry window (86,400s TTL).</p>
-              <p><strong class="text-white">HARDENED FIX:</strong> Redis <code class="text-cyan-400 bg-white/5 px-1 py-0.5 rounded">SETNX</code> distributed lock with 24h TTL + ScyllaDB append-only double-entry fact log. Automatic refund reversal on timeout.</p>
+              <p><strong class="text-cyan-400">INVARIANT:</strong> Distributed idempotency mutex lock must outlive the longest carrier retry window ({stats.ledgerReplayWindow.raw.toLocaleString()}s TTL).</p>
+              <p><strong class="text-white">HARDENED FIX:</strong> Redis <code class="text-cyan-400 bg-white/5 px-1 py-0.5 rounded">SETNX</code> distributed lock with {stats.incident01LockTtl.en} TTL + ScyllaDB append-only double-entry fact log. Automatic refund reversal on timeout.</p>
             </div>
           </div>
           <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
-            <span class="text-emerald-400 font-semibold">&rarr; Zero Financial Drift (0.00 IRR)</span>
+            <span class="text-emerald-400 font-semibold">&rarr; {stats.incidentFinancialDrift.badgeEn}</span>
             <span class="text-[10px] text-neutral-500">[ISO 8583]</span>
           </div>
         </div>
@@ -669,11 +670,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
               <p><strong class="text-amber-400">ROOT CAUSE:</strong> High-volume broadcast runs clogged carrier SMSC binds, delaying dynamic Harim OTP codes required for payment checkouts.</p>
               <p><strong class="text-cyan-400">INVARIANT:</strong> Critical auth queues must never share sliding windows or worker pipes with asynchronous marketing traffic.</p>
-              <p><strong class="text-white">HARDENED FIX:</strong> Dual-plane RabbitMQ priority queues + dynamic SMPP 3.4 sliding window throttle (16&ndash;64 PDU) with window-overflow backpressure.</p>
+              <p><strong class="text-white">HARDENED FIX:</strong> Dual-plane RabbitMQ priority queues + dynamic SMPP 3.4 sliding window throttle ({stats.incident02SlidingWindow.en}) with window-overflow backpressure.</p>
             </div>
           </div>
           <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
-            <span class="text-emerald-400 font-semibold">&rarr; Sub-2s Delivery Guaranteed</span>
+            <span class="text-emerald-400 font-semibold">&rarr; {stats.incident02OtpSla.en}</span>
             <span class="text-[10px] text-neutral-500">[SMPP 3.4]</span>
           </div>
         </div>
@@ -686,17 +687,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <span class="text-emerald-400 font-medium bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">P1 RESOLVED</span>
             </div>
             <div>
-              <h3 class="text-sm font-bold text-white">100M Pre-KYC Scoring &amp; Shahkar Deadlock</h3>
+              <h3 class="text-sm font-bold text-white">{stats.incident03Title.en}</h3>
               <p class="text-[11px] font-mono text-neutral-400 mt-0.5">RDBMS Table-Lock Contention · High-Concurrency Queries</p>
             </div>
             <div class="text-xs text-neutral-300 space-y-2 font-mono leading-relaxed pt-1">
-              <p><strong class="text-amber-400">ROOT CAUSE:</strong> 94.7M unindexed legacy customer records caused relational database table-level locks during peak concurrent checkout lookups.</p>
-              <p><strong class="text-cyan-400">INVARIANT:</strong> Attribute enrichment must complete in sub-30ms without synchronous locks on core transaction processing rails.</p>
+              <p><strong class="text-amber-400">ROOT CAUSE:</strong> {stats.preKycUnindexedRecords.en} caused relational database table-level locks during peak concurrent checkout lookups.</p>
+              <p><strong class="text-cyan-400">INVARIANT:</strong> Attribute enrichment must complete in {stats.switchFailoverSla.textEn} without synchronous locks on core transaction processing rails.</p>
               <p><strong class="text-white">HARDENED FIX:</strong> Layered deterministic normalization pipeline, Redis Bloom filter for instant existence checks, and phonetic blocking cache.</p>
             </div>
           </div>
           <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
-            <span class="text-emerald-400 font-semibold">&rarr; 100% Lock Elimination</span>
+            <span class="text-emerald-400 font-semibold">&rarr; {stats.incident03LockElimination.en}</span>
             <span class="text-[10px] text-neutral-500">[SHAHKAR eKYC]</span>
           </div>
         </div>
@@ -729,7 +730,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                   <span>API Gateway Tier</span>
                 </td>
-                <td class="py-2.5 px-3 text-cyan-400">P99 &lt; 50ms &middot; 429 &lt; 0.1%</td>
+                <td class="py-2.5 px-3 text-cyan-400">{stats.circuitBreakerApiP99.en}</td>
                 <td class="py-2.5 px-3 text-neutral-300">Socket saturation &amp; token replay bursts</td>
                 <td class="py-2.5 pl-3 text-emerald-400">Scale Redis token buckets; shed low-priority routes automatically</td>
               </tr>
@@ -738,7 +739,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                   <span>Switch-PSP Core</span>
                 </td>
-                <td class="py-2.5 px-3 text-emerald-400">PSR &gt; 88% per gateway</td>
+                <td class="py-2.5 px-3 text-emerald-400">{stats.circuitBreakerSwitchPsr.en}</td>
                 <td class="py-2.5 px-3 text-neutral-300">Upstream bank gateway degradation / 504s</td>
                 <td class="py-2.5 pl-3 text-emerald-400">Zero out PSP weight; instant traffic failover to healthy secondary PSP</td>
               </tr>
@@ -747,7 +748,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
                   <span>Wallet Ledger Engine</span>
                 </td>
-                <td class="py-2.5 px-3 text-amber-400">&Delta;Balance = 0.00 (Strict Invariant)</td>
+                <td class="py-2.5 px-3 text-amber-400">{stats.circuitBreakerLedgerInvariant.en}</td>
                 <td class="py-2.5 px-3 text-neutral-300">Concurrent debit race conditions</td>
                 <td class="py-2.5 pl-3 text-emerald-400">Halt account withdrawals immediately; trigger P1 on-call pager</td>
               </tr>
@@ -756,7 +757,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                   <span>Merchant Settlement</span>
                 </td>
-                <td class="py-2.5 px-3 text-cyan-400">&gt; 99.2% in 24h Window</td>
+                <td class="py-2.5 px-3 text-cyan-400">{stats.circuitBreakerSettlementWindow.en}</td>
                 <td class="py-2.5 px-3 text-neutral-300">Bank SFTP network disconnects</td>
                 <td class="py-2.5 pl-3 text-emerald-400">Exponential backoff retry with jitter; alert operations for manual clearing</td>
               </tr>
@@ -765,7 +766,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
                   <span>Shahkar eKYC Gateway</span>
                 </td>
-                <td class="py-2.5 px-3 text-purple-400">Latency &lt; 1,200ms</td>
+                <td class="py-2.5 px-3 text-purple-400">{stats.circuitBreakerShahkarLatency.en}</td>
                 <td class="py-2.5 px-3 text-neutral-300">National registry API latency spike</td>
                 <td class="py-2.5 pl-3 text-emerald-400">Fallback to secondary KYC aggregator; non-blocking retry screen for user</td>
               </tr>
@@ -774,9 +775,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
                   <span>SMPP Telecom Mesh</span>
                 </td>
-                <td class="py-2.5 px-3 text-amber-400">OTP Delivery &lt; 2,000ms</td>
+                <td class="py-2.5 px-3 text-amber-400">{stats.circuitBreakerSmppOtp.en}</td>
                 <td class="py-2.5 px-3 text-neutral-300">Marketing campaign queue collision</td>
-                <td class="py-2.5 pl-3 text-emerald-400">Dynamic sliding-window throttle (16&ndash;64 PDU); priority channel preemption</td>
+                <td class="py-2.5 pl-3 text-emerald-400">Dynamic sliding-window throttle ({stats.incident02SlidingWindow.en}); priority channel preemption</td>
               </tr>
             </tbody>
           </table>
@@ -792,7 +793,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
           <p><strong class="text-white">Why this, why then:</strong> High-throughput Iranian payment ecosystems suffer from frequent bank switch socket hangs and clearing delays. In banking, an API failure occurring after money departs can corrupt balance ledgers without strict invariant isolation.</p>
           <p><strong class="text-white">What I traded off:</strong> Prohibited naive client-side retries and blind timeouts. Enforced strict 24-hour distributed mutex locks and automatic reverse compensation flows, trading immediate optimistic responses for guaranteed ledger parity.</p>
-          <p><strong class="text-white">Business result:</strong> Maintained zero financial drift (0.00 IRR discrepancy) across millions of monthly transactions while achieving an MTTR under 8 minutes across all P0 production incidents.</p>
+          <p><strong class="text-white">Business result:</strong> Maintained zero financial drift ({stats.incidentFinancialDrift.textEn}) across millions of monthly transactions while achieving an {stats.incidentMttr.textEn} across all P0 production incidents.</p>
         </div>
       </div>
 
@@ -890,7 +891,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <p class="text-[11px] font-mono text-[#e2c974]/90 mt-0.5">RICE Prioritization &middot; Sequence Contracts</p>
             </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
-              Architecting sequence diagrams, mTLS bank proxies, and distributed concurrency guardrails (Redis SETNX 24h mutex, two-phase balance reservations) to ensure scale and idempotency.
+              Architecting sequence diagrams, mTLS bank proxies, and distributed concurrency guardrails (Redis SETNX {stats.incident01LockTtl.en} mutex, two-phase balance reservations) to ensure scale and idempotency.
             </p>
             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2.5 space-y-1 font-mono text-[11px]">
               <div class="text-neutral-400 text-[10px] uppercase">Core Deliverable:</div>
@@ -952,7 +953,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <p class="text-[11px] font-mono text-emerald-400/90 mt-0.5">Prometheus &middot; OEC &middot; P99 Circuit Breakers</p>
             </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
-              Zero-downtime canary rollouts, Prometheus/Grafana real-time observability, automated error budgeting, circuit breakers, and enforcing sub-30ms SLAs across all microservices.
+              Zero-downtime canary rollouts, Prometheus/Grafana real-time observability, automated error budgeting, circuit breakers, and enforcing {stats.switchFailoverSla.textEn} SLAs across all microservices.
             </p>
             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-2.5 space-y-1 font-mono text-[11px]">
               <div class="text-neutral-400 text-[10px] uppercase">Core Deliverable:</div>

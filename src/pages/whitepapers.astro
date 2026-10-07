@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { stats } from '../data/stats';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -18,7 +19,7 @@ const primaryDossiers = [
     tag: "LEDGERS & ACID",
     title: "Payment Gateway Architecture: High-Throughput Switches & Distributed Ledgers",
     slug: "payment-gateway",
-    metric: "50,000 TPS",
+    metric: stats.ledgerPeakTps.en,
     spec: "Two-Phase Balance Reservation (AVAILABLE ➔ RESERVED), ScyllaDB + Postgres ACID Ledgers, and Redis SETNX mutex locks with zero financial drift.",
     chips: ["ISO 8583", "2PC RESERVATION", "REDIS SETNX", "SCYLLADB", "ACID"],
   },
@@ -27,16 +28,16 @@ const primaryDossiers = [
     tag: "PSP ROUTING & SWITCH",
     title: "National Telecom SMS Switching & Aggregator Infrastructure",
     slug: "sms-infrastructure",
-    metric: "1B+ MSG / YR",
-    spec: "Carrier-level SMPP 3.4 sliding-window throttling (16–64 PDU), multi-tier queue isolation for banking OTPs, and sub-30ms automated gateway failovers.",
-    chips: ["SMPP 3.4", "ISO 8583", "SLIDING WINDOW", "QUEUE ISOLATION", "<30MS FAILOVER"],
+    metric: stats.telecomHubAnnualVolume.badgeEn,
+    spec: `Carrier-level SMPP 3.4 sliding-window throttling (${stats.incident02SlidingWindow.en}), multi-tier queue isolation for banking OTPs, and ${stats.switchFailoverSla.textEn} automated gateway failovers.`,
+    chips: ["SMPP 3.4", "ISO 8583", "SLIDING WINDOW", "QUEUE ISOLATION", stats.switchFailoverSla.en.toUpperCase()],
   },
   {
     num: "03",
     tag: "SECURITY & EKYC",
     title: "Forensic Fraud Mitigation: Edge Telemetry, 3DS 2.0 & Risk Graphs",
     slug: "fraud-tracing",
-    metric: "<15ms SLA",
+    metric: stats.fraudRiskLoopSla.shortEn,
     spec: "Central Bank 4-parameter Harim dynamic OTP, national Shahkar & Sabt-Ahval identity verification, and zero-storage CVV2/PIN token vault topology.",
     chips: ["PCI-DSS", "HARIM OTP", "SHAHKAR eKYC", "NEO4J", "3DS 2.0"],
   },
@@ -45,7 +46,7 @@ const primaryDossiers = [
     tag: "EVENT-DRIVEN CLEARING",
     title: "Migrating a Monolithic Payments Flow to Event-Driven Architecture",
     slug: "event-driven-migration",
-    metric: "0.00 IRR DRIFT",
+    metric: stats.incidentFinancialDrift.badgeEn.toUpperCase(),
     spec: "RabbitMQ activity.end_state event mesh, Spring Batch nightly multi-pass reconciliation workers, and automated Paya/Satna clearing payouts.",
     chips: ["RABBITMQ", "SPRING BATCH", "REFUND-MNG", "PAYA / SATNA", "EARLY PAYOUT"],
   },

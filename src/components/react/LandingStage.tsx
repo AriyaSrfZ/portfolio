@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { stats } from '../../data/stats';
 
 interface LandingStageProps {
   locale?: 'en' | 'fa';
@@ -14,18 +15,18 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
   const proofMatrix = isFa
     ? [
-        { val: "۱۵+ سال", label: "معماری سامانه‌های توزیع‌شده", tag: "زیرساخت حیاتی", href: "#payment-settlement" },
-        { val: "۱B+ پیامک", label: "هاب ملی مخابرات و SMPP 3.4", tag: "کنترل جریان", href: "#payment-switch" },
-        { val: "۵۰K TPS", label: "ظرفیت اوج پردازش هم‌روند", tag: "سوییچ شتاب", href: "#payment-switch" },
-        { val: "زیر ۱۵ms", label: "مهلت حلقه ارزیابی ریسک", tag: "گارد تقلب", href: "#fraud-forensics" },
-        { val: "۰٫۰۰٪", label: "انحراف مالی در تسویه روزانه", tag: "تراز ریاضی", href: "#reconciliation-engine" },
+        { val: stats.experienceYears.fa, label: "معماری سامانه‌های توزیع‌شده", tag: "زیرساخت حیاتی", href: "#payment-settlement" },
+        { val: stats.telecomHubAnnualVolume.fa, label: "هاب ملی مخابرات و SMPP 3.4", tag: "کنترل جریان", href: "#payment-switch" },
+        { val: stats.ledgerPeakTps.shortFa, label: "ظرفیت اوج پردازش هم‌روند", tag: "سوییچ شتاب", href: "#payment-switch" },
+        { val: stats.fraudRiskLoopSla.shortFa, label: "مهلت حلقه ارزیابی ریسک", tag: "گارد تقلب", href: "#fraud-forensics" },
+        { val: stats.financialDriftPercent.shortFa, label: "انحراف مالی در تسویه روزانه", tag: "تراز ریاضی", href: "#reconciliation-engine" },
       ]
     : [
-        { val: "15+ YRS", label: "Production Infrastructure", tag: "CRITICAL CORE", href: "#payment-settlement" },
-        { val: "1B+ SMS", label: "SMPP 3.4 Hub Messages / Year", tag: "FLOW CONTROL", href: "#payment-switch" },
-        { val: "50K TPS", label: "Peak Concurrent Throughput", tag: "H2H SWITCH", href: "#payment-switch" },
-        { val: "<15ms SLA", label: "Real-Time Fraud Risk Loop", tag: "GRAPH FORENSICS", href: "#fraud-forensics" },
-        { val: "0.00% DRIFT", label: "Across 50K+ Daily Clearing Batches", tag: "ACID BALANCED", href: "#reconciliation-engine" },
+        { val: stats.experienceYears.en, label: "Production Infrastructure", tag: "CRITICAL CORE", href: "#payment-settlement" },
+        { val: stats.telecomHubAnnualVolume.en, label: "SMPP 3.4 Hub Messages / Year", tag: "FLOW CONTROL", href: "#payment-switch" },
+        { val: stats.ledgerPeakTps.shortEn, label: "Peak Concurrent Throughput", tag: "H2H SWITCH", href: "#payment-switch" },
+        { val: stats.fraudRiskLoopSla.shortEn, label: "Real-Time Fraud Risk Loop", tag: "GRAPH FORENSICS", href: "#fraud-forensics" },
+        { val: stats.financialDriftPercent.shortEn, label: stats.clearingBatchesDaily.heroEn, tag: "ACID BALANCED", href: "#reconciliation-engine" },
       ];
 
   const pillars = isFa
@@ -36,31 +37,31 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
           desc: "ماشین حالت اتمیک با قفل توزیع‌شده Redis SETNX و ثبت تغییرات Outbox CDC بدون اوررایت موجودی.",
           href: "#payment-settlement",
           tag: "ACID LEDGER",
-          metrics: "50K TPS · 0.00% DRIFT"
+          metrics: `${stats.ledgerPeakTps.shortEn} · ${stats.financialDriftPercent.shortEn}`
         },
         {
           num: "۰۲",
           title: "سوییچ هوشمند پرداخت چندگانه",
-          desc: "روتینگ دینامیک ISO 8583 بین PSPها با تاخیر زیر ۳۰ میلی‌ثانیه و بازگشت خودکار 0400.",
+          desc: `روتینگ دینامیک ISO 8583 بین PSPها با ${stats.switchFailoverSla.textFa} و بازگشت خودکار 0400.`,
           href: "#payment-switch",
           tag: "ISO 8583 SWITCH",
-          metrics: "SUB-30MS · AUTO-0400"
+          metrics: `${stats.switchFailoverSla.shortEn} · AUTO-0400`
         },
         {
           num: "۰۳",
           title: "احراز هویت و سامانه ضدتقلب",
-          desc: "تحلیل بلادرنگ بردار رفتار و ردیابی گراف Neo4j در مهلت ۱۵ میلی‌ثانیه با شیفت مسئولیت 3DS 2.0.",
+          desc: `تحلیل بلادرنگ بردار رفتار و ردیابی گراف Neo4j در مهلت ${stats.fraudRiskLoopSla.raw} میلی‌ثانیه با شیفت مسئولیت 3DS 2.0.`,
           href: "#fraud-forensics",
           tag: "GRAPH FORENSICS",
-          metrics: "<15MS SLA · HARIM OTP"
+          metrics: `${stats.fraudRiskLoopSla.shortEn} · HARIM OTP`
         },
         {
           num: "۰۴",
           title: "مغایرت‌گیری سه‌طرفه و تسویه زودهنگام",
-          desc: "تطبیق بلادرنگ صورت‌حساب بانک، لاگ سوییچ و دفتر کل با چرخه خودالتیام زیر ۴۵ ثانیه.",
+          desc: `تطبیق بلادرنگ صورت‌حساب بانک، لاگ سوییچ و دفتر کل با ${stats.reconAutoHealingSla.textFa}.`,
           href: "#reconciliation-engine",
           tag: "3-WAY PARITY",
-          metrics: "SUB-45S · MT940 PARITY"
+          metrics: `${stats.reconAutoHealingSla.shortEn} · MT940 PARITY`
         }
       ]
     : [
@@ -70,41 +71,41 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
           desc: "Atomic balance reservation state machine with Redis SETNX mutex, CDC outbox, and zero financial drift.",
           href: "#payment-settlement",
           tag: "ACID LEDGER",
-          metrics: "50K TPS · 0.00% DRIFT"
+          metrics: `${stats.ledgerPeakTps.shortEn} · ${stats.financialDriftPercent.shortEn}`
         },
         {
           num: "02",
           title: "Smart Multi-PSP Routing Switch",
-          desc: "Dynamic ISO 8583 dispatch mesh across banking rails with sub-30ms failover and auto-0400 reversal.",
+          desc: `Dynamic ISO 8583 dispatch mesh across banking rails with ${stats.switchFailoverSla.textEn} failover and auto-0400 reversal.`,
           href: "#payment-switch",
           tag: "ISO 8583 SWITCH",
-          metrics: "SUB-30MS · AUTO-0400"
+          metrics: `${stats.switchFailoverSla.shortEn} · AUTO-0400`
         },
         {
           num: "03",
           title: "Real-Time Fraud & Graph Tracing",
-          desc: "Sub-15ms ML vector risk evaluation, Neo4j temporal cluster hop, and 3DS 2.0 Harim OTP liability shift.",
+          desc: `Sub-${stats.fraudRiskLoopSla.raw}ms ML vector risk evaluation, Neo4j temporal cluster hop, and 3DS 2.0 Harim OTP liability shift.`,
           href: "#fraud-forensics",
           tag: "GRAPH FORENSICS",
-          metrics: "<15MS SLA · HARIM OTP"
+          metrics: `${stats.fraudRiskLoopSla.shortEn} · HARIM OTP`
         },
         {
           num: "04",
           title: "Multi-Pass Reconciliation Engine",
-          desc: "3-way automated matching (Bank MT940 ↔ Core Switch ↔ Double-Entry Ledger) with sub-45s auto-healing.",
+          desc: `3-way automated matching (Bank MT940 ↔ Core Switch ↔ Double-Entry Ledger) with ${stats.reconAutoHealingSla.textEn}.`,
           href: "#reconciliation-engine",
           tag: "3-WAY PARITY",
-          metrics: "SUB-45S · MT940 PARITY"
+          metrics: `${stats.reconAutoHealingSla.shortEn} · MT940 PARITY`
         }
       ];
 
   const techStack = isFa
     ? [
         { name: "ISO 8583 / AS 2805", role: "پروتکل پیام‌رسانی مالی بین‌بانکی", badge: "WIRE FORMAT" },
-        { name: "SMPP 3.4 PDU", role: "هاب پیامک ملی ۵۰ هزار تراکنش هم‌روند", badge: "FLOW CONTROL" },
+        { name: "SMPP 3.4 PDU", role: `هاب پیامک ملی ${stats.ledgerPeakTps.textFa}`, badge: "FLOW CONTROL" },
         { name: "Redis Distributed Mutex", role: "کنترل هم‌روندی با مهلت SETNX و توکن تصادفی", badge: "CONCURRENCY" },
         { name: "ScyllaDB Fact Log", role: "پایگاه داده رخدادنگار تغییرناپذیر بدون توقف GC", badge: "STORAGE" },
-        { name: "Neo4j Cluster", role: "تحلیل گراف زمانی سندیکاهای تقلب در زیر ۱۲ میلی‌ثانیه", badge: "GRAPH DB" },
+        { name: "Neo4j Cluster", role: `تحلیل گراف زمانی سندیکاهای تقلب در ${stats.graphTraversalHop.fa}`, badge: "GRAPH DB" },
         { name: "RabbitMQ CDC Outbox", role: "رله رخدادهای تسویه با تضمین تحویل حداقل یک‌بار", badge: "EVENT RELAY" },
       ]
     : [
@@ -112,34 +113,34 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
         { name: "SMPP 3.4 PDU", role: "National Telecom SMS Hub with Asynchronous Sliding Window", badge: "FLOW CONTROL" },
         { name: "Redis Distributed Mutex", role: "Concurrency Control via SETNX TTL & Deterministic Release Keys", badge: "CONCURRENCY" },
         { name: "ScyllaDB Fact Log", role: "Append-Only Immutable Ledger Fact Store with Zero GC Pauses", badge: "STORAGE" },
-        { name: "Neo4j Cluster", role: "Temporal Graph Traversal Tracing Money-Laundering Rings in <12ms", badge: "GRAPH DB" },
+        { name: "Neo4j Cluster", role: `Temporal Graph Traversal Tracing Money-Laundering Rings in ${stats.graphTraversalHop.en}`, badge: "GRAPH DB" },
         { name: "RabbitMQ CDC Outbox", role: "Transactional Outbox & Event Relay with At-Least-Once Delivery", badge: "EVENT RELAY" },
       ];
 
   const directives = isFa
     ? [
         { label: "اصل اول: تراز ریاضی غیرقابل‌انعطاف", text: "هیچ موجودی بدون ثبت متناظر بدهکار و بستانکار در دفتر کل تغییر نمی‌کند. انحراف ریاضی تحت هر شرایطی باید صفر باشد.", tag: "تراز قطعی" },
-        { label: "اصل دوم: تقدم ارزیابی ریسک بر تسویه", text: "چرخه ارزیابی ریسک و استعلام شاهکار پیش از برقراری سوکت بانکی با بودجه ۱۵ میلی‌ثانیه نهایی می‌شود.", tag: "گارد پیشاتراکنش" },
+        { label: "اصل دوم: تقدم ارزیابی ریسک بر تسویه", text: `چرخه ارزیابی ریسک و استعلام شاهکار پیش از برقراری سوکت بانکی با بودجه ${stats.fraudRiskLoopSla.raw} میلی‌ثانیه نهایی می‌شود.`, tag: "گارد پیشاتراکنش" },
         { label: "اصل سوم: تاب‌آوری در برابر قطع شبکه", text: "در صورت قطع ارتباط یا عدم دریافت تاییدیه، سناریوی لغو خودکار ۰۴۰۰ بلافاصله جهت حفاظت از کاربر فعال می‌شود.", tag: "لغو خودکار ۰۴۰۰" },
         { label: "اصل چهارم: کلید یکتایی و پارتیشن‌بندی", text: "هر درخواست دارای کلید یکتایی سراسری بوده و از اعمال تراکنش تکراری در شرایط ارسال مجدد شبکه جلوگیری می‌کند.", tag: "IDEMPOTENCY" }
       ]
     : [
-        { label: "Rule 1: Invariant Non-Negotiability", text: "No balance is mutated without exact balanced debits and credits. Mathematical drift must remain strictly 0.00%.", tag: "ABSOLUTE PARITY" },
-        { label: "Rule 2: Pre-Auth Risk Evaluation", text: "Fraud vectors and biometric step-ups execute inside a hard 15ms budget before any bank host socket opens.", tag: "PRE-SOCKET RISK" },
+        { label: "Rule 1: Invariant Non-Negotiability", text: `No balance is mutated without exact balanced debits and credits. Mathematical drift must remain strictly ${stats.financialDriftPercent.raw}%.`, tag: "ABSOLUTE PARITY" },
+        { label: "Rule 2: Pre-Auth Risk Evaluation", text: `Fraud vectors and biometric step-ups execute inside a hard ${stats.fraudRiskLoopSla.raw}ms budget before any bank host socket opens.`, tag: "PRE-SOCKET RISK" },
         { label: "Rule 3: Deterministic Failure Reversal", text: "Hanging downstream bank sockets trigger automatic ISO 8583 0400 reversals to prevent phantom debits.", tag: "AUTO-0400 ROLLBACK" },
         { label: "Rule 4: Strict Idempotency Partitioning", text: "Global deterministic idempotency keys partition incoming requests preventing duplicate debits during network retransmissions.", tag: "IDEMPOTENCY" }
       ];
 
   const benchmarks = isFa
     ? [
-        { title: "سوپراپ فین‌تک ملی", metric: "۱۲M+ کاربر فعال", detail: "پردازش بدون وقفه با تاخیر میانگین زیر ۲۵ میلی‌ثانیه در مقیاس ملی" },
-        { title: "تسویه بین‌بانکی شاپرک", metric: "۵۰K+ بچ روزانه", detail: "تراز کامل و تسویه بدون مغایرت در بیش از ۲۰ بانک عامل" },
-        { title: "تاب‌آوری انفجار ترافیک", metric: "۱B+ پیامک / سال", detail: "تحمل پیک‌های جمعه سیاه با صفر درصد پس‌زدگی صف" }
+        { title: "سوپراپ فین‌تک ملی", metric: stats.superAppMonthlyActives.fa, detail: `پردازش بدون وقفه با تاخیر میانگین ${stats.superAppLatency.fa} در مقیاس ملی` },
+        { title: "تسویه بین‌بانکی شاپرک", metric: stats.clearingBatchesDaily.fa, detail: `تراز کامل و تسویه بدون مغایرت در ${stats.commercialPartnerBanks.fa}` },
+        { title: "تاب‌آوری انفجار ترافیک", metric: stats.telecomHubAnnualVolume.textFa, detail: "تحمل پیک‌های جمعه سیاه با صفر درصد پس‌زدگی صف" }
       ]
     : [
-        { title: "National Fintech SuperApp", metric: "12M+ Monthly Actives", detail: "Continuous sub-25ms transaction execution across national banking rails" },
-        { title: "Shaparak Interbank Parity", metric: "50K+ Daily Batches", detail: "Zero financial loss and complete multi-rail reconciliation across 20+ commercial banks" },
-        { title: "Telecom Peak Resilience", metric: "1B+ SMS / Year", detail: "National carrier high-traffic resilience with zero queue loss during peak shopping events" }
+        { title: "National Fintech SuperApp", metric: stats.superAppMonthlyActives.en, detail: `Continuous ${stats.superAppLatency.en} transaction execution across national banking rails` },
+        { title: "Shaparak Interbank Parity", metric: stats.clearingBatchesDaily.en, detail: `Zero financial loss and complete multi-rail reconciliation across ${stats.commercialPartnerBanks.en}` },
+        { title: "Telecom Peak Resilience", metric: stats.telecomHubAnnualVolume.textEn, detail: "National carrier high-traffic resilience with zero queue loss during peak shopping events" }
       ];
 
   const handleScrollToDossier = (e: React.MouseEvent, href: string) => {
@@ -174,7 +175,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
                 <span className="text-neutral-200 font-semibold">{isFa ? 'تهران · شاپرک' : 'TEHRAN, IR'}</span>
                 <span className="text-cyan-400 flex items-center gap-1.5 font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                  NOMINAL · &lt;15MS
+                  NOMINAL · {stats.fraudRiskLoopSla.shortEn.toUpperCase()}
                 </span>
               </div>
             </div>
@@ -200,8 +201,8 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
             <p className="text-sm text-neutral-300 leading-relaxed max-w-4xl">
               {isFa
-                ? 'بیش از ۱۵ سال تجربه عملیاتی در زیرساخت‌های بانکی شاپرک، سوییچ‌های پرداخت ISO 8583 با تاخیر زیر ۳۰ میلی‌ثانیه، ماشین حالت تخصیص دومرحله‌ای موجودی با تضمین انحراف مالی صفر، و هاب‌های مخابراتی SMPP با ظرفیت ۵۰ هزار تراکنش هم‌روند.'
-                : '15+ years engineering high-availability banking switches, sub-30ms ISO 8583 multi-PSP routing, two-phase balance reservation machines with zero financial drift, and national SMPP 3.4 telecom gateways handling 50,000 TPS burst capacity.'}
+                ? `${stats.experienceYears.textFa} تجربه عملیاتی در زیرساخت‌های بانکی شاپرک، سوییچ‌های پرداخت ISO 8583 با تاخیر ${stats.switchFailoverSla.textFa}، ماشین حالت تخصیص دومرحله‌ای موجودی با تضمین انحراف مالی صفر، و هاب‌های مخابراتی SMPP با ظرفیت ${stats.ledgerPeakTps.textFa}.`
+                : `${stats.experienceYears.textEn} engineering high-availability banking switches, ${stats.switchFailoverSla.textEn} ISO 8583 multi-PSP routing, two-phase balance reservation machines with zero financial drift, and national SMPP 3.4 telecom gateways handling ${stats.ledgerPeakTps.en} burst capacity.`}
             </p>
 
             {/* Tactical Chips */}
@@ -218,13 +219,13 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
               <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
                 <span className="text-neutral-300 truncate">
-                  {isFa ? 'سوییچ پرداخت بانکی: تاخیر زیر ۳۰ms و بازگشت خودکار ۰۴۰۰' : 'Interbank Switch: Sub-30ms failover & auto-0400'}
+                  {isFa ? `سوییچ پرداخت بانکی: تاخیر ${stats.switchFailoverSla.shortFa} و بازگشت خودکار ۰۴۰۰` : `Interbank Switch: ${stats.switchFailoverSla.shortEn} failover & auto-0400`}
                 </span>
               </div>
               <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
                 <span className="text-neutral-300 truncate">
-                  {isFa ? 'دفتر کل توزیع‌شده: قفل SETNX با انحراف مالی ۰٫۰۰٪' : 'Ledger Mutex: Zero drift via SETNX & CDC outbox'}
+                  {isFa ? `دفتر کل توزیع‌شده: قفل SETNX با انحراف مالی ${stats.financialDriftPercent.shortFa}` : 'Ledger Mutex: Zero drift via SETNX & CDC outbox'}
                 </span>
               </div>
             </div>

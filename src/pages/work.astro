@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { stats } from '../data/stats';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -14,48 +15,48 @@ const caseStudies = [
     problem: 'Inconsistent ledger states and ghost balances during high-concurrency wallet checkouts threatened regulatory standing.',
     decision: 'Enforced strict synchronous two-phase balance reservation and atomic Redis SETNX mutex locks recording into an immutable Double-Entry ACID Ledger in ScyllaDB.',
     tradeoff: 'Enforced strict synchronous two-phase balance reservation over raw optimistic write throughput.',
-    outcome: 'Maintained 100% mathematical ledger parity across 50,000+ daily transactions with zero duplicate payouts.',
+    outcome: `Maintained ${stats.reconMatchParity.raw}% mathematical ledger parity across ${stats.reconciliationTrialEvents.workEn} with zero duplicate payouts.`,
     link: `${baseUrl}blog/payment-gateway/`,
-    badge: 'Zero Financial Drift',
+    badge: stats.financialDriftPercent.badgeCleanEn,
     tags: ['Double-Entry Ledger', 'Two-Phase Reservation', 'ACID Compliance', 'Redis SETNX Idempotency', 'ScyllaDB Fact Store']
   },
   {
     id: '02',
     category: 'Risk & eKYC',
     title: 'eKYC, Central Bank Harim OTP & PCI-DSS Token Vault',
-    summary: 'Sub-15ms risk engine evaluating transactional anomalies, zero-storage CVV2 vault isolation, and Central Bank 4-parameter Harim dynamic OTP.',
+    summary: `${stats.fraudRiskLoopSla.textEn.replace('sub-', 'Sub-')} risk engine evaluating transactional anomalies, zero-storage CVV2 vault isolation, and Central Bank 4-parameter Harim dynamic OTP.`,
     problem: 'Static rules caused high false positives and fraudsters exploited SIM-swap delays to bypass legacy OTPs.',
     decision: 'Deployed isolated PCI-DSS Token Vault for sensitive card tokens, integrated national eKYC (Shahkar/Sabt-Ahval), and 3DS 2.0 biometric liability shifting.',
     tradeoff: 'Refused to cache CVV2 credentials for one-click checkout convenience, enforcing strict zero-storage PCI-DSS tokenization.',
-    outcome: 'Slashed illicit drain by 94 percent and maintained a frictionless pass rate above 92 percent in 3DS 2.0.',
+    outcome: `Slashed illicit drain by ${stats.fraudDrainReduction.raw} percent and maintained a frictionless pass rate above ${stats.frictionless3dsPassRate.raw} percent in 3DS 2.0.`,
     link: `${baseUrl}blog/fraud-tracing/`,
-    badge: 'Sub-15ms SLA',
+    badge: stats.fraudRiskLoopSla.workBadgeEn,
     tags: ['Zero-Storage CVV2 Vault', 'Harim Dynamic OTP', 'Shahkar National eKYC', 'PCI-DSS Compliance', 'Neo4j Graph Forensics']
   },
   {
     id: '03',
     category: 'Payment Switch',
     title: 'Smart PSP Switch & Dynamic Weighted Routing',
-    summary: 'Enterprise Head-to-Head (H2H) switch unpacking ISO 8583 MTI 0200/0210 financial telegrams with sub-30ms automated failover across SEP, PEC, BPM, and PEP.',
+    summary: `Enterprise Head-to-Head (H2H) switch unpacking ISO 8583 MTI 0200/0210 financial telegrams with ${stats.switchFailoverSla.textEn} automated failover across SEP, PEC, BPM, and PEP.`,
     problem: 'Single-PSP vendor lock-in created massive checkout drop-offs during bank maintenance windows and national clearing congestion.',
     decision: 'Engineered Switch-PSP with dynamic weighted routing based on real-time success rates, fee tiers, and rolling P99 latency, integrating Faravaran Hub adapters.',
     tradeoff: 'Built an agnostic multi-PSP switch topology with dynamic weight allocation rather than relying on a single PSP relationship.',
-    outcome: 'Achieved 99.99% gateway availability, sub-250ms roundtrip checkout latency, and 30ms automated failover during upstream provider outages.',
+    outcome: `Achieved ${stats.switchGatewayUptime.raw}% gateway availability, sub-250ms roundtrip checkout latency, and ${stats.switchFailoverSla.raw}ms automated failover during upstream provider outages.`,
     link: `${baseUrl}blog/sms-infrastructure/`,
-    badge: 'Sub-30ms Failover',
+    badge: stats.switchFailoverSla.badgeEn,
     tags: ['Smart PSP Switch', 'Dynamic Weighted Routing', 'Faravaran Hub Integration', 'ISO 8583 H2H Pipeline', 'Sub-30ms Failover SLA']
   },
   {
     id: '04',
     category: 'Reconciliation & Payouts',
     title: 'Event-Driven Multi-Pass Reconciliation & Early Merchant Settlement',
-    summary: 'Nightly Spring Batch 3-way reconciliation engine cross-referencing internal ledgers against bank clearing files, with auto-healing Refund-MNG and 24h payout batching.',
-    problem: 'Manual reconciliation delayed merchant payouts to 48h+, causing severe cash-flow friction for enterprise merchants.',
-    decision: 'Built an asynchronous multi-pass reconciliation engine over RabbitMQ activity queues, integrated automated bank SFTP pipelines, and launched 24h early merchant settlements.',
+    summary: `Nightly Spring Batch 3-way reconciliation engine cross-referencing internal ledgers against bank clearing files, with auto-healing Refund-MNG and ${stats.merchantPayoutWindow.raw}h payout batching.`,
+    problem: `Manual reconciliation delayed merchant payouts to ${stats.legacyManualPayoutDelay.en}, causing severe cash-flow friction for enterprise merchants.`,
+    decision: `Built an asynchronous multi-pass reconciliation engine over RabbitMQ activity queues, integrated automated bank SFTP pipelines, and launched ${stats.merchantPayoutWindow.raw}h early merchant settlements.`,
     tradeoff: 'Shifted from synchronous reconciliation to an asynchronous multi-pass state machine backed by automated bank SFTP pipelines.',
-    outcome: 'Launched 24h early merchant settlement with automated daily floating fee collection, eliminating 100% of manual reconciliation overhead.',
+    outcome: `Launched ${stats.merchantPayoutWindow.raw}h early merchant settlement with automated daily floating fee collection, eliminating ${stats.manualReconOverhead.raw}% of manual reconciliation overhead.`,
     link: `${baseUrl}data-cleaning/`,
-    badge: '24h Early Settlement',
+    badge: `${stats.merchantPayoutWindow.raw}h Early Settlement`,
     tags: ['Spring Batch Reconciler', 'Auto-Healing Refund-MNG', 'RabbitMQ Event Mesh', 'Paya/Satna Bank-Proxy', 'Early Merchant Settlement']
   },
 ];
