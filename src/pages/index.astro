@@ -44,23 +44,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </h2>
       </div>
 
-      <!-- Metrics Row -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+      <!-- Metrics Row (2 Primary Key Stats) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-3">
           <span class="text-neutral-500 block text-[10px] uppercase">Peak Throughput</span>
-          <span class="text-white font-semibold">{stats.ledgerPeakTps.en}</span>
+          <span class="text-white font-semibold text-sm">{stats.ledgerPeakTps.en}</span>
         </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Lock TTL</span>
-          <span class="text-cyan-400 font-semibold">{stats.ledgerLockTtl.en}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
-          <span class="text-neutral-500 block text-[10px] uppercase">Replay Window</span>
-          <span class="text-white font-semibold">{stats.ledgerReplayWindow.en}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/5 rounded-lg p-2.5">
+        <div class="bg-[#13161c] border border-white/5 rounded-lg p-3">
           <span class="text-neutral-500 block text-[10px] uppercase">Financial Drift</span>
-          <span class="text-emerald-400 font-semibold">{stats.financialDriftPercent.en}</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.financialDriftPercent.en}</span>
         </div>
       </div>
 
@@ -97,7 +89,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>Distributed Idempotency:</strong> Redis atomic <code class="text-white font-mono text-xs bg-white/5 px-1 py-0.5 rounded">SETNX</code> mutex locks keyed by UUIDv4 with a {stats.ledgerReplayWindow.textEn}.</span>
+              <span><strong>Distributed Idempotency:</strong> Redis atomic <code class="text-white font-mono text-xs bg-white/5 px-1 py-0.5 rounded">SETNX</code> mutex locks with a {stats.ledgerLockTtl.textEn} and a {stats.ledgerReplayWindow.textEn}.</span>
             </li>
           </ul>
         </div>
@@ -186,23 +178,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </h2>
       </div>
 
-      <!-- Metrics Row -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+      <!-- Metrics Row (2 Primary Key Stats) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Failover SLA</span>
           <span class="text-cyan-400 font-semibold text-sm">{stats.switchFailoverSla.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">Protocol</span>
-          <span class="text-white font-semibold text-sm">{stats.switchProtocolWireFormat.en}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Gateway Uptime</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.switchGatewayUptime.en}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">Conversion Lift</span>
-          <span class="text-emerald-400 font-semibold text-sm">{stats.switchConversionLift.en}</span>
         </div>
       </div>
 
@@ -231,7 +215,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>Head-to-Head (H2H) Switch:</strong> Unpacks ISO 8583 MTI 0200/0210 financial telegrams, parsing STAN, RRN, and terminal authentication headers in real time.</span>
+              <span><strong>Head-to-Head (H2H) Switch:</strong> Unpacks {stats.switchProtocolWireFormat.en}/0210 financial telegrams, parsing STAN, RRN, and terminal authentication headers in real time.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
@@ -239,7 +223,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>Score-Based Weighting:</strong> Computes real-time gateway health scores factoring rolling P99 latency, success ratios, and merchant contractual fee tiers.</span>
+              <span><strong>Score-Based Weighting:</strong> Computes real-time gateway health scores factoring rolling P99 latency and success ratios, delivering {stats.switchConversionLift.textEn}.</span>
             </li>
           </ul>
         </div>
@@ -337,23 +321,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </h2>
       </div>
 
-      <!-- Metrics Row -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+      <!-- Metrics Row (2 Primary Key Stats) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Risk Scoring SLA</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.fraudRiskLoopSla.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">CVV2 Retention</span>
-          <span class="text-white font-semibold text-sm">{stats.cvv2RetentionTime.en}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Fraud Reduction</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.fraudDrainReduction.en}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">3DS Frictionless</span>
-          <span class="text-cyan-400 font-semibold text-sm">{stats.frictionless3dsPassRate.en}</span>
         </div>
       </div>
 
@@ -382,7 +358,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>Zero-Storage Token Vault:</strong> Replaces raw PAN with opaque tokens; ephemeral CVV2 codes are purged immediately post-authorization per PCI-DSS.</span>
+              <span><strong>Zero-Storage Token Vault:</strong> Replaces raw PAN with opaque tokens; ephemeral CVV2 codes maintain {stats.cvv2RetentionTime.textEn} and are purged immediately post-authorization per PCI-DSS.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
@@ -493,19 +469,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </h2>
       </div>
 
-      <!-- Metrics Row -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+      <!-- Metrics Row (2 Primary Key Stats) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Recon Parity</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.reconMatchParity.en}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">Payout Window</span>
-          <span class="text-white font-semibold text-sm">{stats.merchantPayoutWindow.en}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">Batch Workers</span>
-          <span class="text-cyan-400 font-semibold text-sm">{stats.reconBatchEngine.en}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">Manual Overhead</span>
@@ -538,7 +506,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>Event-Driven Ingestion:</strong> Captures end-state events over RabbitMQ (<code class="text-cyan-400 font-mono text-xs bg-white/5 px-1 py-0.5 rounded">activity.end_state</code>), feeding Spring Batch nightly workers.</span>
+              <span><strong>Event-Driven Ingestion:</strong> Captures end-state events over RabbitMQ feeding {stats.reconBatchEngine.en} nightly workers.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
@@ -560,7 +528,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>{stats.merchantPayoutWindow.raw}h Early Merchant Credit:</strong> Disburses early payouts via automated Paya/Satna ACH batches, solving merchant cash-flow bottlenecks.</span>
+              <span><strong>Early Merchant Credit:</strong> Disburses early payouts in {stats.merchantPayoutWindow.textEn} via automated Paya/Satna ACH batches, solving merchant cash-flow bottlenecks.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>

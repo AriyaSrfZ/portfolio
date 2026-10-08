@@ -49,19 +49,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </h2>
       </div>
 
-      <!-- Metrics Row -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+      <!-- Metrics Row (2 Primary Key Stats) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">ظرفیت اوج پردازش</span>
           <span class="text-white font-semibold text-sm" dir="ltr">{stats.ledgerPeakTps.fa}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">طول عمر قفل ردیس</span>
-          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.ledgerLockTtl.fa}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">پنجره بازپخش مجدد</span>
-          <span class="text-white font-semibold text-sm">{stats.ledgerReplayWindow.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">انحراف مالی در تراز</span>
@@ -102,7 +94,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>ایدامپوتنسي توزیع‌شده:</strong> قفل‌های موقت اتمیک <span dir="ltr">Redis SETNX</span> مبتنی بر <span dir="ltr">UUIDv4</span> با {stats.ledgerReplayWindow.textFa} جهت پیشگیری از کسر تکراری.</span>
+              <span><strong>ایدامپوتنسي توزیع‌شده:</strong> قفل‌های موقت اتمیک <span dir="ltr">Redis SETNX</span> با {stats.ledgerLockTtl.textFa} و {stats.ledgerReplayWindow.textFa} جهت پیشگیری از کسر تکراری.</span>
             </li>
           </ul>
         </div>
@@ -192,23 +184,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </h2>
       </div>
 
-      <!-- Metrics Row -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+      <!-- Metrics Row (2 Primary Key Stats) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">سرعت تغییر مسیر</span>
           <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.switchFailoverSla.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">پروتکل سوییچ</span>
-          <span class="text-white font-semibold text-sm" dir="ltr">{stats.switchProtocolWireFormat.fa}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">دسترسی‌پذیری سوییچ</span>
           <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.switchGatewayUptime.fa}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">رشد نرخ تبدیل</span>
-          <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.switchConversionLift.fa}</span>
         </div>
       </div>
 
@@ -237,7 +221,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>سوییچ Head-to-Head (H2H):</strong> پردازش مستقیم تلگرام‌های مالی <span dir="ltr">ISO 8583</span> با استخراج بلادرنگ کدهای <span dir="ltr">STAN</span> و <span dir="ltr">RRN</span> و هدرهای احراز هویت.</span>
+              <span><strong>سوییچ Head-to-Head (H2H):</strong> پردازش مستقیم تلگرام‌های مالی <span dir="ltr">{stats.switchProtocolWireFormat.fa}</span> با استخراج بلادرنگ کدهای <span dir="ltr">STAN</span> و <span dir="ltr">RRN</span> و هدرهای احراز هویت.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
@@ -245,7 +229,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>اوزان پویا بر پایه سلامت:</strong> ارزیابی لحظه‌ای تاخیر <span dir="ltr">P99</span>، نرخ موفقیت، و کارمزدهای تجاری پذیرندگان پیش از ارسال درخواست پرداخت.</span>
+              <span><strong>اوزان پویا بر پایه سلامت:</strong> ارزیابی لحظه‌ای سلامت درگاه‌ها و تاخیر <span dir="ltr">P99</span> که موجب {stats.switchConversionLift.textFa || stats.switchConversionLift.fa} در کل حجم تراکنش‌ها شده است.</span>
             </li>
           </ul>
         </div>
@@ -343,23 +327,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </h2>
       </div>
 
-      <!-- Metrics Row -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+      <!-- Metrics Row (2 Primary Key Stats) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">مهلت ارزیابی ریسک</span>
           <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.fraudRiskLoopSla.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">ذخیره داده CVV2</span>
-          <span class="text-white font-semibold text-sm">{stats.cvv2RetentionTime.fa}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">مهار تخلیه مالی</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.fraudDrainReduction.fa}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">نرخ عبور 3DS 2.0</span>
-          <span class="text-cyan-400 font-semibold text-sm">{stats.frictionless3dsPassRate.fa}</span>
         </div>
       </div>
 
@@ -388,7 +364,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>توکن‌سازی با ذخیره صفر:</strong> شماره کارت خام وارد زون ایزوله <span dir="ltr">PCI-DSS</span> شده و کدهای <span dir="ltr">CVV2</span> بلافاصله پس از تراکنش پاکسازی می‌شوند.</span>
+              <span><strong>توکن‌سازی با ذخیره صفر:</strong> شماره کارت خام وارد زون ایزوله <span dir="ltr">PCI-DSS</span> شده و کدهای <span dir="ltr">CVV2</span> با {stats.cvv2RetentionTime.textFa} بلافاصله پس از تراکنش پاکسازی می‌شوند.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
@@ -499,19 +475,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </h2>
       </div>
 
-      <!-- Metrics Row -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+      <!-- Metrics Row (2 Primary Key Stats) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">دقت مغایرت‌گیری</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.reconMatchParity.fa}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">بازه تسویه پذیرنده</span>
-          <span class="text-white font-semibold text-sm">{stats.merchantPayoutWindow.fa}</span>
-        </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">ورکر‌های پردازش</span>
-          <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.reconBatchEngine.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">خطای دستی تسویه</span>
@@ -544,7 +512,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>مش رویداد ناهمگام:</strong> دریافت بی‌درنگ وقایع نهایی از طریق <span dir="ltr">RabbitMQ</span> و تغذیه جاب‌های شبانه پردازش دسته‌ای <span dir="ltr">Spring Batch</span>.</span>
+              <span><strong>مش رویداد ناهمگام:</strong> دریافت بی‌درنگ وقایع نهایی از طریق <span dir="ltr">RabbitMQ</span> و تغذیه جاب‌های شبانه پردازش دسته‌ای <span dir="ltr">{stats.reconBatchEngine.fa}</span>.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>

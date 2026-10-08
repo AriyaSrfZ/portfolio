@@ -150,6 +150,8 @@ export const stats = {
     raw: 0.00,
     en: "0.00s (Zero-Storage)",
     fa: "۰٫۰۰ ثانیه (عدم ذخیره)",
+    textEn: "0.00s zero-storage retention",
+    textFa: "مدت نگهداری صفر ثانیه (عدم ذخیره‌سازی)",
   },
   fraudDrainReduction: {
     raw: 94,
