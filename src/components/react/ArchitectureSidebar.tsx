@@ -15,24 +15,24 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
 
   const sections = isFa
     ? [
-        { id: 'overview', pageNum: '۰۱', label: 'نمای کلی معماری سیستم‌ها', tag: 'نمای کلی' },
-        { id: 'payment-settlement', pageNum: '۰۲', label: 'دفتر کل دوطرفه و تسویه', tag: 'پرونده ۰۱' },
-        { id: 'payment-switch', pageNum: '۰۳', label: 'سوییچ هوشمند پرداخت ISO', tag: 'پرونده ۰۲' },
-        { id: 'fraud-forensics', pageNum: '۰۴', label: 'احراز هویت و ضدتقلب Neo4j', tag: 'پرونده ۰۳' },
-        { id: 'reconciliation-engine', pageNum: '۰۵', label: 'مغایرت‌گیری سه‌طرفه و تسویه', tag: 'پرونده ۰۴' },
-        { id: 'incident-dossiers', pageNum: '۰۶', label: 'بحران‌های زنده در پروداکشن', tag: 'آرشیو پایداری' },
-        { id: 'lifecycle', pageNum: '۰۷', label: 'چرخه حیات محصول فنی', tag: 'متدولوژی TPM' },
-        { id: 'book', pageNum: '۰۸', label: 'جلسه بررسی معماری', tag: 'رزرو جلسه' },
+        { id: 'overview', pageNum: '۰۰', label: 'نمای کلی معماری سیستم‌ها', tag: 'نمای کلی' },
+        { id: 'payment-settlement', pageNum: '۰۱', label: 'دفتر کل دوطرفه و تسویه', tag: 'بخش ۰۱' },
+        { id: 'payment-switch', pageNum: '۰۲', label: 'سوییچ هوشمند پرداخت ISO', tag: 'بخش ۰۲' },
+        { id: 'fraud-forensics', pageNum: '۰۳', label: 'احراز هویت و ضدتقلب Neo4j', tag: 'بخش ۰۳' },
+        { id: 'reconciliation-engine', pageNum: '۰۴', label: 'مغایرت‌گیری سه‌طرفه و تسویه', tag: 'بخش ۰۴' },
+        { id: 'incident-dossiers', pageNum: '۰۵', label: 'بحران‌های زنده در پروداکشن', tag: 'بخش ۰۵' },
+        { id: 'lifecycle', pageNum: '۰۶', label: 'چرخه حیات محصول فنی', tag: 'بخش ۰۶' },
+        { id: 'book', pageNum: '۰۷', label: 'جلسه بررسی معماری', tag: 'بخش ۰۷' },
       ]
     : [
-        { id: 'overview', pageNum: '01', label: 'Systems Architecture Overview', tag: 'OVERVIEW' },
-        { id: 'payment-settlement', pageNum: '02', label: 'Settlements & Ledgers', tag: 'DOSSIER 01' },
-        { id: 'payment-switch', pageNum: '03', label: 'Smart PSP Switch (ISO 8583)', tag: 'DOSSIER 02' },
-        { id: 'fraud-forensics', pageNum: '04', label: 'eKYC & Fraud Forensics', tag: 'DOSSIER 03' },
-        { id: 'reconciliation-engine', pageNum: '05', label: 'Multi-Pass Reconciliation', tag: 'DOSSIER 04' },
-        { id: 'incident-dossiers', pageNum: '06', label: 'Live Incident Postmortems', tag: 'RELIABILITY' },
-        { id: 'lifecycle', pageNum: '07', label: 'Technical Product Lifecycle', tag: 'TPM ARC' },
-        { id: 'book', pageNum: '08', label: 'Architecture Intake & Review', tag: 'INTAKE' },
+        { id: 'overview', pageNum: '00', label: 'Systems Architecture Overview', tag: 'OVERVIEW' },
+        { id: 'payment-settlement', pageNum: '01', label: 'Settlements & Ledgers', tag: 'SECTION 01' },
+        { id: 'payment-switch', pageNum: '02', label: 'Smart PSP Switch (ISO 8583)', tag: 'SECTION 02' },
+        { id: 'fraud-forensics', pageNum: '03', label: 'eKYC & Fraud Forensics', tag: 'SECTION 03' },
+        { id: 'reconciliation-engine', pageNum: '04', label: 'Multi-Pass Reconciliation', tag: 'SECTION 04' },
+        { id: 'incident-dossiers', pageNum: '05', label: 'Live Incident Postmortems', tag: 'SECTION 05' },
+        { id: 'lifecycle', pageNum: '06', label: 'Technical Product Lifecycle', tag: 'SECTION 06' },
+        { id: 'book', pageNum: '07', label: 'Architecture Intake & Review', tag: 'SECTION 07' },
       ];
 
   useEffect(() => {
@@ -270,7 +270,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
             </button>
             
             <span className="text-[10px] text-neutral-500 font-mono">
-              {isFa ? 'گردش صفحات' : 'PAGE SELECTOR'}
+              {isFa ? 'فهرست بخش‌ها' : 'SECTIONS'}
             </span>
 
             <button

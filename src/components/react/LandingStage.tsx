@@ -465,9 +465,9 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
         {/* Stepper Prompt */}
         <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
           <div className="text-neutral-400 text-[11px] flex items-center gap-2">
-            <span className="text-cyan-400 font-semibold">{isFa ? 'صفحه ۱ از ۸' : 'PAGE 01 OF 08'}</span>
+            <span className="text-cyan-400 font-semibold">{isFa ? 'نمای کلی' : 'OVERVIEW'}</span>
             <span>·</span>
-            <span>{isFa ? 'نمای کلی معماری سیستم‌ها' : 'SYSTEM ARCHITECTURE OVERVIEW'}</span>
+            <span>{isFa ? 'معماری سیستم‌های مالی' : 'SYSTEM ARCHITECTURE OVERVIEW'}</span>
           </div>
 
           <a
@@ -475,7 +475,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
             onClick={(e) => handleScrollToDossier(e, '#payment-settlement')}
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-neutral-200 hover:text-white hover:bg-white/10 transition-all group"
           >
-            <span>{isFa ? 'صفحه بعد: دفتر کل دوطرفه' : 'Next Page: Settlements & Ledgers'}</span>
+            <span>{isFa ? 'بخش بعدی: دفتر کل دوطرفه' : 'Next Section: Settlements & Ledgers'}</span>
             <span className="group-hover:translate-y-0.5 transition-transform">↓</span>
           </a>
         </div>
