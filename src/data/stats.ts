@@ -194,6 +194,8 @@ export const stats = {
     raw: 45,
     en: "SUB-45S",
     fa: "SUB-45S",
+    shortEn: "SUB-45S",
+    shortFa: "SUB-45S",
     textEn: "sub-45s auto-healing",
     textFa: "چرخه خودالتیام زیر ۴۵ ثانیه",
   },
