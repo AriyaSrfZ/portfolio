@@ -188,9 +188,11 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
           {/* Narrative Column: Fills the entire right side purposefully */}
           <div className="lg:col-span-7 xl:col-span-8 space-y-3.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-mono text-neutral-300 tracking-wider uppercase">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-mono text-neutral-300 tracking-wider uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
-              <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'PRINCIPAL SYSTEMS ARCHITECT & TECHNICAL PRODUCT LEADER'}</span>
+              <span className="text-white font-semibold">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
+              <span className="text-white/30">·</span>
+              <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'Principal Systems Architect & Technical Product Leader'}</span>
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">

@@ -107,7 +107,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           </a>
           <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/15 text-[11px] font-mono text-neutral-200">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>[TPM · FINTECH &amp; SWITCHES]</span>
+            <span>[FINTECH &amp; TELECOM INFRASTRUCTURE]</span>
           </span>
         </div>
 

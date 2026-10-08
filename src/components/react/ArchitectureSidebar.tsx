@@ -167,28 +167,19 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
         {/* 1. EXECUTIVE IDENTITY CARD */}
         <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl relative overflow-hidden group transition-all duration-300">
           <div className="flex items-center gap-3">
-            {activeSection !== 'overview' ? (
-              <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-white/20 shrink-0 bg-[#13161c] animate-fadeIn shadow-md">
-                <img
-                  src={`${baseUrl}photos/ariya.jpg`}
-                  alt="Ariya Sarrafzadeh"
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                />
-              </div>
-            ) : (
-              <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center shrink-0 font-mono text-cyan-400 text-xs font-bold shadow-inner">
-                AS
-              </div>
-            )}
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-white/20 shrink-0 bg-[#13161c] shadow-md">
+              <img
+                src={`${baseUrl}photos/ariya.jpg`}
+                alt="Ariya Sarrafzadeh"
+                className="w-full h-full object-cover object-top"
+                loading="lazy"
+              />
+            </div>
             <div className="min-w-0 flex-1">
               <div className="text-xs font-bold text-white truncate font-mono">
                 {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}
               </div>
-              <div className="text-[10px] text-neutral-400 truncate font-mono">
-                {isFa ? 'معمار ارشد سیستم و TPM' : 'Principal Systems Architect'}
-              </div>
-              <div className="flex items-center gap-1.5 text-[9px] font-mono text-cyan-400 mt-1">
+              <div className="flex items-center gap-1.5 text-[9px] font-mono text-cyan-400 mt-0.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                 <span>{isFa ? 'تهران · شاپرک · عملیاتی' : 'TEHRAN, IR · NOMINAL'}</span>
               </div>
