@@ -251,26 +251,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
       </div>
 
-      <!-- Product Decision Box (Dossier 02 - Narrative Synthesis Format) -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3.5">
-        <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
-          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-            <span>Product Decision · Multi-PSP Switch Architecture</span>
-          </div>
-          <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded border border-cyan-400/20">ARCHITECTURAL DEBRIEF</span>
+      <!-- Product Decision Box -->
+      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+          <span>Product Decision · Multi-PSP Switch Architecture</span>
         </div>
-        <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed space-y-2">
-          <p>
-            When single-PSP vendor lock-in created massive checkout drop-offs during bank maintenance windows and national clearing congestion, I built an agnostic multi-PSP switch topology with dynamic weight allocation rather than relying on a single PSP relationship.
-          </p>
-          <p>
-            While legacy PSP account managers resisted routing diversification, I proved that dynamic failover boosted overall transaction conversion by {stats.switchConversionLift.raw}%.
-          </p>
-        </div>
-        <div class="bg-cyan-950/30 border border-cyan-500/20 rounded-lg p-3 text-xs sm:text-sm text-cyan-100 flex items-start gap-2.5">
-          <span class="text-cyan-400 font-mono font-bold shrink-0">BUSINESS RESULT &rarr;</span>
-          <span>Achieved {stats.switchGatewayUptime.textEn}, sub-250ms roundtrip checkout latency, and {stats.switchFailoverSla.raw}ms automated failover during upstream provider outages.</span>
+        <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+          <p>Single-PSP vendor lock-in created massive checkout drop-offs during bank maintenance windows and national clearing congestion. Built an agnostic multi-PSP switch topology with dynamic weight allocation rather than relying on a single PSP relationship. Legacy PSP account managers resisted routing diversification. I proved that dynamic failover boosted overall transaction conversion by {stats.switchConversionLift.raw}%. Achieved {stats.switchGatewayUptime.textEn}, sub-250ms roundtrip checkout latency, and {stats.switchFailoverSla.raw}ms automated failover during upstream provider outages.</p>
         </div>
       </div>
 
@@ -543,16 +531,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Product Decision Box -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
+      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3.5">
         <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
           <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
           <span>Product Decision · Automated Reconciliation &amp; Early Settlement</span>
         </div>
-        <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
-          <p><strong class="text-white">Why this, why then:</strong> Manual reconciliation delayed merchant payouts to {stats.legacyManualPayoutDelay.en}, causing severe cash-flow friction for enterprise merchants.</p>
-          <p><strong class="text-white">What I traded off:</strong> Shifted from synchronous reconciliation to an asynchronous multi-pass state machine backed by automated bank SFTP pipelines.</p>
-          <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Accounting teams hesitated to trust automated batch payouts. I instituted a shadow-run trial showing zero reconciliation drift across {stats.reconciliationTrialEvents.en}.</p>
-          <p><strong class="text-white">Business result:</strong> Launched {stats.merchantPayoutWindow.textEn} with automated floating fee collection, {stats.manualReconOverhead.textEn}, and prevented financial leakage.</p>
+        <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+          <p>Manual reconciliation delayed merchant payouts to {stats.legacyManualPayoutDelay.en}, causing severe cash-flow friction for enterprise merchants. Shifted from synchronous reconciliation to an asynchronous multi-pass state machine backed by automated bank SFTP pipelines. Accounting teams hesitated to trust automated batch payouts. I instituted a shadow-run trial showing zero reconciliation drift across {stats.reconciliationTrialEvents.en}.</p>
+        </div>
+        <div class="border-l-2 border-emerald-400 pl-3.5 py-1 text-xs sm:text-sm">
+          <span class="text-neutral-400 font-mono text-[11px] uppercase block">Business Result:</span>
+          <span class="text-white font-semibold leading-relaxed">Launched {stats.merchantPayoutWindow.textEn} with automated floating fee collection, {stats.manualReconOverhead.textEn}, and prevented financial leakage.</span>
         </div>
       </div>
 

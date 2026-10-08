@@ -257,26 +257,14 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
       </div>
 
-      <!-- Product Decision Box (Dossier 02 - Narrative Synthesis Format) -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3.5">
-        <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
-          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-            <span>تصمیم محصول · معماری سوییچ چنددرگاهی آگنوستیک</span>
-          </div>
-          <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded border border-cyan-400/20">گزارش تصمیم معماری</span>
+      <!-- Product Decision Box -->
+      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+          <span>تصمیم محصول · سوییچ چنددرگاهی آگنوستیک</span>
         </div>
-        <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed space-y-2">
-          <p>
-            وابستگی به یک <span dir="ltr">PSP</span> انحصاری در زمان اختلالات شاپرک و تسویه بانکی باعث ریزش شدید خریدهای کاربران می‌شد. در پاسخ، توسعه سوییچ چنددرگاهی آگنوستیک با تخصیص پویای اوزان را به جای تکیه بر قرارداد با یک شرکت منفرد پیاده‌سازی کردم.
-          </p>
-          <p>
-            با وجود این که مدیران حساب درگاه‌های سنتی با تنوع‌بخشی به مسیرها مخالفت داشتند، با ارائه داده‌های پروداکشن نشان دادم که روتینگ پویا نرخ تبدیل پرداخت را {stats.switchConversionLift.raw} درصد افزایش داده است.
-          </p>
-        </div>
-        <div class="bg-cyan-950/30 border border-cyan-500/20 rounded-lg p-3 text-xs sm:text-sm text-cyan-100 flex items-start gap-2.5">
-          <span class="text-cyan-400 font-mono font-bold shrink-0">دست‌آورد کسب‌وکاری &larr;</span>
-          <span>دست‌یابی به {stats.switchGatewayUptime.textFa} درگاه، تاخیر رفت‌وبرگشت زیر ۲۵۰ میلی‌ثانیه و بازگشت خودکار {stats.switchFailoverSla.raw} میلی‌ثانیه‌ای در قطعی‌های شبکه شاپرک.</span>
+        <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+          <p>وابستگی به یک <span dir="ltr">PSP</span> انحصاری در زمان اختلالات شاپرک و تسویه بانکی باعث ریزش شدید خریدهای کاربران می‌شد. توسعه سوییچ چنددرگاهی آگنوستیک با تخصیص پویای اوزان به جای تکیه بر قرارداد با یک شرکت <span dir="ltr">PSP</span> منفرد. مدیران حساب درگاه‌های سنتی با تنوع‌بخشی به مسیرها مخالفت داشتند؛ من نشان دادم روتینگ پویا نرخ تبدیل پرداخت را {stats.switchConversionLift.raw} درصد افزایش داده است. دست‌یابی به {stats.switchGatewayUptime.textFa} درگاه، تاخیر رفت‌وبرگشت زیر ۲۵۰ میلی‌ثانیه و بازگشت خودکار {stats.switchFailoverSla.raw} میلی‌ثانیه‌ای در قطعی‌های شبکه شاپرک.</p>
         </div>
       </div>
 
@@ -549,16 +537,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Product Decision Box -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
+      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3.5">
         <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
           <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
           <span>تصمیم محصول · مغایرت‌گیری خودکار و تسویه زودتر</span>
         </div>
-        <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
-          <p><strong class="text-white">چرا این تصمیم و چرا در آن مقطع:</strong> مغایرت‌گیری دستی اکسل تسویه حساب پذیرندگان را تا {stats.legacyManualPayoutDelay.fa} به تاخیر می‌انداخت و جریان نقدینگی فروشندگان را قفل می‌کرد.</p>
-          <p><strong class="text-white">موازنه‌ها و بده‌بستان‌ها (Trade-off):</strong> مهاجرت از مغایرت‌گیری دستی و همگام به ماشین حالت ناهمزمان چندمرحله‌ای متصل به پایپ‌لاین‌های خودکار <span dir="ltr">SFTP</span> بانکی.</p>
-          <p><strong class="text-white">مخالفت ذی‌نفعان و نحوه حل اختلاف:</strong> تیم‌های حسابداری نگران خطای حواله‌های خودکار بودند؛ من با اجرای یک دوره آزمایشی موازی و اثبات خطای صفر در {stats.reconciliationTrialEvents.fa}، رضایت آنها را جلب کردم.</p>
-          <p><strong class="text-white">دست‌آورد و خروجی کسب‌وکاری:</strong> راه‌اندازی {stats.merchantPayoutWindow.textFa} پذیرندگان با کسر هوشمند کارمزد شناور، {stats.manualReconOverhead.textFa} و جلوگیری از نشت مالی.</p>
+        <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+          <p>مغایرت‌گیری دستی اکسل تسویه حساب پذیرندگان را تا {stats.legacyManualPayoutDelay.fa} به تاخیر می‌انداخت و جریان نقدینگی فروشندگان را قفل می‌کرد. مهاجرت از مغایرت‌گیری دستی و همگام به ماشین حالت ناهمزمان چندمرحله‌ای متصل به پایپ‌لاین‌های خودکار <span dir="ltr">SFTP</span> بانکی. تیم‌های حسابداری نگران خطای حواله‌های خودکار بودند؛ من با اجرای یک دوره آزمایشی موازی و اثبات خطای صفر در {stats.reconciliationTrialEvents.fa}، رضایت آنها را جلب کردم.</p>
+        </div>
+        <div class="border-r-2 border-emerald-400 pr-3.5 py-1 text-xs sm:text-sm">
+          <span class="text-neutral-400 font-mono text-[11px] uppercase block">دست‌آورد و خروجی کسب‌وکاری:</span>
+          <span class="text-white font-semibold leading-relaxed">راه‌اندازی {stats.merchantPayoutWindow.textFa} پذیرندگان با کسر هوشمند کارمزد شناور، {stats.manualReconOverhead.textFa} و جلوگیری از نشت مالی.</span>
         </div>
       </div>
 
