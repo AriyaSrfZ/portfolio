@@ -267,17 +267,26 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
       </div>
 
-      <!-- Product Decision Box -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
-        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-          <span>Product Decision · Multi-PSP Switch</span>
+      <!-- Product Decision Box (Dossier 02 - Narrative Synthesis Format) -->
+      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3.5">
+        <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+            <span>Product Decision · Multi-PSP Switch Architecture</span>
+          </div>
+          <span class="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded border border-cyan-400/20">ARCHITECTURAL DEBRIEF</span>
         </div>
-        <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
-          <p><strong class="text-white">Why this, why then:</strong> Single-PSP vendor lock-in created massive checkout drop-offs during bank maintenance windows and national clearing congestion.</p>
-          <p><strong class="text-white">What I traded off:</strong> Built an agnostic multi-PSP switch topology with dynamic weight allocation rather than relying on a single PSP relationship.</p>
-          <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Legacy PSP account managers resisted routing diversification. I proved that dynamic failover boosted overall transaction conversion by {stats.switchConversionLift.raw}%.</p>
-          <p><strong class="text-white">Business result:</strong> Achieved {stats.switchGatewayUptime.textEn}, sub-250ms roundtrip checkout latency, and {stats.switchFailoverSla.raw}ms automated failover during upstream provider outages.</p>
+        <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed space-y-2">
+          <p>
+            When single-PSP vendor lock-in created massive checkout drop-offs during bank maintenance windows and national clearing congestion, I built an agnostic multi-PSP switch topology with dynamic weight allocation rather than relying on a single PSP relationship.
+          </p>
+          <p>
+            While legacy PSP account managers resisted routing diversification, I proved that dynamic failover boosted overall transaction conversion by {stats.switchConversionLift.raw}%.
+          </p>
+        </div>
+        <div class="bg-cyan-950/30 border border-cyan-500/20 rounded-lg p-3 text-xs sm:text-sm text-cyan-100 flex items-start gap-2.5">
+          <span class="text-cyan-400 font-mono font-bold shrink-0">BUSINESS RESULT &rarr;</span>
+          <span>Achieved {stats.switchGatewayUptime.textEn}, sub-250ms roundtrip checkout latency, and {stats.switchFailoverSla.raw}ms automated failover during upstream provider outages.</span>
         </div>
       </div>
 
@@ -409,17 +418,30 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
       </div>
 
-      <!-- Product Decision Box -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
-        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-          <span>Product Decision · Bank Zone Compliance &amp; Zero-CVV2 Vault</span>
+      <!-- Product Decision Box (Dossier 03 - Split Dilemma & Pull-Quote Format) -->
+      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-4">
+        <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+            <span>Product Decision · Bank Zone Compliance &amp; Zero-CVV2 Vault</span>
+          </div>
+          <span class="text-[10px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">TRADE-OFF MATRIX</span>
         </div>
-        <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
-          <p><strong class="text-white">Why this, why then:</strong> Static rules caused high false positives and fraudsters exploited SIM-swap delays to bypass legacy OTPs.</p>
-          <p><strong class="text-white">What I traded off:</strong> Refused to cache CVV2 credentials for one-click checkout convenience, enforcing strict zero-storage PCI-DSS tokenization.</p>
-          <p><strong class="text-white">Who pushed back, and how it resolved:</strong> Commercial teams pushed for frictionless CVV2 storage. I proved the liability of regulatory penalties and card credential breach far outweighed the checkout friction.</p>
-          <p><strong class="text-white">Business result:</strong> Slashed illicit drain by {stats.fraudDrainReduction.textEn} while shifting financial liability to issuing banks via 3DS 2.0.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm text-neutral-300">
+          <div class="bg-[#0b0d11]/60 border border-white/5 rounded-lg p-3 space-y-1.5">
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block">Context &amp; Architecture Trade-off</span>
+            <p class="leading-relaxed">Static rules caused high false positives and fraudsters exploited SIM-swap delays to bypass legacy OTPs. I refused to cache CVV2 credentials for one-click checkout convenience, enforcing strict zero-storage PCI-DSS tokenization.</p>
+          </div>
+          <div class="bg-[#0b0d11]/60 border border-white/5 rounded-lg p-3 space-y-1.5">
+            <span class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block">Stakeholder Friction &amp; Resolution</span>
+            <p class="leading-relaxed">Commercial teams pushed for frictionless CVV2 storage. I proved the liability of regulatory penalties and card credential breach far outweighed the checkout friction.</p>
+          </div>
+        </div>
+
+        <div class="border-l-2 border-emerald-400 pl-3.5 py-1 text-xs sm:text-sm">
+          <span class="text-neutral-400 font-mono text-[11px] uppercase block">Business Result:</span>
+          <span class="text-white font-semibold leading-relaxed">Slashed illicit drain by {stats.fraudDrainReduction.textEn} while shifting financial liability to issuing banks via 3DS 2.0.</span>
         </div>
       </div>
 
