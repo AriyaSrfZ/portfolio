@@ -163,57 +163,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
           DESKTOP STICKY SIDEBAR (Visible on screens >= 1024px)
           ========================================================================= */}
       <aside className="hidden lg:block sticky top-20 space-y-3.5 pt-0.5 font-sans select-none" dir={isFa ? 'rtl' : 'ltr'}>
-        
-        {/* 1. EXECUTIVE IDENTITY CARD */}
-        <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl relative overflow-hidden group transition-all duration-300">
-          <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-white/20 shrink-0 bg-[#13161c] shadow-md">
-              <img
-                src={`${baseUrl}photos/ariya.jpg`}
-                alt="Ariya Sarrafzadeh"
-                className="w-full h-full object-cover object-top"
-                loading="lazy"
-              />
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="text-xs font-bold text-white truncate font-mono">
-                {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}
-              </div>
-              <div className="flex items-center gap-1.5 text-[9px] font-mono text-cyan-400 mt-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                <span>{isFa ? 'تهران · شاپرک · عملیاتی' : 'TEHRAN, IR · NOMINAL'}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between pt-2.5 mt-2.5 border-t border-white/5 text-[10px] font-mono text-neutral-300">
-            <a
-              href="#overview"
-              onClick={(e) => handleNavClick(e, 'overview')}
-              className="hover:text-white transition-colors flex items-center gap-1"
-            >
-              <span>↑</span>
-              <span>{isFa ? 'نمای کلی پلتفرم' : 'Platform Overview'}</span>
-            </a>
-            <div className="flex items-center gap-2">
-              <a
-                href="mailto:ariasg2002@gmail.com"
-                className="hover:text-white transition-colors"
-              >
-                Email
-              </a>
-              <span className="text-white/20">·</span>
-              <a
-                href="https://www.linkedin.com/in/ariya-sarrafzadeh/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
+        {/* ARCHITECTURE INDEX LIST */}
 
         {/* 2. ARCHITECTURE INDEX LIST */}
         <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl space-y-3">
