@@ -15,24 +15,24 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
 
   const sections = isFa
     ? [
-        { id: 'overview', pageNum: '۰۰', label: 'نمای کلی معماری سیستم‌ها', tag: 'نمای کلی' },
-        { id: 'payment-settlement', pageNum: '۰۱', label: 'دفتر کل دوطرفه و تسویه', tag: 'بخش ۰۱' },
-        { id: 'payment-switch', pageNum: '۰۲', label: 'سوییچ هوشمند پرداخت ISO', tag: 'بخش ۰۲' },
-        { id: 'fraud-forensics', pageNum: '۰۳', label: 'احراز هویت و ضدتقلب Neo4j', tag: 'بخش ۰۳' },
-        { id: 'reconciliation-engine', pageNum: '۰۴', label: 'مغایرت‌گیری سه‌طرفه و تسویه', tag: 'بخش ۰۴' },
-        { id: 'incident-dossiers', pageNum: '۰۵', label: 'بحران‌های زنده در پروداکشن', tag: 'بخش ۰۵' },
+        { id: 'overview', pageNum: '', label: 'نمای کلی', tag: 'نمای کلی' },
+        { id: 'payment-settlement', pageNum: '۰۱', label: 'تسویه مالی و دفاتر کل توزیع‌شده', tag: 'بخش ۰۱' },
+        { id: 'payment-switch', pageNum: '۰۲', label: 'سوییچ پرداخت و پروتکل‌های مخابراتی', tag: 'بخش ۰۲' },
+        { id: 'fraud-forensics', pageNum: '۰۳', label: 'مدیریت ریسک، احراز هویت و مهار تقلب', tag: 'بخش ۰۳' },
+        { id: 'reconciliation-engine', pageNum: '۰۴', label: 'مغایرت‌گیری و تسویه زودهنگام پذیرندگان', tag: 'بخش ۰۴' },
+        { id: 'incident-dossiers', pageNum: '۰۵', label: 'آرشیو بحران‌های زنده در پروداکشن', tag: 'بخش ۰۵' },
         { id: 'lifecycle', pageNum: '۰۶', label: 'چرخه حیات محصول فنی', tag: 'بخش ۰۶' },
-        { id: 'book', pageNum: '۰۷', label: 'جلسه بررسی معماری', tag: 'بخش ۰۷' },
+        { id: 'book', pageNum: '۰۷', label: 'جلسه بررسی معماری و مشاوره تخصصی', tag: 'بخش ۰۷' },
       ]
     : [
-        { id: 'overview', pageNum: '00', label: 'Systems Architecture Overview', tag: 'OVERVIEW' },
+        { id: 'overview', pageNum: '', label: 'Overview', tag: 'OVERVIEW' },
         { id: 'payment-settlement', pageNum: '01', label: 'Settlements & Ledgers', tag: 'SECTION 01' },
-        { id: 'payment-switch', pageNum: '02', label: 'Smart PSP Switch (ISO 8583)', tag: 'SECTION 02' },
-        { id: 'fraud-forensics', pageNum: '03', label: 'eKYC & Fraud Forensics', tag: 'SECTION 03' },
-        { id: 'reconciliation-engine', pageNum: '04', label: 'Multi-Pass Reconciliation', tag: 'SECTION 04' },
-        { id: 'incident-dossiers', pageNum: '05', label: 'Live Incident Postmortems', tag: 'SECTION 05' },
-        { id: 'lifecycle', pageNum: '06', label: 'Technical Product Lifecycle', tag: 'SECTION 06' },
-        { id: 'book', pageNum: '07', label: 'Architecture Intake & Review', tag: 'SECTION 07' },
+        { id: 'payment-switch', pageNum: '02', label: 'Payment Switch', tag: 'SECTION 02' },
+        { id: 'fraud-forensics', pageNum: '03', label: 'Fraud Risk & eKYC', tag: 'SECTION 03' },
+        { id: 'reconciliation-engine', pageNum: '04', label: 'Reconciliation & Payouts', tag: 'SECTION 04' },
+        { id: 'incident-dossiers', pageNum: '05', label: 'Production Incident Archive', tag: 'SECTION 05' },
+        { id: 'lifecycle', pageNum: '06', label: 'Product Lifecycle Arc', tag: 'SECTION 06' },
+        { id: 'book', pageNum: '07', label: 'Architecture Review & Intake', tag: 'SECTION 07' },
       ];
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
               className="flex items-center gap-2 text-left truncate flex-1 min-w-0 px-2 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] transition-all"
             >
               <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-1.5 py-0.5 rounded shrink-0">
-                {activeItem.pageNum} / {isFa ? '۰۸' : '08'}
+                {activeItem.pageNum || (isFa ? 'نمای کلی' : 'Overview')}
               </span>
               <span className="text-xs font-mono font-medium text-white truncate">
                 {activeItem.label}
@@ -149,7 +149,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
                         : 'text-neutral-300 hover:bg-white/[0.05] hover:text-white'
                     }`}
                   >
-                    <span className="truncate">{item.pageNum} · {item.label}</span>
+                    <span className="truncate">{item.pageNum ? `${item.pageNum} · ` : ''}{item.label}</span>
                     <span className="text-[9px] text-cyan-400 font-mono ml-2 shrink-0">{item.tag}</span>
                   </a>
                 );
@@ -219,9 +219,6 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
         <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl space-y-3">
           <div className="text-xs font-bold text-[#e2c974] tracking-wider uppercase pb-2.5 border-b border-white/10 flex justify-between items-center font-mono">
             <span>{isFa ? 'فهرست سامانه‌ها' : 'Architecture Index'}</span>
-            <span className="text-[10px] text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">
-              {activeItem.pageNum} / {isFa ? '۰۸' : '08'}
-            </span>
           </div>
 
           {/* Section List */}
@@ -240,7 +237,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="truncate">{item.pageNum} · {item.label}</span>
+                    <span className="truncate">{item.pageNum ? `${item.pageNum} · ` : ''}{item.label}</span>
                     {isActive && (
                       <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 ml-1" />
                     )}
