@@ -94,7 +94,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>ایدامپوتنسي توزیع‌شده:</strong> قفل‌های موقت اتمیک <span dir="ltr">Redis SETNX</span> با {stats.ledgerLockTtl.textFa} و {stats.ledgerReplayWindow.textFa} جهت پیشگیری از کسر تکراری.</span>
+              <span><strong>ایدامپوتنسي توزیع‌شده:</strong> قفل‌های موقت اتمیک <span dir="ltr">Redis SETNX</span> با {stats.ledgerLockTtl.textFa} ({stats.ledgerLockTtl.fa}) و {stats.ledgerReplayWindow.textFa} ({stats.ledgerReplayWindow.fa}) جهت پیشگیری از کسر تکراری.</span>
             </li>
           </ul>
         </div>
@@ -229,7 +229,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>اوزان پویا بر پایه سلامت:</strong> ارزیابی لحظه‌ای سلامت درگاه‌ها و تاخیر <span dir="ltr">P99</span> که موجب {stats.switchConversionLift.textFa || stats.switchConversionLift.fa} در کل حجم تراکنش‌ها شده است.</span>
+              <span><strong>اوزان پویا بر پایه سلامت:</strong> ارزیابی لحظه‌ای سلامت درگاه‌ها و تاخیر <span dir="ltr">P99</span> که موجب {stats.switchConversionLift.textFa || stats.switchConversionLift.fa} (<span dir="ltr">{stats.switchConversionLift.fa}</span>) در کل حجم تراکنش‌ها شده است.</span>
             </li>
           </ul>
         </div>
@@ -352,7 +352,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <ul class="space-y-2 text-neutral-300 text-xs sm:text-sm leading-relaxed">
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>توکن‌سازی با ذخیره صفر:</strong> شماره کارت خام وارد زون ایزوله <span dir="ltr">PCI-DSS</span> شده و کدهای <span dir="ltr">CVV2</span> با {stats.cvv2RetentionTime.textFa} بلافاصله پس از تراکنش پاکسازی می‌شوند.</span>
+              <span><strong>توکن‌سازی با ذخیره صفر:</strong> شماره کارت خام وارد زون ایزوله <span dir="ltr">PCI-DSS</span> شده و کدهای <span dir="ltr">CVV2</span> با {stats.cvv2RetentionTime.textFa} ({stats.cvv2RetentionTime.fa}) بلافاصله پس از تراکنش پاکسازی می‌شوند.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
@@ -382,7 +382,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-amber-400 font-mono mt-0.5">•</span>
-              <span><strong>پایداری تجربه کاربری:</strong> حفظ نرخ عبور بدون چالش {stats.frictionless3dsPassRate.textFa} برای تراکنش‌های مشروع بدون نیاز به بررسی دستی اپراتور.</span>
+              <span><strong>پایداری تجربه کاربری:</strong> حفظ نرخ عبور بدون چالش {stats.frictionless3dsPassRate.textFa} ({stats.frictionless3dsPassRate.fa}) برای تراکنش‌های مشروع بدون نیاز به بررسی دستی اپراتور.</span>
             </li>
           </ul>
         </div>
@@ -470,8 +470,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span class="text-emerald-400 font-semibold text-sm">{stats.reconMatchParity.fa}</span>
         </div>
         <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
-          <span class="text-neutral-400 block text-[10px] uppercase">خطای دستی تسویه</span>
-          <span class="text-emerald-400 font-semibold text-sm">{stats.manualReconOverhead.fa}</span>
+          <span class="text-neutral-400 block text-[10px] uppercase">بازه زمانی تسویه</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.merchantPayoutWindow.fa}</span>
         </div>
       </div>
 
@@ -508,7 +508,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </li>
             <li class="flex items-start gap-2">
               <span class="text-cyan-400 font-mono mt-0.5">•</span>
-              <span><strong>موتور خودترمیم Refund-MNG:</strong> شناسایی تراکنش‌های کسرشده بدون خدمات و صدور خودکار حواله بازگشت وجه بدون دخالت پشتیبانی.</span>
+              <span><strong>موتور خودترمیم Refund-MNG:</strong> شناسایی تراکنش‌های کسرشده بدون خدمات و صدور خودکار حواله بازگشت وجه بدون دخالت پشتیبانی ({stats.manualReconOverhead.fa}).</span>
             </li>
           </ul>
         </div>
