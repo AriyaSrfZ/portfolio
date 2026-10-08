@@ -75,13 +75,13 @@ The following synthesis aggregates verified industry benchmarks across the plane
 | :--- | :--- | :--- | :--- |
 | **Unique Mobile Subscribers** | ~5.6 Billion (~69% Global Penetration) | GSMA Intelligence (2024) | Represents universal hardware reach across virtually all adult human populations |
 | **Active Cellular Connections** | ~8.9 Billion Global SIMs (inc. IoT) | GSMA Intelligence (2024) | Massive addressable surface area exceeding active internet browsers |
-| **Global A2P SMS Market Value** | $65 Billion – $72 Billion annually | Juniper Research / Statista | Sustained enterprise willingness to pay for universal, offline-reachable connectivity |
-| **Operational / OTP Traffic Share** | 65% – 70% of total global A2P volume | MEF / Industry Consensus | Core utility function: identity verification, security alerts, and logistics updates |
-| **Promotional / Marketing Share** | 30% – 35% of total global A2P volume | Twilio State of Engagement | High-velocity batch campaigns; increasingly shifting toward RCS and OTT channels |
-| **Direct Route Delivery Latency** | 95% – 99% delivered within 5–15 seconds | Tier-1 Carrier Aggregator SLAs | Stringent requirement for sub-second OTP and financial authorization flows |
-| **Network Delivery Rate (DLR)** | 94% – 98% successful handset delivery | Global Telecom Telemetry | Verifies radio-layer packet delivery, excluding invalid or unallocated numbers |
+| **Global A2P SMS Market Value** | $65 Billion  to  $72 Billion annually | Juniper Research / Statista | Sustained enterprise willingness to pay for universal, offline-reachable connectivity |
+| **Operational / OTP Traffic Share** | 65% to 70% of total global A2P volume | MEF / Industry Consensus | Core utility function: identity verification, security alerts, and logistics updates |
+| **Promotional / Marketing Share** | 30% to 35% of total global A2P volume | Twilio State of Engagement | High-velocity batch campaigns; increasingly shifting toward RCS and OTT channels |
+| **Direct Route Delivery Latency** | 95% to 99% delivered within 5 to 15 seconds | Tier-1 Carrier Aggregator SLAs | Stringent requirement for sub-second OTP and financial authorization flows |
+| **Network Delivery Rate (DLR)** | 94% to 98% successful handset delivery | Global Telecom Telemetry | Verifies radio-layer packet delivery, excluding invalid or unallocated numbers |
 | **Annual Enterprise Loss to AIT** | Over $1 Billion globally | Mobile Ecosystem Forum (MEF) | Bot-driven SMS pumping exploiting unauthenticated OTP forms for carrier revenue splits |
-| **True Commercial SMS Click CTR** | 2% – 9% average server-side CTR | Verified Cross-Industry Telemetry | Actual human action rate when tracked via unique, tokenized URL redirects |
+| **True Commercial SMS Click CTR** | 2% to 9% average server-side CTR | Verified Cross-Industry Telemetry | Actual human action rate when tracked via unique, tokenized URL redirects |
 | **RCS Android Installed Base** | ~1.2+ Billion monthly active users | Google / GSMA UP 2.4 | Rich cards and verified brand badges; rapidly expanding with iOS 18 adoption |
 
 ---
@@ -195,7 +195,7 @@ With Apple’s support for RCS Universal Profile 2.4 starting in iOS 18, Rich Co
 
 ## 08. Deconstructing the "98% Open Rate" Myth: Radio DLR vs. Cognitive Telemetry
 
-No marketing claim in corporate communications has been repeated more persistently—or with less scientific basis—than the assertion that **"98% of SMS messages are opened and read within three minutes."**
+No marketing claim in corporate communications has been repeated more persistently, or with less scientific basis, than the assertion that **"98% of SMS messages are opened and read within three minutes."**
 
 <div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
   <img src="/diagrams/sms-measurement-framework-en.svg" alt="Telemetry and Attribution: Protocol DLR vs Cognitive Attention" class="w-full h-auto" loading="lazy" />
@@ -206,7 +206,7 @@ No marketing claim in corporate communications has been repeated more persistent
 1. **Historical Origin:** The "98% open rate" metric traces back to a marketing survey conducted in 2010. Over the past fifteen years, it has been replicated across vendor blogs and sales brochures without technical verification.
 2. **Protocol Fact:** The ETSI GSM 03.40 telecommunications standard and the SMPP protocol define **no mechanism for read receipts in standard SMS**. The network DLR status `DELIVRD` signifies solely that the radio baseband transceiver on the device acknowledged the PDU packet.
 3. **The Modern OS Barrier:** In modern smartphone operating systems (iOS and Android), SMS messages from unknown senders are frequently routed directly to filtered spam folders, silence-unknown-senders lists, or dismissed from lock screen banners without the recipient ever launching the messaging application.
-4. **Verifiable Telemetry Reality:** True commercial attention can only be verified when an action occurs on an enterprise-controlled server. When enterprises embed unique, tokenized shortlinks into SMS campaigns, verifiable **Click-Through Rates (CTR) range between 2% and 9%**, with top-quartile highly targeted operational flows reaching 15%–20%. Conflating radio delivery with human attention results in catastrophic forecasting errors for executive teams modeling customer acquisition costs (CAC).
+4. **Verifiable Telemetry Reality:** True commercial attention can only be verified when an action occurs on an enterprise-controlled server. When enterprises embed unique, tokenized shortlinks into SMS campaigns, verifiable **Click-Through Rates (CTR) range between 2% and 9%**, with top-quartile highly targeted operational flows reaching 15% to 20%. Conflating radio delivery with human attention results in catastrophic forecasting errors for executive teams modeling customer acquisition costs (CAC).
 
 ---
 
@@ -296,7 +296,7 @@ This whitepaper was synthesized through an empirical review of international tel
 ### Primary References
 
 1. **GSMA Intelligence:** *The Mobile Economy 2024*, Global System for Mobile Communications Association.
-2. **Juniper Research:** *A2P Messaging: Emerging Trends, Technology Analysis & Market Forecasts 2023–2028*.
+2. **Juniper Research:** *A2P Messaging: Emerging Trends, Technology Analysis & Market Forecasts 2023-2028*.
 3. **Mobile Ecosystem Forum (MEF):** *Global Trust in Enterprise Messaging Report & AIT Threat Intelligence*.
 4. **Twilio:** *State of Customer Engagement Report 2024*.
 5. **ETSI / 3GPP:** *Digital cellular telecommunications system; Technical realization of the Short Message Service (SMS)* (3GPP TS 23.040).
