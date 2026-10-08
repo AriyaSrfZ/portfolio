@@ -27,6 +27,10 @@ export interface DictionaryTerm {
   definitionFa: string;
   roles: string[];
   sources: string[];
+  caseWorldwideEn?: string;
+  caseWorldwideFa?: string;
+  caseIranEn?: string;
+  caseIranFa?: string;
 }
 
 export interface DictionaryData {

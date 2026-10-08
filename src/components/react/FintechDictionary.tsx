@@ -64,7 +64,21 @@ export default function FintechDictionary({ locale = 'en' }: FintechDictionaryPr
         const matchAcr = term.acronym?.toLowerCase().includes(q) ?? false;
         const matchDefEn = term.definitionEn.toLowerCase().includes(q);
         const matchDefFa = term.definitionFa.toLowerCase().includes(q);
-        return matchEn || matchFa || matchAcr || matchDefEn || matchDefFa;
+        const matchCaseWwEn = term.caseWorldwideEn?.toLowerCase().includes(q) ?? false;
+        const matchCaseWwFa = term.caseWorldwideFa?.toLowerCase().includes(q) ?? false;
+        const matchCaseIrEn = term.caseIranEn?.toLowerCase().includes(q) ?? false;
+        const matchCaseIrFa = term.caseIranFa?.toLowerCase().includes(q) ?? false;
+        return (
+          matchEn ||
+          matchFa ||
+          matchAcr ||
+          matchDefEn ||
+          matchDefFa ||
+          matchCaseWwEn ||
+          matchCaseWwFa ||
+          matchCaseIrEn ||
+          matchCaseIrFa
+        );
       }
 
       return true;
@@ -126,8 +140,8 @@ export default function FintechDictionary({ locale = 'en' }: FintechDictionaryPr
         
         <p className="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-4xl mb-6">
           {isFa
-            ? 'مجموعه جامع بیش از ۱,۰۰۰ اصطلاح معماری سوییچ‌های پرداخت، دفاتر کل توزیع‌شده، سوییچینگ مخابراتی، استانداردهای ISO 8583 و شاپرک، انطباق PCI-DSS و ریل‌های تسویه بانکی به زبان فارسی و انگلیسی با سبک مهندسی آریا صراف‌زاده.'
-            : 'Comprehensive production dictionary covering 1,000+ terms across payment switches, double-entry ledgers, SMPP telecom aggregation, ISO 8583 / ISO 20022 schemas, PCI-DSS compliance, and interbank clearing rails with authoritative citations.'}
+            ? 'مجموعه جامع بیش از ۱,۰۰۰ اصطلاح معماری سوییچ‌های پرداخت، دفاتر کل توزیع‌شده، سوییچینگ مخابراتی، استانداردهای ISO 8583 و شاپرک، انطباق PCI-DSS و ریل‌های تسویه بانکی به زبان فارسی و انگلیسی همراه با نمونه‌های پیاده‌سازی واقعی ایران و جهان به سبک مهندسی آریا صراف‌زاده.'
+            : 'Comprehensive production dictionary covering 1,000+ terms across payment switches, double-entry ledgers, SMPP telecom aggregation, ISO 8583 / ISO 20022 schemas, PCI-DSS compliance, and interbank clearing rails with concrete worldwide and Iranian production case studies.'}
         </p>
 
         {/* Quick Stats Grid */}
@@ -159,7 +173,7 @@ export default function FintechDictionary({ locale = 'en' }: FintechDictionaryPr
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder={isFa ? 'جست‌وجوی اصطلاح، مخفف (مانند ISO 8583، STAN)، کلمات کلیدی یا تعاریف...' : 'Search term, acronym (e.g. ISO 8583, STAN, 2PC, eKYC), or definition...'}
+            placeholder={isFa ? 'جست‌وجوی اصطلاح، مخفف، نمونه‌های ایران و جهان (مانند شتاب، شاپرک، Stripe، پایا، Harim)...' : 'Search term, acronym, worldwide or Iran cases (e.g. Stripe, Adyen, Shetab, Shaparak, Paya)...'}
             className="w-full bg-[#090a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-[#ededed] placeholder:text-neutral-500 focus:outline-none focus:border-[#06b6d4] transition-colors"
           />
           {search && (
@@ -297,19 +311,85 @@ export default function FintechDictionary({ locale = 'en' }: FintechDictionaryPr
                   </div>
 
                   {/* Definition */}
-                  <p className="text-xs text-[#94a3b8] leading-relaxed mb-4">
+                  <p className="text-xs text-[#94a3b8] leading-relaxed mb-3">
                     {isFa ? term.definitionFa : term.definitionEn}
                   </p>
 
-                  {/* Secondary Definition Preview (Toggle) */}
+                  {/* Production Cases Preview */}
+                  <div className="space-y-2 mb-4 pt-2.5 border-t border-white/[0.04]">
+                    {/* Worldwide Case */}
+                    {(isFa ? term.caseWorldwideFa : term.caseWorldwideEn) && (
+                      <div className="bg-[#090a0c]/60 border border-sky-500/15 rounded-lg p-2.5">
+                        <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#38bdf8] mb-1">
+                          <span>🌐</span>
+                          <span className="font-bold uppercase tracking-wider">{isFa ? 'مورد اجرایی بین‌المللی' : 'Global Architecture Case'}</span>
+                        </div>
+                        <p className="text-[11px] text-[#cbd5e1] leading-relaxed">
+                          {isFa ? term.caseWorldwideFa : term.caseWorldwideEn}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Iran Case */}
+                    {(isFa ? term.caseIranFa : term.caseIranEn) && (
+                      <div className="bg-[#090a0c]/60 border border-emerald-500/15 rounded-lg p-2.5">
+                        <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#34d399] mb-1">
+                          <span>🇮🇷</span>
+                          <span className="font-bold uppercase tracking-wider">{isFa ? 'ریل و اجرای ایران' : 'Iranian Production Rail'}</span>
+                        </div>
+                        <p className="text-[11px] text-[#cbd5e1] leading-relaxed">
+                          {isFa ? term.caseIranFa : term.caseIranEn}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Secondary Definition & Deep Specs (Toggle) */}
                   {isExpanded && (
-                    <div className="bg-[#090a0c]/80 border border-white/[0.06] rounded-lg p-3 text-xs text-neutral-300 mb-4 space-y-1.5" dir={isFa ? 'ltr' : 'rtl'}>
-                      <span className="text-[10px] font-mono text-[#fbbf24] uppercase block">
-                        {isFa ? 'English Architectural Specification:' : 'تعریف مهندسی فارسی:'}
-                      </span>
-                      <p className="text-[11px] leading-relaxed text-[#94a3b8]">
-                        {isFa ? term.definitionEn : term.definitionFa}
-                      </p>
+                    <div className="bg-[#090a0c]/90 border border-white/[0.08] rounded-xl p-3.5 text-xs text-neutral-300 mb-4 space-y-3 shadow-inner" dir={isFa ? 'ltr' : 'rtl'}>
+                      <div>
+                        <span className="text-[10px] font-mono text-[#fbbf24] uppercase block mb-1">
+                          {isFa ? 'English Architectural Specification:' : 'تعریف مهندسی فارسی:'}
+                        </span>
+                        <p className="text-[11px] leading-relaxed text-[#94a3b8]">
+                          {isFa ? term.definitionEn : term.definitionFa}
+                        </p>
+                      </div>
+
+                      {/* Alternate language case studies */}
+                      <div className="pt-2 border-t border-white/[0.05] space-y-2">
+                        {isFa ? (
+                          <>
+                            {term.caseWorldwideEn && (
+                              <div>
+                                <span className="text-[10px] font-mono text-[#38bdf8] uppercase block">Global Architecture Spec:</span>
+                                <p className="text-[11px] text-neutral-400 leading-relaxed">{term.caseWorldwideEn}</p>
+                              </div>
+                            )}
+                            {term.caseIranEn && (
+                              <div>
+                                <span className="text-[10px] font-mono text-[#34d399] uppercase block">Iran Infrastructure Spec:</span>
+                                <p className="text-[11px] text-neutral-400 leading-relaxed">{term.caseIranEn}</p>
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            {term.caseWorldwideFa && (
+                              <div>
+                                <span className="text-[10px] font-mono text-[#38bdf8] uppercase block">مورد اجرایی بین‌المللی (فارسی):</span>
+                                <p className="text-[11px] text-neutral-400 leading-relaxed">{term.caseWorldwideFa}</p>
+                              </div>
+                            )}
+                            {term.caseIranFa && (
+                              <div>
+                                <span className="text-[10px] font-mono text-[#34d399] uppercase block">ریل زیرساخت ایران (فارسی):</span>
+                                <p className="text-[11px] text-neutral-400 leading-relaxed">{term.caseIranFa}</p>
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
