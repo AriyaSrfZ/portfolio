@@ -303,8 +303,8 @@ graph TD
 
     subgraph موتور اعتبارسنجی دوگانه
         Onboarding -->|استعلام چک برگشتی و تسهیلات معوق| ICS[سامانه اعتبارسنجی ایرانیان - ICS]
-        Onboarding -->|تحلیل رفتار خرید و گردش حساب| DigipayScore[ماتریس رفتارسنجی درون اکوسیستم]
-        ICS & DigipayScore --> ScoreCombiner{ترکیب امتیازات اعتباری}
+        Onboarding -->|تحلیل رفتار خرید و گردش حساب| EcosystemScore[ماتریس رفتارسنجی درون اکوسیستم]
+        ICS & EcosystemScore --> ScoreCombiner{ترکیب امتیازات اعتباری}
         ScoreCombiner -->|تایید صلاحیت| CollateralCheck[بررسی تضامین و سفته الکترونیک]
     end
 

@@ -313,8 +313,8 @@ graph TD
 
     subgraph Dual-Credit Scoring Engine
         Onboarding -->|Bank Default & Cheque Registry| ICS[ICS National Banking Score]
-        Onboarding -->|Ecosystem Behavioral Data| DigipayScore[Behavioral Matrix Engine]
-        ICS & DigipayScore --> ScoreCombiner{Scoring Fusion Matrix}
+        Onboarding -->|Ecosystem Behavioral Data| EcosystemScore[Behavioral Matrix Engine]
+        ICS & EcosystemScore --> ScoreCombiner{Scoring Fusion Matrix}
         ScoreCombiner -->|Approved| CollateralCheck[Collateral & Promissory Note]
     end
 

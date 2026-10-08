@@ -344,7 +344,7 @@ sequenceDiagram
     end
     PurchaseAgg->>PurchaseCore: Initialize Purchase Transaction
     PurchaseCore-->>Merchant: Return Redirect URL & Ticket
-    Merchant-->>User: Route to Digipay Payment View with Ticket
+    Merchant-->>User: Route to Payment Gateway View with Ticket
     User->>SwitchPSP: Execute Card / Wallet Payment
     SwitchPSP-->>PurchaseCore: Payment Successful (RRN & Tracking Code)
     PurchaseCore->>Merchant: Send Webhook Callback / Verify Request
@@ -380,8 +380,8 @@ graph TD
 
     subgraph Dual-Credit Scoring Engine / موتور امتیازدهی دوگانه
         Onboarding -->|Query Bank & Cheque Defaults| ICS[ICS National Banking Score]
-        Onboarding -->|Query Ecosystem Behavior| DigipayScore[Behavioral Matrix Engine]
-        ICS & DigipayScore --> ScoreCombiner{Scoring Fusion Matrix}
+        Onboarding -->|Query Ecosystem Behavior| EcosystemScore[Behavioral Matrix Engine]
+        ICS & EcosystemScore --> ScoreCombiner{Scoring Fusion Matrix}
         ScoreCombiner -->|Composite Score Approved| CollateralCheck[Collateral & Cheque Evaluation]
     end
 

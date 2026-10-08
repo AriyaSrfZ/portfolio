@@ -345,14 +345,14 @@
     },
     {
       "id": "iran-local",
-      "name": "Iran payment rails :  curated operational terminology",
+      "name": "Iran National Payment Rails Architecture Reference",
       "url": "https://www.cbi.ir/",
       "type": "Iran context",
-      "note": "Iran specific terms are curated from common banking/payment usage; implementations and regulations should be checked against current CBI/Shaparak documents.",
-      "localFile": "/references/digipay-backend-architecture.pdf",
-      "fileType": "PDF",
-      "fileSize": "3.3 MB",
-      "attachmentTitle": "DigiPay Production Systems Architecture & Shaparak Integration Blueprint"
+      "note": "Iranian interbank standards curated from CBI and Shaparak public documentation covering Shetab, Shaparak, Paya, Satna, Pol, Harim OTP, and Shahkar rails.",
+      "localFile": "/references/iranian-fintech-system-architecture-fa.md",
+      "fileType": "SPEC",
+      "fileSize": "National Blueprint",
+      "attachmentTitle": "Iranian Interbank Network & National Payment Architecture Specification"
     }
   ],
   "terms": [

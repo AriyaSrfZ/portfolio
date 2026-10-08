@@ -116,10 +116,10 @@ SOURCE_ATTACHMENTS = {
         "title": "Distributed Ledger Consensus & Cryptographic State Machine Lexicon"
     },
     "iran-local": {
-        "localFile": "/references/digipay-backend-architecture.pdf",
-        "fileType": "PDF",
-        "fileSize": "3.3 MB",
-        "title": "DigiPay Production Systems Architecture & Shaparak Integration Blueprint"
+        "localFile": "/references/iranian-fintech-system-architecture-fa.md",
+        "fileType": "SPEC",
+        "fileSize": "National Blueprint",
+        "title": "Iranian Interbank Network & National Payment Architecture Specification"
     }
 }
 
