@@ -19,16 +19,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-white/50 to-transparent z-50 transition-all duration-100"></div>
 
   <main class="w-full max-w-[1920px] 2xl:max-w-[2160px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 pb-16 font-['Vazirmatn',sans-serif]" id="blueprints" dir="rtl">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      
+    <!-- بخش نمایه اجرایی و هیرو -->
+    <div class="w-full mb-12">
+      <LandingStage client:load locale="fa" />
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Sticky Sidebar Index & Minimized Bio (Persian RTL) -->
       <ArchitectureSidebar client:load locale="fa" />
 
       <!-- Main Stage Pages (Executive Dossiers) -->
       <div class="lg:col-span-9 space-y-16">
-
-        <!-- PAGE 01: EXECUTIVE LANDING OVERVIEW -->
-        <LandingStage client:load locale="fa" />
 
         <!-- PAGE 02: DOSSIER 01 - Settlements & Ledgers -->
         <section id="payment-settlement" class="scroll-mt-20 min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
