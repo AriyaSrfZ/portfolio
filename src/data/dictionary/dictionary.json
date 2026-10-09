@@ -175,7 +175,7 @@
       "note": "Payments, clearing, settlement and financial market infrastructures.",
       "localFile": "/references/bis-cpmi-financial-market-infrastructures.pdf",
       "fileType": "PDF",
-      "fileSize": "136 KB",
+      "fileSize": "54 KB",
       "attachmentTitle": "BIS / CPMI Principles for Financial Market Infrastructures"
     },
     {
@@ -186,7 +186,7 @@
       "note": "Payment, securities and market terminology.",
       "localFile": "/references/ecb-electronic-payment-instruments-framework.pdf",
       "fileType": "PDF",
-      "fileSize": "98 KB",
+      "fileSize": "55 KB",
       "attachmentTitle": "ECB Oversight Framework for Electronic Payment Instruments"
     },
     {
@@ -195,9 +195,9 @@
       "url": "https://www.fatf-gafi.org/en/pages/fatf-glossary.html",
       "type": "Official standard-setter",
       "note": "AML/CFT, beneficial ownership and virtual asset terminology.",
-      "localFile": "/references/fatf-travel-rule-virtual-assets-guidance.md",
-      "fileType": "SPEC",
-      "fileSize": "Authoritative Guidance",
+      "localFile": "/references/fatf-travel-rule-virtual-assets-guidance.pdf",
+      "fileType": "PDF",
+      "fileSize": "55 KB",
       "attachmentTitle": "FATF Guidance on Virtual Assets & Travel Rule (Recommendation 16)"
     },
     {
@@ -208,7 +208,7 @@
       "note": "Payment card security, cardholder data and PCI terminology.",
       "localFile": "/references/pci-dss-v4-0-quick-reference-guide.pdf",
       "fileType": "PDF",
-      "fileSize": "640 KB",
+      "fileSize": "55 KB",
       "attachmentTitle": "PCI DSS v4.0 Official Quick Reference Guide & Token Vault Standards"
     },
     {
@@ -217,9 +217,9 @@
       "url": "https://www.openbanking.org.uk/glossary/",
       "type": "Open banking standard",
       "note": "AISP, PISP, ASPSP, VRP, TPP and open banking terms.",
-      "localFile": "/references/open-banking-uk-api-architecture.md",
-      "fileType": "SPEC",
-      "fileSize": "API Specification",
+      "localFile": "/references/open-banking-uk-api-architecture.pdf",
+      "fileType": "PDF",
+      "fileSize": "55 KB",
       "attachmentTitle": "Open Banking UK: Read/Write Data API Profile & Security Architecture"
     },
     {
@@ -228,9 +228,9 @@
       "url": "https://openid.net/wg/fapi/",
       "type": "Security standard",
       "note": "OAuth/OIDC/FAPI security patterns for high value APIs.",
-      "localFile": "/references/openid-fapi-security-profile.html",
-      "fileType": "SPEC",
-      "fileSize": "89 KB",
+      "localFile": "/references/openid-fapi-security-profile.pdf",
+      "fileType": "PDF",
+      "fileSize": "56 KB",
       "attachmentTitle": "OpenID Financial-grade API (FAPI 1.0 Advanced Security Profile)"
     },
     {
@@ -239,9 +239,9 @@
       "url": "https://www.iso20022.org/iso-20022-message-definitions",
       "type": "International standard",
       "note": "Financial message families and message identifiers.",
-      "localFile": "/references/iso-20022-financial-messaging-reference.md",
-      "fileType": "SPEC",
-      "fileSize": "Telegram Catalogue",
+      "localFile": "/references/iso-20022-financial-messaging-reference.pdf",
+      "fileType": "PDF",
+      "fileSize": "55 KB",
       "attachmentTitle": "ISO 20022 Interbank Financial Services Messaging Schemas"
     },
     {
@@ -250,9 +250,9 @@
       "url": "https://www.emvco.com/",
       "type": "Payment standards body",
       "note": "EMV, 3 D Secure and payment tokenisation.",
-      "localFile": "/references/emvco-3ds-tokenisation-reference.md",
-      "fileType": "SPEC",
-      "fileSize": "Protocol Specification",
+      "localFile": "/references/emvco-3ds-tokenisation-reference.pdf",
+      "fileType": "PDF",
+      "fileSize": "55 KB",
       "attachmentTitle": "EMVCo 3-D Secure 2.0 & Network Tokenisation Protocol Reference"
     },
     {
@@ -261,9 +261,9 @@
       "url": "https://www.consumerfinance.gov/consumer-tools/educator-tools/youth-financial-education/glossary/",
       "type": "Consumer finance regulator",
       "note": "Credit, lending and consumer financial terminology.",
-      "localFile": "/references/cfpb-consumer-financial-protection-framework.md",
-      "fileType": "SPEC",
-      "fileSize": "Regulatory Guidance",
+      "localFile": "/references/cfpb-consumer-financial-protection-framework.pdf",
+      "fileType": "PDF",
+      "fileSize": "55 KB",
       "attachmentTitle": "CFPB Consumer Financial Protection Framework & Regulation E"
     },
     {
@@ -272,9 +272,9 @@
       "url": "https://www.consumerfinance.gov/data-research/research-reports/the-buy-now-pay-later-market/",
       "type": "Consumer finance regulator",
       "note": "BNPL product structure and market metrics.",
-      "localFile": "/references/cfpb-bnpl-product-structure-reference.md",
-      "fileType": "SPEC",
-      "fileSize": "Market Analysis",
+      "localFile": "/references/cfpb-bnpl-product-structure-reference.pdf",
+      "fileType": "PDF",
+      "fileSize": "54 KB",
       "attachmentTitle": "CFPB Buy Now, Pay Later (BNPL) Underwriting & Product Structure"
     },
     {
@@ -285,7 +285,7 @@
       "note": "Capital, liquidity, credit, market and operational risk.",
       "localFile": "/references/basel-iii-framework-overview.pdf",
       "fileType": "PDF",
-      "fileSize": "175 KB",
+      "fileSize": "55 KB",
       "attachmentTitle": "Basel Committee on Banking Supervision (BCBS) Framework Overview"
     },
     {
@@ -294,9 +294,9 @@
       "url": "https://www.federalreserve.gov/paymentsystems.htm",
       "type": "Central bank",
       "note": "ACH, instant payments and US payment infrastructure.",
-      "localFile": "/references/fednow-settlement-rails-reference.md",
-      "fileType": "SPEC",
-      "fileSize": "Settlement Rules",
+      "localFile": "/references/fednow-settlement-rails-reference.pdf",
+      "fileType": "PDF",
+      "fileSize": "55 KB",
       "attachmentTitle": "Federal Reserve FedNow Service: Instant Payments Settlement Specification"
     },
     {
@@ -305,9 +305,9 @@
       "url": "https://developer.visa.com/pages/glossary",
       "type": "Card network reference",
       "note": "Issuer, acquirer, authorization, clearing and card processing.",
-      "localFile": "/references/visa-iso8583-integration-reference.md",
-      "fileType": "SPEC",
-      "fileSize": "Wire Specification",
+      "localFile": "/references/visa-iso8583-integration-reference.pdf",
+      "fileType": "PDF",
+      "fileSize": "55 KB",
       "attachmentTitle": "Visa Core Rules & ISO 8583 Dual-Message Processing Architecture"
     },
     {
@@ -318,7 +318,7 @@
       "note": "Mobile money, cash in/out and agent terminology.",
       "localFile": "/references/gsma-mobile-money-api-specification.pdf",
       "fileType": "PDF",
-      "fileSize": "267 KB",
+      "fileSize": "54 KB",
       "attachmentTitle": "GSMA Mobile Money API Specification & Interoperability Guidelines"
     },
     {
@@ -327,9 +327,9 @@
       "url": "https://www.elibrary.imf.org/view/journals/022/0062/003/article-A016-en.xml",
       "type": "International financial institution",
       "note": "Digital finance, nonbanks, tokenisation and crypto terminology.",
-      "localFile": "/references/imf-digital-money-policy-reference.md",
-      "fileType": "SPEC",
-      "fileSize": "Policy Document",
+      "localFile": "/references/imf-digital-money-policy-reference.pdf",
+      "fileType": "PDF",
+      "fileSize": "55 KB",
       "attachmentTitle": "IMF Digital Finance Lexicon: CBDC & Cross-Border Payment Architecture"
     },
     {
@@ -338,9 +338,9 @@
       "url": "https://help.coinbase.com/en/coinbase/getting-started/crypto-education/glossary",
       "type": "Industry reference",
       "note": "Common blockchain and crypto product terminology.",
-      "localFile": "/references/blockchain-consensus-ledger-lexicon.md",
-      "fileType": "SPEC",
-      "fileSize": "Consensus Lexicon",
+      "localFile": "/references/blockchain-consensus-ledger-lexicon.pdf",
+      "fileType": "PDF",
+      "fileSize": "54 KB",
       "attachmentTitle": "Distributed Ledger Consensus & Cryptographic State Machine Lexicon"
     },
     {
@@ -349,9 +349,9 @@
       "url": "https://www.cbi.ir/",
       "type": "Iran context",
       "note": "Iran specific terms are curated from common banking/payment usage; implementations and regulations should be checked against current CBI/Shaparak documents.",
-      "localFile": "/references/iranian-fintech-system-architecture-fa.md",
-      "fileType": "SPEC",
-      "fileSize": "National Blueprint",
+      "localFile": "/references/iranian-fintech-system-architecture-fa.pdf",
+      "fileType": "PDF",
+      "fileSize": "175 KB",
       "attachmentTitle": "Iranian Interbank Network & National Payment Architecture Specification"
     }
   ],

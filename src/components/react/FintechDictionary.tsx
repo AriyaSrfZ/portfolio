@@ -426,9 +426,10 @@ export default function FintechDictionary({ locale = 'en' }: FintechDictionaryPr
                           <a
                             key={sId}
                             href={src.localFile}
-                            download
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="inline-flex items-center gap-1 text-[9px] font-mono text-[#a78bfa] hover:text-white bg-[#a78bfa]/10 hover:bg-[#a78bfa]/20 border border-[#a78bfa]/20 px-1.5 py-0.5 rounded transition-colors"
-                            title={`Download ${src.name} (${src.fileSize})`}
+                            title={`View PDF: ${src.name} (${src.fileSize})`}
                             dir="ltr"
                           >
                             <span>📎 {src.id}</span>
@@ -526,7 +527,18 @@ export default function FintechDictionary({ locale = 'en' }: FintechDictionaryPr
                     </div>
 
                     <h4 className="text-sm font-bold text-white mb-1.5">
-                      {src.attachmentTitle || src.name}
+                      {src.localFile ? (
+                        <a
+                          href={src.localFile}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-[#38bdf8] transition-colors"
+                        >
+                          {src.attachmentTitle || src.name} ↗
+                        </a>
+                      ) : (
+                        src.attachmentTitle || src.name
+                      )}
                     </h4>
 
                     <p className="text-xs text-[#94a3b8] leading-relaxed mb-4">
@@ -546,16 +558,27 @@ export default function FintechDictionary({ locale = 'en' }: FintechDictionaryPr
                     </a>
 
                     {src.localFile && (
-                      <a
-                        href={src.localFile}
-                        download
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#10b981]/15 hover:bg-[#10b981]/25 text-[#10b981] border border-[#10b981]/30 font-semibold transition-all"
-                      >
-                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        <span>Download Spec</span>
-                      </a>
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={src.localFile}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-3 py-1 rounded bg-[#06b6d4]/15 hover:bg-[#06b6d4]/25 text-[#38bdf8] border border-[#06b6d4]/30 font-semibold transition-all"
+                        >
+                          <span>{isFa ? 'مشاهده سند ↗' : 'View PDF ↗'}</span>
+                        </a>
+                        <a
+                          href={src.localFile}
+                          download
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-neutral-300 border border-white/10 transition-all"
+                          title="Download PDF"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                          </svg>
+                          <span>PDF</span>
+                        </a>
+                      </div>
                     )}
                   </div>
                 </div>
