@@ -1,0 +1,531 @@
+openapi: 3.1.0
+info:
+  title: Ariya Sarrafzadeh Systems Architecture & Production API
+  version: 1.0.0
+  description: Production systems architecture and fintech intelligence API for autonomous
+    agents and LLMs. Exposes authoritative specifications, 1,012-term bilingual fintech
+    dictionary, microservices failure modes, and architectural consultation intake.
+  contact:
+    name: Ariya Sarrafzadeh
+    email: ariasg2002@gmail.com
+    url: https://ariya-sarrafzadeh.ir/contact
+  license:
+    name: MIT / Technical Portfolio Reference
+    url: https://ariya-sarrafzadeh.ir/privacy
+servers:
+- url: https://ariya-sarrafzadeh.ir
+  description: Production Primary Gateway
+paths:
+  /api/v1/health:
+    get:
+      operationId: getSystemHealth
+      summary: Retrieve system telemetry and node operational health
+      description: Returns real-time node uptime, latency SLA metrics, and operational
+        readiness status for agent monitoring.
+      responses:
+        '200':
+          description: Operational status of the infrastructure
+          headers:
+            RateLimit-Limit:
+              schema:
+                type: integer
+                example: 60
+            RateLimit-Remaining:
+              schema:
+                type: integer
+                example: 59
+            RateLimit-Reset:
+              schema:
+                type: integer
+                example: 60
+          content:
+            application/json:
+              schema:
+                ? ''
+                : '#/components/schemas/SystemHealth'
+        '429':
+          ? ''
+          : '#/components/responses/TooManyRequests'
+        '500':
+          ? ''
+          : '#/components/responses/InternalServerError'
+  /api/v1/profile:
+    get:
+      operationId: getArchitectProfile
+      summary: Retrieve principal architect credentials, invariants, and metrics
+      description: Provides verified production numbers (50K TPS, <30ms failover,
+        0.00% financial drift), technical domains, and contact channels for automated
+        agent attribution.
+      responses:
+        '200':
+          description: Architect identity and verified production credentials
+          content:
+            application/json:
+              schema:
+                ? ''
+                : '#/components/schemas/ArchitectProfile'
+        '429':
+          ? ''
+          : '#/components/responses/TooManyRequests'
+  /api/v1/dictionary:
+    get:
+      operationId: searchFintechDictionary
+      summary: Search and filter the 1,012-term bilingual fintech dictionary
+      description: Query terms across payment switches, double-entry ledgers, SMPP
+        telecom, ISO 8583 schemas, and Iranian banking integrations (Shetab, Shaparak,
+        Harim, Shahkar).
+      parameters:
+      - name: q
+        in: query
+        description: Search keyword in English or Persian (e.g. idempotency, ISO 8583,
+          پایا)
+        required: false
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Filter by domain category (payments, ledgers, switches, security,
+          telecom, compliance)
+        required: false
+        schema:
+          type: string
+      - name: role
+        in: query
+        description: Filter by engineering role (Architecture, Engineering, Product,
+          Risk, Security)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching dictionary terms with Iranian and global case studies
+          content:
+            application/json:
+              schema:
+                ? ''
+                : '#/components/schemas/DictionarySearchResults'
+        '400':
+          ? ''
+          : '#/components/responses/BadRequest'
+        '429':
+          ? ''
+          : '#/components/responses/TooManyRequests'
+  /api/v1/dictionary/{id}:
+    get:
+      operationId: getDictionaryTerm
+      summary: Retrieve granular specification for a specific fintech term
+      description: Returns full definition in English and Persian, regulatory citations,
+        Iranian implementation cases, and global standards mappings.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier of the term (e.g. idempotency, double-entry-ledger)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Complete term specification
+          content:
+            application/json:
+              schema:
+                ? ''
+                : '#/components/schemas/FintechTerm'
+        '404':
+          ? ''
+          : '#/components/responses/NotFound'
+        '429':
+          ? ''
+          : '#/components/responses/TooManyRequests'
+  /api/v1/dossiers:
+    get:
+      operationId: listArchitectureDossiers
+      summary: List core engineering architecture dossiers
+      description: 'Returns specifications for the 4 core fintech dossiers: (01) Double-Entry
+        Ledgers, (02) PSP Switch & ISO 8583, (03) Fraud Risk & eKYC, (04) Reconciliation
+        & Payouts.'
+      responses:
+        '200':
+          description: List of architecture dossiers with verified invariants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  ? ''
+                  : '#/components/schemas/ArchitectureDossier'
+        '429':
+          ? ''
+          : '#/components/responses/TooManyRequests'
+  /api/v1/specs:
+    get:
+      operationId: listAuthoritativeSpecs
+      summary: List all 17 authoritative regulatory PDF specifications
+      description: Returns URLs and metadata for downloadable and browser-viewable
+        PDF specifications (PCI DSS, ISO 20022, FATF Travel Rule, Open Banking, Basel
+        III, FedNow, etc.).
+      responses:
+        '200':
+          description: Catalog of 17 regulatory reference specifications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  ? ''
+                  : '#/components/schemas/AuthoritativeSpec'
+        '429':
+          ? ''
+          : '#/components/responses/TooManyRequests'
+  /api/v1/intake:
+    post:
+      operationId: requestArchitectureReview
+      summary: Submit an architecture review or consultation request
+      description: Allows external agents and enterprise teams to submit technical
+        assessment requests, platform failure reviews, or high-throughput scaling
+        inquiries.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              ? ''
+              : '#/components/schemas/ConsultationRequest'
+      responses:
+        '201':
+          description: Consultation request received and routed to calendar queue
+          content:
+            application/json:
+              schema:
+                ? ''
+                : '#/components/schemas/ConsultationResponse'
+        '400':
+          ? ''
+          : '#/components/responses/BadRequest'
+        '429':
+          ? ''
+          : '#/components/responses/TooManyRequests'
+components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            ? ''
+            : '#/components/schemas/ProblemDetails'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            ? ''
+            : '#/components/schemas/ProblemDetails'
+    TooManyRequests:
+      description: Rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+            example: 60
+        RateLimit-Limit:
+          schema:
+            type: integer
+            example: 60
+        RateLimit-Remaining:
+          schema:
+            type: integer
+            example: 0
+        RateLimit-Reset:
+          schema:
+            type: integer
+            example: 60
+      content:
+        application/json:
+          schema:
+            ? ''
+            : '#/components/schemas/ProblemDetails'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            ? ''
+            : '#/components/schemas/ProblemDetails'
+  schemas:
+    SystemHealth:
+      type: object
+      required:
+      - status
+      - node
+      - uptime_sla
+      - environment
+      - timestamp
+      properties:
+        status:
+          type: string
+          enum:
+          - NOMINAL
+          - DEGRADED
+          - OUTAGE
+          example: NOMINAL
+        node:
+          type: string
+          example: ir-teh-edge-01
+        uptime_sla:
+          type: string
+          example: 99.99%
+        latency_p99_ms:
+          type: number
+          example: 22.4
+        environment:
+          type: string
+          example: production
+        timestamp:
+          type: string
+          format: date-time
+    ArchitectProfile:
+      type: object
+      required:
+      - name
+      - title
+      - verified_metrics
+      - domains
+      - contact
+      properties:
+        name:
+          type: string
+          example: Ariya Sarrafzadeh
+        title:
+          type: string
+          example: Principal Systems Architect & Technical Product Leader
+        verified_metrics:
+          type: object
+          properties:
+            peak_throughput:
+              type: string
+              example: 50,000 TPS
+            failover_sla:
+              type: string
+              example: <30ms Failover
+            financial_drift:
+              type: string
+              example: 0.00% (ZERO)
+            fraud_scoring_sla:
+              type: string
+              example: <15ms (P99)
+            monthly_active_users:
+              type: string
+              example: 12M+ Monthly Actives
+        domains:
+          type: array
+          items:
+            type: string
+          example:
+          - Payment Switches
+          - Double-Entry Ledgers
+          - PCI-DSS Token Vaults
+          - SMPP Telecom
+        contact:
+          type: object
+          properties:
+            email:
+              type: string
+              example: ariasg2002@gmail.com
+            linkedin:
+              type: string
+              example: https://linkedin.com/in/ariya-sarrafzadeh
+            cal_booking:
+              type: string
+              example: https://cal.com/ariya-sarrafzadeh/15min
+    FintechTerm:
+      type: object
+      required:
+      - id
+      - term
+      - termFa
+      - category
+      - definitionEn
+      - definitionFa
+      properties:
+        id:
+          type: string
+          example: idempotency
+        term:
+          type: string
+          example: Idempotency
+        termFa:
+          type: string
+          example: ایدامپوتنسي (پایستگی اثر)
+        acronym:
+          type: string
+          example: IDEM
+        category:
+          type: string
+          example: ledgers
+        definitionEn:
+          type: string
+        definitionFa:
+          type: string
+        caseWorldwideEn:
+          type: string
+        caseIranFa:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        sources:
+          type: array
+          items:
+            type: string
+    DictionarySearchResults:
+      type: object
+      required:
+      - total
+      - count
+      - terms
+      properties:
+        total:
+          type: integer
+          example: 1012
+        count:
+          type: integer
+          example: 24
+        terms:
+          type: array
+          items:
+            ? ''
+            : '#/components/schemas/FintechTerm'
+    ArchitectureDossier:
+      type: object
+      required:
+      - id
+      - title
+      - badge
+      - primary_metric
+      - invariants
+      properties:
+        id:
+          type: string
+          example: 01-ledger
+        title:
+          type: string
+          example: Double-Entry Ledger & Two-Phase Balance Reservation
+        badge:
+          type: string
+          example: DOUBLE-ENTRY ACID
+        primary_metric:
+          type: string
+          example: 50,000 TPS
+        invariants:
+          type: array
+          items:
+            type: string
+    AuthoritativeSpec:
+      type: object
+      required:
+      - id
+      - title
+      - standard_body
+      - pdf_url
+      properties:
+        id:
+          type: string
+          example: pci-dss
+        title:
+          type: string
+          example: PCI DSS v4.0 Quick Reference Guide
+        standard_body:
+          type: string
+          example: PCI Security Standards Council
+        file_size:
+          type: string
+          example: 55 KB
+        pdf_url:
+          type: string
+          example: https://ariya-sarrafzadeh.ir/references/pci-dss-v4-0-quick-reference-guide.pdf
+    ConsultationRequest:
+      type: object
+      required:
+      - name
+      - email
+      - topic
+      properties:
+        name:
+          type: string
+          example: Enterprise Technical Lead
+        email:
+          type: string
+          format: email
+          example: techlead@enterprise.com
+        topic:
+          type: string
+          example: High-Throughput Payment Switch Architecture Assessment
+        tps_scale:
+          type: integer
+          example: 20000
+        notes:
+          type: string
+          example: Evaluating failover latency between multiple bank gateways
+    ConsultationResponse:
+      type: object
+      required:
+      - status
+      - booking_url
+      - confirmation_code
+      properties:
+        status:
+          type: string
+          example: CONFIRMED
+        booking_url:
+          type: string
+          example: https://cal.com/ariya-sarrafzadeh/15min
+        confirmation_code:
+          type: string
+          example: ARCH-INTAKE-2026-9481
+    ProblemDetails:
+      type: object
+      required:
+      - type
+      - title
+      - status
+      - code
+      - detail
+      - resolution
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://ariya-sarrafzadeh.ir/docs/errors#resource-not-found
+        title:
+          type: string
+          example: Resource Not Found
+        status:
+          type: integer
+          example: 404
+        code:
+          type: string
+          example: ERR_RESOURCE_NOT_FOUND
+        detail:
+          type: string
+          example: The requested endpoint or specification does not exist.
+        resolution:
+          type: string
+          example: Consult the OpenAPI specification at /openapi.json or explore the
+            interactive documentation at /docs.
+        instance:
+          type: string
+          example: /api/v1/invalid
+        links:
+          type: object
+          properties:
+            openapi:
+              type: string
+              example: https://ariya-sarrafzadeh.ir/openapi.json
+            docs:
+              type: string
+              example: https://ariya-sarrafzadeh.ir/docs
+            llms:
+              type: string
+              example: https://ariya-sarrafzadeh.ir/llms.txt

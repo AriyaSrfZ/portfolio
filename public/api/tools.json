@@ -1,0 +1,80 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "searchFintechDictionary",
+      "description": "Search 1,012 authoritative fintech engineering terms with definitions, Iranian market implementations (Shetab, Shaparak, Harim, Shahkar) and global production case studies.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Keyword in English or Persian (e.g. idempotency, ISO 8583, \u067e\u0627\u06cc\u0627)"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "payments",
+              "ledgers",
+              "switches",
+              "security",
+              "telecom",
+              "compliance"
+            ],
+            "description": "Domain category filter"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "getArchitectureDossier",
+      "description": "Retrieve verified production architecture invariants, state machines, and failover specs for high-throughput fintech infrastructure.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "dossier_id": {
+            "type": "string",
+            "enum": [
+              "01-ledger",
+              "02-switch",
+              "03-fraud",
+              "04-recon"
+            ],
+            "description": "Dossier identifier"
+          }
+        },
+        "required": [
+          "dossier_id"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "getArchitectProfile",
+      "description": "Retrieve verified production credentials, engineering invariants (50K TPS, <30ms failover, 0.00% drift), and contact information for Ariya Sarrafzadeh.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "getSystemHealth",
+      "description": "Check operational readiness, latency SLAs, and telemetry status of the platform.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+]

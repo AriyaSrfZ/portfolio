@@ -11,17 +11,95 @@ interface Props {
   theme?: string;
   lang?: string;
   dir?: 'ltr' | 'rtl';
+  image?: string;
 }
 
 const { 
   title, 
-  description = 'Ariya Sarrafzadeh | Systems Architect & Infrastructure Engineer',
+  description = 'Ariya Sarrafzadeh | Systems Architect & Infrastructure Engineer specializing in Iranian fintech switches, double-entry ledgers, and telecom routing.',
   theme = 'rugged',
   lang = 'en',
-  dir = lang === 'fa' ? 'rtl' : 'ltr'
+  dir = lang === 'fa' ? 'rtl' : 'ltr',
+  image = '/diagrams/double-entry-ledger-schematic.svg'
 } = Astro.props;
 
 const isFa = lang === 'fa';
+const siteUrl = 'https://ariya-sarrafzadeh.ir';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL(image, siteUrl).href;
+
+const jsonLdPerson = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ariya-sarrafzadeh.ir/#person",
+      "name": "Ariya Sarrafzadeh",
+      "alternateName": "آریا صراف‌زاده",
+      "jobTitle": "Principal Systems Architect & Technical Product Manager",
+      "description": "Architect of high-throughput payment switches, double-entry accounting ledgers, and telecom infrastructure.",
+      "url": "https://ariya-sarrafzadeh.ir",
+      "email": "ariasg2002@gmail.com",
+      "sameAs": [
+        "https://github.com/ariasg2002",
+        "https://www.linkedin.com/in/ariya-sarrafzadeh/",
+        "https://t.me/ariasg2002"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tehran",
+        "addressCountry": "IR"
+      },
+      "knowsAbout": [
+        "Payment Switch Architecture",
+        "ISO 8583 Protocol",
+        "Double-Entry Accounting Ledgers",
+        "Multi-Bank Financial Reconciliation",
+        "eKYC & Identity Verification",
+        "SMPP Telecom Gateways",
+        "Distributed Systems & Raft Consensus"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ariya-sarrafzadeh.ir/#website",
+      "url": "https://ariya-sarrafzadeh.ir",
+      "name": "Ariya Sarrafzadeh — Systems Architecture & Engineering Portfolio",
+      "publisher": { "@id": "https://ariya-sarrafzadeh.ir/#person" },
+      "inLanguage": ["en", "fa"]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "isPartOf": { "@id": "https://ariya-sarrafzadeh.ir/#website" },
+      "about": { "@id": "https://ariya-sarrafzadeh.ir/#person" },
+      "inLanguage": lang
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ariya-sarrafzadeh.ir/#organization",
+      "name": "Ariya Sarrafzadeh Systems Engineering",
+      "url": "https://ariya-sarrafzadeh.ir",
+      "logo": "https://ariya-sarrafzadeh.ir/favicon.svg",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "email": "ariasg2002@gmail.com",
+          "contactType": "technical support and enterprise consultation",
+          "availableLanguage": ["English", "Persian"]
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tehran",
+        "addressCountry": "IR"
+      }
+    }
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -30,9 +108,38 @@ const isFa = lang === 'fa';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
   <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:locale" content={isFa ? 'fa_IR' : 'en_US'} />
+  <meta property="og:site_name" content="Ariya Sarrafzadeh Portfolio" />
+
+  <!-- Twitter Meta Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonicalUrl} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+
+  <!-- Autonomous Agent & API Discovery Links -->
+  <link rel="alternate" type="text/markdown" href={`${siteUrl}/index.md`} title="Markdown Edition" />
+  <link rel="service-desc" type="application/vnd.oai.openapi+json" href={`${siteUrl}/openapi.json`} title="OpenAPI 3.1 Specification" />
+  <link rel="api-catalog" href={`${siteUrl}/openapi.json`} />
+  <link rel="author" href={`${siteUrl}/about/`} />
+  <link rel="help" href={`${siteUrl}/docs/`} />
+  <link rel="privacy-policy" href={`${siteUrl}/privacy/`} />
+
+  <!-- JSON-LD Structured Data Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdPerson)} />
+
   <Analytics />
 </head>
 <body class="min-h-screen bg-transparent text-[#ededed] selection:bg-white/10 selection:text-white font-sans antialiased overflow-x-hidden">
@@ -55,12 +162,42 @@ const isFa = lang === 'fa';
     <slot />
   </div>
 
-  <footer class="relative z-10 border-t border-white/[0.07] mt-24 py-12 px-6 text-center text-xs text-[#94a3b8] uppercase tracking-wider font-mono">
-    {isFa ? (
-      <p>© {new Date().getFullYear()} آریا صراف‌زاده · کلیه سامانه‌ها عملیاتی</p>
-    ) : (
-      <p>© {new Date().getFullYear()} Ariya Sarrafzadeh · NODE: NOMINAL · PRODUCTION READY</p>
-    )}
+  <footer class="relative z-10 border-t border-white/[0.07] mt-24 py-12 px-6 font-mono text-xs text-[#94a3b8]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex flex-col items-center md:items-start gap-1">
+        {isFa ? (
+          <p class="text-white font-semibold">© {new Date().getFullYear()} آریا صراف‌زاده · کلیه سامانه‌ها عملیاتی</p>
+        ) : (
+          <p class="text-white font-semibold">© {new Date().getFullYear()} Ariya Sarrafzadeh · NODE: NOMINAL · PRODUCTION READY</p>
+        )}
+        <p class="text-[11px] text-neutral-400">
+          Fintech &amp; Telecom Systems Engineering · Tehran, Iran
+        </p>
+      </div>
+
+      <!-- Quick Trust & Agent Links -->
+      <div class="flex flex-wrap items-center justify-center gap-4 text-[11px]">
+        <a href={`${import.meta.env.BASE_URL}docs/`} class="hover:text-white transition-colors">
+          {isFa ? 'مستندات API' : 'API Docs'}
+        </a>
+        <span>·</span>
+        <a href={`${import.meta.env.BASE_URL}contact/`} class="hover:text-white transition-colors">
+          {isFa ? 'تماس و مشاوره' : 'Contact'}
+        </a>
+        <span>·</span>
+        <a href={`${import.meta.env.BASE_URL}privacy/`} class="hover:text-white transition-colors">
+          {isFa ? 'حریم خصوصی' : 'Privacy'}
+        </a>
+        <span>·</span>
+        <a href={`${import.meta.env.BASE_URL}openapi.json`} target="_blank" rel="noopener noreferrer" class="text-[#38bdf8] hover:text-[#06b6d4] transition-colors">
+          OpenAPI
+        </a>
+        <span>·</span>
+        <a href={`${import.meta.env.BASE_URL}llms.txt`} target="_blank" rel="noopener noreferrer" class="text-[#10b981] hover:text-[#34d399] transition-colors">
+          llms.txt
+        </a>
+      </div>
+    </div>
   </footer>
 
   <script>

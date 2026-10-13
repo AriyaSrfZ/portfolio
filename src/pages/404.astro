@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<Layout
+  title="404: Resource Not Found — Ariya Sarrafzadeh"
+  description="Requested resource is missing or deprecated. RFC 7807 problem details and alternative navigation links."
+>
+  <main class="max-w-2xl mx-auto px-6 pt-32 pb-24 text-center font-sans">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 font-mono text-xs mb-6">
+      <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+      <span>HTTP 404 · RESOURCE_NOT_FOUND</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-6xl font-bold font-mono text-white mb-4 tracking-tight">
+      404
+    </h1>
+    <p class="text-sm sm:text-base text-[#94a3b8] mb-8 leading-relaxed max-w-lg mx-auto">
+      The URI you requested does not correspond to an active route. If you are an autonomous agent querying our system, inspect the machine-readable catalog or RFC 7807 problem details below.
+    </p>
+
+    <!-- Machine Action Links -->
+    <div class="flex flex-wrap items-center justify-center gap-3 font-mono text-xs mb-10">
+      <a
+        href={baseUrl}
+        class="px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold transition-all inline-flex items-center gap-2"
+      >
+        <span>&larr; Homepage</span>
+      </a>
+      <a
+        href={`${baseUrl}docs/`}
+        class="px-4 py-2.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/20 text-[#cbd5e1] hover:text-white transition-all"
+      >
+        Developer Docs
+      </a>
+      <a
+        href={`${baseUrl}api/v1/404.json`}
+        class="px-4 py-2.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/20 text-[#38bdf8] hover:text-[#06b6d4] transition-all"
+      >
+        RFC 7807 JSON
+      </a>
+      <a
+        href={`${baseUrl}llms.txt`}
+        class="px-4 py-2.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/20 text-[#10b981] hover:text-[#34d399] transition-all"
+      >
+        llms.txt
+      </a>
+    </div>
+
+    <!-- Diagnostic snippet -->
+    <div class="bg-[#090a0c]/80 border border-white/10 rounded-xl p-4 text-left font-mono text-[11px] text-neutral-400">
+      <div class="text-[#38bdf8] mb-1">// RFC 7807 Problem Details Response</div>
+      <div class="text-neutral-500">&#123;</div>
+      <div class="pl-4 text-neutral-300">"type": "https://ariya-sarrafzadeh.ir/errors/resource-not-found",</div>
+      <div class="pl-4 text-neutral-300">"title": "Resource Not Found",</div>
+      <div class="pl-4 text-neutral-300">"status": 404,</div>
+      <div class="pl-4 text-neutral-300">"detail": "The requested endpoint does not exist. Check /openapi.json for active operations."</div>
+      <div class="text-neutral-500">&#125;</div>
+    </div>
+  </main>
+</Layout>

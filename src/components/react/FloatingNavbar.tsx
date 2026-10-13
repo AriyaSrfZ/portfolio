@@ -206,6 +206,12 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
             <a href={isFa ? `${baseUrl}fa/about/` : `${baseUrl}about/`} className="text-neutral-400 hover:text-white">
               {isFa ? 'درباره من' : 'About'}
             </a>
+            <a href={`${baseUrl}docs/`} className="text-neutral-400 hover:text-white">
+              {isFa ? 'مستندات API' : 'Docs'}
+            </a>
+            <a href={isFa ? `${baseUrl}fa/contact/` : `${baseUrl}contact/`} className="text-neutral-400 hover:text-white">
+              {isFa ? 'تماس' : 'Contact'}
+            </a>
           </div>
         </div>
       )}

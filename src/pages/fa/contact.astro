@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<Layout
+  title="تماس و مشاوره معماری سیستم‌ها — آریا صراف‌زاده"
+  description="کانال‌های ارتباط مستقیم، رزرو جلسه بررسی معماری، راه‌های ارتباطی ایمیل و لینکدین، و چارچوب همکاری فنی با آریا صراف‌زاده."
+  lang="fa"
+  dir="rtl"
+>
+  <main class="max-w-4xl mx-auto px-6 pt-24 pb-20 font-['Vazirmatn',sans-serif]" dir="rtl">
+    <!-- Top Breadcrumb -->
+    <div class="flex items-center gap-2 mb-6 font-mono text-xs text-neutral-400">
+      <a href={`${baseUrl}fa/`} class="hover:text-white transition-colors">صفحه اصلی</a>
+      <span>/</span>
+      <span class="text-neutral-200">تماس و مشاوره معماری</span>
+      <span>/</span>
+      <a href={`${baseUrl}contact/`} class="ms-auto text-[#06b6d4] hover:text-[#38bdf8] flex items-center gap-1 transition-colors font-sans">
+        <span>English</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl ring-1 ring-white/[0.03]">
+      <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider mb-2">
+        <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
+        <span>درگاه ارتباطی و بررسی معماری سیستم‌های بانکی و مخابراتی</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[#ededed] mb-3 tracking-tight">
+        تماس و مشاوره فنی معماری
+      </h1>
+      <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl">
+        کانال‌های ارتباط مستقیم جهت ارزیابی معماری پلتفرم‌های پرداخت و بانکی، سنجش تاب‌آوری سوییچ‌های مالی و پیامکی، بررسی حالات خرابی و رهبری تیم‌های فنی محصول در مقیاس سازمانی.
+      </p>
+    </div>
+
+    <!-- Direct Channels Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <!-- Direct Email -->
+      <div class="bg-[#090a0c]/80 border border-white/[0.07] hover:border-white/20 rounded-xl p-5 flex flex-col justify-between transition-all">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-[#06b6d4] mb-2">
+            <span>ایمیل مستقیم</span>
+            <span>پاسخگویی زیر ۲۴ ساعت</span>
+          </div>
+          <h2 class="text-base font-bold text-white mb-1">مکاتبه مستقیم الکترونیکی</h2>
+          <p class="text-xs text-[#94a3b8] leading-relaxed mb-4">
+            درگاه اصلی جهت ارسال اسناد نیازمندی‌های معماری (RFP)، ممیزی خصوصی زیرساخت و بررسی‌های محرمانه سیستم‌های مالی.
+          </p>
+        </div>
+        <a
+          href="mailto:ariasg2002@gmail.com"
+          class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-semibold transition-all"
+          dir="ltr"
+        >
+          <span>ariasg2002@gmail.com</span>
+          <span>&larr;</span>
+        </a>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="bg-[#090a0c]/80 border border-white/[0.07] hover:border-white/20 rounded-xl p-5 flex flex-col justify-between transition-all">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-[#38bdf8] mb-2">
+            <span>شبکه حرفه‌ای</span>
+            <span>هویت تاییدشده</span>
+          </div>
+          <h2 class="text-base font-bold text-white mb-1">پروفایل لینکدین</h2>
+          <p class="text-xs text-[#94a3b8] leading-relaxed mb-4">
+            سوابق حرفه‌ای، انتشارات تخصصی اکوسیستم پرداخت، توصیه‌نامه‌ها و ارتباط کاری در بستر لینکدین.
+          </p>
+        </div>
+        <a
+          href="https://linkedin.com/in/ariya-sarrafzadeh"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#0077b5]/20 hover:bg-[#0077b5]/30 text-[#38bdf8] border border-[#0077b5]/40 font-mono text-xs font-semibold transition-all"
+          dir="ltr"
+        >
+          <span>linkedin.com/in/ariya-sarrafzadeh</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Operating Window & Calendar Scheduling -->
+    <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl ring-1 ring-white/[0.03]">
+      <div class="flex items-center justify-between border-b border-white/[0.06] pb-3 mb-5">
+        <div class="flex items-center gap-2 font-mono text-xs text-[#d97706] uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-[#d97706]"></span>
+          <span>رزرو زمان ارزیابی معماری</span>
+        </div>
+        <span class="text-[10px] font-mono text-neutral-400 bg-white/[0.04] px-2 py-0.5 rounded border border-white/[0.08]">
+          CAL.COM SCHEDULING
+        </span>
+      </div>
+      <h2 class="text-lg sm:text-xl font-bold text-white mb-2">انتخاب بازه زمانی ارزیابی فنی پلتفرم</h2>
+      <p class="text-xs sm:text-sm text-[#94a3b8] leading-relaxed mb-6">
+        یک بازه زمانی ۱۵ دقیقه‌ای برای ارزیابی معماری پلتفرم‌های پرداخت، سوییچ مخابراتی، و سناریوهای مهار بحران انتخاب کنید.
+      </p>
+      
+      <div class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-4 sm:p-6 overflow-hidden" dir="ltr">
+        <div id="cal-inline" class="w-full min-h-[500px]"></div>
+      </div>
+    </div>
+
+    <!-- Geographic & Legal Context -->
+    <div class="bg-[#090a0c]/80 border border-white/[0.07] rounded-2xl p-6 font-mono text-xs space-y-3">
+      <div class="text-[#06b6d4] font-semibold uppercase tracking-wider">مشخصات هویتی و بستر جغرافیایی</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#94a3b8]">
+        <div>
+          <span class="text-neutral-400 block text-[11px] uppercase">منطقه استقرار</span>
+          <span class="text-white font-semibold">تهران، ایران (UTC+03:30)</span>
+        </div>
+        <div>
+          <span class="text-neutral-400 block text-[11px] uppercase">تخصص اکوسیستم ملی</span>
+          <span class="text-white font-semibold">بانک مرکزی، شاپرک، شتاب، پایا، ساتنا، حریم، شاهکار</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script is:inline>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "15min", {origin: "https://cal.com"});
+  Cal.ns["15min"]("inline", {
+    elementOrSelector: "#cal-inline",
+    config: {"layout":"month_view"},
+    calLink: "ariya-sarrafzadeh/15min",
+  });
+  Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+</script>

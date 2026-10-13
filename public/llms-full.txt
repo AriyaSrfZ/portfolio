@@ -1,0 +1,66 @@
+# Ariya Sarrafzadeh — Comprehensive Systems Architecture Intelligence & Production Specifications
+
+Principal Systems Architect & Technical Product Leader
+Production Systems: https://ariya-sarrafzadeh.ir
+Email: ariasg2002@gmail.com
+Location: Tehran, Iran
+
+---
+
+## 1. Executive Summary & Production Metric Invariants
+
+- **Peak Throughput:** 50,000 TPS under extreme concurrency with sub-25ms latency.
+- **Failover SLA:** <30ms automated circuit failover across 4 national PSP gateways.
+- **Ledger Invariant:** 0.00% financial drift across 50,000+ daily clearing batches.
+- **Fraud Risk SLA:** <15ms (P99) scoring loop across multi-hop Neo4j graph clusters.
+- **Scale:** 12M+ monthly active users supported across payment and SMS infrastructure.
+
+---
+
+## 2. Core Architectural Dossiers
+
+### Dossier 01: Double-Entry ACID Ledgers & Balance Reservation State Machine
+- **Invariant:** Mathematical single source of truth where Sum(Debits) - Sum(Credits) = 0 across ScyllaDB append-only fact logs and PostgreSQL transactional ledgers.
+- **State Progression:** Ephemeral two-phase reservation machine: AVAILABLE -> RESERVED -> COMMITTED / ROLLED_BACK. Balances are locked in-memory via Redis SETNX mutexes (15,000ms TTL) with a 24h replay window (86,400s) to eliminate double-spend attempts.
+- **Failure Recovery:** Upstream bank webhook disconnects trigger Transactional Outbox CDC event replay and automatic uncaptured authorization rollbacks.
+
+### Dossier 02: Smart PSP Switch & Dynamic Weighted Routing Engine (ISO 8583)
+- **Protocol:** Unpacks ISO 8583 MTI 0100/0200 financial telegrams, extracting STAN, RRN, and terminal authentication headers in real time.
+- **Gateway Distribution:** Routes traffic dynamically across 4 national PSPs (SEP, PEC, BPM, PEP) using sliding-window P99 latency and health scoring, achieving a +14% conversion lift.
+- **Failover:** Automated circuit breakers isolate degraded upstream banks in <30ms, dispatching MTI 0400 reversal messages on timeout.
+
+### Dossier 03: Forensic Fraud Mitigation, eKYC & Zero-Storage Token Vault
+- **Card Security:** Strict PCI-DSS zero-storage compliance. Raw PAN is replaced with high-entropy opaque UUID tokens. Ephemeral CVV2 codes maintain an exact 0.00s zero-retention policy post-authorization.
+- **National eKYC:** Cryptographically queries Shahkar (SIM-to-National-ID) APIs, matching SIM issuance timestamps against Harim OTP requests to eliminate SIM-swap fraud.
+- **Graph Traversal:** Neo4j graph algorithms calculate risk vectors [0.00, 1.00] in <15ms, reducing financial fraud drain by 94% while maintaining frictionless checkouts for >92% of legitimate users via 3DS 2.0 biometric liability shifts.
+
+### Dossier 04: Multi-Pass Reconciliation & Early Merchant Settlement
+- **Mesh Architecture:** Event-driven pipeline capturing end-state RabbitMQ events feeding Spring Batch nightly workers.
+- **3-Way Matching:** Cross-references internal ledgers, PSP transaction logs, and Shaparak/Bank clearing statements against RRN and STAN with 100% mathematical parity.
+- **Automated Payouts:** Disburses early merchant settlements in 24h via Paya/Satna ACH batches with automated dynamic fee deduction: Fee = Amount * (r_base + d * r_daily). Auto-healing Refund-MNG reverses uncaptured charges, eliminating 100% of manual reconciliation overhead.
+
+---
+
+## 3. Bilingual Fintech Lexicon & Authoritative Sources
+
+The platform hosts an authoritative dictionary of 1,012 technical terms across:
+1. Core Payment Rails & Messaging (ISO 8583, ISO 20022, Shetab, Shaparak, Paya, Satna)
+2. Distributed Concurrency & Ledgers (Double-Entry, Redis SETNX, Raft, Outbox Pattern)
+3. Fraud, eKYC & Risk Forensics (Shahkar, Harim OTP, 3DS 2.0, Graph Analytics)
+4. Telecommunication Switches & Aggregators (SMPP v3.4, GSM-7, UCS-2, Kavenegar routing)
+5. Regulatory Compliance & Banking Capital (PCI-DSS, FATF Recommendation 16, Basel III, FAPI 1.0)
+
+Every term includes English and Persian definitions, Iranian fintech production cases, and global standards citations.
+
+---
+
+## 4. API Endpoints for Agents
+
+- `GET https://ariya-sarrafzadeh.ir/openapi.json`: OpenAPI 3.1 schema.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/health.json`: System telemetry & operational status.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/profile.json`: Verified credentials & metrics.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/dossiers.json`: Full engineering dossiers.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/specs.json`: 17 regulatory reference PDFs.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/dictionary.json`: Complete 1,012-term fintech dictionary.
+- `GET https://ariya-sarrafzadeh.ir/api/tools.json`: OpenAI / Claude tool calling schemas.
+- `POST https://ariya-sarrafzadeh.ir/api/v1/intake`: Architecture review consultation request.
