@@ -1,0 +1,254 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const endpoints = [
+  {
+    path: '/api/v1/health.json',
+    method: 'GET',
+    operationId: 'getSystemHealth',
+    desc: 'Liveness, readiness, uptime, and edge node health telemetry.',
+    auth: 'None (Public)'
+  },
+  {
+    path: '/api/v1/profile.json',
+    method: 'GET',
+    operationId: 'getArchitectProfile',
+    desc: 'Principal architect biography, core competencies, verified contact channels.',
+    auth: 'None (Public)'
+  },
+  {
+    path: '/api/v1/dictionary.json',
+    method: 'GET',
+    operationId: 'searchFintechDictionary',
+    desc: 'Curated 70+ fintech & telecom infrastructure terms with Iranian regulatory mappings.',
+    auth: 'None (Public)'
+  },
+  {
+    path: '/api/v1/dossiers.json',
+    method: 'GET',
+    operationId: 'listArchitectureDossiers',
+    desc: 'Production incident post-mortems, root-cause analyses, and mitigation patterns.',
+    auth: 'None (Public)'
+  },
+  {
+    path: '/api/v1/specs.json',
+    method: 'GET',
+    operationId: 'listAuthoritativeSpecs',
+    desc: 'Authoritative engineering specifications for payment switches, ledgers, and eKYC.',
+    auth: 'None (Public)'
+  },
+  {
+    path: '/api/v1/error.json',
+    method: 'GET',
+    operationId: 'getErrorSample',
+    desc: 'Standard RFC 7807 Problem Details error response template.',
+    auth: 'None (Public)'
+  }
+];
+
+const manifests = [
+  {
+    name: 'OpenAPI 3.1 Specification (JSON)',
+    path: '/openapi.json',
+    type: 'application/json',
+    desc: 'Canonical machine-readable API definition with 8 operations and complete schemas.'
+  },
+  {
+    name: 'OpenAPI 3.1 Specification (YAML)',
+    path: '/openapi.yaml',
+    type: 'application/yaml',
+    desc: 'YAML mirror of the OpenAPI schema for Swagger UI and CLI tooling.'
+  },
+  {
+    name: 'Agent Tools Manifest (Function Calling)',
+    path: '/api/tools.json',
+    type: 'application/json',
+    desc: 'OpenAI / Anthropic tool-calling schema definitions ready for LLM function execution.'
+  },
+  {
+    name: 'Agent Context (llms.txt)',
+    path: '/llms.txt',
+    type: 'text/plain',
+    desc: 'Standard llmstxt.org brief agent summary and authoritative link directory.'
+  },
+  {
+    name: 'Deep System Context (llms-full.txt)',
+    path: '/llms-full.txt',
+    type: 'text/plain',
+    desc: 'Complete architectural blueprints, throughput figures, and system limits for LLMs.'
+  },
+  {
+    name: 'Homepage Markdown Feed',
+    path: '/index.md',
+    type: 'text/markdown',
+    desc: 'Direct markdown alternative to the HTML homepage for text-only agent ingestion.'
+  },
+  {
+    name: 'Agent-to-Agent Manifest',
+    path: '/.well-known/agent.json',
+    type: 'application/json',
+    desc: 'A2A discovery manifest declaring autonomous agent protocols and capabilities.'
+  }
+];
+---
+
+<Layout
+  title="Developer Portal & API Quickstart — Ariya Sarrafzadeh"
+  description="Developer portal, machine-readable OpenAPI 3.1 documentation, LLM tool manifests, function calling schemas, sandbox endpoints, and CLI tooling for Ariya Sarrafzadeh's infrastructure."
+>
+  <main class="max-w-5xl mx-auto px-6 pt-24 pb-20 font-sans">
+    <!-- Breadcrumb -->
+    <div class="flex items-center gap-2 mb-6 font-mono text-xs text-neutral-400">
+      <a href={baseUrl} class="hover:text-white transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-neutral-200">Developer Portal</span>
+    </div>
+
+    <!-- Header Section -->
+    <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl ring-1 ring-white/[0.03]">
+      <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider mb-2">
+        <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
+        <span>DEVELOPER PORTAL &amp; AGENT PROTOCOLS</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[#ededed] mb-3 tracking-tight">
+        Developer Portal &amp; API Reference
+      </h1>
+      <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl">
+        This platform exposes fully documented, machine-readable interfaces for autonomous agents, LLM tool runners, and technical evaluators. Every endpoint follows OpenAPI 3.1, RFC 7807 problem details, and standard HTTP rate-limiting headers.
+      </p>
+      <div class="mt-4 pt-4 border-t border-white/[0.06] flex flex-wrap gap-4 font-mono text-[11px] text-[#94a3b8]">
+        <div><span>Spec Version: </span><span class="text-emerald-400">OpenAPI 3.1.0</span></div>
+        <div><span>Base URL: </span><span class="text-white">https://ariya-sarrafzadeh.ir</span></div>
+        <div><span>Rate Limit: </span><span class="text-[#38bdf8]">60 req/min (RFC 6585)</span></div>
+        <div><span>Error Standard: </span><span class="text-white">RFC 7807 Problem Details</span></div>
+      </div>
+    </div>
+
+    <!-- Machine Manifests Grid -->
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-base sm:text-lg font-bold text-white uppercase font-mono tracking-wider flex items-center gap-2">
+          <span class="text-[#06b6d4]">01.</span>
+          <span>Agent Discovery Manifests</span>
+        </h2>
+        <span class="text-xs font-mono text-neutral-400">Standard Specifications</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {manifests.map((m) => (
+          <div class="bg-[#090a0c]/80 border border-white/[0.07] hover:border-white/20 rounded-xl p-5 flex flex-col justify-between transition-all">
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono text-[#06b6d4] mb-2">
+                <span>{m.type}</span>
+                <span class="text-neutral-400 font-mono text-[11px]">{m.path}</span>
+              </div>
+              <h3 class="text-sm font-bold text-white mb-1">{m.name}</h3>
+              <p class="text-xs text-[#94a3b8] leading-relaxed mb-4">{m.desc}</p>
+            </div>
+            <a
+              href={`${baseUrl}${m.path.replace(/^\//, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-semibold transition-all w-fit"
+            >
+              <span>Inspect Raw File</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Interactive Endpoints Table -->
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-base sm:text-lg font-bold text-white uppercase font-mono tracking-wider flex items-center gap-2">
+          <span class="text-[#06b6d4]">02.</span>
+          <span>REST Endpoints &amp; Mock Services</span>
+        </h2>
+        <span class="text-xs font-mono text-neutral-400">Static Deterministic JSON</span>
+      </div>
+
+      <div class="space-y-3">
+        {endpoints.map((ep) => (
+          <div class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2 font-mono text-xs">
+                <span class="px-2 py-0.5 rounded bg-[#10b981]/20 text-[#10b981] font-bold text-[11px]">
+                  {ep.method}
+                </span>
+                <code class="text-white font-semibold">{ep.path}</code>
+                <span class="text-neutral-500 hidden sm:inline">·</span>
+                <span class="text-[#38bdf8] text-[11px] hidden sm:inline">{ep.operationId}</span>
+              </div>
+              <p class="text-xs text-[#94a3b8]">{ep.desc}</p>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-[11px] font-mono text-neutral-400">{ep.auth}</span>
+              <a
+                href={`${baseUrl}${ep.path.replace(/^\//, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-semibold transition-all"
+              >
+                Execute
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Quick Tool Calling Implementation Guide -->
+    <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-8 mb-8">
+      <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+        <span>03. INTEGRATION EXAMPLE</span>
+      </div>
+      <h2 class="text-lg font-bold text-white mb-3">LLM Tool Calling Usage (cURL / Python)</h2>
+      <p class="text-xs text-[#94a3b8] leading-relaxed mb-4">
+        To load these capabilities into an autonomous agent framework (LangChain, AutoGen, LlamaIndex, Claude tool use), point your schema parser to <code class="text-[#38bdf8] font-mono">/api/tools.json</code>:
+      </p>
+
+      <div class="bg-black/60 border border-white/10 rounded-lg p-4 font-mono text-xs text-neutral-300 overflow-x-auto space-y-3">
+        <div>
+          <span class="text-neutral-500"># 1. Fetch tool declarations</span>
+          <pre class="text-[#38bdf8]">curl -s https://ariya-sarrafzadeh.ir/api/tools.json</pre>
+        </div>
+        <div>
+          <span class="text-neutral-500"># 2. Query fintech term directly</span>
+          <pre class="text-emerald-400">curl -s https://ariya-sarrafzadeh.ir/api/v1/dictionary.json | jq '.[] | select(.id == "idempotency")'</pre>
+        </div>
+        <div>
+          <span class="text-neutral-500"># 3. Content negotiation via HTTP Accept header</span>
+          <pre class="text-amber-300">curl -s -H "Accept: text/markdown" https://ariya-sarrafzadeh.ir/</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLI Tool Section -->
+    <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-8">
+      <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+        <span>04. AUTOMATION &amp; SCRIPTING</span>
+      </div>
+      <h2 class="text-lg font-bold text-white mb-3">Official CLI Tooling &amp; Agent Runners</h2>
+      <p class="text-xs text-[#94a3b8] leading-relaxed mb-4">
+        For autonomous pipelines, scripts, and shell evaluations, use the official npm / npx CLI runner:
+      </p>
+
+      <div class="bg-black/60 border border-white/10 rounded-lg p-4 font-mono text-xs text-neutral-300 space-y-3 overflow-x-auto">
+        <div>
+          <span class="text-neutral-500"># Run without installation via npx</span>
+          <pre class="text-emerald-400">npx @ariya/fintech-cli query "double-entry ledger"</pre>
+        </div>
+        <div>
+          <span class="text-neutral-500"># Check health &amp; rate limits</span>
+          <pre class="text-[#38bdf8]">npx @ariya/fintech-cli health --verbose</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

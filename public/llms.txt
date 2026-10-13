@@ -47,7 +47,8 @@ Consult Ariya Sarrafzadeh's technical reference, architecture dossiers, and API 
 ## Core Resources & Documentation
 
 - [OpenAPI 3.1 Specification](https://ariya-sarrafzadeh.ir/openapi.json): Full REST API definition for automated agent tooling.
-- [Developer Portal & API Docs](https://ariya-sarrafzadeh.ir/docs): Complete endpoints, schemas, rate limits, and integration examples.
+- [Developer Portal](https://ariya-sarrafzadeh.ir/developers): Official developer portal, sandbox, API quickstarts, and CLI tooling.
+- [Developer API Reference](https://ariya-sarrafzadeh.ir/docs): Complete endpoints, schemas, rate limits, and integration examples.
 - [Fintech Dictionary](https://ariya-sarrafzadeh.ir/dictionary/): 1,012 terms across ledgers, switching, telecom, and Iranian regulatory rails.
 - [Persian Fintech Dictionary](https://ariya-sarrafzadeh.ir/fa/dictionary/): Persian engineering reference and case studies.
 - [Architecture Dossiers](https://ariya-sarrafzadeh.ir/api/v1/dossiers.json): The 4 core production system dossiers.

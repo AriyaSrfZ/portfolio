@@ -18,3 +18,15 @@
   Content-Type: text/markdown; charset=utf-8
   Access-Control-Allow-Origin: *
   Vary: Accept
+
+/api/*
+  Content-Type: application/json; charset=utf-8
+  Access-Control-Allow-Origin: *
+  RateLimit-Limit: 60
+  RateLimit-Remaining: 59
+  RateLimit-Reset: 60
+  X-RateLimit-Limit: 60
+  X-RateLimit-Remaining: 59
+  X-RateLimit-Reset: 60
+  Vary: Accept, Accept-Encoding
+

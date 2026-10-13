@@ -1,0 +1,70 @@
+[
+  {
+    "id": "01-ledger",
+    "section_number": "01",
+    "title": "The Double-Entry Ledger & Two-Phase Balance Reservation Engine",
+    "badge": "DOUBLE-ENTRY ACID",
+    "primary_metric": "50,000 TPS",
+    "secondary_metric": "0.00% (ZERO) Drift",
+    "invariants": [
+      "SSOT mathematical ledger parity: Sum(Debits) - Sum(Credits) = 0 on ScyllaDB & PostgreSQL fact logs",
+      "Two-phase balance reservation state machine (AVAILABLE -> RESERVED -> COMMITTED/ROLLED_BACK)",
+      "Distributed idempotency via atomic Redis SETNX mutex locks with 24h expiration window"
+    ],
+    "failure_modes": [
+      "Upstream bank webhook timeouts mitigated by transactional outbox and Raft state recovery",
+      "Automated balance rollback on timeout or Shaparak rejection"
+    ]
+  },
+  {
+    "id": "02-switch",
+    "section_number": "02",
+    "title": "Smart PSP Switch & Dynamic Weighted Routing Engine (ISO 8583)",
+    "badge": "SUB-30MS FAILOVER",
+    "primary_metric": "<30ms Failover",
+    "secondary_metric": "99.99% Availability",
+    "invariants": [
+      "Head-to-head parsing of ISO 8583 MTI 0200/0210 financial telegrams in real time",
+      "Smart multi-gateway routing across 4 national PSPs (SEP, PEC, BPM, PEP)",
+      "Dynamic health scoring factoring rolling P99 latency delivering +14% conversion gain"
+    ],
+    "failure_modes": [
+      "Circuit breakers detect gateway latency degradation and shift traffic within 30ms",
+      "Automated reverse credit dispatch (MTI 0400) on timeout"
+    ]
+  },
+  {
+    "id": "03-fraud",
+    "section_number": "03",
+    "title": "eKYC, Central Bank Harim OTP & PCI-DSS Token Vault",
+    "badge": "PCI-DSS COMPLIANT",
+    "primary_metric": "<15ms (P99) Scoring SLA",
+    "secondary_metric": "-94% Fraud Drain",
+    "invariants": [
+      "Zero-storage token vault: ephemeral CVV2 codes maintain 0.00s zero-retention policy post-authorization",
+      "National eKYC integration: queries Shahkar (SIM-to-National-ID) and Harim OTP timestamps",
+      "Neo4j graph forensics: computes real-time risk vectors in <15ms across multi-hop clusters"
+    ],
+    "failure_modes": [
+      "SIM-swap rings detected via out-of-band activation audits, triggering card freezes",
+      "3DS 2.0 biometric challenge shifts legal liability to issuing banks"
+    ]
+  },
+  {
+    "id": "04-recon",
+    "section_number": "04",
+    "title": "Event-Driven Multi-Pass Reconciliation & Early Merchant Settlement",
+    "badge": "MULTI-PASS RECON",
+    "primary_metric": "100% 3-Way Match",
+    "secondary_metric": "24h Early Settle",
+    "invariants": [
+      "Event-driven ingestion over RabbitMQ feeding Spring Batch nightly workers",
+      "3-way SFTP cross-referencing between internal ledgers, PSP transaction logs, and Shaparak clearing files",
+      "Auto-healing Refund-MNG automatically reverses uncaptured authorizations (-100% manual overhead)"
+    ],
+    "failure_modes": [
+      "Disburses early payouts in 24h via automated Paya/Satna ACH batches",
+      "Contested charges routed to judicial dispute resolution queues"
+    ]
+  }
+]

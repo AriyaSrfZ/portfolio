@@ -135,6 +135,7 @@ const jsonLdPerson = {
   <link rel="api-catalog" href={`${siteUrl}/openapi.json`} />
   <link rel="author" href={`${siteUrl}/about/`} />
   <link rel="help" href={`${siteUrl}/docs/`} />
+  <link rel="help" href={`${siteUrl}/developers/`} />
   <link rel="privacy-policy" href={`${siteUrl}/privacy/`} />
 
   <!-- JSON-LD Structured Data Schema -->
@@ -177,6 +178,10 @@ const jsonLdPerson = {
 
       <!-- Quick Trust & Agent Links -->
       <div class="flex flex-wrap items-center justify-center gap-4 text-[11px]">
+        <a href={`${import.meta.env.BASE_URL}developers/`} class="hover:text-white transition-colors">
+          {isFa ? 'پورتال توسعه‌دهندگان' : 'Developers'}
+        </a>
+        <span>·</span>
         <a href={`${import.meta.env.BASE_URL}docs/`} class="hover:text-white transition-colors">
           {isFa ? 'مستندات API' : 'API Docs'}
         </a>
