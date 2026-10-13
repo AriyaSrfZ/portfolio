@@ -1,56 +1,43 @@
 /**
- * Cloudflare Worker: Markdown Content Negotiation (acceptmarkdown.com compliant)
- *
- * Intercepts requests to https://ariya-sarrafzadeh.ir/
- * If 'Accept: text/markdown' header is present, serves /index.md with
- * 'Content-Type: text/markdown; charset=utf-8' and 'Vary: Accept'.
- *
- * Deploy instructions:
- * 1. Go to Cloudflare Dashboard -> Workers & Pages -> Create Worker
- * 2. Paste this code and bind to route: ariya-sarrafzadeh.ir/*
+ * Cloudflare Worker for Accept: text/markdown Content Negotiation
+ * 
+ * Attach this Worker to the route: ariya-sarrafzadeh.ir/* (or ariya-sarrafzadeh.ir/)
+ * It inspects incoming HTTP "Accept" headers. If an AI agent or crawler requests
+ * "text/markdown", it fetches the canonical /index.md representation directly from origin
+ * and returns it with Content-Type: text/markdown; charset=utf-8 and Vary: Accept.
  */
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    const acceptHeader = request.headers.get('Accept') || '';
+    const accept = request.headers.get("Accept") || "";
 
-    // Check if client explicitly requests Markdown for root or HTML pages
-    const wantsMarkdown = acceptHeader.includes('text/markdown');
+    // Content negotiation for root homepage
+    if ((url.pathname === "/" || url.pathname === "") && accept.includes("text/markdown")) {
+      const markdownUrl = new URL("/index.md", request.url);
+      const originResponse = await fetch(markdownUrl.toString(), {
+        headers: request.headers,
+      });
 
-    if (wantsMarkdown && (url.pathname === '/' || url.pathname === '/index.html')) {
-      const markdownUrl = new URL('/index.md', request.url);
-      const mdResponse = await fetch(markdownUrl, request);
+      const headers = new Headers(originResponse.headers);
+      headers.set("Content-Type", "text/markdown; charset=utf-8");
+      headers.set("Vary", "Accept, Accept-Encoding");
+      headers.set("Access-Control-Allow-Origin", "*");
 
-      if (mdResponse.ok) {
-        const newHeaders = new Headers(mdResponse.headers);
-        newHeaders.set('Content-Type', 'text/markdown; charset=utf-8');
-        newHeaders.set('Vary', 'Accept');
-        newHeaders.set('Access-Control-Allow-Origin', '*');
-
-        return new Response(mdResponse.body, {
-          status: 200,
-          headers: newHeaders
-        });
-      }
+      return new Response(originResponse.body, {
+        status: originResponse.status,
+        headers,
+      });
     }
 
-    // Default fetch for all other requests
+    // Default passthrough to origin with standard headers
     const response = await fetch(request);
     const newHeaders = new Headers(response.headers);
-
-    // Ensure Vary: Accept is included on HTML responses to inform caches of content negotiation
-    if (url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.endsWith('/')) {
-      const currentVary = newHeaders.get('Vary') || '';
-      if (!currentVary.includes('Accept')) {
-        newHeaders.set('Vary', currentVary ? `${currentVary}, Accept` : 'Accept');
-      }
-    }
-
+    newHeaders.set("Vary", "Accept, Accept-Encoding");
+    
     return new Response(response.body, {
       status: response.status,
-      statusText: response.statusText,
-      headers: newHeaders
+      headers: newHeaders,
     });
-  }
+  },
 };
