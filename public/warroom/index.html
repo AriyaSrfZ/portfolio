@@ -214,6 +214,9 @@
       <button onclick="filterByRole('researcher')" id="rf-researcher" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">🔍 محقق لینکدین</button>
       <button onclick="filterByRole('drafter')" id="rf-drafter" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">✍️ نویسنده نامه</button>
       <button onclick="filterByRole('csuite')" id="rf-csuite" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">👔 نظارت مدیرعامل / COO</button>
+      <button onclick="resetAllToStartPoint()" class="px-3 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 font-medium transition flex items-center gap-1.5 ml-2" title="قرار دادن همه ۱۰ حساب در مرحله ۱ (نقطه شروع)">
+        <span>🔄 بازنشانی همه به نقطه شروع</span>
+      </button>
     </div>
 
     <!-- Search Input -->
@@ -372,61 +375,112 @@
     </div>
   </div>
 
-  <!-- SLIDE-OVER DETAIL DRAWER / JIRA ISSUE MODAL -->
+  <!-- SLIDE-OVER DETAIL DRAWER / JIRA ISSUE MODAL (FULLY EDITABLE) -->
   <div id="detailDrawer" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex justify-end">
-    <div class="w-full max-w-2xl bg-[#18191D] border-r border-[#2F3243] h-full overflow-y-auto flex flex-col p-6 space-y-6 shadow-2xl">
+    <div class="w-full max-w-2xl bg-[#18191D] border-r border-[#2F3243] h-full overflow-y-auto flex flex-col p-6 space-y-5 shadow-2xl">
       <!-- Drawer Header -->
-      <div class="flex items-start justify-between border-b border-white/10 pb-4">
-        <div>
-          <div class="flex items-center gap-2 mb-1.5">
+      <div class="flex items-start justify-between border-b border-[#2F3243] pb-4">
+        <div class="flex-1 mr-2">
+          <div class="flex items-center gap-2 mb-2">
             <span id="dBadgeTier" class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Tier A</span>
-            <span id="dBadgeStage" class="px-2 py-0.5 rounded text-[10px] bg-white/10 text-slate-300">مرحله</span>
+            <span id="dBadgeStage" class="px-2 py-0.5 rounded text-[10px] bg-[#232530] text-[#A3A6B4] border border-[#2F3243]">مرحله</span>
+            <span class="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 font-medium">✏️ حالت ویرایش فعال</span>
           </div>
-          <h2 id="dTitle" class="text-xl font-bold text-white"></h2>
-          <div class="flex items-center gap-3 mt-1 text-xs text-slate-400">
-            <a id="dLiLink" href="#" target="_blank" class="text-blue-400 hover:underline flex items-center gap-1">لینکدین رسمی شرکت ↗</a>
-            <span class="text-slate-600">•</span>
-            <a id="dWebLink" href="#" target="_blank" class="text-slate-300 hover:underline">وب‌سایت</a>
+          <div class="flex items-center gap-2">
+            <input type="text" id="dEditName" class="text-lg font-bold text-white bg-[#232530] border border-[#2F3243] rounded-lg px-2.5 py-1 w-full focus:outline-none focus:border-[#7B68EE]">
           </div>
         </div>
-        <button onclick="closeDetailDrawer()" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="saveDrawerEdits()" class="px-3.5 py-1.5 bg-gradient-to-r from-[#7B68EE] to-[#4964ED] text-white rounded-xl text-xs font-semibold shadow-md shadow-[#7B68EE]/20 hover:opacity-95 transition flex items-center gap-1">
+            <span>💾 ذخیره</span>
+          </button>
+          <button onclick="closeDetailDrawer()" class="p-2 rounded-xl bg-[#232530] hover:bg-[#2A2C3A] text-slate-400 hover:text-white transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
       </div>
 
-      <!-- Quick Stage Transition Selector -->
-      <div class="bg-[#1A1B22] p-3.5 rounded-xl border border-[#2F3243] flex items-center justify-between">
-        <span class="text-xs text-slate-300 font-medium">تغییر وضعیت در بورد (Status):</span>
-        <select id="dStageSelect" onchange="updateAccountStage(this.value)" class="bg-[#232530] text-slate-200 border border-[#2F3243] focus:border-[#7B68EE] text-xs rounded-lg px-3 py-1.5 focus:outline-none focus:border-blue-500">
-          <option value="prospect">۱. کشف و ارزیابی لید</option>
-          <option value="linkedin">۲. ممیزی لینکدین</option>
-          <option value="drafting">۳. تدوین نامه و روت</option>
-          <option value="csuite">۴. تایید مدیریت ارشد</option>
-          <option value="outreach">۵. در حال مذاکره فعال</option>
-          <option value="won">۶. پایلوت و بسته‌شده</option>
-        </select>
+      <!-- Quick Stage & Tier Selectors -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-[#1A1B22] p-3.5 rounded-xl border border-[#2F3243]">
+        <div>
+          <label class="block text-[11px] text-[#A3A6B4] mb-1">مرحله در پایپ‌لاین (Stage):</label>
+          <select id="dStageSelect" class="w-full bg-[#232530] text-slate-200 border border-[#2F3243] focus:border-[#7B68EE] text-xs rounded-lg px-2.5 py-1.5">
+            <option value="prospect">۱. کشف و ارزیابی لید (شروع)</option>
+            <option value="linkedin">۲. ممیزی لینکدین</option>
+            <option value="drafting">۳. تدوین نامه و روت</option>
+            <option value="csuite">۴. تایید مدیریت ارشد</option>
+            <option value="outreach">۵. در حال مذاکره فعال</option>
+            <option value="won">۶. پایلوت و بسته‌شده</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] text-[#A3A6B4] mb-1">اولویت هدف (Tier):</label>
+          <select id="dEditTier" class="w-full bg-[#232530] text-slate-200 border border-[#2F3243] focus:border-[#7B68EE] text-xs rounded-lg px-2.5 py-1.5">
+            <option value="Tier A">Tier A (فوری - امتیاز بالا)</option>
+            <option value="Strategic">Strategic (همکاری استراتژیک)</option>
+            <option value="Tier B">Tier B (ردیف دوم)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] text-[#A3A6B4] mb-1">حوزه تخصصی:</label>
+          <input type="text" id="dEditVertical" class="w-full bg-[#232530] text-slate-200 border border-[#2F3243] focus:border-[#7B68EE] text-xs rounded-lg px-2.5 py-1.5">
+        </div>
+      </div>
+
+      <!-- Links (LinkedIn & Website) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-[11px] text-[#7994FF] font-medium">آدرس لینکدین شرکت:</label>
+            <a id="dLiLinkPreview" href="#" target="_blank" class="text-[10px] text-blue-400 hover:underline">باز کردن لینک ↗</a>
+          </div>
+          <input type="text" id="dEditLinkedin" class="w-full bg-[#232530] text-slate-200 border border-[#2F3243] focus:border-[#7B68EE] text-xs rounded-lg px-2.5 py-1.5 font-mono dir-ltr text-left">
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-[11px] text-slate-300 font-medium">وب‌سایت رسمی:</label>
+            <a id="dWebLinkPreview" href="#" target="_blank" class="text-[10px] text-slate-400 hover:underline">باز کردن سایت ↗</a>
+          </div>
+          <input type="text" id="dEditWebsite" class="w-full bg-[#232530] text-slate-200 border border-[#2F3243] focus:border-[#7B68EE] text-xs rounded-lg px-2.5 py-1.5 font-mono dir-ltr text-left">
+        </div>
       </div>
 
       <!-- Operational Pain Point (The Trojan Horse) -->
       <div class="space-y-1.5">
-        <span class="text-xs font-semibold text-amber-400">پاشنه آشیل عملیاتی و درد پیامک (Pain Point):</span>
-        <div id="dPain" class="text-xs bg-amber-950/20 text-amber-200 p-3.5 rounded-xl border border-amber-900/30 leading-relaxed"></div>
+        <label class="block text-xs font-semibold text-amber-400">پاشنه آشیل عملیاتی و درد پیامک (Pain Point):</label>
+        <textarea id="dEditPain" rows="2" class="w-full bg-[#232530] text-amber-200 border border-amber-900/40 focus:border-amber-500 text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
       </div>
 
-      <!-- Decision Hierarchy Tree -->
-      <div class="space-y-2">
-        <span class="text-xs font-semibold text-white">درخت تصمیم‌گیرندگان و افراد کلیدی (Buying Committee):</span>
-        <div id="dHierarchy" class="space-y-2 text-xs"></div>
+      <!-- Decision Hierarchy Tree (Editable) -->
+      <div class="space-y-2.5">
+        <span class="text-xs font-semibold text-white block">درخت تصمیم‌گیرندگان و افراد کلیدی (Buying Committee):</span>
+        <div class="space-y-2 text-xs">
+          <div class="p-2.5 rounded-xl bg-[#1A1B22] border border-[#2F3243] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span class="text-[#A3A6B4] w-36">تصمیم‌گیرنده نهایی بودجه:</span>
+            <input type="text" id="dEditDecisionMaker" class="flex-1 bg-[#232530] text-white border border-[#2F3243] rounded-lg px-2.5 py-1 text-xs focus:border-[#7B68EE]">
+            <span class="px-2 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-300 self-start sm:self-center">Economic Buyer</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-[#1A1B22] border border-[#2F3243] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span class="text-[#A3A6B4] w-36">تصویب‌کننده / هیئت‌مدیره:</span>
+            <input type="text" id="dEditApprover" class="flex-1 bg-[#232530] text-white border border-[#2F3243] rounded-lg px-2.5 py-1 text-xs focus:border-[#7B68EE]">
+            <span class="px-2 py-0.5 rounded text-[10px] bg-purple-500/20 text-purple-300 self-start sm:self-center">Approver</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-[#1A1B22] border border-[#2F3243] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span class="text-[#A3A6B4] w-36">ارزیاب و سرپرست فنی:</span>
+            <input type="text" id="dEditTechLead" class="flex-1 bg-[#232530] text-white border border-[#2F3243] rounded-lg px-2.5 py-1 text-xs focus:border-[#7B68EE]">
+            <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 self-start sm:self-center">Tech Champion</span>
+          </div>
+        </div>
       </div>
 
       <!-- Document Vault & File Attachments (Jira Documents Feature) -->
       <div class="space-y-3 bg-[#1A1B22] p-4 rounded-xl border border-[#2F3243]">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-white flex items-center gap-1.5">
-            <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+            <svg class="w-4 h-4 text-[#E039FD]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
             اسناد متصل به این حساب (Document Vault)
           </span>
-          <label class="cursor-pointer px-2.5 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[11px] font-semibold transition">
+          <label class="cursor-pointer px-2.5 py-1 bg-gradient-to-r from-[#7B68EE] to-[#4964ED] text-white rounded-lg text-[11px] font-semibold transition">
             + پیوست سند جدید
             <input type="file" id="fileUploadInput" onchange="handleFileUpload(event)" class="hidden">
           </label>
@@ -435,30 +489,37 @@
         <div id="dDocsList" class="space-y-2"></div>
       </div>
 
-      <!-- Surgical Hooks with 1-Click Copy -->
+      <!-- Surgical Hooks with 1-Click Copy and Edit -->
       <div class="space-y-3">
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold text-emerald-400">قلاب اختصاصی مدیرعامل / بنیان‌گذار (C-Suite Hook):</span>
-            <button onclick="copyTextFromElement('dHookCeo')" class="text-[11px] text-slate-400 hover:text-white px-2 py-0.5 bg-white/5 rounded">کپی متن</button>
+            <label class="text-xs font-semibold text-emerald-400">قلاب اختصاصی مدیرعامل / بنیان‌گذار (C-Suite Hook):</label>
+            <button onclick="copyTextFromInput('dEditHookCeo')" class="text-[11px] text-[#A3A6B4] hover:text-white px-2 py-0.5 bg-[#232530] rounded border border-[#2F3243]">کپی متن</button>
           </div>
-          <div id="dHookCeo" class="text-xs bg-[#111215] p-3 rounded-xl border border-[#2F3243] text-slate-300 leading-relaxed select-all"></div>
+          <textarea id="dEditHookCeo" rows="3" class="w-full bg-[#111215] text-slate-200 border border-[#2F3243] focus:border-[#7B68EE] text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
         </div>
 
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-semibold text-blue-400">قلاب اختصاصی CTO / مدیر فنی (Tech Lead Hook):</span>
-            <button onclick="copyTextFromElement('dHookTech')" class="text-[11px] text-slate-400 hover:text-white px-2 py-0.5 bg-white/5 rounded">کپی متن</button>
+            <label class="text-xs font-semibold text-[#7994FF]">قلاب اختصاصی CTO / مدیر فنی (Tech Lead Hook):</label>
+            <button onclick="copyTextFromInput('dEditHookTech')" class="text-[11px] text-[#A3A6B4] hover:text-white px-2 py-0.5 bg-[#232530] rounded border border-[#2F3243]">کپی متن</button>
           </div>
-          <div id="dHookTech" class="text-xs bg-[#111215] p-3 rounded-xl border border-[#2F3243] text-slate-300 leading-relaxed select-all"></div>
+          <textarea id="dEditHookTech" rows="3" class="w-full bg-[#111215] text-slate-200 border border-[#2F3243] focus:border-[#7B68EE] text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
         </div>
+      </div>
+
+      <!-- Save Button at Bottom -->
+      <div class="pt-2">
+        <button onclick="saveDrawerEdits()" class="w-full py-2.5 bg-gradient-to-r from-[#7B68EE] via-[#8F53ED] to-[#4964ED] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#7B68EE]/25 hover:opacity-95 transition">
+          💾 ذخیره تغییرات این حساب
+        </button>
       </div>
 
       <!-- Gemini AI Copilot Integration Box inside Drawer -->
       <div class="clickup-panel p-4 rounded-xl border border-[#7B68EE]/30 space-y-2.5">
-        <span class="text-xs font-bold text-blue-400 flex items-center gap-1.5">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          دستیار جمینای اختصاصی برای این حساب
+        <span class="text-xs font-bold text-[#A99AFF] flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-[#7B68EE]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          دستیار هوش مصنوعی جمینای برای این حساب
         </span>
         <div class="grid grid-cols-2 gap-2 text-[11px]">
           <button onclick="drawerGeminiPrompt('proposal')" class="p-2 rounded-lg bg-[#232530] hover:bg-[#2A2C3A] text-slate-200 border border-[#2F3243] hover:border-[#7B68EE] text-right">📄 تولید نامه رسمی</button>
@@ -531,7 +592,7 @@
         vertical: "معاملات طلای آبشده",
         tier: "Tier A",
         score: "۱۰۰",
-        stage: "drafting",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/taline/",
         website: "https://taline.ir",
         decisionMaker: "محسن ابوالفتحی (هم‌بنیان‌گذار و مدیرعامل)",
@@ -555,7 +616,7 @@
         vertical: "لجستیک و باربری سنگین",
         tier: "Tier A",
         score: "۱۰۰",
-        stage: "csuite",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/hasin-technology/",
         website: "https://tarabarnet.com",
         decisionMaker: "کیوان جعفری (هم‌بنیان‌گذار و عضو هیئت‌مدیره)",
@@ -578,7 +639,7 @@
         vertical: "معاملات برخط طلا و مس",
         tier: "Tier A",
         score: "۸۰",
-        stage: "drafting",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/zarpay24/",
         website: "https://zarpay24.com",
         decisionMaker: "هم‌بنیان‌گذار و مدیر ارشد اجرایی",
@@ -599,7 +660,7 @@
         vertical: "سامانه باربری هوشمند آنلاین",
         tier: "Tier A",
         score: "۷۵",
-        stage: "linkedin",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/ubaar/",
         website: "https://ubaar.ir",
         decisionMaker: "حامد تاج‌الدین (مدیرعامل)",
@@ -620,7 +681,7 @@
         vertical: "ERP کارخانجات صنعتی",
         tier: "Strategic",
         score: "۶۵",
-        stage: "outreach",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/sanadpardaz-erp/",
         website: "https://sanadpardaz.com",
         decisionMaker: "حمیدرضا متقی (بنیان‌گذار و مدیر ارشد)",
@@ -641,7 +702,7 @@
         vertical: "اتوماسیون ۱۴۰۰ سازمان",
         tier: "Strategic",
         score: "۶۵",
-        stage: "csuite",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/chargoon/",
         website: "https://chargoon.com",
         decisionMaker: "فرزاد رحمانی (مدیرعامل)",
@@ -662,7 +723,7 @@
         vertical: "سرمایه‌گذاری خرد طلا",
         tier: "Tier B",
         score: "۶۴",
-        stage: "linkedin",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/goldika/",
         website: "https://goldika.ir",
         decisionMaker: "علیرضا عیوضی (مدیرعامل)",
@@ -683,7 +744,7 @@
         vertical: "لندتک و خرید اقساطی",
         tier: "Tier B",
         score: "۶۰",
-        stage: "drafting",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/ghesta/",
         website: "https://qesta.ir",
         decisionMaker: "محمدرضا آشتیانی (مدیرعامل)",
@@ -725,7 +786,7 @@
         vertical: "هاب خدمات پستی",
         tier: "Tier B",
         score: "۵۲",
-        stage: "outreach",
+        stage: "prospect",
         linkedin: "https://www.linkedin.com/company/postbar/",
         website: "https://postbar.ir",
         decisionMaker: "بابک عقیلی‌نسب (مدیرعامل)",
@@ -744,10 +805,21 @@
     // LocalStorage State Management
     let accounts = [];
     try {
-      const saved = localStorage.getItem("pfg_accounts_data");
-      accounts = saved ? JSON.parse(saved) : defaultAccounts;
+      const saved = localStorage.getItem("pfg_accounts_data_v3");
+      if (saved) {
+        accounts = JSON.parse(saved);
+      } else {
+        // Initialize all accounts at start point: prospect
+        accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
+        localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+      }
     } catch(e) {
-      accounts = defaultAccounts;
+      accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
+    }
+
+    function saveState() {
+      localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+      updateAnalytics();
     }
 
     function saveState() {
@@ -906,35 +978,68 @@
       if (!acc) return;
       selectedAccount = acc;
 
-      document.getElementById("dTitle").innerText = acc.name;
+      document.getElementById("dEditName").value = acc.name || "";
       document.getElementById("dBadgeTier").innerText = `${acc.tier} (امتیاز ${acc.score})`;
       document.getElementById("dBadgeStage").innerText = stages.find(s => s.id === acc.stage)?.title || "";
-      document.getElementById("dLiLink").href = acc.linkedin;
-      document.getElementById("dWebLink").href = acc.website;
-      document.getElementById("dStageSelect").value = acc.stage;
-      document.getElementById("dPain").innerText = acc.pain;
-      document.getElementById("dHookCeo").innerText = acc.hookCeo;
-      document.getElementById("dHookTech").innerText = acc.hookTech;
+      document.getElementById("dStageSelect").value = acc.stage || "prospect";
+      document.getElementById("dEditTier").value = acc.tier || "Tier A";
+      document.getElementById("dEditVertical").value = acc.vertical || "";
+      
+      document.getElementById("dEditLinkedin").value = acc.linkedin || "";
+      document.getElementById("dLiLinkPreview").href = acc.linkedin || "#";
+      
+      document.getElementById("dEditWebsite").value = acc.website || "";
+      document.getElementById("dWebLinkPreview").href = acc.website || "#";
 
-      // Hierarchy
-      const hEl = document.getElementById("dHierarchy");
-      hEl.innerHTML = `
-        <div class="p-2.5 rounded-lg bg-black/40 border border-white/5 flex items-center justify-between">
-          <div><span class="text-slate-400">تصمیم‌گیرنده نهایی بودجه:</span> <span class="text-white font-semibold">${acc.decisionMaker}</span></div>
-          <span class="px-2 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-300">Economic Buyer</span>
-        </div>
-        <div class="p-2.5 rounded-lg bg-black/40 border border-white/5 flex items-center justify-between">
-          <div><span class="text-slate-400">تصویب‌کننده / هیئت مدیره:</span> <span class="text-white font-semibold">${acc.approver}</span></div>
-          <span class="px-2 py-0.5 rounded text-[10px] bg-purple-500/20 text-purple-300">Approver</span>
-        </div>
-        <div class="p-2.5 rounded-lg bg-black/40 border border-white/5 flex items-center justify-between">
-          <div><span class="text-slate-400">ارزیاب و سرپرست فنی:</span> <span class="text-white font-semibold">${acc.techLead}</span></div>
-          <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300">Tech Champion</span>
-        </div>
-      `;
+      document.getElementById("dEditDecisionMaker").value = acc.decisionMaker || "";
+      document.getElementById("dEditApprover").value = acc.approver || "";
+      document.getElementById("dEditTechLead").value = acc.techLead || "";
+      
+      document.getElementById("dEditPain").value = acc.pain || "";
+      document.getElementById("dEditHookCeo").value = acc.hookCeo || "";
+      document.getElementById("dEditHookTech").value = acc.hookTech || "";
 
       renderDocsList();
       document.getElementById("detailDrawer").classList.remove("hidden");
+    }
+
+    function saveDrawerEdits() {
+      if (!selectedAccount) return;
+      selectedAccount.name = document.getElementById("dEditName").value.trim();
+      selectedAccount.vertical = document.getElementById("dEditVertical").value.trim();
+      selectedAccount.tier = document.getElementById("dEditTier").value;
+      selectedAccount.stage = document.getElementById("dStageSelect").value;
+      selectedAccount.linkedin = document.getElementById("dEditLinkedin").value.trim();
+      selectedAccount.website = document.getElementById("dEditWebsite").value.trim();
+      selectedAccount.decisionMaker = document.getElementById("dEditDecisionMaker").value.trim();
+      selectedAccount.approver = document.getElementById("dEditApprover").value.trim();
+      selectedAccount.techLead = document.getElementById("dEditTechLead").value.trim();
+      selectedAccount.pain = document.getElementById("dEditPain").value.trim();
+      selectedAccount.hookCeo = document.getElementById("dEditHookCeo").value.trim();
+      selectedAccount.hookTech = document.getElementById("dEditHookTech").value.trim();
+
+      saveState();
+      renderBoard();
+      renderList();
+      updateAnalytics();
+      alert(`تغییرات حساب "${selectedAccount.name}" با موفقیت ذخیره شد!`);
+    }
+
+    function copyTextFromInput(id) {
+      const val = document.getElementById(id).value;
+      navigator.clipboard.writeText(val);
+      alert("متن در کلیپ‌بورد کپی شد!");
+    }
+
+    function resetAllToStartPoint() {
+      if (confirm("آیا مایلید تمام ۱۰ حساب به مرحله ۱ (نقطه شروع: کشف و ارزیابی لید) بازگردانده شوند؟")) {
+        accounts.forEach(a => a.stage = "prospect");
+        saveState();
+        renderBoard();
+        renderList();
+        updateAnalytics();
+        alert("تمام حساب‌ها با موفقیت به نقطه شروع بازگردانده شدند و آماده ویرایش تیم هستند.");
+      }
     }
 
     function closeDetailDrawer() {
