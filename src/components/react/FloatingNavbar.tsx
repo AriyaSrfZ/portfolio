@@ -24,7 +24,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
   // Apple Appearance & Dark Mode State
   const [appearance, setAppearance] = useState<AppearanceMode>('dark');
-  const [darkFlavor, setDarkFlavor] = useState<DarkFlavor>('midnight');
+  const [darkFlavor, setDarkFlavor] = useState<DarkFlavor>('spacegray');
   const [glassIntensity, setGlassIntensity] = useState<GlassIntensity>('liquid');
   const [appearanceMenuOpen, setAppearanceMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -65,7 +65,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       // Read saved theme preferences
       try {
         const savedMode = (localStorage.getItem('apple-appearance-mode') as AppearanceMode) || 'dark';
-        const savedFlavor = (localStorage.getItem('apple-dark-flavor') as DarkFlavor) || 'midnight';
+        const savedFlavor = (localStorage.getItem('apple-dark-flavor') as DarkFlavor) || 'spacegray';
         const savedGlass = (localStorage.getItem('apple-glass-intensity') as GlassIntensity) || 'liquid';
         setAppearance(savedMode);
         setDarkFlavor(savedFlavor);

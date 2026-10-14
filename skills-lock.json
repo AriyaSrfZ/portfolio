@@ -85,6 +85,12 @@
       "skillPath": "skills/contemporary/SKILL.md",
       "computedHash": "6f7f9a477e02085172332aacbc6849fab705442d6bd69e8bd584ad7db276d5fb"
     },
+    "content-research-writer": {
+      "source": "composiohq/awesome-claude-skills",
+      "sourceType": "github",
+      "skillPath": "content-research-writer/SKILL.md",
+      "computedHash": "de7e9085e875a651f209c826d1a5e7dd5f2436fb38fe565ef76b54492c1a0c22"
+    },
     "corporate": {
       "source": "bergside/awesome-design-skills",
       "sourceType": "github",
@@ -306,6 +312,12 @@
       "sourceType": "github",
       "skillPath": "skills/refined/SKILL.md",
       "computedHash": "e193776de1628457b4fad34c36fc125ca00c5383f21042ab17ba0fd488ce137b"
+    },
+    "remotion-best-practices": {
+      "source": "remotion-dev/skills",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-best-practices/SKILL.md",
+      "computedHash": "506b96139ea5e1cac7cd95dfc915265e89d131e202a745295111192e1d0a88d2"
     },
     "retro": {
       "source": "bergside/awesome-design-skills",

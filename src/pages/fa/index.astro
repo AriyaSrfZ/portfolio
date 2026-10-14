@@ -20,7 +20,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
   <main class="w-full max-w-[1920px] 2xl:max-w-[2160px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 pb-16 font-['Vazirmatn',sans-serif]" id="blueprints" dir="rtl">
     <!-- بخش نمایه اجرایی و هیرو (ترتیب DOM قبل از فهرست کناری) -->
-    <div class="w-full mb-12">
+    <div class="w-full mb-6">
       <LandingStage client:load locale="fa" />
     </div>
 
@@ -29,10 +29,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <ArchitectureSidebar client:load locale="fa" />
 
       <!-- Main Stage Sections -->
-      <div class="lg:col-span-9 space-y-16">
+      <div class="lg:col-span-9 space-y-8 sm:space-y-10">
 
         <!-- SECTION 01: Settlements & Ledgers -->
-        <section id="payment-settlement" class="scroll-mt-20 min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
+        <section id="payment-settlement" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -166,7 +166,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 02: Smart PSP Switch & Dynamic Weighted Routing -->
-    <section id="payment-switch" class="scroll-mt-20 min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
+    <section id="payment-switch" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <span id="sms-gateway" class="sr-only"></span>
       <!-- Header -->
       <div class="space-y-2">
@@ -298,7 +298,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 03: eKYC, Central Bank Harim OTP & PCI-DSS Token Vault -->
-    <section id="fraud-forensics" class="scroll-mt-20 min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
+    <section id="fraud-forensics" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -445,7 +445,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 04: Event-Driven Multi-Pass Reconciliation & Early Merchant Settlement -->
-    <section id="reconciliation-engine" class="scroll-mt-20 min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
+    <section id="reconciliation-engine" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <span id="data-pipeline" class="sr-only"></span>
       <!-- Header -->
       <div class="space-y-2">
@@ -577,7 +577,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- DOSSIER 05: Production Incident Postmortems -->
-    <section id="incident-dossiers" class="scroll-mt-20 min-h-0 lg:min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
+    <section id="incident-dossiers" class="scroll-mt-20 min-h-0 lg:bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <!-- Header -->
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
@@ -813,7 +813,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- SECTION 06: چرخه حیات محصول فنی -->
-    <section id="lifecycle" class="scroll-mt-20 min-h-0 lg:min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
+    <section id="lifecycle" class="scroll-mt-20 min-h-0 lg:bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all">
       <div class="space-y-2">
         <div class="flex items-center justify-between border-b border-white/5 pb-3">
           <div class="flex items-center gap-2 font-mono text-xs text-neutral-300 uppercase tracking-wider">
@@ -1078,7 +1078,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 
     <!-- SECTION 07: Architecture Intake & Consultation -->
-    <section id="book" class="scroll-mt-20 min-h-[calc(100vh-5.5rem)] flex flex-col justify-between bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 hover:border-white/20 transition-all">
+    <section id="book" class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 hover:border-white/20 transition-all">
       <BookingSection locale="fa" />
       
       <!-- Rolling Stepper Bar (Persian RTL) -->

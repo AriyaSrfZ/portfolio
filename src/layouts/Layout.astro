@@ -103,7 +103,7 @@ const jsonLdPerson = {
 ---
 
 <!DOCTYPE html>
-<html lang={lang} dir={dir} data-theme={theme} class="dark bg-[#07080a]">
+<html lang={lang} dir={dir} data-theme={theme} class="dark bg-[#0e1117]">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -146,7 +146,7 @@ const jsonLdPerson = {
     (function() {
       try {
         var appearance = localStorage.getItem('apple-appearance-mode') || 'dark';
-        var darkFlavor = localStorage.getItem('apple-dark-flavor') || 'midnight';
+        var darkFlavor = localStorage.getItem('apple-dark-flavor') || 'spacegray';
         var glass = localStorage.getItem('apple-glass-intensity') || 'liquid';
         var root = document.documentElement;
         var effective = appearance;
@@ -171,14 +171,14 @@ const jsonLdPerson = {
 </head>
 <body class="min-h-screen bg-transparent text-[var(--system-label,#ffffff)] selection:bg-white/10 selection:text-white font-sans antialiased overflow-x-hidden pt-16 sm:pt-20">
   <!-- Living WebGL Simplex-Noise Telemetry Background -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+  <div id="velaris-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
     <Velaris
       client:only="react"
       height="100vh"
-      speed={0.8}
-      grain={0.18}
-      colors={["#38bdf8", "#0284c7", "#1e293b", "#07080a"]}
-      bg="#07080a"
+      speed={0.25}
+      grain={0.04}
+      colors={["#1c293d", "#132032", "#1e2430", "#0e1117"]}
+      bg="#0e1117"
     />
   </div>
 

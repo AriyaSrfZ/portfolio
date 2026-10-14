@@ -20,19 +20,32 @@
 }
 
 :root {
-  --system-bg: #07090e;
-  --system-grouped-bg: #0f131c;
-  --system-card-bg: rgba(255, 255, 255, 0.045);
+  /* Default: Apple Space Gray & Titanium (macOS Sequoia) */
+  --system-bg: #0e1117;
+  --system-grouped-bg: #161b24;
+  --system-card-bg: rgba(255, 255, 255, 0.055);
   --system-card-border: rgba(255, 255, 255, 0.10);
   --system-card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
   --system-label: #ffffff;
-  --system-secondary-label: rgba(235, 235, 245, 0.65);
-  --system-tertiary-label: rgba(235, 235, 245, 0.35);
-  --glass-nav-bg: rgba(11, 14, 22, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.14);
+  --system-secondary-label: rgba(235, 235, 245, 0.70);
+  --system-tertiary-label: rgba(235, 235, 245, 0.40);
+  --glass-nav-bg: rgba(18, 22, 30, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.13);
   --glass-blur: 26px;
   --apple-accent: #0A84FF;
   --apple-cyan: #32ADE6;
+  --apple-green: #30D158;
+  --apple-amber: #D97706;
+}
+
+/* Dark Mode Flavor: Space Gray (Default) */
+html[data-dark-flavor="spacegray"], html:not([data-dark-flavor]):not([data-appearance="light"]) {
+  --system-bg: #0e1117;
+  --system-grouped-bg: #161b24;
+  --system-card-bg: rgba(255, 255, 255, 0.055);
+  --system-card-border: rgba(255, 255, 255, 0.10);
+  --glass-nav-bg: rgba(18, 22, 30, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.13);
 }
 
 /* Dark Mode Flavor: OLED Pitch Black */
@@ -40,55 +53,48 @@ html[data-dark-flavor="oled"] {
   --system-bg: #000000;
   --system-grouped-bg: #0a0a0c;
   --system-card-bg: rgba(255, 255, 255, 0.035);
-  --system-card-border: rgba(255, 255, 255, 0.13);
-  --glass-nav-bg: rgba(0, 0, 0, 0.86);
-  --glass-border: rgba(255, 255, 255, 0.17);
+  --system-card-border: rgba(255, 255, 255, 0.14);
+  --glass-nav-bg: rgba(0, 0, 0, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --apple-green: #00C087;
 }
 
-/* Dark Mode Flavor: Space Gray (macOS / iPadOS) */
-html[data-dark-flavor="spacegray"] {
-  --system-bg: #0e1117;
-  --system-grouped-bg: #161b24;
-  --system-card-bg: rgba(255, 255, 255, 0.05);
-  --system-card-border: rgba(255, 255, 255, 0.10);
-  --glass-nav-bg: rgba(18, 22, 30, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.13);
-}
-
-/* Dark Mode Flavor: Midnight Navy (Default Apple iOS) */
-html[data-dark-flavor="midnight"], html:not([data-dark-flavor]) {
+/* Dark Mode Flavor: Midnight Navy */
+html[data-dark-flavor="midnight"] {
   --system-bg: #07090e;
   --system-grouped-bg: #0f131c;
   --system-card-bg: rgba(255, 255, 255, 0.045);
-  --system-card-border: rgba(255, 255, 255, 0.10);
+  --system-card-border: rgba(255, 255, 255, 0.11);
   --glass-nav-bg: rgba(11, 14, 22, 0.75);
   --glass-border: rgba(255, 255, 255, 0.14);
 }
 
-/* Appearance Mode: Light */
+/* Appearance Mode: Light (Apple Frost Silver) */
 html[data-appearance="light"] {
-  --system-bg: #f5f5f7;
+  --system-bg: #f0f2f5;
   --system-grouped-bg: #ffffff;
   --system-card-bg: rgba(255, 255, 255, 0.82);
   --system-card-border: rgba(0, 0, 0, 0.08);
   --system-card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
   --system-label: #1d1d1f;
   --system-secondary-label: rgba(60, 60, 67, 0.75);
-  --system-tertiary-label: rgba(60, 60, 67, 0.40);
-  --glass-nav-bg: rgba(255, 255, 255, 0.82);
-  --glass-border: rgba(0, 0, 0, 0.12);
+  --system-tertiary-label: rgba(60, 60, 67, 0.45);
+  --glass-nav-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.10);
   --apple-accent: #0071e3;
   --apple-cyan: #0077b6;
+  --apple-green: #248A3D;
+  --apple-amber: #B45309;
 }
 
-/* Glass Intensity: Clear (translucent focus) */
+/* Glass Intensity: Clear */
 html[data-glass-intensity="clear"] {
   --glass-blur: 16px;
-  --glass-nav-bg: rgba(11, 14, 22, 0.45);
-  --system-card-bg: rgba(255, 255, 255, 0.025);
+  --glass-nav-bg: rgba(18, 22, 30, 0.50);
+  --system-card-bg: rgba(255, 255, 255, 0.03);
 }
 
-/* Glass Intensity: Reduced (solid / high contrast) */
+/* Glass Intensity: Reduced */
 html[data-glass-intensity="reduced"] {
   --glass-blur: 0px;
   --glass-nav-bg: var(--system-bg);
@@ -97,12 +103,12 @@ html[data-glass-intensity="reduced"] {
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--system-bg, #07090e);
+  background-color: var(--system-bg, #0e1117);
   color: var(--system-label, #ffffff);
 }
 
 body {
-  background-color: var(--system-bg, #07090e);
+  background-color: var(--system-bg, #0e1117);
   color: var(--system-label, #ffffff);
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
@@ -112,6 +118,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Elimination of Artificial Full-Viewport Gaps */
+#overview,
+section[id] {
+  min-height: auto !important;
+}
+
 /* Apple Liquid Glass Material Specification */
 .liquid-glass-navbar {
   background: var(--glass-nav-bg);
@@ -119,9 +131,9 @@ body {
   -webkit-backdrop-filter: blur(var(--glass-blur, 26px)) saturate(200%);
   border: 1px solid var(--glass-border);
   box-shadow: 
-    0 12px 36px 0 rgba(0, 0, 0, 0.42),
+    0 12px 36px 0 rgba(0, 0, 0, 0.38),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3);
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .liquid-glass-card {
@@ -138,7 +150,7 @@ body {
 .liquid-glass-card:hover {
   border-color: rgba(255, 255, 255, 0.22);
   box-shadow: 
-    0 20px 45px -10px rgba(0, 0, 0, 0.65),
+    0 20px 45px -10px rgba(0, 0, 0, 0.55),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.26);
 }
 
@@ -151,11 +163,68 @@ body {
 }
 
 .liquid-glass-control {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+}
+
+/* Light Mode Complete Attire Inversion (Guarantees zero white-on-white text) */
+html[data-appearance="light"] .liquid-glass-card,
+html[data-appearance="light"] .liquid-glass-navbar,
+html[data-appearance="light"] .liquid-glass-control,
+html[data-appearance="light"] .rugged-panel {
+  background-color: var(--system-card-bg);
+  border-color: var(--system-card-border);
+  color: var(--system-label);
+}
+
+html[data-appearance="light"] .text-white {
+  color: #1d1d1f !important;
+}
+
+html[data-appearance="light"] .text-neutral-200,
+html[data-appearance="light"] .text-neutral-300 {
+  color: rgba(60, 60, 67, 0.85) !important;
+}
+
+html[data-appearance="light"] .text-neutral-400,
+html[data-appearance="light"] .text-neutral-500 {
+  color: rgba(60, 60, 67, 0.65) !important;
+}
+
+html[data-appearance="light"] .border-white\/5,
+html[data-appearance="light"] .border-white\/10,
+html[data-appearance="light"] .border-white\/15,
+html[data-appearance="light"] .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-appearance="light"] .bg-white\/\[0\.04\],
+html[data-appearance="light"] .bg-white\/\[0\.05\],
+html[data-appearance="light"] .bg-white\/\[0\.06\],
+html[data-appearance="light"] .bg-white\/10,
+html[data-appearance="light"] .bg-white\/15 {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+html[data-appearance="light"] .bg-\[\#0f1217\]\/95,
+html[data-appearance="light"] .bg-\[\#0f1217\]\/90,
+html[data-appearance="light"] .bg-\[\#13161c\],
+html[data-appearance="light"] .bg-\[\#111317\] {
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  color: #1d1d1f !important;
+}
+
+html[data-appearance="light"] .bg-black\/20,
+html[data-appearance="light"] .bg-black\/40 {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-appearance="light"] #velaris-container {
+  opacity: 0.16;
+  filter: invert(1) hue-rotate(185deg) brightness(1.15);
 }
 
 /* Background Atmospheric Layers */
