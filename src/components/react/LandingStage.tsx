@@ -156,9 +156,9 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
     <div id="overview" className="scroll-mt-20 w-full min-h-[calc(100vh-5.5rem)] flex flex-col justify-start gap-4 xl:gap-5 pb-4 font-sans" dir={isFa ? 'rtl' : 'ltr'}>
       
       {/* =========================================================================
-          ZONE A: EXECUTIVE COMMAND HERO CONSOLE (Bigger Portrait + Full-Width Narrative)
+          ZONE A: EXECUTIVE COMMAND HERO CONSOLE (Apple Liquid Glass Console)
           ========================================================================= */}
-      <div className="bg-[#0f1217]/95 border border-white/10 rounded-2xl p-5 sm:p-7 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+      <div className="liquid-glass-card rounded-2xl p-5 sm:p-7 relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
           
           {/* Portrait Column: Sized larger, authoritative, commanding */}
@@ -282,7 +282,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
             key={item.href}
             href={item.href}
             onClick={(e) => handleScrollToDossier(e, item.href)}
-            className="bg-[#0f1217]/95 border border-white/10 rounded-xl p-3.5 flex flex-col justify-between hover:border-cyan-400/50 hover:bg-[#13161c] transition-all group block shadow-xl"
+            className="liquid-glass-card rounded-xl p-3.5 flex flex-col justify-between hover:border-cyan-400/40 transition-all group block shadow-lg active:scale-[0.98]"
           >
             <div>
               <div className="text-[9px] font-sans uppercase tracking-wider text-neutral-400 mb-1 flex items-center justify-between font-semibold">
@@ -303,16 +303,16 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
       {/* =========================================================================
           ZONE C: INTERACTIVE ARCHITECTURAL OPERATIONS WORKBENCH
           ========================================================================= */}
-      <div className="bg-[#0f1217]/95 border border-white/10 rounded-2xl p-5 shadow-2xl backdrop-blur-xl space-y-4">
+      <div className="liquid-glass-card rounded-2xl p-5 space-y-4">
         
         {/* Tab Headers */}
         <div className="flex items-center justify-between border-b border-white/10 pb-3">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar font-sans text-xs">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar font-sans text-xs bg-black/20 p-1 rounded-full border border-white/[0.08] backdrop-blur-md">
             <button
               onClick={() => setActiveTab('pillars')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 font-medium ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
                 activeTab === 'pillars'
-                  ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
+                  ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
               }`}
             >
@@ -322,9 +322,9 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
             <button
               onClick={() => setActiveTab('stack')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 font-medium ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
                 activeTab === 'stack'
-                  ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
+                  ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
               }`}
             >
@@ -334,9 +334,9 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
             <button
               onClick={() => setActiveTab('directives')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 font-medium ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
                 activeTab === 'directives'
-                  ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
+                  ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
               }`}
             >
@@ -346,9 +346,9 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
             <button
               onClick={() => setActiveTab('benchmarks')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 font-medium ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
                 activeTab === 'benchmarks'
-                  ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
+                  ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
               }`}
             >
@@ -375,7 +375,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleScrollToDossier(e, item.href)}
-                  className="bg-[#13161c] border border-white/10 rounded-xl p-3.5 flex flex-col justify-between hover:border-cyan-400/50 hover:bg-[#161a22] transition-all group block shadow-md"
+                  className="liquid-glass-control rounded-xl p-3.5 flex flex-col justify-between hover:border-cyan-400/40 transition-all group block shadow-md"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-[10px] font-mono">
@@ -404,7 +404,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
           {activeTab === 'stack' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full animate-fadeIn">
               {techStack.map((tech) => (
-                <div key={tech.name} className="bg-[#13161c] border border-white/10 rounded-xl p-3.5 flex items-start gap-3 shadow-md hover:border-white/20 transition-all">
+                <div key={tech.name} className="liquid-glass-control rounded-xl p-3.5 flex items-start gap-3 shadow-md hover:border-white/20 transition-all">
                   <span className="w-2 h-2 rounded-full bg-[#e2c974] mt-1 shrink-0" />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between">
@@ -424,7 +424,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
           {activeTab === 'directives' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full animate-fadeIn">
               {directives.map((dir, idx) => (
-                <div key={idx} className="bg-[#13161c] border border-white/10 rounded-xl p-3.5 space-y-2 shadow-md hover:border-rose-400/30 transition-all">
+                <div key={idx} className="liquid-glass-control rounded-xl p-3.5 space-y-2 shadow-md hover:border-rose-400/30 transition-all">
                   <div className="flex items-center justify-between">
                     <div className="text-xs font-bold font-sans text-rose-400 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
@@ -446,7 +446,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
           {activeTab === 'benchmarks' && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full animate-fadeIn">
               {benchmarks.map((bench, idx) => (
-                <div key={idx} className="bg-[#13161c] border border-white/10 rounded-xl p-4 space-y-2 shadow-md hover:border-cyan-400/30 transition-all">
+                <div key={idx} className="liquid-glass-control rounded-xl p-4 space-y-2 shadow-md hover:border-cyan-400/30 transition-all">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-white">{bench.title}</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />

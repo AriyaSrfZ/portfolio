@@ -141,9 +141,35 @@ const jsonLdPerson = {
   <!-- JSON-LD Structured Data Schema -->
   <script type="application/ld+json" set:html={JSON.stringify(jsonLdPerson)} />
 
+  <!-- Apple Appearance & Dark Mode Early Initialization -->
+  <script is:inline>
+    (function() {
+      try {
+        var appearance = localStorage.getItem('apple-appearance-mode') || 'dark';
+        var darkFlavor = localStorage.getItem('apple-dark-flavor') || 'midnight';
+        var glass = localStorage.getItem('apple-glass-intensity') || 'liquid';
+        var root = document.documentElement;
+        var effective = appearance;
+        if (appearance === 'system') {
+          effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        root.setAttribute('data-appearance', effective);
+        root.setAttribute('data-dark-flavor', darkFlavor);
+        root.setAttribute('data-glass-intensity', glass);
+        if (effective === 'light') {
+          root.classList.remove('dark');
+          root.classList.add('light');
+        } else {
+          root.classList.remove('light');
+          root.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <Analytics />
 </head>
-<body class="min-h-screen bg-transparent text-[#ededed] selection:bg-white/10 selection:text-white font-sans antialiased overflow-x-hidden">
+<body class="min-h-screen bg-transparent text-[var(--system-label,#ffffff)] selection:bg-white/10 selection:text-white font-sans antialiased overflow-x-hidden pt-16 sm:pt-20">
   <!-- Living WebGL Simplex-Noise Telemetry Background -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
     <Velaris

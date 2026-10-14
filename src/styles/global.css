@@ -19,21 +19,143 @@
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
 }
 
+:root {
+  --system-bg: #07090e;
+  --system-grouped-bg: #0f131c;
+  --system-card-bg: rgba(255, 255, 255, 0.045);
+  --system-card-border: rgba(255, 255, 255, 0.10);
+  --system-card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
+  --system-label: #ffffff;
+  --system-secondary-label: rgba(235, 235, 245, 0.65);
+  --system-tertiary-label: rgba(235, 235, 245, 0.35);
+  --glass-nav-bg: rgba(11, 14, 22, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-blur: 26px;
+  --apple-accent: #0A84FF;
+  --apple-cyan: #32ADE6;
+}
+
+/* Dark Mode Flavor: OLED Pitch Black */
+html[data-dark-flavor="oled"] {
+  --system-bg: #000000;
+  --system-grouped-bg: #0a0a0c;
+  --system-card-bg: rgba(255, 255, 255, 0.035);
+  --system-card-border: rgba(255, 255, 255, 0.13);
+  --glass-nav-bg: rgba(0, 0, 0, 0.86);
+  --glass-border: rgba(255, 255, 255, 0.17);
+}
+
+/* Dark Mode Flavor: Space Gray (macOS / iPadOS) */
+html[data-dark-flavor="spacegray"] {
+  --system-bg: #0e1117;
+  --system-grouped-bg: #161b24;
+  --system-card-bg: rgba(255, 255, 255, 0.05);
+  --system-card-border: rgba(255, 255, 255, 0.10);
+  --glass-nav-bg: rgba(18, 22, 30, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.13);
+}
+
+/* Dark Mode Flavor: Midnight Navy (Default Apple iOS) */
+html[data-dark-flavor="midnight"], html:not([data-dark-flavor]) {
+  --system-bg: #07090e;
+  --system-grouped-bg: #0f131c;
+  --system-card-bg: rgba(255, 255, 255, 0.045);
+  --system-card-border: rgba(255, 255, 255, 0.10);
+  --glass-nav-bg: rgba(11, 14, 22, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.14);
+}
+
+/* Appearance Mode: Light */
+html[data-appearance="light"] {
+  --system-bg: #f5f5f7;
+  --system-grouped-bg: #ffffff;
+  --system-card-bg: rgba(255, 255, 255, 0.82);
+  --system-card-border: rgba(0, 0, 0, 0.08);
+  --system-card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  --system-label: #1d1d1f;
+  --system-secondary-label: rgba(60, 60, 67, 0.75);
+  --system-tertiary-label: rgba(60, 60, 67, 0.40);
+  --glass-nav-bg: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(0, 0, 0, 0.12);
+  --apple-accent: #0071e3;
+  --apple-cyan: #0077b6;
+}
+
+/* Glass Intensity: Clear (translucent focus) */
+html[data-glass-intensity="clear"] {
+  --glass-blur: 16px;
+  --glass-nav-bg: rgba(11, 14, 22, 0.45);
+  --system-card-bg: rgba(255, 255, 255, 0.025);
+}
+
+/* Glass Intensity: Reduced (solid / high contrast) */
+html[data-glass-intensity="reduced"] {
+  --glass-blur: 0px;
+  --glass-nav-bg: var(--system-bg);
+  --system-card-bg: var(--system-grouped-bg);
+}
+
 html {
   scroll-behavior: smooth;
-  background-color: #090a0c;
-  color: #ededed;
+  background-color: var(--system-bg, #07090e);
+  color: var(--system-label, #ffffff);
 }
 
 body {
-  background-color: #090a0c;
-  color: #ededed;
+  background-color: var(--system-bg, #07090e);
+  color: var(--system-label, #ffffff);
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
   margin: 0;
-  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apple Liquid Glass Material Specification */
+.liquid-glass-navbar {
+  background: var(--glass-nav-bg);
+  backdrop-filter: blur(var(--glass-blur, 26px)) saturate(200%);
+  -webkit-backdrop-filter: blur(var(--glass-blur, 26px)) saturate(200%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 12px 36px 0 rgba(0, 0, 0, 0.42),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.liquid-glass-card {
+  background: var(--system-card-bg);
+  backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
+  border: 1px solid var(--system-card-border);
+  box-shadow: 
+    var(--system-card-shadow),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 20px 45px -10px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.26);
+}
+
+.liquid-glass-pill {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 
+    0 2px 8px 0 rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.liquid-glass-control {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 /* Background Atmospheric Layers */
@@ -63,25 +185,30 @@ body {
 }
 
 .rugged-panel {
-  background-color: rgba(17, 19, 23, 0.75);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 1rem;
+  background-color: var(--system-card-bg);
+  backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
+  border: 1px solid var(--system-card-border);
+  box-shadow: var(--system-card-shadow), inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  border-radius: 1.25rem;
   position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .rugged-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background-color: rgba(255, 255, 255, 0.03);
-  color: #ededed;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background-color: rgba(255, 255, 255, 0.04);
+  color: var(--system-label, #ffffff);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.05em;
   padding: 4px 10px;
   border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Operational Animation Keyframes */
