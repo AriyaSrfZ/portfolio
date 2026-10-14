@@ -188,6 +188,23 @@
       </button>
     </div>
   </header>
+  <!-- Standup Action Banner -->
+  <div class="bg-gradient-to-r from-[#7B68EE]/20 via-[#4964ED]/15 to-[#E039FD]/10 border-b border-[#7B68EE]/30 px-4 lg:px-8 py-2.5 flex items-center justify-between gap-3 text-xs">
+    <div class="flex items-center gap-2.5 text-slate-200 overflow-hidden">
+      <span class="flex h-2.5 w-2.5 relative flex-shrink-0">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7B68EE] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#7B68EE]"></span>
+      </span>
+      <span class="font-bold text-white whitespace-nowrap">⚡ دستورالعمل استندآپ تیم:</span>
+      <span class="text-[#A3A6B4] truncate text-[11px]">جلسه ۲۰ دقیقه‌ای • همکار ۱: استخراج لینکدین طلاین/ترابرنت • همکار ۲: تدوین نامه با قلاب‌ها • مدیریت ارشد: تاییدیه تا ۱۶:۰۰</span>
+    </div>
+    <div class="flex items-center gap-2 flex-shrink-0">
+      <button onclick="openStandupModal()" class="px-3 py-1 bg-gradient-to-r from-[#7B68EE] to-[#4964ED] hover:opacity-90 text-white font-semibold rounded-lg text-[11px] shadow-sm flex items-center gap-1.5 transition whitespace-nowrap">
+        <span>📋 چک‌لیست استندآپ</span>
+      </button>
+    </div>
+  </div>
+
 
   <!-- Filter & Role Toolbar -->
   <div class="px-4 lg:px-8 py-3.5 bg-[#18191D]/80 border-b border-[#2F3243] flex flex-wrap items-center justify-between gap-4">
@@ -215,7 +232,10 @@
         <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#2A2C3A]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#7C828D]"></span>
-            <span class="text-xs font-bold text-[#A3A6B4]">۱. کشف و ارزیابی لید</span>
+            <div>
+              <span class="text-xs font-bold text-[#A3A6B4]">۱. کشف و ارزیابی لید</span>
+              <p class="text-[10px] text-[#7C828D] mt-0.5">ثبت مشخصات و تخمین ترافیک پیامک</p>
+            </div>
           </div>
           <span id="badge-prospect" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#232530] text-[#A3A6B4] font-semibold border border-[#2F3243]">0</span>
         </div>
@@ -227,7 +247,10 @@
         <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#2A2C3A]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#4964ED]"></span>
-            <span class="text-xs font-bold text-[#7994FF]">۲. ممیزی لینکدین</span>
+            <div>
+              <span class="text-xs font-bold text-[#7994FF]">۲. ممیزی لینکدین</span>
+              <p class="text-[10px] text-[#7994FF]/80 mt-0.5">همکار ۱: استخراج پروفایل و کانکشن مشترک</p>
+            </div>
           </div>
           <span id="badge-linkedin" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#4964ED]/15 text-[#7994FF] font-semibold border border-[#4964ED]/30">0</span>
         </div>
@@ -239,7 +262,10 @@
         <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#2A2C3A]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#FF9F43]"></span>
-            <span class="text-xs font-bold text-[#FFB56B]">۳. تدوین نامه و روت</span>
+            <div>
+              <span class="text-xs font-bold text-[#FFB56B]">۳. تدوین نامه و روت</span>
+              <p class="text-[10px] text-[#FFB56B]/80 mt-0.5">همکار ۲: نگارش نامه و InMail با قلاب‌ها</p>
+            </div>
           </div>
           <span id="badge-drafting" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#FF9F43]/15 text-[#FFB56B] font-semibold border border-[#FF9F43]/30">0</span>
         </div>
@@ -251,7 +277,10 @@
         <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#2A2C3A]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#7B68EE]"></span>
-            <span class="text-xs font-bold text-[#A99AFF]">۴. تایید مدیریت ارشد</span>
+            <div>
+              <span class="text-xs font-bold text-[#A99AFF]">۴. تایید مدیریت ارشد</span>
+              <p class="text-[10px] text-[#A99AFF]/80 mt-0.5">مدیرعامل/COO: تاییدیه پیش‌نویس تا ۱۶:۰۰</p>
+            </div>
           </div>
           <span id="badge-csuite" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#7B68EE]/15 text-[#A99AFF] font-semibold border border-[#7B68EE]/30">0</span>
         </div>
@@ -263,7 +292,10 @@
         <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#2A2C3A]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#E039FD]"></span>
-            <span class="text-xs font-bold text-[#F07EFF]">۵. مذاکره و ارسال</span>
+            <div>
+              <span class="text-xs font-bold text-[#F07EFF]">۵. مذاکره و ارسال</span>
+              <p class="text-[10px] text-[#F07EFF]/80 mt-0.5">ارسال نامه، پیگیری تماس و بسته ۵۰k</p>
+            </div>
           </div>
           <span id="badge-outreach" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#E039FD]/15 text-[#F07EFF] font-semibold border border-[#E039FD]/30">0</span>
         </div>
@@ -275,7 +307,10 @@
         <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#2A2C3A]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#05C46B]"></span>
-            <span class="text-xs font-bold text-[#38E190]">۶. پایلوت و بسته‌شده</span>
+            <div>
+              <span class="text-xs font-bold text-[#38E190]">۶. پایلوت و بسته‌شده</span>
+              <p class="text-[10px] text-[#38E190]/80 mt-0.5">پایلوت فعال فنی و بستن قرارداد</p>
+            </div>
           </div>
           <span id="badge-won" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#05C46B]/15 text-[#38E190] font-semibold border border-[#05C46B]/30">0</span>
         </div>
@@ -1162,6 +1197,77 @@
 
       <div class="flex justify-end pt-2">
         <button onclick="closeSheetsGuideModal()" class="px-4 py-2 bg-gradient-to-r from-[#7B68EE] to-[#4964ED] text-white rounded-xl text-xs font-semibold">متوجه شدم</button>
+      </div>
+    </div>
+  </div>
+  <!-- STANDUP MODAL -->
+  <div id="standupModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-[#18191D] border border-[#2F3243] w-full max-w-2xl rounded-2xl p-6 shadow-2xl space-y-5 text-right max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-[#2F3243] pb-3.5">
+        <div class="flex items-center gap-2.5">
+          <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#7B68EE] to-[#E039FD]"></span>
+          <h3 class="font-bold text-white text-base">دستورالعمل اجرایی استندآپ ۲۰ دقیقه‌ای توسعه بازار پیامک</h3>
+        </div>
+        <button onclick="closeStandupModal()" class="text-slate-400 hover:text-white">&times;</button>
+      </div>
+
+      <!-- Agenda Timeline -->
+      <div class="space-y-2">
+        <span class="text-xs font-bold text-[#A99AFF]">⏱️ زمان‌بندی و دستور کار استندآپ:</span>
+        <div class="grid grid-cols-3 gap-2.5 text-xs">
+          <div class="p-3 rounded-xl bg-[#232530] border border-[#2F3243]">
+            <span class="text-[#7994FF] font-bold block mb-1">۰ تا ۵ دقیقه: هم‌راستایی</span>
+            <p class="text-[11px] text-[#A3A6B4]">توزیع نقش‌ها بین همکار ۱ (لینکدین) و همکار ۲ (نامه) و اعلام شاخص‌ها</p>
+          </div>
+          <div class="p-3 rounded-xl bg-[#232530] border border-[#2F3243]">
+            <span class="text-[#FFB56B] font-bold block mb-1">۵ تا ۱۵ دقیقه: مرور ۴ حساب Tier A</span>
+            <p class="text-[11px] text-[#A3A6B4]">بررسی طلاین، ترابرنت، زرپی۲۴، اوبار و شناسایی نقاط ضعف پیامک رقیب</p>
+          </div>
+          <div class="p-3 rounded-xl bg-[#232530] border border-[#2F3243]">
+            <span class="text-[#38E190] font-bold block mb-1">۱۵ تا ۲۰ دقیقه: تعهدات امروز</span>
+            <p class="text-[11px] text-[#A3A6B4]">ثبت روزانه ۲ حساب در بورد؛ بررسی و تایید پیش‌نویس‌ها در ساعت ۱۶:۰۰</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Roles Breakdown -->
+      <div class="space-y-2.5 text-xs text-slate-300">
+        <span class="text-xs font-bold text-white">👥 تفکیک ماموریت‌های امروز اعضای تیم:</span>
+        
+        <div class="p-3 rounded-xl bg-[#1A1B22] border border-[#2A2C3A] space-y-1.5">
+          <div class="flex items-center justify-between text-[#7994FF] font-bold">
+            <span>۱. همکار ۱: مسئول تحقیق لینکدین (LinkedIn Researcher)</span>
+            <span class="text-[10px] bg-[#4964ED]/15 px-2 py-0.5 rounded text-[#7994FF]">تعهد: ۲ شرکت در روز</span>
+          </div>
+          <p class="text-[11px] text-[#A3A6B4] leading-relaxed">
+            استخراج نام و لینک پروفایل مدیرعامل و CTO شرکت‌های طلاین و ترابرنت؛ بررسی افراد مشترک با سرکار خانم شهروزی و سرکار خانم موسی‌پور؛ پس از تکمیل، کارت به ستون «تدوین نامه و روت» کشیده شود.
+          </p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-[#1A1B22] border border-[#2A2C3A] space-y-1.5">
+          <div class="flex items-center justify-between text-[#FFB56B] font-bold">
+            <span>۲. همکار ۲: مسئول نگارش نامه و روت‌ها (Drafter)</span>
+            <span class="text-[10px] bg-[#FF9F43]/15 px-2 py-0.5 rounded text-[#FFB56B]">تعهد: ۲ پیش‌نویس در روز</span>
+          </div>
+          <p class="text-[11px] text-[#A3A6B4] leading-relaxed">
+            استفاده از قلاب‌های تب ۳ شیت اکسل برای تنظیم پیش‌نویس نامه رسمی و پیام InMail؛ پیوست کردن فایل داخل کارت بورد آنلاین و انتقال کارت به ستون «تایید مدیریت ارشد».
+          </p>
+        </div>
+
+        <div class="p-3 rounded-xl bg-[#1A1B22] border border-[#2A2C3A] space-y-1.5">
+          <div class="flex items-center justify-between text-[#A99AFF] font-bold">
+            <span>۳. مدیریت ارشد (CEO / Board Review)</span>
+            <span class="text-[10px] bg-[#7B68EE]/15 px-2 py-0.5 rounded text-[#A99AFF]">بررسی روزانه ساعت ۱۶</span>
+          </div>
+          <p class="text-[11px] text-[#A3A6B4] leading-relaxed">
+            بررسی کانکشن‌های مشترک هلدینگ‌های هدف (حصین و سنا گستر) و چراغ سبز ارسال رسمی نامه‌ها با پیشنهاد ۵۰k پیامک تستی رایگان.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2 border-t border-[#2F3243]">
+        <a href="/pfg_b2b_tracker.xlsx" download class="text-xs text-emerald-400 hover:underline flex items-center gap-1">📥 دانلود مستقیم کاربرگ اکسل</a>
+        <button onclick="closeStandupModal()" class="px-4 py-2 bg-gradient-to-r from-[#7B68EE] to-[#4964ED] text-white rounded-xl text-xs font-semibold">بستن راهنما</button>
       </div>
     </div>
   </div>
