@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,35 +39,35 @@
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Vazirmatn', sans-serif;
-      background-color: #F2F2F7;
+      background-color: #000000;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(0, 122, 255, 0.05) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(52, 199, 89, 0.04) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(10, 132, 255, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(48, 209, 88, 0.05) 0px, transparent 50%);
       background-attachment: fixed;
-      color: #1C1C1E;
+      color: #FFFFFF;
     }
     .ios-nav {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(28, 28, 30, 0.88);
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     .ios-column {
-      background: #E5E5EA;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      background: #1C1C1E;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
     }
     .ios-card {
-      background: #FFFFFF;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      background: #2C2C2E;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .ios-card:hover {
-      background: #FFFFFF;
-      border-color: #007AFF;
+      background: #3A3A3C;
+      border-color: #0A84FF;
       transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(0, 122, 255, 0.15);
+      box-shadow: 0 8px 24px rgba(10, 132, 255, 0.25);
     }
     .kanban-col {
       min-height: calc(100vh - 220px);
@@ -168,7 +168,7 @@
     }
   </style>
 </head>
-<body class="text-slate-900 min-h-screen antialiased flex flex-col selection:bg-blue-600/40 selection:text-slate-900">
+<body class="text-white min-h-screen antialiased flex flex-col selection:bg-blue-600/40 selection:text-slate-900">
 
   <!-- Top Glass Navigation Bar (Apple Style) -->
     <!-- Top Navigation Bar (ClickUp Style) -->
@@ -181,7 +181,7 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="text-sm font-bold tracking-tight text-slate-900">فِرِستا B2B War Room</span>
+          <span class="text-sm font-bold tracking-tight text-white">فِرِستا B2B War Room</span>
           <span class="px-2.5 py-0.5 text-[10px] rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 font-semibold">iOS Edition</span>
         </div>
         <p class="text-[11px] text-slate-400">شرکت پرشیا فاوا گسترش — رصدخانه و گردش‌کار جذب حساب‌های استراتژیک پیامک</p>
@@ -189,8 +189,8 @@
     </div>
 
     <!-- Apple Segmented View Switcher -->
-    <div class="flex items-center bg-slate-200/70 p-1 rounded-2xl border border-black/5 shadow-inner">
-      <button onclick="switchView('board')" id="btnViewBoard" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-900 shadow-sm transition">
+    <div class="flex items-center bg-[#1C1C1E] p-1 rounded-2xl border border-white/10 shadow-inner">
+      <button onclick="switchView('board')" id="btnViewBoard" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/15 text-white shadow-sm transition">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
         تخته کانبان (Board)
       </button>
@@ -214,26 +214,26 @@
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
         <span>دانلود اکسل (XLSX)</span>
       </a>
-      <a href="https://sheets.new" target="_blank" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/15 text-slate-200 border border-slate-200 rounded-xl text-xs font-medium transition" title="ایمپورت اکسل در گوگل شیت">
+      <a href="https://sheets.new" target="_blank" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/15 text-slate-200 border border-white/10 rounded-xl text-xs font-medium transition" title="ایمپورت اکسل در گوگل شیت">
         <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/></svg>
         <span>گوگل شیت</span>
       </a>
-      <button onclick="openSheetsGuideModal()" title="راهنمای گوگل شیت" class="p-2 bg-slate-50 text-slate-900 hover:bg-white text-slate-900 border border-slate-200 text-slate-300 hover:text-slate-900 rounded-xl border border-slate-200 transition text-xs font-bold">
+      <button onclick="openSheetsGuideModal()" title="راهنمای گوگل شیت" class="p-2 bg-[#2C2C2E] text-white hover:bg-[#1C1C1E] text-white border border-white/10 text-slate-300 hover:text-slate-900 rounded-xl border border-white/10 transition text-xs font-bold">
         ❓
       </button>
-      <button onclick="exportDataJSON()" title="پشتیبان‌گیری JSON" class="p-2 bg-slate-50 text-slate-900 hover:bg-white text-slate-900 border border-slate-200 text-slate-300 hover:text-slate-900 rounded-xl border border-slate-200 transition">
+      <button onclick="exportDataJSON()" title="پشتیبان‌گیری JSON" class="p-2 bg-[#2C2C2E] text-white hover:bg-[#1C1C1E] text-white border border-white/10 text-slate-300 hover:text-slate-900 rounded-xl border border-white/10 transition">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
       </button>
     </div>
   </header>
   <!-- Standup Action Banner -->
-  <div class="bg-white/90 border-b border-black/5 px-4 lg:px-8 py-2.5 text-slate-800 flex items-center justify-between gap-3 text-xs">
+  <div class="bg-[#1C1C1E]/95 border-b border-white/10 px-4 lg:px-8 py-2.5 text-slate-200 flex items-center justify-between gap-3 text-xs">
     <div class="flex items-center gap-2.5 text-slate-200 overflow-hidden">
       <span class="flex h-2.5 w-2.5 relative flex-shrink-0">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0A84FF] opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#0A84FF]"></span>
       </span>
-      <span class="font-bold text-slate-900 whitespace-nowrap">⚡ دستورالعمل استندآپ تیم:</span>
+      <span class="font-bold text-white whitespace-nowrap">⚡ دستورالعمل استندآپ تیم:</span>
       <span class="text-slate-400 truncate text-[11px]">جلسه ۲۰ دقیقه‌ای • خانم خرسنددل (ممیزی لینکدین) • خانم فائزه (تدوین نامه‌ها) • خانم موسی‌پور (نظارت COO) • خانم شهروزی (تصویب CEO)</span>
     </div>
     <div class="flex items-center gap-2 flex-shrink-0">
@@ -245,13 +245,13 @@
 
 
   <!-- Filter & Role Toolbar -->
-  <div class="px-4 lg:px-8 py-3.5 bg-white/80 border-b border-black/5 flex flex-wrap items-center justify-between gap-4">
+  <div class="px-4 lg:px-8 py-3.5 bg-[#1C1C1E]/80 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
     <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
       <span class="text-slate-400 font-medium ml-1">فیلتر نقش تیمی:</span>
       <button onclick="filterByRole('all')" id="rf-all" class="px-3 py-1 rounded-lg bg-blue-600/30 text-blue-300 border border-blue-500/40 font-semibold transition">همه اعضا</button>
-      <button onclick="filterByRole('researcher')" id="rf-researcher" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-slate-100 text-slate-700 border border-slate-200 transition">🔍 محقق لینکدین</button>
-      <button onclick="filterByRole('drafter')" id="rf-drafter" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-slate-100 text-slate-700 border border-slate-200 transition">✍️ نویسنده نامه</button>
-      <button onclick="filterByRole('csuite')" id="rf-csuite" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-slate-100 text-slate-700 border border-slate-200 transition">👔 نظارت مدیرعامل / COO</button>
+      <button onclick="filterByRole('researcher')" id="rf-researcher" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition">🔍 محقق لینکدین</button>
+      <button onclick="filterByRole('drafter')" id="rf-drafter" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition">✍️ نویسنده نامه</button>
+      <button onclick="filterByRole('csuite')" id="rf-csuite" class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition">👔 نظارت مدیرعامل / COO</button>
       <button onclick="resetAllToStartPoint()" class="px-3 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 font-medium transition flex items-center gap-1.5 ml-2" title="قرار دادن همه ۱۰ حساب در مرحله ۱ (نقطه شروع)">
         <span>🔄 بازنشانی همه به نقطه شروع</span>
       </button>
@@ -259,7 +259,7 @@
 
     <!-- Search Input -->
     <div class="relative w-full sm:w-80">
-      <input type="text" id="liveSearch" oninput="handleSearch()" placeholder="جستجو در نام شرکت، مدیرعامل، CTO یا پاشنه آشیل..." class="w-full bg-white border border-slate-200 focus:border-[#007AFF] text-slate-900 rounded-xl px-3.5 py-1.5 pr-8 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition">
+      <input type="text" id="liveSearch" oninput="handleSearch()" placeholder="جستجو در نام شرکت، مدیرعامل، CTO یا پاشنه آشیل..." class="w-full bg-[#2C2C2E] border border-white/10 focus:border-[#0A84FF] text-white rounded-xl px-3.5 py-1.5 pr-8 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition">
       <svg class="w-3.5 h-3.5 text-slate-500 absolute right-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
     </div>
   </div>
@@ -270,7 +270,7 @@
 
       <!-- Column 1: Backlog / Prospect -->
       <div class="w-72 flex-shrink-0 ios-column rounded-2xl p-3.5 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'prospect')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-200">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-white/10">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
             <div>
@@ -278,14 +278,14 @@
               <p class="text-[10px] text-slate-500 mt-0.5">ثبت مشخصات و تخمین ترافیک پیامک</p>
             </div>
           </div>
-          <span id="badge-prospect" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold border border-slate-200">0</span>
+          <span id="badge-prospect" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/10 text-slate-200 font-semibold border border-white/10">0</span>
         </div>
         <div id="col-prospect" class="space-y-3 flex-1 overflow-y-auto"></div>
       </div>
 
       <!-- Column 2: LinkedIn Research -->
       <div class="w-72 flex-shrink-0 ios-column rounded-2xl p-3.5 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'linkedin')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-200">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-white/10">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#0A84FF]"></span>
             <div>
@@ -300,7 +300,7 @@
 
       <!-- Column 3: Letter Drafting -->
       <div class="w-72 flex-shrink-0 ios-column rounded-2xl p-3.5 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'drafting')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-200">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-white/10">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#FF9F0A]"></span>
             <div>
@@ -315,7 +315,7 @@
 
       <!-- Column 4: CEO / COO Review -->
       <div class="w-72 flex-shrink-0 ios-column rounded-2xl p-3.5 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'csuite')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-200">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-white/10">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#64D2FF]"></span>
             <div>
@@ -330,7 +330,7 @@
 
       <!-- Column 5: Active Outreach -->
       <div class="w-72 flex-shrink-0 ios-column rounded-2xl p-3.5 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'outreach')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-200">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-white/10">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#007AFF]"></span>
             <div>
@@ -345,7 +345,7 @@
 
       <!-- Column 6: Pilot / Won -->
       <div class="w-72 flex-shrink-0 ios-column rounded-2xl p-3.5 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'won')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-200">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-white/10">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#30D158]"></span>
             <div>
@@ -365,7 +365,7 @@
   <div id="viewList" class="hidden flex-1 p-4 lg:p-8">
     <div class="ios-column rounded-2xl overflow-hidden shadow-2xl">
       <table class="w-full text-right text-xs">
-        <thead class="bg-black/40 text-slate-400 border-b border-slate-200">
+        <thead class="bg-black/40 text-slate-400 border-b border-white/10">
           <tr>
             <th class="p-3.5">نام شرکت و اولویت</th>
             <th class="p-3.5">حوزه فعالیت</th>
@@ -415,34 +415,34 @@
 
   <!-- SLIDE-OVER DETAIL DRAWER / JIRA ISSUE MODAL (FULLY EDITABLE) -->
   <div id="detailDrawer" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex justify-end">
-    <div class="w-full max-w-2xl bg-slate-50 text-slate-900 border-r border-slate-200 h-full overflow-y-auto flex flex-col p-6 space-y-5 shadow-2xl">
+    <div class="w-full max-w-2xl bg-[#2C2C2E] text-white border-r border-white/10 h-full overflow-y-auto flex flex-col p-6 space-y-5 shadow-2xl">
       <!-- Drawer Header -->
-      <div class="flex items-start justify-between border-b border-slate-200 pb-4">
+      <div class="flex items-start justify-between border-b border-white/10 pb-4">
         <div class="flex-1 mr-2">
           <div class="flex items-center gap-2 mb-2">
             <span id="dBadgeTier" class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Tier A</span>
-            <span id="dBadgeStage" class="px-2 py-0.5 rounded text-[10px] bg-white text-slate-900 border border-slate-200 text-[#A3A6B4] border border-slate-200">مرحله</span>
+            <span id="dBadgeStage" class="px-2 py-0.5 rounded text-[10px] bg-[#1C1C1E] text-white border border-white/10 text-[#A3A6B4] border border-white/10">مرحله</span>
             <span class="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 font-medium">✏️ حالت ویرایش فعال</span>
           </div>
           <div class="flex items-center gap-2">
-            <input type="text" id="dEditName" class="text-lg font-bold text-slate-900 bg-white text-slate-900 border border-slate-200 border border-slate-200 rounded-lg px-2.5 py-1 w-full focus:outline-none focus:border-[#0A84FF]">
+            <input type="text" id="dEditName" class="text-lg font-bold text-slate-900 bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg px-2.5 py-1 w-full focus:outline-none focus:border-[#0A84FF]">
           </div>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="saveDrawerEdits()" class="px-3.5 py-1.5 bg-gradient-to-r from-[#0A84FF] to-[#0071E3] text-slate-900 rounded-xl text-xs font-semibold shadow-md shadow-[#0A84FF]/20 hover:opacity-95 transition flex items-center gap-1">
             <span>💾 ذخیره</span>
           </button>
-          <button onclick="closeDetailDrawer()" class="p-2 rounded-xl bg-white text-slate-900 border border-slate-200 hover:bg-[#3A3A3C] text-slate-400 hover:text-slate-900 transition">
+          <button onclick="closeDetailDrawer()" class="p-2 rounded-xl bg-[#1C1C1E] text-white border border-white/10 hover:bg-[#3A3A3C] text-slate-400 hover:text-slate-900 transition">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
       </div>
 
       <!-- Quick Stage & Tier Selectors -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 text-slate-900 p-3.5 rounded-xl border border-slate-200">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-[#2C2C2E] text-white p-3.5 rounded-xl border border-white/10">
         <div>
           <label class="block text-[11px] text-[#A3A6B4] mb-1">مرحله در پایپ‌لاین (Stage):</label>
-          <select id="dStageSelect" class="w-full bg-white text-slate-900 border border-slate-200 text-slate-200 border border-slate-200 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5">
+          <select id="dStageSelect" class="w-full bg-[#1C1C1E] text-white border border-white/10 text-slate-200 border border-white/10 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5">
             <option value="prospect">۱. کشف و ارزیابی لید (شروع)</option>
             <option value="linkedin">۲. ممیزی لینکدین</option>
             <option value="drafting">۳. تدوین نامه و روت</option>
@@ -453,7 +453,7 @@
         </div>
         <div>
           <label class="block text-[11px] text-[#A3A6B4] mb-1">اولویت هدف (Tier):</label>
-          <select id="dEditTier" class="w-full bg-white text-slate-900 border border-slate-200 text-slate-200 border border-slate-200 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5">
+          <select id="dEditTier" class="w-full bg-[#1C1C1E] text-white border border-white/10 text-slate-200 border border-white/10 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5">
             <option value="Tier A">Tier A (فوری - امتیاز بالا)</option>
             <option value="Strategic">Strategic (همکاری استراتژیک)</option>
             <option value="Tier B">Tier B (ردیف دوم)</option>
@@ -461,7 +461,7 @@
         </div>
         <div>
           <label class="block text-[11px] text-[#A3A6B4] mb-1">حوزه تخصصی:</label>
-          <input type="text" id="dEditVertical" class="w-full bg-white text-slate-900 border border-slate-200 text-slate-200 border border-slate-200 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5">
+          <input type="text" id="dEditVertical" class="w-full bg-[#1C1C1E] text-white border border-white/10 text-slate-200 border border-white/10 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5">
         </div>
       </div>
 
@@ -472,47 +472,47 @@
             <label class="text-[11px] text-[#7994FF] font-medium">آدرس لینکدین شرکت:</label>
             <a id="dLiLinkPreview" href="#" target="_blank" class="text-[10px] text-blue-400 hover:underline">باز کردن لینک ↗</a>
           </div>
-          <input type="text" id="dEditLinkedin" class="w-full bg-white text-slate-900 border border-slate-200 text-slate-200 border border-slate-200 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5 font-mono dir-ltr text-left">
+          <input type="text" id="dEditLinkedin" class="w-full bg-[#1C1C1E] text-white border border-white/10 text-slate-200 border border-white/10 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5 font-mono dir-ltr text-left">
         </div>
         <div>
           <div class="flex items-center justify-between mb-1">
             <label class="text-[11px] text-slate-300 font-medium">وب‌سایت رسمی:</label>
             <a id="dWebLinkPreview" href="#" target="_blank" class="text-[10px] text-slate-400 hover:underline">باز کردن سایت ↗</a>
           </div>
-          <input type="text" id="dEditWebsite" class="w-full bg-white text-slate-900 border border-slate-200 text-slate-200 border border-slate-200 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5 font-mono dir-ltr text-left">
+          <input type="text" id="dEditWebsite" class="w-full bg-[#1C1C1E] text-white border border-white/10 text-slate-200 border border-white/10 focus:border-[#0A84FF] text-xs rounded-lg px-2.5 py-1.5 font-mono dir-ltr text-left">
         </div>
       </div>
 
       <!-- Operational Pain Point (The Trojan Horse) -->
       <div class="space-y-1.5">
         <label class="block text-xs font-semibold text-amber-400">پاشنه آشیل عملیاتی و درد پیامک (Pain Point):</label>
-        <textarea id="dEditPain" rows="2" class="w-full bg-white text-slate-900 border border-slate-200 text-amber-200 border border-amber-900/40 focus:border-amber-500 text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
+        <textarea id="dEditPain" rows="2" class="w-full bg-[#1C1C1E] text-white border border-white/10 text-amber-200 border border-amber-900/40 focus:border-amber-500 text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
       </div>
 
       <!-- Decision Hierarchy Tree (Editable) -->
       <div class="space-y-2.5">
         <span class="text-xs font-semibold text-slate-900 block">درخت تصمیم‌گیرندگان و افراد کلیدی (Buying Committee):</span>
         <div class="space-y-2 text-xs">
-          <div class="p-2.5 rounded-xl bg-slate-50 text-slate-900 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="p-2.5 rounded-xl bg-[#2C2C2E] text-white border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <span class="text-[#A3A6B4] w-36">تصمیم‌گیرنده نهایی بودجه:</span>
-            <input type="text" id="dEditDecisionMaker" class="flex-1 bg-white text-slate-900 border border-slate-200 text-slate-900 border border-slate-200 rounded-lg px-2.5 py-1 text-xs focus:border-[#0A84FF]">
+            <input type="text" id="dEditDecisionMaker" class="flex-1 bg-[#1C1C1E] text-white border border-white/10 text-slate-900 border border-white/10 rounded-lg px-2.5 py-1 text-xs focus:border-[#0A84FF]">
             <span class="px-2 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-300 self-start sm:self-center">Economic Buyer</span>
           </div>
-          <div class="p-2.5 rounded-xl bg-slate-50 text-slate-900 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="p-2.5 rounded-xl bg-[#2C2C2E] text-white border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <span class="text-[#A3A6B4] w-36">تصویب‌کننده / هیئت‌مدیره:</span>
-            <input type="text" id="dEditApprover" class="flex-1 bg-white text-slate-900 border border-slate-200 text-slate-900 border border-slate-200 rounded-lg px-2.5 py-1 text-xs focus:border-[#0A84FF]">
+            <input type="text" id="dEditApprover" class="flex-1 bg-[#1C1C1E] text-white border border-white/10 text-slate-900 border border-white/10 rounded-lg px-2.5 py-1 text-xs focus:border-[#0A84FF]">
             <span class="px-2 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-300 self-start sm:self-center">Approver</span>
           </div>
-          <div class="p-2.5 rounded-xl bg-slate-50 text-slate-900 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="p-2.5 rounded-xl bg-[#2C2C2E] text-white border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <span class="text-[#A3A6B4] w-36">ارزیاب و سرپرست فنی:</span>
-            <input type="text" id="dEditTechLead" class="flex-1 bg-white text-slate-900 border border-slate-200 text-slate-900 border border-slate-200 rounded-lg px-2.5 py-1 text-xs focus:border-[#0A84FF]">
+            <input type="text" id="dEditTechLead" class="flex-1 bg-[#1C1C1E] text-white border border-white/10 text-slate-900 border border-white/10 rounded-lg px-2.5 py-1 text-xs focus:border-[#0A84FF]">
             <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 self-start sm:self-center">Tech Champion</span>
           </div>
         </div>
       </div>
 
       <!-- Document Vault & File Attachments (Jira Documents Feature) -->
-      <div class="space-y-3 bg-slate-50 text-slate-900 p-4 rounded-xl border border-slate-200">
+      <div class="space-y-3 bg-[#2C2C2E] text-white p-4 rounded-xl border border-white/10">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
             <svg class="w-4 h-4 text-[#0A84FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
@@ -532,17 +532,17 @@
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
             <label class="text-xs font-semibold text-emerald-400">قلاب اختصاصی مدیرعامل / بنیان‌گذار (C-Suite Hook):</label>
-            <button onclick="copyTextFromInput('dEditHookCeo')" class="text-[11px] text-[#A3A6B4] hover:text-slate-900 px-2 py-0.5 bg-white text-slate-900 border border-slate-200 rounded border border-slate-200">کپی متن</button>
+            <button onclick="copyTextFromInput('dEditHookCeo')" class="text-[11px] text-[#A3A6B4] hover:text-slate-900 px-2 py-0.5 bg-[#1C1C1E] text-white border border-white/10 rounded border border-white/10">کپی متن</button>
           </div>
-          <textarea id="dEditHookCeo" rows="3" class="w-full bg-[#111215] text-slate-200 border border-slate-200 focus:border-[#0A84FF] text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
+          <textarea id="dEditHookCeo" rows="3" class="w-full bg-[#111215] text-slate-200 border border-white/10 focus:border-[#0A84FF] text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
         </div>
 
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
             <label class="text-xs font-semibold text-[#7994FF]">قلاب اختصاصی CTO / مدیر فنی (Tech Lead Hook):</label>
-            <button onclick="copyTextFromInput('dEditHookTech')" class="text-[11px] text-[#A3A6B4] hover:text-slate-900 px-2 py-0.5 bg-white text-slate-900 border border-slate-200 rounded border border-slate-200">کپی متن</button>
+            <button onclick="copyTextFromInput('dEditHookTech')" class="text-[11px] text-[#A3A6B4] hover:text-slate-900 px-2 py-0.5 bg-[#1C1C1E] text-white border border-white/10 rounded border border-white/10">کپی متن</button>
           </div>
-          <textarea id="dEditHookTech" rows="3" class="w-full bg-[#111215] text-slate-200 border border-slate-200 focus:border-[#0A84FF] text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
+          <textarea id="dEditHookTech" rows="3" class="w-full bg-[#111215] text-slate-200 border border-white/10 focus:border-[#0A84FF] text-xs rounded-xl p-3 leading-relaxed focus:outline-none"></textarea>
         </div>
       </div>
 
@@ -560,10 +560,10 @@
           دستیار هوش مصنوعی جمینای برای این حساب
         </span>
         <div class="grid grid-cols-2 gap-2 text-[11px]">
-          <button onclick="drawerGeminiPrompt('proposal')" class="p-2 rounded-lg bg-white text-slate-900 border border-slate-200 hover:bg-[#3A3A3C] text-slate-200 border border-slate-200 hover:border-[#0A84FF] text-right">📄 تولید نامه رسمی</button>
-          <button onclick="drawerGeminiPrompt('inmail')" class="p-2 rounded-lg bg-white text-slate-900 border border-slate-200 hover:bg-[#3A3A3C] text-slate-200 border border-slate-200 hover:border-[#0A84FF] text-right">💬 متن InMail صمیمی</button>
-          <button onclick="drawerGeminiPrompt('objection')" class="p-2 rounded-lg bg-white text-slate-900 border border-slate-200 hover:bg-[#3A3A3C] text-slate-200 border border-slate-200 hover:border-[#0A84FF] text-right">🛡️ شکستن بهانه رقیب</button>
-          <button onclick="drawerGeminiPrompt('pilot')" class="p-2 rounded-lg bg-white text-slate-900 border border-slate-200 hover:bg-[#3A3A3C] text-slate-200 border border-slate-200 hover:border-[#0A84FF] text-right">⚡ تنظیم پیش‌نویس پایلوت</button>
+          <button onclick="drawerGeminiPrompt('proposal')" class="p-2 rounded-lg bg-[#1C1C1E] text-white border border-white/10 hover:bg-[#3A3A3C] text-slate-200 border border-white/10 hover:border-[#0A84FF] text-right">📄 تولید نامه رسمی</button>
+          <button onclick="drawerGeminiPrompt('inmail')" class="p-2 rounded-lg bg-[#1C1C1E] text-white border border-white/10 hover:bg-[#3A3A3C] text-slate-200 border border-white/10 hover:border-[#0A84FF] text-right">💬 متن InMail صمیمی</button>
+          <button onclick="drawerGeminiPrompt('objection')" class="p-2 rounded-lg bg-[#1C1C1E] text-white border border-white/10 hover:bg-[#3A3A3C] text-slate-200 border border-white/10 hover:border-[#0A84FF] text-right">🛡️ شکستن بهانه رقیب</button>
+          <button onclick="drawerGeminiPrompt('pilot')" class="p-2 rounded-lg bg-[#1C1C1E] text-white border border-white/10 hover:bg-[#3A3A3C] text-slate-200 border border-white/10 hover:border-[#0A84FF] text-right">⚡ تنظیم پیش‌نویس پایلوت</button>
         </div>
       </div>
 
@@ -572,8 +572,8 @@
 
   <!-- NEW ACCOUNT MODAL -->
   <div id="newAccountModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-slate-50 text-slate-900 border border-slate-200 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+    <div class="bg-[#2C2C2E] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
         <h3 class="font-bold text-slate-900 text-base">ایجاد حساب هدف جدید</h3>
         <button onclick="closeNewAccountModal()" class="text-slate-400 hover:text-slate-900">&times;</button>
       </div>
@@ -581,16 +581,16 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block text-slate-400 mb-1">نام شرکت یا برند:</label>
-          <input type="text" id="mName" placeholder="مثلاً: صرافی نوبیتکس" class="w-full bg-white text-slate-900 border border-slate-200 border border-slate-200 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+          <input type="text" id="mName" placeholder="مثلاً: صرافی نوبیتکس" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 mb-1">حوزه تخصصی:</label>
-            <input type="text" id="mVertical" placeholder="مثلاً: صرافی رمزارز" class="w-full bg-white text-slate-900 border border-slate-200 border border-slate-200 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+            <input type="text" id="mVertical" placeholder="مثلاً: صرافی رمزارز" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
           </div>
           <div>
             <label class="block text-slate-400 mb-1">اولویت شورا:</label>
-            <select id="mTier" class="w-full bg-white text-slate-900 border border-slate-200 border border-slate-200 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+            <select id="mTier" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
               <option value="Tier A">Tier A (فوری - پربسامد)</option>
               <option value="Tier B">Tier B (اولویت بالا)</option>
               <option value="Strategic">Strategic (کانالی / ISV)</option>
@@ -600,20 +600,20 @@
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 mb-1">آدرس لینکدین شرکت:</label>
-            <input type="text" id="mLinkedin" placeholder="https://linkedin.com/company/..." class="w-full bg-white text-slate-900 border border-slate-200 border border-slate-200 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+            <input type="text" id="mLinkedin" placeholder="https://linkedin.com/company/..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
           </div>
           <div>
             <label class="block text-slate-400 mb-1">وب‌سایت رسمی:</label>
-            <input type="text" id="mWebsite" placeholder="https://..." class="w-full bg-white text-slate-900 border border-slate-200 border border-slate-200 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+            <input type="text" id="mWebsite" placeholder="https://..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
           </div>
         </div>
         <div>
           <label class="block text-slate-400 mb-1">پاشنه آشیل و درد پیامکی:</label>
-          <textarea id="mPain" rows="2" placeholder="تاخیر کدهای OTP در ساعات شلوغی..." class="w-full bg-white text-slate-900 border border-slate-200 border border-slate-200 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]"></textarea>
+          <textarea id="mPain" rows="2" placeholder="تاخیر کدهای OTP در ساعات شلوغی..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]"></textarea>
         </div>
       </div>
 
-      <div class="flex justify-end gap-2 pt-2 border-t border-slate-200">
+      <div class="flex justify-end gap-2 pt-2 border-t border-white/10">
         <button onclick="closeNewAccountModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-medium">انصراف</button>
         <button onclick="saveNewAccount()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-slate-900 rounded-xl text-xs font-semibold shadow-lg shadow-blue-600/30">ذخیره حساب</button>
       </div>
@@ -900,13 +900,13 @@
           card.onclick = () => openDetailDrawer(acc.id);
 
           const docsCount = acc.docs ? acc.docs.length : 0;
-          let tierBadgeClass = "bg-slate-100 text-slate-700 border border-slate-200";
+          let tierBadgeClass = "bg-white/10 text-slate-200 border border-white/10";
           if (acc.tier === 'Tier A') {
             tierBadgeClass = "bg-[#30D158]/15 text-[#30D158] border border-[#30D158]/30 font-bold";
           } else if (acc.tier === 'Strategic') {
             tierBadgeClass = "bg-[#0A84FF]/15 text-[#0A84FF] border border-[#0A84FF]/30 font-bold";
           } else if (acc.tier === 'Tier B') {
-            tierBadgeClass = "bg-slate-100 text-slate-700 border border-slate-200 font-medium";
+            tierBadgeClass = "bg-white/10 text-slate-200 border border-white/10 font-medium";
           }
 
           card.innerHTML = `
@@ -914,10 +914,10 @@
               <span class="px-2 py-0.5 rounded text-[10px] font-mono ${tierBadgeClass}">${acc.tier}</span>
               <span class="text-[10px] text-slate-400 font-mono">#${acc.num}</span>
             </div>
-            <h4 class="font-bold text-slate-900 text-xs leading-snug font-bold group-hover:text-[#007AFF] transition">${acc.name}</h4>
-            <p class="text-[11px] text-slate-600 mt-1 line-clamp-1">${acc.vertical}</p>
+            <h4 class="font-bold text-white text-xs leading-snug font-bold group-hover:text-[#0A84FF] transition">${acc.name}</h4>
+            <p class="text-[11px] text-slate-400 mt-1 line-clamp-1">${acc.vertical}</p>
 
-            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400">
+            <div class="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-400">
               <span class="flex items-center gap-1 text-slate-400">
                 <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                 ${acc.decisionMaker.split(' ')[0]}
@@ -951,7 +951,7 @@
           <td class="p-3.5">
             <div class="font-bold text-slate-900">${acc.name}</div>
             <div class="flex items-center gap-2 mt-1">
-              <span class="px-2 py-0.5 rounded text-[10px] font-mono ${acc.tier === 'Tier A' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-slate-100 text-slate-700'}">${acc.tier} (${acc.score})</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono ${acc.tier === 'Tier A' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-white/10 text-slate-200'}">${acc.tier} (${acc.score})</span>
               <a href="${acc.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-blue-400 hover:underline text-[11px]">لینکدین</a>
             </div>
           </td>
@@ -1108,7 +1108,7 @@
 
       docs.forEach((doc, idx) => {
         const item = document.createElement("div");
-        item.className = "flex items-center justify-between p-2.5 rounded-lg bg-slate-900 border border-slate-200 text-xs";
+        item.className = "flex items-center justify-between p-2.5 rounded-lg bg-slate-900 border border-white/10 text-xs";
         item.innerHTML = `
           <div class="flex items-center gap-2 overflow-hidden">
             <span class="px-1.5 py-0.5 rounded bg-blue-600/30 text-blue-300 font-mono text-[10px] uppercase">${doc.type}</span>
@@ -1205,7 +1205,7 @@
         const btn = document.getElementById(`btnView${v.charAt(0).toUpperCase() + v.slice(1)}`);
         const el = document.getElementById(`view${v.charAt(0).toUpperCase() + v.slice(1)}`);
         if (v === view) {
-          btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-900 shadow-sm transition";
+          btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/15 text-white shadow-sm transition";
           el.classList.remove("hidden");
         } else {
           btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-slate-900 transition";
@@ -1225,7 +1225,7 @@
         if (r === role) {
           btn.className = "px-2.5 py-1 rounded-xl bg-[#007AFF] text-white font-semibold shadow-sm transition";
         } else {
-          btn.className = "px-2.5 py-1 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-black border border-black/5 transition whitespace-nowrap";
+          btn.className = "px-2.5 py-1 rounded-xl bg-white/10 hover:bg-white/15 text-slate-200 hover:text-white border border-white/10 transition whitespace-nowrap";
         }
       });
       renderBoard();
@@ -1306,8 +1306,8 @@
   </script>
   <!-- SHEETS GUIDE MODAL -->
   <div id="sheetsGuideModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-slate-50 text-slate-900 border border-slate-200 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4 text-right">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+    <div class="bg-[#2C2C2E] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4 text-right">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
         <div class="flex items-center gap-2">
           <span class="w-3 h-3 rounded-full bg-[#05C46B]"></span>
           <h3 class="font-bold text-slate-900 text-sm">راهنمای بارگذاری مستقیم کاربرگ در Google Sheets</h3>
@@ -1318,7 +1318,7 @@
       <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
         <p class="text-[#60A5FA] font-medium">فایل اکسل تولیدشده شامل ۴ تب رسمی (پایپ‌لاین پیگیری، درخت تصمیم‌گیران، قلاب‌های متنی، نقش‌های تیمی) با پشتیبانی کامل راست‌به‌چپ (RTL) است.</p>
         
-        <div class="p-3 bg-white text-slate-900 border border-slate-200 rounded-xl border border-slate-200 space-y-2">
+        <div class="p-3 bg-[#1C1C1E] text-white border border-white/10 rounded-xl border border-white/10 space-y-2">
           <div class="flex items-start gap-2">
             <span class="px-2 py-0.5 rounded bg-[#0A84FF]/20 text-[#60A5FA] font-bold">۱</span>
             <span>روی دکمه سبز رنگ <strong>«دانلود اکسل (XLSX)»</strong> در بالای صفحه کلیک کنید تا فایل <code class="text-emerald-300 font-mono">pfg_b2b_tracker.xlsx</code> ذخیره شود.</span>
@@ -1347,8 +1347,8 @@
   </div>
   <!-- STANDUP MODAL -->
   <div id="standupModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-slate-50 text-slate-900 border border-slate-200 w-full max-w-2xl rounded-2xl p-6 shadow-2xl space-y-5 text-right max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3.5">
+    <div class="bg-[#2C2C2E] text-white border border-white/10 w-full max-w-2xl rounded-2xl p-6 shadow-2xl space-y-5 text-right max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
         <div class="flex items-center gap-2.5">
           <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#0A84FF] to-[#0A84FF]"></span>
           <h3 class="font-bold text-slate-900 text-base">دستورالعمل اجرایی استندآپ ۲۰ دقیقه‌ای توسعه بازار پیامک</h3>
@@ -1360,15 +1360,15 @@
       <div class="space-y-2">
         <span class="text-xs font-bold text-[#60A5FA]">⏱️ زمان‌بندی و دستور کار استندآپ:</span>
         <div class="grid grid-cols-3 gap-2.5 text-xs">
-          <div class="p-3 rounded-xl bg-white text-slate-900 border border-slate-200 border border-slate-200">
+          <div class="p-3 rounded-xl bg-[#1C1C1E] text-white border border-white/10 border border-white/10">
             <span class="text-[#7994FF] font-bold block mb-1">۰ تا ۵ دقیقه: هم‌راستایی</span>
             <p class="text-[11px] text-[#A3A6B4]">توزیع نقش‌ها بین همکار ۱ (لینکدین) و همکار ۲ (نامه) و اعلام شاخص‌ها</p>
           </div>
-          <div class="p-3 rounded-xl bg-white text-slate-900 border border-slate-200 border border-slate-200">
+          <div class="p-3 rounded-xl bg-[#1C1C1E] text-white border border-white/10 border border-white/10">
             <span class="text-[#FFB56B] font-bold block mb-1">۵ تا ۱۵ دقیقه: مرور ۴ حساب Tier A</span>
             <p class="text-[11px] text-[#A3A6B4]">بررسی طلاین، ترابرنت، زرپی۲۴، اوبار و شناسایی نقاط ضعف پیامک رقیب</p>
           </div>
-          <div class="p-3 rounded-xl bg-white text-slate-900 border border-slate-200 border border-slate-200">
+          <div class="p-3 rounded-xl bg-[#1C1C1E] text-white border border-white/10 border border-white/10">
             <span class="text-[#38E190] font-bold block mb-1">۱۵ تا ۲۰ دقیقه: تعهدات امروز</span>
             <p class="text-[11px] text-[#A3A6B4]">ثبت روزانه ۲ حساب در بورد؛ بررسی و تایید پیش‌نویس‌ها در ساعت ۱۶:۰۰</p>
           </div>
@@ -1379,7 +1379,7 @@
       <div class="space-y-2.5 text-xs text-slate-300">
         <span class="text-xs font-bold text-slate-900 block">👥 تفکیک ماموریت‌های ۴ گانه تیم:</span>
         
-        <div class="p-3 rounded-2xl bg-slate-50 text-slate-900 border border-slate-200 space-y-1">
+        <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
           <div class="flex items-center justify-between text-blue-400 font-bold">
             <span>۱. سرکار خانم سوده شهروزی (مدیرعامل / CEO)</span>
             <span class="text-[10px] bg-blue-500/15 px-2 py-0.5 rounded-full text-blue-300">راهبری کلان</span>
@@ -1389,7 +1389,7 @@
           </p>
         </div>
 
-        <div class="p-3 rounded-2xl bg-slate-50 text-slate-900 border border-slate-200 space-y-1">
+        <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
           <div class="flex items-center justify-between text-cyan-400 font-bold">
             <span>۲. سرکار خانم مریم موسی‌پور (مدیر ارشد عملیات / COO)</span>
             <span class="text-[10px] bg-cyan-500/15 px-2 py-0.5 rounded-full text-cyan-300">مدیریت عملیات فروش</span>
@@ -1399,7 +1399,7 @@
           </p>
         </div>
 
-        <div class="p-3 rounded-2xl bg-slate-50 text-slate-900 border border-slate-200 space-y-1">
+        <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
           <div class="flex items-center justify-between text-emerald-400 font-bold">
             <span>۳. سرکار خانم خرسنددل (سرپرست عملیات / Operation Lead)</span>
             <span class="text-[10px] bg-emerald-500/15 px-2 py-0.5 rounded-full text-emerald-300">هدف: ۲ ممیزی در روز</span>
@@ -1409,7 +1409,7 @@
           </p>
         </div>
 
-        <div class="p-3 rounded-2xl bg-slate-50 text-slate-900 border border-slate-200 space-y-1">
+        <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
           <div class="flex items-center justify-between text-amber-400 font-bold">
             <span>۴. سرکار خانم فائزه (ادمین عملیات / Operation Admin)</span>
             <span class="text-[10px] bg-amber-500/15 px-2 py-0.5 rounded-full text-amber-300">هدف: ۲ پیش‌نویس در روز</span>
@@ -1420,7 +1420,7 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center justify-between pt-2 border-t border-slate-200">
+    <div class="flex items-center justify-between pt-2 border-t border-white/10">
         <a href="/pfg_b2b_tracker.xlsx" download class="text-xs text-emerald-400 hover:underline flex items-center gap-1">📥 دانلود مستقیم کاربرگ اکسل</a>
         <button onclick="closeStandupModal()" class="px-4 py-2 bg-gradient-to-r from-[#0A84FF] to-[#0071E3] text-slate-900 rounded-xl text-xs font-semibold">بستن راهنما</button>
       </div>
