@@ -94,27 +94,27 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 w-full h-14 z-50 backdrop-blur-md bg-[#0b0d11]/85 border-b border-white/5 transition-all">
+    <header className="fixed top-0 inset-x-0 w-full h-14 z-50 backdrop-blur-xl bg-[#0b0d11]/80 border-b border-white/[0.08] transition-all">
       <div className="w-full max-w-[1920px] 2xl:max-w-[2160px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-full flex items-center justify-between">
         
         {/* Left: Brand + Status Badge */}
         <div className="flex items-center gap-3">
           <a
             href={isFa ? `${baseUrl}fa/` : baseUrl}
-            className="text-xs sm:text-sm font-semibold tracking-wider text-white hover:text-neutral-200 transition-colors uppercase font-mono"
+            className="text-xs sm:text-sm font-semibold tracking-wide text-white hover:text-neutral-200 transition-colors uppercase font-sans"
           >
             ARIYA SARRAFZADEH
           </a>
-          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/15 text-[11px] font-mono text-neutral-200">
+          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-sans font-medium text-neutral-300">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>[FINTECH &amp; TELECOM INFRASTRUCTURE]</span>
+            <span>Fintech &amp; Telecom Infrastructure</span>
           </span>
         </div>
 
         {/* Right: Horizontal Section Pills + Language Toggle */}
         <div className="flex items-center gap-2">
           {/* Desktop Nav Pills without numbers */}
-          <nav className="hidden lg:flex items-center gap-1 font-mono text-xs">
+          <nav className="hidden lg:flex items-center gap-1 font-sans text-xs">
             {navItems.map((item) => {
               const isActive = activeSection === item.target;
               const targetHref = isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`;
@@ -123,7 +123,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   key={item.target}
                   href={targetHref}
                   onClick={(e) => handleNavClick(e, item.target, item.env)}
-                  className={`px-2.5 py-1.5 rounded-md transition-all font-mono text-xs ${
+                  className={`px-3 py-1.5 rounded-lg transition-all font-sans text-xs font-medium ${
                     isActive
                       ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
                       : 'text-neutral-300 hover:text-white hover:bg-white/[0.08] border border-transparent'
@@ -141,13 +141,13 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           {/* Secondary Links */}
           <a
             href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
+            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-neutral-300 hover:text-white transition-colors"
           >
             {isFa ? 'واژه‌نامه' : 'Dictionary'}
           </a>
           <a
             href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors"
+            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-neutral-300 hover:text-white transition-colors"
           >
             {isFa ? 'وایت‌پیپرها' : 'Whitepapers'}
           </a>
@@ -155,7 +155,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           {/* Language Switcher */}
           <a
             href={switchTarget}
-            className="px-2.5 py-1 rounded-md bg-white/[0.08] hover:bg-white/15 border border-white/15 text-[11px] font-mono font-semibold text-white transition-all tracking-wider"
+            className="px-2.5 py-1 rounded-lg bg-white/[0.08] hover:bg-white/15 border border-white/15 text-[11px] font-sans font-semibold text-white transition-all tracking-wider"
           >
             {isFa ? 'EN' : 'FA'}
           </a>
@@ -181,19 +181,19 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       {/* Mobile Dropdown */}
       {mobileMenuOpen && (
         <div className="lg:hidden w-full bg-[#0b0d11]/95 border-b border-white/10 px-6 py-4 space-y-2 backdrop-blur-xl">
-          <div className="grid grid-cols-2 gap-2 font-mono text-xs">
+          <div className="grid grid-cols-2 gap-2 font-sans text-xs">
             {navItems.map((item) => (
               <a
                 key={item.target}
                 href={isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`}
                 onClick={(e) => handleNavClick(e, item.target, item.env)}
-                className="text-left px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5 text-neutral-300 hover:text-white block"
+                className="text-left px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5 text-neutral-300 hover:text-white block font-medium"
               >
                 {item.label}
               </a>
             ))}
           </div>
-          <div className="pt-3 border-t border-white/5 flex flex-wrap gap-4 text-xs font-mono">
+          <div className="pt-3 border-t border-white/5 flex flex-wrap gap-4 text-xs font-sans">
             <a href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`} className="text-neutral-400 hover:text-white">
               {isFa ? 'واژه‌نامه' : 'Dictionary'}
             </a>

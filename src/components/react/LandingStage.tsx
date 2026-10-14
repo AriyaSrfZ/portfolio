@@ -188,20 +188,20 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
           {/* Narrative Column: Fills the entire right side purposefully */}
           <div className="lg:col-span-7 xl:col-span-8 space-y-3.5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-mono text-neutral-300 tracking-wider uppercase">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-sans font-medium text-neutral-300 tracking-wider uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
               <span className="text-white font-semibold">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
               <span className="text-white/30">·</span>
               <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'Principal Systems Architect & Technical Product Leader'}</span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight font-sans">
               {isFa 
                 ? 'معماری سوییچ‌های مالی، دفاتر کل دوطرفه و روتینگ مخابراتی' 
                 : 'High-Throughput Financial Switches, Double-Entry Ledgers & Telecom Routing'}
             </h1>
 
-            <p className="text-sm text-neutral-300 leading-relaxed max-w-4xl">
+            <p className="text-sm text-neutral-300 leading-relaxed max-w-4xl font-sans">
               {isFa
                 ? `${stats.experienceYears.textFa} تجربه عملیاتی در زیرساخت‌های بانکی شاپرک، سوییچ‌های پرداخت ISO 8583 با تاخیر ${stats.switchFailoverSla.textFa}، ماشین حالت تخصیص دومرحله‌ای موجودی با تضمین انحراف مالی صفر، و هاب‌های مخابراتی SMPP با ظرفیت ${stats.ledgerPeakTps.textFa}.`
                 : `${stats.experienceYears.textEn} engineering high-availability banking switches, ${stats.switchFailoverSla.textEn} ISO 8583 multi-PSP routing, two-phase balance reservation machines with zero financial drift, and national SMPP 3.4 telecom gateways handling ${stats.ledgerPeakTps.en} burst capacity.`}
@@ -217,27 +217,27 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
             </div>
 
             {/* Strategic Focus Grid: Fills horizontal width with core system capabilities */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 font-mono text-[11px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 font-sans text-[11px]">
               <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                <span className="text-neutral-300 truncate">
+                <span className="text-neutral-300 truncate font-medium">
                   {isFa ? `سوییچ پرداخت بانکی: تاخیر ${stats.switchFailoverSla.shortFa} و بازگشت خودکار ۰۴۰۰` : `Interbank Switch: ${stats.switchFailoverSla.shortEn} failover & auto-0400`}
                 </span>
               </div>
               <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                <span className="text-neutral-300 truncate">
+                <span className="text-neutral-300 truncate font-medium">
                   {isFa ? `دفتر کل توزیع‌شده: قفل SETNX با انحراف مالی ${stats.financialDriftPercent.shortFa}` : 'Ledger Mutex: Zero drift via SETNX & CDC outbox'}
                 </span>
               </div>
             </div>
 
             {/* Action Row */}
-            <div className="pt-2 flex flex-wrap gap-3 items-center text-xs font-mono">
+            <div className="pt-2 flex flex-wrap gap-3 items-center text-xs font-sans">
               <a
                 href="#payment-settlement"
                 onClick={(e) => handleScrollToDossier(e, '#payment-settlement')}
-                className="px-4 py-2 rounded-lg bg-white text-black font-bold uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-md text-xs flex items-center gap-1.5 active:scale-95"
+                className="px-4 py-2 rounded-lg bg-white text-black font-semibold uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-md text-xs flex items-center gap-1.5 active:scale-95"
               >
                 <span>{isFa ? 'بررسی پرونده‌های مهندسی' : 'Inspect Blueprints'}</span>
                 <span>↓</span>
@@ -250,7 +250,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
                 <span>{isFa ? 'رزرو جلسه بررسی معماری' : 'Schedule Review'}</span>
                 <span>→</span>
               </a>
-              <div className="flex items-center gap-3 text-neutral-300">
+              <div className="flex items-center gap-3 text-neutral-300 font-sans text-xs">
                 <a
                   href="mailto:ariasg2002@gmail.com?subject=Architecture%20Inquiry"
                   className="hover:text-white transition-colors"
@@ -285,15 +285,15 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
             className="bg-[#0f1217]/95 border border-white/10 rounded-xl p-3.5 flex flex-col justify-between hover:border-cyan-400/50 hover:bg-[#13161c] transition-all group block shadow-xl"
           >
             <div>
-              <div className="text-[9px] font-mono uppercase tracking-wider text-neutral-400 mb-1 flex items-center justify-between">
+              <div className="text-[9px] font-sans uppercase tracking-wider text-neutral-400 mb-1 flex items-center justify-between font-semibold">
                 <span>{item.tag}</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/80 group-hover:animate-ping" />
               </div>
-              <div className="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">
+              <div className="text-xl sm:text-2xl font-sans font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">
                 {item.val}
               </div>
             </div>
-            <div className="text-[10px] text-neutral-400 font-mono tracking-wide mt-2 leading-snug">
+            <div className="text-[11px] text-neutral-400 font-sans font-medium tracking-normal mt-2 leading-snug">
               {item.label}
             </div>
           </a>
@@ -307,10 +307,10 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
         
         {/* Tab Headers */}
         <div className="flex items-center justify-between border-b border-white/10 pb-3">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar font-mono text-xs">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar font-sans text-xs">
             <button
               onClick={() => setActiveTab('pillars')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 font-medium ${
                 activeTab === 'pillars'
                   ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
@@ -322,7 +322,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
             <button
               onClick={() => setActiveTab('stack')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 font-medium ${
                 activeTab === 'stack'
                   ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
@@ -334,7 +334,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
             <button
               onClick={() => setActiveTab('directives')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 font-medium ${
                 activeTab === 'directives'
                   ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
@@ -346,7 +346,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
             <button
               onClick={() => setActiveTab('benchmarks')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 font-medium ${
                 activeTab === 'benchmarks'
                   ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-sm'
                   : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
@@ -357,7 +357,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
             </button>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 font-mono text-[10px] text-neutral-400 uppercase">
+          <div className="hidden sm:flex items-center gap-2 font-sans text-[10px] text-neutral-400 uppercase font-semibold">
             <span>INVARIANTS ACTIVE</span>
             <span className="w-1 h-1 rounded-full bg-neutral-600" />
             <span className="text-cyan-400">REPLAY-SAFE</span>
@@ -408,12 +408,12 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
                   <span className="w-2 h-2 rounded-full bg-[#e2c974] mt-1 shrink-0" />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between">
-                      <div className="text-xs font-bold font-mono text-white tracking-tight truncate">{tech.name}</div>
+                      <div className="text-xs font-bold font-sans text-white tracking-tight truncate">{tech.name}</div>
                       <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/[0.05] text-[#e2c974] border border-[#e2c974]/20 shrink-0">
                         {tech.badge}
                       </span>
                     </div>
-                    <div className="text-[11px] text-neutral-400 mt-1 leading-snug">{tech.role}</div>
+                    <div className="text-[11px] text-neutral-400 mt-1 leading-snug font-sans">{tech.role}</div>
                   </div>
                 </div>
               ))}
@@ -426,7 +426,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
               {directives.map((dir, idx) => (
                 <div key={idx} className="bg-[#13161c] border border-white/10 rounded-xl p-3.5 space-y-2 shadow-md hover:border-rose-400/30 transition-all">
                   <div className="flex items-center justify-between">
-                    <div className="text-xs font-bold font-mono text-rose-400 flex items-center gap-1.5">
+                    <div className="text-xs font-bold font-sans text-rose-400 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
                       <span>{dir.label}</span>
                     </div>
@@ -434,7 +434,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
                   <span className="inline-block text-[9px] font-mono px-1.5 py-0.2 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">
                     {dir.tag}
                   </span>
-                  <p className="text-[11px] text-neutral-300 leading-relaxed pt-1">
+                  <p className="text-[11px] text-neutral-300 leading-relaxed pt-1 font-sans">
                     {dir.text}
                   </p>
                 </div>

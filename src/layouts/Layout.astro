@@ -163,7 +163,7 @@ const jsonLdPerson = {
     <slot />
   </div>
 
-  <footer class="relative z-10 border-t border-white/[0.07] mt-24 py-12 px-6 font-mono text-xs text-[#94a3b8]">
+  <footer class="relative z-10 border-t border-white/[0.07] mt-24 py-12 px-6 font-sans text-xs text-[#94a3b8]">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex flex-col items-center md:items-start gap-1">
         {isFa ? (
@@ -171,13 +171,13 @@ const jsonLdPerson = {
         ) : (
           <p class="text-white font-semibold">© {new Date().getFullYear()} Ariya Sarrafzadeh · NODE: NOMINAL · PRODUCTION READY</p>
         )}
-        <p class="text-[11px] text-neutral-400">
+        <p class="text-[11px] text-neutral-400 font-sans">
           Fintech &amp; Telecom Systems Engineering · Tehran, Iran
         </p>
       </div>
 
       <!-- Quick Trust & Agent Links -->
-      <div class="flex flex-wrap items-center justify-center gap-4 text-[11px]">
+      <div class="flex flex-wrap items-center justify-center gap-4 text-[11px] font-sans font-medium">
         <a href={`${import.meta.env.BASE_URL}developers/`} class="hover:text-white transition-colors">
           {isFa ? 'پورتال توسعه‌دهندگان' : 'Developers'}
         </a>

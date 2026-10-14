@@ -103,10 +103,10 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="flex items-center gap-2 text-left truncate flex-1 min-w-0 px-2 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] transition-all"
             >
-              <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-1.5 py-0.5 rounded shrink-0">
+              <span className="text-[10px] font-sans font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-1.5 py-0.5 rounded shrink-0">
                 {activeItem.pageNum || (isFa ? 'نمای کلی' : 'Overview')}
               </span>
-              <span className="text-xs font-mono font-medium text-white truncate">
+              <span className="text-xs font-sans font-medium text-white truncate">
                 {activeItem.label}
               </span>
               <span className="text-xs text-neutral-400 ml-auto shrink-0">
@@ -118,14 +118,14 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
             <div className="flex items-center gap-1 shrink-0">
               <button
                 onClick={handlePrevPage}
-                className="p-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/10 text-xs font-mono transition-all"
+                className="p-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/10 text-xs font-sans font-medium transition-all"
                 title={isFa ? 'صفحه قبل' : 'Prev'}
               >
                 ←
               </button>
               <button
                 onClick={handleNextPage}
-                className="p-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/10 text-xs font-mono transition-all"
+                className="p-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/10 text-xs font-sans font-medium transition-all"
                 title={isFa ? 'صفحه بعد' : 'Next'}
               >
                 →
@@ -135,7 +135,7 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
 
           {/* Expandable Mobile 8-Dossier Drawer */}
           {mobileMenuOpen && (
-            <div className="mt-2.5 pt-2.5 border-t border-white/10 space-y-1 font-mono text-xs max-h-64 overflow-y-auto">
+            <div className="mt-2.5 pt-2.5 border-t border-white/10 space-y-1 font-sans text-xs max-h-64 overflow-y-auto">
               {sections.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -167,12 +167,12 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
 
         {/* 2. ARCHITECTURE INDEX LIST */}
         <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl space-y-3">
-          <div className="text-xs font-bold text-[#e2c974] tracking-wider uppercase pb-2.5 border-b border-white/10 flex justify-between items-center font-mono">
+          <div className="text-xs font-bold text-[#e2c974] tracking-wider uppercase pb-2.5 border-b border-white/10 flex justify-between items-center font-sans">
             <span>{isFa ? 'فهرست سامانه‌ها' : 'Architecture Index'}</span>
           </div>
 
           {/* Section List */}
-          <nav className="space-y-1 text-xs font-mono">
+          <nav className="space-y-1 text-xs font-sans">
             {sections.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -198,22 +198,22 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
           </nav>
 
           {/* Rolling Page Controls in Sidebar */}
-          <div className="pt-2.5 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-neutral-300">
+          <div className="pt-2.5 border-t border-white/5 flex items-center justify-between text-[11px] font-sans text-neutral-300">
             <button
               onClick={handlePrevPage}
-              className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 hover:bg-white/10 hover:text-white transition-all flex items-center gap-1"
+              className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 hover:bg-white/10 hover:text-white transition-all flex items-center gap-1 font-medium"
               title={isFa ? 'صفحه قبل' : 'Previous Page'}
             >
               <span>{isFa ? '→ قبلی' : '← Prev'}</span>
             </button>
             
-            <span className="text-[10px] text-neutral-500 font-mono">
+            <span className="text-[10px] text-neutral-500 font-sans uppercase font-semibold">
               {isFa ? 'فهرست بخش‌ها' : 'SECTIONS'}
             </span>
 
             <button
               onClick={handleNextPage}
-              className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 hover:bg-white/10 hover:text-white transition-all flex items-center gap-1"
+              className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 hover:bg-white/10 hover:text-white transition-all flex items-center gap-1 font-medium"
               title={isFa ? 'صفحه بعد' : 'Next Page'}
             >
               <span>{isFa ? 'بعدی ←' : 'Next →'}</span>
@@ -221,10 +221,10 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
           </div>
 
           {/* Secondary Whitepapers Link */}
-          <div className="pt-1 text-[11px] font-mono border-t border-white/5">
+          <div className="pt-1 text-[11px] font-sans border-t border-white/5">
             <a
               href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
-              className="block text-center py-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-all"
+              className="block text-center py-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-all font-medium"
             >
               {isFa ? 'مشاهده تمام وایت‌پیپرها ↗' : 'Browse All Whitepapers ↗'}
             </a>
