@@ -268,15 +268,15 @@
   <div class="bg-[#15171C] border-b border-[#272932] px-4 lg:px-8 py-2.5 flex items-center justify-between gap-3 text-xs">
     <div class="flex items-center gap-2.5 text-slate-200 overflow-hidden">
       <span class="flex h-2.5 w-2.5 relative flex-shrink-0">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-400"></span>
       </span>
-      <span class="font-bold text-white whitespace-nowrap">⚡ دستورالعمل استندآپ تیم:</span>
-      <span class="text-slate-400 truncate text-[11px]">همکاران تیم: خانم شهروزی • خانم موسی‌پور • خانم خرم‌دل • خانم فائزه (پذیرش و تخصیص نقش در هر حساب)</span>
+      <span class="font-bold text-white whitespace-nowrap">⚡ میز کار استندآپ و سینک روزانه:</span>
+      <span class="text-slate-400 truncate text-[11px]">ثبت تعهدات امروز، موانع اجرایی و بازبینی تصمیمات تیم</span>
     </div>
     <div class="flex items-center gap-2 flex-shrink-0">
-      <button onclick="openStandupModal()" class="px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg text-[11px] shadow-sm flex items-center gap-1.5 transition whitespace-nowrap">
-        <span>📋 چک‌لیست استندآپ</span>
+      <button onclick="openStandupModal()" class="px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg text-[11px] shadow-sm flex items-center gap-1.5 transition whitespace-nowrap">
+        <span>📋 میز کار و یادداشت‌های استندآپ</span>
       </button>
     </div>
   </div>
@@ -479,69 +479,188 @@
       <!-- Modal Body (Two Spacious Columns) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 overflow-y-auto">
         
-        <!-- Main Content Area (7 Columns on Desktop) -->
-        <div class="lg:col-span-7 space-y-5">
-          <!-- Operational Pain Point (Trojan Horse) -->
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between">
-              <label class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-                <span>🎯 پاشنه آشیل عملیاتی و درد پیامک (Pain Point):</span>
-              </label>
-              <span class="text-[11px] text-slate-400">گلوگاه رقیب فعلی</span>
-            </div>
-            <textarea id="dEditPain" rows="3" class="w-full bg-[#18191E] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
+        <!-- Main Content Area (7 Columns on Desktop with Clean Tabs) -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- Sub-Tabs Navigation -->
+          <div class="flex items-center gap-2 border-b border-[#272932] pb-2 text-xs">
+            <button type="button" onclick="switchDrawerTab('hooks')" id="dTabBtn-hooks" class="px-3 py-1.5 rounded-lg font-bold bg-sky-600 text-white transition flex items-center gap-1.5">
+              <span>🎯 قلاب‌ها و اطلاعات</span>
+            </button>
+            <button type="button" onclick="switchDrawerTab('actions')" id="dTabBtn-actions" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#20222A] transition flex items-center gap-1.5">
+              <span>⚡ لاگر اقدامات</span>
+              <span id="dTabBadge-actions" class="px-1.5 py-0.2 rounded-full bg-sky-500/20 text-sky-400 text-[10px] font-mono">0</span>
+            </button>
+            <button type="button" onclick="switchDrawerTab('comments')" id="dTabBtn-comments" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#20222A] transition flex items-center gap-1.5">
+              <span>💬 نظرات و کامنت‌ها</span>
+              <span id="dTabBadge-comments" class="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono">0</span>
+            </button>
+            <button type="button" onclick="switchDrawerTab('vault')" id="dTabBtn-vault" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#20222A] transition flex items-center gap-1.5">
+              <span>📎 اسناد</span>
+              <span id="dTabBadge-vault" class="px-1.5 py-0.2 rounded-full bg-slate-500/20 text-slate-400 text-[10px] font-mono">0</span>
+            </button>
           </div>
 
-          <!-- C-Suite Hook -->
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between">
-              <label class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
-                <span>قلاب اختصاصی مدیرعامل / بنیان‌گذار (C-Suite Hook):</span>
-              </label>
-              <button type="button" onclick="copyTextFromInput('dEditHookCeo')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#282B35] text-slate-300 rounded-lg border border-[#2D303A] transition">کپی متن</button>
+          <!-- TAB PANE 1: HOOKS & STRATEGY -->
+          <div id="dTabPane-hooks" class="space-y-4">
+            <!-- Operational Pain Point (Trojan Horse) -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+                  <span>🎯 پاشنه آشیل عملیاتی و درد پیامک (Pain Point):</span>
+                </label>
+                <span class="text-[11px] text-slate-400">گلوگاه رقیب فعلی</span>
+              </div>
+              <textarea id="dEditPain" rows="3" class="w-full bg-[#18191E] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
             </div>
-            <textarea id="dEditHookCeo" rows="4" class="w-full bg-[#18191E] text-slate-200 border border-[#2D303A] focus:border-blue-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
-          </div>
 
-          <!-- Tech Lead Hook -->
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between">
-              <label class="text-xs font-bold text-blue-400 flex items-center gap-1.5">
-                <span>قلاب اختصاصی CTO / مدیر فنی (Tech Lead Hook):</span>
-              </label>
-              <button type="button" onclick="copyTextFromInput('dEditHookTech')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#282B35] text-slate-300 rounded-lg border border-[#2D303A] transition">کپی متن</button>
+            <!-- C-Suite Hook -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                  <span>قلاب اختصاصی مدیرعامل / بنیان‌گذار (C-Suite Hook):</span>
+                </label>
+                <button type="button" onclick="copyTextFromInput('dEditHookCeo')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#282B35] text-slate-300 rounded-lg border border-[#2D303A] transition">کپی متن</button>
+              </div>
+              <textarea id="dEditHookCeo" rows="4" class="w-full bg-[#18191E] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
             </div>
-            <textarea id="dEditHookTech" rows="4" class="w-full bg-[#18191E] text-slate-200 border border-[#2D303A] focus:border-blue-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
-          </div>
 
-          <!-- Document Vault & Attachments -->
-          <div class="space-y-3 bg-[#18191E] p-4 rounded-xl border border-[#2D303A]">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
-                اسناد متصل به این حساب (Document Vault)
+            <!-- Tech Lead Hook -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                  <span>قلاب اختصاصی CTO / مدیر فنی (Tech Lead Hook):</span>
+                </label>
+                <button type="button" onclick="copyTextFromInput('dEditHookTech')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#282B35] text-slate-300 rounded-lg border border-[#2D303A] transition">کپی متن</button>
+              </div>
+              <textarea id="dEditHookTech" rows="4" class="w-full bg-[#18191E] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
+            </div>
+
+            <!-- Gemini Copilot Prompts -->
+            <div class="bg-[#18191E] p-4 rounded-xl border border-sky-500/20 space-y-2.5">
+              <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                دستیار هوش مصنوعی برای این حساب
               </span>
-              <label class="cursor-pointer px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[11px] font-semibold transition">
-                + پیوست سند جدید
-                <input type="file" id="fileUploadInput" onchange="handleFileUpload(event)" class="hidden">
-              </label>
+              <div class="grid grid-cols-2 gap-2 text-[11px]">
+                <button type="button" onclick="drawerGeminiPrompt('proposal')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">📄 تولید نامه رسمی</button>
+                <button type="button" onclick="drawerGeminiPrompt('inmail')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">💬 متن InMail صمیمی</button>
+                <button type="button" onclick="drawerGeminiPrompt('objection')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">🛡️ شکستن بهانه رقیب</button>
+                <button type="button" onclick="drawerGeminiPrompt('pilot')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">⚡ تنظیم پیش‌نویس پایلوت</button>
+              </div>
             </div>
-            <div id="dDocsList" class="space-y-2"></div>
           </div>
 
-          <!-- Gemini Copilot Prompts -->
-          <div class="bg-[#18191E] p-4 rounded-xl border border-blue-500/20 space-y-2.5">
-            <span class="text-xs font-bold text-blue-400 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              دستیار هوش مصنوعی جمینای برای این حساب
-            </span>
-            <div class="grid grid-cols-2 gap-2 text-[11px]">
-              <button onclick="drawerGeminiPrompt('proposal')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">📄 تولید نامه رسمی</button>
-              <button onclick="drawerGeminiPrompt('inmail')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">💬 متن InMail صمیمی</button>
-              <button onclick="drawerGeminiPrompt('objection')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">🛡️ شکستن بهانه رقیب</button>
-              <button onclick="drawerGeminiPrompt('pilot')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">⚡ تنظیم پیش‌نویس پایلوت</button>
+          <!-- TAB PANE 2: ACTIONS LOGGER -->
+          <div id="dTabPane-actions" class="space-y-4 hidden">
+            <!-- Add Action Box -->
+            <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] space-y-3">
+              <div class="flex items-center justify-between border-b border-[#2D303A] pb-2">
+                <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                  <span>⚡ ثبت اقدام جدید برای این حساب:</span>
+                </span>
+                <span class="text-[10px] text-slate-400">ثبت وقایع، تماس‌ها و جلسات</span>
+              </div>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div>
+                  <label class="block text-[11px] text-slate-400 mb-1">نوع اقدام:</label>
+                  <select id="newActionType" class="w-full bg-[#20222A] text-white border border-[#2D303A] rounded-lg px-2.5 py-1.5 text-xs">
+                    <option value="call">📞 تماس تلفنی</option>
+                    <option value="email">✉️ ارسال نامه / ایمیل</option>
+                    <option value="meeting">🤝 جلسه حضوری / آنلاین</option>
+                    <option value="linkedin">🌐 ارتباط لینکدین</option>
+                    <option value="note">📌 یادداشت پیگیری</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[11px] text-slate-400 mb-1">انجام‌دهنده اقدام:</label>
+                  <select id="newActionPerformer" class="w-full bg-[#20222A] text-white border border-[#2D303A] rounded-lg px-2.5 py-1.5 text-xs">
+                    <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                    <option value="خانم فائزه">خانم فائزه</option>
+                    <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                    <option value="خانم شهروزی">خانم شهروزی</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">شرح و نتیجه اقدام:</label>
+                <textarea id="newActionText" rows="2" placeholder="مثلاً: هماهنگی تست خط خدماتی با مدیر محصول طلاین؛ ارسال نمونه گزارش تحویل..." class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-lg p-2.5 text-xs leading-relaxed"></textarea>
+              </div>
+
+              <div class="flex justify-end">
+                <button type="button" onclick="submitNewAction()" class="px-4 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                  <span>+ ثبت در تاریخچه وقایع</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Action History Feed -->
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-slate-300 block">📜 تاریخچه و لاگ اقدامات پیگیری:</span>
+              <div id="dActionsFeed" class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
+                <!-- Dynamically Rendered -->
+              </div>
             </div>
           </div>
+
+          <!-- TAB PANE 3: COMMENTS & TEAM DISCUSSION -->
+          <div id="dTabPane-comments" class="space-y-4 hidden">
+            <!-- Add Comment Box -->
+            <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] space-y-3">
+              <div class="flex items-center justify-between border-b border-[#2D303A] pb-2">
+                <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                  <span>💬 ثبت نظر یا نکته تیمی:</span>
+                </span>
+                <span class="text-[10px] text-slate-400">گفتگو پیرامون این لید</span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label class="text-[11px] text-slate-400 whitespace-nowrap">نویسنده:</label>
+                <select id="newCommentAuthor" class="bg-[#20222A] text-white border border-[#2D303A] rounded-lg px-2.5 py-1 text-xs">
+                  <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                  <option value="خانم فائزه">خانم فائزه</option>
+                  <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                  <option value="خانم شهروزی">خانم شهروزی</option>
+                </select>
+              </div>
+
+              <textarea id="newCommentText" rows="3" placeholder="نکته، استراتژی یا بازخورد خود درباره این حساب را بنویسید..." class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-emerald-500 rounded-lg p-2.5 text-xs leading-relaxed"></textarea>
+
+              <div class="flex justify-end">
+                <button type="button" onclick="submitNewComment()" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                  <span>ارسال دیدگاه</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Comments List -->
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-slate-300 block">نظرات و گفتگوهای تیم:</span>
+              <div id="dCommentsList" class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
+                <!-- Dynamically Rendered -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB PANE 4: DOCUMENT VAULT -->
+          <div id="dTabPane-vault" class="space-y-4 hidden">
+            <div class="space-y-3 bg-[#18191E] p-4 rounded-xl border border-[#2D303A]">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+                  اسناد متصل به این حساب (Document Vault)
+                </span>
+                <label class="cursor-pointer px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-[11px] font-semibold transition">
+                  + پیوست سند جدید
+                  <input type="file" id="fileUploadInput" onchange="handleFileUpload(event)" class="hidden">
+                </label>
+              </div>
+              <div id="dDocsList" class="space-y-2"></div>
+            </div>
+          </div>
+
         </div>
 
         <!-- Sidebar / Metadata Panel (5 Columns on Desktop) -->
@@ -962,11 +1081,6 @@
       updateAnalytics();
     }
 
-    function saveState() {
-      localStorage.setItem("pfg_accounts_data", JSON.stringify(accounts));
-      updateAnalytics();
-    }
-
     let activeFilterRole = "all";
     let activeSearch = "";
     let selectedAccount = accounts[0];
@@ -1022,7 +1136,7 @@
             <div class="mt-3 pt-2 border-t border-[#272932] flex items-center justify-between text-[10px]">
               <div class="flex items-center gap-1.5 truncate">
                 ${(acc.assigneeResearcher || acc.assigneeDrafter) ? `
-                  <span class="px-2 py-0.5 rounded-md bg-[#242731] text-sky-300 border border-[#373A46] font-medium truncate max-w-[140px]">
+                  <span class="px-2 py-0.5 rounded-md bg-[#242731] text-sky-300 border border-[#373A46] font-medium truncate max-w-[130px]">
                     👤 ${acc.assigneeResearcher || acc.assigneeDrafter}
                   </span>
                 ` : `
@@ -1031,12 +1145,23 @@
                   </span>
                 `}
               </div>
-              ${docsCount > 0 ? `
-                <span class="flex items-center gap-1 text-sky-400 font-semibold bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-500/20">
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
-                  ${docsCount}
-                </span>
-              ` : ''}
+              <div class="flex items-center gap-1.5">
+                ${(acc.comments && acc.comments.length > 0) ? `
+                  <span class="flex items-center gap-0.5 text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 font-mono" title="${acc.comments.length} کامنت">
+                    💬 ${acc.comments.length}
+                  </span>
+                ` : ''}
+                ${(acc.actions && acc.actions.length > 0) ? `
+                  <span class="flex items-center gap-0.5 text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-500/20 font-mono" title="${acc.actions.length} اقدام ثبت‌شده">
+                    ⚡ ${acc.actions.length}
+                  </span>
+                ` : ''}
+                ${docsCount > 0 ? `
+                  <span class="flex items-center gap-1 text-slate-300 bg-white/5 px-1.5 py-0.5 rounded border border-white/10">
+                    📎 ${docsCount}
+                  </span>
+                ` : ''}
+              </div>
             </div>
           `;
           colEl.appendChild(card);
@@ -1127,11 +1252,234 @@
       e.preventDefault();
       const accId = e.dataTransfer.getData("text/plain");
       const found = accounts.find(a => a.id === accId);
-      if (found) {
+      if (found && found.stage !== stageId) {
+        const fromTitle = stages.find(s => s.id === found.stage)?.title || found.stage;
+        const toTitle = stages.find(s => s.id === stageId)?.title || stageId;
         found.stage = stageId;
+        logActionToAccount(found, 'stage', 'تیم توسعه بازار', `تغییر مرحله کارت با درگ‌وان‌دراپ به «${toTitle}»`);
         saveState();
         renderBoard();
         renderList();
+      }
+    }
+
+    
+    // --- DRAWER TABS & SUB-VIEWS ---
+    let currentDrawerTab = 'hooks';
+    function switchDrawerTab(tabName) {
+      currentDrawerTab = tabName;
+      ['hooks', 'actions', 'comments', 'vault'].forEach(t => {
+        const btn = document.getElementById(`dTabBtn-${t}`);
+        const pane = document.getElementById(`dTabPane-${t}`);
+        if (!btn || !pane) return;
+        if (t === tabName) {
+          btn.className = "px-3 py-1.5 rounded-lg font-bold bg-sky-600 text-white transition flex items-center gap-1.5";
+          pane.classList.remove("hidden");
+        } else {
+          btn.className = "px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#20222A] transition flex items-center gap-1.5";
+          pane.classList.add("hidden");
+        }
+      });
+    }
+
+    // --- ACTIONS LOGGER ---
+    function logActionToAccount(acc, type, performer, text) {
+      if (!acc) return;
+      if (!acc.actions) acc.actions = [];
+      const now = new Date();
+      const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')} — ${now.toLocaleDateString('fa-IR')}`;
+      acc.actions.unshift({
+        id: `act-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+        type: type,
+        performer: performer || "سیستم",
+        text: text,
+        time: timeStr,
+        timestamp: Date.now()
+      });
+      saveState();
+      renderBoard();
+      renderList();
+    }
+
+    function submitNewAction() {
+      if (!selectedAccount) return;
+      const type = document.getElementById("newActionType").value;
+      const performer = document.getElementById("newActionPerformer").value;
+      const text = document.getElementById("newActionText").value.trim();
+      if (!text) {
+        alert("لطفاً شرح اقدام انجام‌شده را وارد کنید.");
+        return;
+      }
+      logActionToAccount(selectedAccount, type, performer, text);
+      document.getElementById("newActionText").value = "";
+      renderActionsFeed();
+      updateDrawerBadges();
+      alert("اقدام با موفقیت در تاریخچه حساب ثبت شد.");
+    }
+
+    function renderActionsFeed() {
+      const container = document.getElementById("dActionsFeed");
+      if (!container || !selectedAccount) return;
+      container.innerHTML = "";
+      const actions = selectedAccount.actions || [];
+      if (actions.length === 0) {
+        container.innerHTML = `<div class="p-4 rounded-xl bg-[#18191E] border border-[#2D303A] text-slate-500 text-center text-xs">هنوز اقدامی برای این حساب ثبت نشده است. از فرم بالا اولین اقدام (تماس، جلسه یا پیگیری) را ثبت کنید.</div>`;
+        return;
+      }
+      actions.forEach(act => {
+        let icon = "📌";
+        let badgeColor = "bg-slate-500/10 text-slate-300 border-slate-500/20";
+        if (act.type === 'call') { icon = "📞 تماس"; badgeColor = "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"; }
+        else if (act.type === 'email') { icon = "✉️ نامه / ایمیل"; badgeColor = "bg-sky-500/10 text-sky-300 border-sky-500/20"; }
+        else if (act.type === 'meeting') { icon = "🤝 جلسه"; badgeColor = "bg-amber-500/10 text-amber-300 border-amber-500/20"; }
+        else if (act.type === 'linkedin') { icon = "🌐 لینکدین"; badgeColor = "bg-blue-500/10 text-blue-300 border-blue-500/20"; }
+        else if (act.type === 'stage') { icon = "🔄 تغییر مرحله"; badgeColor = "bg-cyan-500/10 text-cyan-300 border-cyan-500/20"; }
+        else if (act.type === 'role') { icon = "👤 مسئولیت"; badgeColor = "bg-teal-500/10 text-teal-300 border-teal-500/20"; }
+
+        const div = document.createElement("div");
+        div.className = "p-3 rounded-xl bg-[#20222A] border border-[#2D303A] text-xs space-y-1.5";
+        div.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-medium border ${badgeColor}">${icon}</span>
+              <span class="text-white font-bold text-[11px]">${act.performer}</span>
+            </div>
+            <span class="text-slate-500 text-[10px] font-mono">${act.time}</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed text-[11px] pr-1">${act.text}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // --- COMMENTS SYSTEM ---
+    function submitNewComment() {
+      if (!selectedAccount) return;
+      const author = document.getElementById("newCommentAuthor").value;
+      const text = document.getElementById("newCommentText").value.trim();
+      if (!text) {
+        alert("لطفاً متن نظر خود را بنویسید.");
+        return;
+      }
+      if (!selectedAccount.comments) selectedAccount.comments = [];
+      const now = new Date();
+      const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')} — ${now.toLocaleDateString('fa-IR')}`;
+      selectedAccount.comments.unshift({
+        id: `com-${Date.now()}`,
+        author: author,
+        text: text,
+        time: timeStr
+      });
+      document.getElementById("newCommentText").value = "";
+      saveState();
+      renderBoard();
+      renderList();
+      renderCommentsList();
+      updateDrawerBadges();
+      alert("دیدگاه شما با موفقیت ثبت شد.");
+    }
+
+    function deleteComment(commentId) {
+      if (!selectedAccount || !selectedAccount.comments) return;
+      if (confirm("آیا مایل به حذف این نظر هستید؟")) {
+        selectedAccount.comments = selectedAccount.comments.filter(c => c.id !== commentId);
+        saveState();
+        renderBoard();
+        renderList();
+        renderCommentsList();
+        updateDrawerBadges();
+      }
+    }
+
+    function renderCommentsList() {
+      const container = document.getElementById("dCommentsList");
+      if (!container || !selectedAccount) return;
+      container.innerHTML = "";
+      const comments = selectedAccount.comments || [];
+      if (comments.length === 0) {
+        container.innerHTML = `<div class="p-4 rounded-xl bg-[#18191E] border border-[#2D303A] text-slate-500 text-center text-xs">هنوز کامنتی برای این حساب درج نشده است. اولین نکته تیمی را بنویسید.</div>`;
+        return;
+      }
+      comments.forEach(com => {
+        const div = document.createElement("div");
+        div.className = "p-3 rounded-xl bg-[#20222A] border border-[#2D303A] text-xs space-y-1.5 group";
+        div.innerHTML = `
+          <div class="flex items-center justify-between border-b border-[#2D303A] pb-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">
+                ${com.author.slice(0, 2)}
+              </span>
+              <span class="text-white font-bold text-[11px]">${com.author}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-500 text-[10px] font-mono">${com.time}</span>
+              <button onclick="deleteComment('${com.id}')" class="text-slate-600 hover:text-rose-400 transition" title="حذف نظر">&times;</button>
+            </div>
+          </div>
+          <p class="text-slate-200 leading-relaxed text-[11px] whitespace-pre-wrap">${com.text}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function updateDrawerBadges() {
+      if (!selectedAccount) return;
+      const actsCount = selectedAccount.actions ? selectedAccount.actions.length : 0;
+      const commsCount = selectedAccount.comments ? selectedAccount.comments.length : 0;
+      const docsCount = selectedAccount.docs ? selectedAccount.docs.length : 0;
+
+      const badgeAct = document.getElementById("dTabBadge-actions");
+      const badgeCom = document.getElementById("dTabBadge-comments");
+      const badgeDoc = document.getElementById("dTabBadge-vault");
+
+      if (badgeAct) badgeAct.innerText = actsCount;
+      if (badgeCom) badgeCom.innerText = commsCount;
+      if (badgeDoc) badgeDoc.innerText = docsCount;
+    }
+
+    // --- REVISITABLE STANDUP WORKSPACE ---
+    function openStandupModal() {
+      // Load saved notes from localStorage
+      try {
+        const saved = JSON.parse(localStorage.getItem("pfg_standup_workspace") || "{}");
+        document.getElementById("suCommitments").value = saved.commitments || "";
+        document.getElementById("suBlockers").value = saved.blockers || "";
+        document.getElementById("suNotes").value = saved.notes || "";
+      } catch(e) {}
+      
+      const today = new Date().toLocaleDateString('fa-IR', { weekday: 'long', day: 'numeric', month: 'long' });
+      const dtEl = document.getElementById("standupCurrentDate");
+      if (dtEl) dtEl.innerText = today;
+
+      const actEl = document.getElementById("standupActiveCount");
+      if (actEl) actEl.innerText = `${accounts.length} حساب در بورد`;
+
+      document.getElementById("standupModal").classList.remove("hidden");
+    }
+
+    function closeStandupModal() {
+      document.getElementById("standupModal").classList.add("hidden");
+    }
+
+    function saveStandupWorkspace() {
+      const data = {
+        commitments: document.getElementById("suCommitments").value.trim(),
+        blockers: document.getElementById("suBlockers").value.trim(),
+        notes: document.getElementById("suNotes").value.trim(),
+        lastUpdated: new Date().toISOString()
+      };
+      localStorage.setItem("pfg_standup_workspace", JSON.stringify(data));
+      alert("یادداشت‌ها و تعهدات استندآپ با موفقیت ذخیره شدند و در هر زمان قابل بازبینی هستند.");
+      closeStandupModal();
+    }
+
+    function clearStandupWorkspace() {
+      if (confirm("آیا مایل به پاکسازی یادداشت‌های استندآپ برای شروع روز جدید هستید؟")) {
+        document.getElementById("suCommitments").value = "";
+        document.getElementById("suBlockers").value = "";
+        document.getElementById("suNotes").value = "";
+        localStorage.removeItem("pfg_standup_workspace");
+        alert("میز کار استندآپ ریست شد.");
       }
     }
 
@@ -1168,6 +1516,10 @@
       document.getElementById("dEditAssigneeApprover").value = acc.assigneeApprover || "";
 
       renderDocsList();
+      renderActionsFeed();
+      renderCommentsList();
+      updateDrawerBadges();
+      switchDrawerTab('hooks');
       document.getElementById("detailDrawer").classList.remove("hidden");
     }
 
@@ -1186,8 +1538,23 @@
       selectedAccount.hookCeo = document.getElementById("dEditHookCeo").value.trim();
       selectedAccount.hookTech = document.getElementById("dEditHookTech").value.trim();
 
+      const oldStage = selectedAccount.stage;
+      const newStage = document.getElementById("dStageSelect").value;
+      const oldResearcher = selectedAccount.assigneeResearcher;
+      const newResearcher = document.getElementById("dEditAssigneeResearcher").value;
+
+      if (oldStage !== newStage) {
+        const fromTitle = stages.find(s => s.id === oldStage)?.title || oldStage;
+        const toTitle = stages.find(s => s.id === newStage)?.title || newStage;
+        logActionToAccount(selectedAccount, 'stage', 'سیستم', `تغییر مرحله از «${fromTitle}» به «${toTitle}»`);
+      }
+
+      if (oldResearcher !== newResearcher && newResearcher) {
+        logActionToAccount(selectedAccount, 'role', newResearcher, `پذیرش مسئولیت ممیزی و سرپرستی حساب`);
+      }
+
       // Save assignees
-      selectedAccount.assigneeResearcher = document.getElementById("dEditAssigneeResearcher").value;
+      selectedAccount.assigneeResearcher = newResearcher;
       selectedAccount.assigneeDrafter = document.getElementById("dEditAssigneeDrafter").value;
       selectedAccount.assigneeApprover = document.getElementById("dEditAssigneeApprover").value;
 
@@ -1497,86 +1864,85 @@
       </div>
     </div>
   </div>
-  <!-- STANDUP MODAL -->
+  <!-- STANDUP MODAL (Interactive & Revisitable Daily Sync Workspace) -->
   <div id="standupModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-[#2C2C2E] text-white border border-white/10 w-full max-w-2xl rounded-2xl p-6 shadow-2xl space-y-5 text-right max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
+    <div class="bg-[#181A20] text-white border border-[#272932] w-full max-w-3xl rounded-2xl p-6 shadow-2xl space-y-5 text-right max-h-[90vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-[#272932] pb-3.5">
         <div class="flex items-center gap-2.5">
-          <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#0A84FF] to-[#0A84FF]"></span>
-          <h3 class="font-bold text-white text-base">دستورالعمل اجرایی استندآپ ۲۰ دقیقه‌ای توسعه بازار پیامک</h3>
+          <span class="w-3.5 h-3.5 rounded-full bg-sky-500"></span>
+          <div>
+            <h3 class="font-bold text-white text-base">میز کار استندآپ و همگام‌سازی روزانه تیم</h3>
+            <p class="text-[11px] text-slate-400">فضای تعاملی ثبت و بازبینی تعهدات روز، موانع اجرایی و تصمیمات مشترک</p>
+          </div>
         </div>
-        <button onclick="closeStandupModal()" class="text-slate-400 hover:text-white">&times;</button>
+        <button onclick="closeStandupModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
       </div>
 
-      <!-- Agenda Timeline -->
-      <div class="space-y-2">
-        <span class="text-xs font-bold text-[#60A5FA]">⏱️ زمان‌بندی و دستور کار استندآپ:</span>
-        <div class="grid grid-cols-3 gap-2.5 text-xs">
-          <div class="p-3 rounded-xl bg-[#1C1C1E] text-white border border-white/10 border border-white/10">
-            <span class="text-[#7994FF] font-bold block mb-1">۰ تا ۵ دقیقه: هم‌راستایی</span>
-            <p class="text-[11px] text-[#A3A6B4]">توزیع نقش‌ها بین همکار ۱ (لینکدین) و همکار ۲ (نامه) و اعلام شاخص‌ها</p>
-          </div>
-          <div class="p-3 rounded-xl bg-[#1C1C1E] text-white border border-white/10 border border-white/10">
-            <span class="text-[#FFB56B] font-bold block mb-1">۵ تا ۱۵ دقیقه: مرور ۴ حساب Tier A</span>
-            <p class="text-[11px] text-[#A3A6B4]">بررسی طلاین، ترابرنت، زرپی۲۴، اوبار و شناسایی نقاط ضعف پیامک رقیب</p>
-          </div>
-          <div class="p-3 rounded-xl bg-[#1C1C1E] text-white border border-white/10 border border-white/10">
-            <span class="text-[#38E190] font-bold block mb-1">۱۵ تا ۲۰ دقیقه: تعهدات امروز</span>
-            <p class="text-[11px] text-[#A3A6B4]">ثبت روزانه ۲ حساب در بورد؛ بررسی و تایید پیش‌نویس‌ها در ساعت ۱۶:۰۰</p>
-          </div>
+      <!-- Quick Date & Sync Status -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="bg-[#20222A] p-3 rounded-xl border border-[#2D303A]">
+          <span class="text-slate-400 text-[10px] block">تاریخ جلسه:</span>
+          <span id="standupCurrentDate" class="font-bold text-white mt-0.5 block">امروز</span>
+        </div>
+        <div class="bg-[#20222A] p-3 rounded-xl border border-[#2D303A]">
+          <span class="text-slate-400 text-[10px] block">حساب‌های در جریان:</span>
+          <span id="standupActiveCount" class="font-bold text-sky-400 mt-0.5 block">۱۰ حساب هدف</span>
+        </div>
+        <div class="bg-[#20222A] p-3 rounded-xl border border-[#2D303A]">
+          <span class="text-slate-400 text-[10px] block">وضعیت سینک:</span>
+          <span class="font-bold text-emerald-400 mt-0.5 block">ذخیره خودکار روی حافظه مرورگر</span>
         </div>
       </div>
 
-      <!-- Roles Breakdown (4 Explicit Roles) -->
-      <div class="space-y-2.5 text-xs text-slate-300">
-        <span class="text-xs font-bold text-white block">👥 تفکیک ماموریت‌های ۴ گانه تیم:</span>
-        
-        <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
-          <div class="flex items-center justify-between text-blue-400 font-bold">
-            <span>۱. خانم شهروزی — راهبری کلان و تفاهم‌نامه‌ها</span>
-            <span class="text-[10px] bg-blue-500/15 px-2 py-0.5 rounded-full text-blue-300">راهبری کلان</span>
-          </div>
-          <p class="text-[11px] text-slate-400 leading-relaxed">
-            گشایش ارتباط با هیئت‌مدیره هلدینگ‌های هدف (نظیر حصین و سنا گستر) از طریق ظرفیت سازمان نصر؛ تصویب نهایی تفاهم‌نامه‌ها و مدل‌های درآمدی تسهیم ترافیک (Revenue Share).
-          </p>
+      <!-- Editable Section 1: Today's Priorities & Commitments -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+            <span>🎯 تعهدات و اولویت‌های امروز تیم (Today's Key Commitments):</span>
+          </label>
+          <span class="text-[10px] text-slate-400">قابل ویرایش و بازبینی زنده</span>
         </div>
-
-        <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
-          <div class="flex items-center justify-between text-cyan-400 font-bold">
-            <span>۲. خانم موسی‌پور — نظارت بر پایپ‌لاین و کنترل SLA</span>
-            <span class="text-[10px] bg-cyan-500/15 px-2 py-0.5 rounded-full text-cyan-300">مدیریت عملیات فروش</span>
-          </div>
-          <p class="text-[11px] text-slate-400 leading-relaxed">
-            نظارت بر فرآیند مذاکرات و پایپ‌لاین فروش؛ کنترل انطباق روت‌های پیامک با تعهدات فنی SLA؛ بررسی روزانه پیش‌نویس نامه‌ها در ساعت ۱۶:۰۰ و تایید بسته پیشنهادی.
-          </p>
-        </div>
-
-        <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
-          <div class="flex items-center justify-between text-emerald-400 font-bold">
-            <span>۳. خانم خرم‌دل — ممیزی لینکدین و تحلیل پاشنه آشیل</span>
-            <span class="text-[10px] bg-emerald-500/15 px-2 py-0.5 rounded-full text-emerald-300">هدف: ۲ ممیزی در روز</span>
-          </div>
-          <p class="text-[11px] text-slate-400 leading-relaxed">
-            استخراج ساختار سازمانی و لینکدین مدیران عامل و CTOها؛ تحلیل دقیق پاشنه آشیل پیامک و بررسی کانکشن‌های مشترک؛ هدایت ادمین عملیات در تامین دیتای مورد نیاز نامه‌ها.
-          </p>
-        </div>
-
-        <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
-          <div class="flex items-center justify-between text-amber-400 font-bold">
-            <span>۴. خانم فائزه — تدوین نامه‌ها و آماده‌سازی بسته‌ها</span>
-            <span class="text-[10px] bg-amber-500/15 px-2 py-0.5 rounded-full text-amber-300">هدف: ۲ پیش‌نویس در روز</span>
-          </div>
-          <p class="text-[11px] text-slate-400 leading-relaxed">
-            تنظیم متن رسمی نامه‌ها و پیام‌های InMail با بهره‌گیری از قلاب‌های تب ۳؛ ثبت و الصاق فایل‌ها در بورد آنلاین و تغییر وضعیت کارت‌ها به تایید مدیریت ارشد.
-          </p>
-        </div>
+        <textarea id="suCommitments" rows="3" placeholder="مثلاً:&#10;• ممیزی ساختار سازمانی طلاین و ترابرنت توسط خانم خرم‌دل&#10;• آماده‌سازی پیش‌نویس نامه زرپی۲۴ توسط خانم فائزه&#10;• بررسی مدل ترافیکی با خانم موسی‌پور و شهروزی..." class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
       </div>
-    </div>
-    <div class="flex items-center justify-between pt-2 border-t border-white/10">
-        <a href="/pfg_b2b_tracker.xlsx" download class="text-xs text-emerald-400 hover:underline flex items-center gap-1">📥 دانلود مستقیم کاربرگ اکسل</a>
-        <button onclick="closeStandupModal()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold">بستن راهنما</button>
+
+      <!-- Editable Section 2: Current Blockers & Bottlenecks -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+            <span>⚠️ موانع، چالش‌ها و گره‌های فنی/عملیاتی (Blockers):</span>
+          </label>
+          <span class="text-[10px] text-slate-400">هر آنچه مانع پیشرفت کار است</span>
+        </div>
+        <textarea id="suBlockers" rows="3" placeholder="مثلاً: عدم دریافت پاسخ از تیم فنی در پیامک تستی، نیاز به خط خدماتی جدید، تاخیر در تایید شماره اختصاصی..." class="w-full bg-[#20222A] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+      </div>
+
+      <!-- Editable Section 3: Minutes & Free Notes -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+            <span>📝 تصمیمات و نکات استندآپ (Session Minutes):</span>
+          </label>
+        </div>
+        <textarea id="suNotes" rows="3" placeholder="یادداشت‌های آزاد جلسه، جمع‌بندی نکات و توافقات نهایی..." class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+      </div>
+
+      <!-- Actions Toolbar -->
+      <div class="flex items-center justify-between pt-3 border-t border-[#272932]">
+        <button onclick="clearStandupWorkspace()" class="text-xs text-rose-400 hover:text-rose-300 transition">
+          🗑️ پاکسازی برای روز جدید
+        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="closeStandupModal()" class="px-4 py-2 bg-[#20222A] hover:bg-[#2A2D38] text-slate-300 rounded-xl text-xs font-medium transition">
+            بستن
+          </button>
+          <button onclick="saveStandupWorkspace()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold shadow-md shadow-sky-600/25 transition">
+            💾 ذخیره یادداشت‌های استندآپ
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</body>
+  </body>
 </html>
