@@ -12,7 +12,7 @@ interface FloatingNavbarProps {
 
 export type AppearanceMode = 'dark' | 'light' | 'system';
 export type DarkFlavor = 'oled' | 'spacegray' | 'midnight';
-export type GlassIntensity = 'liquid' | 'clear' | 'reduced';
+export type GlassIntensity = 'liquid' | 'clear' | 'frosted' | 'reduced';
 
 export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   const [currentLang, setCurrentLang] = useState<'en' | 'fa'>(locale);
@@ -212,27 +212,24 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           </a>
 
           {/* Apple Appearance & Dark Mode Options Button */}
+          {/* Apple Liquid Glass Diversity & Appearance Trigger */}
           <div className="relative" ref={menuRef}>
             <button
               type="button"
               onClick={() => setAppearanceMenuOpen(!appearanceMenuOpen)}
-              className="h-8 px-2.5 rounded-full bg-white/[0.08] hover:bg-white/15 border border-white/15 text-white flex items-center gap-1.5 text-xs transition-all active:scale-95"
-              aria-label="Appearance and Dark Mode Options"
-              title={isFa ? 'تنظیمات تم و دارک‌مود اپل' : 'Apple Appearance & Dark Mode Options'}
+              className="h-8 px-3 rounded-full bg-white/[0.08] hover:bg-white/15 border border-white/20 text-white flex items-center gap-1.5 text-xs transition-all active:scale-95 shadow-sm group"
+              aria-label="Liquid Glass Diversity & Theme Settings"
+              title={isFa ? 'تنوع شیشه مایع اپل و تنظیمات تم' : 'Apple Liquid Glass Diversity & Appearance'}
             >
-              {appearance === 'light' ? (
-                <svg className="w-3.5 h-3.5 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-                </svg>
-              ) : (
-                <svg className="w-3.5 h-3.5 text-cyan-300" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                </svg>
-              )}
-              <span className="hidden sm:inline font-sans text-[11px] font-semibold tracking-wider text-neutral-200">
-                {appearance === 'light' ? 'Light' : darkFlavor === 'oled' ? 'OLED' : darkFlavor === 'spacegray' ? 'Gray' : 'Dark'}
+              <span className="w-2 h-2 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform" />
+              <span className="font-sans text-[11px] font-semibold tracking-wider text-white flex items-center gap-1">
+                <span>🫧</span>
+                <span>{isFa ? 'شیشه مایع' : 'Liquid Glass'}</span>
               </span>
-              <svg className={`w-3 h-3 text-neutral-400 transition-transform ${appearanceMenuOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 text-neutral-300 font-mono hidden sm:inline">
+                {glassIntensity === 'liquid' ? 'Liquid' : glassIntensity === 'clear' ? 'Clear' : glassIntensity === 'frosted' ? 'Frost' : 'Solid'}
+              </span>
+              <svg className={`w-3 h-3 text-neutral-300 transition-transform ${appearanceMenuOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -240,46 +237,51 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
             {/* Apple Liquid Glass Popover Sheet */}
             {appearanceMenuOpen && (
               <div
-                className={`absolute top-11 ${isFa ? 'left-0' : 'right-0'} w-72 sm:w-80 p-4 rounded-2xl liquid-glass-card border border-white/20 shadow-2xl z-50 text-xs font-sans space-y-3.5 animate-in fade-in duration-200`}
+                className={`absolute top-11 ${isFa ? 'left-0' : 'right-0'} w-72 sm:w-84 p-4 rounded-2xl liquid-glass-card border border-white/20 shadow-2xl z-50 text-xs font-sans space-y-3.5 animate-in fade-in duration-200`}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Popover Header */}
                 <div className="flex items-center justify-between pb-2 border-b border-white/10">
                   <span className="font-semibold text-white tracking-wide flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    {isFa ? 'تنظیمات ظاهر و دارک‌مود' : 'Display & Appearance'}
+                    {isFa ? 'تنوع شیشه مایع و تم‌ها' : 'Apple Glass & Appearance'}
                   </span>
-                  <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-white/10 text-neutral-300">
+                  <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-white/10 text-cyan-300 font-semibold">
                     Apple HIG
                   </span>
                 </div>
 
-                {/* Section 1: Appearance Mode */}
+                {/* Section 1: Liquid Glass Diversity (Top Prominence) */}
                 <div>
-                  <div className="text-[10px] uppercase font-semibold text-neutral-400 mb-1.5 tracking-wider">
-                    {isFa ? 'حالت ظاهر' : 'Appearance'}
+                  <div className="text-[10px] uppercase font-semibold text-neutral-400 mb-1.5 tracking-wider flex items-center justify-between">
+                    <span>{isFa ? 'تنوع شیشه مایع (Glass Diversity)' : 'Liquid Glass Diversity'}</span>
+                    <span className="text-[9px] text-cyan-400 font-mono">Dynamic Blur</span>
                   </div>
-                  <div className="grid grid-cols-3 gap-1 bg-black/40 p-1 rounded-xl border border-white/10">
+                  <div className="grid grid-cols-2 gap-1.5">
                     {[
-                      { id: 'dark' as AppearanceMode, label: isFa ? 'تاریک' : 'Dark', icon: '🌙' },
-                      { id: 'light' as AppearanceMode, label: isFa ? 'روشن' : 'Light', icon: '☀️' },
-                      { id: 'system' as AppearanceMode, label: isFa ? 'سیستم' : 'Auto', icon: '⚙️' },
-                    ].map((opt) => (
+                      { id: 'liquid' as GlassIntensity, icon: '🫧', name: isFa ? 'شیشه مایع' : 'Vibrant Liquid', desc: isFa ? 'تاریکی عمیق ۲۶ پیکسل' : '26px Blur · Specular' },
+                      { id: 'clear' as GlassIntensity, icon: '💎', name: isFa ? 'بلورین شفاف' : 'Crystal Clear', desc: isFa ? 'شفافیت ۸۵٪' : '14px Blur · 85% Clear' },
+                      { id: 'frosted' as GlassIntensity, icon: '🧊', name: isFa ? 'شیشه مات مخملی' : 'Frosted Satin', desc: isFa ? 'تاری عمیق ۳۸ پیکسل' : '38px Velvet Blur' },
+                      { id: 'reduced' as GlassIntensity, icon: '🛡️', name: isFa ? 'فلز تیتانیوم' : 'Solid Metal', desc: isFa ? 'کدر بدون تاری' : '0px Blur · Opaque' },
+                    ].map((g) => (
                       <button
-                        key={opt.id}
+                        key={g.id}
                         type="button"
                         onClick={() => {
-                          setAppearance(opt.id);
-                          applyTheme(opt.id, darkFlavor, glassIntensity);
+                          setGlassIntensity(g.id);
+                          applyTheme(appearance, darkFlavor, g.id);
                         }}
-                        className={`py-1.5 px-2 rounded-lg text-center font-medium transition-all flex items-center justify-center gap-1 text-[11px] ${
-                          appearance === opt.id
-                            ? 'bg-white/20 text-white font-semibold shadow-sm border border-white/25'
-                            : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                        className={`p-2 rounded-xl text-left transition-all border ${
+                          glassIntensity === g.id
+                            ? 'bg-white/20 border-white/35 shadow-md text-white'
+                            : 'bg-white/[0.03] border-white/5 text-neutral-300 hover:bg-white/[0.08]'
                         }`}
                       >
-                        <span>{opt.icon}</span>
-                        <span>{opt.label}</span>
+                        <div className="flex items-center gap-1.5 text-xs font-semibold">
+                          <span>{g.icon}</span>
+                          <span className="truncate">{g.name}</span>
+                        </div>
+                        <div className="text-[9px] text-neutral-400 font-mono mt-0.5 truncate">{g.desc}</div>
                       </button>
                     ))}
                   </div>
@@ -293,8 +295,8 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   </div>
                   <div className="space-y-1">
                     {[
+                      { id: 'spacegray' as DarkFlavor, name: isFa ? 'خاکستری فضایی (Space Gray)' : 'Space Gray & Titanium', desc: '#0e1117 · macOS Sequoia graphite depth', color: 'bg-[#0e1117] border-white/20' },
                       { id: 'oled' as DarkFlavor, name: isFa ? 'مشکی اولد (OLED Pure Black)' : 'OLED Pitch Black', desc: '#000000 · High contrast & battery saver', color: 'bg-black border-white/40' },
-                      { id: 'spacegray' as DarkFlavor, name: isFa ? 'خاکستری فضایی (Space Gray)' : 'Space Gray', desc: '#0e1117 · macOS Sequoia graphite depth', color: 'bg-[#0e1117] border-white/20' },
                       { id: 'midnight' as DarkFlavor, name: isFa ? 'سورمه‌ای نیمه‌شب (Midnight Navy)' : 'Midnight Navy', desc: '#07090e · Apple iOS flagship sapphire', color: 'bg-[#07090e] border-cyan-400/40' },
                     ].map((f) => (
                       <button
@@ -325,31 +327,32 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   </div>
                 </div>
 
-                {/* Section 3: Liquid Glass Material Level */}
+                {/* Section 3: Appearance Mode */}
                 <div>
                   <div className="text-[10px] uppercase font-semibold text-neutral-400 mb-1.5 tracking-wider">
-                    {isFa ? 'شدت شیشه مایع (Liquid Glass)' : 'Liquid Glass Material'}
+                    {isFa ? 'حالت روشنایی (Appearance)' : 'Appearance'}
                   </div>
                   <div className="grid grid-cols-3 gap-1 bg-black/40 p-1 rounded-xl border border-white/10">
                     {[
-                      { id: 'liquid' as GlassIntensity, label: isFa ? 'شیشه کامل' : 'Vibrant Glass' },
-                      { id: 'clear' as GlassIntensity, label: isFa ? 'نیمه‌شفاف' : 'Clear Glass' },
-                      { id: 'reduced' as GlassIntensity, label: isFa ? 'کدر' : 'Solid' },
-                    ].map((g) => (
+                      { id: 'dark' as AppearanceMode, label: isFa ? 'تاریک' : 'Dark', icon: '🌙' },
+                      { id: 'light' as AppearanceMode, label: isFa ? 'روشن' : 'Light', icon: '☀️' },
+                      { id: 'system' as AppearanceMode, label: isFa ? 'سیستم' : 'Auto', icon: '⚙️' },
+                    ].map((opt) => (
                       <button
-                        key={g.id}
+                        key={opt.id}
                         type="button"
                         onClick={() => {
-                          setGlassIntensity(g.id);
-                          applyTheme(appearance, darkFlavor, g.id);
+                          setAppearance(opt.id);
+                          applyTheme(opt.id, darkFlavor, glassIntensity);
                         }}
-                        className={`py-1 px-1.5 rounded-lg text-center text-[10px] font-medium transition-all truncate ${
-                          glassIntensity === g.id
-                            ? 'bg-white/20 text-white font-semibold border border-white/25 shadow-sm'
-                            : 'text-neutral-400 hover:text-white'
+                        className={`py-1.5 px-2 rounded-lg text-center font-medium transition-all flex items-center justify-center gap-1 text-[11px] ${
+                          appearance === opt.id
+                            ? 'bg-white/20 text-white font-semibold shadow-sm border border-white/25'
+                            : 'text-neutral-400 hover:text-white hover:bg-white/5'
                         }`}
                       >
-                        {g.label}
+                        <span>{opt.icon}</span>
+                        <span>{opt.label}</span>
                       </button>
                     ))}
                   </div>
@@ -395,7 +398,40 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
       {/* Mobile Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden w-full mt-2 rounded-2xl liquid-glass-card border border-white/15 p-4 space-y-3 shadow-2xl">
+        <div className="lg:hidden w-full mt-2 rounded-2xl liquid-glass-card border border-white/15 p-4 space-y-3.5 shadow-2xl">
+          {/* Mobile Glass Diversity Quick Controls */}
+          <div className="pb-3 border-b border-white/10">
+            <div className="text-[10px] uppercase font-semibold text-neutral-400 mb-2 tracking-wider flex items-center justify-between">
+              <span>{isFa ? 'تنوع شیشه مایع (Glass Diversity)' : '🫧 Liquid Glass Diversity'}</span>
+              <span className="text-[9px] text-cyan-400 font-mono">Apple HIG</span>
+            </div>
+            <div className="grid grid-cols-4 gap-1">
+              {[
+                { id: 'liquid' as GlassIntensity, label: 'Liquid', icon: '🫧' },
+                { id: 'clear' as GlassIntensity, label: 'Clear', icon: '💎' },
+                { id: 'frosted' as GlassIntensity, label: 'Frost', icon: '🧊' },
+                { id: 'reduced' as GlassIntensity, label: 'Solid', icon: '🛡️' },
+              ].map((g) => (
+                <button
+                  key={g.id}
+                  type="button"
+                  onClick={() => {
+                    setGlassIntensity(g.id);
+                    applyTheme(appearance, darkFlavor, g.id);
+                  }}
+                  className={`py-1.5 px-1 rounded-xl text-center text-[10px] font-medium transition-all ${
+                    glassIntensity === g.id
+                      ? 'bg-white/20 text-white font-semibold border border-white/30 shadow'
+                      : 'bg-white/[0.04] text-neutral-400 border border-white/5'
+                  }`}
+                >
+                  <div>{g.icon}</div>
+                  <div className="truncate mt-0.5">{g.label}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-2 font-sans text-xs">
             {navItems.map((item) => (
               <a

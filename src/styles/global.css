@@ -87,18 +87,66 @@ html[data-appearance="light"] {
   --apple-amber: #B45309;
 }
 
-/* Glass Intensity: Clear */
-html[data-glass-intensity="clear"] {
-  --glass-blur: 16px;
-  --glass-nav-bg: rgba(18, 22, 30, 0.50);
-  --system-card-bg: rgba(255, 255, 255, 0.03);
+/* Glass Diversity 1: Liquid Glass (Default - iOS 18 Dynamic Translucent) */
+html[data-glass-intensity="liquid"],
+html:not([data-glass-intensity]) {
+  --glass-blur: 26px;
+  --glass-nav-bg: rgba(18, 22, 30, 0.72);
+  --system-card-bg: rgba(255, 255, 255, 0.055);
+  --system-card-border: rgba(255, 255, 255, 0.12);
+  --system-card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
 }
 
-/* Glass Intensity: Reduced */
+/* Glass Diversity 2: Crystal Clear (High Transparency 85% See-Through) */
+html[data-glass-intensity="clear"] {
+  --glass-blur: 14px;
+  --glass-nav-bg: rgba(18, 22, 30, 0.38);
+  --system-card-bg: rgba(255, 255, 255, 0.025);
+  --system-card-border: rgba(255, 255, 255, 0.16);
+  --system-card-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.40);
+}
+
+/* Glass Diversity 3: Frosted Satin (Deep Velvet Blur 38px) */
+html[data-glass-intensity="frosted"] {
+  --glass-blur: 38px;
+  --glass-nav-bg: rgba(18, 22, 30, 0.88);
+  --system-card-bg: rgba(255, 255, 255, 0.085);
+  --system-card-border: rgba(255, 255, 255, 0.15);
+  --system-card-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.70);
+}
+
+/* Glass Diversity 4: Solid Metal / Titanium (Zero Blur, Opaque) */
 html[data-glass-intensity="reduced"] {
   --glass-blur: 0px;
   --glass-nav-bg: var(--system-bg);
   --system-card-bg: var(--system-grouped-bg);
+  --system-card-border: rgba(255, 255, 255, 0.10);
+  --system-card-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.60);
+}
+
+/* Light Mode Glass Diversity Adapters */
+html[data-appearance="light"][data-glass-intensity="liquid"] {
+  --glass-nav-bg: rgba(255, 255, 255, 0.82);
+  --system-card-bg: rgba(255, 255, 255, 0.82);
+  --system-card-border: rgba(0, 0, 0, 0.08);
+}
+
+html[data-appearance="light"][data-glass-intensity="clear"] {
+  --glass-nav-bg: rgba(255, 255, 255, 0.55);
+  --system-card-bg: rgba(255, 255, 255, 0.55);
+  --system-card-border: rgba(0, 0, 0, 0.12);
+}
+
+html[data-appearance="light"][data-glass-intensity="frosted"] {
+  --glass-nav-bg: rgba(255, 255, 255, 0.94);
+  --system-card-bg: rgba(255, 255, 255, 0.94);
+  --system-card-border: rgba(0, 0, 0, 0.06);
+}
+
+html[data-appearance="light"][data-glass-intensity="reduced"] {
+  --glass-nav-bg: #f0f2f5;
+  --system-card-bg: #ffffff;
+  --system-card-border: rgba(0, 0, 0, 0.10);
 }
 
 html {
@@ -118,10 +166,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Elimination of Artificial Full-Viewport Gaps */
+/* Elimination of Artificial Full-Viewport Gaps & Liquid Glass Adoption */
 #overview,
 section[id] {
   min-height: auto !important;
+  background-color: var(--system-card-bg) !important;
+  backdrop-filter: blur(var(--glass-blur, 24px));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 24px));
+  border-color: var(--system-card-border) !important;
+  box-shadow: var(--system-card-shadow), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+html[data-appearance="light"] section[id] {
+  box-shadow: var(--system-card-shadow), inset 0 1px 1px 0 rgba(255, 255, 255, 0.80) !important;
 }
 
 /* Apple Liquid Glass Material Specification */
