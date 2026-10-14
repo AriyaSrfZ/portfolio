@@ -36,9 +36,9 @@
   <style>
     body {
       font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #0B0C0E;
+      background-color: #0E1015;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.06) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.04) 0px, transparent 50%);
       background-attachment: fixed;
       color: #F3F4F6;
@@ -148,7 +148,7 @@
       background: #292B38;
       border-color: #0A84FF;
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px -4px rgba(123, 104, 238, 0.28);
+      box-shadow: 0 10px 24px -4px rgba(56, 189, 248, 0.2);
     }
     .kanban-col {
       min-height: calc(100vh - 220px);
@@ -205,7 +205,7 @@
     }
   </style>
 </head>
-<body class="text-white min-h-screen antialiased flex flex-col selection:bg-blue-600/40 selection:text-slate-900">
+<body class="text-white min-h-screen antialiased flex flex-col selection:bg-blue-600/40 selection:text-white">
 
   <!-- Top Glass Navigation Bar (Apple Style) -->
     <!-- Top Navigation Bar (ClickUp Style) -->
@@ -272,7 +272,7 @@
         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
       </span>
       <span class="font-bold text-white whitespace-nowrap">⚡ دستورالعمل استندآپ تیم:</span>
-      <span class="text-slate-400 truncate text-[11px]">خانم خرسنددل (ممیزی لینکدین) • خانم فائزه (تدوین نامه‌ها) • خانم موسی‌پور (نظارت COO) • خانم شهروزی (تصویب CEO)</span>
+      <span class="text-slate-400 truncate text-[11px]">همکاران تیم: خانم شهروزی • خانم موسی‌پور • خانم خرم‌دل • خانم فائزه (پذیرش و تخصیص نقش در هر حساب)</span>
     </div>
     <div class="flex items-center gap-2 flex-shrink-0">
       <button onclick="openStandupModal()" class="px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg text-[11px] shadow-sm flex items-center gap-1.5 transition whitespace-nowrap">
@@ -287,10 +287,11 @@
     <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
       <span class="text-slate-400 font-medium ml-1">مسئولین:</span>
       <button onclick="filterByRole('all')" id="rf-all" class="px-3 py-1 rounded-lg bg-blue-600 text-white font-semibold shadow-sm transition">همه</button>
-      <button onclick="filterByRole('ceo')" id="rf-ceo" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">👑 خانم شهروزی (CEO)</button>
-      <button onclick="filterByRole('coo')" id="rf-coo" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">💼 خانم موسی‌پور (COO)</button>
-      <button onclick="filterByRole('lead')" id="rf-lead" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">🔍 خانم خرسنددل (Operation Lead)</button>
-      <button onclick="filterByRole('admin')" id="rf-admin" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">✍️ خانم فائزه (Operation Admin)</button>
+      <button onclick="filterByRole('unassigned')" id="rf-unassigned" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-amber-300 hover:text-white border border-amber-500/20 transition whitespace-nowrap">⏳ بدون مسئول (آماده پذیرش)</button>
+      <button onclick="filterByRole('shahroozi')" id="rf-shahroozi" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">خانم شهروزی</button>
+      <button onclick="filterByRole('moosapour')" id="rf-moosapour" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">خانم موسی‌پور</button>
+      <button onclick="filterByRole('khordamdel')" id="rf-khordamdel" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">خانم خرم‌دل</button>
+      <button onclick="filterByRole('faeze')" id="rf-faeze" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">خانم فائزه</button>
       <button onclick="resetAllToStartPoint()" class="px-3 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/25 font-medium transition flex items-center gap-1 ml-2 whitespace-nowrap" title="قرار دادن همه ۱۰ حساب در مرحله ۱ (نقطه شروع)">
         <span>🔄 بازنشانی به نقطه شروع</span>
       </button>
@@ -329,7 +330,7 @@
             <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
             <div>
               <span class="text-xs font-bold text-blue-400">۲. ممیزی لینکدین</span>
-              <p class="text-[10px] text-slate-500 mt-0.5">خانم خرسنددل: استخراج پروفایل و رابط نصر</p>
+              <p class="text-[10px] text-slate-500 mt-0.5">شناسایی تصمیم‌گیرندگان، ساختار و پاشنه آشیل</p>
             </div>
           </div>
           <span id="badge-linkedin" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20">0</span>
@@ -344,7 +345,7 @@
             <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
             <div>
               <span class="text-xs font-bold text-amber-400">۳. تدوین نامه و روت</span>
-              <p class="text-[10px] text-slate-500 mt-0.5">خانم فائزه: نگارش نامه و InMail با قلاب‌ها</p>
+              <p class="text-[10px] text-slate-500 mt-0.5">نگارش نامه رسمی اداری و InMail با قلاب‌های فنی</p>
             </div>
           </div>
           <span id="badge-drafting" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 font-semibold border border-amber-500/20">0</span>
@@ -356,13 +357,13 @@
       <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'csuite')">
         <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#272932]">
           <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-indigo-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
             <div>
-              <span class="text-xs font-bold text-indigo-300">۴. تایید مدیریت ارشد</span>
-              <p class="text-[10px] text-slate-500 mt-0.5">خانم موسی‌پور و شهروزی: تایید نهایی تا ۱۶</p>
+              <span class="text-xs font-bold text-sky-300">۴. تایید مدیریت ارشد</span>
+              <p class="text-[10px] text-slate-500 mt-0.5">بررسی محتوا و مدل تسهیم ترافیک تا ساعت ۱۶</p>
             </div>
           </div>
-          <span id="badge-csuite" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-300 font-semibold border border-indigo-500/20">0</span>
+          <span id="badge-csuite" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-300 font-semibold border border-sky-500/20">0</span>
         </div>
         <div id="col-csuite" class="space-y-2.5 flex-1 overflow-y-auto"></div>
       </div>
@@ -425,7 +426,7 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
       <div class="ios-column p-5 rounded-2xl">
         <span class="text-xs text-slate-400">کل حساب‌های تحت رصد</span>
-        <div class="text-3xl font-extrabold text-slate-900 mt-1" id="statTotal">۱۰</div>
+        <div class="text-3xl font-extrabold text-white mt-1" id="statTotal">۱۰</div>
         <span class="text-[11px] text-blue-400 mt-2 block">۱۰۰٪ تاییدیه شورا</span>
       </div>
       <div class="ios-column p-5 rounded-2xl">
@@ -447,7 +448,7 @@
 
     <!-- Pipeline Distribution Bars -->
     <div class="ios-column p-6 rounded-2xl space-y-4">
-      <h3 class="font-bold text-sm text-slate-900">توزیع حساب‌ها در مراحل ۶ گانه پایپ‌لاین فروش:</h3>
+      <h3 class="font-bold text-sm text-white">توزیع حساب‌ها در مراحل ۶ گانه پایپ‌لاین فروش:</h3>
       <div id="pipelineBars" class="space-y-3"></div>
     </div>
   </div>
@@ -601,7 +602,7 @@
                 <input type="text" id="dEditDecisionMaker" class="w-full mt-1 bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-3 py-1.5 text-xs">
               </div>
               <div>
-                <span class="text-[10px] text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded font-medium">Approver (هیئت‌مدیره / مصوب)</span>
+                <span class="text-[10px] text-sky-300 bg-sky-500/10 px-2 py-0.5 rounded font-medium">Approver (هیئت‌مدیره / مصوب)</span>
                 <input type="text" id="dEditApprover" class="w-full mt-1 bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-3 py-1.5 text-xs">
               </div>
               <div>
@@ -611,20 +612,53 @@
             </div>
           </div>
 
-          <!-- Team Assignment Card -->
-          <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] text-xs space-y-2">
-            <span class="text-xs font-bold text-slate-200 block border-b border-[#2D303A] pb-2">مسئولین پیگیری این حساب:</span>
-            <div class="flex justify-between items-center text-slate-300">
-              <span class="text-slate-400">سرپرست عملیات:</span>
-              <span class="font-medium text-emerald-400">خانم خرسنددل</span>
+          <!-- Team Assignment Card (Interactive Role Taking) -->
+          <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] text-xs space-y-3">
+            <div class="flex items-center justify-between border-b border-[#2D303A] pb-2">
+              <span class="text-xs font-bold text-slate-200">تخصیص و پذیرش مسئولیت حساب:</span>
+              <span class="text-[10px] text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded">نقش‌های آزاد</span>
             </div>
-            <div class="flex justify-between items-center text-slate-300">
-              <span class="text-slate-400">ادمین عملیات:</span>
-              <span class="font-medium text-amber-400">خانم فائزه</span>
+            
+            <div class="space-y-1">
+              <label class="text-[11px] text-slate-400 block">ممیز و سرپرست حساب:</label>
+              <select id="dEditAssigneeResearcher" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs">
+                <option value="">(تعیین نشده — آماده پذیرش)</option>
+                <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                <option value="خانم فائزه">خانم فائزه</option>
+                <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                <option value="خانم شهروزی">خانم شهروزی</option>
+              </select>
             </div>
-            <div class="flex justify-between items-center text-slate-300">
-              <span class="text-slate-400">نظارت و تاییدیه:</span>
-              <span class="font-medium text-blue-400">خانم موسی‌پور / خانم شهروزی</span>
+
+            <div class="space-y-1">
+              <label class="text-[11px] text-slate-400 block">تدوین‌کننده نامه و پیش‌نویس:</label>
+              <select id="dEditAssigneeDrafter" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs">
+                <option value="">(تعیین نشده — آماده پذیرش)</option>
+                <option value="خانم فائزه">خانم فائزه</option>
+                <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                <option value="خانم شهروزی">خانم شهروزی</option>
+              </select>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-[11px] text-slate-400 block">تاییدکننده و ناظر نهایی:</label>
+              <select id="dEditAssigneeApprover" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs">
+                <option value="">(تعیین نشده — آماده پذیرش)</option>
+                <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                <option value="خانم شهروزی">خانم شهروزی</option>
+                <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                <option value="خانم فائزه">خانم فائزه</option>
+              </select>
+            </div>
+
+            <div class="pt-1 flex gap-2">
+              <button type="button" onclick="quickTakeRole('researcher')" class="flex-1 py-1 px-2 rounded-lg bg-[#242731] hover:bg-[#2D303A] text-slate-300 text-[10px] border border-[#373A46] transition text-center">
+                🙋‍♀️ پذیرش ممیزی
+              </button>
+              <button type="button" onclick="quickTakeRole('drafter')" class="flex-1 py-1 px-2 rounded-lg bg-[#242731] hover:bg-[#2D303A] text-slate-300 text-[10px] border border-[#373A46] transition text-center">
+                ✍️ پذیرش نامه‌نگاری
+              </button>
             </div>
           </div>
 
@@ -642,23 +676,23 @@
   <div id="newAccountModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-[#2C2C2E] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4">
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <h3 class="font-bold text-slate-900 text-base">ایجاد حساب هدف جدید</h3>
-        <button onclick="closeNewAccountModal()" class="text-slate-400 hover:text-slate-900">&times;</button>
+        <h3 class="font-bold text-white text-base">ایجاد حساب هدف جدید</h3>
+        <button onclick="closeNewAccountModal()" class="text-slate-400 hover:text-white">&times;</button>
       </div>
 
       <div class="space-y-3 text-xs">
         <div>
           <label class="block text-slate-400 mb-1">نام شرکت یا برند:</label>
-          <input type="text" id="mName" placeholder="مثلاً: صرافی نوبیتکس" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+          <input type="text" id="mName" placeholder="مثلاً: صرافی نوبیتکس" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 mb-1">حوزه تخصصی:</label>
-            <input type="text" id="mVertical" placeholder="مثلاً: صرافی رمزارز" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+            <input type="text" id="mVertical" placeholder="مثلاً: صرافی رمزارز" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
           </div>
           <div>
             <label class="block text-slate-400 mb-1">اولویت شورا:</label>
-            <select id="mTier" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+            <select id="mTier" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
               <option value="Tier A">Tier A (فوری - پربسامد)</option>
               <option value="Tier B">Tier B (اولویت بالا)</option>
               <option value="Strategic">Strategic (کانالی / ISV)</option>
@@ -668,22 +702,22 @@
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 mb-1">آدرس لینکدین شرکت:</label>
-            <input type="text" id="mLinkedin" placeholder="https://linkedin.com/company/..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+            <input type="text" id="mLinkedin" placeholder="https://linkedin.com/company/..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
           </div>
           <div>
             <label class="block text-slate-400 mb-1">وب‌سایت رسمی:</label>
-            <input type="text" id="mWebsite" placeholder="https://..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]">
+            <input type="text" id="mWebsite" placeholder="https://..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
           </div>
         </div>
         <div>
           <label class="block text-slate-400 mb-1">پاشنه آشیل و درد پیامکی:</label>
-          <textarea id="mPain" rows="2" placeholder="تاخیر کدهای OTP در ساعات شلوغی..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-slate-900 focus:border-[#0A84FF]"></textarea>
+          <textarea id="mPain" rows="2" placeholder="تاخیر کدهای OTP در ساعات شلوغی..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]"></textarea>
         </div>
       </div>
 
       <div class="flex justify-end gap-2 pt-2 border-t border-white/10">
         <button onclick="closeNewAccountModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-medium">انصراف</button>
-        <button onclick="saveNewAccount()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-slate-900 rounded-xl text-xs font-semibold shadow-lg shadow-blue-600/30">ذخیره حساب</button>
+        <button onclick="saveNewAccount()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold shadow-lg shadow-blue-600/30">ذخیره حساب</button>
       </div>
     </div>
   </div>
@@ -704,8 +738,8 @@
         decisionMaker: "محسن ابوالفتحی (هم‌بنیان‌گذار و مدیرعامل)",
         approver: "مصطفی افزونی (رئیس هیئت‌مدیره)",
         techLead: "مدیر ارشد فناوری و سرپرست بک‌اند",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "در انتظار بررسی",
         pain: "افت کیفیت OTP در زمان جهش ناگهانی قیمت طلا و هدایت اجباری به تماس صوتی پرهزینه که باعث ریزش کاربر در لحظه ثبت سفارش می‌شود.",
         hookCeo: "جناب آقای ابوالفتحی عزیز، سلام. رشد چشمگیر طلاین در بازار آنلاین طلا را صمیمانه تبریک می‌گویم. در روزهای پرترافیک و نوسان شدید بازار طلا، گزارش‌های تاخیر پیامک OTP و شیفت ناخواسته به تماس صوتی علاوه بر هزینه سربار، اصطکاک بالایی برای کاربر در لحظه ثبت سفارش ایجاد می‌کند. ما در پرشیا فاوا با اتصال مستقیم اپراتوری و تضمین تاخیر زیر ۲ ثانیه، روت دوم موازی بدون اختلال را برای طلاین فراهم کرده‌ایم تا حتی در پرنوسان‌ترین ثانیه‌ها هیچ معامله‌ای به دلیل کندی پیامک از دست نرود. خوشحال می‌شوم در گفتگویی کوتاه، مدل تست پایلوت را خدمتتان تشریح کنیم.",
@@ -728,8 +762,8 @@
         decisionMaker: "کیوان جعفری (هم‌بنیان‌گذار و عضو هیئت‌مدیره)",
         approver: "مسعود شکرانی / محمد صدوقی (هیئت مدیره حصین)",
         techLead: "مدیر ارشد محصول / مدیر فنی بازارگاه",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "ورود مستقیم مدیرعامل",
         pain: "تاخیر در دریافت پیامک‌های اعلام بار توسط رانندگان کامیون در جاده‌ها با آنتن‌دهی ضعیف، که موجب اعتراض رانندگان و از دست رفتن ظرفیت بار ناوگان می‌شود.",
         hookCeo: "جناب آقای مهندس جعفری گرامی، وقت بخیر. پیشگامی ترابرنت در هوشمندسازی لجستیک سنگین کشور همواره الگوی اکوسیستم بوده است. در شبکه رانندگان جاده‌ای که هر ثانیه تاخیر پیامک اعلام بار منجر به سوختن نوبت بار و نارضایتی ناوگان می‌شود، زیرساخت پیامک مستقیم و خطوط خدماتی بدون فیلتر نقشی حیاتی در حفظ وفاداری رانندگان ایفا می‌کند. پرشیا فاوا با مالکیت خطوط پایدار مخابراتی، مسیر اختصاصی با پوشش حداکثری اپراتوری را ویژه ترابرنت طراحی کرده است. افتخار داریم در جلسه‌ای مشترک با حضور مدیران ارشد، راهکار کاهش تاخیر جاده‌ای را نهایی نماییم.",
@@ -751,8 +785,8 @@
         decisionMaker: "هم‌بنیان‌گذار و مدیر ارشد اجرایی",
         approver: "هیئت‌مدیره زرپی۲۴",
         techLead: "مدیر محصول معاملات برخط / معمار نرم‌افزار",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "در انتظار بررسی",
         pain: "فعالیت شبانه‌روزی بدون پشتیبانی فعال از سوی پرووایدرهای سنتی در شیفت‌های شب و تاخیر فاکتورهای آنی خرید فلزات گرانبها.",
         hookCeo: "مدیریت محترم زرپی۲۴، با سلام. فعالیت پیوسته و ۲۴ ساعته پلتفرم زرپی۲۴ در بازار فلزات گرانبها، نیازمند پشتیبانی شبانه‌روزی زیرساخت پیامک است؛ نقطه‌ای که معمولاً در شیفت‌های شب ارائه‌دهندگان سنتی رها می‌شود. پرشیا فاوا علاوه بر تضمین ارسال زیر ۲ ثانیه، پشتیبانی لایه دو و خطوط پایدار اختصاصی خدماتی را به شما ارائه می‌دهد تا امنیت و آرامش تراکنش‌های شبانه تضمین شود.",
@@ -772,8 +806,8 @@
         decisionMaker: "حامد تاج‌الدین (مدیرعامل)",
         approver: "مهدی نائبی (سنا گستر سبز)",
         techLead: "مدیر ارشد فناوری (CTO) اوبار",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "ورود مستقیم مدیرعامل",
         pain: "ترافیک سنگین رویدادمحور و تاخیر تایید بارنامه آنلاین؛ وجود رقابت سنتی در تامین خطوط و نیاز به بهینه‌سازی تعرفه و پایداری تحویل.",
         hookCeo: "جناب آقای دکتر تاج‌الدین عزیز، سلام. تحول دیجیتال صنعت حمل بار توسط اوبار دستاوردی ماندگار در زیست‌بوم نوآوری کشور است. با توجه به حجم بالای اعلان‌های تراکنشی رانندگان و حساسیت زمانی تایید بار، پرشیا فاوا آماده است به عنوان زیرساخت مطمئن روت دوم بدون وابستگی به واسطه‌ها، با تعرفه اقتصادی پلکانی و پوشش صددرصدی خطوط خدماتی، در کنار تیم توسعه اوبار قرار گیرد.",
@@ -793,8 +827,8 @@
         decisionMaker: "حمیدرضا متقی (بنیان‌گذار و مدیر ارشد)",
         approver: "هیئت‌مدیره سندپرداز",
         techLead: "مدیر توسعه محصول ERP صنعتی",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "تایید شد",
         pain: "فقدان درگاه پیش‌فرض پیامک تعبیه‌شده در نرم‌افزار ERP کارخانه‌ها و از دست رفتن جریان درآمد پایدار ری‌شیرینگ پیامک مشتریان.",
         hookCeo: "جناب آقای متقی بزرگوار، سلام. جایگاه سندپرداز در اتوماسیون مالی و صنعتی کشور فرصتی کم‌نظیر برای خلق درآمدهای پایدار فراهم کرده است. با ادغام درگاه پیامک سازمانی پرشیا فاوا در بسته پایه سندپرداز، صدها کارخانه مشتری شما بدون نیاز به ثبت‌نام‌های پیچیده بیرونی، ترافیک میلیونی اسناد و چک‌های خود را از داخل سیستم شما ارسال می‌کنند و درآمد ترافیک حاصله به صورت ماهانه در قالب مدل Revenue Share پایدار بین دو مجموعه تقسیم خواهد شد.",
@@ -814,8 +848,8 @@
         decisionMaker: "فرزاد رحمانی (مدیرعامل)",
         approver: "شاهین طبری (رئیس هیئت‌مدیره)",
         techLead: "مدیر توسعه بازار و اکوسیستم دیدگاه",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "ورود مستقیم مدیرعامل",
         pain: "سازمان‌های دیدگاه با تجمیع‌کنندگان متفرقه طرف هستند و چارگون سهمی از درآمد ترافیک ده میلیونی پیامک‌های مشتریان خود ندارد.",
         hookCeo: "جناب آقای مهندس رحمانی گرامی، درود و احترام. اکوسیستم دیدگاه ستون فقرات اتوماسیون سازمانی بیش از ۱۴۰۰ نهاد شاخص کشور است. پرشیا فاوا با زیرساخت تلکام رده‌بالا، پیشنهاد دارد درگاه رسمی پیامک سازمانی پرشیا فاوا به عنوان افزونه پیش‌فرض ماژول ارتباطی دیدگاه تعبیه شود تا با تکیه بر استانداردهای بالای امنیت داده و عدم خروج اطلاعات سازمانی، مدل انتفاع مالی مستمر برای چارگون و مشتریان محترمتان محقق گردد.",
@@ -835,8 +869,8 @@
         decisionMaker: "علیرضا عیوضی (مدیرعامل)",
         approver: "هم‌بنیان‌گذاران شریف",
         techLead: "سرپرست تیم مهندسی نرم‌افزار",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "در انتظار بررسی",
         pain: "گلوگاه ارسال کدهای احراز هویت و فاکتور لحظه‌ای در زمان نوسانات بازار و وابستگی به وب‌سرویس عمومی رقبا.",
         hookCeo: "جناب آقای عیوضی عزیز، سلام و درود. دستاورد گلدیکا در ایجاد بستری مطمئن و نوآورانه برای خرید طلای خرد مایه مباهات است. در صنعتی که مشتریان بر پایه ثانیه‌ها و نوسان قیمت تصمیم می‌گیرند، حتی ۱۰ ثانیه تاخیر پیامک ثبت سفارش یا کد تایید می‌تواند به معنای عدم انجام خرید و نارضایتی سرمایه‌گذار باشد. ما در پرشیا فاوا خط خدماتی اختصاصی با تاخیر زیر ۲ ثانیه را برای گلدیکا کنار گذاشته‌ایم تا دغدغه فنی کدهای تراکنشی را برای همیشه مرتفع سازیم.",
@@ -856,8 +890,8 @@
         decisionMaker: "محمدرضا آشتیانی (مدیرعامل)",
         approver: "هیئت‌مدیره اعتبار آفرین شریف",
         techLead: "مدیر محصول قسطاکارت و اعتبارسنجی",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "در انتظار بررسی",
         pain: "تاخیر در پیامک‌های یادآوری اقساط و OTP امضای قرارداد الکترونیک که باعث مسدود ماندن فرایند تخصیص اعتبار می‌شود.",
         hookCeo: "جناب آقای دکتر آشتیانی ارجمند، سلام و احترام. نقش ارزنده قسطا در توسعه شمول مالی و تسهیل خرید اقساطی خانواده‌ها ستودنی است. در اکوسیستم لندتک، پیامک‌های سررسید اقساط و کدهای امضای تسهیلات، جریان مالی و نرخ نکول را مستقیماً تحت تاثیر قرار می‌دهند. زیرساخت پرشیا فاوا با نرخ تحویل موفق بالای ۹۸٪ و وب‌هوک وضعیت قطعی، ریسک عدم دریافت پیامک‌های مالی را به صفر می‌رساند. مشتاقیم امکان ارائه این خدمت متمایز را بررسی نماییم.",
@@ -877,8 +911,8 @@
         decisionMaker: "مدیرعامل وال‌گلد",
         approver: "هیئت‌مدیره وال‌گلد",
         techLead: "مدیر محصول و تسهیلات طلا",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "در انتظار بررسی",
         pain: "نیاز مبرم به وب‌هوک وضعیت زنده و تایید فاکتورهای رسمی برای مراجع نظارتی و بانکی.",
         hookCeo: "مدیریت محترم وال‌گلد، سلام و احترام. در بازار رو به رشد تسهیلات مبتنی بر طلا، ارائه گزارش‌های تحویل پیامک با قابلیت استناد رسمی و وب‌هوک زنده تا گوشی کاربر، ابزار اصلی مدیریت ریسک حقوقی است. پرشیا فاوا با افتخار آماده ارائه خطوط با کیفیت بالا و گزارش‌های شفاف تحویل به عنوان روت اختصاصی وال‌گلد است.",
@@ -898,8 +932,8 @@
         decisionMaker: "بابک عقیلی‌نسب (مدیرعامل)",
         approver: "هیئت‌مدیره پستکس",
         techLead: "مدیر فنی و نرم‌افزار هاب پستی",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "در انتظار بررسی",
         pain: "حجم میلیونی پیامک‌های رهگیری مرسولات و تاخیر پیامک کد تحویل به گیرنده نهایی در سراسر کشور.",
         hookCeo: "جناب آقای عقیلی‌نسب عزیز، با سلام و وقت‌بخیر. تحول ارزشمند پستکس در تسهیل ارسال بسته‌های پستی برای هزاران فروشگاه اینترنتی جای قدردانی دارد. پیامک کد تحویل مرسوله و لینک رهگیری بسته، مستقیم‌ترین نقطه تماس با مشتری است و کوچک‌ترین تاخیر آن، فرآیند تحویل راننده توزیع را مختل می‌کند. پرشیا فاوا با ظرفیت ترافیکی بالا و تخفیف‌های ویژه بر اساس تیراژ میلیونی، آماده است سرویس پیامک پستکس را با بالاترین استانداردهای تحویل و نازل‌ترین بهای تمام‌شده بیمه کند.",
@@ -985,13 +1019,20 @@
             <h4 class="font-bold text-white text-xs leading-snug group-hover:text-blue-400 transition">${acc.name}</h4>
             <p class="text-[11px] text-slate-400 mt-1 line-clamp-1">${acc.vertical}</p>
 
-            <div class="mt-3 pt-2.5 border-t border-[#272932] flex items-center justify-between text-[10px] text-slate-400">
-              <span class="flex items-center gap-1 text-slate-400">
-                <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                ${acc.decisionMaker.split(' ')[0]}
-              </span>
+            <div class="mt-3 pt-2 border-t border-[#272932] flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-1.5 truncate">
+                ${(acc.assigneeResearcher || acc.assigneeDrafter) ? `
+                  <span class="px-2 py-0.5 rounded-md bg-[#242731] text-sky-300 border border-[#373A46] font-medium truncate max-w-[140px]">
+                    👤 ${acc.assigneeResearcher || acc.assigneeDrafter}
+                  </span>
+                ` : `
+                  <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">
+                    ⏳ بدون مسئول
+                  </span>
+                `}
+              </div>
               ${docsCount > 0 ? `
-                <span class="flex items-center gap-1 text-blue-400 font-semibold bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-500/20">
+                <span class="flex items-center gap-1 text-sky-400 font-semibold bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-500/20">
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
                   ${docsCount}
                 </span>
@@ -1017,7 +1058,7 @@
 
         tr.innerHTML = `
           <td class="p-3.5">
-            <div class="font-bold text-slate-900">${acc.name}</div>
+            <div class="font-bold text-white">${acc.name}</div>
             <div class="flex items-center gap-2 mt-1">
               <span class="px-2 py-0.5 rounded text-[10px] font-mono ${acc.tier === 'Tier A' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-white/10 text-slate-200'}">${acc.tier} (${acc.score})</span>
               <a href="${acc.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-blue-400 hover:underline text-[11px]">لینکدین</a>
@@ -1034,12 +1075,16 @@
           <td class="p-3.5 text-center text-blue-400 font-medium">
             ${(acc.docs || []).length} سند
           </td>
-          <td class="p-3.5 text-center text-slate-400 text-[11px]">
-            <div>${acc.assigneeResearcher}</div>
-            <div>${acc.assigneeDrafter}</div>
+          <td class="p-3.5 text-center text-slate-300 text-[11px]">
+            ${acc.assigneeResearcher || acc.assigneeDrafter ? `
+              <div class="text-sky-300 font-medium">${acc.assigneeResearcher || '-'}</div>
+              <div class="text-slate-400 text-[10px]">${acc.assigneeDrafter || '-'}</div>
+            ` : `
+              <span class="text-amber-400/80 bg-amber-500/10 px-2 py-0.5 rounded text-[10px]">بدون مسئول</span>
+            `}
           </td>
           <td class="p-3.5 text-center">
-            <button onclick="event.stopPropagation(); openDetailDrawer('${acc.id}');" class="px-3 py-1 bg-white/10 hover:bg-blue-600 text-slate-900 rounded-lg text-[11px] transition">جزئیات</button>
+            <button onclick="event.stopPropagation(); openDetailDrawer('${acc.id}');" class="px-3 py-1 bg-white/10 hover:bg-blue-600 text-white rounded-lg text-[11px] transition">جزئیات</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -1056,10 +1101,21 @@
                               acc.pain.toLowerCase().includes(q);
         if (!matchesSearch) return false;
 
-        if (activeFilterRole === "lead") return acc.stage === "prospect" || acc.stage === "linkedin";
-        if (activeFilterRole === "admin") return acc.stage === "drafting";
-        if (activeFilterRole === "coo") return acc.stage === "drafting" || acc.stage === "csuite" || acc.stage === "outreach";
-        if (activeFilterRole === "ceo") return acc.stage === "csuite" || acc.tier === "Tier A" || acc.stage === "won";
+        if (activeFilterRole === "unassigned") {
+          return !acc.assigneeResearcher && !acc.assigneeDrafter && !acc.assigneeApprover;
+        }
+        if (activeFilterRole === "shahroozi") {
+          return (acc.assigneeResearcher || '').includes('شهروزی') || (acc.assigneeDrafter || '').includes('شهروزی') || (acc.assigneeApprover || '').includes('شهروزی');
+        }
+        if (activeFilterRole === "moosapour") {
+          return (acc.assigneeResearcher || '').includes('موسی‌پور') || (acc.assigneeDrafter || '').includes('موسی‌پور') || (acc.assigneeApprover || '').includes('موسی‌پور');
+        }
+        if (activeFilterRole === "khordamdel") {
+          return (acc.assigneeResearcher || '').includes('خرم‌دل') || (acc.assigneeDrafter || '').includes('خرم‌دل') || (acc.assigneeApprover || '').includes('خرم‌دل');
+        }
+        if (activeFilterRole === "faeze") {
+          return (acc.assigneeResearcher || '').includes('فائزه') || (acc.assigneeDrafter || '').includes('فائزه') || (acc.assigneeApprover || '').includes('فائزه');
+        }
         return true;
       });
     }
@@ -1106,6 +1162,11 @@
       document.getElementById("dEditHookCeo").value = acc.hookCeo || "";
       document.getElementById("dEditHookTech").value = acc.hookTech || "";
 
+      // Populate assignees
+      document.getElementById("dEditAssigneeResearcher").value = acc.assigneeResearcher || "";
+      document.getElementById("dEditAssigneeDrafter").value = acc.assigneeDrafter || "";
+      document.getElementById("dEditAssigneeApprover").value = acc.assigneeApprover || "";
+
       renderDocsList();
       document.getElementById("detailDrawer").classList.remove("hidden");
     }
@@ -1124,6 +1185,11 @@
       selectedAccount.pain = document.getElementById("dEditPain").value.trim();
       selectedAccount.hookCeo = document.getElementById("dEditHookCeo").value.trim();
       selectedAccount.hookTech = document.getElementById("dEditHookTech").value.trim();
+
+      // Save assignees
+      selectedAccount.assigneeResearcher = document.getElementById("dEditAssigneeResearcher").value;
+      selectedAccount.assigneeDrafter = document.getElementById("dEditAssigneeDrafter").value;
+      selectedAccount.assigneeApprover = document.getElementById("dEditAssigneeApprover").value;
 
       saveState();
       renderBoard();
@@ -1184,7 +1250,7 @@
             <span class="text-[10px] text-slate-500">(${doc.size})</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <button onclick="downloadDoc(${idx})" class="p-1 text-slate-400 hover:text-slate-900" title="دانلود">
+            <button onclick="downloadDoc(${idx})" class="p-1 text-slate-400 hover:text-white" title="دانلود">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             </button>
             <button onclick="deleteDoc(${idx})" class="p-1 text-slate-400 hover:text-rose-400" title="حذف">
@@ -1250,8 +1316,8 @@
         decisionMaker: "مدیرعامل / هیئت‌مدیره",
         approver: "سرمایه‌گذاران کلان",
         techLead: "مدیر ارشد فناوری (CTO)",
-        assigneeResearcher: "خانم خرسنددل (Operation Lead)",
-        assigneeDrafter: "خانم فائزه (Operation Admin)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
         csuiteStatus: "در انتظار بررسی",
         pain: document.getElementById("mPain").value.trim() || "نیاز به روت پشتیبان پیامک با تاخیر پایین و وب‌هوک وضعیت زنده.",
         hookCeo: `جناب مدیریت محترم ${name}، با سلام. پرشیا فاوا آماده است زیرساخت پیامک مستقیم و پایدار خود را بدون قطعی روت فعلی در اختیار شما قرار دهد.`,
@@ -1276,7 +1342,7 @@
           btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/15 text-white shadow-sm transition";
           el.classList.remove("hidden");
         } else {
-          btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-slate-900 transition";
+          btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white transition";
           el.classList.add("hidden");
         }
       });
@@ -1285,15 +1351,33 @@
       if (view === 'analytics') updateAnalytics();
     }
 
+    function quickTakeRole(roleType) {
+      if (!selectedAccount) return;
+      const member = prompt("نام خود را جهت پذیرش این نقش انتخاب/تایپ کنید:\n۱. خانم خرم‌دل\n۲. خانم فائزه\n۳. خانم موسی‌پور\n۴. خانم شهروزی", "خانم خرم‌دل");
+      if (!member) return;
+      if (roleType === 'researcher') {
+        document.getElementById("dEditAssigneeResearcher").value = member;
+        selectedAccount.assigneeResearcher = member;
+      } else if (roleType === 'drafter') {
+        document.getElementById("dEditAssigneeDrafter").value = member;
+        selectedAccount.assigneeDrafter = member;
+      }
+      saveState();
+      renderBoard();
+      renderList();
+      alert(`مسئولیت به "${member}" تخصیص یافت.`);
+    }
+
     function filterByRole(role) {
       activeFilterRole = role;
-      ['all', 'ceo', 'coo', 'lead', 'admin'].forEach(r => {
+      const roles = ['all', 'unassigned', 'shahroozi', 'moosapour', 'khordamdel', 'faeze'];
+      roles.forEach(r => {
         const btn = document.getElementById(`rf-${r}`);
         if (!btn) return;
         if (r === role) {
-          btn.className = "px-2.5 py-1 rounded-xl bg-[#007AFF] text-white font-semibold shadow-sm transition";
+          btn.className = "px-3 py-1 rounded-lg bg-blue-600 text-white font-semibold shadow-sm transition whitespace-nowrap";
         } else {
-          btn.className = "px-2.5 py-1 rounded-xl bg-white/10 hover:bg-white/15 text-slate-200 hover:text-white border border-white/10 transition whitespace-nowrap";
+          btn.className = "px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap";
         }
       });
       renderBoard();
@@ -1378,9 +1462,9 @@
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
         <div class="flex items-center gap-2">
           <span class="w-3 h-3 rounded-full bg-[#05C46B]"></span>
-          <h3 class="font-bold text-slate-900 text-sm">راهنمای بارگذاری مستقیم کاربرگ در Google Sheets</h3>
+          <h3 class="font-bold text-white text-sm">راهنمای بارگذاری مستقیم کاربرگ در Google Sheets</h3>
         </div>
-        <button onclick="closeSheetsGuideModal()" class="text-slate-400 hover:text-slate-900">&times;</button>
+        <button onclick="closeSheetsGuideModal()" class="text-slate-400 hover:text-white">&times;</button>
       </div>
 
       <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
@@ -1409,7 +1493,7 @@
       </div>
 
       <div class="flex justify-end pt-2">
-        <button onclick="closeSheetsGuideModal()" class="px-4 py-2 bg-gradient-to-r from-[#0A84FF] to-[#0071E3] text-slate-900 rounded-xl text-xs font-semibold">متوجه شدم</button>
+        <button onclick="closeSheetsGuideModal()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold">متوجه شدم</button>
       </div>
     </div>
   </div>
@@ -1419,9 +1503,9 @@
       <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
         <div class="flex items-center gap-2.5">
           <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#0A84FF] to-[#0A84FF]"></span>
-          <h3 class="font-bold text-slate-900 text-base">دستورالعمل اجرایی استندآپ ۲۰ دقیقه‌ای توسعه بازار پیامک</h3>
+          <h3 class="font-bold text-white text-base">دستورالعمل اجرایی استندآپ ۲۰ دقیقه‌ای توسعه بازار پیامک</h3>
         </div>
-        <button onclick="closeStandupModal()" class="text-slate-400 hover:text-slate-900">&times;</button>
+        <button onclick="closeStandupModal()" class="text-slate-400 hover:text-white">&times;</button>
       </div>
 
       <!-- Agenda Timeline -->
@@ -1445,11 +1529,11 @@
 
       <!-- Roles Breakdown (4 Explicit Roles) -->
       <div class="space-y-2.5 text-xs text-slate-300">
-        <span class="text-xs font-bold text-slate-900 block">👥 تفکیک ماموریت‌های ۴ گانه تیم:</span>
+        <span class="text-xs font-bold text-white block">👥 تفکیک ماموریت‌های ۴ گانه تیم:</span>
         
         <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
           <div class="flex items-center justify-between text-blue-400 font-bold">
-            <span>۱. سرکار خانم سوده شهروزی (مدیرعامل / CEO)</span>
+            <span>۱. خانم شهروزی — راهبری کلان و تفاهم‌نامه‌ها</span>
             <span class="text-[10px] bg-blue-500/15 px-2 py-0.5 rounded-full text-blue-300">راهبری کلان</span>
           </div>
           <p class="text-[11px] text-slate-400 leading-relaxed">
@@ -1459,7 +1543,7 @@
 
         <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
           <div class="flex items-center justify-between text-cyan-400 font-bold">
-            <span>۲. سرکار خانم مریم موسی‌پور (مدیر ارشد عملیات / COO)</span>
+            <span>۲. خانم موسی‌پور — نظارت بر پایپ‌لاین و کنترل SLA</span>
             <span class="text-[10px] bg-cyan-500/15 px-2 py-0.5 rounded-full text-cyan-300">مدیریت عملیات فروش</span>
           </div>
           <p class="text-[11px] text-slate-400 leading-relaxed">
@@ -1469,7 +1553,7 @@
 
         <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
           <div class="flex items-center justify-between text-emerald-400 font-bold">
-            <span>۳. سرکار خانم خرسنددل (سرپرست عملیات / Operation Lead)</span>
+            <span>۳. خانم خرم‌دل — ممیزی لینکدین و تحلیل پاشنه آشیل</span>
             <span class="text-[10px] bg-emerald-500/15 px-2 py-0.5 rounded-full text-emerald-300">هدف: ۲ ممیزی در روز</span>
           </div>
           <p class="text-[11px] text-slate-400 leading-relaxed">
@@ -1479,7 +1563,7 @@
 
         <div class="p-3 rounded-2xl bg-[#2C2C2E] text-white border border-white/10 space-y-1">
           <div class="flex items-center justify-between text-amber-400 font-bold">
-            <span>۴. سرکار خانم فائزه (ادمین عملیات / Operation Admin)</span>
+            <span>۴. خانم فائزه — تدوین نامه‌ها و آماده‌سازی بسته‌ها</span>
             <span class="text-[10px] bg-amber-500/15 px-2 py-0.5 rounded-full text-amber-300">هدف: ۲ پیش‌نویس در روز</span>
           </div>
           <p class="text-[11px] text-slate-400 leading-relaxed">
@@ -1490,7 +1574,7 @@
     </div>
     <div class="flex items-center justify-between pt-2 border-t border-white/10">
         <a href="/pfg_b2b_tracker.xlsx" download class="text-xs text-emerald-400 hover:underline flex items-center gap-1">📥 دانلود مستقیم کاربرگ اکسل</a>
-        <button onclick="closeStandupModal()" class="px-4 py-2 bg-gradient-to-r from-[#0A84FF] to-[#0071E3] text-slate-900 rounded-xl text-xs font-semibold">بستن راهنما</button>
+        <button onclick="closeStandupModal()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold">بستن راهنما</button>
       </div>
     </div>
   </div>
