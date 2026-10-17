@@ -259,13 +259,23 @@
       <button onclick="openSheetsGuideModal()" title="راهنمای گوگل شیت" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition text-xs font-bold">
         ❓
       </button>
-      <!-- Firebase Cloud Sync Indicator & Trigger -->
-      <button onclick="manualCloudSync()" id="cloudSyncBtn" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#18191E] hover:bg-[#20222A] text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold shadow-sm transition" title="دیتابیس ابری فایربیس فعال است. کلیک کنید برای دریافت آخرین تغییرات تیم">
-        <span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span id="cloudSyncText">همگام با ابر</span>
+      <!-- Firebase Cloud Sync Controls -->
+      <button onclick="forcePushToCloud()" id="btnPushCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs shadow-md shadow-blue-600/30 transition" title="ارسال اطلاعات و تغییرات این کامپیوتر به پایگاه داده ابری">
+        <span>☁️ ارسال به ابر (Push)</span>
       </button>
 
-      <button onclick="exportDataJSON()" title="پشتیبان‌گیری JSON" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
+      <button onclick="forcePullFromCloud()" id="btnPullCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#1D1F26] hover:bg-[#242731] text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold transition" title="دریافت آخرین تغییرات از پایگاه داده ابری">
+        <span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="cloudSyncText">دریافت از ابر (Pull)</span>
+      </button>
+
+      <!-- Import/Export JSON Dropdown or Buttons -->
+      <label class="cursor-pointer p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition flex items-center" title="بارگذاری فایل پشتیبان JSON">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+        <input type="file" id="jsonFileInput" accept=".json" onchange="importDataJSON(event)" class="hidden">
+      </label>
+
+      <button onclick="exportDataJSON()" title="دانلود فایل پشتیبان JSON" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
       </button>
     </div>
@@ -1095,11 +1105,11 @@
       if (status === 'syncing') {
         dot.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
         label.className = "text-amber-300 font-medium";
-        label.innerText = text || "در حال ذخیره در ابر...";
+        label.innerText = text || "در حال ذخیره...";
       } else if (status === 'synced') {
         dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
         label.className = "text-emerald-400 font-semibold";
-        label.innerText = text || "همگام با ابر";
+        label.innerText = text || "دریافت از ابر (Pull)";
       } else if (status === 'error') {
         dot.className = "w-2 h-2 rounded-full bg-rose-500";
         label.className = "text-rose-400 font-medium";
@@ -1107,29 +1117,45 @@
       }
     }
 
-    async function pushToFirebaseCloud() {
+    async function forcePushToCloud() {
       try {
-        updateSyncUI('syncing', 'ذخیره در دیتابیس ابری...');
+        updateSyncUI('syncing', 'در حال ارسال...');
+        const btn = document.getElementById("btnPushCloud");
+        if (btn) btn.innerText = "⏳ در حال ارسال...";
+
+        // Push accounts
         const res = await fetch(`${FIREBASE_DB_BASE}/accounts.json`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(accounts)
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        updateSyncUI('synced', 'ذخیره شد در ابر');
-        setTimeout(() => updateSyncUI('synced', 'همگام با ابر'), 3000);
+
+        // Push standup if available
+        const standupData = localStorage.getItem("pfg_standup_workspace");
+        if (standupData) {
+          fetch(`${FIREBASE_DB_BASE}/standup.json`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: standupData
+          }).catch(() => {});
+        }
+
+        updateSyncUI('synced', 'ارسال شد!');
+        if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+        alert("✅ اطلاعات و تغییرات این سیستم با موفقیت به سرور ابری فایربیس ارسال شد!\nاکنون در کامپیوتر یا مرورگر دیگر، فقط دکمه «دریافت از ابر» را بزنید یا صفحه را رفرش کنید.");
       } catch (err) {
-        console.warn("Firebase push warning:", err);
-        updateSyncUI('error', 'ذخیره محلی (آفلاین)');
+        console.error("Force push error:", err);
+        updateSyncUI('error', 'خطا در ارسال');
+        const btn = document.getElementById("btnPushCloud");
+        if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+        alert("خطا در ارسال به ابر: لطفاً اتصال اینترنت خود را بررسی کنید.");
       }
     }
 
-    async function loadFromFirebaseCloud(initial = false) {
-      if (isCloudSyncing) return;
-      isCloudSyncing = true;
-      if (!initial) updateSyncUI('syncing', 'دریافت تغییرات تیم...');
-
+    async function forcePullFromCloud() {
       try {
+        updateSyncUI('syncing', 'در حال دریافت...');
         const res = await fetch(`${FIREBASE_DB_BASE}/accounts.json`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
@@ -1140,44 +1166,101 @@
           renderBoard();
           renderList();
           updateAnalytics();
-          updateSyncUI('synced', 'همگام با ابر');
-        } else if (data === null) {
-          // Cloud is empty on first run, seed cloud with default/local accounts
-          await pushToFirebaseCloud();
+          updateSyncUI('synced', 'دریافت شد!');
+          
+          // Also fetch standup
+          try {
+            const sRes = await fetch(`${FIREBASE_DB_BASE}/standup.json`);
+            if (sRes.ok) {
+              const sData = await sRes.json();
+              if (sData) localStorage.setItem("pfg_standup_workspace", JSON.stringify(sData));
+            }
+          } catch(e) {}
+
+          alert("✅ آخرین تغییرات تیم از سرور ابری دریافت و روی صفحه اعمال شد!");
+        } else {
+          alert("دیتابیس ابری در حال حاضر خالی است.");
         }
-
-        // Also fetch standup notes if available
-        try {
-          const sRes = await fetch(`${FIREBASE_DB_BASE}/standup.json`);
-          if (sRes.ok) {
-            const sData = await sRes.json();
-            if (sData) localStorage.setItem("pfg_standup_workspace", JSON.stringify(sData));
-          }
-        } catch(e) {}
-
       } catch (err) {
-        console.warn("Firebase fetch warning (fallback to local):", err);
-        updateSyncUI('synced', 'دیتابیس لوکال فعال');
+        console.error("Force pull error:", err);
+        updateSyncUI('error', 'خطا در دریافت');
+        alert("خطا در برقراری ارتباط با دیتابیس ابری.");
+      }
+    }
+
+    async function loadFromFirebaseCloud(initial = false) {
+      if (isCloudSyncing) return;
+      isCloudSyncing = true;
+
+      try {
+        const res = await fetch(`${FIREBASE_DB_BASE}/accounts.json`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        if (data && Array.isArray(data) && data.length > 0) {
+          // If initial load, check if local has more edits than cloud before overwriting!
+          const localHasActions = accounts.some(a => (a.actions && a.actions.length > 0) || (a.comments && a.comments.length > 0));
+          const cloudHasActions = data.some(a => (a.actions && a.actions.length > 0) || (a.comments && a.comments.length > 0));
+
+          if (initial && localHasActions && !cloudHasActions) {
+            // Local is newer/modified! Automatically push local to cloud so cloud gets the modifications!
+            console.log("Local has modifications not in cloud. Auto-pushing to cloud...");
+            forcePushToCloud();
+          } else {
+            accounts = data;
+            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+            renderBoard();
+            renderList();
+            updateAnalytics();
+          }
+          updateSyncUI('synced', 'دریافت از ابر (Pull)');
+        }
+      } catch (err) {
+        console.warn("Cloud auto-sync warning:", err);
       } finally {
         isCloudSyncing = false;
       }
     }
 
-    function manualCloudSync() {
-      loadFromFirebaseCloud(false);
-      alert("همگام‌سازی با پایگاه داده ابری فایربیس انجام شد. آخرین تغییرات تمام اعضای تیم دریافت گردید.");
+    function importDataJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            accounts = imported;
+            saveState();
+            forcePushToCloud();
+            renderBoard();
+            renderList();
+            updateAnalytics();
+            alert(`✅ فایل پشتیبان شامل ${imported.length} حساب با موفقیت بارگذاری و در دیتابیس ابری ذخیره شد!`);
+          } else {
+            alert("ساختار فایل نامعتبر است (باید آرایه‌ای از حساب‌ها باشد).");
+          }
+        } catch(err) {
+          alert("خطا در خواندن فایل JSON: " + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = "";
     }
 
     function saveState() {
-      // 1. Instant local persistence
       localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
       updateAnalytics();
 
-      // 2. Debounced Cloud persistence to Firebase
       clearTimeout(syncDebounceTimer);
       syncDebounceTimer = setTimeout(() => {
-        pushToFirebaseCloud();
-      }, 400);
+        // Auto push changes in background
+        fetch(`${FIREBASE_DB_BASE}/accounts.json`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(accounts)
+        }).catch(() => {});
+      }, 500);
     }
 
     let activeFilterRole = "all";
