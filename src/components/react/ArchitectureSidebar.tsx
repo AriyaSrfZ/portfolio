@@ -91,41 +91,36 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
 
   return (
     <div className="lg:col-span-3 h-full">
-      {/* =========================================================================
-          MOBILE DOCK / STICKY STEPPER HUD (Visible on screens < 1024px)
-          Solves missing left sidebar on mobile remote management
-          ========================================================================= */}
+      {/* MOBILE DOCK / STICKY STEPPER */}
       <div className="block lg:hidden sticky top-14 z-30 mb-4 font-sans select-none" dir={isFa ? 'rtl' : 'ltr'}>
-        <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2.5 shadow-2xl">
+        <div className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-2.5 shadow-md">
           <div className="flex items-center justify-between gap-2">
-            {/* Active Dossier Indicator */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center gap-2 text-left truncate flex-1 min-w-0 px-2 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] transition-all"
+              className="flex items-center gap-2 text-left truncate flex-1 min-w-0 px-2 py-1 rounded-lg bg-[var(--surface)] hover:bg-[var(--border)]/20 transition-all"
             >
-              <span className="text-[10px] font-sans font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-1.5 py-0.5 rounded shrink-0">
+              <span className="text-[10px] font-mono font-bold text-[var(--accent-primary)] bg-[var(--accent-primary)]/10 px-1.5 py-0.5 rounded shrink-0">
                 {activeItem.pageNum || (isFa ? 'نمای کلی' : 'Overview')}
               </span>
-              <span className="text-xs font-sans font-medium text-white truncate">
+              <span className="text-xs font-sans font-medium text-[var(--text-primary)] truncate">
                 {activeItem.label}
               </span>
-              <span className="text-xs text-neutral-400 ml-auto shrink-0">
+              <span className="text-xs text-[var(--text-secondary)] ml-auto shrink-0">
                 {mobileMenuOpen ? '▲' : '▼'}
               </span>
             </button>
 
-            {/* Stepper Controls */}
             <div className="flex items-center gap-1 shrink-0">
               <button
                 onClick={handlePrevPage}
-                className="p-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/10 text-xs font-sans font-medium transition-all"
+                className="p-1.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-xs font-sans font-medium transition-all"
                 title={isFa ? 'صفحه قبل' : 'Prev'}
               >
                 ←
               </button>
               <button
                 onClick={handleNextPage}
-                className="p-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-neutral-300 hover:text-white hover:bg-white/10 text-xs font-sans font-medium transition-all"
+                className="p-1.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-xs font-sans font-medium transition-all"
                 title={isFa ? 'صفحه بعد' : 'Next'}
               >
                 →
@@ -133,9 +128,8 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
             </div>
           </div>
 
-          {/* Expandable Mobile 8-Dossier Drawer */}
           {mobileMenuOpen && (
-            <div className="mt-2.5 pt-2.5 border-t border-white/10 space-y-1 font-sans text-xs max-h-64 overflow-y-auto">
+            <div className="mt-2.5 pt-2.5 border-t border-[var(--border)] space-y-1 font-sans text-xs max-h-64 overflow-y-auto">
               {sections.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -145,12 +139,12 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
                     onClick={(e) => handleNavClick(e, item.id)}
                     className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg transition-all ${
                       isActive
-                        ? 'bg-white/15 text-white font-semibold border border-white/20'
-                        : 'text-neutral-300 hover:bg-white/[0.05] hover:text-white'
+                        ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
+                        : 'text-[var(--text-secondary)] hover:bg-[var(--surface)] hover:text-[var(--text-primary)]'
                     }`}
                   >
                     <span className="truncate">{item.pageNum ? `${item.pageNum} · ` : ''}{item.label}</span>
-                    <span className="text-[9px] text-cyan-400 font-mono ml-2 shrink-0">{item.tag}</span>
+                    <span className="text-[9px] font-mono opacity-80 shrink-0">{item.tag}</span>
                   </a>
                 );
               })}
@@ -159,19 +153,13 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
         </div>
       </div>
 
-      {/* =========================================================================
-          DESKTOP STICKY SIDEBAR (Visible on screens >= 1024px)
-          ========================================================================= */}
+      {/* DESKTOP STICKY SIDEBAR */}
       <aside className="hidden lg:block sticky top-20 space-y-3.5 pt-0.5 font-sans select-none" dir={isFa ? 'rtl' : 'ltr'}>
-        {/* ARCHITECTURE INDEX LIST */}
-
-        {/* 2. ARCHITECTURE INDEX LIST */}
-        <div className="bg-[#0f1217]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl space-y-3">
-          <div className="text-xs font-bold text-[#e2c974] tracking-wider uppercase pb-2.5 border-b border-white/10 flex justify-between items-center font-sans">
+        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-4 shadow-sm space-y-3">
+          <div className="text-xs font-bold text-[var(--accent-primary)] tracking-wider uppercase pb-2.5 border-b border-[var(--border)] flex justify-between items-center font-sans">
             <span>{isFa ? 'فهرست سامانه‌ها' : 'Architecture Index'}</span>
           </div>
 
-          {/* Section List */}
           <nav className="space-y-1 text-xs font-sans">
             {sections.map((item) => {
               const isActive = activeSection === item.id;
@@ -182,14 +170,14 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
                   onClick={(e) => handleNavClick(e, item.id)}
                   className={`block px-3 py-2 rounded-xl transition-all ${
                     isActive
-                      ? 'bg-white/15 text-white font-semibold border border-white/20 shadow-md translate-x-0.5'
-                      : 'text-neutral-400 hover:bg-white/[0.05] hover:text-neutral-200 border border-transparent'
+                      ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm translate-x-0.5'
+                      : 'text-[var(--text-secondary)] hover:bg-[var(--surface-elevated)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="truncate">{item.pageNum ? `${item.pageNum} · ` : ''}{item.label}</span>
                     {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0 ml-1" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0 ml-1" />
                     )}
                   </div>
                 </a>
@@ -197,23 +185,23 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
             })}
           </nav>
 
-          {/* Rolling Page Controls in Sidebar */}
-          <div className="pt-2.5 border-t border-white/5 flex items-center justify-between text-[11px] font-sans text-neutral-300">
+          {/* Stepper Controls in Sidebar */}
+          <div className="pt-2.5 border-t border-[var(--border)] flex items-center justify-between text-[11px] font-sans text-[var(--text-secondary)]">
             <button
               onClick={handlePrevPage}
-              className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 hover:bg-white/10 hover:text-white transition-all flex items-center gap-1 font-medium"
+              className="px-2.5 py-1 rounded bg-[var(--surface-elevated)] border border-[var(--border)] hover:bg-[var(--surface)] hover:text-[var(--text-primary)] transition-all flex items-center gap-1 font-medium"
               title={isFa ? 'صفحه قبل' : 'Previous Page'}
             >
               <span>{isFa ? '→ قبلی' : '← Prev'}</span>
             </button>
             
-            <span className="text-[10px] text-neutral-500 font-sans uppercase font-semibold">
-              {isFa ? 'فهرست بخش‌ها' : 'SECTIONS'}
+            <span className="text-[10px] text-[var(--text-secondary)] font-sans uppercase font-semibold">
+              {isFa ? 'بخش‌ها' : 'SECTIONS'}
             </span>
 
             <button
               onClick={handleNextPage}
-              className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 hover:bg-white/10 hover:text-white transition-all flex items-center gap-1 font-medium"
+              className="px-2.5 py-1 rounded bg-[var(--surface-elevated)] border border-[var(--border)] hover:bg-[var(--surface)] hover:text-[var(--text-primary)] transition-all flex items-center gap-1 font-medium"
               title={isFa ? 'صفحه بعد' : 'Next Page'}
             >
               <span>{isFa ? 'بعدی ←' : 'Next →'}</span>
@@ -221,16 +209,15 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
           </div>
 
           {/* Secondary Whitepapers Link */}
-          <div className="pt-1 text-[11px] font-sans border-t border-white/5">
+          <div className="pt-1 text-[11px] font-sans border-t border-[var(--border)]">
             <a
               href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
-              className="block text-center py-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-white/[0.04] transition-all font-medium"
+              className="block text-center py-1.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--surface-elevated)] transition-all font-medium"
             >
               {isFa ? 'مشاهده تمام وایت‌پیپرها ↗' : 'Browse All Whitepapers ↗'}
             </a>
           </div>
         </div>
-
       </aside>
     </div>
   );

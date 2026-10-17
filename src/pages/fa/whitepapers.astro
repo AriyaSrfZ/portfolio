@@ -77,65 +77,65 @@ const toPersianNum = (n: number | string) => {
   <main class="max-w-[1400px] mx-auto px-6 pt-24 pb-20 font-['Vazirmatn',sans-serif]" dir="rtl">
     
     <!-- Header -->
-    <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl ring-1 ring-white/[0.03]">
-      <div class="flex items-center gap-2 mb-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
+    <div class="bg-[var(--surface-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
+      <div class="flex items-center gap-2 mb-2 font-mono text-[11px] text-[var(--text-secondary)] uppercase tracking-wider">
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-warm)]"></span>
         <span>مستندات معماری تولیدی · مشخصات فنی</span>
-        <div class="h-px flex-1 bg-white/[0.06]"></div>
-        <span class="text-[10px] text-neutral-500 font-mono" dir="ltr">14 DOSSIERS</span>
+        <div class="h-px flex-1 bg-[var(--border)]"></div>
+        <span class="text-[10px] text-[var(--text-muted)] font-mono" dir="ltr">14 DOSSIERS</span>
       </div>
-      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[#ededed] mb-3 tracking-tight">
+      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[var(--text-primary)] mb-3 tracking-tight">
         مجموعه مقالات و مستندات مهندسی
       </h1>
-      <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl">
+      <p class="text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed max-w-3xl">
         تحلیل عمیق معماری سوییچ‌های پرداخت شاپرکی، سوییچینگ مخابراتی، ایزوله‌سازی ریسک و مدیریت دفاتر کل مالی در زیرساخت‌های پرترافیک.
       </p>
     </div>
 
     <!-- 4 Core Featured Blueprint Dossiers -->
     <div class="mb-10 space-y-3">
-      <div class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center gap-2">
-        <span class="w-1 h-1 rounded-full bg-emerald-500"></span>
+      <div class="text-[11px] font-mono text-[var(--text-secondary)] uppercase tracking-wider flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
         <span>پرونده‌های کلیدی معماری (ماموریت‌های حیاتی)</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {primaryDossiers.map((item) => (
-          <article class="bg-[#111317]/90 border border-white/[0.08] rounded-xl p-5 flex flex-col justify-between hover:border-white/20 transition-all duration-200 group">
+          <article class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-5 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all duration-200 group">
             <div>
-              <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-white/[0.06] font-mono text-[10px]">
-                <span class="text-[#ededed] font-semibold tracking-wider">
+              <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-[var(--border)] font-mono text-[10px]">
+                <span class="text-[var(--text-primary)] font-semibold tracking-wider">
                   SPEC {item.num} · {item.tag}
                 </span>
-                <span class="text-[#10b981] px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]" dir="ltr">
+                <span class="text-[var(--accent-primary)] px-2 py-0.5 rounded bg-[var(--surface-sunken)] border border-[var(--border)]" dir="ltr">
                   {item.metric}
                 </span>
               </div>
 
-              <h2 class="text-base font-bold text-[#ededed] group-hover:text-white transition-colors mb-2 leading-snug">
+              <h2 class="text-base font-bold text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors mb-2 leading-snug">
                 <a href={`${baseUrl}fa/blog/${item.slug}/`}>
                   {item.title}
                 </a>
               </h2>
 
-              <p class="text-xs text-[#94a3b8] leading-relaxed mb-4">
+              <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-4">
                 {item.spec}
               </p>
 
               <div class="flex flex-wrap gap-1.5 mb-4" dir="ltr">
                 {item.chips.map((chip) => (
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06] text-neutral-300">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-secondary)]">
                     [{chip}]
                   </span>
                 ))}
               </div>
             </div>
 
-            <div class="pt-3 border-t border-white/[0.06] flex justify-between items-center text-xs font-mono">
-              <span class="text-[10px] text-neutral-500 uppercase" dir="ltr">ACID VERIFIED</span>
+            <div class="pt-3 border-t border-[var(--border)] flex justify-between items-center text-xs font-mono">
+              <span class="text-[10px] text-[var(--text-muted)] uppercase" dir="ltr">ACID VERIFIED</span>
               <a
                 href={`${baseUrl}fa/blog/${item.slug}/`}
-                class="font-semibold text-[#ededed] hover:text-white flex items-center gap-1 group-hover:-translate-x-0.5 transition-all"
+                class="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-primary)] flex items-center gap-1 group-hover:-translate-x-0.5 transition-all"
               >
                 مشاهده مشخصات فنی &larr;
               </a>
@@ -147,44 +147,44 @@ const toPersianNum = (n: number | string) => {
 
     <!-- Complete Specification Library -->
     <div class="space-y-3">
-      <div class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider flex items-center gap-2">
-        <span class="w-1 h-1 rounded-full bg-white/40"></span>
+      <div class="text-[11px] font-mono text-[var(--text-secondary)] uppercase tracking-wider flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-warm)]"></span>
         <span>کلیه مستندات و یادداشت‌های میدانی مهندسی ({whitepapers.length})</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {whitepapers.map((doc, idx) => (
-          <article class="bg-[#111317]/70 border border-white/[0.06] rounded-xl p-4 flex flex-col justify-between hover:border-white/15 transition-all group">
+          <article class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-4 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all group">
             <div>
-              <div class="flex items-center justify-between border-b border-white/[0.06] pb-2 mb-3 font-mono text-[10px]">
-                <span class="text-neutral-400 uppercase">
+              <div class="flex items-center justify-between border-b border-[var(--border)] pb-2 mb-3 font-mono text-[10px]">
+                <span class="text-[var(--text-secondary)] uppercase">
                   SPEC {idx < 9 ? `۰${toPersianNum(idx + 1)}` : toPersianNum(idx + 1)} · {categoryLabels[doc.data.category] || doc.data.category}
                 </span>
                 {doc.data.metric && (
-                  <span class="text-neutral-300 px-1.5 py-0.5 rounded bg-white/[0.03] border border-white/[0.05]" dir="ltr">
+                  <span class="text-[var(--text-primary)] px-1.5 py-0.5 rounded bg-[var(--surface-sunken)] border border-[var(--border)]" dir="ltr">
                     {doc.data.metric}
                   </span>
                 )}
               </div>
 
-              <h3 class="text-sm font-bold text-[#ededed] group-hover:text-white transition-colors mb-2 leading-snug">
+              <h3 class="text-sm font-bold text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors mb-2 leading-snug">
                 <a href={`${baseUrl}fa/blog/${doc.id.replace(/^fa\//, '')}/`}>
                   {doc.data.title}
                 </a>
               </h3>
 
-              <p class="text-xs text-[#94a3b8] leading-relaxed mb-4 line-clamp-2">
+              <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-4 line-clamp-2">
                 {doc.data.description}
               </p>
             </div>
 
-            <div class="pt-3 border-t border-white/[0.06] flex justify-between items-center text-[11px] font-mono">
-              <span class="text-neutral-500" dir="ltr">
+            <div class="pt-3 border-t border-[var(--border)] flex justify-between items-center text-[11px] font-mono">
+              <span class="text-[var(--text-muted)]" dir="ltr">
                 {doc.data.date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'short' })}
               </span>
               <a
                 href={`${baseUrl}fa/blog/${doc.id.replace(/^fa\//, '')}/`}
-                class="text-[#ededed] hover:text-white flex items-center gap-1 font-medium"
+                class="text-[var(--text-primary)] hover:text-[var(--accent-primary)] flex items-center gap-1 font-medium"
               >
                 مشاهده &larr;
               </a>

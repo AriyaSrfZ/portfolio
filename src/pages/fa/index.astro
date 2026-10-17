@@ -51,18 +51,18 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row (2 Primary Key Stats) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">ظرفیت اوج پردازش</span>
           <span class="text-white font-semibold text-sm" dir="ltr">{stats.ledgerPeakTps.fa}</span>
         </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">انحراف مالی در تراز</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.financialDriftPercent.fa}</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-2 md:p-3 shadow-inner w-full" dir="ltr">
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-2 md:p-3 shadow-inner w-full" dir="ltr">
         <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-2 px-2 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">ARCHITECTURE BLUEPRINT · TOPOLOGY SCHEMATIC</span>
           <span class="text-emerald-400 font-semibold">2PC VERIFIED</span>
@@ -78,7 +78,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- 2-Column Technical Spec (Balanced 50/50 Grid in RTL) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
         <!-- Right: Invariants & Mechanism -->
-        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+        <div class="bg-[var(--surface-sunken)] border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
             <span>اصول تخطی‌ناپذیر معماری و منطق تسویه</span>
@@ -100,7 +100,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Left: Failure Modes & Recovery -->
-        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+        <div class="bg-[var(--surface-sunken)] border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
             <span>حالات خرابی و بازیابی خودکار</span>
@@ -123,9 +123,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Product Decision Box -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
-        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[var(--accent-primary)]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
           <span>تصمیم محصول · دوره دیجی‌پی (DigiPay Core Ledger)</span>
         </div>
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
@@ -186,18 +186,18 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row (2 Primary Key Stats) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">سرعت تغییر مسیر</span>
           <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.switchFailoverSla.fa}</span>
         </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">دسترسی‌پذیری سوییچ</span>
           <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.switchGatewayUptime.fa}</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-2 md:p-3 shadow-inner w-full" dir="ltr">
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-2 md:p-3 shadow-inner w-full" dir="ltr">
         <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-2 px-2 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">MULTI-PSP HEAD-TO-HEAD (H2H) ROUTING PIPELINE</span>
           <span class="text-cyan-400 font-semibold">DYNAMIC WEIGHTED SLAS</span>
@@ -213,7 +213,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- 2-Column Technical Spec (Balanced 50/50 Grid in RTL) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
         <!-- Right: Invariants & Mechanism -->
-        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+        <div class="bg-[var(--surface-sunken)] border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
             <span>معماری روتینگ و اتصال چنددرگاهی</span>
@@ -235,7 +235,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Left: Failure Modes & Recovery -->
-        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+        <div class="bg-[var(--surface-sunken)] border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
             <span>فیوزهای قطع مدار و مهار افت کیفیت</span>
@@ -258,9 +258,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Product Decision Box -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
-        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[var(--accent-primary)]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
           <span>تصمیم محصول · سوییچ چنددرگاهی آگنوستیک</span>
         </div>
         <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
@@ -317,18 +317,18 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row (2 Primary Key Stats) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">مهلت ارزیابی ریسک</span>
           <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.fraudRiskLoopSla.fa}</span>
         </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">مهار تخلیه مالی</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.fraudDrainReduction.fa}</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-2 md:p-3 shadow-inner w-full" dir="ltr">
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-2 md:p-3 shadow-inner w-full" dir="ltr">
         <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-2 px-2 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">PERIMETER ISOLATION &amp; EKYC VERIFICATION SCHEMATIC</span>
           <span class="text-emerald-400 font-semibold">PCI-DSS COMPLIANT</span>
@@ -344,7 +344,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- 2-Column Technical Spec (Balanced 50/50 Grid in RTL) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
         <!-- Right: Invariants & Mechanism -->
-        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+        <div class="bg-[var(--surface-sunken)] border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
             <span>اصول امنیتی زون بانکی و شاهکار</span>
@@ -366,7 +366,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Left: Failure Modes & Recovery -->
-        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+        <div class="bg-[var(--surface-sunken)] border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
             <span>مهار تعویض سیم‌کارت و انتقال مسئولیت</span>
@@ -389,10 +389,10 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Product Decision Box (Dossier 03 - Split Dilemma & Pull-Quote Format) -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-4">
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 space-y-4">
         <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
-          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+          <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[var(--accent-primary)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
             <span>تصمیم محصول · انطباق زون بانکی (PCI-DSS)</span>
           </div>
           <span class="text-[10px] font-mono text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">ماتریس بده‌بستان</span>
@@ -465,18 +465,18 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Metrics Row (2 Primary Key Stats) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">دقت مغایرت‌گیری</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.reconMatchParity.fa}</span>
         </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">بازه زمانی تسویه</span>
           <span class="text-emerald-400 font-semibold text-sm">{stats.merchantPayoutWindow.fa}</span>
         </div>
       </div>
 
       <!-- Architecture Blueprint (Full-Width Interactive SVG Container) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-2 md:p-3 shadow-inner w-full" dir="ltr">
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-2 md:p-3 shadow-inner w-full" dir="ltr">
         <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-2 px-2 pb-2 border-b border-white/5">
           <span class="tracking-wider uppercase">MULTI-BANK MULTI-PASS RECONCILIATION &amp; PAYOUT MESH</span>
           <span class="text-emerald-400 font-semibold">AUTO-HEALING REFUND-MNG</span>
@@ -492,7 +492,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- 2-Column Technical Spec (Balanced 50/50 Grid in RTL) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
         <!-- Right: Invariants & Mechanism -->
-        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+        <div class="bg-[var(--surface-sunken)] border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
             <span>موتور پالایش داده و مغایرت‌گیری ۳طرفه</span>
@@ -514,7 +514,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Left: Failure Modes & Recovery -->
-        <div class="bg-[#13161c]/70 border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
+        <div class="bg-[var(--surface-sunken)] border border-white/5 rounded-xl p-4 md:p-5 space-y-3 text-sm">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
             <span>تسویه پیش از موعد پذیرندگان و حوالجات پایا</span>
@@ -537,9 +537,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Product Decision Box -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3.5">
-        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 space-y-3.5">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[var(--accent-primary)]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
           <span>تصمیم محصول · مغایرت‌گیری خودکار و تسویه زودتر</span>
         </div>
         <div class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
@@ -599,19 +599,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Telemetry & Recovery SLA Strip (Persian RTL) -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">میانگین زمان بازیابی</span>
           <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.incidentMttr.fa}</span>
         </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">انحراف مالی دفتر کل</span>
           <span class="text-white font-semibold text-sm" dir="ltr">{stats.incidentFinancialDrift.fa}</span>
         </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">آپ‌تایم هسته سوییچ</span>
           <span class="text-cyan-400 font-semibold text-sm" dir="ltr">{stats.incidentSwitchAvailability.fa}</span>
         </div>
-        <div class="bg-[#13161c] border border-white/10 rounded-lg p-3">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-lg p-3">
           <span class="text-neutral-400 block text-[10px] uppercase">شاخص مهار بحران‌ها</span>
           <span class="text-emerald-400 font-semibold text-sm" dir="ltr">{stats.incidentResolutionSla.fa}</span>
         </div>
@@ -620,7 +620,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- 3 Incident Deep-Dive Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Incident 01 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-amber-400 font-semibold">بحران ۰۱ · سوییچ پرداخت</span>
@@ -643,7 +643,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Incident 02 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-amber-400 font-semibold">بحران ۰۲ · شبکه مخابراتی پیامک</span>
@@ -666,7 +666,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- Incident 03 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-amber-400 font-semibold">بحران ۰۳ · کلان‌داده و احراز هویت</span>
@@ -690,7 +690,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Production Failure Recovery & Circuit Breaker Matrix (Persian RTL) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-5 shadow-inner space-y-3">
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-4 md:p-5 shadow-inner space-y-3">
         <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
@@ -771,9 +771,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Postmortem Governance & Invariant Decision Box (Persian RTL) -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
-        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[var(--accent-primary)]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
           <span>حاکمیت پایداری · اصل صحت سیستم در شرایط وقوع خطا (Correctness Under Failure)</span>
         </div>
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">
@@ -835,7 +835,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       <!-- 4-Phase Operational Execution Grid (Persian RTL) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
         <!-- Phase 1 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-cyan-400 font-semibold uppercase" dir="ltr">Phase 01</span>
@@ -854,27 +854,27 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
             <div class="pt-1">
               <a href="#payment-settlement" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-cyan-400 text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
-                <span class="text-[#e2c974] font-semibold">پروژه:</span>
+                <span class="text-[var(--accent-warm)] font-semibold">پروژه:</span>
                 <span>دفتر کل دیجی‌پی</span>
                 <span>&larr;</span>
               </a>
             </div>
           </div>
-          <div class="pt-2 border-t border-white/5 text-[10px] text-[#e2c974] uppercase font-mono">
+          <div class="pt-2 border-t border-white/5 text-[10px] text-[var(--accent-warm)] uppercase font-mono">
             ممیزی مرزهای سیستم
           </div>
         </div>
 
         <!-- Phase 2 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
-              <span class="text-[#e2c974] font-semibold uppercase" dir="ltr">Phase 02</span>
+              <span class="text-[var(--accent-warm)] font-semibold uppercase" dir="ltr">Phase 02</span>
               <span class="text-neutral-400 font-mono">BLUEPRINTING</span>
             </div>
             <div>
               <h3 class="text-sm font-bold text-white">طراحی توپولوژی و قراردادها</h3>
-              <p class="text-[11px] font-mono text-[#e2c974]/90 mt-0.5" dir="ltr">RICE Prioritization &middot; Sequence Contracts</p>
+              <p class="text-[11px] font-mono text-[var(--accent-warm)]/90 mt-0.5" dir="ltr">RICE Prioritization &middot; Sequence Contracts</p>
             </div>
             <p class="text-xs text-neutral-300 leading-relaxed">
               معماری دیاگرام‌های توالی، پروکسی‌های امن بانکی با mTLS، و گاردریل‌های همزمانی (قفل‌های {stats.incident01LockTtl.fa} ردیس و ماشین حالت رزرو دومرحله‌ای موجودی) جهت تضمین مقیاس‌پذیری و ایدامپوتنسی.
@@ -884,20 +884,20 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
               <div class="text-white">ماشین حالت تخصیص دومرحله‌ای (2PC)</div>
             </div>
             <div class="pt-1">
-              <a href="#payment-switch" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[#e2c974] text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
-                <span class="text-[#e2c974] font-semibold">پروژه:</span>
+              <a href="#payment-switch" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[var(--accent-warm)] text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
+                <span class="text-[var(--accent-warm)] font-semibold">پروژه:</span>
                 <span>سوییچ هوشمند پرداخت</span>
                 <span>&larr;</span>
               </a>
             </div>
           </div>
-          <div class="pt-2 border-t border-white/5 text-[10px] text-[#e2c974] uppercase font-mono">
+          <div class="pt-2 border-t border-white/5 text-[10px] text-[var(--accent-warm)] uppercase font-mono">
             ایدامپوتنسی و SLAها
           </div>
         </div>
 
         <!-- Phase 3 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-cyan-400 font-semibold uppercase" dir="ltr">Phase 03</span>
@@ -916,19 +916,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
             <div class="pt-1">
               <a href="#fraud-forensics" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-cyan-400 text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
-                <span class="text-[#e2c974] font-semibold">پروژه:</span>
+                <span class="text-[var(--accent-warm)] font-semibold">پروژه:</span>
                 <span>کشف تقلب و eKYC</span>
                 <span>&larr;</span>
               </a>
             </div>
           </div>
-          <div class="pt-2 border-t border-white/5 text-[10px] text-[#e2c974] uppercase font-mono">
+          <div class="pt-2 border-t border-white/5 text-[10px] text-[var(--accent-warm)] uppercase font-mono">
             هم‌راستایی مهندسی
           </div>
         </div>
 
         <!-- Phase 4 -->
-        <div class="bg-[#13161c] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
+        <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 flex flex-col justify-between space-y-4 hover:border-white/25 transition-all shadow-md">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-[10px] font-mono border-b border-white/5 pb-2">
               <span class="text-emerald-400 font-semibold uppercase" dir="ltr">Phase 04</span>
@@ -947,20 +947,20 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </div>
             <div class="pt-1">
               <a href="#reconciliation-engine" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-emerald-400 text-[11px] font-mono hover:bg-white/[0.08] transition-colors">
-                <span class="text-[#e2c974] font-semibold">پروژه:</span>
+                <span class="text-[var(--accent-warm)] font-semibold">پروژه:</span>
                 <span>مغایرت‌گیری چندمرحله‌ای</span>
                 <span>&larr;</span>
               </a>
             </div>
           </div>
-          <div class="pt-2 border-t border-white/5 text-[10px] text-[#e2c974] uppercase font-mono">
+          <div class="pt-2 border-t border-white/5 text-[10px] text-[var(--accent-warm)] uppercase font-mono">
             پایداری در پروداکشن
           </div>
         </div>
       </div>
 
       <!-- Technical PM Execution Matrix Table (Persian RTL) -->
-      <div class="bg-[#13161c] border border-white/10 rounded-xl p-4 md:p-5 shadow-inner space-y-3">
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-4 md:p-5 shadow-inner space-y-3">
         <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
           <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-neutral-200">
             <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
@@ -995,7 +995,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
                   <span class="w-1.5 h-1.5 rounded-full bg-[#e2c974]"></span>
                   <span>نگارش PRDهای فنی</span>
                 </td>
-                <td class="py-2.5 px-3 text-[#e2c974]">RICE &middot; مدل Model &rarr; Outcome</td>
+                <td class="py-2.5 px-3 text-[var(--accent-warm)]">RICE &middot; مدل Model &rarr; Outcome</td>
                 <td class="py-2.5 px-3 text-neutral-300" dir="ltr">PM AI Toolkit &middot; MCP Jira Prompts</td>
                 <td class="py-2.5 pl-3 text-emerald-400">تدوین سندهای اجرایی ماشین‌خوان با تعاریف دقیق کاتالوگ خطای API</td>
               </tr>
@@ -1041,9 +1041,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Technical PM Operating Philosophy Callout Box (Persian RTL) -->
-      <div class="bg-[#13161c]/80 border border-white/10 rounded-xl p-5 space-y-3">
-        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[#38bdf8]">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+      <div class="bg-[var(--surface-card)] border border-white/10 rounded-xl p-5 space-y-3">
+        <div class="flex items-center gap-2 font-mono text-xs font-semibold uppercase text-[var(--accent-primary)]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
           <span>فلسفه عملیاتی · اصل بنیادین مدیر محصول فنی</span>
         </div>
         <div class="text-xs sm:text-sm text-neutral-300 space-y-2 leading-relaxed">

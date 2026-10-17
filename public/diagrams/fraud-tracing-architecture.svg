@@ -3,29 +3,29 @@
   <defs>
     <!-- Background Grid Pattern -->
     <pattern id="fraud-grid-dots" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1" fill="#ffffff" fill-opacity="0.04"/>
+      <circle cx="2" cy="2" r="1" fill="#F3F0E8" fill-opacity="0.04"/>
     </pattern>
 
     <!-- Gradients -->
     <linearGradient id="fraud-chart-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+      <stop offset="0%" stop-color="#6E9792" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#6E9792" stop-opacity="0.0"/>
     </linearGradient>
 
     <linearGradient id="fraud-cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.02"/>
+      <stop offset="0%" stop-color="#527C78" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#527C78" stop-opacity="0.02"/>
     </linearGradient>
 
     <!-- Markers -->
     <marker id="fraud-arr-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#06b6d4"/>
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#527C78"/>
     </marker>
     <marker id="fraud-arr-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#e2c974"/>
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#B39A77"/>
     </marker>
     <marker id="fraud-arr-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6E9792"/>
     </marker>
 
     <!-- Styles -->
@@ -35,39 +35,39 @@
         50% { opacity: 1; }
       }
       @keyframes fraudFlow { to { stroke-dashoffset: -28; } }
-      .fraud-flow-cyan { stroke: #06b6d4; stroke-width: 1.75; stroke-dasharray: 6 4; animation: fraudFlow 1.6s linear infinite; }
-      .fraud-flow-gold { stroke: #e2c974; stroke-width: 1.75; stroke-dasharray: 6 4; animation: fraudFlow 1.6s linear infinite; }
-      .fraud-flow-emerald { stroke: #10b981; stroke-width: 1.75; stroke-dasharray: 6 4; animation: fraudFlow 1.6s linear infinite; }
+      .fraud-flow-cyan { stroke: #527C78; stroke-width: 1.75; stroke-dasharray: 6 4; animation: fraudFlow 1.6s linear infinite; }
+      .fraud-flow-gold { stroke: #B39A77; stroke-width: 1.75; stroke-dasharray: 6 4; animation: fraudFlow 1.6s linear infinite; }
+      .fraud-flow-emerald { stroke: #6E9792; stroke-width: 1.75; stroke-dasharray: 6 4; animation: fraudFlow 1.6s linear infinite; }
       text { font-family: 'IBM Plex Mono', system-ui, -apple-system, monospace; }
       .code-font { font-family: 'IBM Plex Mono', monospace; }
     </style>
   </defs>
 
   <!-- Background Base Canvas -->
-  <rect width="1000" height="520" fill="#0b0e14" rx="14"/>
+  <rect width="1000" height="520" fill="#171C1A" rx="14"/>
   <rect width="1000" height="520" fill="url(#fraud-grid-dots)" rx="14"/>
-  <rect width="998" height="518" x="1" y="1" fill="none" stroke="#ffffff" stroke-opacity="0.08" rx="13"/>
+  <rect width="998" height="518" x="1" y="1" fill="none" stroke="#F3F0E8" stroke-opacity="0.08" rx="13"/>
 
   <!-- Tactical Corner Accents -->
-  <path d="M 6 18 L 6 6 L 18 6" stroke="#06b6d4" stroke-width="1.5" fill="none"/>
-  <path d="M 982 6 L 994 6 L 994 18" stroke="#06b6d4" stroke-width="1.5" fill="none"/>
-  <path d="M 6 502 L 6 514 L 18 514" stroke="#06b6d4" stroke-width="1.5" fill="none"/>
-  <path d="M 982 514 L 994 514 L 994 502" stroke="#06b6d4" stroke-width="1.5" fill="none"/>
+  <path d="M 6 18 L 6 6 L 18 6" stroke="#527C78" stroke-width="1.5" fill="none"/>
+  <path d="M 982 6 L 994 6 L 994 18" stroke="#527C78" stroke-width="1.5" fill="none"/>
+  <path d="M 6 502 L 6 514 L 18 514" stroke="#527C78" stroke-width="1.5" fill="none"/>
+  <path d="M 982 514 L 994 514 L 994 502" stroke="#527C78" stroke-width="1.5" fill="none"/>
 
   <!-- ========================================== -->
   <!-- HEADER SECTION                             -->
   <!-- ========================================== -->
   <g transform="translate(32, 24)">
-    <circle cx="6" cy="11" r="4.5" fill="#06b6d4"/>
-    <circle cx="6" cy="11" r="8" fill="none" stroke="#06b6d4" stroke-opacity="0.3"/>
+    <circle cx="6" cy="11" r="4.5" fill="#527C78"/>
+    <circle cx="6" cy="11" r="8" fill="none" stroke="#527C78" stroke-opacity="0.3"/>
     
-    <text x="24" y="16" fill="#06b6d4" font-size="13" font-weight="700" letter-spacing="1.2">SPEC-ID: 8409-AS · 03 · FORENSIC EDGE FRAUD &amp; GRAPH TRACING</text>
-    <text x="24" y="32" fill="#94a3b8" font-size="10.5" letter-spacing="0.4">REAL-TIME BEHAVIORAL VECTORS · SUB-15MS EVALUATION LOOP SLA · HARIM OTP PROTOCOL</text>
+    <text x="24" y="16" fill="#527C78" font-size="13" font-weight="700" letter-spacing="1.2">SPEC-ID: 8409-AS · 03 · FORENSIC EDGE FRAUD &amp; GRAPH TRACING</text>
+    <text x="24" y="32" fill="#B5BDB6" font-size="10.5" letter-spacing="0.4">REAL-TIME BEHAVIORAL VECTORS · SUB-15MS EVALUATION LOOP SLA · HARIM OTP PROTOCOL</text>
 
     <!-- Top Right Status Badge -->
-    <rect x="740" y="2" width="206" height="26" rx="6" fill="#10b981" fill-opacity="0.08" stroke="#10b981" stroke-opacity="0.3"/>
-    <circle cx="754" cy="15" r="3.5" fill="#10b981"/>
-    <text x="766" y="19" fill="#10b981" font-size="10" font-weight="700" letter-spacing="0.5">LOOP SLA: &lt;15MS VERIFIED</text>
+    <rect x="740" y="2" width="206" height="26" rx="6" fill="#6E9792" fill-opacity="0.08" stroke="#6E9792" stroke-opacity="0.3"/>
+    <circle cx="754" cy="15" r="3.5" fill="#6E9792"/>
+    <text x="766" y="19" fill="#6E9792" font-size="10" font-weight="700" letter-spacing="0.5">LOOP SLA: &lt;15MS VERIFIED</text>
   </g>
 
   <!-- ========================================== -->
@@ -76,123 +76,123 @@
 
   <!-- Module 01: Client Telemetry Edge -->
   <g transform="translate(28, 72)">
-    <rect width="216" height="172" rx="8" fill="#111827" fill-opacity="0.9" stroke="#06b6d4" stroke-opacity="0.4"/>
-    <rect width="216" height="28" rx="8" fill="#06b6d4" fill-opacity="0.12"/>
-    <text x="12" y="19" fill="#38bdf8" font-size="12" font-weight="700">01. EDGE SENSORS</text>
+    <rect width="216" height="172" rx="8" fill="#202725" fill-opacity="0.9" stroke="#527C78" stroke-opacity="0.4"/>
+    <rect width="216" height="28" rx="8" fill="#527C78" fill-opacity="0.12"/>
+    <text x="12" y="19" fill="#8FB4AA" font-size="12" font-weight="700">01. EDGE SENSORS</text>
     
-    <text x="12" y="46" fill="#f8fafc" font-size="13" font-weight="700">CLIENT TELEMETRY</text>
-    <text x="12" y="62" fill="#06b6d4" font-size="10.5" font-weight="600">Entropy Hash / WebGL</text>
+    <text x="12" y="46" fill="#F3F0E8" font-size="13" font-weight="700">CLIENT TELEMETRY</text>
+    <text x="12" y="62" fill="#527C78" font-size="10.5" font-weight="600">Entropy Hash / WebGL</text>
     
-    <line x1="12" y1="72" x2="204" y2="72" stroke="#ffffff" stroke-opacity="0.08"/>
+    <line x1="12" y1="72" x2="204" y2="72" stroke="#F3F0E8" stroke-opacity="0.08"/>
     
-    <text x="12" y="90" fill="#94a3b8" font-size="10.5">Canvas Fingerprint</text>
-    <text x="12" y="107" fill="#94a3b8" font-size="10.5">Keystroke Dynamics</text>
-    <text x="12" y="124" fill="#e2c974" font-size="10.5">IP Cluster Velocity</text>
+    <text x="12" y="90" fill="#B5BDB6" font-size="10.5">Canvas Fingerprint</text>
+    <text x="12" y="107" fill="#B5BDB6" font-size="10.5">Keystroke Dynamics</text>
+    <text x="12" y="124" fill="#B39A77" font-size="10.5">IP Cluster Velocity</text>
     
-    <rect x="10" y="136" width="196" height="24" rx="4" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.3"/>
-    <text x="108" y="152" fill="#10b981" font-size="10" font-weight="700" text-anchor="middle">ENTROPY: 0.94 VALID</text>
+    <rect x="10" y="136" width="196" height="24" rx="4" fill="#171C1A" stroke="#6E9792" stroke-opacity="0.3"/>
+    <text x="108" y="152" fill="#6E9792" font-size="10" font-weight="700" text-anchor="middle">ENTROPY: 0.94 VALID</text>
   </g>
 
   <!-- Conduit 1 -> 2 -->
   <path d="M 244 158 L 272 158" fill="none" class="fraud-flow-cyan" marker-end="url(#fraud-arr-cyan)"/>
-  <rect x="246" y="140" width="24" height="15" rx="3" fill="#0b0e14" stroke="#06b6d4" stroke-opacity="0.4"/>
-  <text x="248" y="151" fill="#06b6d4" font-size="8" font-weight="700">VEC</text>
+  <rect x="246" y="140" width="24" height="15" rx="3" fill="#171C1A" stroke="#527C78" stroke-opacity="0.4"/>
+  <text x="248" y="151" fill="#527C78" font-size="8" font-weight="700">VEC</text>
 
   <!-- Module 02: Scoring Engine -->
   <g transform="translate(272, 72)">
-    <rect width="216" height="172" rx="8" fill="#111827" fill-opacity="0.9" stroke="#e2c974" stroke-opacity="0.4"/>
-    <rect width="216" height="28" rx="8" fill="#e2c974" fill-opacity="0.12"/>
-    <text x="12" y="19" fill="#e2c974" font-size="12" font-weight="700">02. SCORING ENGINE</text>
+    <rect width="216" height="172" rx="8" fill="#202725" fill-opacity="0.9" stroke="#B39A77" stroke-opacity="0.4"/>
+    <rect width="216" height="28" rx="8" fill="#B39A77" fill-opacity="0.12"/>
+    <text x="12" y="19" fill="#B39A77" font-size="12" font-weight="700">02. SCORING ENGINE</text>
     
-    <text x="12" y="46" fill="#f8fafc" font-size="13" font-weight="700">VECTOR SCORER</text>
-    <text x="12" y="62" fill="#e2c974" font-size="10.5" font-weight="600">Vector [0.00 - 1.00]</text>
+    <text x="12" y="46" fill="#F3F0E8" font-size="13" font-weight="700">VECTOR SCORER</text>
+    <text x="12" y="62" fill="#B39A77" font-size="10.5" font-weight="600">Vector [0.00 - 1.00]</text>
     
-    <line x1="12" y1="72" x2="204" y2="72" stroke="#ffffff" stroke-opacity="0.08"/>
+    <line x1="12" y1="72" x2="204" y2="72" stroke="#F3F0E8" stroke-opacity="0.08"/>
     
-    <text x="12" y="90" fill="#94a3b8" font-size="10.5">Bayesian Threat Engine</text>
-    <text x="12" y="107" fill="#94a3b8" font-size="10.5">Behavior Anomaly Scorer</text>
-    <text x="12" y="124" fill="#cbd5e1" font-size="10.5">Model Eval: 4.8ms</text>
+    <text x="12" y="90" fill="#B5BDB6" font-size="10.5">Bayesian Threat Engine</text>
+    <text x="12" y="107" fill="#B5BDB6" font-size="10.5">Behavior Anomaly Scorer</text>
+    <text x="12" y="124" fill="#C5C0B6" font-size="10.5">Model Eval: 4.8ms</text>
     
-    <rect x="10" y="136" width="196" height="24" rx="4" fill="#0b0e14" stroke="#e2c974" stroke-opacity="0.3"/>
-    <text x="108" y="152" fill="#e2c974" font-size="10" font-weight="700" text-anchor="middle">SCORE: 0.18 NORMAL</text>
+    <rect x="10" y="136" width="196" height="24" rx="4" fill="#171C1A" stroke="#B39A77" stroke-opacity="0.3"/>
+    <text x="108" y="152" fill="#B39A77" font-size="10" font-weight="700" text-anchor="middle">SCORE: 0.18 NORMAL</text>
   </g>
 
   <!-- Conduit 2 -> 3 -->
   <path d="M 488 158 L 516 158" fill="none" class="fraud-flow-gold" marker-end="url(#fraud-arr-gold)"/>
-  <rect x="490" y="140" width="24" height="15" rx="3" fill="#0b0e14" stroke="#e2c974" stroke-opacity="0.4"/>
-  <text x="492" y="151" fill="#e2c974" font-size="8" font-weight="700">AUTH</text>
+  <rect x="490" y="140" width="24" height="15" rx="3" fill="#171C1A" stroke="#B39A77" stroke-opacity="0.4"/>
+  <text x="492" y="151" fill="#B39A77" font-size="8" font-weight="700">AUTH</text>
 
   <!-- Module 03: 3DS 2.0 & Harim OTP -->
   <g transform="translate(516, 72)">
-    <rect width="216" height="172" rx="8" fill="#111827" fill-opacity="0.9" stroke="#10b981" stroke-opacity="0.4"/>
-    <rect width="216" height="28" rx="8" fill="#10b981" fill-opacity="0.12"/>
-    <text x="12" y="19" fill="#10b981" font-size="12" font-weight="700">03. AUTH GATEWAY</text>
+    <rect width="216" height="172" rx="8" fill="#202725" fill-opacity="0.9" stroke="#6E9792" stroke-opacity="0.4"/>
+    <rect width="216" height="28" rx="8" fill="#6E9792" fill-opacity="0.12"/>
+    <text x="12" y="19" fill="#6E9792" font-size="12" font-weight="700">03. AUTH GATEWAY</text>
     
-    <text x="12" y="46" fill="#f8fafc" font-size="13" font-weight="700">3DS 2.0 PROTOCOL</text>
-    <text x="12" y="62" fill="#10b981" font-size="10.5" font-weight="600">Liability Shift Engine</text>
+    <text x="12" y="46" fill="#F3F0E8" font-size="13" font-weight="700">3DS 2.0 PROTOCOL</text>
+    <text x="12" y="62" fill="#6E9792" font-size="10.5" font-weight="600">Liability Shift Engine</text>
     
-    <line x1="12" y1="72" x2="204" y2="72" stroke="#ffffff" stroke-opacity="0.08"/>
+    <line x1="12" y1="72" x2="204" y2="72" stroke="#F3F0E8" stroke-opacity="0.08"/>
     
-    <text x="12" y="90" fill="#94a3b8" font-size="10.5">Frictionless (&lt;0.30)</text>
-    <text x="12" y="107" fill="#94a3b8" font-size="10.5">Biometric Step-Up</text>
-    <text x="12" y="124" fill="#06b6d4" font-size="10.5">Harim Dynamic OTP Trunk</text>
+    <text x="12" y="90" fill="#B5BDB6" font-size="10.5">Frictionless (&lt;0.30)</text>
+    <text x="12" y="107" fill="#B5BDB6" font-size="10.5">Biometric Step-Up</text>
+    <text x="12" y="124" fill="#527C78" font-size="10.5">Harim Dynamic OTP Trunk</text>
     
-    <rect x="10" y="136" width="196" height="24" rx="4" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.3"/>
-    <text x="108" y="152" fill="#10b981" font-size="10" font-weight="700" text-anchor="middle">GATE: PASSED [0.18]</text>
+    <rect x="10" y="136" width="196" height="24" rx="4" fill="#171C1A" stroke="#6E9792" stroke-opacity="0.3"/>
+    <text x="108" y="152" fill="#6E9792" font-size="10" font-weight="700" text-anchor="middle">GATE: PASSED [0.18]</text>
   </g>
 
   <!-- Conduit 3 -> 4 -->
   <path d="M 732 158 L 760 158" fill="none" class="fraud-flow-emerald" marker-end="url(#fraud-arr-emerald)"/>
-  <rect x="734" y="140" width="24" height="15" rx="3" fill="#0b0e14" stroke="#10b981" stroke-opacity="0.4"/>
-  <text x="736" y="151" fill="#10b981" font-size="8" font-weight="700">MESH</text>
+  <rect x="734" y="140" width="24" height="15" rx="3" fill="#171C1A" stroke="#6E9792" stroke-opacity="0.4"/>
+  <text x="736" y="151" fill="#6E9792" font-size="8" font-weight="700">MESH</text>
 
   <!-- Module 04: Neo4j Graph Forensics -->
   <g transform="translate(760, 72)">
-    <rect width="212" height="172" rx="8" fill="#111827" fill-opacity="0.9" stroke="#38bdf8" stroke-opacity="0.4"/>
-    <rect width="212" height="28" rx="8" fill="#38bdf8" fill-opacity="0.12"/>
-    <text x="12" y="19" fill="#38bdf8" font-size="12" font-weight="700">04. FORENSICS</text>
+    <rect width="212" height="172" rx="8" fill="#202725" fill-opacity="0.9" stroke="#8FB4AA" stroke-opacity="0.4"/>
+    <rect width="212" height="28" rx="8" fill="#8FB4AA" fill-opacity="0.12"/>
+    <text x="12" y="19" fill="#8FB4AA" font-size="12" font-weight="700">04. FORENSICS</text>
     
-    <text x="12" y="46" fill="#f8fafc" font-size="13" font-weight="700">NEO4J CLUSTER</text>
-    <text x="12" y="62" fill="#38bdf8" font-size="10.5" font-weight="600">Temporal Graph Hop</text>
+    <text x="12" y="46" fill="#F3F0E8" font-size="13" font-weight="700">NEO4J CLUSTER</text>
+    <text x="12" y="62" fill="#8FB4AA" font-size="10.5" font-weight="600">Temporal Graph Hop</text>
     
-    <line x1="12" y1="72" x2="200" y2="72" stroke="#ffffff" stroke-opacity="0.08"/>
+    <line x1="12" y1="72" x2="200" y2="72" stroke="#F3F0E8" stroke-opacity="0.08"/>
     
-    <text x="12" y="90" fill="#94a3b8" font-size="10.5">Recursive Fund Tracing</text>
-    <text x="12" y="107" fill="#cbd5e1" font-size="10.5">40+ Service Micro-Mesh</text>
-    <text x="12" y="124" fill="#e2c974" font-size="10.5">Syndicate Quarantine</text>
+    <text x="12" y="90" fill="#B5BDB6" font-size="10.5">Recursive Fund Tracing</text>
+    <text x="12" y="107" fill="#C5C0B6" font-size="10.5">40+ Service Micro-Mesh</text>
+    <text x="12" y="124" fill="#B39A77" font-size="10.5">Syndicate Quarantine</text>
     
-    <rect x="10" y="136" width="192" height="24" rx="4" fill="#0b0e14" stroke="#38bdf8" stroke-opacity="0.3"/>
-    <text x="106" y="152" fill="#38bdf8" font-size="10" font-weight="700" text-anchor="middle">ISOLATION: READY</text>
+    <rect x="10" y="136" width="192" height="24" rx="4" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.3"/>
+    <text x="106" y="152" fill="#8FB4AA" font-size="10" font-weight="700" text-anchor="middle">ISOLATION: READY</text>
   </g>
 
   <!-- ========================================== -->
   <!-- MATHEMATICAL RISK DISTRIBUTION CURVE       -->
   <!-- ========================================== -->
   <g transform="translate(28, 258)">
-    <rect width="944" height="176" rx="10" fill="#111827" fill-opacity="0.9" stroke="#ffffff" stroke-opacity="0.1"/>
+    <rect width="944" height="176" rx="10" fill="#202725" fill-opacity="0.9" stroke="#F3F0E8" stroke-opacity="0.1"/>
     
     <!-- Graph Header -->
-    <text x="20" y="24" fill="#10b981" font-size="12" font-weight="700" letter-spacing="1">DISTRIBUTION: REAL-TIME TRANSACTION RISK DENSITY &amp; 15MS BUDGET</text>
-    <text x="590" y="24" fill="#94a3b8" font-size="10.5">INGRESS: <tspan fill="#f8fafc" font-weight="700">1.8ms</tspan> · LOOKUP: <tspan fill="#f8fafc" font-weight="700">4.1ms</tspan> · MODEL: <tspan fill="#10b981" font-weight="700">4.8ms</tspan> · TOTAL: <tspan fill="#e2c974" font-weight="700">10.7ms</tspan></text>
-    <line x1="0" y1="34" x2="944" y2="34" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="20" y="24" fill="#6E9792" font-size="12" font-weight="700" letter-spacing="1">DISTRIBUTION: REAL-TIME TRANSACTION RISK DENSITY &amp; 15MS BUDGET</text>
+    <text x="590" y="24" fill="#B5BDB6" font-size="10.5">INGRESS: <tspan fill="#F3F0E8" font-weight="700">1.8ms</tspan> · LOOKUP: <tspan fill="#F3F0E8" font-weight="700">4.1ms</tspan> · MODEL: <tspan fill="#6E9792" font-weight="700">4.8ms</tspan> · TOTAL: <tspan fill="#B39A77" font-weight="700">10.7ms</tspan></text>
+    <line x1="0" y1="34" x2="944" y2="34" stroke="#F3F0E8" stroke-opacity="0.08"/>
 
     <!-- Three Risk Zones Shading -->
     <!-- Zone 1: Frictionless (0 to 0.30) -->
-    <rect x="24" y="42" width="280" height="92" fill="#10b981" fill-opacity="0.08"/>
-    <text x="164" y="58" fill="#10b981" font-size="10.5" font-weight="700" text-anchor="middle">FRICTIONLESS PASS (&lt;0.30) · 94.2%</text>
+    <rect x="24" y="42" width="280" height="92" fill="#6E9792" fill-opacity="0.08"/>
+    <text x="164" y="58" fill="#6E9792" font-size="10.5" font-weight="700" text-anchor="middle">FRICTIONLESS PASS (&lt;0.30) · 94.2%</text>
 
     <!-- Zone 2: 3DS 2.0 Step-Up (0.30 to 0.75) -->
-    <rect x="304" y="42" width="360" height="92" fill="#e2c974" fill-opacity="0.08"/>
-    <text x="484" y="58" fill="#e2c974" font-size="10.5" font-weight="700" text-anchor="middle">3DS 2.0 STEP-UP (0.30 - 0.75) · 5.3%</text>
+    <rect x="304" y="42" width="360" height="92" fill="#B39A77" fill-opacity="0.08"/>
+    <text x="484" y="58" fill="#B39A77" font-size="10.5" font-weight="700" text-anchor="middle">3DS 2.0 STEP-UP (0.30 - 0.75) · 5.3%</text>
 
     <!-- Zone 3: Quarantine (>0.75) -->
-    <rect x="664" y="42" width="256" height="92" fill="#06b6d4" fill-opacity="0.08"/>
-    <text x="792" y="58" fill="#06b6d4" font-size="10.5" font-weight="700" text-anchor="middle">NEO4J QUARANTINE (&gt;0.75) · 0.5%</text>
+    <rect x="664" y="42" width="256" height="92" fill="#527C78" fill-opacity="0.08"/>
+    <text x="792" y="58" fill="#527C78" font-size="10.5" font-weight="700" text-anchor="middle">NEO4J QUARANTINE (&gt;0.75) · 0.5%</text>
 
     <!-- Baseline & Guides -->
-    <line x1="24" y1="134" x2="920" y2="134" stroke="#ffffff" stroke-opacity="0.12"/>
-    <line x1="304" y1="42" x2="304" y2="134" stroke="#e2c974" stroke-width="1" stroke-dasharray="3 3"/>
-    <line x1="664" y1="42" x2="664" y2="134" stroke="#06b6d4" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="24" y1="134" x2="920" y2="134" stroke="#F3F0E8" stroke-opacity="0.12"/>
+    <line x1="304" y1="42" x2="304" y2="134" stroke="#B39A77" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="664" y1="42" x2="664" y2="134" stroke="#527C78" stroke-width="1" stroke-dasharray="3 3"/>
 
     <!-- Mathematical Gaussian Bell Curve Area -->
     <path d="M 24 134 
@@ -209,30 +209,30 @@
              C 270 44, 310 68, 370 96 
              C 450 130, 560 132, 670 133 
              C 770 134, 860 134, 920 134" 
-          stroke="#10b981" stroke-width="2.5" fill="none"/>
+          stroke="#6E9792" stroke-width="2.5" fill="none"/>
 
     <!-- Current Transaction Point (Score 0.18) -->
-    <circle cx="210" cy="60" r="5" fill="#10b981"/>
-    <circle cx="210" cy="60" r="10" stroke="#10b981" stroke-width="1" stroke-opacity="0.7" fill="none"/>
-    <rect x="150" y="74" width="120" height="20" fill="#0b0e14" stroke="#10b981" stroke-width="1" rx="4"/>
-    <text x="210" y="88" fill="#10b981" font-size="10" font-weight="700" text-anchor="middle">ACTIVE: SCORE 0.18</text>
+    <circle cx="210" cy="60" r="5" fill="#6E9792"/>
+    <circle cx="210" cy="60" r="10" stroke="#6E9792" stroke-width="1" stroke-opacity="0.7" fill="none"/>
+    <rect x="150" y="74" width="120" height="20" fill="#171C1A" stroke="#6E9792" stroke-width="1" rx="4"/>
+    <text x="210" y="88" fill="#6E9792" font-size="10" font-weight="700" text-anchor="middle">ACTIVE: SCORE 0.18</text>
 
     <!-- Execution Timeline Bar (Bottom) -->
     <g transform="translate(24, 146)">
-      <text x="0" y="16" fill="#94a3b8" font-size="10.5">EXECUTION TIMELINE (10.7ms of 15ms SLA BUDGET):</text>
-      <rect x="330" y="6" width="60" height="14" rx="2" fill="#06b6d4" fill-opacity="0.3"/>
-      <text x="360" y="17" fill="#38bdf8" font-size="9" text-anchor="middle">1.8ms</text>
+      <text x="0" y="16" fill="#B5BDB6" font-size="10.5">EXECUTION TIMELINE (10.7ms of 15ms SLA BUDGET):</text>
+      <rect x="330" y="6" width="60" height="14" rx="2" fill="#527C78" fill-opacity="0.3"/>
+      <text x="360" y="17" fill="#8FB4AA" font-size="9" text-anchor="middle">1.8ms</text>
       
-      <rect x="395" y="6" width="110" height="14" rx="2" fill="#e2c974" fill-opacity="0.3"/>
-      <text x="450" y="17" fill="#e2c974" font-size="9" text-anchor="middle">4.1ms LOOKUP</text>
+      <rect x="395" y="6" width="110" height="14" rx="2" fill="#B39A77" fill-opacity="0.3"/>
+      <text x="450" y="17" fill="#B39A77" font-size="9" text-anchor="middle">4.1ms LOOKUP</text>
       
-      <rect x="510" y="6" width="130" height="14" rx="2" fill="#10b981" fill-opacity="0.3"/>
-      <text x="575" y="17" fill="#10b981" font-size="9" text-anchor="middle">4.8ms INFERENCE</text>
+      <rect x="510" y="6" width="130" height="14" rx="2" fill="#6E9792" fill-opacity="0.3"/>
+      <text x="575" y="17" fill="#6E9792" font-size="9" text-anchor="middle">4.8ms INFERENCE</text>
       
-      <rect x="645" y="6" width="110" height="14" rx="2" fill="#ffffff" fill-opacity="0.08"/>
-      <text x="700" y="17" fill="#cbd5e1" font-size="9" text-anchor="middle">4.3ms MARGIN</text>
+      <rect x="645" y="6" width="110" height="14" rx="2" fill="#F3F0E8" fill-opacity="0.08"/>
+      <text x="700" y="17" fill="#C5C0B6" font-size="9" text-anchor="middle">4.3ms MARGIN</text>
       
-      <text x="770" y="17" fill="#10b981" font-size="10.5" font-weight="700">PASS (100% SLA COMPLIANT)</text>
+      <text x="770" y="17" fill="#6E9792" font-size="10.5" font-weight="700">PASS (100% SLA COMPLIANT)</text>
     </g>
   </g>
 
@@ -240,13 +240,13 @@
   <!-- INVARIANT TELEMETRY FOOTER                 -->
   <!-- ========================================== -->
   <g transform="translate(28, 448)">
-    <rect width="944" height="48" rx="8" fill="#111827" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.1"/>
-    <rect width="5" height="48" rx="2" fill="#10b981"/>
+    <rect width="944" height="48" rx="8" fill="#202725" fill-opacity="0.85" stroke="#F3F0E8" stroke-opacity="0.1"/>
+    <rect width="5" height="48" rx="2" fill="#6E9792"/>
     
-    <text x="20" y="20" fill="#10b981" font-size="11" font-weight="700" letter-spacing="0.8">ARCHITECTURAL INVARIANT:</text>
-    <text x="200" y="20" fill="#f8fafc" font-size="11">RISK EVALUATION LOOP SLA &lt; 15MS · FORENSIC EVIDENCE COURT-ADMISSIBLE UNDER SECTION 30</text>
+    <text x="20" y="20" fill="#6E9792" font-size="11" font-weight="700" letter-spacing="0.8">ARCHITECTURAL INVARIANT:</text>
+    <text x="200" y="20" fill="#F3F0E8" font-size="11">RISK EVALUATION LOOP SLA &lt; 15MS · FORENSIC EVIDENCE COURT-ADMISSIBLE UNDER SECTION 30</text>
     
-    <text x="20" y="38" fill="#94a3b8" font-size="10">FAILURE MODE MITIGATION: GRAPH-ISOLATED SYNDICATE QUARANTINE BLOCKS 100% DISTRIBUTED TAKEOVER DRIFT</text>
-    <text x="730" y="38" fill="#38bdf8" font-size="10" font-weight="700">● 40+ CLOUD NODES MONITORED</text>
+    <text x="20" y="38" fill="#B5BDB6" font-size="10">FAILURE MODE MITIGATION: GRAPH-ISOLATED SYNDICATE QUARANTINE BLOCKS 100% DISTRIBUTED TAKEOVER DRIFT</text>
+    <text x="730" y="38" fill="#8FB4AA" font-size="10" font-weight="700">● 40+ CLOUD NODES MONITORED</text>
   </g>
 </svg>

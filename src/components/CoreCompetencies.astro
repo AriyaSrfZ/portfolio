@@ -48,10 +48,10 @@ const groups = isFa ? groupsFa : groupsEn;
 ---
 
 <section class={`relative z-10 max-w-6xl mx-auto px-6 py-16 ${isFa ? "font-['Vazirmatn',sans-serif]" : "font-sans"}`} dir={isFa ? 'rtl' : 'ltr'}>
-  <h2 class="text-3xl font-bold text-center mb-2 tracking-tight text-[#f8fafc]">
+  <h2 class="text-3xl font-bold text-center mb-2 tracking-tight text-[var(--text-primary)]">
     {isFa ? 'شایستگی‌های کلیدی و تخصص‌ها' : 'Core Competencies'}
   </h2>
-  <p class="text-center text-[#94a3b8] text-xs sm:text-sm mb-12 max-w-2xl mx-auto">
+  <p class="text-center text-[var(--text-secondary)] text-xs sm:text-sm mb-12 max-w-2xl mx-auto">
     {isFa
       ? 'حاصل بیش از ۱۵ سال تجربه عملیاتی در سوییچ‌های پرداخت، موتورهای تقلب و زیرساخت‌های مخابراتی تحت بار ترافیک واقعی.'
       : 'What 15+ years of production switches, fraud loops, and SMS infrastructure actually adds up to.'}
@@ -59,14 +59,14 @@ const groups = isFa ? groupsFa : groupsEn;
 
   <div class="grid sm:grid-cols-2 gap-5">
     {groups.map((group) => (
-      <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.07] rounded-xl p-5 shadow-2xl ring-1 ring-white/[0.03] hover:border-white/15 transition-all">
-        <h3 class="font-bold text-xs uppercase tracking-wider mb-3.5 text-[#ededed] flex items-center gap-2 font-mono">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
+      <div class="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-5 shadow-sm hover:border-[var(--accent-primary)] transition-all">
+        <h3 class="font-bold text-xs uppercase tracking-wider mb-3.5 text-[var(--text-primary)] flex items-center gap-2 font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#B39A77]"></span>
           {group.title}
         </h3>
         <div class="flex flex-wrap gap-1.5">
           {group.items.map((item) => (
-            <span class="text-[11px] font-mono px-2.5 py-1 bg-[#090a0c]/80 border border-white/[0.06] rounded-md text-[#94a3b8] hover:text-[#ededed] hover:border-white/15 transition-colors">
+            <span class="text-[11px] font-mono px-2.5 py-1 bg-[var(--surface-elevated)] border border-[var(--border)] rounded-md text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent-primary)] transition-colors">
               [{item}]
             </span>
           ))}

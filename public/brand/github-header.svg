@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" fill="none">
+  <!-- GitHub Profile Banner · Ariya Sarrafzadeh (AriyaSrfZ) -->
+  <rect width="900" height="240" rx="16" fill="#202725" />
+  
+  <!-- Subtle Blueprint Grid -->
+  <defs>
+    <pattern id="gh-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#303936" stroke-width="0.7" stroke-opacity="0.6" />
+    </pattern>
+  </defs>
+  <rect width="900" height="240" rx="16" fill="url(#gh-grid)" />
+  <rect x="12" y="12" width="876" height="216" rx="10" stroke="#46504B" stroke-width="1.2" fill="none" />
+
+  <!-- AS Monogram -->
+  <g transform="translate(36, 44) scale(0.9)">
+    <rect width="120" height="120" rx="20" fill="#303936" stroke="#46504B" stroke-width="1.5" />
+    <path d="M28 96 L52 24 C53.5 19 58.5 19 60 24 L84 96" stroke="#F0EEE7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M38 68 L74 68" stroke="#F0EEE7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M84 36 C80 26 68 22 56 26 C44 30 42 42 50 49 C58 56 76 58 76 74 C76 86 64 94 48 94 C36 94 28 88 26 78" stroke="#8FB4AA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Archetype Pill -->
+  <g transform="translate(170, 48)">
+    <rect width="210" height="24" rx="12" fill="#303936" stroke="#46504B" stroke-width="1" />
+    <circle cx="12" cy="12" r="3" fill="#8FB4AA" />
+    <text x="22" y="16" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="600" fill="#F0EEE7" letter-spacing="1">THE SYSTEMS THINKER</text>
+  </g>
+
+  <!-- Name & Positioning -->
+  <text x="170" y="104" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="30" font-weight="700" fill="#F0EEE7" letter-spacing="-0.5">Ariya Sarrafzadeh</text>
+  <text x="170" y="132" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="16" font-weight="500" fill="#8FB4AA">Systems that hold under pressure.</text>
+
+  <!-- Core Promise -->
+  <text x="170" y="164" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="12" font-weight="400" fill="#B5BDB6">
+    <tspan x="170" dy="0">I work at the intersection of systems architecture, engineering, and product thinking—</tspan>
+    <tspan x="170" dy="18">designing dependable technology for complex, high-stakes environments.</tspan>
+  </text>
+
+  <!-- Technical Domain Badges -->
+  <g transform="translate(170, 192)">
+    <text font-family="'IBM Plex Mono', monospace" font-size="10" fill="#8FB4AA">
+      [ISO 8583] · [ACID LEDGERS] · [SMPP 3.4] · [eKYC &amp; RISK GRAPH] · [DISTRIBUTED SYSTEMS]
+    </text>
+  </g>
+
+  <!-- Link -->
+  <text x="860" y="210" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="500" fill="#8FB4AA" text-anchor="end">ariya-sarrafzadeh.ir</text>
+</svg>

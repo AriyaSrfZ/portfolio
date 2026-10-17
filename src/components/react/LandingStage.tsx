@@ -156,77 +156,86 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
     <div id="overview" className="scroll-mt-20 w-full min-h-[calc(100vh-5.5rem)] flex flex-col justify-start gap-4 xl:gap-5 pb-4 font-sans" dir={isFa ? 'rtl' : 'ltr'}>
       
       {/* =========================================================================
-          ZONE A: EXECUTIVE COMMAND HERO CONSOLE (Apple Liquid Glass Console)
+          ZONE A: EXECUTIVE POSITIONING CONSOLE
           ========================================================================= */}
-      <div className="liquid-glass-card rounded-2xl p-5 sm:p-7 relative overflow-hidden">
+      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-5 sm:p-7 relative overflow-hidden shadow-sm">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
           
-          {/* Portrait Column: Sized larger, authoritative, commanding */}
+          {/* Portrait Column: Architectural, disciplined, grounded */}
           <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-center lg:items-start gap-2.5">
-            <div className="relative w-full max-w-[340px] sm:max-w-[360px] lg:max-w-[380px] xl:max-w-[420px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 bg-[#13161c] shadow-2xl group">
+            <div className="relative w-full max-w-[340px] sm:max-w-[360px] lg:max-w-[380px] xl:max-w-[420px] aspect-[4/5] rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--surface-elevated)] shadow-lg group">
               <img
                 src={`${baseUrl}photos/ariya.jpg`}
                 alt="Ariya Sarrafzadeh"
                 className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d11]/90 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono bg-[#0b0d11]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15">
-                <span className="text-neutral-200 font-semibold">{isFa ? 'تهران · شاپرک' : 'TEHRAN, IR'}</span>
-                <span className="text-cyan-400 flex items-center gap-1.5 font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#171C1A]/90 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono bg-[#202725]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[var(--border)]">
+                <span className="text-[#F0EEE7] font-semibold">{isFa ? 'تهران · شاپرک' : 'TEHRAN, IR'}</span>
+                <span className="text-[var(--accent-primary)] flex items-center gap-1.5 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] animate-pulse" />
                   NOMINAL · {stats.fraudRiskLoopSla.shortEn.toUpperCase()}
                 </span>
               </div>
             </div>
 
-            <div className="text-[11px] font-mono text-neutral-400 text-center lg:text-start flex items-center gap-2 pt-0.5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
-              <span className="truncate">{isFa ? 'آماده مشاوره و ممیزی سیستم‌های مقیاس‌پذیر' : 'Available for Advisory & Platform Audits'}</span>
+            <div className="text-[11px] font-mono text-[var(--text-secondary)] text-center lg:text-start flex items-center gap-2 pt-0.5">
+              <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] shrink-0" />
+              <span className="truncate">{isFa ? 'آماده مشاوره و ممیزی سیستم‌های مقیاس‌پذیر' : 'Available for Architecture Advisory & Audits'}</span>
             </div>
           </div>
 
-          {/* Narrative Column: Fills the entire right side purposefully */}
+          {/* Narrative Column: Clear positioning, core promise, systems thinker archetype */}
           <div className="lg:col-span-7 xl:col-span-8 space-y-3.5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-sans font-medium text-neutral-300 tracking-wider uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
-              <span className="text-white font-semibold">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
-              <span className="text-white/30">·</span>
-              <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'Principal Systems Architect & Technical Product Leader'}</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] text-[10px] sm:text-[11px] font-sans font-medium text-[var(--text-secondary)] tracking-wider uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#B39A77]" />
+              <span className="text-[var(--text-primary)] font-semibold">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
+              <span className="text-[var(--border)]">·</span>
+              <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'Systems Architect & Technical Product Leader'}</span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight font-sans">
+            {/* Canonical Tagline & Primary Headline */}
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--text-primary)] leading-tight font-sans">
               {isFa 
-                ? 'معماری سوییچ‌های مالی، دفاتر کل دوطرفه و روتینگ مخابراتی' 
-                : 'High-Throughput Financial Switches, Double-Entry Ledgers & Telecom Routing'}
+                ? 'سامانه‌هایی که زیر فشار تاب می‌آورند.' 
+                : 'Systems that hold under pressure.'}
             </h1>
 
-            <p className="text-sm text-neutral-300 leading-relaxed max-w-4xl font-sans">
+            {/* Canonical Core Positioning Statement */}
+            <p className="text-sm sm:text-base text-[var(--accent-primary)] font-medium leading-relaxed max-w-3xl font-sans">
+              {isFa
+                ? 'من در تقاطع معماری سیستم‌ها، مهندسی زیرساخت و تفکر محصول فعالیت می‌کنم؛ طراحی فناوری اتکاپذیر برای محیط‌های پیچیده و حیاتی.'
+                : 'I work at the intersection of systems architecture, engineering, and product thinking—designing dependable technology for complex, high-stakes environments.'}
+            </p>
+
+            {/* Substantive Technical Scope */}
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed max-w-3xl font-sans">
               {isFa
                 ? `${stats.experienceYears.textFa} تجربه عملیاتی در زیرساخت‌های بانکی شاپرک، سوییچ‌های پرداخت ISO 8583 با تاخیر ${stats.switchFailoverSla.textFa}، ماشین حالت تخصیص دومرحله‌ای موجودی با تضمین انحراف مالی صفر، و هاب‌های مخابراتی SMPP با ظرفیت ${stats.ledgerPeakTps.textFa}.`
                 : `${stats.experienceYears.textEn} engineering high-availability banking switches, ${stats.switchFailoverSla.textEn} ISO 8583 multi-PSP routing, two-phase balance reservation machines with zero financial drift, and national SMPP 3.4 telecom gateways handling ${stats.ledgerPeakTps.en} burst capacity.`}
             </p>
 
-            {/* Tactical Chips */}
+            {/* Domain Capability Chips */}
             <div className="flex flex-wrap gap-1.5 pt-0.5" dir="ltr">
               {["ISO 8583", "2PC MUTEX", "ACID LEDGERS", "SMPP 3.4", "SCYLLADB", "RABBITMQ CDC", "NEO4J", "REDIS SETNX"].map((chip) => (
-                <span key={chip} className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-neutral-200">
+                <span key={chip} className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-[var(--surface-elevated)] border border-[var(--border)] text-[var(--text-secondary)]">
                   [{chip}]
                 </span>
               ))}
             </div>
 
-            {/* Strategic Focus Grid: Fills horizontal width with core system capabilities */}
+            {/* Strategic Focus Grid: Core System Capabilities */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 font-sans text-[11px]">
-              <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                <span className="text-neutral-300 truncate font-medium">
+              <div className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-lg p-2.5 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] shrink-0" />
+                <span className="text-[var(--text-secondary)] truncate font-medium">
                   {isFa ? `سوییچ پرداخت بانکی: تاخیر ${stats.switchFailoverSla.shortFa} و بازگشت خودکار ۰۴۰۰` : `Interbank Switch: ${stats.switchFailoverSla.shortEn} failover & auto-0400`}
                 </span>
               </div>
-              <div className="bg-[#13161c] border border-white/5 rounded-lg p-2.5 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                <span className="text-neutral-300 truncate font-medium">
+              <div className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-lg p-2.5 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] shrink-0" />
+                <span className="text-[var(--text-secondary)] truncate font-medium">
                   {isFa ? `دفتر کل توزیع‌شده: قفل SETNX با انحراف مالی ${stats.financialDriftPercent.shortFa}` : 'Ledger Mutex: Zero drift via SETNX & CDC outbox'}
                 </span>
               </div>
@@ -237,32 +246,32 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
               <a
                 href="#payment-settlement"
                 onClick={(e) => handleScrollToDossier(e, '#payment-settlement')}
-                className="px-4 py-2 rounded-lg bg-white text-black font-semibold uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-md text-xs flex items-center gap-1.5 active:scale-95"
+                className="px-4 py-2 rounded-lg bg-[var(--accent-primary)] text-white font-semibold uppercase tracking-wider hover:opacity-90 transition-all shadow-sm text-xs flex items-center gap-1.5 active:scale-95"
               >
-                <span>{isFa ? 'بررسی پرونده‌های مهندسی' : 'Inspect Blueprints'}</span>
+                <span>{isFa ? 'بررسی پرونده‌های مهندسی' : 'Inspect Architecture'}</span>
                 <span>↓</span>
               </a>
               <a
                 href="#book"
                 onClick={(e) => handleScrollToDossier(e, '#book')}
-                className="px-3.5 py-2 rounded-lg bg-white/[0.06] border border-white/15 text-white font-medium hover:bg-white/10 transition-all text-xs flex items-center gap-1.5"
+                className="px-3.5 py-2 rounded-lg bg-[var(--surface-elevated)] border border-[var(--border)] text-[var(--text-primary)] font-medium hover:bg-[var(--surface)] transition-all text-xs flex items-center gap-1.5"
               >
                 <span>{isFa ? 'رزرو جلسه بررسی معماری' : 'Schedule Review'}</span>
                 <span>→</span>
               </a>
-              <div className="flex items-center gap-3 text-neutral-300 font-sans text-xs">
+              <div className="flex items-center gap-3 text-[var(--text-secondary)] font-sans text-xs">
                 <a
                   href="mailto:ariasg2002@gmail.com?subject=Architecture%20Inquiry"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--accent-primary)] transition-colors"
                 >
                   ariasg2002@gmail.com
                 </a>
-                <span className="text-white/20">/</span>
+                <span className="text-[var(--border)]">/</span>
                 <a
                   href="https://www.linkedin.com/in/ariya-sarrafzadeh/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--accent-primary)] transition-colors"
                 >
                   LinkedIn ↗
                 </a>
@@ -274,7 +283,7 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
       </div>
 
       {/* =========================================================================
-          ZONE B: LIVE IMPACT & SLA VITALS RIBBON
+          ZONE B: VERIFIED SLA & SCALE VITALS RIBBON
           ========================================================================= */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 w-full">
         {proofMatrix.map((item) => (
@@ -282,18 +291,18 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
             key={item.href}
             href={item.href}
             onClick={(e) => handleScrollToDossier(e, item.href)}
-            className="liquid-glass-card rounded-xl p-3.5 flex flex-col justify-between hover:border-cyan-400/40 transition-all group block shadow-lg active:scale-[0.98]"
+            className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-3.5 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all group block shadow-sm active:scale-[0.98]"
           >
             <div>
-              <div className="text-[9px] font-sans uppercase tracking-wider text-neutral-400 mb-1 flex items-center justify-between font-semibold">
+              <div className="text-[9px] font-sans uppercase tracking-wider text-[var(--text-secondary)] mb-1 flex items-center justify-between font-semibold">
                 <span>{item.tag}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/80 group-hover:animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] group-hover:scale-125 transition-transform" />
               </div>
-              <div className="text-xl sm:text-2xl font-sans font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">
+              <div className="text-xl sm:text-2xl font-sans font-bold text-[var(--text-primary)] tracking-tight group-hover:text-[var(--accent-primary)] transition-colors">
                 {item.val}
               </div>
             </div>
-            <div className="text-[11px] text-neutral-400 font-sans font-medium tracking-normal mt-2 leading-snug">
+            <div className="text-[11px] text-[var(--text-secondary)] font-sans font-medium tracking-normal mt-2 leading-snug">
               {item.label}
             </div>
           </a>
@@ -303,20 +312,20 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
       {/* =========================================================================
           ZONE C: INTERACTIVE ARCHITECTURAL OPERATIONS WORKBENCH
           ========================================================================= */}
-      <div className="liquid-glass-card rounded-2xl p-5 space-y-4">
+      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-5 space-y-4 shadow-sm">
         
         {/* Tab Headers */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-3">
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar font-sans text-xs bg-black/20 p-1 rounded-full border border-white/[0.08] backdrop-blur-md">
+        <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar font-sans text-xs bg-[var(--surface-elevated)] p-1 rounded-full border border-[var(--border)]">
             <button
               onClick={() => setActiveTab('pillars')}
               className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
                 activeTab === 'pillars'
-                  ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
-                  : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
+                  ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-white" />
               <span>{isFa ? 'ارکان ۴ گانه معماری' : 'Core Architecture'}</span>
             </button>
 
@@ -324,11 +333,11 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
               onClick={() => setActiveTab('stack')}
               className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
                 activeTab === 'stack'
-                  ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
-                  : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
+                  ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#e2c974]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-white" />
               <span>{isFa ? 'پشته پروتکل و داده' : 'Protocol Stack'}</span>
             </button>
 
@@ -336,11 +345,11 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
               onClick={() => setActiveTab('directives')}
               className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
                 activeTab === 'directives'
-                  ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
-                  : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
+                  ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-white" />
               <span>{isFa ? 'اصول حاکمیت فنی' : 'Directives'}</span>
             </button>
 
@@ -348,19 +357,19 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
               onClick={() => setActiveTab('benchmarks')}
               className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
                 activeTab === 'benchmarks'
-                  ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
-                  : 'text-neutral-400 hover:text-white hover:bg-white/[0.05]'
+                  ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-white" />
               <span>{isFa ? 'تاییدیه‌های پروداکشن' : 'Scale Proofs'}</span>
             </button>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 font-sans text-[10px] text-neutral-400 uppercase font-semibold">
+          <div className="hidden sm:flex items-center gap-2 font-sans text-[10px] text-[var(--text-secondary)] uppercase font-semibold">
             <span>INVARIANTS ACTIVE</span>
-            <span className="w-1 h-1 rounded-full bg-neutral-600" />
-            <span className="text-cyan-400">REPLAY-SAFE</span>
+            <span className="w-1 h-1 rounded-full bg-[var(--border)]" />
+            <span className="text-[var(--accent-primary)]">REPLAY-SAFE</span>
           </div>
         </div>
 
@@ -375,46 +384,39 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleScrollToDossier(e, item.href)}
-                  className="liquid-glass-control rounded-xl p-3.5 flex flex-col justify-between hover:border-cyan-400/40 transition-all group block shadow-md"
+                  className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3.5 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all group block shadow-sm"
                 >
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between text-[10px] font-mono">
-                      <span className="text-cyan-400 font-semibold">{item.num} · {item.tag}</span>
-                      <span className="text-neutral-500 group-hover:text-white transition-colors">↗</span>
+                    <div className="flex items-center justify-between font-mono text-[10px] text-[var(--text-secondary)] border-b border-[var(--border)] pb-2">
+                      <span className="font-semibold text-[var(--text-primary)]">{item.num}</span>
+                      <span className="text-[var(--accent-primary)]">{item.tag}</span>
                     </div>
-                    <h3 className="text-xs font-bold text-white leading-snug group-hover:text-cyan-300 transition-colors">
+                    <div className="font-sans font-bold text-xs text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors">
                       {item.title}
-                    </h3>
-                    <p className="text-[11px] text-neutral-400 leading-relaxed">
+                    </div>
+                    <div className="text-[11px] text-[var(--text-secondary)] leading-relaxed">
                       {item.desc}
-                    </p>
+                    </div>
                   </div>
-                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono">
-                    <span className="text-neutral-500">{item.metrics}</span>
-                    <span className="text-cyan-400 group-hover:translate-x-0.5 transition-transform">
-                      {isFa ? 'مشاهده پرونده ←' : 'View Blueprint →'}
-                    </span>
+                  <div className="mt-3 pt-2 border-t border-[var(--border)] flex items-center justify-between text-[10px] font-mono text-[var(--accent-primary)]">
+                    <span>{item.metrics}</span>
+                    <span>→</span>
                   </div>
                 </a>
               ))}
             </div>
           )}
 
-          {/* TAB 2: STACK */}
+          {/* TAB 2: PROTOCOL STACK */}
           {activeTab === 'stack' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full animate-fadeIn">
               {techStack.map((tech) => (
-                <div key={tech.name} className="liquid-glass-control rounded-xl p-3.5 flex items-start gap-3 shadow-md hover:border-white/20 transition-all">
-                  <span className="w-2 h-2 rounded-full bg-[#e2c974] mt-1 shrink-0" />
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between">
-                      <div className="text-xs font-bold font-sans text-white tracking-tight truncate">{tech.name}</div>
-                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/[0.05] text-[#e2c974] border border-[#e2c974]/20 shrink-0">
-                        {tech.badge}
-                      </span>
-                    </div>
-                    <div className="text-[11px] text-neutral-400 mt-1 leading-snug font-sans">{tech.role}</div>
+                <div key={tech.name} className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3.5 space-y-1.5 shadow-sm">
+                  <div className="flex items-center justify-between text-[10px] font-mono">
+                    <span className="font-semibold text-[var(--accent-primary)]">[{tech.badge}]</span>
                   </div>
+                  <div className="font-sans font-bold text-xs text-[var(--text-primary)]">{tech.name}</div>
+                  <div className="text-[11px] text-[var(--text-secondary)] leading-snug">{tech.role}</div>
                 </div>
               ))}
             </div>
@@ -422,21 +424,14 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
 
           {/* TAB 3: DIRECTIVES */}
           {activeTab === 'directives' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full animate-fadeIn">
-              {directives.map((dir, idx) => (
-                <div key={idx} className="liquid-glass-control rounded-xl p-3.5 space-y-2 shadow-md hover:border-rose-400/30 transition-all">
-                  <div className="flex items-center justify-between">
-                    <div className="text-xs font-bold font-sans text-rose-400 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                      <span>{dir.label}</span>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full animate-fadeIn">
+              {directives.map((dir, i) => (
+                <div key={i} className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3.5 space-y-1.5 shadow-sm">
+                  <div className="flex items-center justify-between text-[10px] font-mono">
+                    <span className="text-[var(--accent-primary)] font-semibold">{dir.tag}</span>
                   </div>
-                  <span className="inline-block text-[9px] font-mono px-1.5 py-0.2 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">
-                    {dir.tag}
-                  </span>
-                  <p className="text-[11px] text-neutral-300 leading-relaxed pt-1 font-sans">
-                    {dir.text}
-                  </p>
+                  <div className="font-sans font-bold text-xs text-[var(--text-primary)]">{dir.label}</div>
+                  <div className="text-[11px] text-[var(--text-secondary)] leading-relaxed">{dir.text}</div>
                 </div>
               ))}
             </div>
@@ -445,41 +440,16 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
           {/* TAB 4: BENCHMARKS */}
           {activeTab === 'benchmarks' && (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full animate-fadeIn">
-              {benchmarks.map((bench, idx) => (
-                <div key={idx} className="liquid-glass-control rounded-xl p-4 space-y-2 shadow-md hover:border-cyan-400/30 transition-all">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-white">{bench.title}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                  </div>
-                  <div className="text-lg font-mono font-bold text-cyan-400">
-                    {bench.metric}
-                  </div>
-                  <p className="text-[11px] text-neutral-400 leading-relaxed">
-                    {bench.detail}
-                  </p>
+              {benchmarks.map((bench, i) => (
+                <div key={i} className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-4 space-y-2 shadow-sm text-center">
+                  <div className="text-[10px] font-mono text-[var(--accent-primary)] uppercase tracking-wider">{bench.title}</div>
+                  <div className="text-2xl font-bold font-sans text-[var(--text-primary)]">{bench.metric}</div>
+                  <div className="text-[11px] text-[var(--text-secondary)] leading-tight">{bench.detail}</div>
                 </div>
               ))}
             </div>
           )}
 
-        </div>
-
-        {/* Stepper Prompt */}
-        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-          <div className="text-neutral-400 text-[11px] flex items-center gap-2">
-            <span className="text-cyan-400 font-semibold">{isFa ? 'نمای کلی' : 'OVERVIEW'}</span>
-            <span>·</span>
-            <span>{isFa ? 'معماری سیستم‌های مالی' : 'SYSTEM ARCHITECTURE OVERVIEW'}</span>
-          </div>
-
-          <a
-            href="#payment-settlement"
-            onClick={(e) => handleScrollToDossier(e, '#payment-settlement')}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-neutral-200 hover:text-white hover:bg-white/10 transition-all group"
-          >
-            <span>{isFa ? 'بخش بعدی: دفتر کل دوطرفه' : 'Next Section: Settlements & Ledgers'}</span>
-            <span className="group-hover:translate-y-0.5 transition-transform">↓</span>
-          </a>
         </div>
 
       </div>

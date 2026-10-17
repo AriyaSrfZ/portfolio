@@ -33,7 +33,7 @@ const mailtoHref = `mailto:ariasg2002@gmail.com?subject=${mailtoSubject}`;
 const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 ---
 
-<header id="overview" class="relative pt-24 pb-12 border-b border-white/5 bg-[#090a0c] font-sans">
+<header id="overview" class="relative pt-24 pb-12 border-b border-[var(--border)] bg-[var(--surface)] font-sans">
   <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
     <!-- Top Bio & Identity Grid -->
@@ -41,19 +41,19 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
       
       <!-- Portrait Card: Sharp, Authoritative Frame (md:col-span-4 lg:col-span-4) -->
       <div class="md:col-span-4 lg:col-span-4 flex justify-center md:justify-start">
-        <div class="relative w-64 h-80 sm:w-72 sm:h-96 md:w-full md:max-w-[320px] lg:max-w-[350px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 bg-[#13161c] shadow-2xl group transition-all">
+        <div class="relative w-64 h-80 sm:w-72 sm:h-96 md:w-full md:max-w-[320px] lg:max-w-[350px] aspect-[4/5] rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--surface-card)] shadow-2xl group transition-all">
           <img
             src={`${baseUrl}photos/ariya.jpg`}
             alt="Ariya Sarrafzadeh"
             class="w-full h-full object-cover object-top opacity-100 transition-transform duration-500 group-hover:scale-[1.03]"
             loading="eager"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0b0d11]/85 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--surface-card)] via-transparent to-transparent pointer-events-none"></div>
           
-          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono bg-[#0b0d11]/90 backdrop-blur-md px-3.5 py-2 rounded-lg border border-white/15">
-            <span class="text-neutral-200 font-semibold">{isFa ? 'تهران · ایران' : 'TEHRAN, IR'}</span>
-            <span class="text-emerald-400 flex items-center gap-1.5 font-medium">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono bg-[var(--surface-card)] backdrop-blur-md px-3.5 py-2 rounded-lg border border-[var(--border)]">
+            <span class="text-[var(--text-primary)] font-semibold">{isFa ? 'تهران · ایران' : 'TEHRAN, IR'}</span>
+            <span class="text-[var(--accent-primary)] flex items-center gap-1.5 font-medium">
+              <span class="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse"></span>
               NOMINAL
             </span>
           </div>
@@ -62,18 +62,18 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 
       <!-- Narrative & Credentials (md:col-span-8) -->
       <div class="md:col-span-8 space-y-3.5 text-left" dir={isFa ? 'rtl' : 'ltr'}>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-neutral-300 tracking-wider uppercase">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#d97706]"></span>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface-sunken)] border border-[var(--border)] text-[11px] font-mono text-[var(--text-secondary)] tracking-wider uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-warm)]"></span>
           <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'PRINCIPAL SYSTEMS ARCHITECT & TECHNICAL PRODUCT LEADER'}</span>
         </div>
 
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--text-primary)] leading-tight">
           {isFa 
             ? 'معماری سوییچ‌های مالی، دفاتر کل دوطرفه و روتینگ مخابراتی' 
             : 'High-Throughput Financial Switches, Double-Entry Ledgers & Telecom Routing'}
         </h1>
 
-        <p class="text-sm text-neutral-300 leading-relaxed max-w-3xl">
+        <p class="text-sm text-[var(--text-secondary)] leading-relaxed max-w-3xl">
           {isFa
             ? 'بیش از ۱۵ سال تجربه عملیاتی در زیرساخت‌های بانکی شاپرک، سوییچ‌های پرداخت ISO 8583 با تاخیر زیر ۳۰ میلی‌ثانیه، ماشین حالت تخصیص دومرحله‌ای موجودی با تضمین انحراف مالی صفر، و هاب‌های مخابراتی SMPP با ظرفیت ۵۰ هزار تراکنش هم‌روند.'
             : '15+ years engineering high-availability banking switches, sub-30ms ISO 8583 multi-PSP routing, two-phase balance reservation machines with zero financial drift, and national SMPP 3.4 telecom gateways handling 50,000 TPS burst capacity.'}
@@ -82,7 +82,7 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
         <!-- Technical Chips -->
         <div class="flex flex-wrap gap-1.5 pt-2" dir="ltr">
           {chips.map((chip) => (
-            <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-neutral-200">
+            <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-secondary)]">
               [{chip}]
             </span>
           ))}
@@ -92,22 +92,22 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
         <div class="pt-3 flex flex-wrap gap-4 items-center text-xs font-mono">
           <a
             href="#payment-settlement"
-            class="px-4 py-2 rounded-lg bg-white text-black font-semibold uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-md"
+            class="px-4 py-2 rounded-lg bg-[var(--accent-primary)] text-white font-semibold uppercase tracking-wider hover:bg-[var(--accent-light)] transition-all shadow-md"
           >
             {isFa ? 'مشاهده پرونده‌های معماری ↓' : 'Inspect Dossiers ↓'}
           </a>
           <a
             href={mailtoHref}
-            class="text-neutral-300 hover:text-white transition-colors"
+            class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
           >
             ariasg2002@gmail.com
           </a>
-          <span class="text-white/20">/</span>
+          <span class="text-[var(--text-muted)]">/</span>
           <a
             href={linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-neutral-300 hover:text-white transition-colors"
+            class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
           >
             LinkedIn ↗
           </a>
@@ -117,19 +117,19 @@ const linkedinUrl = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
     </div>
 
     <!-- Solid Single Grid Metric Row (Full-width inside container) -->
-    <div class="mt-12 pt-8 border-t border-white/5">
+    <div class="mt-12 pt-8 border-t border-[var(--border)]">
       <div class="grid grid-cols-2 md:grid-cols-5 gap-4 w-full">
         {proofMatrix.map((item) => (
           <a
             href={item.href}
-            class="bg-[#111317]/90 border border-white/10 rounded-xl p-4 flex flex-col justify-between hover:border-white/25 transition-all group block shadow-md"
+            class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-4 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all group block shadow-md"
           >
             <div>
-              <div class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 mb-1.5 flex items-center justify-between">
+              <div class="text-[10px] font-mono uppercase tracking-wider text-[var(--text-muted)] mb-1.5 flex items-center justify-between">
                 <span>{item.tag}</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400/80"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
               </div>
-              <div class="text-2xl md:text-3xl font-mono font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+              <div class="text-2xl md:text-3xl font-mono font-bold text-[var(--text-primary)] tracking-tight group-hover:text-[var(--accent-primary)] transition-colors">
                 {item.val}
               </div>
             </div>

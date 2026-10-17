@@ -14,129 +14,129 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 >
   <main class="max-w-4xl mx-auto px-6 pt-24 pb-20 font-sans" dir="rtl">
     <!-- Breadcrumb -->
-    <div class="flex items-center gap-2 mb-6 font-mono text-xs text-neutral-400">
-      <a href={`${baseUrl}fa/`} class="hover:text-white transition-colors">خانه</a>
+    <div class="flex items-center gap-2 mb-6 font-mono text-xs text-[var(--text-muted)]">
+      <a href={`${baseUrl}fa/`} class="hover:text-[var(--text-primary)] transition-colors">خانه</a>
       <span>/</span>
-      <span class="text-neutral-200">حریم خصوصی و حاکمیت داده</span>
+      <span class="text-[var(--text-secondary)]">حریم خصوصی و حاکمیت داده</span>
       <span>/</span>
-      <a href={`${baseUrl}privacy/`} class="me-auto text-[#06b6d4] hover:text-[#38bdf8] flex items-center gap-1 transition-colors">
+      <a href={`${baseUrl}privacy/`} class="me-auto text-[var(--accent-primary)] hover:text-[var(--accent-light)] flex items-center gap-1 transition-colors">
         <span>English</span>
         <span>&larr;</span>
       </a>
     </div>
 
     <!-- Header Section -->
-    <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl ring-1 ring-white/[0.03]">
-      <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider mb-2">
-        <span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
+    <div class="bg-[var(--surface-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
+      <div class="flex items-center gap-2 font-mono text-[11px] text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+        <span class="w-2 h-2 rounded-full bg-[var(--accent-light)]"></span>
         <span>چارچوب حاکمیت داده و استانداردهای حریم خصوصی</span>
       </div>
-      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[#ededed] mb-3 tracking-tight">
+      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[var(--text-primary)] mb-3 tracking-tight">
         سیاست حفظ حریم خصوصی و امنیت داده‌ها
       </h1>
-      <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl">
+      <p class="text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed max-w-3xl">
         این سند شفاف‌ساز اصول حاکمیت داده، رویکرد ذخیره‌سازی حداقلی، سامانه‌های مانیتورینگ عملکرد و تعهدات عدم افشای اطلاعات (NDA) در سامانه‌ها، رابط‌های ماشین‌پذیر و جلسات مشاوره مهندسی آریا صراف‌زاده است.
       </p>
-      <div class="mt-4 pt-4 border-t border-white/[0.06] flex flex-wrap gap-4 font-mono text-[11px] text-[#94a3b8]">
-        <div><span>تاریخ اجرا: </span><span class="text-white">۱ ژانویه ۲۰۲۶</span></div>
-        <div><span>آخرین بازبینی امنیتی: </span><span class="text-white">۱۳ اکتبر ۲۰۲۶</span></div>
-        <div><span>حوزه قضایی و فنی: </span><span class="text-emerald-400">ایران و استاندارد‌های بین‌المللی</span></div>
+      <div class="mt-4 pt-4 border-t border-[var(--border)] flex flex-wrap gap-4 font-mono text-[11px] text-[var(--text-secondary)]">
+        <div><span>تاریخ اجرا: </span><span class="text-[var(--text-primary)]">۱ ژانویه ۲۰۲۶</span></div>
+        <div><span>آخرین بازبینی امنیتی: </span><span class="text-[var(--text-primary)]">۱۳ اکتبر ۲۰۲۶</span></div>
+        <div><span>حوزه قضایی و فنی: </span><span class="text-[var(--accent-primary)]">ایران و استاندارد‌های بین‌المللی</span></div>
       </div>
     </div>
 
     <!-- Content Sections -->
-    <div class="space-y-6 text-[#cbd5e1] text-xs sm:text-sm leading-relaxed">
+    <div class="space-y-6 text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed">
       <!-- 1. Zero-Storage Architecture -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>۰۱. معماری پایه</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">رویکرد ذخیره‌سازی صفر (Zero-Storage Data Posture)</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">رویکرد ذخیره‌سازی صفر (Zero-Storage Data Posture)</h2>
         <p class="mb-3">
-          در جایگاه معمار زیرساخت‌های بانکی و سوییچ‌های پرداخت با حجم تراکنش بالا، امنیت معماری با به حداقل رساندن داده‌های نگهداری‌شده آغاز می‌شود. این وب‌سایت و رابط‌های برنامه‌نویسی آن (<code class="text-[#38bdf8] font-mono">https://ariya-sarrafzadeh.ir</code>) بر پایه اصول پایدار بدون حافظه (Stateless) پیاده‌سازی شده‌اند:
+          در جایگاه معمار زیرساخت‌های بانکی و سوییچ‌های پرداخت با حجم تراکنش بالا، امنیت معماری با به حداقل رساندن داده‌های نگهداری‌شده آغاز می‌شود. این وب‌سایت و رابط‌های برنامه‌نویسی آن (<code class="text-[var(--accent-light)] font-mono">https://ariya-sarrafzadeh.ir</code>) بر پایه اصول پایدار بدون حافظه (Stateless) پیاده‌سازی شده‌اند:
         </p>
-        <ul class="list-disc list-inside space-y-2 text-[#94a3b8] mr-2">
-          <li><strong class="text-white">عدم وجود پایگاه‌داده از مشخصات بازدیدکنندگان:</strong> هیچ دیتابیس رابطه‌ای، اسنادی یا کلید-مقداری برای ذخیره هویت فردی، اطلاعات پرداخت یا سوابق جست‌وجوی کاربران وجود ندارد.</li>
-          <li><strong class="text-white">عدم استفاده از کوکی‌های ردیابی هویتی:</strong> این پایگاه از کوکی‌های تبلیغاتی شخص ثالث یا سامانه‌های فروش داده به نهادهای تجاری استفاده نمی‌کند.</li>
-          <li><strong class="text-white">سرویس‌دهی لایه Edge بدون سشن پایدار:</strong> کلیه نقاط پایانی API تحت <code class="text-[#38bdf8] font-mono">/api/v1/*</code> به‌صورت استاتیک و رمزنگاری‌شده با خاصیت عدم تغییرپذیری (Idempotent) پاسخ داده می‌شوند.</li>
+        <ul class="list-disc list-inside space-y-2 text-[var(--text-secondary)] mr-2">
+          <li><strong class="text-[var(--text-primary)]">عدم وجود پایگاه‌داده از مشخصات بازدیدکنندگان:</strong> هیچ دیتابیس رابطه‌ای، اسنادی یا کلید-مقداری برای ذخیره هویت فردی، اطلاعات پرداخت یا سوابق جست‌وجوی کاربران وجود ندارد.</li>
+          <li><strong class="text-[var(--text-primary)]">عدم استفاده از کوکی‌های ردیابی هویتی:</strong> این پایگاه از کوکی‌های تبلیغاتی شخص ثالث یا سامانه‌های فروش داده به نهادهای تجاری استفاده نمی‌کند.</li>
+          <li><strong class="text-[var(--text-primary)]">سرویس‌دهی لایه Edge بدون سشن پایدار:</strong> کلیه نقاط پایانی API تحت <code class="text-[var(--accent-light)] font-mono">/api/v1/*</code> به‌صورت استاتیک و رمزنگاری‌شده با خاصیت عدم تغییرپذیری (Idempotent) پاسخ داده می‌شوند.</li>
         </ul>
       </section>
 
       <!-- 2. Telemetry and Analytics -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>۰۲. تلمتری و گزارش‌گیری لبه شبکه</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">شفافیت ابزارهای تحلیل عملکرد و مانیتورینگ</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">شفافیت ابزارهای تحلیل عملکرد و مانیتورینگ</h2>
         <p class="mb-3">
           به‌منظور تضمین پایداری سیستم، بهینه‌سازی کش در لایه Edge شبکه و دفع حملات منع سرویس توزیع‌شده (DDoS)، تلمتری‌های فنی زیر به‌صورت تجمیعی گردآوری می‌شوند:
         </p>
-        <div class="space-y-3 text-[#94a3b8]">
-          <div class="p-3 bg-white/[0.02] border border-white/5 rounded-lg">
-            <h3 class="text-white font-semibold text-xs mb-1">معیارهای لبه شبکه کلودفلر (Cloudflare Edge Metrics)</h3>
+        <div class="space-y-3 text-[var(--text-secondary)]">
+          <div class="p-3 bg-[var(--surface-sunken)] border border-[var(--border)] rounded-lg">
+            <h3 class="text-[var(--text-primary)] font-semibold text-xs mb-1">معیارهای لبه شبکه کلودفلر (Cloudflare Edge Metrics)</h3>
             <p>ترافیک ورودی جهت تحلیل ریسک، غربالگری ربات‌های مخرب و مدیریت نشست‌های TLS بررسی می‌شود. لاگ‌ها شامل متد درخواست، کد وضعیت، زمان پاسخ‌دهی و موقعیت مکانی سرور لبه شبکه هستند.</p>
           </div>
-          <div class="p-3 bg-white/[0.02] border border-white/5 rounded-lg">
-            <h3 class="text-white font-semibold text-xs mb-1">گوگل آنالیتیکس ۴ (Google Analytics 4)</h3>
-            <p>تحلیل روند بازدیدها با شناسه <code class="text-white font-mono">G-JDKSF0HD9Q</code> صرفاً برای ارزیابی حجم ترافیک مقالات تخصصی ثبت شده و ناشناس‌سازی آدرس‌های IP به‌صورت پیش‌فرض اعمال می‌شود.</p>
+          <div class="p-3 bg-[var(--surface-sunken)] border border-[var(--border)] rounded-lg">
+            <h3 class="text-[var(--text-primary)] font-semibold text-xs mb-1">گوگل آنالیتیکس ۴ (Google Analytics 4)</h3>
+            <p>تحلیل روند بازدیدها با شناسه <code class="text-[var(--text-primary)] font-mono">G-JDKSF0HD9Q</code> صرفاً برای ارزیابی حجم ترافیک مقالات تخصصی ثبت شده و ناشناس‌سازی آدرس‌های IP به‌صورت پیش‌فرض اعمال می‌شود.</p>
           </div>
-          <div class="p-3 bg-white/[0.02] border border-white/5 rounded-lg">
-            <h3 class="text-white font-semibold text-xs mb-1">مایکروسافت کلریتی (Microsoft Clarity)</h3>
-            <p>عیب‌یابی رابط کاربری با برچسب <code class="text-white font-mono">yubzf3jxu3</code> جهت بررسی باگ‌های رندرینگ اجرا می‌شود. ورودی‌های تایپ‌شده در فرم‌ها قبل از ارسال در سطح کلاینت ماسک می‌شوند.</p>
+          <div class="p-3 bg-[var(--surface-sunken)] border border-[var(--border)] rounded-lg">
+            <h3 class="text-[var(--text-primary)] font-semibold text-xs mb-1">مایکروسافت کلریتی (Microsoft Clarity)</h3>
+            <p>عیب‌یابی رابط کاربری با برچسب <code class="text-[var(--text-primary)] font-mono">yubzf3jxu3</code> جهت بررسی باگ‌های رندرینگ اجرا می‌شود. ورودی‌های تایپ‌شده در فرم‌ها قبل از ارسال در سطح کلاینت ماسک می‌شوند.</p>
           </div>
         </div>
       </section>
 
       <!-- 3. Client NDA & Confidentiality -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>۰۳. پروژه‌های سازمانی و عدم افشا</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">محرمانگی سازمانی و تعهدات عدم افشای اطلاعات (NDA)</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">محرمانگی سازمانی و تعهدات عدم افشای اطلاعات (NDA)</h2>
         <p class="mb-3">
           در تمام تعاملات مشاوره، ممیزی‌های معماری و پروژه‌های هدایت مهندسی، داده‌های حساس سامانه‌های تجاری کارفرمایان تحت استانداردهای قطعی NDA حفاظت می‌شوند:
         </p>
-        <ul class="list-disc list-inside space-y-2 text-[#94a3b8] mr-2">
-          <li><strong class="text-white">جداسازی کامل مخازن کد:</strong> کدهای انحصاری سوییچ‌های مالی، لاگ‌های تسویه حسابداری، کلیدهای شاپرکی و ماژول‌های سخت‌افزاری HSM هرگز در دستگاه‌های عمومی یا فضای ابری ناامن ذخیره نمی‌شوند.</li>
-          <li><strong class="text-white">توکنایز کردن مستندات عمومی:</strong> کلیه وایت‌پیپرها و سناریوهای بحران صرفاً الگوهای کلان مهندسی و سناریوهای انتزاعی بازیابی را شرح داده و عاری از هرگونه اطلاعات محرمانه یا نام‌های تجاری تحت قرارداد هستند.</li>
-          <li><strong class="text-white">حریم پیام‌ها و جلسات:</strong> اطلاعات ارسالی در قالب رزرو جلسه در Cal.com یا ایمیل مستقیم، صرفاً توسط آریا صراف‌زاده بررسی شده و هرگز در اختیار اشخاص ثالث قرار نمی‌گیرد.</li>
+        <ul class="list-disc list-inside space-y-2 text-[var(--text-secondary)] mr-2">
+          <li><strong class="text-[var(--text-primary)]">جداسازی کامل مخازن کد:</strong> کدهای انحصاری سوییچ‌های مالی، لاگ‌های تسویه حسابداری، کلیدهای شاپرکی و ماژول‌های سخت‌افزاری HSM هرگز در دستگاه‌های عمومی یا فضای ابری ناامن ذخیره نمی‌شوند.</li>
+          <li><strong class="text-[var(--text-primary)]">توکنایز کردن مستندات عمومی:</strong> کلیه وایت‌پیپرها و سناریوهای بحران صرفاً الگوهای کلان مهندسی و سناریوهای انتزاعی بازیابی را شرح داده و عاری از هرگونه اطلاعات محرمانه یا نام‌های تجاری تحت قرارداد هستند.</li>
+          <li><strong class="text-[var(--text-primary)]">حریم پیام‌ها و جلسات:</strong> اطلاعات ارسالی در قالب رزرو جلسه در Cal.com یا ایمیل مستقیم، صرفاً توسط آریا صراف‌زاده بررسی شده و هرگز در اختیار اشخاص ثالث قرار نمی‌گیرد.</li>
         </ul>
       </section>
 
       <!-- 4. Autonomous Agents & Machine Access -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>۰۴. پروتکل‌های ماشین و ایجنت‌های هوش مصنوعی</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">حاکمیت دسترسی ایجنت‌های خودمختار</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">حاکمیت دسترسی ایجنت‌های خودمختار</h2>
         <p class="mb-3">
-          این درگاه به‌صورت فعال از دسترسی خواندنی ربات‌ها و ایجنت‌های هوشمند معتبر از طریق پروتکل‌های استاندارد مانند <code class="text-[#38bdf8] font-mono">/llms.txt</code>، <code class="text-[#38bdf8] font-mono">/openapi.json</code> و <code class="text-[#38bdf8] font-mono">/api/tools.json</code> پشتیبانی می‌کند.
+          این درگاه به‌صورت فعال از دسترسی خواندنی ربات‌ها و ایجنت‌های هوشمند معتبر از طریق پروتکل‌های استاندارد مانند <code class="text-[var(--accent-light)] font-mono">/llms.txt</code>، <code class="text-[var(--accent-light)] font-mono">/openapi.json</code> و <code class="text-[var(--accent-light)] font-mono">/api/tools.json</code> پشتیبانی می‌کند.
         </p>
-        <p class="text-[#94a3b8]">
+        <p class="text-[var(--text-secondary)]">
           فراخوانی این نقاط پایانی هویت یا اطلاعات کاربری گردانندگان ایجنت را ذخیره نمی‌کند و هدرهای استاندارد سقف مصرف (RateLimit) به‌صورت غیرمخرب برگردانده می‌شوند.
         </p>
       </section>
 
       <!-- 5. Contact & Inquiries -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>۰۵. پاسخگویی و ارتباط مستقیم</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">درخواست‌های بازبینی و ارتباط امن</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">درخواست‌های بازبینی و ارتباط امن</h2>
         <p class="mb-4">
           برای استعلام دقیق‌تر در خصوص ثبت رویدادها یا هماهنگی ممیزی‌های امنیتی، کانال‌های زیر در دسترس هستند:
         </p>
         <div class="flex flex-col sm:flex-row gap-3 font-mono text-xs">
           <a
             href="mailto:ariasg2002@gmail.com"
-            class="px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold transition-all inline-flex items-center gap-2"
+            class="px-4 py-2.5 rounded-lg bg-[var(--surface-sunken)] hover:bg-[var(--accent-primary)] hover:text-white border border-[var(--border)] text-[var(--text-primary)] font-semibold transition-all inline-flex items-center gap-2"
           >
             <span>ایمیل مستقیم: ariasg2002@gmail.com</span>
             <span>&larr;</span>
           </a>
           <a
             href={`${baseUrl}fa/contact/`}
-            class="px-4 py-2.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/20 text-[#cbd5e1] hover:text-white transition-all inline-flex items-center gap-2"
+            class="px-4 py-2.5 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] hover:border-[var(--accent-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all inline-flex items-center gap-2"
           >
             <span>فرم رسمی ارتباط و رزرو جلسه</span>
             <span>&larr;</span>

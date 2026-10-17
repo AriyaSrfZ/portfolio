@@ -90,7 +90,7 @@ The following synthesis aggregates verified industry benchmarks across the plane
 
 A frequent point of confusion in industry literature is conflating macroeconomic mobile penetration with enterprise message delivery. 
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/global-messaging-taxonomy.svg" alt="Global Business Messaging Taxonomy" class="w-full h-auto" loading="lazy" />
 </div>
 
@@ -104,7 +104,7 @@ Furthermore, consumer communication has almost entirely migrated to IP-based OTT
 
 Delivering a programmatic text message from an enterprise cloud server to a physical smartphone requires crossing multiple administrative domains, protocols, and billing interfaces.
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/global-a2p-value-chain.svg" alt="Global A2P SMS Architecture and Value Chain" class="w-full h-auto" loading="lazy" />
 </div>
 
@@ -167,7 +167,7 @@ The single greatest financial threat to enterprise SMS budgets today is **Artifi
 
 The enterprise messaging landscape is transitioning from a mono-protocol SMS environment into a rich, multi-channel orchestration matrix.
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/global-messaging-channel-matrix.svg" alt="Business Messaging Channels Architectural Matrix" class="w-full h-auto" loading="lazy" />
 </div>
 
@@ -197,7 +197,7 @@ With Apple’s support for RCS Universal Profile 2.4 starting in iOS 18, Rich Co
 
 No marketing claim in corporate communications has been repeated more persistently, or with less scientific basis, than the assertion that **"98% of SMS messages are opened and read within three minutes."**
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/sms-measurement-framework-en.svg" alt="Telemetry and Attribution: Protocol DLR vs Cognitive Attention" class="w-full h-auto" loading="lazy" />
 </div>
 

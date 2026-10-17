@@ -30,7 +30,7 @@ Modern payment platforms decouple execution into transient States and immutable 
 > **EXECUTION INVARIANT:**
 > Edge gateways must verify request idempotency via atomic distributed locks before dispatching transaction payloads.
 
-<div class="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[#0b1120]/90 p-3 sm:p-5 shadow-2xl" dir="ltr">
+<div class="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[var(--surface-card)] border border-[var(--border)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
     src="/diagrams/double-entry-ledger-schematic.svg"
     alt="Double-Entry Ledger Architecture Schematic"
@@ -88,7 +88,7 @@ High-throughput payment gateways allocate roundtrip network overhead across stri
 - **Core Switch:** ISO packet dispatches over APN / VPN lines to card host.
 - **Settlement Ledger:** Response unmarshals, updating mutable state and appending debits/credits to immutable double-entry books.
 
-<div class="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[#0b1120]/90 p-3 sm:p-5 shadow-2xl" dir="ltr">
+<div class="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[var(--surface-card)] border border-[var(--border)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
     src="/diagrams/payment-switch-iso8583-pipeline.svg"
     alt="Payment Switch Topology: ISO 8583 Host-to-Host Pipeline"

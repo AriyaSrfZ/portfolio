@@ -1,261 +1,224 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-obsidian: #090a0c;
-  --color-basalt: #111317;
-  --color-graphite: #101114;
-  --color-bone: #ededed;
-  --color-titanium: #94a3b8;
-  --color-copper: #d97706;
-  --color-emerald-nominal: #10b981;
+  /* Core Canonical Palette: Ariya Sarrafzadeh Brand System */
+  --color-carbon: #202725;
+  --color-basalt: #303936;
+  --color-deep-carbon: #171C1A;
+  --color-paper: #E9E5DC;
+  --color-porcelain: #F3F0E8;
+  --color-patina: #527C78;
+  --color-patina-light: #8FB4AA;
+  --color-ochre: #B39A77;
+  --color-neutral-border: #D5D0C6;
 
-  --color-bg: #090a0c;
-  --color-bg-elevated: #111317;
-  --color-text: #ededed;
-  --color-text-muted: #94a3b8;
+  /* Backward Compatibility Aliases */
+  --color-obsidian: #202725;
+  --color-graphite: #292F2D;
+  --color-bone: #F0EEE7;
+  --color-titanium: #B5BDB6;
+  --color-copper: #527C78;
+  --color-emerald-nominal: #8FB4AA;
 
-  --font-mono-fintech: "IBM Plex Mono", monospace;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  --color-bg: var(--canvas);
+  --color-bg-elevated: var(--surface);
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-secondary);
+
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-mono-fintech: 'IBM Plex Mono', monospace;
 }
 
-:root {
-  /* Default: Apple Space Gray & Titanium (macOS Sequoia) */
-  --system-bg: #0e1117;
-  --system-grouped-bg: #161b24;
-  --system-card-bg: rgba(255, 255, 255, 0.055);
-  --system-card-border: rgba(255, 255, 255, 0.10);
-  --system-card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
-  --system-label: #ffffff;
-  --system-secondary-label: rgba(235, 235, 245, 0.70);
-  --system-tertiary-label: rgba(235, 235, 245, 0.40);
-  --glass-nav-bg: rgba(18, 22, 30, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.13);
-  --glass-blur: 26px;
-  --apple-accent: #0A84FF;
-  --apple-cyan: #32ADE6;
-  --apple-green: #30D158;
-  --apple-amber: #D97706;
+/* =========================================================================
+   CANONICAL SEMANTIC DESIGN TOKENS
+   ========================================================================= */
+
+:root,
+html.dark,
+html[data-appearance="dark"],
+html:not([data-appearance="light"]) {
+  /* Dark Theme Tokens (Warm Charcoal & Green-Gray) */
+  --canvas: #202725;
+  --surface: #292F2D;
+  --surface-elevated: #343C38;
+  --text-primary: #F0EEE7;
+  --text-secondary: #B5BDB6;
+  --border: #46504B;
+  --accent-primary: #8FB4AA;
+  --accent-hover: #A6C8BE;
+  --focus-indicator: #B7D5CC;
+  --code-surface: #171C1A;
+  --card-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.45);
+
+  /* Legacy Bridge Tokens */
+  --system-bg: var(--canvas);
+  --system-grouped-bg: var(--surface);
+  --system-card-bg: rgba(41, 47, 45, 0.85);
+  --system-card-border: var(--border);
+  --system-card-shadow: var(--card-shadow);
+  --system-label: var(--text-primary);
+  --system-secondary-label: var(--text-secondary);
+  --system-tertiary-label: rgba(181, 189, 182, 0.60);
+  --glass-nav-bg: rgba(32, 39, 37, 0.88);
+  --glass-border: var(--border);
+  --glass-blur: 16px;
+  --apple-accent: var(--accent-primary);
+  --apple-cyan: var(--accent-primary);
+  --apple-green: var(--accent-primary);
+  --apple-amber: #B39A77;
 }
 
-/* Dark Mode Flavor: Space Gray (Default) */
-html[data-dark-flavor="spacegray"], html:not([data-dark-flavor]):not([data-appearance="light"]) {
-  --system-bg: #0e1117;
-  --system-grouped-bg: #161b24;
-  --system-card-bg: rgba(255, 255, 255, 0.055);
-  --system-card-border: rgba(255, 255, 255, 0.10);
-  --glass-nav-bg: rgba(18, 22, 30, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.13);
+html[data-appearance="light"],
+html.light {
+  /* Light Theme Tokens (Warm Off-White & Technical Journal Paper) */
+  --canvas: #F3F0E8;
+  --surface: #E9E5DC;
+  --surface-elevated: #FFFFFF;
+  --text-primary: #202725;
+  --text-secondary: #535D57;
+  --border: #D5D0C6;
+  --accent-primary: #38645D;
+  --accent-hover: #294F49;
+  --focus-indicator: #38645D;
+  --code-surface: #E5E9E3;
+  --card-shadow: 0 8px 24px -6px rgba(32, 39, 37, 0.08);
+
+  /* Legacy Bridge Tokens */
+  --system-bg: var(--canvas);
+  --system-grouped-bg: var(--surface);
+  --system-card-bg: rgba(233, 229, 220, 0.88);
+  --system-card-border: var(--border);
+  --system-card-shadow: var(--card-shadow);
+  --system-label: var(--text-primary);
+  --system-secondary-label: var(--text-secondary);
+  --system-tertiary-label: rgba(83, 93, 87, 0.65);
+  --glass-nav-bg: rgba(243, 240, 232, 0.90);
+  --glass-border: var(--border);
+  --glass-blur: 16px;
+  --apple-accent: var(--accent-primary);
+  --apple-cyan: var(--accent-primary);
+  --apple-green: var(--accent-primary);
+  --apple-amber: #B39A77;
 }
 
-/* Dark Mode Flavor: OLED Pitch Black */
-html[data-dark-flavor="oled"] {
-  --system-bg: #000000;
-  --system-grouped-bg: #0a0a0c;
-  --system-card-bg: rgba(255, 255, 255, 0.035);
-  --system-card-border: rgba(255, 255, 255, 0.14);
-  --glass-nav-bg: rgba(0, 0, 0, 0.88);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --apple-green: #00C087;
-}
-
-/* Dark Mode Flavor: Midnight Navy */
-html[data-dark-flavor="midnight"] {
-  --system-bg: #07090e;
-  --system-grouped-bg: #0f131c;
-  --system-card-bg: rgba(255, 255, 255, 0.045);
-  --system-card-border: rgba(255, 255, 255, 0.11);
-  --glass-nav-bg: rgba(11, 14, 22, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.14);
-}
-
-/* Appearance Mode: Light (Apple Frost Silver) */
-html[data-appearance="light"] {
-  --system-bg: #f0f2f5;
-  --system-grouped-bg: #ffffff;
-  --system-card-bg: rgba(255, 255, 255, 0.82);
-  --system-card-border: rgba(0, 0, 0, 0.08);
-  --system-card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
-  --system-label: #1d1d1f;
-  --system-secondary-label: rgba(60, 60, 67, 0.75);
-  --system-tertiary-label: rgba(60, 60, 67, 0.45);
-  --glass-nav-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.10);
-  --apple-accent: #0071e3;
-  --apple-cyan: #0077b6;
-  --apple-green: #248A3D;
-  --apple-amber: #B45309;
-}
-
-/* Glass Diversity 1: Liquid Glass (Default - iOS 18 Dynamic Translucent) */
-html[data-glass-intensity="liquid"],
-html:not([data-glass-intensity]) {
-  --glass-blur: 26px;
-  --glass-nav-bg: rgba(18, 22, 30, 0.72);
-  --system-card-bg: rgba(255, 255, 255, 0.055);
-  --system-card-border: rgba(255, 255, 255, 0.12);
-  --system-card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
-}
-
-/* Glass Diversity 2: Crystal Clear (High Transparency 85% See-Through) */
-html[data-glass-intensity="clear"] {
-  --glass-blur: 14px;
-  --glass-nav-bg: rgba(18, 22, 30, 0.38);
-  --system-card-bg: rgba(255, 255, 255, 0.025);
-  --system-card-border: rgba(255, 255, 255, 0.16);
-  --system-card-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.40);
-}
-
-/* Glass Diversity 3: Frosted Satin (Deep Velvet Blur 38px) */
-html[data-glass-intensity="frosted"] {
-  --glass-blur: 38px;
-  --glass-nav-bg: rgba(18, 22, 30, 0.88);
-  --system-card-bg: rgba(255, 255, 255, 0.085);
-  --system-card-border: rgba(255, 255, 255, 0.15);
-  --system-card-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.70);
-}
-
-/* Glass Diversity 4: Solid Metal / Titanium (Zero Blur, Opaque) */
-html[data-glass-intensity="reduced"] {
-  --glass-blur: 0px;
-  --glass-nav-bg: var(--system-bg);
-  --system-card-bg: var(--system-grouped-bg);
-  --system-card-border: rgba(255, 255, 255, 0.10);
-  --system-card-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.60);
-}
-
-/* Light Mode Glass Diversity Adapters */
-html[data-appearance="light"][data-glass-intensity="liquid"] {
-  --glass-nav-bg: rgba(255, 255, 255, 0.82);
-  --system-card-bg: rgba(255, 255, 255, 0.82);
-  --system-card-border: rgba(0, 0, 0, 0.08);
-}
-
-html[data-appearance="light"][data-glass-intensity="clear"] {
-  --glass-nav-bg: rgba(255, 255, 255, 0.55);
-  --system-card-bg: rgba(255, 255, 255, 0.55);
-  --system-card-border: rgba(0, 0, 0, 0.12);
-}
-
-html[data-appearance="light"][data-glass-intensity="frosted"] {
-  --glass-nav-bg: rgba(255, 255, 255, 0.94);
-  --system-card-bg: rgba(255, 255, 255, 0.94);
-  --system-card-border: rgba(0, 0, 0, 0.06);
-}
-
-html[data-appearance="light"][data-glass-intensity="reduced"] {
-  --glass-nav-bg: #f0f2f5;
-  --system-card-bg: #ffffff;
-  --system-card-border: rgba(0, 0, 0, 0.10);
-}
-
+/* Base Document Setup */
 html {
   scroll-behavior: smooth;
-  background-color: var(--system-bg, #0e1117);
-  color: var(--system-label, #ffffff);
+  background-color: var(--canvas);
+  color: var(--text-primary);
 }
 
 body {
-  background-color: var(--system-bg, #0e1117);
-  color: var(--system-label, #ffffff);
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--canvas);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
   margin: 0;
-  transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  transition: background-color 0.35s ease, color 0.25s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Elimination of Artificial Full-Viewport Gaps & Liquid Glass Adoption */
+/* Semantic Focus Indicator for Accessibility (WCAG 2.2 AA) */
+:focus-visible {
+  outline: 2px solid var(--focus-indicator);
+  outline-offset: 2px;
+}
+
+/* Structured Section & Card Foundations */
 #overview,
 section[id] {
-  min-height: auto !important;
-  background-color: var(--system-card-bg) !important;
-  backdrop-filter: blur(var(--glass-blur, 24px));
-  -webkit-backdrop-filter: blur(var(--glass-blur, 24px));
-  border-color: var(--system-card-border) !important;
-  box-shadow: var(--system-card-shadow), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12) !important;
+  min-height: auto;
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--card-shadow) !important;
+  border-radius: 1rem;
 }
 
-html[data-appearance="light"] section[id] {
-  box-shadow: var(--system-card-shadow), inset 0 1px 1px 0 rgba(255, 255, 255, 0.80) !important;
-}
-
-/* Apple Liquid Glass Material Specification */
+/* Restrained Architectural Header & Card Styles */
 .liquid-glass-navbar {
   background: var(--glass-nav-bg);
-  backdrop-filter: blur(var(--glass-blur, 26px)) saturate(200%);
-  -webkit-backdrop-filter: blur(var(--glass-blur, 26px)) saturate(200%);
+  backdrop-filter: blur(var(--glass-blur, 16px));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 16px));
   border: 1px solid var(--glass-border);
-  box-shadow: 
-    0 12px 36px 0 rgba(0, 0, 0, 0.38),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.12);
 }
 
 .liquid-glass-card {
-  background: var(--system-card-bg);
-  backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
-  -webkit-backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
-  border: 1px solid var(--system-card-border);
-  box-shadow: 
-    var(--system-card-shadow),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .liquid-glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 
-    0 20px 45px -10px rgba(0, 0, 0, 0.55),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.26);
+  border-color: var(--accent-primary);
 }
 
 .liquid-glass-pill {
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow: 
-    0 2px 8px 0 rgba(0, 0, 0, 0.25),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.32);
+  border: 1px solid var(--border);
+  background: var(--surface-elevated);
 }
 
 .liquid-glass-control {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  box-shadow: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--code-surface);
+  border: 1px solid var(--border);
 }
 
-/* Light Mode Complete Attire Inversion (Guarantees zero white-on-white text) */
+.rugged-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  border-radius: 1rem;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.rugged-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface-elevated);
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* Light Mode Contrast Inversion Protection */
 html[data-appearance="light"] .liquid-glass-card,
 html[data-appearance="light"] .liquid-glass-navbar,
 html[data-appearance="light"] .liquid-glass-control,
 html[data-appearance="light"] .rugged-panel {
-  background-color: var(--system-card-bg);
-  border-color: var(--system-card-border);
-  color: var(--system-label);
+  background-color: var(--surface);
+  border-color: var(--border);
+  color: var(--text-primary);
 }
 
 html[data-appearance="light"] .text-white {
-  color: #1d1d1f !important;
+  color: #202725 !important;
 }
 
 html[data-appearance="light"] .text-neutral-200,
 html[data-appearance="light"] .text-neutral-300 {
-  color: rgba(60, 60, 67, 0.85) !important;
+  color: #38423E !important;
 }
 
 html[data-appearance="light"] .text-neutral-400,
 html[data-appearance="light"] .text-neutral-500 {
-  color: rgba(60, 60, 67, 0.65) !important;
+  color: #535D57 !important;
 }
 
 html[data-appearance="light"] .border-white\/5,
 html[data-appearance="light"] .border-white\/10,
 html[data-appearance="light"] .border-white\/15,
 html[data-appearance="light"] .border-white\/20 {
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  border-color: #D5D0C6 !important;
 }
 
 html[data-appearance="light"] .bg-white\/\[0\.04\],
@@ -263,157 +226,89 @@ html[data-appearance="light"] .bg-white\/\[0\.05\],
 html[data-appearance="light"] .bg-white\/\[0\.06\],
 html[data-appearance="light"] .bg-white\/10,
 html[data-appearance="light"] .bg-white\/15 {
-  background-color: rgba(0, 0, 0, 0.04) !important;
+  background-color: #E0DDD4 !important;
 }
 
-html[data-appearance="light"] .bg-\[\#0f1217\]\/95,
 html[data-appearance="light"] .bg-\[\#0f1217\]\/90,
+html[data-appearance="light"] .bg-\[\#0f1217\]\/95,
 html[data-appearance="light"] .bg-\[\#13161c\],
-html[data-appearance="light"] .bg-\[\#111317\] {
-  background-color: rgba(255, 255, 255, 0.82) !important;
-  color: #1d1d1f !important;
+html[data-appearance="light"] .bg-\[\#111317\],
+html[data-appearance="light"] .bg-\[\#090a0c\] {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
 }
 
 html[data-appearance="light"] .bg-black\/20,
 html[data-appearance="light"] .bg-black\/40 {
-  background-color: rgba(0, 0, 0, 0.06) !important;
+  background-color: rgba(32, 39, 37, 0.06) !important;
 }
 
 html[data-appearance="light"] #velaris-container {
-  opacity: 0.16;
-  filter: invert(1) hue-rotate(185deg) brightness(1.15);
+  opacity: 0.25;
+  filter: invert(1) hue-rotate(185deg) brightness(1.05);
 }
 
-/* Background Atmospheric Layers */
+/* Subtle Architectural Grid Pattern (Non-Cyberpunk, Restrained) */
 .grid-blueprint-16 {
-  background-size: 16px 16px;
+  background-size: 20px 20px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(143, 180, 170, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(143, 180, 170, 0.04) 1px, transparent 1px);
 }
 
-.copper-edge-reflection {
-  background: radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.05) 0%, transparent 60%);
+html[data-appearance="light"] .grid-blueprint-16 {
+  background-image: 
+    linear-gradient(to right, rgba(56, 100, 93, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 100, 93, 0.06) 1px, transparent 1px);
 }
 
-.slate-telemetry-gradient {
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(148, 163, 184, 0.06) 0%, transparent 70%);
+/* Code Surfaces */
+pre.astro-code,
+pre[class*="language-"],
+code {
+  font-family: 'IBM Plex Mono', monospace !important;
 }
 
-.rugged-hatch {
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.015) 0px,
-    rgba(255, 255, 255, 0.015) 1px,
-    transparent 1px,
-    transparent 14px
-  );
+pre.astro-code {
+  background-color: var(--code-surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0.5rem;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  direction: ltr !important;
 }
 
-.rugged-panel {
-  background-color: var(--system-card-bg);
-  backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
-  -webkit-backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
-  border: 1px solid var(--system-card-border);
-  box-shadow: var(--system-card-shadow), inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
-  border-radius: 1.25rem;
-  position: relative;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.rugged-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background-color: rgba(255, 255, 255, 0.04);
-  color: var(--system-label, #ffffff);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  padding: 4px 10px;
-  border-radius: 9999px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Operational Animation Keyframes */
-@keyframes packet-flow {
-  0% {
-    stroke-dashoffset: 24;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes signal-pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.25;
-  }
-}
-
-@keyframes radar-sweep {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-packet {
-  stroke-dasharray: 6 6;
-  animation: packet-flow 1.2s linear infinite;
-}
-
-.animate-signal {
-  animation: signal-pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.radar-spinner {
-  transform-origin: center;
-  animation: radar-sweep 8s linear infinite;
-}
-
-.terminal-scanlines {
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.25) 50%
-  ), linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 0.03),
-    rgba(0, 255, 0, 0.01),
-    rgba(0, 0, 255, 0.03)
-  );
-  background-size: 100% 2px, 3px 100%;
-}
-
+/* Persian & RTL Typography Rules */
 :lang(fa), [dir="rtl"], html[lang="fa"] {
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif !important;
 }
-:lang(fa) h1, :lang(fa) h2, :lang(fa) h3, :lang(fa) h4, :lang(fa) h5, :lang(fa) h6, :lang(fa) a, :lang(fa) p, :lang(fa) span, :lang(fa) div {
+
+:lang(fa) h1, :lang(fa) h2, :lang(fa) h3, :lang(fa) h4, :lang(fa) h5, :lang(fa) h6,
+:lang(fa) a, :lang(fa) p, :lang(fa) span, :lang(fa) div {
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif !important;
 }
 
-/* RTL Hardening & Typography Overrides */
 html[lang="fa"] *:not(code):not(pre), [dir="rtl"] *:not(code):not(pre) {
-    letter-spacing: normal !important;
+  letter-spacing: normal !important;
 }
+
 html[lang="fa"] article table, html[lang="fa"] .markdown-body table {
-    direction: ltr !important;
-    text-align: left !important;
-    width: 100% !important;
+  direction: ltr !important;
+  text-align: left !important;
+  width: 100% !important;
 }
+
 html[lang="fa"] article th, html[lang="fa"] article td {
-    text-align: left !important;
-    direction: ltr !important;
+  text-align: left !important;
+  direction: ltr !important;
 }
-pre.astro-code, pre[class*="language-"] {
-    max-width: 100% !important;
-    overflow-x: auto !important;
-    direction: ltr !important;
+
+/* Respect Prefers-Reduced-Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -31,7 +31,7 @@ lang: "fa"
 > **قاعده ثابت اجرا:**
 > درگاه لبه باید پیش از ارسال پیام تراکنش، Idempotency درخواست را با قفل توزیع‌شده اتمیک بررسی کند.
 
-<div class="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[#0b1120]/90 p-3 sm:p-5 shadow-2xl" dir="ltr">
+<div class="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[var(--surface-card)] border border-[var(--border)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
     src="/diagrams/double-entry-ledger-schematic.svg"
     alt="نقشه شماتیک دفتر کل دوطرفه و تخصیص دومرحله‌ای موجودی"
@@ -89,7 +89,7 @@ lang: "fa"
 - **سوئیچ اصلی:** بسته ISO از خطوط APN / VPN به میزبان کارت می‌رسد.
 - **دفتر کل تسویه:** سامانه پاسخ را از قالب انتقال خارج می‌کند، وضعیت تغییرپذیر را به‌روز می‌کند و ثبت بدهکار و بستانکار را به دفتر کل دوطرفه تغییرناپذیر می‌افزاید.
 
-<div class="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[#0b1120]/90 p-3 sm:p-5 shadow-2xl" dir="ltr">
+<div class="my-8 overflow-hidden rounded-2xl border border-white/10 bg-[var(--surface-card)] border border-[var(--border)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
     src="/diagrams/payment-switch-iso8583-pipeline.svg"
     alt="توپولوژی سوییچ پرداخت: خط لوله تبادل پیام‌های ISO 8583"

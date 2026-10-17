@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Carbon Canvas & Architectural Structure -->
+  <rect width="1200" height="630" fill="#202725" />
+  
+  <!-- Subtle Blueprint Grid (40px rhythm) -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#303936" stroke-width="0.75" stroke-opacity="0.6" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" />
+  
+  <!-- Outer Technical Border Frame -->
+  <rect x="40" y="40" width="1120" height="550" rx="16" stroke="#46504B" stroke-width="1.5" fill="none" />
+  <rect x="44" y="44" width="1112" height="542" rx="12" stroke="#303936" stroke-width="1" fill="none" />
+
+  <!-- Monogram Mark -->
+  <g transform="translate(100, 100) scale(1.1)">
+    <path d="M28 96 L52 24 C53.5 19 58.5 19 60 24 L84 96" stroke="#F0EEE7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M38 68 L74 68" stroke="#F0EEE7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M84 36 C80 26 68 22 56 26 C44 30 42 42 50 49 C58 56 76 58 76 74 C76 86 64 94 48 94 C36 94 28 88 26 78" stroke="#8FB4AA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Brand Badges -->
+  <g transform="translate(260, 120)">
+    <rect width="280" height="34" rx="17" fill="#303936" stroke="#46504B" stroke-width="1" />
+    <circle cx="18" cy="17" r="4.5" fill="#8FB4AA" />
+    <text x="32" y="22" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" fill="#F0EEE7" letter-spacing="1.5">SYSTEMS THINKER · THE ARCHETYPE</text>
+  </g>
+
+  <!-- Name & Positioning Hierarchy -->
+  <text x="100" y="300" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="56" font-weight="700" fill="#F0EEE7" letter-spacing="-0.5">Ariya Sarrafzadeh</text>
+  <text x="100" y="356" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="28" font-weight="500" fill="#8FB4AA">Systems that hold under pressure.</text>
+  
+  <text x="100" y="420" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="19" font-weight="400" fill="#B5BDB6">
+    <tspan x="100" dy="0">Architecture, engineering, and product thinking for systems where correctness,</tspan>
+    <tspan x="100" dy="28">resilience, and real-world outcomes matter.</tspan>
+  </text>
+
+  <!-- Technical Domain Anchors -->
+  <g transform="translate(100, 498)">
+    <rect x="0" y="0" width="160" height="32" rx="6" fill="#171C1A" stroke="#46504B" stroke-width="1" />
+    <text x="80" y="20" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="500" fill="#8FB4AA" text-anchor="middle">ACID LEDGERS</text>
+
+    <rect x="176" y="0" width="160" height="32" rx="6" fill="#171C1A" stroke="#46504B" stroke-width="1" />
+    <text x="256" y="20" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="500" fill="#8FB4AA" text-anchor="middle">ISO 8583 SWITCH</text>
+
+    <rect x="352" y="0" width="160" height="32" rx="6" fill="#171C1A" stroke="#46504B" stroke-width="1" />
+    <text x="432" y="20" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="500" fill="#8FB4AA" text-anchor="middle">SMPP 3.4 TELECOM</text>
+
+    <rect x="528" y="0" width="160" height="32" rx="6" fill="#171C1A" stroke="#46504B" stroke-width="1" />
+    <text x="608" y="20" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="500" fill="#8FB4AA" text-anchor="middle">eKYC &amp; FRAUD GRAPH</text>
+
+    <rect x="704" y="0" width="180" height="32" rx="6" fill="#171C1A" stroke="#46504B" stroke-width="1" />
+    <text x="794" y="20" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="500" fill="#8FB4AA" text-anchor="middle">TECHNICAL ADVISORY</text>
+  </g>
+
+  <!-- URL Verification Stamp -->
+  <text x="1100" y="555" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="500" fill="#8FB4AA" text-anchor="end">ariya-sarrafzadeh.ir</text>
+</svg>

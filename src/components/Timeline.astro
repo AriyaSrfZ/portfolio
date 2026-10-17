@@ -76,18 +76,18 @@ const entries = isFa ? entriesFa : entriesEn;
 ---
 
 <section id="experience" class={`relative z-10 max-w-3xl mx-auto px-6 py-16 ${isFa ? "font-['Vazirmatn',sans-serif]" : "font-sans"}`} dir={isFa ? 'rtl' : 'ltr'}>
-  <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 tracking-tight text-[#ededed]">
+  <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 tracking-tight text-[var(--text-primary)]">
     {isFa ? 'سوابق و مسیر حرفه‌ای' : 'Career Trajectory & Experience'}
   </h2>
 
-  <div class={`relative ${isFa ? 'pr-7 border-r' : 'pl-7 border-l'} border-white/[0.08] space-y-9`}>
+  <div class={`relative ${isFa ? 'pr-7 border-r' : 'pl-7 border-l'} border-[var(--border)] space-y-9`}>
     {entries.map((entry) => (
       <div class="relative group">
-        <span class={`absolute ${isFa ? '-right-[35px]' : '-left-[35px]'} top-1.5 w-3 h-3 rounded-full bg-[#ededed] border-2 border-[#090a0c]`}></span>
-        <p class="text-[11px] text-[#d97706] uppercase tracking-wider mb-1 font-semibold font-mono">{entry.year}</p>
-        <h3 class="font-bold text-base text-[#ededed] group-hover:text-white transition-colors">{entry.title}</h3>
-        <p class="text-xs uppercase text-neutral-400 font-medium mb-2 tracking-wide font-mono">{entry.org}</p>
-        <p class="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">{entry.desc}</p>
+        <span class={`absolute ${isFa ? '-right-[35px]' : '-left-[35px]'} top-1.5 w-3 h-3 rounded-full bg-[var(--accent-primary)] border-2 border-[var(--canvas)]`}></span>
+        <p class="text-[11px] text-[#B39A77] uppercase tracking-wider mb-1 font-semibold font-mono">{entry.year}</p>
+        <h3 class="font-bold text-base text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors">{entry.title}</h3>
+        <p class="text-xs uppercase text-[var(--text-secondary)] font-medium mb-2 tracking-wide font-mono">{entry.org}</p>
+        <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">{entry.desc}</p>
       </div>
     ))}
   </div>

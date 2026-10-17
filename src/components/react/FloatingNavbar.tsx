@@ -11,8 +11,6 @@ interface FloatingNavbarProps {
 }
 
 export type AppearanceMode = 'dark' | 'light' | 'system';
-export type DarkFlavor = 'oled' | 'spacegray' | 'midnight';
-export type GlassIntensity = 'liquid' | 'clear' | 'frosted' | 'reduced';
 
 export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   const [currentLang, setCurrentLang] = useState<'en' | 'fa'>(locale);
@@ -22,23 +20,21 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('payment-settlement');
 
-  // Apple Appearance & Dark Mode State
-  const [appearance, setAppearance] = useState<AppearanceMode>('dark');
-  const [darkFlavor, setDarkFlavor] = useState<DarkFlavor>('spacegray');
-  const [glassIntensity, setGlassIntensity] = useState<GlassIntensity>('liquid');
+  // Theme & Appearance State
+  const [appearance, setAppearance] = useState<AppearanceMode>('system');
+  const [effectiveTheme, setEffectiveTheme] = useState<'dark' | 'light'>('dark');
   const [appearanceMenuOpen, setAppearanceMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const applyTheme = (mode: AppearanceMode, flavor: DarkFlavor, glass: GlassIntensity) => {
+  const applyTheme = (mode: AppearanceMode) => {
     if (typeof window === 'undefined') return;
     const root = document.documentElement;
     let effective: 'dark' | 'light' = mode === 'system'
       ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
       : mode;
 
+    setEffectiveTheme(effective);
     root.setAttribute('data-appearance', effective);
-    root.setAttribute('data-dark-flavor', flavor);
-    root.setAttribute('data-glass-intensity', glass);
 
     if (effective === 'light') {
       root.classList.remove('dark');
@@ -49,12 +45,11 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
     }
 
     try {
+      localStorage.setItem('appearance-mode', mode);
       localStorage.setItem('apple-appearance-mode', mode);
-      localStorage.setItem('apple-dark-flavor', flavor);
-      localStorage.setItem('apple-glass-intensity', glass);
     } catch (e) {}
 
-    window.dispatchEvent(new CustomEvent('apple-theme-change', { detail: { mode, effective, flavor, glass } }));
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: { mode, effective } }));
   };
 
   useEffect(() => {
@@ -64,14 +59,22 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
       // Read saved theme preferences
       try {
-        const savedMode = (localStorage.getItem('apple-appearance-mode') as AppearanceMode) || 'dark';
-        const savedFlavor = (localStorage.getItem('apple-dark-flavor') as DarkFlavor) || 'spacegray';
-        const savedGlass = (localStorage.getItem('apple-glass-intensity') as GlassIntensity) || 'liquid';
+        const savedMode = (localStorage.getItem('appearance-mode') as AppearanceMode) || 
+                          (localStorage.getItem('apple-appearance-mode') as AppearanceMode) || 
+                          'system';
         setAppearance(savedMode);
-        setDarkFlavor(savedFlavor);
-        setGlassIntensity(savedGlass);
-        applyTheme(savedMode, savedFlavor, savedGlass);
+        applyTheme(savedMode);
       } catch (e) {}
+
+      // Listen for system theme changes if in system mode
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleSystemChange = (e: MediaQueryListEvent) => {
+        const currentMode = localStorage.getItem('appearance-mode') || 'system';
+        if (currentMode === 'system') {
+          applyTheme('system');
+        }
+      };
+      mediaQuery.addEventListener('change', handleSystemChange);
 
       const path = window.location.pathname;
       const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
@@ -114,6 +117,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       handleNavScroll();
 
       return () => {
+        mediaQuery.removeEventListener('change', handleSystemChange);
         window.removeEventListener('mousedown', handleClickOutside);
         window.removeEventListener('scroll', handleNavScroll);
         window.removeEventListener('resize', handleNavScroll);
@@ -153,27 +157,36 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   };
 
   return (
-    <header className="fixed top-2.5 sm:top-3 inset-x-2.5 sm:inset-x-4 lg:inset-x-8 max-w-[1920px] 2xl:max-w-[2160px] mx-auto h-14 z-50 liquid-glass-navbar rounded-2xl sm:rounded-full transition-all">
+    <header className="fixed top-2.5 sm:top-3 inset-x-2.5 sm:inset-x-4 lg:inset-x-8 max-w-[1920px] 2xl:max-w-[2160px] mx-auto h-14 z-50 liquid-glass-navbar rounded-2xl sm:rounded-full transition-all" dir={isFa ? 'rtl' : 'ltr'}>
       <div className="w-full h-full px-3 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Left: Brand + Status Badge */}
+        {/* Left: Brand Monogram + Full Name */}
         <div className="flex items-center gap-3">
           <a
             href={isFa ? `${baseUrl}fa/` : baseUrl}
-            className="text-xs sm:text-sm font-bold tracking-wide text-[var(--system-label,#ffffff)] hover:opacity-80 transition-opacity uppercase font-sans"
+            className="flex items-center gap-2.5 group"
           >
-            ARIYA SARRAFZADEH
+            <div className="w-7 h-7 rounded-lg overflow-hidden border border-[var(--border)] shadow-sm shrink-0 flex items-center justify-center bg-[var(--surface-elevated)] group-hover:border-[var(--accent-primary)] transition-colors">
+              <img 
+                src={`${baseUrl}favicon.svg`} 
+                alt="Ariya Sarrafzadeh Monogram" 
+                className="w-5 h-5 block" 
+              />
+            </div>
+            <span className="text-xs sm:text-sm font-bold tracking-wide text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors font-sans">
+              {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}
+            </span>
           </a>
-          <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-sans font-medium text-neutral-300">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Fintech &amp; Telecom Infrastructure</span>
+          <span className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] text-[11px] font-sans font-medium text-[var(--text-secondary)]">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)]"></span>
+            <span>{isFa ? 'معمار سیستم‌ها' : 'Systems Architect'}</span>
           </span>
         </div>
 
-        {/* Right: Horizontal Section Pills + Appearance Menu + Language Toggle */}
+        {/* Right: Section Pills + Secondary Links + Theme Switcher + Language Toggle */}
         <div className="flex items-center gap-2">
           {/* Desktop Nav Pills */}
-          <nav className="hidden lg:flex items-center gap-1 font-sans text-xs bg-black/20 p-1 rounded-full border border-white/[0.08] backdrop-blur-md">
+          <nav className="hidden lg:flex items-center gap-1 font-sans text-xs bg-[var(--surface-elevated)] p-1 rounded-full border border-[var(--border)]">
             {navItems.map((item) => {
               const isActive = activeSection === item.target;
               const targetHref = isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`;
@@ -184,8 +197,8 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   onClick={(e) => handleNavClick(e, item.target, item.env)}
                   className={`px-3 py-1 rounded-full transition-all font-sans text-xs font-medium active:scale-95 ${
                     isActive
-                      ? 'bg-white/20 text-white font-semibold border border-white/30 shadow-[0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]'
-                      : 'text-neutral-300 hover:text-white hover:bg-white/[0.08] border border-transparent'
+                      ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface)]'
                   }`}
                 >
                   {item.label}
@@ -195,177 +208,83 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           </nav>
 
           {/* Divider */}
-          <span className="hidden lg:block w-px h-4 bg-white/15 mx-1"></span>
+          <span className="hidden lg:block w-px h-4 bg-[var(--border)] mx-1"></span>
 
           {/* Secondary Links */}
           <a
             href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-neutral-300 hover:text-white transition-colors"
+            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
           >
             {isFa ? 'واژه‌نامه' : 'Dictionary'}
           </a>
           <a
             href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-neutral-300 hover:text-white transition-colors"
+            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
           >
             {isFa ? 'وایت‌پیپرها' : 'Whitepapers'}
           </a>
 
-          {/* Apple Appearance & Dark Mode Options Button */}
-          {/* Apple Liquid Glass Diversity & Appearance Trigger */}
+          {/* Theme Selector Popover */}
           <div className="relative" ref={menuRef}>
             <button
               type="button"
               onClick={() => setAppearanceMenuOpen(!appearanceMenuOpen)}
-              className="h-8 px-3 rounded-full bg-white/[0.08] hover:bg-white/15 border border-white/20 text-white flex items-center gap-1.5 text-xs transition-all active:scale-95 shadow-sm group"
-              aria-label="Liquid Glass Diversity & Theme Settings"
-              title={isFa ? 'تنوع شیشه مایع اپل و تنظیمات تم' : 'Apple Liquid Glass Diversity & Appearance'}
+              className="h-8 px-2.5 sm:px-3 rounded-full bg-[var(--surface-elevated)] hover:bg-[var(--surface)] border border-[var(--border)] text-[var(--text-primary)] flex items-center gap-1.5 text-xs transition-all active:scale-95 shadow-sm"
+              aria-label="Theme & Appearance Settings"
+              title={isFa ? 'تنظیمات تم و ظاهر' : 'Theme & Appearance Settings'}
             >
-              <span className="w-2 h-2 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform" />
-              <span className="font-sans text-[11px] font-semibold tracking-wider text-white flex items-center gap-1">
-                <span>🫧</span>
-                <span>{isFa ? 'شیشه مایع' : 'Liquid Glass'}</span>
+              {effectiveTheme === 'dark' ? (
+                <svg className="w-3.5 h-3.5 text-[var(--accent-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              ) : (
+                <svg className="w-3.5 h-3.5 text-[var(--accent-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              )}
+              <span className="hidden sm:inline font-sans text-[11px] font-medium">
+                {appearance === 'system' ? (isFa ? 'خودکار' : 'System') : appearance === 'dark' ? (isFa ? 'تیره' : 'Dark') : (isFa ? 'روشن' : 'Light')}
               </span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 text-neutral-300 font-mono hidden sm:inline">
-                {glassIntensity === 'liquid' ? 'Liquid' : glassIntensity === 'clear' ? 'Clear' : glassIntensity === 'frosted' ? 'Frost' : 'Solid'}
-              </span>
-              <svg className={`w-3 h-3 text-neutral-300 transition-transform ${appearanceMenuOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className={`w-3 h-3 text-[var(--text-secondary)] transition-transform ${appearanceMenuOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            {/* Apple Liquid Glass Popover Sheet */}
+            {/* Theme Popover Menu */}
             {appearanceMenuOpen && (
               <div
-                className={`absolute top-11 ${isFa ? 'left-0' : 'right-0'} w-72 sm:w-84 p-4 rounded-2xl liquid-glass-card border border-white/20 shadow-2xl z-50 text-xs font-sans space-y-3.5 animate-in fade-in duration-200`}
+                className={`absolute top-11 ${isFa ? 'left-0' : 'right-0'} w-48 p-2 rounded-xl bg-[var(--surface-elevated)] border border-[var(--border)] shadow-xl z-50 text-xs font-sans space-y-1`}
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Popover Header */}
-                <div className="flex items-center justify-between pb-2 border-b border-white/10">
-                  <span className="font-semibold text-white tracking-wide flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    {isFa ? 'تنوع شیشه مایع و تم‌ها' : 'Apple Glass & Appearance'}
-                  </span>
-                  <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-white/10 text-cyan-300 font-semibold">
-                    Apple HIG
-                  </span>
+                <div className="px-2 py-1 text-[10px] uppercase font-semibold text-[var(--text-secondary)] tracking-wider border-b border-[var(--border)] mb-1">
+                  {isFa ? 'حالت نمایش' : 'Theme Mode'}
                 </div>
-
-                {/* Section 1: Liquid Glass Diversity (Top Prominence) */}
-                <div>
-                  <div className="text-[10px] uppercase font-semibold text-neutral-400 mb-1.5 tracking-wider flex items-center justify-between">
-                    <span>{isFa ? 'تنوع شیشه مایع (Glass Diversity)' : 'Liquid Glass Diversity'}</span>
-                    <span className="text-[9px] text-cyan-400 font-mono">Dynamic Blur</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-1.5">
-                    {[
-                      { id: 'liquid' as GlassIntensity, icon: '🫧', name: isFa ? 'شیشه مایع' : 'Vibrant Liquid', desc: isFa ? 'تاریکی عمیق ۲۶ پیکسل' : '26px Blur · Specular' },
-                      { id: 'clear' as GlassIntensity, icon: '💎', name: isFa ? 'بلورین شفاف' : 'Crystal Clear', desc: isFa ? 'شفافیت ۸۵٪' : '14px Blur · 85% Clear' },
-                      { id: 'frosted' as GlassIntensity, icon: '🧊', name: isFa ? 'شیشه مات مخملی' : 'Frosted Satin', desc: isFa ? 'تاری عمیق ۳۸ پیکسل' : '38px Velvet Blur' },
-                      { id: 'reduced' as GlassIntensity, icon: '🛡️', name: isFa ? 'فلز تیتانیوم' : 'Solid Metal', desc: isFa ? 'کدر بدون تاری' : '0px Blur · Opaque' },
-                    ].map((g) => (
-                      <button
-                        key={g.id}
-                        type="button"
-                        onClick={() => {
-                          setGlassIntensity(g.id);
-                          applyTheme(appearance, darkFlavor, g.id);
-                        }}
-                        className={`p-2 rounded-xl text-left transition-all border ${
-                          glassIntensity === g.id
-                            ? 'bg-white/20 border-white/35 shadow-md text-white'
-                            : 'bg-white/[0.03] border-white/5 text-neutral-300 hover:bg-white/[0.08]'
-                        }`}
-                      >
-                        <div className="flex items-center gap-1.5 text-xs font-semibold">
-                          <span>{g.icon}</span>
-                          <span className="truncate">{g.name}</span>
-                        </div>
-                        <div className="text-[9px] text-neutral-400 font-mono mt-0.5 truncate">{g.desc}</div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Section 2: Dark Mode Flavors */}
-                <div>
-                  <div className="text-[10px] uppercase font-semibold text-neutral-400 mb-1.5 tracking-wider flex items-center justify-between">
-                    <span>{isFa ? 'گزینه‌های دارک‌مود (Dark Mode Options)' : 'Dark Mode Options'}</span>
-                    <span className="text-[9px] text-cyan-400 font-mono">iOS / macOS</span>
-                  </div>
-                  <div className="space-y-1">
-                    {[
-                      { id: 'spacegray' as DarkFlavor, name: isFa ? 'خاکستری فضایی (Space Gray)' : 'Space Gray & Titanium', desc: '#0e1117 · macOS Sequoia graphite depth', color: 'bg-[#0e1117] border-white/20' },
-                      { id: 'oled' as DarkFlavor, name: isFa ? 'مشکی اولد (OLED Pure Black)' : 'OLED Pitch Black', desc: '#000000 · High contrast & battery saver', color: 'bg-black border-white/40' },
-                      { id: 'midnight' as DarkFlavor, name: isFa ? 'سورمه‌ای نیمه‌شب (Midnight Navy)' : 'Midnight Navy', desc: '#07090e · Apple iOS flagship sapphire', color: 'bg-[#07090e] border-cyan-400/40' },
-                    ].map((f) => (
-                      <button
-                        key={f.id}
-                        type="button"
-                        onClick={() => {
-                          setDarkFlavor(f.id);
-                          applyTheme(appearance, f.id, glassIntensity);
-                        }}
-                        className={`w-full p-2 rounded-xl text-left flex items-center justify-between transition-all border ${
-                          darkFlavor === f.id
-                            ? 'bg-white/15 border-white/30 shadow-md text-white'
-                            : 'bg-white/[0.03] border-white/5 text-neutral-300 hover:bg-white/[0.08]'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <span className={`w-3.5 h-3.5 rounded-full border ${f.color} shrink-0`} />
-                          <div>
-                            <div className="text-[11px] font-semibold leading-tight">{f.name}</div>
-                            <div className="text-[9px] text-neutral-400 font-mono">{f.desc}</div>
-                          </div>
-                        </div>
-                        {darkFlavor === f.id && (
-                          <span className="text-cyan-400 font-bold text-xs">✓</span>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Section 3: Appearance Mode */}
-                <div>
-                  <div className="text-[10px] uppercase font-semibold text-neutral-400 mb-1.5 tracking-wider">
-                    {isFa ? 'حالت روشنایی (Appearance)' : 'Appearance'}
-                  </div>
-                  <div className="grid grid-cols-3 gap-1 bg-black/40 p-1 rounded-xl border border-white/10">
-                    {[
-                      { id: 'dark' as AppearanceMode, label: isFa ? 'تاریک' : 'Dark', icon: '🌙' },
-                      { id: 'light' as AppearanceMode, label: isFa ? 'روشن' : 'Light', icon: '☀️' },
-                      { id: 'system' as AppearanceMode, label: isFa ? 'سیستم' : 'Auto', icon: '⚙️' },
-                    ].map((opt) => (
-                      <button
-                        key={opt.id}
-                        type="button"
-                        onClick={() => {
-                          setAppearance(opt.id);
-                          applyTheme(opt.id, darkFlavor, glassIntensity);
-                        }}
-                        className={`py-1.5 px-2 rounded-lg text-center font-medium transition-all flex items-center justify-center gap-1 text-[11px] ${
-                          appearance === opt.id
-                            ? 'bg-white/20 text-white font-semibold shadow-sm border border-white/25'
-                            : 'text-neutral-400 hover:text-white hover:bg-white/5'
-                        }`}
-                      >
-                        <span>{opt.icon}</span>
-                        <span>{opt.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Close Button */}
-                <button
-                  type="button"
-                  onClick={() => setAppearanceMenuOpen(false)}
-                  className="w-full py-1.5 text-center text-[11px] rounded-lg bg-white/10 hover:bg-white/15 text-white font-semibold transition-all"
-                >
-                  {isFa ? 'بستن' : 'Done'}
-                </button>
+                {[
+                  { id: 'dark' as AppearanceMode, label: isFa ? 'تیره (Carbon & Basalt)' : 'Dark (Carbon & Basalt)', icon: '🌙' },
+                  { id: 'light' as AppearanceMode, label: isFa ? 'روشن (Porcelain & Paper)' : 'Light (Porcelain & Paper)', icon: '☀️' },
+                  { id: 'system' as AppearanceMode, label: isFa ? 'خودکار بر اساس سیستم' : 'System Match (Auto)', icon: '💻' },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => {
+                      setAppearance(item.id);
+                      applyTheme(item.id);
+                      setAppearanceMenuOpen(false);
+                    }}
+                    className={`w-full px-2.5 py-1.5 rounded-lg flex items-center justify-between text-left transition-colors ${
+                      appearance === item.id
+                        ? 'bg-[var(--accent-primary)] text-white font-medium'
+                        : 'text-[var(--text-primary)] hover:bg-[var(--surface)]'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span>{item.icon}</span>
+                      <span>{item.label}</span>
+                    </span>
+                    {appearance === item.id && <span>✓</span>}
+                  </button>
+                ))}
               </div>
             )}
           </div>
@@ -373,19 +292,20 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           {/* Language Switcher */}
           <a
             href={switchTarget}
-            className="h-8 px-3 rounded-full bg-white/[0.08] hover:bg-white/15 border border-white/15 text-[11px] font-sans font-semibold text-white flex items-center justify-center transition-all tracking-wider active:scale-95"
+            className="h-8 px-2.5 sm:px-3 rounded-full bg-[var(--surface-elevated)] hover:bg-[var(--surface)] border border-[var(--border)] text-[var(--text-primary)] flex items-center gap-1.5 text-xs transition-all active:scale-95 shadow-sm font-sans font-medium"
+            title={isFa ? 'Switch to English' : 'تغییر به فارسی'}
           >
-            {isFa ? 'EN' : 'FA'}
+            <span>{isFa ? 'EN' : 'فا'}</span>
           </a>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Navigation Hamburger */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 rounded-full text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
-            aria-label="Toggle Navigation Menu"
+            className="lg:hidden h-8 w-8 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] flex items-center justify-center text-[var(--text-primary)]"
+            aria-label="Open navigation menu"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               {mobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -396,71 +316,27 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden w-full mt-2 rounded-2xl liquid-glass-card border border-white/15 p-4 space-y-3.5 shadow-2xl">
-          {/* Mobile Glass Diversity Quick Controls */}
-          <div className="pb-3 border-b border-white/10">
-            <div className="text-[10px] uppercase font-semibold text-neutral-400 mb-2 tracking-wider flex items-center justify-between">
-              <span>{isFa ? 'تنوع شیشه مایع (Glass Diversity)' : '🫧 Liquid Glass Diversity'}</span>
-              <span className="text-[9px] text-cyan-400 font-mono">Apple HIG</span>
-            </div>
-            <div className="grid grid-cols-4 gap-1">
-              {[
-                { id: 'liquid' as GlassIntensity, label: 'Liquid', icon: '🫧' },
-                { id: 'clear' as GlassIntensity, label: 'Clear', icon: '💎' },
-                { id: 'frosted' as GlassIntensity, label: 'Frost', icon: '🧊' },
-                { id: 'reduced' as GlassIntensity, label: 'Solid', icon: '🛡️' },
-              ].map((g) => (
-                <button
-                  key={g.id}
-                  type="button"
-                  onClick={() => {
-                    setGlassIntensity(g.id);
-                    applyTheme(appearance, darkFlavor, g.id);
-                  }}
-                  className={`py-1.5 px-1 rounded-xl text-center text-[10px] font-medium transition-all ${
-                    glassIntensity === g.id
-                      ? 'bg-white/20 text-white font-semibold border border-white/30 shadow'
-                      : 'bg-white/[0.04] text-neutral-400 border border-white/5'
-                  }`}
-                >
-                  <div>{g.icon}</div>
-                  <div className="truncate mt-0.5">{g.label}</div>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-2 font-sans text-xs">
-            {navItems.map((item) => (
-              <a
-                key={item.target}
-                href={isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`}
-                onClick={(e) => handleNavClick(e, item.target, item.env)}
-                className="text-left px-3 py-2 rounded-xl bg-white/[0.04] border border-white/5 text-neutral-300 hover:text-white block font-medium"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <div className="pt-3 border-t border-white/10 flex flex-wrap gap-4 text-xs font-sans">
-            <a href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`} className="text-neutral-400 hover:text-white">
+        <div className="lg:hidden fixed top-20 inset-x-4 p-4 rounded-2xl bg-[var(--surface-elevated)] border border-[var(--border)] shadow-2xl z-50 space-y-2">
+          {navItems.map((item) => (
+            <a
+              key={item.target}
+              href={isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`}
+              onClick={(e) => handleNavClick(e, item.target, item.env)}
+              className="block px-3 py-2 rounded-lg text-sm text-[var(--text-primary)] hover:bg-[var(--surface)] transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+          <div className="pt-2 border-t border-[var(--border)] flex items-center justify-around text-xs">
+            <a href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`} className="text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
               {isFa ? 'واژه‌نامه' : 'Dictionary'}
             </a>
-            <a href={isFa ? `${baseUrl}fa/work/` : `${baseUrl}work/`} className="text-neutral-400 hover:text-white">
-              {isFa ? 'پروژه‌ها' : 'Case Studies'}
-            </a>
-            <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} className="text-neutral-400 hover:text-white">
+            <a href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`} className="text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
               {isFa ? 'وایت‌پیپرها' : 'Whitepapers'}
             </a>
-            <a href={isFa ? `${baseUrl}fa/about/` : `${baseUrl}about/`} className="text-neutral-400 hover:text-white">
-              {isFa ? 'درباره من' : 'About'}
-            </a>
-            <a href={`${baseUrl}docs/`} className="text-neutral-400 hover:text-white">
-              {isFa ? 'مستندات API' : 'Docs'}
-            </a>
-            <a href={isFa ? `${baseUrl}fa/contact/` : `${baseUrl}contact/`} className="text-neutral-400 hover:text-white">
+            <a href={`${baseUrl}contact/`} className="text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
               {isFa ? 'تماس' : 'Contact'}
             </a>
           </div>

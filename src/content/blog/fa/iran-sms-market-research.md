@@ -77,7 +77,7 @@ lang: "fa"
 
 بازار پیامک ایران در طول دو دهه گذشته پنج مرحله گذار ساختاری را پشت سر گذاشته است:
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/iran-sms-timeline-milestones.svg" alt="سیر تحول و نقاط عطف بازار پیامک ایران" class="w-full h-auto" loading="lazy" />
 </div>
 
@@ -122,7 +122,7 @@ lang: "fa"
 
 زنجیره ارزش پیامک سازمانی در ایران بر خلاف مدل‌های بین‌المللی CPaaS، ساختاری کاملا منطبق بر سلسله‌مراتب مجوزهای مخابراتی دارد:
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/iran-sms-value-chain.svg" alt="زنجیره ارزش پیامک سازمانی ایران" class="w-full h-auto" loading="lazy" />
 </div>
 
@@ -146,7 +146,7 @@ lang: "fa"
 
 توزیع حجم سالانه ۱۶۰ میلیارد پیامک نشان‌دهنده یک وزن‌دهی نامتقارن و شدید به نفع زیرساخت‌های مالی کشور است:
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/iran-sms-market-breakdown.svg" alt="تفکیک حجم و گردش مالی پیامک ایران" class="w-full h-auto" loading="lazy" />
 </div>
 
@@ -181,7 +181,7 @@ lang: "fa"
 
 برای درک استراتژی بازیگران، محصولات ارائه شده در صنعت به سه دسته ساختاری تقسیم می‌شوند:
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/iran-sms-product-matrix.svg" alt="ماتریس سبد محصولات صنعت پیامک ایران" class="w-full h-auto" loading="lazy" />
 </div>
 
@@ -303,7 +303,7 @@ lang: "fa"
 
 سهم پیامک‌های ارسالی کشور به دو شاخه کاملا متمایز با رفتار و مقررات جداگانه تقسیم شده است:
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/iran-sms-messaging-purpose.svg" alt="تفکیک کاربردی پیامک خدماتی و تبلیغاتی" class="w-full h-auto" loading="lazy" />
 </div>
 
@@ -368,7 +368,7 @@ lang: "fa"
 
 یکی از گزاره‌های پرتکرار در متون تبلیغاتی پنل‌های پیامکی این است که «۹۸٪ پیامک‌ها در کمتر از ۳ دقیقه توسط کاربران خوانده می‌شوند». از دیدگاه مهندسی سیستم، این ادعا نتیجه اشتباه گرفتن سیگنال لایه رادیویی با آگاهی ذهنی کاربر است:
 
-<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[#0b1120] p-2 shadow-2xl">
+<div class="my-8 rounded-xl overflow-hidden border border-white/10 bg-[var(--surface-sunken)] border border-[var(--border)] p-2 shadow-2xl">
   <img src="/diagrams/sms-measurement-framework.svg" alt="چارچوب راستی‌آزمایی تله‌متری پیامک" class="w-full h-auto" loading="lazy" />
 </div>
 

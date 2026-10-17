@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <!-- AS Social & Professional Avatar Mark · Ariya Sarrafzadeh -->
+  <rect width="256" height="256" rx="56" fill="#202725" />
+  <circle cx="128" cy="128" r="116" stroke="#303936" stroke-width="2" />
+  <g transform="translate(48, 48) scale(1.33)">
+    <path d="M28 96 L52 24 C53.5 19 58.5 19 60 24 L84 96" stroke="#F0EEE7" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M38 68 L74 68" stroke="#F0EEE7" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M84 36 C80 26 68 22 56 26 C44 30 42 42 50 49 C58 56 76 58 76 74 C76 86 64 94 48 94 C36 94 28 88 26 78" stroke="#8FB4AA" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor">
+  <!-- AS Architectural Monogram · Ariya Sarrafzadeh -->
+  <defs>
+    <style>
+      .as-stroke { stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+      .as-accent { stroke: #527C78; }
+      .as-prime { stroke: #202725; }
+    </style>
+  </defs>
+  <!-- Letter A Primary Architectural Structure -->
+  <path d="M28 98 L52 24 C53.5 19 58.5 19 60 24 L84 98" class="as-stroke as-prime" />
+  <!-- A Horizontal Crossbar / Systems Bridge -->
+  <path d="M38 68 L74 68" class="as-stroke as-prime" />
+  <!-- Interlocking S Continuous Flow Ribbon -->
+  <path d="M84 36 C80 26 68 22 56 26 C44 30 42 42 50 49 C58 56 76 58 76 74 C76 86 64 94 48 94 C36 94 28 88 26 78" class="as-stroke as-accent" />
+</svg>

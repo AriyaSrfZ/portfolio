@@ -4,6 +4,7 @@ import FloatingNavbar from '../components/react/FloatingNavbar';
 import BackgroundController from '../components/react/BackgroundController';
 import Velaris from '../components/ui/velaris';
 import Analytics from '../components/Analytics.astro';
+import { BRAND_NAME, BRAND_NAME_FA, PRIMARY_TAGLINE, PRIMARY_TAGLINE_FA, SUPPORTING_STATEMENT, SUPPORTING_STATEMENT_FA } from '../consts';
 
 interface Props {
   title: string;
@@ -16,11 +17,11 @@ interface Props {
 
 const { 
   title, 
-  description = 'Ariya Sarrafzadeh | Systems Architect & Infrastructure Engineer specializing in Iranian fintech switches, double-entry ledgers, and telecom routing.',
+  description = 'Ariya Sarrafzadeh | Systems Architect & Technical Product Leader. Complexity, made dependable. High-throughput switches, double-entry ledgers, and telecom infrastructure.',
   theme = 'rugged',
   lang = 'en',
   dir = lang === 'fa' ? 'rtl' : 'ltr',
-  image = '/diagrams/double-entry-ledger-schematic.svg'
+  image = '/brand/og-preview.svg'
 } = Astro.props;
 
 const isFa = lang === 'fa';
@@ -36,11 +37,12 @@ const jsonLdPerson = {
       "@id": "https://ariya-sarrafzadeh.ir/#person",
       "name": "Ariya Sarrafzadeh",
       "alternateName": "آریا صراف‌زاده",
-      "jobTitle": "Principal Systems Architect & Technical Product Manager",
-      "description": "Architect of high-throughput payment switches, double-entry accounting ledgers, and telecom infrastructure.",
+      "jobTitle": "Principal Systems Architect & Technical Product Leader",
+      "description": SUPPORTING_STATEMENT,
       "url": "https://ariya-sarrafzadeh.ir",
       "email": "ariasg2002@gmail.com",
       "sameAs": [
+        "https://github.com/AriyaSrfZ",
         "https://github.com/ariasg2002",
         "https://www.linkedin.com/in/ariya-sarrafzadeh/",
         "https://t.me/ariasg2002"
@@ -51,13 +53,15 @@ const jsonLdPerson = {
         "addressCountry": "IR"
       },
       "knowsAbout": [
+        "Systems Architecture",
+        "Distributed Systems & Consensus",
         "Payment Switch Architecture",
         "ISO 8583 Protocol",
         "Double-Entry Accounting Ledgers",
         "Multi-Bank Financial Reconciliation",
-        "eKYC & Identity Verification",
+        "eKYC & Fraud Risk Forensics",
         "SMPP Telecom Gateways",
-        "Distributed Systems & Raft Consensus"
+        "Technical Product Management"
       ]
     },
     {
@@ -83,12 +87,12 @@ const jsonLdPerson = {
       "@id": "https://ariya-sarrafzadeh.ir/#organization",
       "name": "Ariya Sarrafzadeh Systems Engineering",
       "url": "https://ariya-sarrafzadeh.ir",
-      "logo": "https://ariya-sarrafzadeh.ir/favicon.svg",
+      "logo": "https://ariya-sarrafzadeh.ir/brand/as-lockup-dark.svg",
       "contactPoint": [
         {
           "@type": "ContactPoint",
           "email": "ariasg2002@gmail.com",
-          "contactType": "technical support and enterprise consultation",
+          "contactType": "technical advisory and architecture consultation",
           "availableLanguage": ["English", "Persian"]
         }
       ],
@@ -103,7 +107,7 @@ const jsonLdPerson = {
 ---
 
 <!DOCTYPE html>
-<html lang={lang} dir={dir} data-theme={theme} class="dark bg-[#0e1117]">
+<html lang={lang} dir={dir} data-theme={theme} class="dark bg-[#202725]">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -120,7 +124,7 @@ const jsonLdPerson = {
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImageUrl} />
   <meta property="og:locale" content={isFa ? 'fa_IR' : 'en_US'} />
-  <meta property="og:site_name" content="Ariya Sarrafzadeh Portfolio" />
+  <meta property="og:site_name" content="Ariya Sarrafzadeh" />
 
   <!-- Twitter Meta Cards -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -141,21 +145,17 @@ const jsonLdPerson = {
   <!-- JSON-LD Structured Data Schema -->
   <script type="application/ld+json" set:html={JSON.stringify(jsonLdPerson)} />
 
-  <!-- Apple Appearance & Dark Mode Early Initialization -->
+  <!-- Design System Appearance & Theme Early Initialization (Zero Flash) -->
   <script is:inline>
     (function() {
       try {
-        var appearance = localStorage.getItem('apple-appearance-mode') || 'dark';
-        var darkFlavor = localStorage.getItem('apple-dark-flavor') || 'spacegray';
-        var glass = localStorage.getItem('apple-glass-intensity') || 'liquid';
+        var savedMode = localStorage.getItem('appearance-mode') || localStorage.getItem('apple-appearance-mode') || 'system';
         var root = document.documentElement;
-        var effective = appearance;
-        if (appearance === 'system') {
+        var effective = savedMode;
+        if (savedMode === 'system') {
           effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
         root.setAttribute('data-appearance', effective);
-        root.setAttribute('data-dark-flavor', darkFlavor);
-        root.setAttribute('data-glass-intensity', glass);
         if (effective === 'light') {
           root.classList.remove('dark');
           root.classList.add('light');
@@ -169,16 +169,16 @@ const jsonLdPerson = {
 
   <Analytics />
 </head>
-<body class="min-h-screen bg-transparent text-[var(--system-label,#ffffff)] selection:bg-white/10 selection:text-white font-sans antialiased overflow-x-hidden pt-16 sm:pt-20">
-  <!-- Living WebGL Simplex-Noise Telemetry Background -->
+<body class="min-h-screen bg-transparent text-[var(--text-primary,#F0EEE7)] selection:bg-[#527C78]/30 selection:text-white font-sans antialiased overflow-x-hidden pt-16 sm:pt-20">
+  <!-- Subtle WebGL Ambient Noise Telemetry Background (Carbon / Patina Tones) -->
   <div id="velaris-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
     <Velaris
       client:only="react"
       height="100vh"
-      speed={0.25}
-      grain={0.04}
-      colors={["#1c293d", "#132032", "#1e2430", "#0e1117"]}
-      bg="#0e1117"
+      speed={0.15}
+      grain={0.03}
+      colors={["#292F2D", "#202725", "#303936", "#171C1A"]}
+      bg="#202725"
     />
   </div>
 
@@ -189,42 +189,50 @@ const jsonLdPerson = {
     <slot />
   </div>
 
-  <footer class="relative z-10 border-t border-white/[0.07] mt-24 py-12 px-6 font-sans text-xs text-[#94a3b8]">
+  <footer class="relative z-10 border-t border-[var(--border,#46504B)] mt-24 py-12 px-6 font-sans text-xs text-[var(--text-secondary,#B5BDB6)]">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex flex-col items-center md:items-start gap-1">
         {isFa ? (
-          <p class="text-white font-semibold">© {new Date().getFullYear()} آریا صراف‌زاده · کلیه سامانه‌ها عملیاتی</p>
+          <p class="text-[var(--text-primary,#F0EEE7)] font-semibold">© {new Date().getFullYear()} {BRAND_NAME_FA} · {PRIMARY_TAGLINE_FA}</p>
         ) : (
-          <p class="text-white font-semibold">© {new Date().getFullYear()} Ariya Sarrafzadeh · NODE: NOMINAL · PRODUCTION READY</p>
+          <p class="text-[var(--text-primary,#F0EEE7)] font-semibold">© {new Date().getFullYear()} {BRAND_NAME} · {PRIMARY_TAGLINE}</p>
         )}
-        <p class="text-[11px] text-neutral-400 font-sans">
-          Fintech &amp; Telecom Systems Engineering · Tehran, Iran
+        <p class="text-[11px] text-[var(--text-secondary,#B5BDB6)] font-sans">
+          {isFa ? 'معماری سیستم‌ها، زیرساخت پرداخت و مخابرات · تهران، ایران' : 'Systems Architecture, Payments & Telecom Infrastructure · Tehran, Iran'}
         </p>
       </div>
 
-      <!-- Quick Trust & Agent Links -->
+      <!-- Quick Trust & Professional Channels -->
       <div class="flex flex-wrap items-center justify-center gap-4 text-[11px] font-sans font-medium">
-        <a href={`${import.meta.env.BASE_URL}developers/`} class="hover:text-white transition-colors">
+        <a href="https://github.com/AriyaSrfZ" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
+          GitHub
+        </a>
+        <span>·</span>
+        <a href="https://www.linkedin.com/in/ariya-sarrafzadeh/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
+          LinkedIn
+        </a>
+        <span>·</span>
+        <a href={`${import.meta.env.BASE_URL}developers/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
           {isFa ? 'پورتال توسعه‌دهندگان' : 'Developers'}
         </a>
         <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}docs/`} class="hover:text-white transition-colors">
+        <a href={`${import.meta.env.BASE_URL}docs/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
           {isFa ? 'مستندات API' : 'API Docs'}
         </a>
         <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}contact/`} class="hover:text-white transition-colors">
+        <a href={`${import.meta.env.BASE_URL}contact/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
           {isFa ? 'تماس و مشاوره' : 'Contact'}
         </a>
         <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}privacy/`} class="hover:text-white transition-colors">
+        <a href={`${import.meta.env.BASE_URL}privacy/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
           {isFa ? 'حریم خصوصی' : 'Privacy'}
         </a>
         <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}openapi.json`} target="_blank" rel="noopener noreferrer" class="text-[#38bdf8] hover:text-[#06b6d4] transition-colors">
+        <a href={`${import.meta.env.BASE_URL}openapi.json`} target="_blank" rel="noopener noreferrer" class="text-[var(--accent-primary,#8FB4AA)] hover:underline transition-colors">
           OpenAPI
         </a>
         <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}llms.txt`} target="_blank" rel="noopener noreferrer" class="text-[#10b981] hover:text-[#34d399] transition-colors">
+        <a href={`${import.meta.env.BASE_URL}llms.txt`} target="_blank" rel="noopener noreferrer" class="text-[var(--accent-primary,#8FB4AA)] hover:underline transition-colors">
           llms.txt
         </a>
       </div>

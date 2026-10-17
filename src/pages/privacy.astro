@@ -12,129 +12,129 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 >
   <main class="max-w-4xl mx-auto px-6 pt-24 pb-20 font-sans">
     <!-- Breadcrumb -->
-    <div class="flex items-center gap-2 mb-6 font-mono text-xs text-neutral-400">
-      <a href={baseUrl} class="hover:text-white transition-colors">Home</a>
+    <div class="flex items-center gap-2 mb-6 font-mono text-xs text-[var(--text-muted)]">
+      <a href={baseUrl} class="hover:text-[var(--text-primary)] transition-colors">Home</a>
       <span>/</span>
-      <span class="text-neutral-200">Privacy &amp; Data Protection</span>
+      <span class="text-[var(--text-secondary)]">Privacy &amp; Data Protection</span>
       <span>/</span>
-      <a href={`${baseUrl}fa/privacy/`} class="ms-auto text-[#06b6d4] hover:text-[#38bdf8] flex items-center gap-1 transition-colors">
+      <a href={`${baseUrl}fa/privacy/`} class="ms-auto text-[var(--accent-primary)] hover:text-[var(--accent-light)] flex items-center gap-1 transition-colors">
         <span>نسخه فارسی</span>
         <span>&larr;</span>
       </a>
     </div>
 
     <!-- Header Section -->
-    <div class="bg-[#111317]/85 backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl ring-1 ring-white/[0.03]">
-      <div class="flex items-center gap-2 font-mono text-[11px] text-[#94a3b8] uppercase tracking-wider mb-2">
-        <span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
+    <div class="bg-[var(--surface-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
+      <div class="flex items-center gap-2 font-mono text-[11px] text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+        <span class="w-2 h-2 rounded-full bg-[var(--accent-light)]"></span>
         <span>DATA GOVERNANCE &amp; ARCHITECTURAL PRIVACY POLICY</span>
       </div>
-      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[#ededed] mb-3 tracking-tight">
+      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[var(--text-primary)] mb-3 tracking-tight">
         Privacy &amp; Data Protection Standard
       </h1>
-      <p class="text-[#94a3b8] text-xs sm:text-sm leading-relaxed max-w-3xl">
+      <p class="text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed max-w-3xl">
         This document details the data governance policies, zero-retention posture, telemetry practices, and client confidentiality frameworks enforced across all digital properties, consulting pipelines, and automated interfaces managed by Ariya Sarrafzadeh.
       </p>
-      <div class="mt-4 pt-4 border-t border-white/[0.06] flex flex-wrap gap-4 font-mono text-[11px] text-[#94a3b8]">
-        <div><span>Effective Date: </span><span class="text-white">January 1, 2026</span></div>
-        <div><span>Last Audit: </span><span class="text-white">October 13, 2026</span></div>
-        <div><span>Scope: </span><span class="text-emerald-400">Global &amp; Iran Jurisdictions</span></div>
+      <div class="mt-4 pt-4 border-t border-[var(--border)] flex flex-wrap gap-4 font-mono text-[11px] text-[var(--text-secondary)]">
+        <div><span>Effective Date: </span><span class="text-[var(--text-primary)]">January 1, 2026</span></div>
+        <div><span>Last Audit: </span><span class="text-[var(--text-primary)]">October 13, 2026</span></div>
+        <div><span>Scope: </span><span class="text-[var(--accent-primary)]">Global &amp; Iran Jurisdictions</span></div>
       </div>
     </div>
 
     <!-- Content Sections -->
-    <div class="space-y-6 text-[#cbd5e1] text-xs sm:text-sm leading-relaxed">
+    <div class="space-y-6 text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed">
       <!-- 1. Zero-Storage Architecture -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>01. FOUNDATIONAL ARCHITECTURE</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">Zero-Storage Data Posture</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">Zero-Storage Data Posture</h2>
         <p class="mb-3">
-          As an enterprise systems architect operating within banking, financial switches, and telecom carriers, architectural security begins with minimization. This public website and associated APIs (<code class="text-[#38bdf8] font-mono">https://ariya-sarrafzadeh.ir</code>) operate on a zero-storage principle:
+          As an enterprise systems architect operating within banking, financial switches, and telecom carriers, architectural security begins with minimization. This public website and associated APIs (<code class="text-[var(--accent-light)] font-mono">https://ariya-sarrafzadeh.ir</code>) operate on a zero-storage principle:
         </p>
-        <ul class="list-disc list-inside space-y-2 text-[#94a3b8] ml-2">
-          <li><strong class="text-white">No Database of Visitor Records:</strong> No relational, document, or key-value database records individual visitor identities, payment details, or IP browsing histories.</li>
-          <li><strong class="text-white">No Tracking Cookies for Identity:</strong> The website does not store third-party cross-site advertising trackers or sell traffic data to data brokers.</li>
-          <li><strong class="text-white">Stateless Edge Execution:</strong> All API endpoints under <code class="text-[#38bdf8] font-mono">/api/v1/*</code> are static, cryptographically verifiable, and execute idempotently without mutating server-side persistent sessions.</li>
+        <ul class="list-disc list-inside space-y-2 text-[var(--text-secondary)] ml-2">
+          <li><strong class="text-[var(--text-primary)]">No Database of Visitor Records:</strong> No relational, document, or key-value database records individual visitor identities, payment details, or IP browsing histories.</li>
+          <li><strong class="text-[var(--text-primary)]">No Tracking Cookies for Identity:</strong> The website does not store third-party cross-site advertising trackers or sell traffic data to data brokers.</li>
+          <li><strong class="text-[var(--text-primary)]">Stateless Edge Execution:</strong> All API endpoints under <code class="text-[var(--accent-light)] font-mono">/api/v1/*</code> are static, cryptographically verifiable, and execute idempotently without mutating server-side persistent sessions.</li>
         </ul>
       </section>
 
       <!-- 2. Telemetry and Analytics -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>02. TELEMETRY &amp; EDGE LOGGING</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">Edge Telemetry &amp; Analytics Disclosures</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">Edge Telemetry &amp; Analytics Disclosures</h2>
         <p class="mb-3">
           To ensure platform resilience, edge caching efficiency, and protection against distributed denial-of-service (DDoS) vectors, the following operational telemetry is gathered:
         </p>
-        <div class="space-y-3 text-[#94a3b8]">
-          <div class="p-3 bg-white/[0.02] border border-white/5 rounded-lg">
-            <h3 class="text-white font-semibold text-xs mb-1">Cloudflare Edge Metrics</h3>
+        <div class="space-y-3 text-[var(--text-secondary)]">
+          <div class="p-3 bg-[var(--surface-sunken)] border border-[var(--border)] rounded-lg">
+            <h3 class="text-[var(--text-primary)] font-semibold text-xs mb-1">Cloudflare Edge Metrics</h3>
             <p>Cloudflare proxies edge traffic to evaluate threat scores, mitigate automated malicious bots, and terminate TLS connections. Edge logs include request time, HTTP method, status code, TLS version, and edge POP location.</p>
           </div>
-          <div class="p-3 bg-white/[0.02] border border-white/5 rounded-lg">
-            <h3 class="text-white font-semibold text-xs mb-1">Google Analytics 4 (GA4)</h3>
-            <p>Aggregated telemetry is tracked via Measurement ID <code class="text-white font-mono">G-JDKSF0HD9Q</code> solely to monitor page view trends and geographic demand distribution. IP anonymization is enforced by default.</p>
+          <div class="p-3 bg-[var(--surface-sunken)] border border-[var(--border)] rounded-lg">
+            <h3 class="text-[var(--text-primary)] font-semibold text-xs mb-1">Google Analytics 4 (GA4)</h3>
+            <p>Aggregated telemetry is tracked via Measurement ID <code class="text-[var(--text-primary)] font-mono">G-JDKSF0HD9Q</code> solely to monitor page view trends and geographic demand distribution. IP anonymization is enforced by default.</p>
           </div>
-          <div class="p-3 bg-white/[0.02] border border-white/5 rounded-lg">
-            <h3 class="text-white font-semibold text-xs mb-1">Microsoft Clarity</h3>
-            <p>Session performance diagnostics are configured via tag <code class="text-white font-mono">yubzf3jxu3</code> to evaluate UI rendering bugs and interaction friction. Keystrokes in input forms are automatically masked client-side prior to capture.</p>
+          <div class="p-3 bg-[var(--surface-sunken)] border border-[var(--border)] rounded-lg">
+            <h3 class="text-[var(--text-primary)] font-semibold text-xs mb-1">Microsoft Clarity</h3>
+            <p>Session performance diagnostics are configured via tag <code class="text-[var(--text-primary)] font-mono">yubzf3jxu3</code> to evaluate UI rendering bugs and interaction friction. Keystrokes in input forms are automatically masked client-side prior to capture.</p>
           </div>
         </div>
       </section>
 
       <!-- 3. Client NDA & Confidentiality -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>03. ENTERPRISE ENGAGEMENTS</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">Client Confidentiality &amp; Non-Disclosure Architecture</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">Client Confidentiality &amp; Non-Disclosure Architecture</h2>
         <p class="mb-3">
           In all advisory, architecture reviews, and engineering engagements, client system parameters remain protected under strict bilateral non-disclosure agreements:
         </p>
-        <ul class="list-disc list-inside space-y-2 text-[#94a3b8] ml-2">
-          <li><strong class="text-white">Strict Air-Gapped Code Handling:</strong> Proprietary banking switch codebases, merchant keys, ISO 8583 settlement journals, and HSM cryptographic configurations are never stored on public nodes or personal endpoints.</li>
-          <li><strong class="text-white">Tokenized Case References:</strong> Case studies published in research papers and dossiers describe architectural patterns and failure recovery typologies using synthetic or anonymized metrics, with zero disclosure of proprietary corporate schemas or confidential business logic.</li>
-          <li><strong class="text-white">Consulting Intake Discretion:</strong> Information submitted via Cal.com scheduling or direct email is accessible only to Ariya Sarrafzadeh and is never shared, rented, or leased to third parties.</li>
+        <ul class="list-disc list-inside space-y-2 text-[var(--text-secondary)] ml-2">
+          <li><strong class="text-[var(--text-primary)]">Strict Air-Gapped Code Handling:</strong> Proprietary banking switch codebases, merchant keys, ISO 8583 settlement journals, and HSM cryptographic configurations are never stored on public nodes or personal endpoints.</li>
+          <li><strong class="text-[var(--text-primary)]">Tokenized Case References:</strong> Case studies published in research papers and dossiers describe architectural patterns and failure recovery typologies using synthetic or anonymized metrics, with zero disclosure of proprietary corporate schemas or confidential business logic.</li>
+          <li><strong class="text-[var(--text-primary)]">Consulting Intake Discretion:</strong> Information submitted via Cal.com scheduling or direct email is accessible only to Ariya Sarrafzadeh and is never shared, rented, or leased to third parties.</li>
         </ul>
       </section>
 
       <!-- 4. Autonomous Agents & Machine Access -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>04. MACHINE &amp; AGENT PROTOCOLS</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">Autonomous Agent Data Governance</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">Autonomous Agent Data Governance</h2>
         <p class="mb-3">
-          This site explicitly supports read access by verified autonomous LLM agents (e.g., GPTBot, ClaudeBot, PerplexityBot, Cohere, Meta-ExternalAgent) via standard interfaces (<code class="text-[#38bdf8] font-mono">/llms.txt</code>, <code class="text-[#38bdf8] font-mono">/openapi.json</code>, <code class="text-[#38bdf8] font-mono">/api/tools.json</code>).
+          This site explicitly supports read access by verified autonomous LLM agents (e.g., GPTBot, ClaudeBot, PerplexityBot, Cohere, Meta-ExternalAgent) via standard interfaces (<code class="text-[var(--accent-light)] font-mono">/llms.txt</code>, <code class="text-[var(--accent-light)] font-mono">/openapi.json</code>, <code class="text-[var(--accent-light)] font-mono">/api/tools.json</code>).
         </p>
-        <p class="text-[#94a3b8]">
-          Automated agents interacting with these endpoints do not expose personal data of their operators, nor does our edge infrastructure store agent session payloads. Rate limiting headers (<code class="text-white font-mono">RateLimit-Limit</code>, <code class="text-white font-mono">RateLimit-Remaining</code>) are returned idempotently.
+        <p class="text-[var(--text-secondary)]">
+          Automated agents interacting with these endpoints do not expose personal data of their operators, nor does our edge infrastructure store agent session payloads. Rate limiting headers (<code class="text-[var(--text-primary)] font-mono">RateLimit-Limit</code>, <code class="text-[var(--text-primary)] font-mono">RateLimit-Remaining</code>) are returned idempotently.
         </p>
       </section>
 
       <!-- 5. Contact & Data Subject Inquiries -->
-      <section class="bg-[#090a0c]/80 border border-white/[0.07] rounded-xl p-6 sm:p-7">
-        <div class="flex items-center gap-2 font-mono text-xs text-[#06b6d4] mb-2">
+      <section class="bg-[var(--surface-card)] border border-[var(--border)] rounded-xl p-6 sm:p-7">
+        <div class="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] mb-2">
           <span>05. DATA SUBJECT RIGHTS &amp; INQUIRIES</span>
         </div>
-        <h2 class="text-lg font-bold text-white mb-3">Inquiries &amp; Deletion Requests</h2>
+        <h2 class="text-lg font-bold text-[var(--text-primary)] mb-3">Inquiries &amp; Deletion Requests</h2>
         <p class="mb-4">
           For inquiries regarding telemetry records, data deletion requests, or formal enterprise security assessments, contact the principal architect directly:
         </p>
         <div class="flex flex-col sm:flex-row gap-3 font-mono text-xs">
           <a
             href="mailto:ariasg2002@gmail.com"
-            class="px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold transition-all inline-flex items-center gap-2"
+            class="px-4 py-2.5 rounded-lg bg-[var(--surface-sunken)] hover:bg-[var(--accent-primary)] hover:text-white border border-[var(--border)] text-[var(--text-primary)] font-semibold transition-all inline-flex items-center gap-2"
           >
             <span>Direct Email: ariasg2002@gmail.com</span>
             <span>&rarr;</span>
           </a>
           <a
             href={`${baseUrl}contact/`}
-            class="px-4 py-2.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-white/20 text-[#cbd5e1] hover:text-white transition-all inline-flex items-center gap-2"
+            class="px-4 py-2.5 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] hover:border-[var(--accent-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all inline-flex items-center gap-2"
           >
             <span>Verified Intake Portal</span>
             <span>&rarr;</span>
