@@ -36,56 +36,59 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
       ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      for (const s of sections) {
-        const el = document.getElementById(s.id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 260 && rect.bottom > 180) {
-            setActiveSection(s.id);
-            return;
-          }
-        }
+    // Check initial hash
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && sections.some((s) => s.id === hash)) {
+        setActiveSection(hash);
+      } else {
+        setActiveSection('payment-settlement');
+      }
+    }
+
+    const handleDossierActivated = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail && customEvent.detail.id) {
+        setActiveSection(customEvent.detail.id);
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    handleScroll();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
+    window.addEventListener('dossier-activated', handleDossierActivated);
+    return () => window.removeEventListener('dossier-activated', handleDossierActivated);
   }, [isFa]);
 
   const currentIndex = sections.findIndex((s) => s.id === activeSection);
-  const activeItem = sections[currentIndex] || sections[0];
+  const activeItem = sections[currentIndex] || sections[1] || sections[0];
 
   const handleNavClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     setActiveSection(id);
     setMobileMenuOpen(false);
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('dossier-select', { detail: { id } }));
     }
   };
 
   const handleNextPage = () => {
-    const nextIdx = (currentIndex + 1) % sections.length;
-    const target = sections[nextIdx];
-    const el = document.getElementById(target.id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    // Cycle between dossiers (index 1 to sections.length - 1)
+    const dossierSections = sections.filter((s) => s.id !== 'overview');
+    const currentDossierIdx = dossierSections.findIndex((s) => s.id === activeSection);
+    const nextIdx = (currentDossierIdx + 1) % dossierSections.length;
+    const target = dossierSections[nextIdx];
+    setActiveSection(target.id);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('dossier-select', { detail: { id: target.id } }));
     }
   };
 
   const handlePrevPage = () => {
-    const prevIdx = currentIndex > 0 ? currentIndex - 1 : sections.length - 1;
-    const target = sections[prevIdx];
-    const el = document.getElementById(target.id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    const dossierSections = sections.filter((s) => s.id !== 'overview');
+    const currentDossierIdx = dossierSections.findIndex((s) => s.id === activeSection);
+    const prevIdx = (currentDossierIdx - 1 + dossierSections.length) % dossierSections.length;
+    const target = dossierSections[prevIdx];
+    setActiveSection(target.id);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('dossier-select', { detail: { id: target.id } }));
     }
   };
 
