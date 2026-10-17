@@ -259,6 +259,13 @@
       <button onclick="openSheetsGuideModal()" title="راهنمای گوگل شیت" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition text-xs font-bold">
         ❓
       </button>
+      <!-- Active User & IP Badge -->
+      <button onclick="promptUserIdentity(true)" id="userBadgeBtn" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#18191E] hover:bg-[#20222A] text-slate-300 border border-[#2D303A] rounded-xl text-xs transition" title="کلیک برای تغییر نام یا هویت کاربر">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span id="userBadgeName">کاربر: شناسایی نشده</span>
+        <span id="userBadgeIP" class="text-[10px] text-slate-500 font-mono hidden sm:inline"></span>
+      </button>
+
       <!-- Firebase Cloud Sync Controls -->
       <button onclick="forcePushToCloud()" id="btnPushCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs shadow-md shadow-blue-600/30 transition" title="ارسال اطلاعات و تغییرات این کامپیوتر به پایگاه داده ابری">
         <span>☁️ ارسال به ابر (Push)</span>
@@ -1092,6 +1099,77 @@
       accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
     }
 
+    
+    // --- USER IDENTITY & IP AUDIT TRACKING ---
+    let currentUserName = localStorage.getItem("pfg_user_name") || "";
+    let currentClientIP = "در حال دریافت...";
+
+    async function detectClientIP() {
+      try {
+        // Try Cloudflare cdn-cgi/trace first (always works on domain)
+        const res = await fetch("/cdn-cgi/trace");
+        if (res.ok) {
+          const text = await res.text();
+          const match = text.match(/ip=([^\s]+)/);
+          if (match) {
+            currentClientIP = match[1];
+            updateUserBadgeUI();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      // Fallback: try Stockholm VPS API
+      try {
+        const res2 = await fetch("http://109.120.131.224/api/warroom/ip");
+        if (res2.ok) {
+          const d = await res2.json();
+          if (d.ip) {
+            currentClientIP = d.ip;
+            updateUserBadgeUI();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      currentClientIP = "IP ناشناس";
+      updateUserBadgeUI();
+    }
+
+    function updateUserBadgeUI() {
+      const nameEl = document.getElementById("userBadgeName");
+      const ipEl = document.getElementById("userBadgeIP");
+      if (nameEl) nameEl.innerText = currentUserName ? `👤 ${currentUserName}` : "👤 تعیین هویت";
+      if (ipEl) ipEl.innerText = `(${currentClientIP})`;
+    }
+
+    function promptUserIdentity(force = false) {
+      if (!currentUserName || force) {
+        document.getElementById("userIdentityModal").classList.remove("hidden");
+      }
+    }
+
+    function selectUserPreset(name) {
+      currentUserName = name;
+      localStorage.setItem("pfg_user_name", name);
+      document.getElementById("userIdentityModal").classList.add("hidden");
+      updateUserBadgeUI();
+      // Also update default dropdown authors if drawer is open
+      const comAuth = document.getElementById("newCommentAuthor");
+      const actPerf = document.getElementById("newActionPerformer");
+      if (comAuth) comAuth.value = name;
+      if (actPerf) actPerf.value = name;
+    }
+
+    function saveCustomUserName() {
+      const val = document.getElementById("customUserNameInput").value.trim();
+      if (!val) {
+        alert("لطفاً نام خود را وارد کنید.");
+        return;
+      }
+      selectUserPreset(val);
+    }
+
     // --- FIREBASE REALTIME DATABASE SYNC ENGINE ---
     const FIREBASE_DB_BASE = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom";
     let isCloudSyncing = false;
@@ -1470,10 +1548,12 @@
       if (!acc.actions) acc.actions = [];
       const now = new Date();
       const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')} — ${now.toLocaleDateString('fa-IR')}`;
+      const actualPerformer = performer || currentUserName || "سیستم";
       acc.actions.unshift({
         id: `act-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
         type: type,
-        performer: performer || "سیستم",
+        performer: actualPerformer,
+        ip: currentClientIP,
         text: text,
         time: timeStr,
         timestamp: Date.now()
@@ -1525,6 +1605,7 @@
             <div class="flex items-center gap-2">
               <span class="px-2 py-0.5 rounded text-[10px] font-medium border ${badgeColor}">${icon}</span>
               <span class="text-white font-bold text-[11px]">${act.performer}</span>
+              ${act.ip ? `<span class="text-[9px] font-mono text-slate-500 bg-black/30 px-1 rounded">${act.ip}</span>` : ''}
             </div>
             <span class="text-slate-500 text-[10px] font-mono">${act.time}</span>
           </div>
@@ -2134,5 +2215,50 @@
       </div>
     </div>
   </div>
-  </body>
+  
+  <!-- USER IDENTITY MODAL -->
+  <div id="userIdentityModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-[#181A20] text-white border border-[#272932] w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 text-right">
+      <div class="flex items-center justify-between border-b border-[#272932] pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+          <h3 class="font-bold text-white text-sm">شناسایی هویت کاربر (ثبت وقایع و اقدامات)</h3>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-400 leading-relaxed">
+        جهت ثبت دقیق تاریخچه، لاگ اقدامات و کامنت‌ها، لطفاً نام خود را مشخص نمایید:
+      </p>
+
+      <!-- Quick Preset Buttons -->
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <button type="button" onclick="selectUserPreset('خانم خرم‌دل')" class="p-2.5 rounded-xl bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] font-medium transition text-center">
+          خانم خرم‌دل
+        </button>
+        <button type="button" onclick="selectUserPreset('خانم فائزه')" class="p-2.5 rounded-xl bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] font-medium transition text-center">
+          خانم فائزه
+        </button>
+        <button type="button" onclick="selectUserPreset('خانم موسی‌پور')" class="p-2.5 rounded-xl bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] font-medium transition text-center">
+          خانم موسی‌پور
+        </button>
+        <button type="button" onclick="selectUserPreset('خانم شهروزی')" class="p-2.5 rounded-xl bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] font-medium transition text-center">
+          خانم شهروزی
+        </button>
+      </div>
+
+      <!-- Custom Name Input -->
+      <div class="pt-2">
+        <label class="block text-[11px] text-slate-400 mb-1">یا نام دلخواه خود را تایپ کنید:</label>
+        <input type="text" id="customUserNameInput" placeholder="نام و نام خانوادگی..." class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-emerald-500 rounded-xl px-3 py-2 text-xs">
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2 border-t border-[#272932]">
+        <button type="button" onclick="saveCustomUserName()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition">
+          تایید و ورود به بورد
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
 </html>
