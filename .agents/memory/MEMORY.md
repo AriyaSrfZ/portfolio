@@ -10,4 +10,5 @@ updated: 2026-10-17
 - [Architecture & Tech Stack](architecture-tech-stack.md) — Astro 5.x SSG, 52 routes, zero-storage edge API, Velaris WebGL, stats SSOT
 - [Fintech Dictionary System](dictionary-system.md) — 1,012 terms, client-side indexing, boilerplate suppression, regulatory citations
 - [VPS Deployment vs WordPress Evaluation](vps-hosting-evaluation.md) — Nginx/Caddy static deployment guide and technical verdict on WordPress
+- [Enterprise Operations Console](operations-console-architecture.md) — 100vw × 100vh viewport-locked console, active tab state machine, and agentic MCP bridge
 - [Brand Systems Director Persona](persona-director.md) — Kian persona contract, quality gates, and zero-compromise design audit rules

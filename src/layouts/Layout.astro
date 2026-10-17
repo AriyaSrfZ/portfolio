@@ -13,6 +13,7 @@ interface Props {
   lang?: string;
   dir?: 'ltr' | 'rtl';
   image?: string;
+  viewportLocked?: boolean;
 }
 
 const { 
@@ -21,7 +22,8 @@ const {
   theme = 'rugged',
   lang = 'en',
   dir = lang === 'fa' ? 'rtl' : 'ltr',
-  image = '/brand/og-preview.svg'
+  image = '/brand/og-preview.svg',
+  viewportLocked = false
 } = Astro.props;
 
 const isFa = lang === 'fa';
@@ -107,7 +109,10 @@ const jsonLdPerson = {
 ---
 
 <!DOCTYPE html>
-<html lang={lang} dir={dir} data-theme={theme} class="dark bg-[#202725]">
+<html lang={lang} dir={dir} data-theme={theme} class:list={[
+  "dark",
+  viewportLocked ? "h-screen w-screen max-h-screen max-w-screen overflow-hidden bg-[#0B0F17]" : "bg-[#202725]"
+]}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -169,94 +174,103 @@ const jsonLdPerson = {
 
   <Analytics />
 </head>
-<body class="min-h-screen bg-transparent text-[var(--text-primary,#F0EEE7)] selection:bg-[#527C78]/30 selection:text-white font-sans antialiased overflow-x-hidden pt-16 sm:pt-20">
-  <!-- Subtle WebGL Ambient Noise Telemetry Background (Carbon / Patina Tones) -->
+<body class:list={[
+  "text-[var(--text-primary,#F0EEE7)] selection:bg-[#2563EB]/40 selection:text-white font-sans antialiased",
+  viewportLocked 
+    ? "h-screen w-screen max-h-screen max-w-screen overflow-hidden m-0 p-0 bg-[#0B0F17]" 
+    : "min-h-screen bg-transparent overflow-x-hidden pt-16 sm:pt-20"
+]}>
+  <!-- Subtle WebGL Ambient Noise Telemetry Background -->
   <div id="velaris-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
     <Velaris
       client:only="react"
       height="100vh"
-      speed={0.15}
+      speed={viewportLocked ? 0.08 : 0.15}
       grain={0.03}
-      colors={["#292F2D", "#202725", "#303936", "#171C1A"]}
-      bg="#202725"
+      colors={viewportLocked ? ["#131926", "#0B0F17", "#1E293B", "#0B0F17"] : ["#292F2D", "#202725", "#303936", "#171C1A"]}
+      bg={viewportLocked ? "#0B0F17" : "#202725"}
     />
   </div>
 
   <BackgroundController client:load />
-  <FloatingNavbar client:load locale={isFa ? 'fa' : 'en'} />
+  {!viewportLocked && <FloatingNavbar client:load locale={isFa ? 'fa' : 'en'} />}
 
-  <div class="relative z-10">
+  <div class={viewportLocked ? "relative z-10 w-full h-full overflow-hidden" : "relative z-10"}>
     <slot />
   </div>
 
-  <footer class="relative z-10 border-t border-[var(--border,#46504B)] mt-24 py-12 px-6 font-sans text-xs text-[var(--text-secondary,#B5BDB6)]">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex flex-col items-center md:items-start gap-1">
-        {isFa ? (
-          <p class="text-[var(--text-primary,#F0EEE7)] font-semibold">© {new Date().getFullYear()} {BRAND_NAME_FA} · {PRIMARY_TAGLINE_FA}</p>
-        ) : (
-          <p class="text-[var(--text-primary,#F0EEE7)] font-semibold">© {new Date().getFullYear()} {BRAND_NAME} · {PRIMARY_TAGLINE}</p>
-        )}
-        <p class="text-[11px] text-[var(--text-secondary,#B5BDB6)] font-sans">
-          {isFa ? 'معماری سیستم‌ها، زیرساخت پرداخت و مخابرات · تهران، ایران' : 'Systems Architecture, Payments & Telecom Infrastructure · Tehran, Iran'}
-        </p>
+  {!viewportLocked && (
+    <footer class="relative z-10 border-t border-[var(--border,#46504B)] mt-24 py-12 px-6 font-sans text-xs text-[var(--text-secondary,#B5BDB6)]">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex flex-col items-center md:items-start gap-1">
+          {isFa ? (
+            <p class="text-[var(--text-primary,#F0EEE7)] font-semibold">© {new Date().getFullYear()} {BRAND_NAME_FA} · {PRIMARY_TAGLINE_FA}</p>
+          ) : (
+            <p class="text-[var(--text-primary,#F0EEE7)] font-semibold">© {new Date().getFullYear()} {BRAND_NAME} · {PRIMARY_TAGLINE}</p>
+          )}
+          <p class="text-[11px] text-[var(--text-secondary,#B5BDB6)] font-sans">
+            {isFa ? 'معماری سیستم‌ها، زیرساخت پرداخت و مخابرات · تهران، ایران' : 'Systems Architecture, Payments & Telecom Infrastructure · Tehran, Iran'}
+          </p>
+        </div>
+
+        <!-- Quick Trust & Professional Channels -->
+        <div class="flex flex-wrap items-center justify-center gap-4 text-[11px] font-sans font-medium">
+          <a href="https://github.com/AriyaSrfZ" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
+            GitHub
+          </a>
+          <span>·</span>
+          <a href="https://www.linkedin.com/in/ariya-sarrafzadeh/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
+            LinkedIn
+          </a>
+          <span>·</span>
+          <a href={`${import.meta.env.BASE_URL}developers/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
+            {isFa ? 'پورتال توسعه‌دهندگان' : 'Developers'}
+          </a>
+          <span>·</span>
+          <a href={`${import.meta.env.BASE_URL}docs/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
+            {isFa ? 'مستندات API' : 'API Docs'}
+          </a>
+          <span>·</span>
+          <a href={`${import.meta.env.BASE_URL}contact/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
+            {isFa ? 'تماس و مشاوره' : 'Contact'}
+          </a>
+          <span>·</span>
+          <a href={`${import.meta.env.BASE_URL}privacy/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
+            {isFa ? 'حریم خصوصی' : 'Privacy'}
+          </a>
+          <span>·</span>
+          <a href={`${import.meta.env.BASE_URL}openapi.json`} target="_blank" rel="noopener noreferrer" class="text-[var(--accent-primary,#8FB4AA)] hover:underline transition-colors">
+            OpenAPI
+          </a>
+          <span>·</span>
+          <a href={`${import.meta.env.BASE_URL}llms.txt`} target="_blank" rel="noopener noreferrer" class="text-[var(--accent-primary,#8FB4AA)] hover:underline transition-colors">
+            llms.txt
+          </a>
+        </div>
       </div>
+    </footer>
+  )}
 
-      <!-- Quick Trust & Professional Channels -->
-      <div class="flex flex-wrap items-center justify-center gap-4 text-[11px] font-sans font-medium">
-        <a href="https://github.com/AriyaSrfZ" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
-          GitHub
-        </a>
-        <span>·</span>
-        <a href="https://www.linkedin.com/in/ariya-sarrafzadeh/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
-          LinkedIn
-        </a>
-        <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}developers/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
-          {isFa ? 'پورتال توسعه‌دهندگان' : 'Developers'}
-        </a>
-        <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}docs/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
-          {isFa ? 'مستندات API' : 'API Docs'}
-        </a>
-        <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}contact/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
-          {isFa ? 'تماس و مشاوره' : 'Contact'}
-        </a>
-        <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}privacy/`} class="hover:text-[var(--accent-primary,#8FB4AA)] transition-colors">
-          {isFa ? 'حریم خصوصی' : 'Privacy'}
-        </a>
-        <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}openapi.json`} target="_blank" rel="noopener noreferrer" class="text-[var(--accent-primary,#8FB4AA)] hover:underline transition-colors">
-          OpenAPI
-        </a>
-        <span>·</span>
-        <a href={`${import.meta.env.BASE_URL}llms.txt`} target="_blank" rel="noopener noreferrer" class="text-[var(--accent-primary,#8FB4AA)] hover:underline transition-colors">
-          llms.txt
-        </a>
-      </div>
-    </div>
-  </footer>
+  {!viewportLocked && (
+    <script>
+      import Lenis from 'lenis';
 
-  <script>
-    import Lenis from 'lenis';
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+      });
 
-    const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-    });
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
 
-    function raf(time: number) {
-      lenis.raf(time);
       requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-  </script>
+    </script>
+  )}
 </body>
 </html>

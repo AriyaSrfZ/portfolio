@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "ariya-telemetry-console-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol (MCP) tool endpoints for autonomous agents inspecting and operating the Ariya Sarrafzadeh Enterprise Telemetry Console.",
+  "tools": [
+    {
+      "name": "get_ui_state",
+      "description": "Returns current UI state including active operational view, viewport dimensions, transition state, and locale.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "activeView": {
+            "type": "string",
+            "enum": [
+              "overview",
+              "payment-settlement",
+              "payment-switch",
+              "fraud-forensics",
+              "reconciliation-engine",
+              "incident-dossiers",
+              "lifecycle",
+              "book"
+            ]
+          },
+          "locale": { "type": "string", "enum": ["en", "fa"] },
+          "viewport": {
+            "type": "object",
+            "properties": {
+              "width": { "type": "number" },
+              "height": { "type": "number" },
+              "aspectRatio": { "type": "number" },
+              "isDesktop": { "type": "boolean" },
+              "isMobile": { "type": "boolean" }
+            }
+          },
+          "isTransitioning": { "type": "boolean" },
+          "streamingActive": { "type": "boolean" }
+        }
+      }
+    },
+    {
+      "name": "set_active_tab",
+      "description": "Transitions dashboard in place to a target operational view without document-level scroll sprawl.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "tabId": {
+            "type": "string",
+            "enum": [
+              "overview",
+              "payment-settlement",
+              "payment-switch",
+              "fraud-forensics",
+              "reconciliation-engine",
+              "incident-dossiers",
+              "lifecycle",
+              "book"
+            ],
+            "description": "Target operational view identifier."
+          }
+        },
+        "required": ["tabId"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "currentView": { "type": "string" },
+          "timestamp": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "get_telemetry_metrics",
+      "description": "Exposes real-time engine telemetry snapshot including TPS, financial drift, failover latency, and active cluster nodes.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "tps": { "type": "number" },
+          "peakTps": { "type": "number" },
+          "driftPercent": { "type": "number" },
+          "failoverLatencyMs": { "type": "number" },
+          "fraudLoopSlaMs": { "type": "number" },
+          "reconParityPercent": { "type": "number" },
+          "activeNodes": { "type": "number" },
+          "packetCount": { "type": "number" },
+          "status": { "type": "string", "enum": ["nominal", "warning", "critical"] },
+          "lastUpdated": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "run_accessibility_audit",
+      "description": "Executes in-browser WCAG 2.1 AA/AAA contrast and DOM tree audit, returning violation counts, contrast scores, and pass status.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "targetSelector": {
+            "type": "string",
+            "description": "CSS selector to audit, defaults to root operations console.",
+            "default": "#operations-workstation"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "passed": { "type": "boolean" },
+          "violations": { "type": "number" },
+          "auditedElements": { "type": "number" },
+          "checkedAt": { "type": "string" },
+          "details": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  ]
+}
