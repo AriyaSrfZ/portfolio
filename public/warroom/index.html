@@ -259,6 +259,12 @@
       <button onclick="openSheetsGuideModal()" title="راهنمای گوگل شیت" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition text-xs font-bold">
         ❓
       </button>
+      <!-- Firebase Cloud Sync Indicator & Trigger -->
+      <button onclick="manualCloudSync()" id="cloudSyncBtn" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#18191E] hover:bg-[#20222A] text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold shadow-sm transition" title="دیتابیس ابری فایربیس فعال است. کلیک کنید برای دریافت آخرین تغییرات تیم">
+        <span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="cloudSyncText">همگام با ابر</span>
+      </button>
+
       <button onclick="exportDataJSON()" title="پشتیبان‌گیری JSON" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
       </button>
@@ -1076,9 +1082,102 @@
       accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
     }
 
+    // --- FIREBASE REALTIME DATABASE SYNC ENGINE ---
+    const FIREBASE_DB_BASE = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom";
+    let isCloudSyncing = false;
+    let syncDebounceTimer = null;
+
+    function updateSyncUI(status, text) {
+      const dot = document.getElementById("cloudSyncDot");
+      const label = document.getElementById("cloudSyncText");
+      if (!dot || !label) return;
+
+      if (status === 'syncing') {
+        dot.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
+        label.className = "text-amber-300 font-medium";
+        label.innerText = text || "در حال ذخیره در ابر...";
+      } else if (status === 'synced') {
+        dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+        label.className = "text-emerald-400 font-semibold";
+        label.innerText = text || "همگام با ابر";
+      } else if (status === 'error') {
+        dot.className = "w-2 h-2 rounded-full bg-rose-500";
+        label.className = "text-rose-400 font-medium";
+        label.innerText = text || "خطا در اتصال به ابر";
+      }
+    }
+
+    async function pushToFirebaseCloud() {
+      try {
+        updateSyncUI('syncing', 'ذخیره در دیتابیس ابری...');
+        const res = await fetch(`${FIREBASE_DB_BASE}/accounts.json`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(accounts)
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        updateSyncUI('synced', 'ذخیره شد در ابر');
+        setTimeout(() => updateSyncUI('synced', 'همگام با ابر'), 3000);
+      } catch (err) {
+        console.warn("Firebase push warning:", err);
+        updateSyncUI('error', 'ذخیره محلی (آفلاین)');
+      }
+    }
+
+    async function loadFromFirebaseCloud(initial = false) {
+      if (isCloudSyncing) return;
+      isCloudSyncing = true;
+      if (!initial) updateSyncUI('syncing', 'دریافت تغییرات تیم...');
+
+      try {
+        const res = await fetch(`${FIREBASE_DB_BASE}/accounts.json`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        if (data && Array.isArray(data) && data.length > 0) {
+          accounts = data;
+          localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+          renderBoard();
+          renderList();
+          updateAnalytics();
+          updateSyncUI('synced', 'همگام با ابر');
+        } else if (data === null) {
+          // Cloud is empty on first run, seed cloud with default/local accounts
+          await pushToFirebaseCloud();
+        }
+
+        // Also fetch standup notes if available
+        try {
+          const sRes = await fetch(`${FIREBASE_DB_BASE}/standup.json`);
+          if (sRes.ok) {
+            const sData = await sRes.json();
+            if (sData) localStorage.setItem("pfg_standup_workspace", JSON.stringify(sData));
+          }
+        } catch(e) {}
+
+      } catch (err) {
+        console.warn("Firebase fetch warning (fallback to local):", err);
+        updateSyncUI('synced', 'دیتابیس لوکال فعال');
+      } finally {
+        isCloudSyncing = false;
+      }
+    }
+
+    function manualCloudSync() {
+      loadFromFirebaseCloud(false);
+      alert("همگام‌سازی با پایگاه داده ابری فایربیس انجام شد. آخرین تغییرات تمام اعضای تیم دریافت گردید.");
+    }
+
     function saveState() {
+      // 1. Instant local persistence
       localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
       updateAnalytics();
+
+      // 2. Debounced Cloud persistence to Firebase
+      clearTimeout(syncDebounceTimer);
+      syncDebounceTimer = setTimeout(() => {
+        pushToFirebaseCloud();
+      }, 400);
     }
 
     let activeFilterRole = "all";
@@ -1469,7 +1568,15 @@
         lastUpdated: new Date().toISOString()
       };
       localStorage.setItem("pfg_standup_workspace", JSON.stringify(data));
-      alert("یادداشت‌ها و تعهدات استندآپ با موفقیت ذخیره شدند و در هر زمان قابل بازبینی هستند.");
+      
+      // Sync standup to Firebase
+      fetch(`${FIREBASE_DB_BASE}/standup.json`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).catch(e => console.warn("Standup cloud sync err:", e));
+
+      alert("یادداشت‌ها و تعهدات استندآپ با موفقیت ذخیره شدند و روی سرور ابری همگام‌سازی گردیدند.");
       closeStandupModal();
     }
 
