@@ -1181,8 +1181,10 @@
     }
 
     // --- HYBRID CLOUD & SOVEREIGN VPS SYNC ENGINE ---
-    const IS_VPS = window.location.hostname === "109.120.131.224";
-    const VPS_ENDPOINT = "/api/warroom/accounts";
+    const isDirectVps = window.location.hostname === "109.120.131.224";
+    const vpsBase = isDirectVps ? "" : "https://api.ariya-sarrafzadeh.ir";
+    const VPS_ENDPOINT = vpsBase + "/api/warroom/accounts";
+    const VPS_IP_ENDPOINT = vpsBase + "/api/warroom/ip";
     const FIREBASE_ENDPOINT = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/accounts.json";
 
     let isCloudSyncing = false;
@@ -1213,26 +1215,24 @@
       if (btn) btn.innerText = "⏳ در حال ارسال...";
       updateSyncUI('syncing', 'در حال ارسال...');
 
-      // 1. If on Stockholm VPS: use local sovereign API
-      if (IS_VPS) {
-        try {
-          const res = await fetch(VPS_ENDPOINT, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-User-Name": currentUserName || "ناشناس"
-            },
-            body: JSON.stringify(accounts)
-          });
-          if (res.ok) {
-            updateSyncUI('synced', 'ذخیره شد روی سرور');
-            if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-            alert(`✅ اطلاعات و تغییرات این سیستم با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (IP: ${currentClientIP})`);
-            return;
-          }
-        } catch(err) {
-          console.warn("VPS push err:", err);
+      // 1. Try Sovereign VPS Backend
+      try {
+        const res = await fetch(VPS_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Name": currentUserName || "ناشناس"
+          },
+          body: JSON.stringify(accounts)
+        });
+        if (res.ok) {
+          updateSyncUI('synced', 'ذخیره شد روی سرور');
+          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+          alert(`✅ اطلاعات و تغییرات این سیستم با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (IP: ${currentClientIP})`);
+          return;
         }
+      } catch(err) {
+        console.warn("VPS push err:", err);
       }
 
       // 2. Try Firebase RTDB
@@ -1261,23 +1261,24 @@
     async function forcePullFromCloud() {
       updateSyncUI('syncing', 'در حال دریافت...');
 
-      if (IS_VPS) {
-        try {
-          const res = await fetch(VPS_ENDPOINT);
-          if (res.ok) {
-            const data = await res.json();
-            if (data && Array.isArray(data) && data.length > 0) {
-              accounts = data;
-              localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-              renderBoard();
-              renderList();
-              updateAnalytics();
-              updateSyncUI('synced', 'متصل به سرور استکهلم');
-              alert("✅ آخرین تغییرات تیم از سرور استکهلم دریافت شد!");
-              return;
-            }
+      // 1. Try Sovereign VPS Backend
+      try {
+        const res = await fetch(VPS_ENDPOINT);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data) && data.length > 0) {
+            accounts = data;
+            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+            renderBoard();
+            renderList();
+            updateAnalytics();
+            updateSyncUI('synced', 'متصل به سرور استکهلم');
+            alert("✅ آخرین تغییرات تیم از سرور استکهلم دریافت شد!");
+            return;
           }
-        } catch(e) {}
+        }
+      } catch(e) {
+        console.warn("VPS pull err:", e);
       }
 
       try {
