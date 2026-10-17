@@ -285,6 +285,14 @@
       <button onclick="exportDataJSON()" title="دانلود فایل پشتیبان JSON" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
       </button>
+
+      <button onclick="copyDataClipboard()" title="کپی سریع تمام داده‌ها در کلیپ‌بورد" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
+        📋
+      </button>
+
+      <button onclick="pasteDataClipboard()" title="جایگذاری سریع داده‌ها از کلیپ‌بورد" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
+        📥
+      </button>
     </div>
   </header>
   <!-- Standup Action Banner -->
@@ -1119,18 +1127,20 @@
         }
       } catch(e) {}
 
-      // Fallback: try Stockholm VPS API
-      try {
-        const res2 = await fetch("http://109.120.131.224/api/warroom/ip");
-        if (res2.ok) {
-          const d = await res2.json();
-          if (d.ip) {
-            currentClientIP = d.ip;
-            updateUserBadgeUI();
-            return;
+      // If hosted on Stockholm VPS directly or same-origin
+      if (window.location.hostname === "109.120.131.224" || window.location.protocol === "http:") {
+        try {
+          const res2 = await fetch("/api/warroom/ip");
+          if (res2.ok) {
+            const d = await res2.json();
+            if (d.ip) {
+              currentClientIP = d.ip;
+              updateUserBadgeUI();
+              return;
+            }
           }
-        }
-      } catch(e) {}
+        } catch(e) {}
+      }
 
       currentClientIP = "IP ناشناس";
       updateUserBadgeUI();
@@ -1170,8 +1180,11 @@
       selectUserPreset(val);
     }
 
-    // --- FIREBASE REALTIME DATABASE SYNC ENGINE ---
-    const FIREBASE_DB_BASE = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom";
+    // --- HYBRID CLOUD & SOVEREIGN VPS SYNC ENGINE ---
+    const IS_VPS = window.location.hostname === "109.120.131.224";
+    const VPS_ENDPOINT = "/api/warroom/accounts";
+    const FIREBASE_ENDPOINT = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/accounts.json";
+
     let isCloudSyncing = false;
     let syncDebounceTimer = null;
 
@@ -1187,7 +1200,7 @@
       } else if (status === 'synced') {
         dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
         label.className = "text-emerald-400 font-semibold";
-        label.innerText = text || "دریافت از ابر (Pull)";
+        label.innerText = text || (IS_VPS ? "متصل به سرور استکهلم" : "دریافت از ابر (Pull)");
       } else if (status === 'error') {
         dot.className = "w-2 h-2 rounded-full bg-rose-500";
         label.className = "text-rose-400 font-medium";
@@ -1196,45 +1209,79 @@
     }
 
     async function forcePushToCloud() {
-      try {
-        updateSyncUI('syncing', 'در حال ارسال...');
-        const btn = document.getElementById("btnPushCloud");
-        if (btn) btn.innerText = "⏳ در حال ارسال...";
+      const btn = document.getElementById("btnPushCloud");
+      if (btn) btn.innerText = "⏳ در حال ارسال...";
+      updateSyncUI('syncing', 'در حال ارسال...');
 
-        // Push accounts
-        const res = await fetch(`${FIREBASE_DB_BASE}/accounts.json`, {
+      // 1. If on Stockholm VPS: use local sovereign API
+      if (IS_VPS) {
+        try {
+          const res = await fetch(VPS_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-User-Name": currentUserName || "ناشناس"
+            },
+            body: JSON.stringify(accounts)
+          });
+          if (res.ok) {
+            updateSyncUI('synced', 'ذخیره شد روی سرور');
+            if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+            alert(`✅ اطلاعات و تغییرات این سیستم با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (IP: ${currentClientIP})`);
+            return;
+          }
+        } catch(err) {
+          console.warn("VPS push err:", err);
+        }
+      }
+
+      // 2. Try Firebase RTDB
+      try {
+        const res = await fetch(FIREBASE_ENDPOINT, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(accounts)
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-        // Push standup if available
-        const standupData = localStorage.getItem("pfg_standup_workspace");
-        if (standupData) {
-          fetch(`${FIREBASE_DB_BASE}/standup.json`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: standupData
-          }).catch(() => {});
-        }
-
         updateSyncUI('synced', 'ارسال شد!');
         if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-        alert("✅ اطلاعات و تغییرات این سیستم با موفقیت به سرور ابری فایربیس ارسال شد!\nاکنون در کامپیوتر یا مرورگر دیگر، فقط دکمه «دریافت از ابر» را بزنید یا صفحه را رفرش کنید.");
+        alert("✅ اطلاعات و تغییرات این سیستم با موفقیت به سرور ابری ارسال شد!\nاکنون در کامپیوتر یا مرورگر دیگر، دکمه «دریافت از ابر» را بزنید یا صفحه را رفرش فرمایید.");
+        return;
       } catch (err) {
-        console.error("Force push error:", err);
-        updateSyncUI('error', 'خطا در ارسال');
-        const btn = document.getElementById("btnPushCloud");
-        if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-        alert("خطا در ارسال به ابر: لطفاً اتصال اینترنت خود را بررسی کنید.");
+        console.error("Firebase push blocked:", err);
       }
+
+      // 3. Fallback when network DPI blocks connection
+      updateSyncUI('error', 'مسدود توسط شبکه');
+      if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+      showFallbackSyncModal();
     }
 
     async function forcePullFromCloud() {
+      updateSyncUI('syncing', 'در حال دریافت...');
+
+      if (IS_VPS) {
+        try {
+          const res = await fetch(VPS_ENDPOINT);
+          if (res.ok) {
+            const data = await res.json();
+            if (data && Array.isArray(data) && data.length > 0) {
+              accounts = data;
+              localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+              renderBoard();
+              renderList();
+              updateAnalytics();
+              updateSyncUI('synced', 'متصل به سرور استکهلم');
+              alert("✅ آخرین تغییرات تیم از سرور استکهلم دریافت شد!");
+              return;
+            }
+          }
+        } catch(e) {}
+      }
+
       try {
-        updateSyncUI('syncing', 'در حال دریافت...');
-        const res = await fetch(`${FIREBASE_DB_BASE}/accounts.json`);
+        const res = await fetch(FIREBASE_ENDPOINT);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
 
@@ -1245,25 +1292,19 @@
           renderList();
           updateAnalytics();
           updateSyncUI('synced', 'دریافت شد!');
-          
-          // Also fetch standup
-          try {
-            const sRes = await fetch(`${FIREBASE_DB_BASE}/standup.json`);
-            if (sRes.ok) {
-              const sData = await sRes.json();
-              if (sData) localStorage.setItem("pfg_standup_workspace", JSON.stringify(sData));
-            }
-          } catch(e) {}
-
           alert("✅ آخرین تغییرات تیم از سرور ابری دریافت و روی صفحه اعمال شد!");
-        } else {
-          alert("دیتابیس ابری در حال حاضر خالی است.");
+          return;
         }
       } catch (err) {
-        console.error("Force pull error:", err);
-        updateSyncUI('error', 'خطا در دریافت');
-        alert("خطا در برقراری ارتباط با دیتابیس ابری.");
+        console.error("Cloud pull error:", err);
       }
+
+      updateSyncUI('error', 'خطا در دریافت');
+      showFallbackSyncModal();
+    }
+
+    function showFallbackSyncModal() {
+      alert("⚠️ اتصال به دیتابیس ابری فایربیس به دلیل فیلترینگ اینترنت داخلی (DPI) مسدود شد.\n\nراهکارهای جایگزین فوری و تضمینی:\n۱. ساده‌ترین روش: دکمه «دانلود فایل پشتیبان 📥» را در این سیستم بزنید و فایل JSON را با دکمه «بارگذاری 📂» در سیستم دیگر باز کنید.\n\n۲. استفاده از سرور اختصاصی استکهلم شما بدون فیلتر: http://109.120.131.224/warroom/");
     }
 
     async function loadFromFirebaseCloud(initial = false) {
@@ -2053,6 +2094,36 @@
 
       navigator.clipboard.writeText(prompt);
       alert("پرامپت جمینای در کلیپ‌بورد کپی شد! می‌توانید در چت جمینای یا پنل هوش مصنوعی پیست کنید.");
+    }
+
+    
+    function copyDataClipboard() {
+      const dataStr = JSON.stringify(accounts);
+      navigator.clipboard.writeText(dataStr).then(() => {
+        alert("✅ تمام ۱۰ حساب، وضعیت‌ها، اقدامات و کامنت‌های این صفحه در کلیپ‌بورد کپی شد!\nاکنون در کامپیوتر یا مرورگر دیگر، روی دکمه «جایگذاری 📥» بزنید تا همه داده‌ها در ۱ ثانیه منتقل شوند.");
+      }).catch(err => {
+        prompt("متن زیر را کپی کنید:", dataStr);
+      });
+    }
+
+    function pasteDataClipboard() {
+      const input = prompt("متن JSON کپی‌شده را در این کادر پیست (Paste) کنید:");
+      if (!input) return;
+      try {
+        const parsed = JSON.parse(input);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          accounts = parsed;
+          saveState();
+          renderBoard();
+          renderList();
+          updateAnalytics();
+          alert(`✅ تعداد ${parsed.length} حساب با موفقیت جایگذاری و روی این صفحه ثبت شد!`);
+        } else {
+          alert("فرمت داده نامعتبر است.");
+        }
+      } catch(e) {
+        alert("خطا در بازخوانی داده: " + e.message);
+      }
     }
 
     function exportDataJSON() {
