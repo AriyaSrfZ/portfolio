@@ -126,8 +126,11 @@
       <p class="text-xs text-[#B5BDB6] mt-1.5">همه بخش‌ها قابلیت ویرایش در لحظه، کپی تک‌کلیک و ذخیره‌سازی نشست‌ها در حافظه مرورگر و سرور اختصاصی را دارند.</p>
     </div>
     <div class="flex items-center gap-2">
+      <button onclick="openCarouselGuideModal()" class="px-3.5 py-2 bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#527C78]/50 rounded-xl text-xs font-bold shadow-md transition flex items-center gap-1.5">
+        <span>📑 راهنمای تولید کاروسل (Carousel Guide)</span>
+      </button>
       <button onclick="copyFullPackageMarkdown()" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
-        <span>📋 کپی پکیج کامل مارک‌داون (صفحه فعلی)</span>
+        <span>📋 کپی پکیج کامل مارک‌داون</span>
       </button>
     </div>
   </header>
@@ -1201,8 +1204,193 @@ ${(data.pillars || []).map((p, i) => `#### ستون ${i+1}: ${p.pillar} (${p.goa
       alert(`✅ بسته کامل مارک‌داون برای صفحه «${data.name}» کپی شد!`);
     }
 
+    // Carousel Guide Modal Handlers
+    function openCarouselGuideModal() {
+      document.getElementById("carouselGuideModal").classList.remove("hidden");
+    }
+
+    function closeCarouselGuideModal() {
+      document.getElementById("carouselGuideModal").classList.add("hidden");
+    }
+
+    function copyCarouselFormula() {
+      const formula = `ساختار استاندارد کاروسل ۸ اسلایدی B2B برای لینکدین:
+اسلاید ۱ [جلد]: وعده یا سؤال چالشی قوی (Hook)
+اسلاید ۲ [دردسر]: شرح مشکل واقعی و پرهزینه مخاطب
+اسلاید ۳ [ریشه‌یابی]: چرا این مشکل رخ می‌دهد و ریشه پنهان کجاست؟
+اسلاید ۴ [نکته ۱]: راهکار اول
+اسلاید ۵ [نکته ۲]: راهکار دوم
+اسلاید ۶ [نکته ۳]: راهکار سوم
+اسلاید ۷ [چک‌لیست]: خلاصه کاربردی و قابل اجرا در ۵ دقیقه
+اسلاید ۸ [دعوت به اقدام]: معرفی برند و دعوت به ارزیابی / مشاوره`;
+      navigator.clipboard.writeText(formula);
+      alert("✅ فرمول ساختار ۸ اسلایدی در کلیپ‌بورد کپی شد!");
+    }
+
     // Init on Page Load
     initSessions();
   </script>
+
+  <!-- Carousel Guide Modal -->
+  <div id="carouselGuideModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+    <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl max-w-4xl w-full p-6 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto text-right">
+      <div class="flex items-center justify-between border-b border-[#46504B] pb-4 mb-4">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">📑</span>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-[#F0EEE7]">راهنمای جامع تولید کاروسل و اسلایدهای لینکدین (Carousel Guide)</h3>
+            <p class="text-xs text-[#8FB4AA]">تحلیل روند دو ماه اخیر (اوت تا اکتبر ۲۰۲۶) و استراتژی اختصاصی پرشیا فاوا</p>
+          </div>
+        </div>
+        <button onclick="closeCarouselGuideModal()" class="w-8 h-8 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-[#B5BDB6] hover:text-[#F0EEE7] flex items-center justify-center text-sm font-bold transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Core Recommendation Banner -->
+      <div class="bg-[#202725] border border-[#8FB4AA]/40 rounded-xl p-4 mb-6">
+        <div class="flex items-center gap-2 text-xs font-bold text-[#8FB4AA] mb-1">
+          <span>💡 فرمول کلیدی موفقیت:</span>
+        </div>
+        <div class="text-sm font-bold text-[#F0EEE7]">
+          Canva برای طراحی نهایی و برندینگ + ChatGPT / Claude برای معماری و متن اسلایدها
+        </div>
+        <p class="text-xs text-[#B5BDB6] mt-1.5 leading-relaxed">
+          این ترکیب برای پرشیا فاوا ایده‌آل است؛ زیرا به فونت فارسی (وزیرمتن)، رنگ‌های رسمی، لوگو، قالب ثابت و نظارت انسانی نیاز دارید. ابزارهای تمام‌خودکار هوش مصنوعی معمولاً متن‌های سنگین و طولانی برای موبایل تولید می‌کنند.
+        </p>
+      </div>
+
+      <!-- Tool Rankings Table -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold text-[#B39A77] uppercase tracking-wider mb-2">رتبه‌بندی ابزارهای ساخت کاروسل لینکدین (اکتبر ۲۰۲۶)</h4>
+        <div class="overflow-x-auto rounded-xl border border-[#46504B]">
+          <table class="w-full text-right text-xs">
+            <thead class="bg-[#202725] text-[#8FB4AA] border-b border-[#46504B]">
+              <tr>
+                <th class="p-3">رتبه</th>
+                <th class="p-3">ابزار</th>
+                <th class="p-3">بهترین کاربرد</th>
+                <th class="p-3">ارزیابی برای پرشیا فاوا</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#36403C] text-[#F0EEE7]">
+              <tr class="hover:bg-[#343C38]/40 transition">
+                <td class="p-3 font-mono font-bold text-[#8FB4AA]">۱</td>
+                <td class="p-3 font-bold">Canva Pro</td>
+                <td class="p-3 text-[#B5BDB6]">طراحی برندمحور، فونت فارسی، کاروسل و محتوای اجتماعی</td>
+                <td class="p-3 font-semibold text-emerald-400">بهترین انتخاب کلی (هسته اصلی)</td>
+              </tr>
+              <tr class="hover:bg-[#343C38]/40 transition">
+                <td class="p-3 font-mono font-bold text-[#8FB4AA]">۲</td>
+                <td class="p-3 font-bold">MagicPost</td>
+                <td class="p-3 text-[#B5BDB6]">تولید سریع کاروسل مخصوص لینکدین با اسلاید قابل‌ویرایش</td>
+                <td class="p-3">مناسب برای آزمایش سریع و خروجی مستقیم</td>
+              </tr>
+              <tr class="hover:bg-[#343C38]/40 transition">
+                <td class="p-3 font-mono font-bold text-[#8FB4AA]">۳</td>
+                <td class="p-3 font-bold">Gamma</td>
+                <td class="p-3 text-[#B5BDB6]">تبدیل ایده یا پرامپت خام به پیش‌نویس اسلاید</td>
+                <td class="p-3">عالی برای شروع، نیازمند بهینه‌سازی طراحی</td>
+              </tr>
+              <tr class="hover:bg-[#343C38]/40 transition">
+                <td class="p-3 font-mono font-bold text-[#8FB4AA]">۴</td>
+                <td class="p-3 font-bold">Beautiful.ai</td>
+                <td class="p-3 text-[#B5BDB6]">اسلایدهای رسمی و چیدمان‌های خودکار شرکتی</td>
+                <td class="p-3">مناسب برای ارائه‌های مدیریتی B2B</td>
+              </tr>
+              <tr class="hover:bg-[#343C38]/40 transition">
+                <td class="p-3 font-mono font-bold text-[#8FB4AA]">۵</td>
+                <td class="p-3 font-bold">CarouseLabs</td>
+                <td class="p-3 text-[#B5BDB6]">تولید کاروسل از ایده با متن و طراحی خودکار AI</td>
+                <td class="p-3 text-[#B39A77]">تولید حجمی (حتماً قبل از خرید تست شود)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Strategy by Page -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold text-[#B39A77] uppercase tracking-wider mb-2">استراتژی تفکیکی برای ۴ صفحه شرکت</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="p-3 rounded-xl bg-[#202725] border border-[#46504B]">
+            <div class="font-bold text-xs text-[#F0EEE7]">🏢 پرشیا فاوا گسترش (صفحه مادر)</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">Canva با قالب رسمی، پالت سازمانی و محتوای اعتمادساز و روایتی ۲ دهه سابقه.</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#202725] border border-[#46504B]">
+            <div class="font-bold text-xs text-[#F0EEE7]">🛡️ بَک‌بان (Backban)</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">Canva یا MagicPost برای کاروسل‌های فنی، امنیت شبکه و مطالعات موردی آپ‌تایم.</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#202725] border border-[#46504B]">
+            <div class="font-bold text-xs text-[#F0EEE7]">⚡ فِرِستا (Feresta)</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">Canva برای اینفوگرافیک، مقایسه سرعت OTP زیر ۲ ثانیه و تقویم مناسبت‌های فروش.</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[#202725] border border-[#46504B]">
+            <div class="font-bold text-xs text-[#F0EEE7]">💡 تِک‌بُن (Techbun)</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">Gamma برای پیش‌نویس تحلیل‌های معماری سازمانی و ERP، سپس ویرایش نهایی در Canva.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8-Step Production Workflow -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold text-[#B39A77] uppercase tracking-wider mb-2">فرآیند ۸ مرحله‌ای تولید هر کاروسل</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+          <div class="p-2.5 rounded-lg bg-[#202725] border border-[#36403C]">
+            <div class="font-bold text-[#8FB4AA]">۱. تعیین موضوع</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">تمرکز روی یک درد واقعی مخاطب B2B.</div>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#202725] border border-[#36403C]">
+            <div class="font-bold text-[#8FB4AA]">۲. پرامپت سناریو</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">تبدیل ایده به ۷ تا ۹ اسلاید در Claude.</div>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#202725] border border-[#36403C]">
+            <div class="font-bold text-[#8FB4AA]">۳. پیش‌نویس سریع</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">ورود به Gamma یا MagicPost.</div>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#202725] border border-[#36403C]">
+            <div class="font-bold text-[#8FB4AA]">۴. انتقال به Canva</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">قرار دادن در تمپلیت برند پرشیا فاوا.</div>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#202725] border border-[#36403C]">
+            <div class="font-bold text-[#8FB4AA]">۵. هویت بصری</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">فونت وزیرمتن، لوگو و رنگ‌های پالت.</div>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#202725] border border-[#36403C]">
+            <div class="font-bold text-[#8FB4AA]">۶. خلاصه‌سازی</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">هر اسلاید فقط یک نکته شفاف.</div>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#202725] border border-[#36403C]">
+            <div class="font-bold text-[#8FB4AA]">۷. خروجی PDF</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">خروجی استاندارد Document Post.</div>
+          </div>
+          <div class="p-2.5 rounded-lg bg-[#202725] border border-[#36403C]">
+            <div class="font-bold text-[#8FB4AA]">۸. بازرسی موبایل</div>
+            <div class="text-[11px] text-[#B5BDB6] mt-1">چک خوانایی اسلایدها روی گوشی.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8-Slide Formula & Copy Button -->
+      <div class="bg-[#202725] border border-[#46504B] rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-[#F0EEE7]">فرمول ساختار ۸ اسلایدی (نمونه بَک‌بان):</span>
+          <button onclick="copyCarouselFormula()" class="px-3 py-1 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-lg text-xs font-bold transition flex items-center gap-1">
+            <span>📋 کپی فرمول ساختار</span>
+          </button>
+        </div>
+        <div class="text-xs text-[#B5BDB6] space-y-1 font-mono leading-relaxed bg-[#171C1A] p-3 rounded-lg border border-[#36403C]">
+          <div>• <span class="text-[#8FB4AA]">اسلاید ۱ [جلد]:</span> «۵ نشانه‌ای که می‌گوید زیرساخت شبکه شرکت شما آماده رشد نیست»</div>
+          <div>• <span class="text-[#8FB4AA]">اسلاید ۲:</span> قطعی‌های مکرر و نامحسوس سامانه‌های داخلی</div>
+          <div>• <span class="text-[#8FB4AA]">اسلاید ۳:</span> نبود مانیتورینگ بلادرنگ و کشف دیرهنگام فاجعه</div>
+          <div>• <span class="text-[#8FB4AA]">اسلاید ۴:</span> بک‌آپ‌گیری‌های سنتی و غیرقابل بازیابی</div>
+          <div>• <span class="text-[#8FB4AA]">اسلاید ۵:</span> امنیت ضعیف و عدم تفکیک دسترسی‌ها</div>
+          <div>• <span class="text-[#8FB4AA]">اسلاید ۶:</span> نبود مستندات معماری و وابستگی به اشخاص</div>
+          <div>• <span class="text-[#8FB4AA]">اسلاید ۷:</span> چک‌لیست خودارزیابی سریع در ۵ دقیقه</div>
+          <div>• <span class="text-[#8FB4AA]">اسلاید ۸ [CTA]:</span> «برای ارزیابی و ممیزی پایداری شبکه با بَک‌بان تماس بگیرید»</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
