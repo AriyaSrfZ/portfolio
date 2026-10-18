@@ -1326,11 +1326,6 @@
           }
         }
       } catch(e) {}
-    } catch (err) {
-        console.warn("Cloud auto-sync warning:", err);
-      } finally {
-        isCloudSyncing = false;
-      }
     }
 
     function importDataJSON(event) {
