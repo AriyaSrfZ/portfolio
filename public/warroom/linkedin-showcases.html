@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>استودیوی طراحی صفحات شوکیس لینکدین — پرشیا فاوا (بکبان، فرستا، تک‌بن)</title>
+  <title>استودیوی جامع شوکیس‌های لینکدین — پرشیا فاوا (بکبان، فرستا، تک‌بن)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/misc/Farsi-Digits/Vazirmatn-FD-font-face.css" rel="stylesheet" type="text/css" />
@@ -36,6 +36,19 @@
     .font-mono {
       font-family: 'IBM Plex Mono', monospace;
     }
+    .editable-focus {
+      outline: none;
+      transition: all 0.2s;
+    }
+    .editable-focus:hover {
+      background-color: rgba(143, 180, 170, 0.08);
+      border-radius: 6px;
+    }
+    .editable-focus:focus {
+      background-color: rgba(143, 180, 170, 0.15);
+      box-shadow: 0 0 0 1px var(--accent-primary);
+      border-radius: 6px;
+    }
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -52,297 +65,407 @@
     }
   </style>
 </head>
-<body class="min-h-screen p-4 sm:p-8">
-  <div class="max-w-7xl mx-auto space-y-6">
+<body class="min-h-screen p-3 sm:p-6 lg:p-8 space-y-6">
 
-    <!-- Header -->
-    <header class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <div>
-        <div class="flex items-center gap-2 text-xs text-[#8FB4AA] font-mono mb-1.5">
-          <span class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span>
-          <span>LINKEDIN SHOWCASE PAGES STUDIO — CORPORATE PR & MARKETING</span>
-        </div>
-        <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">معماری و ساخت صفحات شوکیس لینکدین (۳ دپارتمان پرشیا فاوا)</h1>
-        <p class="text-xs text-[#B5BDB6] mt-1.5">طراحی هویت بصری، تدوین شعار (Tagline)، معرفی خدمات، ستون‌های محتوایی و پیش‌نمایش زنده در لینکدین</p>
+  <!-- TOP BAR: Session Manager, Sync, Navigation -->
+  <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-4 shadow-xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+    <!-- Session Controls -->
+    <div class="flex flex-wrap items-center gap-2.5">
+      <div class="flex items-center gap-1.5 text-xs text-[#8FB4AA] font-bold">
+        <span>💾 نشست کاری:</span>
       </div>
-      <div class="flex flex-wrap items-center gap-2.5">
-        <a href="/warroom/" class="px-4 py-2 bg-[#343C38] hover:bg-[#3D4742] text-[#F0EEE7] border border-[#46504B] rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
-          <span>← وور روم B2B</span>
-        </a>
-        <a href="/warroom/c-levels.html" class="px-4 py-2 bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#46504B] rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
-          <span>👥 فهرست مدیران</span>
-        </a>
-        <a href="persia_fava_page_planner.xlsx" download class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
-          <span>📥 دانلود اکسل برنامه‌ریزی (XLSX)</span>
-        </a>
-      </div>
-    </header>
-
-    <!-- Navigation Tabs: Parent and 3 Departments -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <button onclick="selectDepartment('parent')" id="tab-parent" class="p-3.5 rounded-2xl border text-right transition flex flex-col justify-between h-24 bg-[#343C38] border-[#8FB4AA] text-[#F0EEE7] shadow-md shadow-black/20">
-        <div class="flex items-center justify-between">
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">Company Page</span>
-          <span class="text-sm">🏢</span>
-        </div>
-        <div>
-          <div class="font-bold text-xs sm:text-sm">پرشیا فاوا گسترش</div>
-          <div class="text-[11px] text-[#B5BDB6] mt-0.5 truncate">صفحه مادر و اعتمادساز شرکتی</div>
-        </div>
+      <select id="sessionSelect" onchange="switchSession(this.value)" class="bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] rounded-xl px-3 py-1.5 text-xs focus:border-[#8FB4AA] outline-none">
+        <option value="default">پیش‌فرض: طرح استراتژیک سازمانی</option>
+      </select>
+      <button onclick="saveCurrentSession()" class="px-3 py-1.5 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-xl text-xs font-bold transition flex items-center gap-1 shadow-sm" title="ذخیره تغییرات در نشست فعلی">
+        <span>💾 ذخیره</span>
       </button>
-
-      <button onclick="selectDepartment('backban')" id="tab-backban" class="p-3.5 rounded-2xl border text-right transition flex flex-col justify-between h-24 bg-[#292F2D] border-[#46504B] text-[#B5BDB6] hover:text-[#F0EEE7] hover:border-[#8FB4AA]">
-        <div class="flex items-center justify-between">
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#343C38] text-[#8FB4AA] border border-[#46504B]">Showcase 1</span>
-          <span class="text-sm">🛡️</span>
-        </div>
-        <div>
-          <div class="font-bold text-xs sm:text-sm">بکبان (Backban)</div>
-          <div class="text-[11px] text-[#B5BDB6] mt-0.5 truncate">زیرساخت، شبکه، سرور و امنیت</div>
-        </div>
+      <button onclick="promptNewSession()" class="px-3 py-1.5 bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#46504B] rounded-xl text-xs font-semibold transition" title="ایجاد یک نسخه جدید از برنامه">
+        <span>+ نشست جدید</span>
       </button>
-
-      <button onclick="selectDepartment('faresta')" id="tab-faresta" class="p-3.5 rounded-2xl border text-right transition flex flex-col justify-between h-24 bg-[#292F2D] border-[#46504B] text-[#B5BDB6] hover:text-[#F0EEE7] hover:border-[#8FB4AA]">
-        <div class="flex items-center justify-between">
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#527C78]/20 text-[#8FB4AA] border border-[#527C78]/30">Showcase 2</span>
-          <span class="text-sm">⚡</span>
-        </div>
-        <div>
-          <div class="font-bold text-xs sm:text-sm">فِرِستا (Faresta)</div>
-          <div class="text-[11px] text-[#B5BDB6] mt-0.5 truncate">درگاه پیامک، OTP و تلکام</div>
-        </div>
-      </button>
-
-      <button onclick="selectDepartment('techbun')" id="tab-techbun" class="p-3.5 rounded-2xl border text-right transition flex flex-col justify-between h-24 bg-[#292F2D] border-[#46504B] text-[#B5BDB6] hover:text-[#F0EEE7] hover:border-[#8FB4AA]">
-        <div class="flex items-center justify-between">
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#B39A77]/20 text-[#B39A77] border border-[#B39A77]/40">Showcase 3</span>
-          <span class="text-sm">💡</span>
-        </div>
-        <div>
-          <div class="font-bold text-xs sm:text-sm">تک‌بن (Techbun)</div>
-          <div class="text-[11px] text-[#B5BDB6] mt-0.5 truncate">مشاوره، معماری و تحول دیجیتال</div>
-        </div>
+      <button onclick="deleteCurrentSession()" id="btnDeleteSession" class="px-2.5 py-1.5 bg-[#343C38] hover:bg-rose-950 text-rose-300 border border-[#46504B] rounded-xl text-xs transition hidden" title="حذف نشست فعلی">
+        🗑️
       </button>
     </div>
 
-    <!-- Main Studio Workspace (Split View) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Cloud Sync & Global Actions -->
+    <div class="flex flex-wrap items-center gap-2">
+      <button onclick="pushShowcasesToCloud()" id="btnCloudPush" class="px-3 py-1.5 bg-[#527C78]/25 hover:bg-[#527C78]/40 text-[#8FB4AA] border border-[#527C78]/40 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+        <span>☁️ ارسال به سرور ابری (Push)</span>
+      </button>
+      <button onclick="pullShowcasesFromCloud()" id="btnCloudPull" class="px-3 py-1.5 bg-[#343C38] hover:bg-[#3D4742] text-[#F0EEE7] border border-[#46504B] rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+        <span>☁️ دریافت از ابر (Pull)</span>
+      </button>
+      <label class="px-3 py-1.5 bg-[#343C38] hover:bg-[#3D4742] text-[#B5BDB6] hover:text-[#F0EEE7] border border-[#46504B] rounded-xl text-xs font-semibold transition cursor-pointer flex items-center gap-1" title="بارگذاری فایل پشتیبان JSON">
+        <span>📥 بارگذاری</span>
+        <input type="file" id="importJsonInput" accept=".json" onchange="importSessionFile(event)" class="hidden">
+      </label>
+      <button onclick="exportCurrentSessionFile()" class="px-3 py-1.5 bg-[#343C38] hover:bg-[#3D4742] text-[#B5BDB6] hover:text-[#F0EEE7] border border-[#46504B] rounded-xl text-xs font-semibold transition flex items-center gap-1" title="دانلود فایل پشتیبان">
+        <span>📤 خروجی</span>
+      </button>
+      <button onclick="resetToInitialDefaults()" class="px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-[#B39A77] border border-[#B39A77]/30 rounded-xl text-xs font-semibold transition" title="بازنشانی اطلاعات به الگوی اولیه">
+        <span>🔄 بازنشانی</span>
+      </button>
+      <a href="persia_fava_page_planner.xlsx" download class="px-3.5 py-1.5 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+        <span>📥 اکسل (XLSX)</span>
+      </a>
+      <a href="/warroom/" class="px-3.5 py-1.5 bg-[#343C38] hover:bg-[#3D4742] text-[#F0EEE7] border border-[#46504B] rounded-xl text-xs font-semibold transition">
+        ← وور روم
+      </a>
+    </div>
+  </div>
 
-      <!-- LEFT: Live Interactive LinkedIn Mockup (7 Cols) -->
-      <div class="lg:col-span-7 space-y-4">
+  <!-- Header Banner -->
+  <header class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div>
+      <div class="flex items-center gap-2 text-xs text-[#8FB4AA] font-mono mb-1.5">
+        <span class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span>
+        <span>LINKEDIN SHOWCASE PAGES STUDIO — CORPORATE PR & MARKETING</span>
+      </div>
+      <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">طراحی و ویرایش صفحات شوکیس لینکدین (۳ دپارتمان پرشیا فاوا)</h1>
+      <p class="text-xs text-[#B5BDB6] mt-1.5">همه بخش‌ها قابلیت ویرایش در لحظه، کپی تک‌کلیک و ذخیره‌سازی نشست‌ها در حافظه مرورگر و سرور اختصاصی را دارند.</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="copyFullPackageMarkdown()" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
+        <span>📋 کپی پکیج کامل مارک‌داون (صفحه فعلی)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Department Selection Tabs -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <button onclick="selectDepartment('parent')" id="tab-parent" class="p-3.5 rounded-2xl border text-right transition flex flex-col justify-between h-24 bg-[#343C38] border-[#8FB4AA] text-[#F0EEE7] shadow-lg shadow-black/20">
+      <div class="flex items-center justify-between">
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">Company Page</span>
+        <span class="text-sm">🏢</span>
+      </div>
+      <div>
+        <div class="font-bold text-xs sm:text-sm">پرشیا فاوا گسترش</div>
+        <div class="text-[11px] text-[#B5BDB6] mt-0.5 truncate">صفحه مادر و اعتمادساز شرکتی</div>
+      </div>
+    </button>
+
+    <button onclick="selectDepartment('backban')" id="tab-backban" class="p-3.5 rounded-2xl border text-right transition flex flex-col justify-between h-24 bg-[#292F2D] border-[#46504B] text-[#B5BDB6] hover:text-[#F0EEE7] hover:border-[#8FB4AA]">
+      <div class="flex items-center justify-between">
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#343C38] text-[#8FB4AA] border border-[#46504B]">Showcase 1</span>
+        <span class="text-sm">🛡️</span>
+      </div>
+      <div>
+        <div class="font-bold text-xs sm:text-sm">بکبان (Backban)</div>
+        <div class="text-[11px] text-[#B5BDB6] mt-0.5 truncate">زیرساخت، شبکه، سرور و امنیت</div>
+      </div>
+    </button>
+
+    <button onclick="selectDepartment('faresta')" id="tab-faresta" class="p-3.5 rounded-2xl border text-right transition flex flex-col justify-between h-24 bg-[#292F2D] border-[#46504B] text-[#B5BDB6] hover:text-[#F0EEE7] hover:border-[#8FB4AA]">
+      <div class="flex items-center justify-between">
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#527C78]/20 text-[#8FB4AA] border border-[#527C78]/30">Showcase 2</span>
+        <span class="text-sm">⚡</span>
+      </div>
+      <div>
+        <div class="font-bold text-xs sm:text-sm">فِرِستا (Faresta)</div>
+        <div class="text-[11px] text-[#B5BDB6] mt-0.5 truncate">درگاه پیامک، OTP و تلکام</div>
+      </div>
+    </button>
+
+    <button onclick="selectDepartment('techbun')" id="tab-techbun" class="p-3.5 rounded-2xl border text-right transition flex flex-col justify-between h-24 bg-[#292F2D] border-[#46504B] text-[#B5BDB6] hover:text-[#F0EEE7] hover:border-[#8FB4AA]">
+      <div class="flex items-center justify-between">
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#B39A77]/20 text-[#B39A77] border border-[#B39A77]/40">Showcase 3</span>
+        <span class="text-sm">💡</span>
+      </div>
+      <div>
+        <div class="font-bold text-xs sm:text-sm">تک‌بن (Techbun)</div>
+        <div class="text-[11px] text-[#B5BDB6] mt-0.5 truncate">مشاوره، معماری و تحول دیجیتال</div>
+      </div>
+    </button>
+  </div>
+
+  <!-- VIEW MODE SWITCHER (Studio Preview vs. 30-Day Calendar Matrix) -->
+  <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
+    <div class="flex items-center gap-2">
+      <button onclick="switchWorkspaceMode('studio')" id="btnModeStudio" class="px-4 py-2 rounded-xl text-xs font-bold bg-[#527C78] text-[#F0EEE7] transition flex items-center gap-1.5 shadow-sm">
+        <span>🖥️ شبیه‌ساز و مشخصات صفحه</span>
+      </button>
+      <button onclick="switchWorkspaceMode('calendar')" id="btnModeCalendar" class="px-4 py-2 rounded-xl text-xs font-medium text-[#B5BDB6] hover:text-[#F0EEE7] hover:bg-[#343C38] transition flex items-center gap-1.5">
+        <span>📅 تقویم انتشار ۳۰ روزه</span>
+      </button>
+    </div>
+    <div class="text-xs text-[#8FB4AA] font-mono hidden sm:block">
+      AUTOSAVE ACTIVE: <span id="autoSaveStatus" class="text-emerald-400">ذخیره خودکار</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1: STUDIO WORKSPACE -->
+  <div id="sectionStudio" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- LEFT: Live Interactive LinkedIn Mockup (7 Cols) -->
+    <div class="lg:col-span-7 space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xs font-bold text-[#8FB4AA] font-mono flex items-center gap-1.5">
+          <span>LIVE LINKEDIN SHOWCASE PAGE SIMULATOR</span>
+        </h2>
+        <span class="text-[11px] text-[#B5BDB6]">روی هر نوشته کلیک کنید تا در لحظه ویرایش شود ✍️</span>
+      </div>
+
+      <!-- The Mockup Card -->
+      <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl shadow-2xl overflow-hidden">
+        
+        <!-- Banner Image Mockup -->
+        <div id="mockupBanner" class="h-36 sm:h-44 w-full relative p-4 flex items-end justify-between transition-all duration-300" style="background: linear-gradient(135deg, #171C1A 0%, #202725 50%, #527C78 100%);">
+          <div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded text-[10px] font-mono text-[#F0EEE7] border border-white/10 flex items-center gap-2">
+            <span>1128 × 191 px (Header Banner)</span>
+            <button onclick="copyBannerPrompt()" class="text-[#8FB4AA] hover:underline">کپی پرامپت 📋</button>
+          </div>
+          <div id="mockupBannerBadge" contenteditable="true" onblur="updateFieldFromInline('bannerBadge', this.innerText)" class="editable-focus bg-[#343C38]/85 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-bold text-[#8FB4AA] border border-[#46504B] hidden sm:block">
+            زیرساخت پایدار برای کسب‌وکارهای همیشه فعال
+          </div>
+        </div>
+
+        <!-- Profile Header Section -->
+        <div class="px-6 pb-6 pt-0 relative bg-[#292F2D]">
+          <!-- Avatar / Logo -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 -mt-12 mb-4">
+            <div class="w-24 h-24 rounded-2xl bg-[#171C1A] border-4 border-[#292F2D] flex items-center justify-center text-3xl shadow-xl flex-shrink-0 cursor-pointer" id="mockupAvatar" title="کلیک برای تغییر آیکون" onclick="cycleAvatar()">
+              🏢
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="copyField('tagline')" class="px-3.5 py-1.5 rounded-xl bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] text-xs font-bold transition flex items-center gap-1 shadow-sm">
+                <span>+ دنبال کردن (Follow)</span>
+              </button>
+              <button id="mockupCtaBtn" contenteditable="true" onblur="updateFieldFromInline('cta', this.innerText)" class="editable-focus px-3.5 py-1.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#46504B] text-xs font-semibold transition">
+                مشاهده وب‌سایت ↗
+              </button>
+            </div>
+          </div>
+
+          <!-- Page Titles -->
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2">
+              <h3 id="mockupTitle" contenteditable="true" onblur="updateFieldFromInline('name', this.innerText)" class="editable-focus text-xl font-black text-[#F0EEE7]">پرشیا فاوا گسترش</h3>
+              <span class="text-sky-400" title="صفحه شرکتی تایید شده">☑️</span>
+              <span id="mockupTypeTag" class="text-[10px] px-2 py-0.5 rounded bg-[#343C38] text-[#8FB4AA] border border-[#46504B] font-mono">Company Page</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <p id="mockupSlug" contenteditable="true" onblur="updateFieldFromInline('slug', this.innerText)" class="editable-focus text-xs text-[#8FB4AA] font-mono">linkedin.com/company/persia-fava-gostar/</p>
+              <button onclick="copyInput('inputPageSlug')" class="text-[10px] text-[#B5BDB6] hover:text-[#8FB4AA]">📋</button>
+            </div>
+            <p id="mockupTagline" contenteditable="true" onblur="updateFieldFromInline('tagline', this.innerText)" class="editable-focus text-xs sm:text-sm text-[#F0EEE7] font-medium leading-relaxed pt-1">
+              اعتمادساز شرکتی و معرفی اکوسیستم خدمات فاوا
+            </p>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#B5BDB6] pt-1">
+              <span id="mockupIndustry" contenteditable="true" onblur="updateFieldFromInline('industry', this.innerText)" class="editable-focus">فناوری اطلاعات و خدمات شبکه</span>
+              <span>•</span>
+              <span id="mockupAudience" contenteditable="true" onblur="updateFieldFromInline('audience', this.innerText)" class="editable-focus">مدیران عامل و فناوری</span>
+              <span>•</span>
+              <span class="text-[#8FB4AA]">۵,۴۲۰ دنبال‌کننده</span>
+            </div>
+          </div>
+
+          <!-- Nav Bar inside Mockup -->
+          <div class="flex items-center gap-6 border-b border-[#36403C] mt-6 text-xs font-semibold text-[#B5BDB6]">
+            <span class="text-[#8FB4AA] border-b-2 border-[#8FB4AA] pb-2 cursor-pointer">خانه (Home)</span>
+            <span class="pb-2 cursor-pointer hover:text-[#F0EEE7]">درباره ما (About)</span>
+            <span class="pb-2 cursor-pointer hover:text-[#F0EEE7]">پست‌ها (Posts)</span>
+            <span class="pb-2 cursor-pointer hover:text-[#F0EEE7]">فرصت‌های شغلی (Jobs)</span>
+            <span class="pb-2 cursor-pointer hover:text-[#F0EEE7]">افراد (People)</span>
+          </div>
+
+          <!-- About Section inside Mockup -->
+          <div class="mt-4 p-4 rounded-xl bg-[#171C1A] border border-[#36403C] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[#F0EEE7]">درباره صفحه (Overview / About) — کلیک برای ویرایش:</span>
+              <button onclick="copyField('about')" class="text-[11px] text-[#8FB4AA] hover:underline font-mono">کپی متن 📋</button>
+            </div>
+            <p id="mockupAbout" contenteditable="true" onblur="updateFieldFromInline('about', this.innerText)" class="editable-focus text-xs text-[#B5BDB6] leading-relaxed whitespace-pre-line p-1">
+              شرکت پرشیا فاوا گسترش به عنوان یکی از پیشگامان زیرساخت‌های فناوری اطلاعات و ارتباطات کشور، ارائه‌دهنده راهکارهای جامع و پایدار در سه حوزه زیرساخت و امنیت، ارتباطات پیامکی و خدمات تلکام، و مشاوره و تحول دیجیتال سازمانی است.
+            </p>
+            <!-- 3 Core Services Tags -->
+            <div class="pt-2">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[11px] text-[#8FB4AA] font-semibold">سه خدمت و ارزش پیشنهادی کلیدی:</span>
+                <button onclick="copyServicesList()" class="text-[10px] text-[#8FB4AA] hover:underline font-mono">کپی خدمات 📋</button>
+              </div>
+              <div id="mockupServicesList" class="flex flex-wrap gap-1.5"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Content Pillars & Sample Post Templates -->
+      <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-5 shadow-xl space-y-3">
         <div class="flex items-center justify-between">
-          <h2 class="text-xs font-bold text-[#8FB4AA] font-mono flex items-center gap-1.5">
-            <span>LIVE LINKEDIN SHOWCASE PAGE SIMULATOR</span>
-          </h2>
-          <span class="text-[11px] text-[#B5BDB6]">پیش‌نمایش دقیق در محیط کاربری لینکدین</span>
-        </div>
-
-        <!-- The Mockup Card -->
-        <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl shadow-2xl overflow-hidden">
-          
-          <!-- Banner Image Mockup -->
-          <div id="mockupBanner" class="h-36 sm:h-44 w-full relative p-4 flex items-end justify-between transition-all duration-300" style="background: linear-gradient(135deg, #171C1A 0%, #202725 50%, #527C78 100%);">
-            <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded text-[10px] font-mono text-[#F0EEE7] border border-white/10">
-              1128 × 191 px (Header Banner)
-            </div>
-            <div id="mockupBannerBadge" class="bg-[#343C38]/80 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-bold text-[#8FB4AA] border border-[#46504B] hidden sm:block">
-              زیرساخت پایدار برای کسب‌وکارهای همیشه فعال
-            </div>
-          </div>
-
-          <!-- Profile Header Section -->
-          <div class="px-6 pb-6 pt-0 relative bg-[#292F2D]">
-            <!-- Avatar / Logo -->
-            <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 -mt-12 mb-4">
-              <div class="w-24 h-24 rounded-2xl bg-[#171C1A] border-4 border-[#292F2D] flex items-center justify-center text-3xl shadow-xl flex-shrink-0" id="mockupAvatar">
-                🏢
-              </div>
-              <div class="flex items-center gap-2">
-                <button onclick="copyField('tagline')" class="px-3.5 py-1.5 rounded-xl bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] text-xs font-bold transition flex items-center gap-1 shadow-sm">
-                  <span>+ دنبال کردن (Follow)</span>
-                </button>
-                <button id="mockupCtaBtn" class="px-3.5 py-1.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#46504B] text-xs font-semibold transition">
-                  مشاهده وب‌سایت ↗
-                </button>
-              </div>
-            </div>
-
-            <!-- Page Titles -->
-            <div class="space-y-1.5">
-              <div class="flex items-center gap-2">
-                <h3 id="mockupTitle" class="text-xl font-black text-[#F0EEE7]">پرشیا فاوا گسترش</h3>
-                <span class="text-sky-400" title="صفحه شرکتی رسمی">☑️</span>
-                <span id="mockupTypeTag" class="text-[10px] px-2 py-0.5 rounded bg-[#343C38] text-[#8FB4AA] border border-[#46504B] font-mono">Company Page</span>
-              </div>
-              <p id="mockupSlug" class="text-xs text-[#8FB4AA] font-mono">linkedin.com/company/persia-fava-gostar/</p>
-              <p id="mockupTagline" class="text-xs sm:text-sm text-[#F0EEE7] font-medium leading-relaxed pt-1">
-                اعتمادساز شرکتی و معرفی اکوسیستم خدمات فاوا
-              </p>
-              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#B5BDB6] pt-1">
-                <span id="mockupIndustry">فناوری اطلاعات و خدمات شبکه</span>
-                <span>•</span>
-                <span id="mockupAudience">تهران، ایران</span>
-                <span>•</span>
-                <span class="text-[#8FB4AA]">۵,۴۲۰ دنبال‌کننده</span>
-              </div>
-            </div>
-
-            <!-- Nav Bar inside Mockup -->
-            <div class="flex items-center gap-6 border-b border-[#36403C] mt-6 text-xs font-semibold text-[#B5BDB6]">
-              <span class="text-[#8FB4AA] border-b-2 border-[#8FB4AA] pb-2 cursor-pointer">خانه (Home)</span>
-              <span class="pb-2 cursor-pointer hover:text-[#F0EEE7]">درباره ما (About)</span>
-              <span class="pb-2 cursor-pointer hover:text-[#F0EEE7]">پست‌ها (Posts)</span>
-              <span class="pb-2 cursor-pointer hover:text-[#F0EEE7]">فرصت‌های شغلی (Jobs)</span>
-              <span class="pb-2 cursor-pointer hover:text-[#F0EEE7]">افراد (People)</span>
-            </div>
-
-            <!-- About Section inside Mockup -->
-            <div class="mt-4 p-4 rounded-xl bg-[#171C1A] border border-[#36403C] space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-[#F0EEE7]">درباره صفحه (Overview / About)</span>
-                <button onclick="copyField('about')" class="text-[11px] text-[#8FB4AA] hover:underline font-mono">کپی متن 📋</button>
-              </div>
-              <p id="mockupAbout" class="text-xs text-[#B5BDB6] leading-relaxed whitespace-pre-line">
-                شرکت پرشیا فاوا گسترش به عنوان یکی از پیشگامان زیرساخت‌های فناوری اطلاعات و ارتباطات کشور، ارائه‌دهنده راهکارهای جامع و پایدار در سه حوزه زیرساخت و امنیت، ارتباطات پیامکی و خدمات تلکام، و مشاوره و تحول دیجیتال سازمانی است.
-              </p>
-              <!-- 3 Core Services Tags -->
-              <div class="pt-2">
-                <div class="text-[11px] text-[#8FB4AA] font-semibold mb-1.5">سه خدمت و ارزش پیشنهادی کلیدی:</div>
-                <div id="mockupServicesList" class="flex flex-wrap gap-1.5"></div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Content Pillars & Sample Post Templates -->
-        <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-5 shadow-xl space-y-3">
-          <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
             <h3 class="text-xs font-bold text-[#8FB4AA] font-mono flex items-center gap-1.5">
               <span>CONTENT PILLARS & CAMPAIGN SAMPLES</span>
             </h3>
-            <span class="text-[11px] text-[#B5BDB6]">تقویم محتوایی پیشنهادی ۳۰ روزه</span>
+            <span class="text-[11px] text-[#B5BDB6]">ستون‌های محتوایی</span>
           </div>
+          <button onclick="addNewPillarPrompt()" class="px-2.5 py-1 bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#46504B] rounded-lg text-xs font-semibold transition flex items-center gap-1">
+            <span>+ افزودن ستون جدید</span>
+          </button>
+        </div>
 
-          <div id="contentPillarsContainer" class="space-y-2.5"></div>
+        <div id="contentPillarsContainer" class="space-y-3"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Editable Specifications & Generator Panel (5 Cols) -->
+    <div class="lg:col-span-5 space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xs font-bold text-[#8FB4AA] font-mono flex items-center gap-1.5">
+          <span>PAGE SPECIFICATIONS & COPY BUILDER</span>
+        </h2>
+        <span class="text-[10px] text-[#B5BDB6] font-mono">1-CLICK CLIPBOARD READY</span>
+      </div>
+
+      <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-5 shadow-2xl space-y-4 text-xs">
+        
+        <!-- Field: Page Name -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-[#B5BDB6] font-bold">نام صفحه (Official Page Name):</label>
+            <button onclick="copyInput('inputPageName')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی 📋</button>
+          </div>
+          <input type="text" id="inputPageName" oninput="syncFromInputs()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
+        </div>
+
+        <!-- Field: English Slug / URL -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-[#B5BDB6] font-bold">نام انگلیسی / لینک صفحه (URL):</label>
+            <button onclick="copyInput('inputPageSlug')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی 📋</button>
+          </div>
+          <input type="text" id="inputPageSlug" oninput="syncFromInputs()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none font-mono text-left" dir="ltr">
+        </div>
+
+        <!-- Field: Tagline (Max 120 chars) -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5">
+              <label class="text-[#B5BDB6] font-bold">شعار / وعده اصلی (Tagline):</label>
+              <span id="taglineCount" class="text-[10px] text-[#8FB4AA] font-mono">0 / 120</span>
+            </div>
+            <button onclick="copyInput('inputTagline')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی 📋</button>
+          </div>
+          <input type="text" id="inputTagline" maxlength="120" oninput="syncFromInputs()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
+          <p class="text-[10px] text-[#8B958E] mt-1">حداکثر ۱۲۰ کاراکتر؛ در یک جمله مسئله مخاطب و ارزش دپارتمان را بیان کنید.</p>
+        </div>
+
+        <!-- Field: About / Description (Max 2000 chars) -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5">
+              <label class="text-[#B5BDB6] font-bold">توضیحات و درباره صفحه (About):</label>
+              <span id="aboutCount" class="text-[10px] text-[#8FB4AA] font-mono">0 / 2000</span>
+            </div>
+            <button onclick="copyInput('inputAbout')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی 📋</button>
+          </div>
+          <textarea id="inputAbout" rows="5" maxlength="2000" oninput="syncFromInputs()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl p-3 outline-none leading-relaxed"></textarea>
+        </div>
+
+        <!-- Field: Target Audience -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-[#B5BDB6] font-bold">مخاطبان هدف (Target Audience):</label>
+            <button onclick="copyInput('inputAudience')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی 📋</button>
+          </div>
+          <input type="text" id="inputAudience" oninput="syncFromInputs()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
+        </div>
+
+        <!-- Field: 3 Core Services -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-[#B5BDB6] font-bold">۳ خدمت اصلی (با علامت ؛ یا اینتر جدا کنید):</label>
+            <button onclick="copyInput('inputServices')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی 📋</button>
+          </div>
+          <input type="text" id="inputServices" oninput="syncFromInputs()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
+        </div>
+
+        <!-- Field: Voice & Tone -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-[#B5BDB6] font-bold">لحن ارتباطی (Voice & Tone):</label>
+            <button onclick="copyInput('inputTone')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی 📋</button>
+          </div>
+          <input type="text" id="inputTone" oninput="syncFromInputs()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
+        </div>
+
+        <!-- Field: CTA Button -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-[#B5BDB6] font-bold">متن دکمه اقدام (CTA Button Label):</label>
+            <button onclick="copyInput('inputCta')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی 📋</button>
+          </div>
+          <input type="text" id="inputCta" oninput="syncFromInputs()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
+        </div>
+
+        <!-- Graphic Asset Prompt Generator -->
+        <div class="p-3.5 rounded-xl bg-[#171C1A] border border-[#46504B] space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-[#8FB4AA] flex items-center gap-1.5">
+              <span>🎨 پرامپت بنر سربرگ لینکدین (Banner Prompt)</span>
+            </span>
+            <button onclick="copyBannerPrompt()" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی پرامپت 📋</button>
+          </div>
+          <textarea id="bannerPromptText" rows="3" oninput="syncFromInputs()" class="w-full text-[11px] text-[#B5BDB6] font-mono leading-relaxed bg-[#202725] p-2.5 rounded-lg border border-[#36403C] outline-none select-all"></textarea>
         </div>
 
       </div>
-
-      <!-- RIGHT: Editable Specifications & Generator Panel (5 Cols) -->
-      <div class="lg:col-span-5 space-y-4">
-        <div class="flex items-center justify-between">
-          <h2 class="text-xs font-bold text-[#8FB4AA] font-mono flex items-center gap-1.5">
-            <span>PAGE SPECIFICATIONS & COPY BUILDER</span>
-          </h2>
-          <span class="text-[10px] text-[#B5BDB6] font-mono">1-CLICK CLIPBOARD READY</span>
-        </div>
-
-        <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-5 shadow-2xl space-y-4 text-xs">
-          
-          <!-- Field: Page Name -->
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="text-[#B5BDB6] font-bold">نام صفحه (Official Page Name):</label>
-              <button onclick="copyInput('inputPageName')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی</button>
-            </div>
-            <input type="text" id="inputPageName" oninput="syncMockup()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
-          </div>
-
-          <!-- Field: English Slug / URL -->
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="text-[#B5BDB6] font-bold">نام انگلیسی / لینک صفحه (URL):</label>
-              <button onclick="copyInput('inputPageSlug')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی</button>
-            </div>
-            <input type="text" id="inputPageSlug" oninput="syncMockup()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none font-mono text-left" dir="ltr">
-          </div>
-
-          <!-- Field: Tagline (Max 120 chars) -->
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <div class="flex items-center gap-1.5">
-                <label class="text-[#B5BDB6] font-bold">شعار / وعده اصلی (Tagline):</label>
-                <span id="taglineCount" class="text-[10px] text-[#8FB4AA] font-mono">0 / 120</span>
-              </div>
-              <button onclick="copyInput('inputTagline')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی</button>
-            </div>
-            <input type="text" id="inputTagline" maxlength="120" oninput="syncMockup()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
-            <p class="text-[10px] text-[#8B958E] mt-1">حداکثر ۱۲۰ کاراکتر؛ در یک جمله مسئله مخاطب و ارزش دپارتمان را بیان کنید.</p>
-          </div>
-
-          <!-- Field: About / Description (Max 2000 chars) -->
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <div class="flex items-center gap-1.5">
-                <label class="text-[#B5BDB6] font-bold">توضیحات و درباره صفحه (About):</label>
-                <span id="aboutCount" class="text-[10px] text-[#8FB4AA] font-mono">0 / 2000</span>
-              </div>
-              <button onclick="copyInput('inputAbout')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی</button>
-            </div>
-            <textarea id="inputAbout" rows="5" maxlength="2000" oninput="syncMockup()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl p-3 outline-none leading-relaxed"></textarea>
-          </div>
-
-          <!-- Field: Target Audience -->
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="text-[#B5BDB6] font-bold">مخاطبان هدف (Target Audience):</label>
-              <button onclick="copyInput('inputAudience')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی</button>
-            </div>
-            <input type="text" id="inputAudience" oninput="syncMockup()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
-          </div>
-
-          <!-- Field: 3 Core Services -->
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="text-[#B5BDB6] font-bold">۳ خدمت اصلی (با علامت ؛ جدا کنید):</label>
-              <button onclick="copyInput('inputServices')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی</button>
-            </div>
-            <input type="text" id="inputServices" oninput="syncMockup()" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] focus:border-[#8FB4AA] rounded-xl px-3 py-2 outline-none">
-          </div>
-
-          <!-- Field: Voice & Tone -->
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="text-[#B5BDB6] font-bold">لحن ارتباطی (Voice & Tone):</label>
-              <button onclick="copyInput('inputTone')" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی</button>
-            </div>
-            <input type="text" id="inputTone" class="w-full bg-[#171C1A] text-[#F0EEE7] border border-[#46504B] rounded-xl px-3 py-2 outline-none" readonly>
-          </div>
-
-          <!-- Graphic Asset Prompt Generator -->
-          <div class="p-3.5 rounded-xl bg-[#171C1A] border border-[#46504B] space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-[#8FB4AA] flex items-center gap-1.5">
-                <span>🎨 پرامپت بنر سربرگ لینکدین (Banner Prompt)</span>
-              </span>
-              <button onclick="copyBannerPrompt()" class="text-[#8FB4AA] hover:underline font-mono text-[11px]">کپی پرامپت</button>
-            </div>
-            <p id="bannerPromptText" class="text-[11px] text-[#B5BDB6] font-mono leading-relaxed bg-[#202725] p-2.5 rounded-lg border border-[#36403C] select-all">
-              Minimalist abstract corporate banner for LinkedIn showcase page, technical enterprise aesthetic, dark carbon #202725 and patina sage green #527C78, clean geometric lines, ultra HD, 1128x191 aspect ratio.
-            </p>
-          </div>
-
-          <!-- Save and Export Controls -->
-          <div class="flex items-center gap-2 pt-2 border-t border-[#46504B]">
-            <button onclick="saveDepartmentConfig()" class="flex-1 py-2.5 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] font-bold rounded-xl shadow-md shadow-[#527C78]/25 transition flex items-center justify-center gap-1.5">
-              <span>💾 ذخیره تنظیمات این صفحه</span>
-            </button>
-            <button onclick="exportAllPagesJSON()" class="px-4 py-2.5 bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#46504B] font-semibold rounded-xl transition" title="خروجی JSON همه دپارتمان‌ها">
-              خروجی JSON 📤
-            </button>
-          </div>
-
-        </div>
-      </div>
-
     </div>
 
   </div>
 
+  <!-- SECTION 2: 30-DAY PUBLISHING CALENDAR MATRIX -->
+  <div id="sectionCalendar" class="hidden space-y-4">
+    <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-5 shadow-2xl space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[#36403C] pb-3">
+        <div>
+          <h2 class="text-sm font-bold text-[#F0EEE7] flex items-center gap-2">
+            <span>📅 تقویم ۳۰ روزه انتشار محتوا در لینکدین</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-[#343C38] text-[#8FB4AA] border border-[#46504B] font-mono">EDITABLE SPREADSHEET</span>
+          </h2>
+          <p class="text-xs text-[#B5BDB6] mt-0.5">برنامه مدون انتشار پست‌ها برای صفحه مادر و هر سه شوکیس به تفکیک روز، قالب و مسئول</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="addCalendarRow()" class="px-3 py-1.5 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-xl text-xs font-bold transition flex items-center gap-1">
+            <span>+ افزودن پست جدید</span>
+          </button>
+          <button onclick="copyCalendarTable()" class="px-3 py-1.5 bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#46504B] rounded-xl text-xs font-semibold transition flex items-center gap-1">
+            <span>📋 کپی جدول برای اکسل</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- The Spreadsheet Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-right text-xs">
+          <thead class="bg-[#343C38] text-[#B5BDB6] border-b border-[#46504B] font-semibold">
+            <tr>
+              <th class="p-3 w-12 text-center font-mono">روز</th>
+              <th class="p-3 w-28">صفحه</th>
+              <th class="p-3 w-28">ستون محتوا</th>
+              <th class="p-3">عنوان و قلاب پست (Hook / Idea)</th>
+              <th class="p-3 w-28 text-center">قالب</th>
+              <th class="p-3 w-32">دعوت به اقدام (CTA)</th>
+              <th class="p-3 w-24">مسئول</th>
+              <th class="p-3 w-28 text-center">وضعیت</th>
+              <th class="p-3 w-16 text-center">عملیات</th>
+            </tr>
+          </thead>
+          <tbody id="calendarTableBody" class="divide-y divide-[#36403C]"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT ENGINE -->
   <script>
-    // Master data for the 4 pages based on build_sheet.py and instructions_page_planner.md
-    const pagesData = {
+    const CLOUD_SHOWCASE_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/showcases";
+    const DIRECT_VPS_SHOWCASE_ENDPOINT = window.location.hostname === "109.120.131.224" ? "/api/warroom/showcases" : "";
+
+    // Default Baseline Strategy
+    const initialPagesData = {
       parent: {
         id: "parent",
         type: "Company Page",
@@ -355,6 +478,7 @@
         bannerBadge: "اکوسیستم جامع و پایدار خدمات فاوا",
         tagline: "اعتمادساز شرکتی و معرفی اکوسیستم خدمات فاوا",
         about: "شرکت پرشیا فاوا گسترش به عنوان یکی از پیشگامان زیرساخت‌های فناوری اطلاعات و ارتباطات کشور، ارائه‌دهنده راهکارهای جامع و پایدار در سه حوزه زیرساخت و امنیت، ارتباطات پیامکی و خدمات تلکام، و مشاوره و تحول دیجیتال سازمانی است. هدف ما ارتقای پایداری و تاب‌آوری دیجیتال کسب‌وکارهای بزرگ و نهادهای مالی است.",
+        industry: "فناوری اطلاعات و خدمات شبکه",
         audience: "مدیران عامل، مدیران فناوری و شرکای تجاری",
         services: ["معرفی شرکت و مأموریت سازمانی", "پروژه‌ها و دستاوردهای راهبردی", "اخبار همکاری‌ها و قراردادهای کلان"],
         tone: "رسمی، روشن، اعتمادساز و باوقار",
@@ -376,6 +500,7 @@
         bannerBadge: "زیرساخت پایدار برای کسب‌وکارهای همیشه فعال",
         tagline: "زیرساخت پایدار برای کسب‌وکارهای همیشه فعال",
         about: "دپارتمان بکبان در شرکت پرشیا فاوا گسترش، بازوی تخصصی طراحی، پیاده‌سازی و نگهداری زیرساخت‌های شبکه، مراکز داده، سرورهای حیاتی و تجهیزات تراکنشی بانکی است. ما با ارائه SLAهای سخت‌گیرانه، از بروز اختلال و قطعی در سامانه‌های شبانه‌روزی کسب‌وکارها جلوگیری می‌کنیم.",
+        industry: "زیرساخت ابری، سرور و تجهیزات بانکی",
         audience: "مدیران IT، مدیران شبکه و زیرساخت سازمان‌ها و شرکت‌های متوسط به بالا",
         services: ["مهندسی شبکه و ارتباطات پایدار", "سرور و پایگاه داده سازمانی", "امنیت شبکه، مانیتورینگ و پشتیبانی سخت‌افزار بانکی"],
         tone: "تخصصی، نتیجه‌محور، بدون حاشیه و اطمینان‌بخش",
@@ -398,6 +523,7 @@
         bannerBadge: "اتصال مستقیم اپراتوری با تضمین تاخیر زیر ۲ ثانیه",
         tagline: "ارتباط سریع، قابل‌اندازه‌گیری و مطمئن با مشتری",
         about: "پلتفرم فِرِستا (Faresta) زیرساخت ابری ارسال پیامک تراکنشی، وب‌سرویس OTP سریع و کانال‌های ارتباطی مستقیم مخابراتی پرشیا فاوا است. با دسترسی مستقیم به سوییچ‌های اپراتور و بدون تجمیع‌کنندگان واسط، فِرِستا تضمین می‌کند پیامک‌های تایید ورود و تراکنش در کمتر از ۲ ثانیه با بالاترین نرخ تحویل واقعی به مقصد برسند.",
+        industry: "مخابرات، پیام‌رسانی تجاری و CPaaS",
         audience: "مدیران فروش، مدیران CRM، فروشگاه‌های آنلاین، استارتاپ‌ها و پلتفرم‌های طلا و لجستیک",
         services: ["وب‌سرویس و API پیامک تراکنشی", "کد تایید (OTP) با تاخیر زیر ۲ ثانیه", "پیامک انبوه هوشمند و یکپارچه‌سازی با نرم‌افزارهای CRM"],
         tone: "سریع، مدرن، داده‌محور، پاسخگو و راه‌حل‌گرا",
@@ -420,6 +546,7 @@
         bannerBadge: "تصمیم‌های مطمئن برای آینده معماری و فناوری سازمان",
         tagline: "تصمیم‌های بهتر برای آینده فناوری سازمان",
         about: "دپارتمان تک‌بن (Techbun) واحد مشاوره عالی فناوری، بازمهندسی معماری سازمانی و تحول دیجیتال در پرشیا فاوا گسترش است. ما در کنار هیئت‌مدیره و مدیران ارشد فناوری سازمان‌ها قرار می‌گیریم تا با ارزیابی دقیق بدهی فنی، انتخاب صحیح پشته‌های نرم‌افزاری و طراحی نقشه راه تحول، از سرمایه‌گذاری‌های سنگین و کم‌بازده جلوگیری کنیم.",
+        industry: "مشاوره مدیریت فناوری و معماری سازمانی",
         audience: "مدیران عامل، مدیران ارشد فناوری (CTO/CIO)، مدیران تحول دیجیتال و مشاوران استراتژیک",
         services: ["مشاوره راهبردی و سند جامع تحول دیجیتال", "بازمهندسی و معماری مقیاس‌پذیر سیستم‌های کلان", "مشاوره تخصصی انتخاب، ارزیابی و استقرار نرم‌افزارهای سازمانی"],
         tone: "تحلیلی، آینده‌نگر، فکری، معتبر و الهام‌بخش",
@@ -432,26 +559,265 @@
       }
     };
 
-    let currentDept = 'parent';
+    // Initial 30-Day Calendar Entries
+    const initialCalendar = [
+      { day: 1, date: "شنبه هفته اول", page: "پرشیا فاوا گسترش", pillar: "اعتماد شرکتی", title: "روایت ۲۰ سال تجربه پرشیا فاوا در پایداری زیرساخت کشور", format: "پست متنی همراه با تصویر", cta: "مشاهده وب‌سایت", assignee: "تیم روابط عمومی", status: "آماده انتشار" },
+      { day: 3, date: "دوشنبه هفته اول", page: "بکبان", pillar: "آموزش زیرساخت", title: "۵ نشانه پنهان ضعف در زیرساخت شبکه که سازمان‌ها را متوقف می‌کند", format: "کاروسل (PDF)", cta: "دانلود چک‌لیست", assignee: "کارشناس بکبان", status: "در حال تولید" },
+      { day: 5, date: "چهارشنبه هفته اول", page: "فرستا", pillar: "بهینه‌سازی نرخ تبدیل OTP", title: "چرا پیامک‌های صوتی ۵ برابر گران‌ترند؟ کاهش هزینه با روت مستقیم", format: "ویدیو کوتاه", cta: "تست سرعت روت", assignee: "سرپرست محصول فرستا", status: "ایده" },
+      { day: 8, date: "شنبه هفته دوم", page: "تک‌بن", pillar: "دیدگاه کارشناسی", title: "سه اشتباه مهلک در خرید نرم‌افزارهای سازمانی گران‌قیمت", format: "مقاله پالس", cta: "رزرو وقت گفتگو", assignee: "مشاور ارشد تک‌بن", status: "ایده" },
+      { day: 10, date: "دوشنبه هفته دوم", page: "فرستا", pillar: "کمپین‌های داده‌محور", title: "سناریوی بازگشت ۳۰ درصدی مشتریان خاموش با پیامک شخصی‌سازی‌شده", format: "اینفوگرافیک", cta: "دریافت مشاوره رایگان", assignee: "مدیر بازاریابی", status: "ایده" },
+      { day: 12, date: "چهارشنبه هفته دوم", page: "بکبان", pillar: "مطالعه موردی", title: "چگونه آپ‌تایم شبکه یک هلدینگ مالی را به ۹۹.۹۵٪ رساندیم؟", format: "مطالعه موردی", cta: "درخواست جلسه", assignee: "تیم مهندسی", status: "در حال تولید" },
+      { day: 15, date: "شنبه هفته سوم", page: "تک‌بن", pillar: "پرسش و تبادل نظر", title: "نظرسنجی: معماری یکپارچه یا میکروسرویس برای سامانه‌های بومی؟", format: "نظرسنجی (Poll)", cta: "ثبت نظر در کامنت", assignee: "کارشناس تک‌بن", status: "ایده" }
+    ];
 
-    // Load saved customizations from localStorage
-    function loadSavedConfig() {
+    // Master Sessions State
+    let sessions = {
+      default: {
+        name: "طرح استراتژیک سازمانی (پیش‌فرض)",
+        pages: JSON.parse(JSON.stringify(initialPagesData)),
+        calendar: JSON.parse(JSON.stringify(initialCalendar)),
+        updatedAt: new Date().toISOString()
+      }
+    };
+    let currentSessionKey = "default";
+    let currentDept = "parent";
+
+    // --- SESSION MANAGEMENT ---
+    function initSessions() {
       try {
-        const saved = localStorage.getItem("pfg_linkedin_showcases_v1");
+        const saved = localStorage.getItem("pfg_showcase_sessions_v2");
         if (saved) {
           const parsed = JSON.parse(saved);
-          Object.keys(parsed).forEach(k => {
-            if (pagesData[k]) {
-              pagesData[k] = { ...pagesData[k], ...parsed[k] };
-            }
-          });
+          if (parsed && typeof parsed === "object" && Object.keys(parsed).length > 0) {
+            sessions = parsed;
+          }
         }
       } catch(e) {}
+
+      updateSessionDropdown();
+      selectDepartment(currentDept);
+      renderCalendar();
     }
 
+    function updateSessionDropdown() {
+      const select = document.getElementById("sessionSelect");
+      select.innerHTML = "";
+      Object.keys(sessions).forEach(k => {
+        const opt = document.createElement("option");
+        opt.value = k;
+        opt.innerText = sessions[k].name || k;
+        if (k === currentSessionKey) opt.selected = true;
+        select.appendChild(opt);
+      });
+
+      const delBtn = document.getElementById("btnDeleteSession");
+      if (delBtn) {
+        delBtn.classList.toggle("hidden", currentSessionKey === "default");
+      }
+    }
+
+    function switchSession(key) {
+      if (!sessions[key]) return;
+      currentSessionKey = key;
+      updateSessionDropdown();
+      selectDepartment(currentDept);
+      renderCalendar();
+    }
+
+    function saveCurrentSession() {
+      if (!sessions[currentSessionKey]) return;
+      sessions[currentSessionKey].updatedAt = new Date().toISOString();
+      localStorage.setItem("pfg_showcase_sessions_v2", JSON.stringify(sessions));
+
+      const statusEl = document.getElementById("autoSaveStatus");
+      if (statusEl) {
+        statusEl.innerText = "ذخیره شد!";
+        statusEl.className = "text-emerald-400 font-bold";
+        setTimeout(() => {
+          statusEl.innerText = "ذخیره خودکار";
+          statusEl.className = "text-emerald-400";
+        }, 1500);
+      }
+    }
+
+    function promptNewSession() {
+      const name = prompt("نام نشست جدید را وارد فرمایید:", "جلسه استراتژی محتوا — " + new Date().toLocaleDateString('fa-IR'));
+      if (!name || !name.trim()) return;
+
+      const newKey = "sess_" + Date.now();
+      sessions[newKey] = {
+        name: name.trim(),
+        pages: JSON.parse(JSON.stringify(getCurrentPages())),
+        calendar: JSON.parse(JSON.stringify(getCurrentCalendar())),
+        updatedAt: new Date().toISOString()
+      };
+      currentSessionKey = newKey;
+      saveCurrentSession();
+      updateSessionDropdown();
+      alert(`✅ نشست کاری «${name}» با موفقیت ایجاد و فعال شد!`);
+    }
+
+    function deleteCurrentSession() {
+      if (currentSessionKey === "default") {
+        alert("نشست پیش‌فرض قابل حذف نیست.");
+        return;
+      }
+      if (confirm(`آیا از حذف نشست «${sessions[currentSessionKey].name}» اطمینان دارید؟`)) {
+        delete sessions[currentSessionKey];
+        currentSessionKey = "default";
+        saveCurrentSession();
+        updateSessionDropdown();
+        selectDepartment(currentDept);
+        renderCalendar();
+      }
+    }
+
+    function resetToInitialDefaults() {
+      if (confirm("آیا مطمئن هستید که می‌خواهید این صفحه و نشست را به الگوی اولیه روابط عمومی بازنشانی فرمایید؟")) {
+        sessions[currentSessionKey].pages = JSON.parse(JSON.stringify(initialPagesData));
+        sessions[currentSessionKey].calendar = JSON.parse(JSON.stringify(initialCalendar));
+        saveCurrentSession();
+        selectDepartment(currentDept);
+        renderCalendar();
+        alert("✅ اطلاعات با موفقیت به الگوی پیش‌فرض بازنشانی شد.");
+      }
+    }
+
+    function getCurrentPages() {
+      return sessions[currentSessionKey]?.pages || initialPagesData;
+    }
+
+    function getCurrentCalendar() {
+      return sessions[currentSessionKey]?.calendar || initialCalendar;
+    }
+
+    // --- CLOUD SYNC ENGINE (SOVEREIGN VPS + CLOUDFLARE TUNNEL) ---
+    async function pushShowcasesToCloud() {
+      const btn = document.getElementById("btnCloudPush");
+      if (btn) btn.innerText = "⏳ در حال ارسال...";
+
+      try {
+        const res = await fetch(CLOUD_SHOWCASE_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Name": localStorage.getItem("pfg_user_name") || "کاربر شوکیس"
+          },
+          body: JSON.stringify({ sessions: sessions, activeSession: currentSessionKey })
+        });
+        if (res.ok) {
+          alert("✅ کلیه نشست‌ها و تنظیمات صفحات شوکیس با موفقیت روی سرور استکهلم ذخیره شد!");
+          if (btn) btn.innerText = "☁️ ارسال به سرور ابری (Push)";
+          return;
+        }
+      } catch(e) {
+        console.warn("Cloud push error:", e);
+      }
+
+      if (DIRECT_VPS_SHOWCASE_ENDPOINT) {
+        try {
+          const res2 = await fetch(DIRECT_VPS_SHOWCASE_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ sessions: sessions, activeSession: currentSessionKey })
+          });
+          if (res2.ok) {
+            alert("✅ اطلاعات روی سرور استکهلم ذخیره شد!");
+            if (btn) btn.innerText = "☁️ ارسال به سرور ابری (Push)";
+            return;
+          }
+        } catch(e) {}
+      }
+
+      if (btn) btn.innerText = "☁️ ارسال به سرور ابری (Push)";
+      alert("⚠️ ارسال به سرور با اختلال مواجه شد. تغییرات شما در حافظه این مرورگر ذخیره شده است. از دکمه «خروجی» برای دریافت فایل پشتیبان استفاده نمایید.");
+    }
+
+    async function pullShowcasesFromCloud() {
+      const btn = document.getElementById("btnCloudPull");
+      if (btn) btn.innerText = "⏳ دریافت...";
+
+      try {
+        const res = await fetch(CLOUD_SHOWCASE_ENDPOINT + "?t=" + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.sessions && Object.keys(data.sessions).length > 0) {
+            sessions = data.sessions;
+            if (data.activeSession && sessions[data.activeSession]) {
+              currentSessionKey = data.activeSession;
+            }
+            saveCurrentSession();
+            updateSessionDropdown();
+            selectDepartment(currentDept);
+            renderCalendar();
+            alert("✅ آخرین نشست‌ها و صفحات از سرور ابری دریافت و جایگزین شد!");
+            if (btn) btn.innerText = "☁️ دریافت از ابر (Pull)";
+            return;
+          }
+        }
+      } catch(e) {
+        console.warn("Cloud pull error:", e);
+      }
+
+      if (btn) btn.innerText = "☁️ دریافت از ابر (Pull)";
+      alert("⚠️ دریافت از سرور ناموفق بود یا هنوز داده‌ای در سرور ثبت نشده است.");
+    }
+
+    function exportCurrentSessionFile() {
+      saveCurrentSession();
+      const payload = {
+        sessions: sessions,
+        currentSessionKey: currentSessionKey,
+        exportedAt: new Date().toISOString()
+      };
+      const str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(payload, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute("href", str);
+      a.setAttribute("download", `showcase_session_${currentSessionKey}_${Date.now()}.json`);
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function importSessionFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (imported.sessions) {
+            sessions = { ...sessions, ...imported.sessions };
+            if (imported.currentSessionKey && sessions[imported.currentSessionKey]) {
+              currentSessionKey = imported.currentSessionKey;
+            }
+          } else if (imported.parent) {
+            sessions["imported_" + Date.now()] = {
+              name: "فایل بارگذاری‌شده " + new Date().toLocaleDateString('fa-IR'),
+              pages: imported,
+              calendar: initialCalendar,
+              updatedAt: new Date().toISOString()
+            };
+            currentSessionKey = Object.keys(sessions)[Object.keys(sessions).length - 1];
+          }
+          saveCurrentSession();
+          updateSessionDropdown();
+          selectDepartment(currentDept);
+          renderCalendar();
+          alert("✅ فایل نشست با موفقیت بارگذاری و اعمال شد!");
+        } catch(err) {
+          alert("خطا در خواندن فایل JSON: " + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = "";
+    }
+
+    // --- DEPARTMENT SELECTION & SYNC ---
     function selectDepartment(deptKey) {
       currentDept = deptKey;
-      const data = pagesData[deptKey];
+      const pages = getCurrentPages();
+      const data = pages[deptKey];
       if (!data) return;
 
       // Update tabs UI
@@ -465,15 +831,16 @@
         }
       });
 
-      // Populate Inputs
-      document.getElementById("inputPageName").value = data.name;
-      document.getElementById("inputPageSlug").value = data.slug;
-      document.getElementById("inputTagline").value = data.tagline;
-      document.getElementById("inputAbout").value = data.about;
-      document.getElementById("inputAudience").value = data.audience;
-      document.getElementById("inputServices").value = data.services.join("؛ ");
-      document.getElementById("inputTone").value = data.tone;
-      document.getElementById("bannerPromptText").innerText = data.bannerPrompt;
+      // Populate Input Fields
+      document.getElementById("inputPageName").value = data.name || "";
+      document.getElementById("inputPageSlug").value = data.slug || "";
+      document.getElementById("inputTagline").value = data.tagline || "";
+      document.getElementById("inputAbout").value = data.about || "";
+      document.getElementById("inputAudience").value = data.audience || "";
+      document.getElementById("inputServices").value = (data.services || []).join("؛ ");
+      document.getElementById("inputTone").value = data.tone || "";
+      document.getElementById("inputCta").value = data.cta || "";
+      document.getElementById("bannerPromptText").value = data.bannerPrompt || "";
 
       updateCounters();
       renderMockup();
@@ -481,7 +848,7 @@
     }
 
     function renderMockup() {
-      const data = pagesData[currentDept];
+      const data = getCurrentPages()[currentDept];
       if (!data) return;
 
       document.getElementById("mockupTitle").innerText = data.name;
@@ -490,56 +857,61 @@
       document.getElementById("mockupTagline").innerText = data.tagline;
       document.getElementById("mockupAbout").innerText = data.about;
       document.getElementById("mockupAudience").innerText = data.audience;
-      document.getElementById("mockupAvatar").innerText = data.avatar;
+      document.getElementById("mockupIndustry").innerText = data.industry || "فناوری و ارتباطات";
+      document.getElementById("mockupAvatar").innerText = data.avatar || "🏢";
       document.getElementById("mockupBanner").style.background = data.bannerGradient;
       document.getElementById("mockupBannerBadge").innerText = data.bannerBadge || data.tagline;
       document.getElementById("mockupCtaBtn").innerText = data.cta || "مشاهده وب‌سایت ↗";
 
-      // Render services chips
+      // Services chips
       const sContainer = document.getElementById("mockupServicesList");
       sContainer.innerHTML = "";
-      data.services.forEach(s => {
+      (data.services || []).forEach(s => {
         if (!s.trim()) return;
         const span = document.createElement("span");
-        span.className = "px-2.5 py-1 rounded-lg bg-[#292F2D] text-[#8FB4AA] border border-[#46504B] text-[11px] font-medium";
-        span.innerText = "✓ " + s.trim();
+        span.className = "px-2.5 py-1 rounded-lg bg-[#292F2D] text-[#8FB4AA] border border-[#46504B] text-[11px] font-medium flex items-center gap-1 group cursor-pointer";
+        span.innerHTML = `<span>✓ ${s.trim()}</span>`;
         sContainer.appendChild(span);
       });
     }
 
     function renderPillars() {
-      const data = pagesData[currentDept];
+      const data = getCurrentPages()[currentDept];
       const container = document.getElementById("contentPillarsContainer");
       container.innerHTML = "";
 
-      if (!data.pillars || data.pillars.length === 0) {
-        container.innerHTML = `<div class="p-4 text-center text-[#B5BDB6] text-xs">ستون محتوایی تعریف نشده است.</div>`;
+      const pillars = data.pillars || [];
+      if (pillars.length === 0) {
+        container.innerHTML = `<div class="p-4 text-center text-[#B5BDB6] text-xs">ستون محتوایی برای این صفحه تعریف نشده است. از دکمه بالا برای افزودن استفاده کنید.</div>`;
         return;
       }
 
-      data.pillars.forEach((p, idx) => {
+      pillars.forEach((p, idx) => {
         const div = document.createElement("div");
-        div.className = "p-3.5 rounded-xl bg-[#171C1A] border border-[#36403C] space-y-2";
+        div.className = "p-3.5 rounded-xl bg-[#171C1A] border border-[#36403C] space-y-2.5";
         div.innerHTML = `
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">ستون ${idx + 1}: ${p.pillar}</span>
               <span class="text-[#B5BDB6] text-[11px]">${p.goal}</span>
             </div>
-            <span class="text-[10px] text-[#B39A77] bg-[#B39A77]/15 px-2 py-0.5 rounded border border-[#B39A77]/30">${p.format}</span>
+            <div class="flex items-center gap-1.5">
+              <span class="text-[10px] text-[#B39A77] bg-[#B39A77]/15 px-2 py-0.5 rounded border border-[#B39A77]/30">${p.format}</span>
+              <button onclick="deletePillar(${idx})" class="text-rose-400 hover:text-rose-300 p-1 text-xs" title="حذف ستون">✕</button>
+            </div>
           </div>
           <div class="space-y-1.5 pt-1 text-[11px]">
             <div class="p-2 rounded-lg bg-[#202725] border border-[#36403C] flex items-center justify-between group">
-              <span class="text-[#F0EEE7]">🔹 ${p.sample1}</span>
-              <button onclick="navigator.clipboard.writeText('${p.sample1.replace(/'/g, "\\'")}'); alert('عنوان ایده کپی شد!');" class="text-[10px] text-[#8FB4AA] hover:underline font-mono">کپی ایده</button>
+              <input type="text" value="${p.sample1.replace(/"/g, '&quot;')}" onchange="updatePillarIdea(${idx}, 'sample1', this.value)" class="bg-transparent text-[#F0EEE7] w-full outline-none">
+              <button onclick="copyText('${p.sample1.replace(/'/g, "\\'")}')" class="text-[10px] text-[#8FB4AA] hover:underline font-mono flex-shrink-0 ml-2">کپی 📋</button>
             </div>
             <div class="p-2 rounded-lg bg-[#202725] border border-[#36403C] flex items-center justify-between group">
-              <span class="text-[#F0EEE7]">🔹 ${p.sample2}</span>
-              <button onclick="navigator.clipboard.writeText('${p.sample2.replace(/'/g, "\\'")}'); alert('عنوان ایده کپی شد!');" class="text-[10px] text-[#8FB4AA] hover:underline font-mono">کپی ایده</button>
+              <input type="text" value="${p.sample2.replace(/"/g, '&quot;')}" onchange="updatePillarIdea(${idx}, 'sample2', this.value)" class="bg-transparent text-[#F0EEE7] w-full outline-none">
+              <button onclick="copyText('${p.sample2.replace(/'/g, "\\'")}')" class="text-[10px] text-[#8FB4AA] hover:underline font-mono flex-shrink-0 ml-2">کپی 📋</button>
             </div>
           </div>
           <div class="flex items-center justify-between text-[10px] text-[#8B958E] pt-0.5">
-            <span>مخاطب اصلی: ${p.audience}</span>
+            <span>مخاطب: ${p.audience}</span>
             <span class="text-[#8FB4AA]">دعوت به اقدام: ${p.cta}</span>
           </div>
         `;
@@ -547,17 +919,75 @@
       });
     }
 
-    function syncMockup() {
-      const data = pagesData[currentDept];
+    function addNewPillarPrompt() {
+      const name = prompt("نام ستون محتوایی جدید را وارد کنید:", "آموزش تخصصی / Case Study");
+      if (!name) return;
+      const sample1 = prompt("ایده و عنوان اولین پست:", "نکته کلیدی در کاهش هزینه‌ها");
+      const sample2 = prompt("ایده و عنوان دومین پست:", "اشتباهات رایج سازمان‌ها در استقرار سیستم");
+
+      const data = getCurrentPages()[currentDept];
+      if (!data.pillars) data.pillars = [];
+      data.pillars.push({
+        pillar: name,
+        goal: "توسعه آگاهی و اعتبار برند",
+        audience: data.audience,
+        format: "کاروسل / مقاله",
+        sample1: sample1 || "موضوع شماره ۱",
+        sample2: sample2 || "موضوع شماره ۲",
+        cta: data.cta
+      });
+      renderPillars();
+      saveCurrentSession();
+    }
+
+    function deletePillar(idx) {
+      const data = getCurrentPages()[currentDept];
+      if (!data.pillars) return;
+      data.pillars.splice(idx, 1);
+      renderPillars();
+      saveCurrentSession();
+    }
+
+    function updatePillarIdea(pillarIdx, field, val) {
+      const data = getCurrentPages()[currentDept];
+      if (data.pillars && data.pillars[pillarIdx]) {
+        data.pillars[pillarIdx][field] = val;
+        saveCurrentSession();
+      }
+    }
+
+    // --- INLINE AND FORM SYNCING ---
+    function syncFromInputs() {
+      const data = getCurrentPages()[currentDept];
       data.name = document.getElementById("inputPageName").value;
       data.slug = document.getElementById("inputPageSlug").value;
       data.tagline = document.getElementById("inputTagline").value;
       data.about = document.getElementById("inputAbout").value;
       data.audience = document.getElementById("inputAudience").value;
-      data.services = document.getElementById("inputServices").value.split(/[؛;]+/).map(s => s.trim()).filter(Boolean);
+      data.services = document.getElementById("inputServices").value.split(/[؛;\n]+/).map(s => s.trim()).filter(Boolean);
+      data.tone = document.getElementById("inputTone").value;
+      data.cta = document.getElementById("inputCta").value;
+      data.bannerPrompt = document.getElementById("bannerPromptText").value;
 
       updateCounters();
       renderMockup();
+      saveCurrentSession();
+    }
+
+    function updateFieldFromInline(field, val) {
+      const data = getCurrentPages()[currentDept];
+      data[field] = val.trim();
+      selectDepartment(currentDept); // Resync form
+      saveCurrentSession();
+    }
+
+    function cycleAvatar() {
+      const icons = ["🏢", "🛡️", "⚡", "💡", "🌐", "🚀", "📊", "🔒"];
+      const data = getCurrentPages()[currentDept];
+      const curIdx = icons.indexOf(data.avatar || "🏢");
+      data.avatar = icons[(curIdx + 1) % icons.length];
+      document.getElementById("mockupAvatar").innerText = data.avatar;
+      saveCurrentSession();
     }
 
     function updateCounters() {
@@ -567,47 +997,212 @@
       document.getElementById("aboutCount").innerText = `${aboutVal.length} / 2000`;
     }
 
+    // --- 30-DAY CALENDAR ENGINE ---
+    function switchWorkspaceMode(mode) {
+      const isStudio = mode === 'studio';
+      document.getElementById("sectionStudio").classList.toggle("hidden", !isStudio);
+      document.getElementById("sectionCalendar").classList.toggle("hidden", isStudio);
+
+      document.getElementById("btnModeStudio").className = isStudio
+        ? "px-4 py-2 rounded-xl text-xs font-bold bg-[#527C78] text-[#F0EEE7] transition flex items-center gap-1.5 shadow-sm"
+        : "px-4 py-2 rounded-xl text-xs font-medium text-[#B5BDB6] hover:text-[#F0EEE7] hover:bg-[#343C38] transition flex items-center gap-1.5";
+
+      document.getElementById("btnModeCalendar").className = !isStudio
+        ? "px-4 py-2 rounded-xl text-xs font-bold bg-[#527C78] text-[#F0EEE7] transition flex items-center gap-1.5 shadow-sm"
+        : "px-4 py-2 rounded-xl text-xs font-medium text-[#B5BDB6] hover:text-[#F0EEE7] hover:bg-[#343C38] transition flex items-center gap-1.5";
+
+      if (!isStudio) renderCalendar();
+    }
+
+    function renderCalendar() {
+      const tbody = document.getElementById("calendarTableBody");
+      tbody.innerHTML = "";
+      const cal = getCurrentCalendar();
+
+      cal.forEach((row, idx) => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-white/5 transition";
+        tr.innerHTML = `
+          <td class="p-3 text-center font-mono text-[#8B958E]">
+            <input type="number" value="${row.day}" onchange="updateCalRow(${idx}, 'day', this.value)" class="w-10 bg-transparent text-center outline-none">
+          </td>
+          <td class="p-3">
+            <select onchange="updateCalRow(${idx}, 'page', this.value)" class="bg-[#171C1A] text-[#F0EEE7] border border-[#36403C] rounded px-2 py-1 text-xs outline-none">
+              <option value="پرشیا فاوا گسترش" ${row.page === 'پرشیا فاوا گسترش' ? 'selected' : ''}>پرشیا فاوا</option>
+              <option value="بکبان" ${row.page === 'بکبان' ? 'selected' : ''}>بکبان</option>
+              <option value="فرستا" ${row.page === 'فرستا' ? 'selected' : ''}>فرستا</option>
+              <option value="تک‌بن" ${row.page === 'تک‌بن' ? 'selected' : ''}>تک‌بن</option>
+            </select>
+          </td>
+          <td class="p-3">
+            <input type="text" value="${row.pillar}" onchange="updateCalRow(${idx}, 'pillar', this.value)" class="w-full bg-transparent border-b border-transparent focus:border-[#8FB4AA] text-[#B5BDB6] outline-none">
+          </td>
+          <td class="p-3">
+            <div class="flex items-center justify-between gap-2">
+              <input type="text" value="${row.title}" onchange="updateCalRow(${idx}, 'title', this.value)" class="w-full bg-transparent font-medium text-[#F0EEE7] outline-none border-b border-transparent focus:border-[#8FB4AA]">
+              <button onclick="copyText('${row.title.replace(/'/g, "\\'")}')" class="text-[10px] text-[#8FB4AA] hover:underline font-mono flex-shrink-0">کپی 📋</button>
+            </div>
+          </td>
+          <td class="p-3 text-center">
+            <select onchange="updateCalRow(${idx}, 'format', this.value)" class="bg-[#171C1A] text-[#B5BDB6] border border-[#36403C] rounded px-1.5 py-1 text-[11px] outline-none">
+              <option value="کاروسل (PDF)" ${row.format.includes('کاروسل') ? 'selected' : ''}>کاروسل (PDF)</option>
+              <option value="پست متنی همراه با تصویر" ${row.format.includes('متنی') ? 'selected' : ''}>پست متنی</option>
+              <option value="ویدیو کوتاه" ${row.format.includes('ویدیو') ? 'selected' : ''}>ویدیو کوتاه</option>
+              <option value="اینفوگرافیک" ${row.format.includes('اینفو') ? 'selected' : ''}>اینفوگرافیک</option>
+              <option value="نظرسنجی (Poll)" ${row.format.includes('نظرسنجی') ? 'selected' : ''}>نظرسنجی</option>
+              <option value="مطالعه موردی" ${row.format.includes('موردی') ? 'selected' : ''}>مطالعه موردی</option>
+            </select>
+          </td>
+          <td class="p-3">
+            <input type="text" value="${row.cta}" onchange="updateCalRow(${idx}, 'cta', this.value)" class="w-full bg-transparent text-[#8FB4AA] text-[11px] outline-none">
+          </td>
+          <td class="p-3">
+            <input type="text" value="${row.assignee}" onchange="updateCalRow(${idx}, 'assignee', this.value)" class="w-full bg-transparent text-[#B5BDB6] text-[11px] outline-none">
+          </td>
+          <td class="p-3 text-center">
+            <select onchange="updateCalRow(${idx}, 'status', this.value)" class="bg-[#171C1A] border border-[#36403C] rounded px-2 py-1 text-[11px] font-semibold outline-none ${getStatusColor(row.status)}">
+              <option value="ایده" ${row.status === 'ایده' ? 'selected' : ''}>ایده</option>
+              <option value="در حال تولید" ${row.status === 'در حال تولید' ? 'selected' : ''}>در حال تولید</option>
+              <option value="آماده انتشار" ${row.status === 'آماده انتشار' ? 'selected' : ''}>آماده انتشار</option>
+              <option value="منتشر شد" ${row.status === 'منتشر شد' ? 'selected' : ''}>منتشر شد</option>
+            </select>
+          </td>
+          <td class="p-3 text-center">
+            <button onclick="deleteCalRow(${idx})" class="text-rose-400 hover:text-rose-300 p-1 text-xs" title="حذف این ردیف">✕</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function getStatusColor(status) {
+      if (status === 'منتشر شد') return 'text-emerald-400';
+      if (status === 'آماده انتشار') return 'text-[#8FB4AA]';
+      if (status === 'در حال تولید') return 'text-amber-400';
+      return 'text-slate-400';
+    }
+
+    function updateCalRow(idx, field, val) {
+      const cal = getCurrentCalendar();
+      if (cal[idx]) {
+        cal[idx][field] = val;
+        saveCurrentSession();
+      }
+    }
+
+    function addCalendarRow() {
+      const cal = getCurrentCalendar();
+      const lastDay = cal.length ? Number(cal[cal.length - 1].day) + 2 : 1;
+      cal.push({
+        day: lastDay,
+        date: "روز " + lastDay,
+        page: getCurrentPages()[currentDept].name,
+        pillar: "ستون محتوایی جدید",
+        title: "عنوان و قلاب جذاب برای مخاطب سازمان",
+        format: "کاروسل (PDF)",
+        cta: "مشاهده وب‌سایت",
+        assignee: "مسئول تولید محتوا",
+        status: "ایده"
+      });
+      renderCalendar();
+      saveCurrentSession();
+    }
+
+    function deleteCalRow(idx) {
+      const cal = getCurrentCalendar();
+      cal.splice(idx, 1);
+      renderCalendar();
+      saveCurrentSession();
+    }
+
+    function copyCalendarTable() {
+      const cal = getCurrentCalendar();
+      let tsv = "روز\tصفحه\tستون محتوا\tعنوان پست\tقالب\tدعوت به اقدام\tمسئول\tوضعیت\n";
+      cal.forEach(r => {
+        tsv += `${r.day}\t${r.page}\t${r.pillar}\t${r.title}\t${r.format}\t${r.cta}\t${r.assignee}\t${r.status}\n`;
+      });
+      navigator.clipboard.writeText(tsv);
+      alert("✅ جدول کامل تقویم انتشار کپی شد! می‌توانید مستقیم در اکسل یا Google Sheets پیست فرمایید.");
+    }
+
+    // --- COPY UTILITIES ---
+    function copyText(val) {
+      navigator.clipboard.writeText(val);
+      alert("✅ متن در کلیپ‌بورد کپی شد!");
+    }
+
     function copyInput(id) {
       const el = document.getElementById(id);
       if (!el) return;
       navigator.clipboard.writeText(el.value);
-      alert("✅ محتوا با موفقیت در کلیپ‌بورد کپی شد!");
+      alert("✅ فیلد در کلیپ‌بورد کپی شد!");
     }
 
     function copyField(field) {
-      const data = pagesData[currentDept];
+      const data = getCurrentPages()[currentDept];
       if (!data) return;
       const val = field === 'tagline' ? data.tagline : data.about;
       navigator.clipboard.writeText(val);
-      alert("✅ متن با موفقیت در کلیپ‌بورد کپی شد!");
+      alert("✅ متن در کلیپ‌بورد کپی شد!");
+    }
+
+    function copyServicesList() {
+      const data = getCurrentPages()[currentDept];
+      const text = (data.services || []).map((s, i) => `${i + 1}. ${s}`).join('\n');
+      navigator.clipboard.writeText(text);
+      alert("✅ فهرست ۳ خدمت کلیدی کپی شد!");
     }
 
     function copyBannerPrompt() {
-      const text = document.getElementById("bannerPromptText").innerText;
+      const text = document.getElementById("bannerPromptText").value;
       navigator.clipboard.writeText(text);
-      alert("✅ پرامپت طراحی بنر لینکدین در کلیپ‌بورد کپی شد!");
+      alert("✅ پرامپت طراحی بنر کپی شد!");
     }
 
-    function saveDepartmentConfig() {
-      syncMockup();
-      localStorage.setItem("pfg_linkedin_showcases_v1", JSON.stringify(pagesData));
-      alert(`✅ مشخصات و تغییرات صفحه «${pagesData[currentDept].name}» در مرورگر ذخیره شد!`);
+    function copyFullPackageMarkdown() {
+      const data = getCurrentPages()[currentDept];
+      const md = `# شناسنامه و پکیج شوکیس لینکدین: ${data.name}
+
+- **نوع صفحه:** ${data.type}
+- **نام انگلیسی / Slug:** ${data.slug}
+- **شعار اصلی (Tagline):** ${data.tagline}
+- **مخاطبان هدف:** ${data.audience}
+- **لحن ارتباطی:** ${data.tone}
+- **دکمه اقدام (CTA):** ${data.cta}
+
+---
+
+### درباره صفحه (About / Overview):
+${data.about}
+
+---
+
+### سه خدمت کلیدی:
+${(data.services || []).map(s => `- ${s}`).join('\n')}
+
+---
+
+### پرامپت طراحی بنر سربرگ (1128x191 px):
+\`\`\`
+${data.bannerPrompt}
+\`\`\`
+
+---
+
+### ستون‌های محتوایی:
+${(data.pillars || []).map((p, i) => `#### ستون ${i+1}: ${p.pillar} (${p.goal})
+- قالب: ${p.format} | مخاطب: ${p.audience}
+- ایده ۱: ${p.sample1}
+- ایده ۲: ${p.sample2}
+- اقدام: ${p.cta}
+`).join('\n')}
+`;
+      navigator.clipboard.writeText(md);
+      alert(`✅ بسته کامل مارک‌داون برای صفحه «${data.name}» کپی شد!`);
     }
 
-    function exportAllPagesJSON() {
-      syncMockup();
-      const str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(pagesData, null, 2));
-      const a = document.createElement('a');
-      a.setAttribute("href", str);
-      a.setAttribute("download", "persia_fava_linkedin_showcase_pages.json");
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    }
-
-    // Init
-    loadSavedConfig();
-    selectDepartment('parent');
+    // Init on Page Load
+    initSessions();
   </script>
 </body>
 </html>
