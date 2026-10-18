@@ -16,17 +16,23 @@
           },
           colors: {
             brand: {
-              canvas: '#0B0C0E',
-              nav: '#121316',
-              column: '#15171C',
-              card: '#1D1F26',
-              cardHover: '#242731',
-              border: '#272932',
-              blue: '#2563EB',
-              blueHover: '#1D4ED8',
-              green: '#10B981',
-              amber: '#F59E0B',
-              red: '#EF4444'
+              canvas: '#202725',
+              nav: '#171C1A',
+              column: '#252C29',
+              card: '#292F2D',
+              cardHover: '#343C38',
+              border: '#46504B',
+              borderSubtle: '#36403C',
+              patina: '#8FB4AA',
+              patinaDeep: '#527C78',
+              ochre: '#B39A77',
+              text: '#F0EEE7',
+              textMuted: '#B5BDB6',
+              blue: '#527C78',
+              blueHover: '#436763',
+              green: '#8FB4AA',
+              amber: '#B39A77',
+              red: '#D97768'
             }
           }
         }
@@ -34,121 +40,56 @@
     }
   </script>
   <style>
+    :root {
+      --canvas: #202725;
+      --surface: #292F2D;
+      --surface-elevated: #343C38;
+      --surface-grouped: #252C29;
+      --code-surface: #171C1A;
+      --border: #46504B;
+      --border-subtle: #36403C;
+      --text-primary: #F0EEE7;
+      --text-secondary: #B5BDB6;
+      --accent-primary: #8FB4AA;
+      --accent-deep: #527C78;
+      --ochre: #B39A77;
+    }
     body {
       font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #0E1015;
+      background-color: #202725;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.04) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(143, 180, 170, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(179, 154, 119, 0.06) 0px, transparent 50%);
       background-attachment: fixed;
-      color: #F3F4F6;
+      color: #F0EEE7;
     }
-    .modern-nav {
-      background: rgba(18, 19, 22, 0.95);
+    .modern-nav, .ios-nav {
+      background: rgba(23, 28, 26, 0.95);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid #272932;
+      border-bottom: 1px solid #46504B;
     }
-    .modern-column {
-      background: #15171C;
-      border: 1px solid #272932;
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+    .modern-column, .ios-column {
+      background: #252C29;
+      border: 1px solid #46504B;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
     }
-    .modern-card {
-      background: #1D1F26;
-      border: 1px solid #282B35;
+    .modern-card, .ios-card {
+      background: #292F2D;
+      border: 1px solid #36403C;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .modern-card:hover {
-      background: #242731;
-      border-color: #3B82F6;
+    .modern-card:hover, .ios-card:hover {
+      background: #343C38;
+      border-color: #8FB4AA;
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     }
-    .kanban-col {
-      min-height: calc(100vh - 220px);
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #373A46;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #4B5061;
-    }
-    .ios-nav {
-      background: rgba(28, 28, 30, 0.88);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .ios-column {
-      background: #1C1C1E;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
-    }
-    .ios-card {
-      background: #2C2C2E;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .ios-card:hover {
-      background: #3A3A3C;
-      border-color: #0A84FF;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(10, 132, 255, 0.25);
-    }
-    .kanban-col {
-      min-height: calc(100vh - 220px);
-    }
-    /* iOS minimalist scrollbar */
-    ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.16);
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.32);
-    }
-    .ios-nav {
-      background: rgba(24, 25, 29, 0.94);
+    .glass, .glass-card {
+      background: rgba(41, 47, 45, 0.88);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid #2F3243;
-    }
-    .ios-column {
-      background: #18191D;
-      border: 1px solid #2F3243;
-    }
-    .ios-column {
-      background: #1A1B22;
-      border: 1px solid #2A2C3A;
-      box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.45);
-    }
-    .ios-card {
-      background: #232530;
-      border: 1px solid #2F3243;
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .ios-card:hover {
-      background: #292B38;
-      border-color: #0A84FF;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px -4px rgba(56, 189, 248, 0.2);
+      border: 1px solid #46504B;
     }
     .kanban-col {
       min-height: calc(100vh - 220px);
@@ -161,51 +102,15 @@
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: #3B3E52;
+      background: #46504B;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #0A84FF;
-    }
-    .glass {
-      background: rgba(18, 22, 32, 0.65);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .glass-card {
-      background: rgba(24, 29, 42, 0.75);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .glass-card:hover {
-      background: rgba(30, 36, 52, 0.9);
-      border-color: rgba(255, 255, 255, 0.16);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
-    }
-    .kanban-col {
-      min-height: calc(100vh - 220px);
-    }
-    /* Custom Apple-like scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: #8FB4AA;
     }
   </style>
 </head>
-<body class="text-white min-h-screen antialiased flex flex-col selection:bg-blue-600/40 selection:text-white">
+<body class="text-white min-h-screen antialiased flex flex-col selection:bg-[#527C78]/40 selection:text-white">
 
   <!-- Top Glass Navigation Bar (Apple Style) -->
     <!-- Top Navigation Bar (ClickUp Style) -->
@@ -214,21 +119,21 @@
   <header class="sticky top-0 z-40 modern-nav px-4 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
     <!-- Brand & Workspace Identity -->
     <div class="flex items-center gap-3.5">
-      <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/25 border border-white/20">
+      <div class="w-9 h-9 rounded-xl bg-[#527C78] flex items-center justify-center shadow-lg shadow-[#527C78]/25 border border-white/20">
         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
       </div>
       <div>
         <div class="flex items-center gap-2">
           <span class="text-sm font-bold tracking-tight text-white">فِرِستا B2B War Room</span>
-          <span class="px-2.5 py-0.5 text-[10px] rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 font-semibold">توسعه بازار پیامک</span>
+          <span class="px-2.5 py-0.5 text-[10px] rounded-full bg-[#527C78]/20 text-[#8FB4AA] border border-[#527C78]/40 font-semibold">توسعه بازار پیامک</span>
         </div>
         <p class="text-[11px] text-slate-400">شرکت پرشیا فاوا گسترش — رصدخانه و گردش‌کار جذب حساب‌های استراتژیک</p>
       </div>
     </div>
 
     <!-- Segmented View Switcher -->
-    <div class="flex items-center bg-[#15171C] p-1 rounded-xl border border-[#272932]">
-      <button onclick="switchView('board')" id="btnViewBoard" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#242731] text-white shadow-sm transition">
+    <div class="flex items-center bg-[#252C29] p-1 rounded-xl border border-[#46504B]">
+      <button onclick="switchView('board')" id="btnViewBoard" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#343C38] text-white shadow-sm transition">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
         تخته کانبان (Board)
       </button>
@@ -244,7 +149,7 @@
 
     <!-- Quick Actions -->
     <div class="flex items-center gap-2">
-      <button onclick="openNewAccountModal()" class="flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-blue-600/30 transition">
+      <button onclick="openNewAccountModal()" class="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-semibold shadow-md shadow-[#527C78]/25 transition">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 4v16m8-8H4"/></svg>
         + حساب هدف جدید
       </button>
@@ -256,47 +161,47 @@
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
         <span>مدیران و لینکدین‌ها (C-Level)</span>
       </a>
-      <button onclick="openSheetsGuideModal()" title="راهنمای باز کردن کاربرگ در Google Sheets" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition text-xs font-bold">
+      <button onclick="openSheetsGuideModal()" title="راهنمای باز کردن کاربرگ در Google Sheets" class="p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition text-xs font-bold">
         ❓
       </button>
       <!-- Active User & IP Badge -->
-      <button onclick="promptUserIdentity(true)" id="userBadgeBtn" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#18191E] hover:bg-[#20222A] text-slate-300 border border-[#2D303A] rounded-xl text-xs transition" title="کلیک برای تغییر نام یا هویت کاربر">
+      <button onclick="promptUserIdentity(true)" id="userBadgeBtn" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#292F2D] hover:bg-[#343C38] text-slate-300 border border-[#46504B] rounded-xl text-xs transition" title="کلیک برای تغییر نام یا هویت کاربر">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
         <span id="userBadgeName">کاربر: شناسایی نشده</span>
         <span id="userBadgeIP" class="text-[10px] text-slate-500 font-mono hidden sm:inline"></span>
       </button>
 
       <!-- Firebase Cloud Sync Controls -->
-      <button onclick="forcePushToCloud()" id="btnPushCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs shadow-md shadow-blue-600/30 transition" title="ارسال اطلاعات و تغییرات این کامپیوتر به پایگاه داده ابری">
+      <button onclick="forcePushToCloud()" id="btnPushCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#527C78] hover:bg-[#436763] text-white font-bold rounded-xl text-xs shadow-md shadow-[#527C78]/25 transition" title="ارسال اطلاعات و تغییرات این کامپیوتر به پایگاه داده ابری">
         <span>☁️ ارسال به ابر (Push)</span>
       </button>
 
-      <button onclick="forcePullFromCloud()" id="btnPullCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#1D1F26] hover:bg-[#242731] text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold transition" title="دریافت آخرین تغییرات از پایگاه داده ابری">
+      <button onclick="forcePullFromCloud()" id="btnPullCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#292F2D] hover:bg-[#343C38] text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold transition" title="دریافت آخرین تغییرات از پایگاه داده ابری">
         <span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         <span id="cloudSyncText">دریافت از ابر (Pull)</span>
       </button>
 
       <!-- Import/Export JSON Dropdown or Buttons -->
-      <label class="cursor-pointer p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition flex items-center" title="بارگذاری فایل پشتیبان JSON">
+      <label class="cursor-pointer p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition flex items-center" title="بارگذاری فایل پشتیبان JSON">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
         <input type="file" id="jsonFileInput" accept=".json" onchange="importDataJSON(event)" class="hidden">
       </label>
 
-      <button onclick="exportDataJSON()" title="دانلود فایل پشتیبان JSON" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
+      <button onclick="exportDataJSON()" title="دانلود فایل پشتیبان JSON" class="p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
       </button>
 
-      <button onclick="copyDataClipboard()" title="کپی سریع تمام داده‌ها در کلیپ‌بورد" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
+      <button onclick="copyDataClipboard()" title="کپی سریع تمام داده‌ها در کلیپ‌بورد" class="p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition">
         📋
       </button>
 
-      <button onclick="pasteDataClipboard()" title="جایگذاری سریع داده‌ها از کلیپ‌بورد" class="p-2 bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white rounded-xl border border-[#272932] transition">
+      <button onclick="pasteDataClipboard()" title="جایگذاری سریع داده‌ها از کلیپ‌بورد" class="p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition">
         📥
       </button>
     </div>
   </header>
   <!-- Standup Action Banner -->
-  <div class="bg-[#15171C] border-b border-[#272932] px-4 lg:px-8 py-2.5 flex items-center justify-between gap-3 text-xs">
+  <div class="bg-[#252C29] border-b border-[#46504B] px-4 lg:px-8 py-2.5 flex items-center justify-between gap-3 text-xs">
     <div class="flex items-center gap-2.5 text-slate-200 overflow-hidden">
       <span class="flex h-2.5 w-2.5 relative flex-shrink-0">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
@@ -314,15 +219,15 @@
 
 
   <!-- Filter & Role Toolbar -->
-  <div class="px-4 lg:px-8 py-3.5 bg-[#121316] border-b border-[#272932] flex flex-wrap items-center justify-between gap-4">
+  <div class="px-4 lg:px-8 py-3.5 bg-[#171C1A] border-b border-[#46504B] flex flex-wrap items-center justify-between gap-4">
     <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
       <span class="text-slate-400 font-medium ml-1">مسئولین:</span>
-      <button onclick="filterByRole('all')" id="rf-all" class="px-3 py-1 rounded-lg bg-blue-600 text-white font-semibold shadow-sm transition">همه</button>
-      <button onclick="filterByRole('unassigned')" id="rf-unassigned" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-amber-300 hover:text-white border border-amber-500/20 transition whitespace-nowrap">⏳ بدون مسئول (آماده پذیرش)</button>
-      <button onclick="filterByRole('shahroozi')" id="rf-shahroozi" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">خانم شهروزی</button>
-      <button onclick="filterByRole('moosapour')" id="rf-moosapour" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">خانم موسی‌پور</button>
-      <button onclick="filterByRole('khordamdel')" id="rf-khordamdel" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">خانم خرم‌دل</button>
-      <button onclick="filterByRole('faeze')" id="rf-faeze" class="px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap">خانم فائزه</button>
+      <button onclick="filterByRole('all')" id="rf-all" class="px-3 py-1 rounded-lg bg-[#527C78] text-white font-semibold shadow-sm transition">همه</button>
+      <button onclick="filterByRole('unassigned')" id="rf-unassigned" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-amber-300 hover:text-white border border-amber-500/20 transition whitespace-nowrap">⏳ بدون مسئول (آماده پذیرش)</button>
+      <button onclick="filterByRole('shahroozi')" id="rf-shahroozi" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم شهروزی</button>
+      <button onclick="filterByRole('moosapour')" id="rf-moosapour" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم موسی‌پور</button>
+      <button onclick="filterByRole('khordamdel')" id="rf-khordamdel" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم خرم‌دل</button>
+      <button onclick="filterByRole('faeze')" id="rf-faeze" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم فائزه</button>
       <button onclick="resetAllToStartPoint()" class="px-3 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/25 font-medium transition flex items-center gap-1 ml-2 whitespace-nowrap" title="قرار دادن همه ۱۰ حساب در مرحله ۱ (نقطه شروع)">
         <span>🔄 بازنشانی به نقطه شروع</span>
       </button>
@@ -330,7 +235,7 @@
 
     <!-- Search Input -->
     <div class="relative w-full sm:w-80">
-      <input type="text" id="liveSearch" oninput="handleSearch()" placeholder="جستجو در نام شرکت، مدیرعامل یا پاشنه آشیل..." class="w-full bg-[#1D1F26] border border-[#272932] rounded-xl px-3.5 py-1.5 pr-8 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition">
+      <input type="text" id="liveSearch" oninput="handleSearch()" placeholder="جستجو در نام شرکت، مدیرعامل یا پاشنه آشیل..." class="w-full bg-[#292F2D] border border-[#46504B] rounded-xl px-3.5 py-1.5 pr-8 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#8FB4AA] transition">
       <svg class="w-3.5 h-3.5 text-slate-500 absolute right-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
     </div>
   </div>
@@ -341,7 +246,7 @@
 
       <!-- Column 1: Backlog / Prospect -->
       <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'prospect')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#272932]">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
             <div>
@@ -349,29 +254,29 @@
               <p class="text-[10px] text-slate-500 mt-0.5">ثبت مشخصات و تخمین ترافیک پیامک</p>
             </div>
           </div>
-          <span id="badge-prospect" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#242731] text-slate-300 font-semibold border border-[#272932]">0</span>
+          <span id="badge-prospect" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#343C38] text-slate-300 font-semibold border border-[#46504B]">0</span>
         </div>
         <div id="col-prospect" class="space-y-2.5 flex-1 overflow-y-auto"></div>
       </div>
 
       <!-- Column 2: LinkedIn Research -->
       <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'linkedin')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#272932]">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
             <div>
-              <span class="text-xs font-bold text-blue-400">۲. ممیزی لینکدین</span>
+              <span class="text-xs font-bold text-[#8FB4AA]">۲. ممیزی لینکدین</span>
               <p class="text-[10px] text-slate-500 mt-0.5">شناسایی تصمیم‌گیرندگان، ساختار و پاشنه آشیل</p>
             </div>
           </div>
-          <span id="badge-linkedin" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20">0</span>
+          <span id="badge-linkedin" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#527C78]/15 text-[#8FB4AA] font-semibold border border-[#527C78]/30">0</span>
         </div>
         <div id="col-linkedin" class="space-y-2.5 flex-1 overflow-y-auto"></div>
       </div>
 
       <!-- Column 3: Letter Drafting -->
       <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'drafting')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#272932]">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
             <div>
@@ -386,7 +291,7 @@
 
       <!-- Column 4: CEO / COO Review -->
       <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'csuite')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#272932]">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
             <div>
@@ -401,7 +306,7 @@
 
       <!-- Column 5: Active Outreach -->
       <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'outreach')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#272932]">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
             <div>
@@ -416,7 +321,7 @@
 
       <!-- Column 6: Pilot / Won -->
       <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'won')">
-        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#272932]">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
             <div>
@@ -458,7 +363,7 @@
       <div class="ios-column p-5 rounded-2xl">
         <span class="text-xs text-slate-400">کل حساب‌های تحت رصد</span>
         <div class="text-3xl font-extrabold text-white mt-1" id="statTotal">۱۰</div>
-        <span class="text-[11px] text-blue-400 mt-2 block">۱۰۰٪ تاییدیه شورا</span>
+        <span class="text-[11px] text-[#8FB4AA] mt-2 block">۱۰۰٪ تاییدیه شورا</span>
       </div>
       <div class="ios-column p-5 rounded-2xl">
         <span class="text-xs text-slate-400">حساب‌های ردیف ۱ (Tier A)</span>
@@ -467,7 +372,7 @@
       </div>
       <div class="ios-column p-5 rounded-2xl">
         <span class="text-xs text-slate-400">مجموع اسناد متصل‌شده</span>
-        <div class="text-3xl font-extrabold text-blue-400 mt-1" id="statDocs">۳ فایل</div>
+        <div class="text-3xl font-extrabold text-[#8FB4AA] mt-1" id="statDocs">۳ فایل</div>
         <span class="text-[11px] text-blue-300 mt-2 block">Word, Excel, PDF رسمی</span>
       </div>
       <div class="ios-column p-5 rounded-2xl">
@@ -486,22 +391,22 @@
 
   <!-- CENTERED JIRA/LINEAR STYLE DETAIL MODAL -->
   <div id="detailDrawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 lg:p-8 overflow-y-auto">
-    <div class="w-full max-w-5xl bg-[#121316] text-slate-100 border border-[#272932] rounded-2xl shadow-2xl flex flex-col max-h-[92vh] my-auto overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div class="w-full max-w-5xl bg-[#171C1A] text-slate-100 border border-[#46504B] rounded-2xl shadow-2xl flex flex-col max-h-[92vh] my-auto overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       
       <!-- Modal Header (Spacious Bar) -->
-      <div class="flex items-center justify-between px-6 py-4 border-b border-[#272932] bg-[#15171C]">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-[#46504B] bg-[#252C29]">
         <div class="flex-1 mr-2 flex items-center gap-3">
           <span id="dBadgeTier" class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">Tier A</span>
-          <span id="dBadgeStage" class="px-2.5 py-1 rounded-lg text-xs bg-[#242731] text-slate-300 border border-[#272932]">مرحله</span>
+          <span id="dBadgeStage" class="px-2.5 py-1 rounded-lg text-xs bg-[#343C38] text-slate-300 border border-[#46504B]">مرحله</span>
           <div class="flex-1 max-w-md">
-            <input type="text" id="dEditName" class="w-full text-base font-bold text-white bg-[#1D1F26] border border-[#272932] rounded-lg px-3 py-1.5 focus:outline-none focus:border-blue-500">
+            <input type="text" id="dEditName" class="w-full text-base font-bold text-white bg-[#292F2D] border border-[#46504B] rounded-lg px-3 py-1.5 focus:outline-none focus:border-[#8FB4AA]">
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button type="button" onclick="saveDrawerEdits()" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-600/25 transition flex items-center gap-1.5">
+          <button type="button" onclick="saveDrawerEdits()" class="px-4 py-1.5 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-md shadow-[#527C78]/25 transition flex items-center gap-1.5">
             <span>💾 ذخیره تغییرات</span>
           </button>
-          <button type="button" onclick="closeDetailDrawer()" class="p-2 rounded-xl bg-[#1D1F26] hover:bg-[#242731] text-slate-400 hover:text-white border border-[#272932] transition">
+          <button type="button" onclick="closeDetailDrawer()" class="p-2 rounded-xl bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white border border-[#46504B] transition">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
@@ -514,19 +419,19 @@
         <div class="lg:col-span-7 space-y-4">
           
           <!-- Sub-Tabs Navigation -->
-          <div class="flex items-center gap-2 border-b border-[#272932] pb-2 text-xs">
+          <div class="flex items-center gap-2 border-b border-[#46504B] pb-2 text-xs">
             <button type="button" onclick="switchDrawerTab('hooks')" id="dTabBtn-hooks" class="px-3 py-1.5 rounded-lg font-bold bg-sky-600 text-white transition flex items-center gap-1.5">
               <span>🎯 قلاب‌ها و اطلاعات</span>
             </button>
-            <button type="button" onclick="switchDrawerTab('actions')" id="dTabBtn-actions" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#20222A] transition flex items-center gap-1.5">
+            <button type="button" onclick="switchDrawerTab('actions')" id="dTabBtn-actions" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#343C38] transition flex items-center gap-1.5">
               <span>⚡ لاگر اقدامات</span>
               <span id="dTabBadge-actions" class="px-1.5 py-0.2 rounded-full bg-sky-500/20 text-sky-400 text-[10px] font-mono">0</span>
             </button>
-            <button type="button" onclick="switchDrawerTab('comments')" id="dTabBtn-comments" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#20222A] transition flex items-center gap-1.5">
+            <button type="button" onclick="switchDrawerTab('comments')" id="dTabBtn-comments" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#343C38] transition flex items-center gap-1.5">
               <span>💬 نظرات و کامنت‌ها</span>
               <span id="dTabBadge-comments" class="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono">0</span>
             </button>
-            <button type="button" onclick="switchDrawerTab('vault')" id="dTabBtn-vault" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#20222A] transition flex items-center gap-1.5">
+            <button type="button" onclick="switchDrawerTab('vault')" id="dTabBtn-vault" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#343C38] transition flex items-center gap-1.5">
               <span>📎 اسناد</span>
               <span id="dTabBadge-vault" class="px-1.5 py-0.2 rounded-full bg-slate-500/20 text-slate-400 text-[10px] font-mono">0</span>
             </button>
@@ -542,7 +447,7 @@
                 </label>
                 <span class="text-[11px] text-slate-400">گلوگاه رقیب فعلی</span>
               </div>
-              <textarea id="dEditPain" rows="3" class="w-full bg-[#18191E] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
+              <textarea id="dEditPain" rows="3" class="w-full bg-[#292F2D] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
             </div>
 
             <!-- C-Suite Hook -->
@@ -551,9 +456,9 @@
                 <label class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
                   <span>قلاب اختصاصی مدیرعامل / بنیان‌گذار (C-Suite Hook):</span>
                 </label>
-                <button type="button" onclick="copyTextFromInput('dEditHookCeo')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#282B35] text-slate-300 rounded-lg border border-[#2D303A] transition">کپی متن</button>
+                <button type="button" onclick="copyTextFromInput('dEditHookCeo')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#36403C] text-slate-300 rounded-lg border border-[#46504B] transition">کپی متن</button>
               </div>
-              <textarea id="dEditHookCeo" rows="4" class="w-full bg-[#18191E] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
+              <textarea id="dEditHookCeo" rows="4" class="w-full bg-[#292F2D] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
             </div>
 
             <!-- Tech Lead Hook -->
@@ -562,22 +467,22 @@
                 <label class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
                   <span>قلاب اختصاصی CTO / مدیر فنی (Tech Lead Hook):</span>
                 </label>
-                <button type="button" onclick="copyTextFromInput('dEditHookTech')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#282B35] text-slate-300 rounded-lg border border-[#2D303A] transition">کپی متن</button>
+                <button type="button" onclick="copyTextFromInput('dEditHookTech')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#36403C] text-slate-300 rounded-lg border border-[#46504B] transition">کپی متن</button>
               </div>
-              <textarea id="dEditHookTech" rows="4" class="w-full bg-[#18191E] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
+              <textarea id="dEditHookTech" rows="4" class="w-full bg-[#292F2D] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
             </div>
 
             <!-- Gemini Copilot Prompts -->
-            <div class="bg-[#18191E] p-4 rounded-xl border border-sky-500/20 space-y-2.5">
+            <div class="bg-[#292F2D] p-4 rounded-xl border border-sky-500/20 space-y-2.5">
               <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
                 <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 دستیار هوش مصنوعی برای این حساب
               </span>
               <div class="grid grid-cols-2 gap-2 text-[11px]">
-                <button type="button" onclick="drawerGeminiPrompt('proposal')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">📄 تولید نامه رسمی</button>
-                <button type="button" onclick="drawerGeminiPrompt('inmail')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">💬 متن InMail صمیمی</button>
-                <button type="button" onclick="drawerGeminiPrompt('objection')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">🛡️ شکستن بهانه رقیب</button>
-                <button type="button" onclick="drawerGeminiPrompt('pilot')" class="p-2.5 rounded-lg bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] text-right">⚡ تنظیم پیش‌نویس پایلوت</button>
+                <button type="button" onclick="drawerGeminiPrompt('proposal')" class="p-2.5 rounded-lg bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] text-right">📄 تولید نامه رسمی</button>
+                <button type="button" onclick="drawerGeminiPrompt('inmail')" class="p-2.5 rounded-lg bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] text-right">💬 متن InMail صمیمی</button>
+                <button type="button" onclick="drawerGeminiPrompt('objection')" class="p-2.5 rounded-lg bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] text-right">🛡️ شکستن بهانه رقیب</button>
+                <button type="button" onclick="drawerGeminiPrompt('pilot')" class="p-2.5 rounded-lg bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] text-right">⚡ تنظیم پیش‌نویس پایلوت</button>
               </div>
             </div>
           </div>
@@ -585,8 +490,8 @@
           <!-- TAB PANE 2: ACTIONS LOGGER -->
           <div id="dTabPane-actions" class="space-y-4 hidden">
             <!-- Add Action Box -->
-            <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] space-y-3">
-              <div class="flex items-center justify-between border-b border-[#2D303A] pb-2">
+            <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+              <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
                 <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
                   <span>⚡ ثبت اقدام جدید برای این حساب:</span>
                 </span>
@@ -596,7 +501,7 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
                   <label class="block text-[11px] text-slate-400 mb-1">نوع اقدام:</label>
-                  <select id="newActionType" class="w-full bg-[#20222A] text-white border border-[#2D303A] rounded-lg px-2.5 py-1.5 text-xs">
+                  <select id="newActionType" class="w-full bg-[#343C38] text-white border border-[#46504B] rounded-lg px-2.5 py-1.5 text-xs">
                     <option value="call">📞 تماس تلفنی</option>
                     <option value="email">✉️ ارسال نامه / ایمیل</option>
                     <option value="meeting">🤝 جلسه حضوری / آنلاین</option>
@@ -606,7 +511,7 @@
                 </div>
                 <div>
                   <label class="block text-[11px] text-slate-400 mb-1">انجام‌دهنده اقدام:</label>
-                  <select id="newActionPerformer" class="w-full bg-[#20222A] text-white border border-[#2D303A] rounded-lg px-2.5 py-1.5 text-xs">
+                  <select id="newActionPerformer" class="w-full bg-[#343C38] text-white border border-[#46504B] rounded-lg px-2.5 py-1.5 text-xs">
                     <option value="خانم خرم‌دل">خانم خرم‌دل</option>
                     <option value="خانم فائزه">خانم فائزه</option>
                     <option value="خانم موسی‌پور">خانم موسی‌پور</option>
@@ -617,7 +522,7 @@
 
               <div>
                 <label class="block text-[11px] text-slate-400 mb-1">شرح و نتیجه اقدام:</label>
-                <textarea id="newActionText" rows="2" placeholder="مثلاً: هماهنگی تست خط خدماتی با مدیر محصول طلاین؛ ارسال نمونه گزارش تحویل..." class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-lg p-2.5 text-xs leading-relaxed"></textarea>
+                <textarea id="newActionText" rows="2" placeholder="مثلاً: هماهنگی تست خط خدماتی با مدیر محصول طلاین؛ ارسال نمونه گزارش تحویل..." class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-lg p-2.5 text-xs leading-relaxed"></textarea>
               </div>
 
               <div class="flex justify-end">
@@ -639,8 +544,8 @@
           <!-- TAB PANE 3: COMMENTS & TEAM DISCUSSION -->
           <div id="dTabPane-comments" class="space-y-4 hidden">
             <!-- Add Comment Box -->
-            <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] space-y-3">
-              <div class="flex items-center justify-between border-b border-[#2D303A] pb-2">
+            <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+              <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
                 <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
                   <span>💬 ثبت نظر یا نکته تیمی:</span>
                 </span>
@@ -649,7 +554,7 @@
 
               <div class="flex items-center gap-2">
                 <label class="text-[11px] text-slate-400 whitespace-nowrap">نویسنده:</label>
-                <select id="newCommentAuthor" class="bg-[#20222A] text-white border border-[#2D303A] rounded-lg px-2.5 py-1 text-xs">
+                <select id="newCommentAuthor" class="bg-[#343C38] text-white border border-[#46504B] rounded-lg px-2.5 py-1 text-xs">
                   <option value="خانم خرم‌دل">خانم خرم‌دل</option>
                   <option value="خانم فائزه">خانم فائزه</option>
                   <option value="خانم موسی‌پور">خانم موسی‌پور</option>
@@ -657,7 +562,7 @@
                 </select>
               </div>
 
-              <textarea id="newCommentText" rows="3" placeholder="نکته، استراتژی یا بازخورد خود درباره این حساب را بنویسید..." class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-emerald-500 rounded-lg p-2.5 text-xs leading-relaxed"></textarea>
+              <textarea id="newCommentText" rows="3" placeholder="نکته، استراتژی یا بازخورد خود درباره این حساب را بنویسید..." class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-emerald-500 rounded-lg p-2.5 text-xs leading-relaxed"></textarea>
 
               <div class="flex justify-end">
                 <button type="button" onclick="submitNewComment()" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
@@ -677,7 +582,7 @@
 
           <!-- TAB PANE 4: DOCUMENT VAULT -->
           <div id="dTabPane-vault" class="space-y-4 hidden">
-            <div class="space-y-3 bg-[#18191E] p-4 rounded-xl border border-[#2D303A]">
+            <div class="space-y-3 bg-[#292F2D] p-4 rounded-xl border border-[#46504B]">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
                   <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
@@ -697,11 +602,11 @@
         <!-- Sidebar / Metadata Panel (5 Columns on Desktop) -->
         <div class="lg:col-span-5 space-y-4">
           <!-- Stage & Priority -->
-          <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] space-y-3">
-            <span class="text-xs font-bold text-slate-200 block border-b border-[#2D303A] pb-2">وضعیت و اولویت حساب:</span>
+          <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+            <span class="text-xs font-bold text-slate-200 block border-b border-[#46504B] pb-2">وضعیت و اولویت حساب:</span>
             <div>
               <label class="block text-[11px] text-slate-400 mb-1">مرحله در پایپ‌لاین (Stage):</label>
-              <select id="dStageSelect" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 text-xs rounded-lg px-3 py-2">
+              <select id="dStageSelect" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2">
                 <option value="prospect">۱. کشف و ارزیابی لید (شروع)</option>
                 <option value="linkedin">۲. ممیزی لینکدین</option>
                 <option value="drafting">۳. تدوین نامه و روت</option>
@@ -712,7 +617,7 @@
             </div>
             <div>
               <label class="block text-[11px] text-slate-400 mb-1">اولویت هدف (Tier):</label>
-              <select id="dEditTier" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 text-xs rounded-lg px-3 py-2">
+              <select id="dEditTier" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2">
                 <option value="Tier A">Tier A (فوری - امتیاز بالا)</option>
                 <option value="Strategic">Strategic (همکاری استراتژیک)</option>
                 <option value="Tier B">Tier B (ردیف دوم)</option>
@@ -720,58 +625,58 @@
             </div>
             <div>
               <label class="block text-[11px] text-slate-400 mb-1">حوزه تخصصی:</label>
-              <input type="text" id="dEditVertical" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 text-xs rounded-lg px-3 py-2">
+              <input type="text" id="dEditVertical" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2">
             </div>
           </div>
 
           <!-- Company Official Links -->
-          <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] space-y-3">
-            <span class="text-xs font-bold text-slate-200 block border-b border-[#2D303A] pb-2">پیوندهای رسمی:</span>
+          <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+            <span class="text-xs font-bold text-slate-200 block border-b border-[#46504B] pb-2">پیوندهای رسمی:</span>
             <div>
               <div class="flex items-center justify-between mb-1">
-                <label class="text-[11px] text-blue-400">لینکدین شرکت:</label>
-                <a id="dLiLinkPreview" href="#" target="_blank" class="text-[10px] text-blue-400 hover:underline">مشاهده در لینکدین ↗</a>
+                <label class="text-[11px] text-[#8FB4AA]">لینکدین شرکت:</label>
+                <a id="dLiLinkPreview" href="#" target="_blank" class="text-[10px] text-[#8FB4AA] hover:underline">مشاهده در لینکدین ↗</a>
               </div>
-              <input type="text" id="dEditLinkedin" class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-blue-500 text-xs rounded-lg px-3 py-2 font-mono dir-ltr text-left">
+              <input type="text" id="dEditLinkedin" class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2 font-mono dir-ltr text-left">
             </div>
             <div>
               <div class="flex items-center justify-between mb-1">
                 <label class="text-[11px] text-slate-300">وب‌سایت رسمی:</label>
                 <a id="dWebLinkPreview" href="#" target="_blank" class="text-[10px] text-slate-400 hover:underline">باز کردن سایت ↗</a>
               </div>
-              <input type="text" id="dEditWebsite" class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-blue-500 text-xs rounded-lg px-3 py-2 font-mono dir-ltr text-left">
+              <input type="text" id="dEditWebsite" class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2 font-mono dir-ltr text-left">
             </div>
           </div>
 
           <!-- Buying Committee -->
-          <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] space-y-3">
-            <span class="text-xs font-bold text-slate-200 block border-b border-[#2D303A] pb-2">درخت تصمیم‌گیرندگان (Buying Committee):</span>
+          <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+            <span class="text-xs font-bold text-slate-200 block border-b border-[#46504B] pb-2">درخت تصمیم‌گیرندگان (Buying Committee):</span>
             <div class="space-y-2.5">
               <div>
-                <span class="text-[10px] text-blue-300 bg-blue-500/10 px-2 py-0.5 rounded font-medium">Economic Buyer (تصمیم‌گیرنده بودجه)</span>
-                <input type="text" id="dEditDecisionMaker" class="w-full mt-1 bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-3 py-1.5 text-xs">
+                <span class="text-[10px] text-blue-300 bg-[#527C78]/15 px-2 py-0.5 rounded font-medium">Economic Buyer (تصمیم‌گیرنده بودجه)</span>
+                <input type="text" id="dEditDecisionMaker" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
               </div>
               <div>
                 <span class="text-[10px] text-sky-300 bg-sky-500/10 px-2 py-0.5 rounded font-medium">Approver (هیئت‌مدیره / مصوب)</span>
-                <input type="text" id="dEditApprover" class="w-full mt-1 bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-3 py-1.5 text-xs">
+                <input type="text" id="dEditApprover" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
               </div>
               <div>
                 <span class="text-[10px] text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded font-medium">Tech Champion (ارزیاب فنی / CTO)</span>
-                <input type="text" id="dEditTechLead" class="w-full mt-1 bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-3 py-1.5 text-xs">
+                <input type="text" id="dEditTechLead" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
               </div>
             </div>
           </div>
 
           <!-- Team Assignment Card (Interactive Role Taking) -->
-          <div class="bg-[#18191E] p-4 rounded-xl border border-[#2D303A] text-xs space-y-3">
-            <div class="flex items-center justify-between border-b border-[#2D303A] pb-2">
+          <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] text-xs space-y-3">
+            <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
               <span class="text-xs font-bold text-slate-200">تخصیص و پذیرش مسئولیت حساب:</span>
               <span class="text-[10px] text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded">نقش‌های آزاد</span>
             </div>
             
             <div class="space-y-1">
               <label class="text-[11px] text-slate-400 block">ممیز و سرپرست حساب:</label>
-              <select id="dEditAssigneeResearcher" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs">
+              <select id="dEditAssigneeResearcher" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-2.5 py-1.5 text-xs">
                 <option value="">(تعیین نشده — آماده پذیرش)</option>
                 <option value="خانم خرم‌دل">خانم خرم‌دل</option>
                 <option value="خانم فائزه">خانم فائزه</option>
@@ -782,7 +687,7 @@
 
             <div class="space-y-1">
               <label class="text-[11px] text-slate-400 block">تدوین‌کننده نامه و پیش‌نویس:</label>
-              <select id="dEditAssigneeDrafter" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs">
+              <select id="dEditAssigneeDrafter" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-2.5 py-1.5 text-xs">
                 <option value="">(تعیین نشده — آماده پذیرش)</option>
                 <option value="خانم فائزه">خانم فائزه</option>
                 <option value="خانم خرم‌دل">خانم خرم‌دل</option>
@@ -793,7 +698,7 @@
 
             <div class="space-y-1">
               <label class="text-[11px] text-slate-400 block">تاییدکننده و ناظر نهایی:</label>
-              <select id="dEditAssigneeApprover" class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs">
+              <select id="dEditAssigneeApprover" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-2.5 py-1.5 text-xs">
                 <option value="">(تعیین نشده — آماده پذیرش)</option>
                 <option value="خانم موسی‌پور">خانم موسی‌پور</option>
                 <option value="خانم شهروزی">خانم شهروزی</option>
@@ -803,17 +708,17 @@
             </div>
 
             <div class="pt-1 flex gap-2">
-              <button type="button" onclick="quickTakeRole('researcher')" class="flex-1 py-1 px-2 rounded-lg bg-[#242731] hover:bg-[#2D303A] text-slate-300 text-[10px] border border-[#373A46] transition text-center">
+              <button type="button" onclick="quickTakeRole('researcher')" class="flex-1 py-1 px-2 rounded-lg bg-[#343C38] hover:bg-[#46504B] text-slate-300 text-[10px] border border-[#46504B] transition text-center">
                 🙋‍♀️ پذیرش ممیزی
               </button>
-              <button type="button" onclick="quickTakeRole('drafter')" class="flex-1 py-1 px-2 rounded-lg bg-[#242731] hover:bg-[#2D303A] text-slate-300 text-[10px] border border-[#373A46] transition text-center">
+              <button type="button" onclick="quickTakeRole('drafter')" class="flex-1 py-1 px-2 rounded-lg bg-[#343C38] hover:bg-[#46504B] text-slate-300 text-[10px] border border-[#46504B] transition text-center">
                 ✍️ پذیرش نامه‌نگاری
               </button>
             </div>
           </div>
 
           <!-- Primary Save Button -->
-          <button type="button" onclick="saveDrawerEdits()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold shadow-lg shadow-blue-600/25 transition">
+          <button type="button" onclick="saveDrawerEdits()" class="w-full py-3 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition">
             💾 ذخیره و به‌روزرسانی نهایی
           </button>
         </div>
@@ -824,7 +729,7 @@
 
   <!-- NEW ACCOUNT MODAL -->
   <div id="newAccountModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#2C2C2E] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4">
+    <div class="bg-[#343C38] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4">
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
         <h3 class="font-bold text-white text-base">ایجاد حساب هدف جدید</h3>
         <button onclick="closeNewAccountModal()" class="text-slate-400 hover:text-white">&times;</button>
@@ -833,16 +738,16 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block text-slate-400 mb-1">نام شرکت یا برند:</label>
-          <input type="text" id="mName" placeholder="مثلاً: صرافی نوبیتکس" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
+          <input type="text" id="mName" placeholder="مثلاً: صرافی نوبیتکس" class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 mb-1">حوزه تخصصی:</label>
-            <input type="text" id="mVertical" placeholder="مثلاً: صرافی رمزارز" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
+            <input type="text" id="mVertical" placeholder="مثلاً: صرافی رمزارز" class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
           </div>
           <div>
             <label class="block text-slate-400 mb-1">اولویت شورا:</label>
-            <select id="mTier" class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
+            <select id="mTier" class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
               <option value="Tier A">Tier A (فوری - پربسامد)</option>
               <option value="Tier B">Tier B (اولویت بالا)</option>
               <option value="Strategic">Strategic (کانالی / ISV)</option>
@@ -852,22 +757,22 @@
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 mb-1">آدرس لینکدین شرکت:</label>
-            <input type="text" id="mLinkedin" placeholder="https://linkedin.com/company/..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
+            <input type="text" id="mLinkedin" placeholder="https://linkedin.com/company/..." class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
           </div>
           <div>
             <label class="block text-slate-400 mb-1">وب‌سایت رسمی:</label>
-            <input type="text" id="mWebsite" placeholder="https://..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]">
+            <input type="text" id="mWebsite" placeholder="https://..." class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
           </div>
         </div>
         <div>
           <label class="block text-slate-400 mb-1">پاشنه آشیل و درد پیامکی:</label>
-          <textarea id="mPain" rows="2" placeholder="تاخیر کدهای OTP در ساعات شلوغی..." class="w-full bg-[#1C1C1E] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#0A84FF]"></textarea>
+          <textarea id="mPain" rows="2" placeholder="تاخیر کدهای OTP در ساعات شلوغی..." class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]"></textarea>
         </div>
       </div>
 
       <div class="flex justify-end gap-2 pt-2 border-t border-white/10">
         <button onclick="closeNewAccountModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-medium">انصراف</button>
-        <button onclick="saveNewAccount()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold shadow-lg shadow-blue-600/30">ذخیره حساب</button>
+        <button onclick="saveNewAccount()" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-semibold shadow-lg shadow-[#527C78]/25">ذخیره حساب</button>
       </div>
     </div>
   </div>
@@ -1113,11 +1018,24 @@
     let currentClientIP = "در حال دریافت...";
 
     async function detectClientIP() {
+      // 1. Try Tunnel IP endpoint (direct from sovereign VPS)
       try {
-        // Try Cloudflare cdn-cgi/trace first (always works on domain)
-        const res = await fetch("/cdn-cgi/trace");
+        const res = await fetch("https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/ip", { signal: AbortSignal.timeout(3000) });
         if (res.ok) {
-          const text = await res.text();
+          const d = await res.json();
+          if (d.ip) {
+            currentClientIP = d.ip;
+            updateUserBadgeUI();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      // 2. Try Cloudflare cdn-cgi/trace
+      try {
+        const res2 = await fetch("/cdn-cgi/trace", { signal: AbortSignal.timeout(2000) });
+        if (res2.ok) {
+          const text = await res2.text();
           const match = text.match(/ip=([^\s]+)/);
           if (match) {
             currentClientIP = match[1];
@@ -1126,21 +1044,6 @@
           }
         }
       } catch(e) {}
-
-      // If hosted on Stockholm VPS directly or same-origin
-      if (window.location.hostname === "109.120.131.224" || window.location.protocol === "http:") {
-        try {
-          const res2 = await fetch("/api/warroom/ip");
-          if (res2.ok) {
-            const d = await res2.json();
-            if (d.ip) {
-              currentClientIP = d.ip;
-              updateUserBadgeUI();
-              return;
-            }
-          }
-        } catch(e) {}
-      }
 
       currentClientIP = "IP ناشناس";
       updateUserBadgeUI();
@@ -1180,11 +1083,16 @@
       selectUserPreset(val);
     }
 
-    // --- HYBRID CLOUD & SOVEREIGN VPS SYNC ENGINE ---
+    // --- MULTI-TIER RESILIENT SYNC ENGINE (IRAN-SAFE & DPI-RESILIENT) ---
+    // Tier 1: Cloudflare HTTPS Tunnel (Bypasses domestic DPI & IP blocks, operates on standard 443 with valid SSL)
+    const TUNNEL_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/accounts";
+    const TUNNEL_IP_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/ip";
+    // Tier 2: Direct Sovereign VPS Endpoint (active when browsing direct IP or via same-origin proxy)
     const isDirectVps = window.location.hostname === "109.120.131.224";
-    const vpsBase = isDirectVps ? "" : "https://api.ariya-sarrafzadeh.ir";
-    const VPS_ENDPOINT = vpsBase + "/api/warroom/accounts";
-    const VPS_IP_ENDPOINT = vpsBase + "/api/warroom/ip";
+    const DIRECT_VPS_ENDPOINT = isDirectVps ? "/api/warroom/accounts" : (window.location.protocol === "http:" ? "http://109.120.131.224/api/warroom/accounts" : "");
+    // Tier 3: Same-Origin Static Snapshot (Guaranteed fallback on GitHub Pages & VPS)
+    const STATIC_FALLBACK_ENDPOINT = "./data.json";
+    // Tier 4: Firebase Realtime Database
     const FIREBASE_ENDPOINT = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/accounts.json";
 
     let isCloudSyncing = false;
@@ -1196,13 +1104,13 @@
       if (!dot || !label) return;
 
       if (status === 'syncing') {
-        dot.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
-        label.className = "text-amber-300 font-medium";
+        dot.className = "w-2 h-2 rounded-full bg-[#B39A77] animate-ping";
+        label.className = "text-[#B39A77] font-medium";
         label.innerText = text || "در حال ذخیره...";
       } else if (status === 'synced') {
-        dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
-        label.className = "text-emerald-400 font-semibold";
-        label.innerText = text || (IS_VPS ? "متصل به سرور استکهلم" : "دریافت از ابر (Pull)");
+        dot.className = "w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse";
+        label.className = "text-[#8FB4AA] font-semibold";
+        label.innerText = text || (isDirectVps ? "متصل به سرور استکهلم" : "متصل به ابر");
       } else if (status === 'error') {
         dot.className = "w-2 h-2 rounded-full bg-rose-500";
         label.className = "text-rose-400 font-medium";
@@ -1210,21 +1118,31 @@
       }
     }
 
+    const fetchWithTimeout = (url, options = {}, timeout = 6000) => {
+      return Promise.race([
+        fetch(url, options),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout))
+      ]);
+    };
+
     async function forcePushToCloud() {
       const btn = document.getElementById("btnPushCloud");
       if (btn) btn.innerText = "⏳ در حال ارسال...";
       updateSyncUI('syncing', 'در حال ارسال...');
 
-      // 1. Try Sovereign VPS Backend
+      // Always save locally first
+      localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+
+      // 1. Try Primary Cloudflare Tunnel (Safe in Iran)
       try {
-        const res = await fetch(VPS_ENDPOINT, {
+        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "X-User-Name": currentUserName || "ناشناس"
           },
           body: JSON.stringify(accounts)
-        });
+        }, 7000);
         if (res.ok) {
           updateSyncUI('synced', 'ذخیره شد روی سرور');
           if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
@@ -1232,110 +1150,183 @@
           return;
         }
       } catch(err) {
-        console.warn("VPS push err:", err);
+        console.warn("Tunnel push err:", err);
       }
 
-      // 2. Try Firebase RTDB
+      // 2. Try Direct VPS if accessible
+      if (DIRECT_VPS_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-User-Name": currentUserName || "ناشناس"
+            },
+            body: JSON.stringify(accounts)
+          }, 5000);
+          if (res.ok) {
+            updateSyncUI('synced', 'ذخیره شد (VPS)');
+            if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+            alert(`✅ اطلاعات و تغییرات روی سرور ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'}`);
+            return;
+          }
+        } catch(err) {
+          console.warn("Direct VPS push err:", err);
+        }
+      }
+
+      // 3. Try Firebase RTDB
       try {
-        const res = await fetch(FIREBASE_ENDPOINT, {
+        const res = await fetchWithTimeout(FIREBASE_ENDPOINT, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(accounts)
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-        updateSyncUI('synced', 'ارسال شد!');
-        if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-        alert("✅ اطلاعات و تغییرات این سیستم با موفقیت به سرور ابری ارسال شد!\nاکنون در کامپیوتر یا مرورگر دیگر، دکمه «دریافت از ابر» را بزنید یا صفحه را رفرش فرمایید.");
-        return;
+        }, 5000);
+        if (res.ok) {
+          updateSyncUI('synced', 'ارسال شد (فایربیس)');
+          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+          alert("✅ اطلاعات و تغییرات این سیستم با موفقیت به سرور ابری ارسال شد!");
+          return;
+        }
       } catch (err) {
-        console.error("Firebase push blocked:", err);
+        console.warn("Firebase push blocked:", err);
       }
 
-      // 3. Fallback when network DPI blocks connection
-      updateSyncUI('error', 'مسدود توسط شبکه');
+      updateSyncUI('error', 'خطا در ارسال');
       if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-      showFallbackSyncModal();
+      alert("⚠️ ارسال مستقیم به سرور با اختلال مواجه شد. تغییرات شما در این سیستم ذخیره شده است.\nجهت انتقال به سیستم دیگر، دکمه «دانلود فایل پشتیبان 📥» را بزنید و در سیستم دیگر باز کنید.");
     }
 
     async function forcePullFromCloud() {
       updateSyncUI('syncing', 'در حال دریافت...');
+      const btn = document.getElementById("btnPullCloud");
+      if (btn) btn.innerText = "⏳ در حال دریافت...";
 
-      // 1. Try Sovereign VPS Backend
+      // 1. Try Primary Cloudflare Tunnel
       try {
-        const res = await fetch(VPS_ENDPOINT);
+        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {}, 6000);
         if (res.ok) {
           const data = await res.json();
-          if (data && Array.isArray(data) && data.length > 0) {
+          if (Array.isArray(data) && data.length > 0) {
             accounts = data;
             localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
             renderBoard();
             renderList();
             updateAnalytics();
-            updateSyncUI('synced', 'متصل به سرور استکهلم');
-            alert("✅ آخرین تغییرات تیم از سرور استکهلم دریافت شد!");
+            updateSyncUI('synced', 'متصل به سرور ابری');
+            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
+            alert("✅ آخرین تغییرات تیم از سرور ابری (تونل امن بدون فیلتر) دریافت و روی بورد اعمال شد!");
             return;
           }
         }
       } catch(e) {
-        console.warn("VPS pull err:", e);
+        console.warn("Tunnel pull err:", e);
       }
 
-      try {
-        const res = await fetch(FIREBASE_ENDPOINT);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-
-        if (data && Array.isArray(data) && data.length > 0) {
-          accounts = data;
-          localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-          renderBoard();
-          renderList();
-          updateAnalytics();
-          updateSyncUI('synced', 'دریافت شد!');
-          alert("✅ آخرین تغییرات تیم از سرور ابری دریافت و روی صفحه اعمال شد!");
-          return;
+      // 2. Try Direct VPS
+      if (DIRECT_VPS_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {}, 5000);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) {
+              accounts = data;
+              localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+              renderBoard();
+              renderList();
+              updateAnalytics();
+              updateSyncUI('synced', 'متصل به سرور استکهلم');
+              if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
+              alert("✅ آخرین تغییرات تیم از سرور استکهلم دریافت شد!");
+              return;
+            }
+          }
+        } catch(e) {
+          console.warn("Direct VPS pull err:", e);
         }
-      } catch (err) {
-        console.error("Cloud pull error:", err);
       }
 
-      updateSyncUI('error', 'خطا در دریافت');
-      showFallbackSyncModal();
-    }
-
-    function showFallbackSyncModal() {
-      alert("⚠️ اتصال به دیتابیس ابری فایربیس به دلیل فیلترینگ اینترنت داخلی (DPI) مسدود شد.\n\nراهکارهای جایگزین فوری و تضمینی:\n۱. ساده‌ترین روش: دکمه «دانلود فایل پشتیبان 📥» را در این سیستم بزنید و فایل JSON را با دکمه «بارگذاری 📂» در سیستم دیگر باز کنید.\n\n۲. استفاده از سرور اختصاصی استکهلم شما بدون فیلتر: http://109.120.131.224/warroom/");
-    }
-
-    async function loadFromFirebaseCloud(initial = false) {
-      if (isCloudSyncing) return;
-      isCloudSyncing = true;
-
+      // 3. Try Same-Origin Static Snapshot (Guaranteed Fallback)
       try {
-        const res = await fetch(`${FIREBASE_DB_BASE}/accounts.json`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-
-        if (data && Array.isArray(data) && data.length > 0) {
-          // If initial load, check if local has more edits than cloud before overwriting!
-          const localHasActions = accounts.some(a => (a.actions && a.actions.length > 0) || (a.comments && a.comments.length > 0));
-          const cloudHasActions = data.some(a => (a.actions && a.actions.length > 0) || (a.comments && a.comments.length > 0));
-
-          if (initial && localHasActions && !cloudHasActions) {
-            // Local is newer/modified! Automatically push local to cloud so cloud gets the modifications!
-            console.log("Local has modifications not in cloud. Auto-pushing to cloud...");
-            forcePushToCloud();
-          } else {
+        const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 5000);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
             accounts = data;
             localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
             renderBoard();
             renderList();
             updateAnalytics();
+            updateSyncUI('synced', 'پشتیبان ایستا');
+            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#B39A77] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
+            alert("✅ اطلاعات پایگاه داده از نسخه پشتیبان معتبر دریافت و روی بورد اعمال شد!");
+            return;
           }
-          updateSyncUI('synced', 'دریافت از ابر (Pull)');
         }
-      } catch (err) {
+      } catch(e) {
+        console.warn("Static pull err:", e);
+      }
+
+      // 4. Try Firebase
+      try {
+        const res = await fetchWithTimeout(FIREBASE_ENDPOINT, {}, 4000);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            accounts = data;
+            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+            renderBoard();
+            renderList();
+            updateAnalytics();
+            updateSyncUI('synced', 'دریافت شد (فایربیس)');
+            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
+            alert("✅ آخرین تغییرات تیم از سرور فایربیس دریافت شد!");
+            return;
+          }
+        }
+      } catch(err) {
+        console.warn("Firebase pull error:", err);
+      }
+
+      updateSyncUI('error', 'خطا در دریافت');
+      if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-rose-500"></span><span id="cloudSyncText">خطا در دریافت</span>`;
+      alert("⚠️ دریافت از سرور به دلیل اختلال شبکه ناموفق بود.\nلطفاً از دکمه «بارگذاری فایل پشتیبان 📥» استفاده نمایید.");
+    }
+
+    async function autoInitSync() {
+      // Check if accounts has verified data or if newer data is on cloud
+      try {
+        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {}, 4000);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            accounts = data;
+            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+            renderBoard();
+            renderList();
+            updateAnalytics();
+            updateSyncUI('synced', 'متصل به سرور ابری');
+            return;
+          }
+        }
+      } catch(e) {}
+
+      // Fallback to static snapshot
+      try {
+        const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 3000);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            accounts = data;
+            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+            renderBoard();
+            renderList();
+            updateAnalytics();
+            updateSyncUI('synced', 'پشتیبان ایستا');
+          }
+        }
+      } catch(e) {}
+    } catch (err) {
         console.warn("Cloud auto-sync warning:", err);
       } finally {
         isCloudSyncing = false;
@@ -1389,7 +1380,7 @@
 
     const stages = [
       { id: "prospect", title: "۱. کشف و ارزیابی لید", color: "bg-slate-500" },
-      { id: "linkedin", title: "۲. ممیزی لینکدین", color: "bg-[#0A84FF]" },
+      { id: "linkedin", title: "۲. ممیزی لینکدین", color: "bg-[#8FB4AA]" },
       { id: "drafting", title: "۳. تدوین نامه و روت", color: "bg-[#FF9F0A]" },
       { id: "csuite", title: "۴. تایید مدیریت ارشد", color: "bg-[#64D2FF]" },
       { id: "outreach", title: "۵. در حال مذاکره فعال", color: "bg-[#007AFF]" },
@@ -1418,11 +1409,11 @@
           card.onclick = () => openDetailDrawer(acc.id);
 
           const docsCount = acc.docs ? acc.docs.length : 0;
-          let tierBadgeClass = "bg-[#282B35] text-slate-300 border border-[#373A46]";
+          let tierBadgeClass = "bg-[#36403C] text-slate-300 border border-[#46504B]";
           if (acc.tier === 'Tier A') {
             tierBadgeClass = "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-bold";
           } else if (acc.tier === 'Strategic') {
-            tierBadgeClass = "bg-blue-500/15 text-blue-400 border border-blue-500/30 font-bold";
+            tierBadgeClass = "bg-[#527C78]/20 text-[#8FB4AA] border border-[#527C78]/40 font-bold";
           } else if (acc.tier === 'Tier B') {
             tierBadgeClass = "bg-slate-500/15 text-slate-300 border border-slate-500/20 font-medium";
           }
@@ -1432,13 +1423,13 @@
               <span class="px-2 py-0.5 rounded text-[10px] font-mono ${tierBadgeClass}">${acc.tier}</span>
               <span class="text-[10px] text-slate-500 font-mono">#${acc.num}</span>
             </div>
-            <h4 class="font-bold text-white text-xs leading-snug group-hover:text-blue-400 transition">${acc.name}</h4>
+            <h4 class="font-bold text-white text-xs leading-snug group-hover:text-[#8FB4AA] transition">${acc.name}</h4>
             <p class="text-[11px] text-slate-400 mt-1 line-clamp-1">${acc.vertical}</p>
 
-            <div class="mt-3 pt-2 border-t border-[#272932] flex items-center justify-between text-[10px]">
+            <div class="mt-3 pt-2 border-t border-[#46504B] flex items-center justify-between text-[10px]">
               <div class="flex items-center gap-1.5 truncate">
                 ${(acc.assigneeResearcher || acc.assigneeDrafter) ? `
-                  <span class="px-2 py-0.5 rounded-md bg-[#242731] text-sky-300 border border-[#373A46] font-medium truncate max-w-[130px]">
+                  <span class="px-2 py-0.5 rounded-md bg-[#343C38] text-sky-300 border border-[#46504B] font-medium truncate max-w-[130px]">
                     👤 ${acc.assigneeResearcher || acc.assigneeDrafter}
                   </span>
                 ` : `
@@ -1488,7 +1479,7 @@
             <div class="font-bold text-white">${acc.name}</div>
             <div class="flex items-center gap-2 mt-1">
               <span class="px-2 py-0.5 rounded text-[10px] font-mono ${acc.tier === 'Tier A' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-white/10 text-slate-200'}">${acc.tier} (${acc.score})</span>
-              <a href="${acc.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-blue-400 hover:underline text-[11px]">لینکدین</a>
+              <a href="${acc.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-[#8FB4AA] hover:underline text-[11px]">لینکدین</a>
             </div>
           </td>
           <td class="p-3.5 text-slate-300">${acc.vertical}</td>
@@ -1499,7 +1490,7 @@
           <td class="p-3.5 text-center">
             <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/10 text-slate-200">${stageObj.title}</span>
           </td>
-          <td class="p-3.5 text-center text-blue-400 font-medium">
+          <td class="p-3.5 text-center text-[#8FB4AA] font-medium">
             ${(acc.docs || []).length} سند
           </td>
           <td class="p-3.5 text-center text-slate-300 text-[11px]">
@@ -1511,7 +1502,7 @@
             `}
           </td>
           <td class="p-3.5 text-center">
-            <button onclick="event.stopPropagation(); openDetailDrawer('${acc.id}');" class="px-3 py-1 bg-white/10 hover:bg-blue-600 text-white rounded-lg text-[11px] transition">جزئیات</button>
+            <button onclick="event.stopPropagation(); openDetailDrawer('${acc.id}');" class="px-3 py-1 bg-white/10 hover:bg-[#527C78] text-white rounded-lg text-[11px] transition">جزئیات</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -1578,7 +1569,7 @@
           btn.className = "px-3 py-1.5 rounded-lg font-bold bg-sky-600 text-white transition flex items-center gap-1.5";
           pane.classList.remove("hidden");
         } else {
-          btn.className = "px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#20222A] transition flex items-center gap-1.5";
+          btn.className = "px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#343C38] transition flex items-center gap-1.5";
           pane.classList.add("hidden");
         }
       });
@@ -1627,7 +1618,7 @@
       container.innerHTML = "";
       const actions = selectedAccount.actions || [];
       if (actions.length === 0) {
-        container.innerHTML = `<div class="p-4 rounded-xl bg-[#18191E] border border-[#2D303A] text-slate-500 text-center text-xs">هنوز اقدامی برای این حساب ثبت نشده است. از فرم بالا اولین اقدام (تماس، جلسه یا پیگیری) را ثبت کنید.</div>`;
+        container.innerHTML = `<div class="p-4 rounded-xl bg-[#292F2D] border border-[#46504B] text-slate-500 text-center text-xs">هنوز اقدامی برای این حساب ثبت نشده است. از فرم بالا اولین اقدام (تماس، جلسه یا پیگیری) را ثبت کنید.</div>`;
         return;
       }
       actions.forEach(act => {
@@ -1636,12 +1627,12 @@
         if (act.type === 'call') { icon = "📞 تماس"; badgeColor = "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"; }
         else if (act.type === 'email') { icon = "✉️ نامه / ایمیل"; badgeColor = "bg-sky-500/10 text-sky-300 border-sky-500/20"; }
         else if (act.type === 'meeting') { icon = "🤝 جلسه"; badgeColor = "bg-amber-500/10 text-amber-300 border-amber-500/20"; }
-        else if (act.type === 'linkedin') { icon = "🌐 لینکدین"; badgeColor = "bg-blue-500/10 text-blue-300 border-blue-500/20"; }
+        else if (act.type === 'linkedin') { icon = "🌐 لینکدین"; badgeColor = "bg-[#527C78]/15 text-blue-300 border-[#527C78]/30"; }
         else if (act.type === 'stage') { icon = "🔄 تغییر مرحله"; badgeColor = "bg-cyan-500/10 text-cyan-300 border-cyan-500/20"; }
         else if (act.type === 'role') { icon = "👤 مسئولیت"; badgeColor = "bg-teal-500/10 text-teal-300 border-teal-500/20"; }
 
         const div = document.createElement("div");
-        div.className = "p-3 rounded-xl bg-[#20222A] border border-[#2D303A] text-xs space-y-1.5";
+        div.className = "p-3 rounded-xl bg-[#343C38] border border-[#46504B] text-xs space-y-1.5";
         div.innerHTML = `
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
@@ -1702,14 +1693,14 @@
       container.innerHTML = "";
       const comments = selectedAccount.comments || [];
       if (comments.length === 0) {
-        container.innerHTML = `<div class="p-4 rounded-xl bg-[#18191E] border border-[#2D303A] text-slate-500 text-center text-xs">هنوز کامنتی برای این حساب درج نشده است. اولین نکته تیمی را بنویسید.</div>`;
+        container.innerHTML = `<div class="p-4 rounded-xl bg-[#292F2D] border border-[#46504B] text-slate-500 text-center text-xs">هنوز کامنتی برای این حساب درج نشده است. اولین نکته تیمی را بنویسید.</div>`;
         return;
       }
       comments.forEach(com => {
         const div = document.createElement("div");
-        div.className = "p-3 rounded-xl bg-[#20222A] border border-[#2D303A] text-xs space-y-1.5 group";
+        div.className = "p-3 rounded-xl bg-[#343C38] border border-[#46504B] text-xs space-y-1.5 group";
         div.innerHTML = `
-          <div class="flex items-center justify-between border-b border-[#2D303A] pb-1.5">
+          <div class="flex items-center justify-between border-b border-[#46504B] pb-1.5">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">
                 ${com.author.slice(0, 2)}
@@ -1925,7 +1916,7 @@
         item.className = "flex items-center justify-between p-2.5 rounded-lg bg-slate-900 border border-white/10 text-xs";
         item.innerHTML = `
           <div class="flex items-center gap-2 overflow-hidden">
-            <span class="px-1.5 py-0.5 rounded bg-blue-600/30 text-blue-300 font-mono text-[10px] uppercase">${doc.type}</span>
+            <span class="px-1.5 py-0.5 rounded bg-[#527C78]/30 text-blue-300 font-mono text-[10px] uppercase">${doc.type}</span>
             <span class="text-slate-200 truncate font-medium">${doc.name}</span>
             <span class="text-[10px] text-slate-500">(${doc.size})</span>
           </div>
@@ -2055,9 +2046,9 @@
         const btn = document.getElementById(`rf-${r}`);
         if (!btn) return;
         if (r === role) {
-          btn.className = "px-3 py-1 rounded-lg bg-blue-600 text-white font-semibold shadow-sm transition whitespace-nowrap";
+          btn.className = "px-3 py-1 rounded-lg bg-[#527C78] text-white font-semibold shadow-sm transition whitespace-nowrap";
         } else {
-          btn.className = "px-3 py-1 rounded-lg bg-[#1D1F26] hover:bg-[#242731] text-slate-300 hover:text-white border border-[#272932] transition whitespace-nowrap";
+          btn.className = "px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap";
         }
       });
       renderBoard();
@@ -2165,13 +2156,15 @@
 
     // Init
     renderBoard();
+    detectClientIP();
+    autoInitSync();
   </script>
   <!-- SHEETS GUIDE MODAL -->
   <div id="sheetsGuideModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#2C2C2E] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4 text-right">
+    <div class="bg-[#343C38] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4 text-right">
       <div class="flex items-center justify-between border-b border-white/10 pb-3">
         <div class="flex items-center gap-2">
-          <span class="w-3 h-3 rounded-full bg-[#05C46B]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#8FB4AA]"></span>
           <h3 class="font-bold text-white text-sm">راهنمای بارگذاری مستقیم کاربرگ در Google Sheets</h3>
         </div>
         <button onclick="closeSheetsGuideModal()" class="text-slate-400 hover:text-white">&times;</button>
@@ -2180,21 +2173,21 @@
       <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
         <p class="text-[#60A5FA] font-medium">فایل اکسل تولیدشده شامل ۴ تب رسمی (پایپ‌لاین پیگیری، درخت تصمیم‌گیران، قلاب‌های متنی، نقش‌های تیمی) با پشتیبانی کامل راست‌به‌چپ (RTL) است.</p>
         
-        <div class="p-3 bg-[#1C1C1E] text-white border border-white/10 rounded-xl border border-white/10 space-y-2">
+        <div class="p-3 bg-[#292F2D] text-white border border-white/10 rounded-xl border border-white/10 space-y-2">
           <div class="flex items-start gap-2">
-            <span class="px-2 py-0.5 rounded bg-[#0A84FF]/20 text-[#60A5FA] font-bold">۱</span>
+            <span class="px-2 py-0.5 rounded bg-[#8FB4AA]/20 text-[#60A5FA] font-bold">۱</span>
             <span>روی دکمه سبز رنگ <strong>«دانلود اکسل (XLSX)»</strong> در بالای صفحه کلیک کنید تا فایل <code class="text-emerald-300 font-mono">pfg_b2b_tracker.xlsx</code> ذخیره شود.</span>
           </div>
           <div class="flex items-start gap-2">
-            <span class="px-2 py-0.5 rounded bg-[#0A84FF]/20 text-[#60A5FA] font-bold">۲</span>
+            <span class="px-2 py-0.5 rounded bg-[#8FB4AA]/20 text-[#60A5FA] font-bold">۲</span>
             <span>روی دکمه آبی رنگ <strong>«گوگل شیت»</strong> کلیک کنید تا صفحه <code class="text-blue-300 font-mono">sheets.new</code> باز شود.</span>
           </div>
           <div class="flex items-start gap-2">
-            <span class="px-2 py-0.5 rounded bg-[#0A84FF]/20 text-[#60A5FA] font-bold">۳</span>
+            <span class="px-2 py-0.5 rounded bg-[#8FB4AA]/20 text-[#60A5FA] font-bold">۳</span>
             <span>در منوی بالای گوگل شیت به مسیر <strong>File &gt; Import</strong> (فایل &gt; وارد کردن) بروید.</span>
           </div>
           <div class="flex items-start gap-2">
-            <span class="px-2 py-0.5 rounded bg-[#0A84FF]/20 text-[#60A5FA] font-bold">۴</span>
+            <span class="px-2 py-0.5 rounded bg-[#8FB4AA]/20 text-[#60A5FA] font-bold">۴</span>
             <span>تب <strong>Upload</strong> را زده و فایل دانلودشده را انتخاب کنید؛ سپس گزینه <em>«Replace spreadsheet»</em> را برگزینید.</span>
           </div>
         </div>
@@ -2203,16 +2196,16 @@
       </div>
 
       <div class="flex justify-end pt-2">
-        <button onclick="closeSheetsGuideModal()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold">متوجه شدم</button>
+        <button onclick="closeSheetsGuideModal()" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-semibold">متوجه شدم</button>
       </div>
     </div>
   </div>
   <!-- STANDUP MODAL (Interactive & Revisitable Daily Sync Workspace) -->
   <div id="standupModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-[#181A20] text-white border border-[#272932] w-full max-w-3xl rounded-2xl p-6 shadow-2xl space-y-5 text-right max-h-[90vh] overflow-y-auto">
+    <div class="bg-[#292F2D] text-white border border-[#46504B] w-full max-w-3xl rounded-2xl p-6 shadow-2xl space-y-5 text-right max-h-[90vh] overflow-y-auto">
       
       <!-- Modal Header -->
-      <div class="flex items-center justify-between border-b border-[#272932] pb-3.5">
+      <div class="flex items-center justify-between border-b border-[#46504B] pb-3.5">
         <div class="flex items-center gap-2.5">
           <span class="w-3.5 h-3.5 rounded-full bg-sky-500"></span>
           <div>
@@ -2225,15 +2218,15 @@
 
       <!-- Quick Date & Sync Status -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-        <div class="bg-[#20222A] p-3 rounded-xl border border-[#2D303A]">
+        <div class="bg-[#343C38] p-3 rounded-xl border border-[#46504B]">
           <span class="text-slate-400 text-[10px] block">تاریخ جلسه:</span>
           <span id="standupCurrentDate" class="font-bold text-white mt-0.5 block">امروز</span>
         </div>
-        <div class="bg-[#20222A] p-3 rounded-xl border border-[#2D303A]">
+        <div class="bg-[#343C38] p-3 rounded-xl border border-[#46504B]">
           <span class="text-slate-400 text-[10px] block">حساب‌های در جریان:</span>
           <span id="standupActiveCount" class="font-bold text-sky-400 mt-0.5 block">۱۰ حساب هدف</span>
         </div>
-        <div class="bg-[#20222A] p-3 rounded-xl border border-[#2D303A]">
+        <div class="bg-[#343C38] p-3 rounded-xl border border-[#46504B]">
           <span class="text-slate-400 text-[10px] block">وضعیت سینک:</span>
           <span class="font-bold text-emerald-400 mt-0.5 block">ذخیره خودکار روی حافظه مرورگر</span>
         </div>
@@ -2247,7 +2240,7 @@
           </label>
           <span class="text-[10px] text-slate-400">قابل ویرایش و بازبینی زنده</span>
         </div>
-        <textarea id="suCommitments" rows="3" placeholder="مثلاً:&#10;• ممیزی ساختار سازمانی طلاین و ترابرنت توسط خانم خرم‌دل&#10;• آماده‌سازی پیش‌نویس نامه زرپی۲۴ توسط خانم فائزه&#10;• بررسی مدل ترافیکی با خانم موسی‌پور و شهروزی..." class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+        <textarea id="suCommitments" rows="3" placeholder="مثلاً:&#10;• ممیزی ساختار سازمانی طلاین و ترابرنت توسط خانم خرم‌دل&#10;• آماده‌سازی پیش‌نویس نامه زرپی۲۴ توسط خانم فائزه&#10;• بررسی مدل ترافیکی با خانم موسی‌پور و شهروزی..." class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
       </div>
 
       <!-- Editable Section 2: Current Blockers & Bottlenecks -->
@@ -2258,7 +2251,7 @@
           </label>
           <span class="text-[10px] text-slate-400">هر آنچه مانع پیشرفت کار است</span>
         </div>
-        <textarea id="suBlockers" rows="3" placeholder="مثلاً: عدم دریافت پاسخ از تیم فنی در پیامک تستی، نیاز به خط خدماتی جدید، تاخیر در تایید شماره اختصاصی..." class="w-full bg-[#20222A] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+        <textarea id="suBlockers" rows="3" placeholder="مثلاً: عدم دریافت پاسخ از تیم فنی در پیامک تستی، نیاز به خط خدماتی جدید، تاخیر در تایید شماره اختصاصی..." class="w-full bg-[#343C38] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
       </div>
 
       <!-- Editable Section 3: Minutes & Free Notes -->
@@ -2268,16 +2261,16 @@
             <span>📝 تصمیمات و نکات استندآپ (Session Minutes):</span>
           </label>
         </div>
-        <textarea id="suNotes" rows="3" placeholder="یادداشت‌های آزاد جلسه، جمع‌بندی نکات و توافقات نهایی..." class="w-full bg-[#20222A] text-slate-200 border border-[#2D303A] focus:border-sky-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+        <textarea id="suNotes" rows="3" placeholder="یادداشت‌های آزاد جلسه، جمع‌بندی نکات و توافقات نهایی..." class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
       </div>
 
       <!-- Actions Toolbar -->
-      <div class="flex items-center justify-between pt-3 border-t border-[#272932]">
+      <div class="flex items-center justify-between pt-3 border-t border-[#46504B]">
         <button onclick="clearStandupWorkspace()" class="text-xs text-rose-400 hover:text-rose-300 transition">
           🗑️ پاکسازی برای روز جدید
         </button>
         <div class="flex items-center gap-2">
-          <button onclick="closeStandupModal()" class="px-4 py-2 bg-[#20222A] hover:bg-[#2A2D38] text-slate-300 rounded-xl text-xs font-medium transition">
+          <button onclick="closeStandupModal()" class="px-4 py-2 bg-[#343C38] hover:bg-[#3D4742] text-slate-300 rounded-xl text-xs font-medium transition">
             بستن
           </button>
           <button onclick="saveStandupWorkspace()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold shadow-md shadow-sky-600/25 transition">
@@ -2290,8 +2283,8 @@
   
   <!-- USER IDENTITY MODAL -->
   <div id="userIdentityModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-[#181A20] text-white border border-[#272932] w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 text-right">
-      <div class="flex items-center justify-between border-b border-[#272932] pb-3">
+    <div class="bg-[#292F2D] text-white border border-[#46504B] w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 text-right">
+      <div class="flex items-center justify-between border-b border-[#46504B] pb-3">
         <div class="flex items-center gap-2">
           <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
           <h3 class="font-bold text-white text-sm">شناسایی هویت کاربر (ثبت وقایع و اقدامات)</h3>
@@ -2304,16 +2297,16 @@
 
       <!-- Quick Preset Buttons -->
       <div class="grid grid-cols-2 gap-2 text-xs">
-        <button type="button" onclick="selectUserPreset('خانم خرم‌دل')" class="p-2.5 rounded-xl bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] font-medium transition text-center">
+        <button type="button" onclick="selectUserPreset('خانم خرم‌دل')" class="p-2.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] font-medium transition text-center">
           خانم خرم‌دل
         </button>
-        <button type="button" onclick="selectUserPreset('خانم فائزه')" class="p-2.5 rounded-xl bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] font-medium transition text-center">
+        <button type="button" onclick="selectUserPreset('خانم فائزه')" class="p-2.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] font-medium transition text-center">
           خانم فائزه
         </button>
-        <button type="button" onclick="selectUserPreset('خانم موسی‌پور')" class="p-2.5 rounded-xl bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] font-medium transition text-center">
+        <button type="button" onclick="selectUserPreset('خانم موسی‌پور')" class="p-2.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] font-medium transition text-center">
           خانم موسی‌پور
         </button>
-        <button type="button" onclick="selectUserPreset('خانم شهروزی')" class="p-2.5 rounded-xl bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] font-medium transition text-center">
+        <button type="button" onclick="selectUserPreset('خانم شهروزی')" class="p-2.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] font-medium transition text-center">
           خانم شهروزی
         </button>
       </div>
@@ -2321,10 +2314,10 @@
       <!-- Custom Name Input -->
       <div class="pt-2">
         <label class="block text-[11px] text-slate-400 mb-1">یا نام دلخواه خود را تایپ کنید:</label>
-        <input type="text" id="customUserNameInput" placeholder="نام و نام خانوادگی..." class="w-full bg-[#20222A] text-white border border-[#2D303A] focus:border-emerald-500 rounded-xl px-3 py-2 text-xs">
+        <input type="text" id="customUserNameInput" placeholder="نام و نام خانوادگی..." class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-emerald-500 rounded-xl px-3 py-2 text-xs">
       </div>
 
-      <div class="flex justify-end gap-2 pt-2 border-t border-[#272932]">
+      <div class="flex justify-end gap-2 pt-2 border-t border-[#46504B]">
         <button type="button" onclick="saveCustomUserName()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition">
           تایید و ورود به بورد
         </button>

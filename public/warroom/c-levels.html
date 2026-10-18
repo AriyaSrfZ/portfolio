@@ -5,40 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>فهرست مدیران ارشد و آدرس‌های لینکدین — پرشیا فاوا (فِرِستا)</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/misc/Farsi-Digits/Vazirmatn-FD-font-face.css" rel="stylesheet" type="text/css" />
   <style>
-    body { font-family: 'Vazirmatn FD', system-ui, -apple-system, sans-serif; background-color: #0F1015; }
+    :root {
+      --canvas: #202725;
+      --surface: #292F2D;
+      --surface-elevated: #343C38;
+      --surface-hover: #3D4742;
+      --border: #46504B;
+      --border-subtle: #36403C;
+      --text-primary: #F0EEE7;
+      --text-secondary: #B5BDB6;
+      --accent-primary: #8FB4AA;
+      --accent-deep: #527C78;
+      --accent-hover: #A6C8BE;
+      --ochre: #B39A77;
+    }
+    body {
+      font-family: 'Vazirmatn FD', 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--canvas);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(143, 180, 170, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(179, 154, 119, 0.06) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+    }
+    .font-mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
   </style>
 </head>
-<body class="text-slate-200 min-h-screen p-4 sm:p-8">
+<body class="min-h-screen p-4 sm:p-8">
   <div class="max-w-6xl mx-auto space-y-6">
     <!-- Header -->
-    <header class="bg-[#18191E] border border-[#272932] rounded-2xl p-6 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <header class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
       <div>
-        <div class="flex items-center gap-2 text-xs text-sky-400 font-mono mb-1">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <div class="flex items-center gap-2 text-xs text-[#8FB4AA] font-mono mb-1.5">
+          <span class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span>
           <span>B2B ACCOUNT-BASED MARKETING — VERIFIED C-SUITE DIRECTORY</span>
         </div>
-        <h1 class="text-xl sm:text-2xl font-black text-white">شناسنامه لینکدین مدیران ارشد و تصمیم‌گیرندگان ۱۰ حساب هدف</h1>
-        <p class="text-xs text-slate-400 mt-1">پایگاه جامع پروفایل‌های فردی لینکدین جهت برقراری ارتباط هدفمند، ارسال پیام‌های قلاب (Hook) و ممیزی شبکه‌ای</p>
+        <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">شناسنامه لینکدین مدیران ارشد و تصمیم‌گیرندگان ۱۰ حساب هدف</h1>
+        <p class="text-xs text-[#B5BDB6] mt-1.5">پایگاه جامع پروفایل‌های فردی لینکدین جهت برقراری ارتباط هدفمند، ارسال پیام‌های قلاب (Hook) و ممیزی شبکه‌ای</p>
       </div>
       <div class="flex items-center gap-3">
-        <a href="/warroom/" class="px-4 py-2 bg-[#20222A] hover:bg-[#2A2D38] text-slate-200 border border-[#2D303A] rounded-xl text-xs font-semibold transition">
-          ← بازگشت به وور روم
+        <a href="/warroom/" class="px-4 py-2 bg-[#343C38] hover:bg-[#3D4742] text-[#F0EEE7] border border-[#46504B] rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+          <span>← بازگشت به وور روم</span>
         </a>
-        <a href="/pfg_b2b_tracker.xlsx" download class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-lg shadow-emerald-600/30 transition flex items-center gap-1.5">
+        <a href="/pfg_b2b_tracker.xlsx" download class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
           <span>📥 دانلود اکسل جامع</span>
         </a>
       </div>
     </header>
 
     <!-- Table of Accounts & C-Levels -->
-    <div class="bg-[#18191E] border border-[#272932] rounded-2xl shadow-xl overflow-hidden">
+    <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl shadow-2xl overflow-hidden">
       <div class="overflow-x-auto">
         <table class="w-full text-right text-xs">
-          <thead class="bg-[#20222A] text-slate-400 border-b border-[#272932] font-semibold">
+          <thead class="bg-[#343C38] text-[#B5BDB6] border-b border-[#46504B] font-semibold">
             <tr>
-              <th class="p-4 w-12 text-center">#</th>
+              <th class="p-4 w-12 text-center font-mono">#</th>
               <th class="p-4">شرکت و برند</th>
               <th class="p-4">حوزه فعالیت</th>
               <th class="p-4">لینکدین سازمانی</th>
@@ -47,324 +73,324 @@
               <th class="p-4">اولویت</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-[#272932]">
+          <tbody class="divide-y divide-[#36403C]">
             <!-- 1. Taline -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۱</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۱</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">طلاین (Taline / Tlyn)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://taline.ir" target="_blank" class="hover:underline">taline.ir</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">طلاین (Taline / Tlyn)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://taline.ir" target="_blank" class="hover:text-[#8FB4AA] hover:underline">taline.ir</a></div>
               </td>
-              <td class="p-4 text-slate-300">معاملات آنلاین طلای آبشده</td>
+              <td class="p-4 text-[#B5BDB6]">معاملات آنلاین طلای آبشده</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/taline/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/taline/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">محسن ابوالفتحی</div>
-                <div class="text-[11px] text-slate-400">هم‌بنیان‌گذار و مدیرعامل</div>
-                <a href="https://www.linkedin.com/in/mohsen-abolfathi-489a27b8/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">محسن ابوالفتحی</div>
+                <div class="text-[11px] text-[#B5BDB6]">هم‌بنیان‌گذار و مدیرعامل</div>
+                <a href="https://www.linkedin.com/in/mohsen-abolfathi-489a27b8/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/mohsen-abolfathi-489a27b8 ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-200">سید مصطفی افزونی</div>
-                <div class="text-[11px] text-slate-400">رئیس هیئت‌مدیره و هم‌بنیان‌گذار</div>
-                <a href="https://www.linkedin.com/in/afzouni/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">سید مصطفی افزونی</div>
+                <div class="text-[11px] text-[#B5BDB6]">رئیس هیئت‌مدیره و هم‌بنیان‌گذار</div>
+                <a href="https://www.linkedin.com/in/afzouni/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/afzouni ↗
                 </a>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Tier A (۱۰۰)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">Tier A (۱۰۰)</span></td>
             </tr>
 
             <!-- 2. Tarabarnet -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۲</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۲</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">ترابرنت (Tarabarnet)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://tarabarnet.com" target="_blank" class="hover:underline">tarabarnet.com</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">ترابرنت (Tarabarnet)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://tarabarnet.com" target="_blank" class="hover:text-[#8FB4AA] hover:underline">tarabarnet.com</a></div>
               </td>
-              <td class="p-4 text-slate-300">لجستیک و باربری جاده‌ای سنگین</td>
+              <td class="p-4 text-[#B5BDB6]">لجستیک و باربری جاده‌ای سنگین</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/hasin-technology/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/hasin-technology/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>هلدینگ حصین</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">کیوان جعفری</div>
-                <div class="text-[11px] text-slate-400">هم‌بنیان‌گذار ترابرنت</div>
-                <div class="mt-1">
-                  <div class="font-bold text-slate-200">مسعود آراسته</div>
-                  <div class="text-[10px] text-slate-400">مدیرعامل هلدینگ حصین</div>
-                  <a href="https://www.linkedin.com/in/masoudarasteh/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">کیوان جعفری</div>
+                <div class="text-[11px] text-[#B5BDB6]">هم‌بنیان‌گذار ترابرنت</div>
+                <div class="mt-1.5">
+                  <div class="font-bold text-[#F0EEE7]">مسعود آراسته</div>
+                  <div class="text-[10px] text-[#B5BDB6]">مدیرعامل هلدینگ حصین</div>
+                  <a href="https://www.linkedin.com/in/masoudarasteh/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                     in/masoudarasteh ↗
                   </a>
                 </div>
               </td>
               <td class="p-4 space-y-2">
                 <div>
-                  <div class="font-medium text-slate-200">سید حسین غفوری</div>
-                  <div class="text-[10px] text-slate-400">مدیر سرمایه‌گذاری حصین / مدیرعامل حصین همراه</div>
-                  <a href="https://www.linkedin.com/in/seyyed-hossein-ghafoori-02848b3b/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">
+                  <div class="font-medium text-[#F0EEE7]">سید حسین غفوری</div>
+                  <div class="text-[10px] text-[#B5BDB6]">مدیر سرمایه‌گذاری حصین / مدیرعامل حصین همراه</div>
+                  <a href="https://www.linkedin.com/in/seyyed-hossein-ghafoori-02848b3b/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                     in/seyyed-hossein-ghafoori ↗
                   </a>
                 </div>
                 <div>
-                  <div class="font-medium text-slate-200">میثم رجبی</div>
-                  <div class="text-[10px] text-slate-400">مدیر توسعه بازار حصین و مدیرعامل رادین</div>
-                  <a href="https://www.linkedin.com/in/meisam-rajabi-8242ba53/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">
+                  <div class="font-medium text-[#F0EEE7]">میثم رجبی</div>
+                  <div class="text-[10px] text-[#B5BDB6]">مدیر توسعه بازار حصین و مدیرعامل رادین</div>
+                  <a href="https://www.linkedin.com/in/meisam-rajabi-8242ba53/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                     in/meisam-rajabi-8242ba53 ↗
                   </a>
                 </div>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Tier A (۱۰۰)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">Tier A (۱۰۰)</span></td>
             </tr>
 
             <!-- 3. Zarpay24 -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۳</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۳</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">زرپی۲۴ (ZarPay24)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://zarpay24.com" target="_blank" class="hover:underline">zarpay24.com</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">زرپی۲۴ (ZarPay24)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://zarpay24.com" target="_blank" class="hover:text-[#8FB4AA] hover:underline">zarpay24.com</a></div>
               </td>
-              <td class="p-4 text-slate-300">معاملات ۲۴ساعته طلا و فلزات</td>
+              <td class="p-4 text-[#B5BDB6]">معاملات ۲۴ساعته طلا و فلزات</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/zarpay24/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/zarpay24/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">نازنین مطلبی</div>
-                <div class="text-[11px] text-slate-400">بنیان‌گذار و مدیرعامل</div>
-                <a href="https://www.linkedin.com/in/nazanin-motallebi/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">نازنین مطلبی</div>
+                <div class="text-[11px] text-[#B5BDB6]">بنیان‌گذار و مدیرعامل</div>
+                <a href="https://www.linkedin.com/in/nazanin-motallebi/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/nazanin-motallebi ↗
                 </a>
               </td>
               <td class="p-4 space-y-1.5">
                 <div>
-                  <div class="font-medium text-slate-200">علی دلبر</div>
-                  <div class="text-[10px] text-slate-400">مدیر ارشد محصول (Product Lead)</div>
-                  <a href="https://www.linkedin.com/in/alidelbar/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">in/alidelbar ↗</a>
+                  <div class="font-medium text-[#F0EEE7]">علی دلبر</div>
+                  <div class="text-[10px] text-[#B5BDB6]">مدیر ارشد محصول (Product Lead)</div>
+                  <a href="https://www.linkedin.com/in/alidelbar/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">in/alidelbar ↗</a>
                 </div>
                 <div>
-                  <div class="font-medium text-slate-200">نیک‌ناز حجت</div>
-                  <div class="text-[10px] text-slate-400">شریک تجاری منابع انسانی (HRBP)</div>
-                  <a href="https://www.linkedin.com/in/niknaz-hojat/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">in/niknaz-hojat ↗</a>
+                  <div class="font-medium text-[#F0EEE7]">نیک‌ناز حجت</div>
+                  <div class="text-[10px] text-[#B5BDB6]">شریک تجاری منابع انسانی (HRBP)</div>
+                  <a href="https://www.linkedin.com/in/niknaz-hojat/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">in/niknaz-hojat ↗</a>
                 </div>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Tier A (۸۰)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">Tier A (۸۰)</span></td>
             </tr>
 
             <!-- 4. Ubaar -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۴</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۴</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">اوبار / آچاره (Ubaar)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://ubaar.ir" target="_blank" class="hover:underline">ubaar.ir</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">اوبار / آچاره (Ubaar)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://ubaar.ir" target="_blank" class="hover:text-[#8FB4AA] hover:underline">ubaar.ir</a></div>
               </td>
-              <td class="p-4 text-slate-300">سامانه هوشمند باربری آنلاین</td>
+              <td class="p-4 text-[#B5BDB6]">سامانه هوشمند باربری آنلاین</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/ubaar/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/ubaar/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">حامد تاج‌الدین</div>
-                <div class="text-[11px] text-slate-400">هم‌بنیان‌گذار و مدیرعامل</div>
-                <a href="https://www.linkedin.com/in/hamed-tajedin-99ab4149/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">حامد تاج‌الدین</div>
+                <div class="text-[11px] text-[#B5BDB6]">هم‌بنیان‌گذار و مدیرعامل</div>
+                <a href="https://www.linkedin.com/in/hamed-tajedin-99ab4149/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/hamed-tajedin-99ab4149 ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-200">مهدی نایبی</div>
-                <div class="text-[11px] text-slate-400">هم‌بنیان‌گذار هلدینگ سنا گستر سبز</div>
-                <a href="https://www.linkedin.com/in/mehdi-nayebi-68a4731/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">مهدی نایبی</div>
+                <div class="text-[11px] text-[#B5BDB6]">هم‌بنیان‌گذار هلدینگ سنا گستر سبز</div>
+                <a href="https://www.linkedin.com/in/mehdi-nayebi-68a4731/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/mehdi-nayebi-68a4731 ↗
                 </a>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300">Tier A (۷۵)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">Tier A (۷۵)</span></td>
             </tr>
 
             <!-- 5. SanadPardaz -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۵</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۵</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">سندپرداز (SanadPardaz ERP)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://sanadpardaz.com" target="_blank" class="hover:underline">sanadpardaz.com</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">سندپرداز (SanadPardaz ERP)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://sanadpardaz.com" target="_blank" class="hover:text-[#8FB4AA] hover:underline">sanadpardaz.com</a></div>
               </td>
-              <td class="p-4 text-slate-300">نرم‌افزار ERP کارخانه‌ها و مالی</td>
+              <td class="p-4 text-[#B5BDB6]">نرم‌افزار ERP کارخانه‌ها و مالی</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/sanadpardaz-erp/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/sanadpardaz-erp/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">حمیدرضا متقی</div>
-                <div class="text-[11px] text-slate-400">بنیان‌گذار و مدیر ارشد</div>
-                <a href="https://www.linkedin.com/in/hrmottaghi/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">حمیدرضا متقی</div>
+                <div class="text-[11px] text-[#B5BDB6]">بنیان‌گذار و مدیر ارشد</div>
+                <a href="https://www.linkedin.com/in/hrmottaghi/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/hrmottaghi ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="text-slate-400 text-[11px]">تیم توسعه محصول ERP صنعتی و بازاریابی کارخانجات</div>
+                <div class="text-[#B5BDB6] text-[11px]">تیم توسعه محصول ERP صنعتی و بازاریابی کارخانجات</div>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300">Tier B (۷۰)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#B39A77]/20 text-[#B39A77] border border-[#B39A77]/40">Tier B (۷۰)</span></td>
             </tr>
 
             <!-- 6. Chargoon -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۶</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۶</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">دیدگاه / چارگون (Chargoon)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://chargoon.com" target="_blank" class="hover:underline">chargoon.com</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">دیدگاه / چارگون (Chargoon)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://chargoon.com" target="_blank" class="hover:text-[#8FB4AA] hover:underline">chargoon.com</a></div>
               </td>
-              <td class="p-4 text-slate-300">اتوماسیون سازمانی ۱۴۰۰ نهاد</td>
+              <td class="p-4 text-[#B5BDB6]">اتوماسیون سازمانی ۱۴۰۰ نهاد</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/chargoon/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/chargoon/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">فرزاد رحمانی</div>
-                <div class="text-[11px] text-slate-400">مدیرعامل چارگون</div>
-                <a href="https://www.linkedin.com/in/farzad-rahmani-5b521079/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">فرزاد رحمانی</div>
+                <div class="text-[11px] text-[#B5BDB6]">مدیرعامل چارگون</div>
+                <a href="https://www.linkedin.com/in/farzad-rahmani-5b521079/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/farzad-rahmani-5b521079 ↗
                 </a>
               </td>
               <td class="p-4 space-y-1.5">
                 <div>
-                  <div class="font-medium text-slate-200">شاهین طبری</div>
-                  <div class="text-[10px] text-slate-400">بنیان‌گذار و رئیس هیئت‌مدیره</div>
-                  <a href="https://www.linkedin.com/in/shahintabary/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">in/shahintabary ↗</a>
+                  <div class="font-medium text-[#F0EEE7]">شاهین طبری</div>
+                  <div class="text-[10px] text-[#B5BDB6]">بنیان‌گذار و رئیس هیئت‌مدیره</div>
+                  <a href="https://www.linkedin.com/in/shahintabary/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">in/shahintabary ↗</a>
                 </div>
                 <div>
-                  <div class="font-medium text-slate-200">مهین محمدی</div>
-                  <div class="text-[10px] text-slate-400">مدیرعامل آوات و هم‌بنیان‌گذار چارگون</div>
-                  <a href="https://www.linkedin.com/in/mahin-mohammadi-4740283b/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">in/mahin-mohammadi ↗</a>
+                  <div class="font-medium text-[#F0EEE7]">مهین محمدی</div>
+                  <div class="text-[10px] text-[#B5BDB6]">مدیرعامل آوات و هم‌بنیان‌گذار چارگون</div>
+                  <a href="https://www.linkedin.com/in/mahin-mohammadi-4740283b/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">in/mahin-mohammadi ↗</a>
                 </div>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300">Tier B (۶۵)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#B39A77]/20 text-[#B39A77] border border-[#B39A77]/40">Tier B (۶۵)</span></td>
             </tr>
 
             <!-- 7. Goldika -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۷</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۷</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">گلدیکا (Goldika)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://goldika.ir" target="_blank" class="hover:underline">goldika.ir</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">گلدیکا (Goldika)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://goldika.ir" target="_blank" class="hover:text-[#8FB4AA] hover:underline">goldika.ir</a></div>
               </td>
-              <td class="p-4 text-slate-300">معاملات آنلاین طلای خرد شریف</td>
+              <td class="p-4 text-[#B5BDB6]">معاملات آنلاین طلای خرد شریف</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/goldika/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/goldika/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">علیرضا عیوضی</div>
-                <div class="text-[11px] text-slate-400">هم‌بنیان‌گذار و مدیرعامل</div>
-                <a href="https://www.linkedin.com/in/alireza-eyvazi/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">علیرضا عیوضی</div>
+                <div class="text-[11px] text-[#B5BDB6]">هم‌بنیان‌گذار و مدیرعامل</div>
+                <a href="https://www.linkedin.com/in/alireza-eyvazi/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/alireza-eyvazi ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="text-slate-400 text-[11px]">هم‌بنیان‌گذاران فنی و توسعه محصول شریف</div>
+                <div class="text-[#B5BDB6] text-[11px]">هم‌بنیان‌گذاران فنی و توسعه محصول شریف</div>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300">Tier B (۶۵)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#B39A77]/20 text-[#B39A77] border border-[#B39A77]/40">Tier B (۶۵)</span></td>
             </tr>
 
             <!-- 8. Qesta -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۸</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۸</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">قسطا (Qesta / Ghesta)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://qesta.ir" target="_blank" class="hover:underline">qesta.ir</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">قسطا (Qesta / Ghesta)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://qesta.ir" target="_blank" class="hover:text-[#8FB4AA] hover:underline">qesta.ir</a></div>
               </td>
-              <td class="p-4 text-slate-300">لندتک و خرید اقساطی</td>
+              <td class="p-4 text-[#B5BDB6]">لندتک و خرید اقساطی</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/ghesta/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/ghesta/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">محمدرضا آشتیانی</div>
-                <div class="text-[11px] text-slate-400">بنیان‌گذار و مدیرعامل</div>
-                <a href="https://www.linkedin.com/in/ashtianimr/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">محمدرضا آشتیانی</div>
+                <div class="text-[11px] text-[#B5BDB6]">بنیان‌گذار و مدیرعامل</div>
+                <a href="https://www.linkedin.com/in/ashtianimr/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/ashtianimr ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="text-slate-400 text-[11px]">مدیر محصول قسطاکارت و مدیر امور مالی و وصول</div>
+                <div class="text-[#B5BDB6] text-[11px]">مدیر محصول قسطاکارت و مدیر امور مالی و وصول</div>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300">Tier B (۶۰)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#B39A77]/20 text-[#B39A77] border border-[#B39A77]/40">Tier B (۶۰)</span></td>
             </tr>
 
             <!-- 9. Wallgold -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۹</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۹</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">وال‌گلد (WallGold / Wallex)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://wallgold.ir" target="_blank" class="hover:underline">wallgold.ir</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">وال‌گلد (WallGold / Wallex)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://wallgold.ir" target="_blank" class="hover:text-[#8FB4AA] hover:underline">wallgold.ir</a></div>
               </td>
-              <td class="p-4 text-slate-300">تسهیلات و پس‌انداز طلا</td>
+              <td class="p-4 text-[#B5BDB6]">تسهیلات و پس‌انداز طلا</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/wallgold/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/wallgold/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">بردیا احمدنیا</div>
-                <div class="text-[11px] text-slate-400">توسعه‌دهنده بیزینس و هم‌بنیان‌گذار والکس</div>
-                <a href="https://www.linkedin.com/in/bardia-ahmadnia/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">بردیا احمدنیا</div>
+                <div class="text-[11px] text-[#B5BDB6]">توسعه‌دهنده بیزینس و هم‌بنیان‌گذار والکس</div>
+                <a href="https://www.linkedin.com/in/bardia-ahmadnia/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/bardia-ahmadnia ↗
                 </a>
               </td>
               <td class="p-4 space-y-1.5">
                 <div>
-                  <div class="font-medium text-slate-200">مجید علایی‌نیا</div>
-                  <div class="text-[10px] text-slate-400">سرپرست ارشد فنی (Tech Lead)</div>
-                  <a href="https://www.linkedin.com/in/majidalaeinia/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">in/majidalaeinia ↗</a>
+                  <div class="font-medium text-[#F0EEE7]">مجید علایی‌نیا</div>
+                  <div class="text-[10px] text-[#B5BDB6]">سرپرست ارشد فنی (Tech Lead)</div>
+                  <a href="https://www.linkedin.com/in/majidalaeinia/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">in/majidalaeinia ↗</a>
                 </div>
                 <div>
-                  <div class="font-medium text-slate-200">امیرحسین حصارکی</div>
-                  <div class="text-[10px] text-slate-400">سرپرست فرانت‌اند (Frontend Lead)</div>
-                  <a href="https://www.linkedin.com/in/amirhoseinhesaraki/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">in/amirhoseinhesaraki ↗</a>
+                  <div class="font-medium text-[#F0EEE7]">امیرحسین حصارکی</div>
+                  <div class="text-[10px] text-[#B5BDB6]">سرپرست فرانت‌اند (Frontend Lead)</div>
+                  <a href="https://www.linkedin.com/in/amirhoseinhesaraki/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">in/amirhoseinhesaraki ↗</a>
                 </div>
                 <div>
-                  <div class="font-medium text-slate-200">پرستو جباری</div>
-                  <div class="text-[10px] text-slate-400">مدیر محصول (Product Manager)</div>
-                  <a href="https://www.linkedin.com/in/parastoo-jbr-55958a246/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">in/parastoo-jbr ↗</a>
+                  <div class="font-medium text-[#F0EEE7]">پرستو جباری</div>
+                  <div class="text-[10px] text-[#B5BDB6]">مدیر محصول (Product Manager)</div>
+                  <a href="https://www.linkedin.com/in/parastoo-jbr-55958a246/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">in/parastoo-jbr ↗</a>
                 </div>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300">Tier B (۵۵)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#B39A77]/20 text-[#B39A77] border border-[#B39A77]/40">Tier B (۵۵)</span></td>
             </tr>
 
             <!-- 10. Postex -->
-            <tr class="hover:bg-white/5 transition">
-              <td class="p-4 text-center font-mono text-slate-400">۱۰</td>
+            <tr class="hover:bg-[#343C38]/50 transition">
+              <td class="p-4 text-center font-mono text-[#8B958E]">۱۰</td>
               <td class="p-4">
-                <div class="font-bold text-white text-sm">پستکس / پست‌بار (Postex)</div>
-                <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://postbar.ir" target="_blank" class="hover:underline">postbar.ir</a></div>
+                <div class="font-bold text-[#F0EEE7] text-sm">پستکس / پست‌بار (Postex)</div>
+                <div class="text-[11px] text-[#B5BDB6] mt-0.5"><a href="https://postbar.ir" target="_blank" class="hover:text-[#8FB4AA] hover:underline">postbar.ir</a></div>
               </td>
-              <td class="p-4 text-slate-300">هاب آنلاین خدمات پستی کشور</td>
+              <td class="p-4 text-[#B5BDB6]">هاب آنلاین خدمات پستی کشور</td>
               <td class="p-4">
-                <a href="https://www.linkedin.com/company/postbar/" target="_blank" class="inline-flex items-center gap-1 text-sky-400 hover:underline">
+                <a href="https://www.linkedin.com/company/postbar/" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium">
                   <span>صفحه شرکت</span> ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-bold text-slate-100">بابک عقیلی‌نسب</div>
-                <div class="text-[11px] text-slate-400">هم‌بنیان‌گذار و مدیرعامل</div>
-                <a href="https://www.linkedin.com/in/babak-aghilinasab-74274489/" target="_blank" class="inline-block mt-1 text-[11px] text-blue-400 hover:underline font-mono">
+                <div class="font-bold text-[#F0EEE7]">بابک عقیلی‌نسب</div>
+                <div class="text-[11px] text-[#B5BDB6]">هم‌بنیان‌گذار و مدیرعامل</div>
+                <a href="https://www.linkedin.com/in/babak-aghilinasab-74274489/" target="_blank" class="inline-block mt-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">
                   in/babak-aghilinasab-74274489 ↗
                 </a>
               </td>
               <td class="p-4">
-                <div class="font-medium text-slate-200">مصطفی گل‌قندی</div>
-                <div class="text-[10px] text-slate-400">متخصص لجستیک و فروش سازمانی</div>
-                <a href="https://www.linkedin.com/in/mostafa-golandi/" target="_blank" class="text-[11px] text-blue-400 hover:underline font-mono">in/mostafa-golandi ↗</a>
+                <div class="font-medium text-[#F0EEE7]">مصطفی گل‌قندی</div>
+                <div class="text-[10px] text-[#B5BDB6]">متخصص لجستیک و فروش سازمانی</div>
+                <a href="https://www.linkedin.com/in/mostafa-golandi/" target="_blank" class="text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono">in/mostafa-golandi ↗</a>
               </td>
-              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300">Tier B (۵۲)</span></td>
+              <td class="p-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#B39A77]/20 text-[#B39A77] border border-[#B39A77]/40">Tier B (۵۲)</span></td>
             </tr>
           </tbody>
         </table>
