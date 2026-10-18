@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>استودیوی جامع شوکیس‌های لینکدین — پرشیا فاوا (بکبان، فرستا، تک‌بن)</title>
+  <title>استودیوی جامع ویترین‌های لینکدین — پرشیا فاوا (بکبان، فرستا، تک‌بن)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/misc/Farsi-Digits/Vazirmatn-FD-font-face.css" rel="stylesheet" type="text/css" />
@@ -122,7 +122,7 @@
         <span class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span>
         <span>LINKEDIN SHOWCASE PAGES STUDIO — CORPORATE PR & MARKETING</span>
       </div>
-      <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">طراحی و ویرایش صفحات شوکیس لینکدین (۳ دپارتمان پرشیا فاوا)</h1>
+      <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">طراحی و ویرایش صفحات ویترین لینکدین (۳ دپارتمان پرشیا فاوا)</h1>
       <p class="text-xs text-[#B5BDB6] mt-1.5">همه بخش‌ها قابلیت ویرایش در لحظه، کپی تک‌کلیک و ذخیره‌سازی نشست‌ها در حافظه مرورگر و سرور اختصاصی را دارند.</p>
     </div>
     <div class="flex items-center gap-2">
@@ -425,7 +425,7 @@
             <span>📅 تقویم ۳۰ روزه انتشار محتوا در لینکدین</span>
             <span class="text-[10px] px-2 py-0.5 rounded bg-[#343C38] text-[#8FB4AA] border border-[#46504B] font-mono">EDITABLE SPREADSHEET</span>
           </h2>
-          <p class="text-xs text-[#B5BDB6] mt-0.5">برنامه مدون انتشار پست‌ها برای صفحه مادر و هر سه شوکیس به تفکیک روز، قالب و مسئول</p>
+          <p class="text-xs text-[#B5BDB6] mt-0.5">برنامه مدون انتشار پست‌ها برای صفحه مادر و هر سه ویترین به تفکیک روز، قالب و مسئول</p>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="addCalendarRow()" class="px-3 py-1.5 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-xl text-xs font-bold transition flex items-center gap-1">
@@ -701,12 +701,12 @@
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-User-Name": localStorage.getItem("pfg_user_name") || "کاربر شوکیس"
+            "X-User-Name": localStorage.getItem("pfg_user_name") || "کاربر ویترین"
           },
           body: JSON.stringify({ sessions: sessions, activeSession: currentSessionKey })
         });
         if (res.ok) {
-          alert("✅ کلیه نشست‌ها و تنظیمات صفحات شوکیس با موفقیت روی سرور استکهلم ذخیره شد!");
+          alert("✅ کلیه نشست‌ها و تنظیمات صفحات ویترین با موفقیت روی سرور استکهلم ذخیره شد!");
           if (btn) btn.innerText = "☁️ ارسال به سرور ابری (Push)";
           return;
         }
@@ -1161,7 +1161,7 @@
 
     function copyFullPackageMarkdown() {
       const data = getCurrentPages()[currentDept];
-      const md = `# شناسنامه و پکیج شوکیس لینکدین: ${data.name}
+      const md = `# شناسنامه و پکیج ویترین لینکدین: ${data.name}
 
 - **نوع صفحه:** ${data.type}
 - **نام انگلیسی / Slug:** ${data.slug}
