@@ -1,10 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
-  <!-- AS Architectural Monogram (Dark Theme) · Ariya Sarrafzadeh -->
-  <rect width="120" height="120" rx="24" fill="#202725" />
-  <!-- Letter A Primary Architectural Structure -->
-  <path d="M28 96 L52 24 C53.5 19 58.5 19 60 24 L84 96" stroke="#F0EEE7" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
-  <!-- A Horizontal Crossbar / Systems Bridge -->
-  <path d="M38 68 L74 68" stroke="#F0EEE7" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
-  <!-- Interlocking S Continuous Flow Ribbon -->
-  <path d="M84 36 C80 26 68 22 56 26 C44 30 42 42 50 49 C58 56 76 58 76 74 C76 86 64 94 48 94 C36 94 28 88 26 78" stroke="#8FB4AA" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- AS Architectural Monogram Dark Tile (120x120) · Ariya Sarrafzadeh -->
+  <!-- Squircle Base Tile -->
+  <rect x="4" y="4" width="112" height="112" rx="28" fill="#171C1A" stroke="#36403C" stroke-width="1.5" />
+
+  <!-- Letter A Structural Gantry -->
+  <path d="M33 94 L59.5 24 C59.8 23.2 60.2 23.2 60.5 24 L87 94" 
+        stroke="#F0EEE7" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Symmetrical A Crossbar Bridge -->
+  <line x1="42" y1="65" x2="48" y2="65" stroke="#F0EEE7" stroke-width="9" stroke-linecap="round" />
+  <line x1="68" y1="65" x2="76" y2="65" stroke="#F0EEE7" stroke-width="9" stroke-linecap="round" />
+
+  <!-- Letter S Symmetrical Circuit Stream -->
+  <path d="M77 42 C74 30 62 25 50 29 C40 33 39 44 46 51 L66 69 C74 77 72 88 62 92 C50 96 38 90 35 78" 
+        stroke="#8FB4AA" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

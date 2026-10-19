@@ -1,15 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 96" fill="none">
-  <!-- AS Horizontal Lockup (Light) · Ariya Sarrafzadeh -->
-  <rect width="480" height="96" rx="16" fill="#F3F0E8" />
-  <!-- Monogram Mark -->
-  <g transform="translate(18, 12) scale(0.6)">
-    <path d="M28 96 L52 24 C53.5 19 58.5 19 60 24 L84 96" stroke="#202725" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M38 68 L74 68" stroke="#202725" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M84 36 C80 26 68 22 56 26 C44 30 42 42 50 49 C58 56 76 58 76 74 C76 86 64 94 48 94 C36 94 28 88 26 78" stroke="#38645D" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 110" fill="none">
+  <!-- AS Horizontal Lockup Light · Ariya Sarrafzadeh -->
+  <rect width="560" height="110" rx="16" fill="#F3F0E8" stroke="#D5D0C6" stroke-width="1.5" />
+
+  <!-- Squircle Icon Tile -->
+  <g transform="translate(18, 15) scale(0.666)">
+    <rect x="4" y="4" width="112" height="112" rx="28" fill="#E9E5DC" stroke="#D5D0C6" stroke-width="1.5" />
+    <path d="M33 94 L59.5 24 C59.8 23.2 60.2 23.2 60.5 24 L87 94" 
+          stroke="#202725" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="42" y1="65" x2="48" y2="65" stroke="#202725" stroke-width="9" stroke-linecap="round" />
+    <line x1="68" y1="65" x2="76" y2="65" stroke="#202725" stroke-width="9" stroke-linecap="round" />
+    <path d="M77 42 C74 30 62 25 50 29 C40 33 39 44 46 51 L66 69 C74 77 72 88 62 92 C50 96 38 90 35 78" 
+          stroke="#527C78" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
   </g>
-  <!-- Vertical Divider -->
-  <line x1="108" y1="24" x2="108" y2="72" stroke="#D5D0C6" stroke-width="1.5" />
-  <!-- Name & Title Typography -->
-  <text x="126" y="46" font-family="'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="600" fill="#202725" letter-spacing="0.5">ARIYA SARRAFZADEH</text>
-  <text x="126" y="68" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="500" fill="#38645D" letter-spacing="1.2">SYSTEMS ARCHITECT &amp; PRODUCT LEADER</text>
+
+  <!-- Hairline Vertical Divider -->
+  <line x1="116" y1="28" x2="116" y2="82" stroke="#D5D0C6" stroke-width="1.5" />
+
+  <!-- Typography Hierarchy -->
+  <text x="136" y="52" font-family="'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif" 
+        font-size="22" font-weight="600" fill="#202725" letter-spacing="1">ARIYA SARRAFZADEH</text>
+  <text x="136" y="76" font-family="'IBM Plex Mono', monospace" 
+        font-size="12" font-weight="500" fill="#527C78" letter-spacing="1.5">SYSTEMS ARCHITECT &amp; PRODUCT LEADER</text>
 </svg>

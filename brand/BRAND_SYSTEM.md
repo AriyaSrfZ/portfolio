@@ -81,8 +81,10 @@ The AS monogram embodies architectural precision through clean geometry, balance
 | **Social Avatar** | `public/brand/as-avatar.svg` | Square / circular profile icon (256x256) |
 | **Favicon** | `public/favicon.svg` | 32x32 crisp browser tab icon |
 | **Social Preview** | `public/brand/og-preview.svg` | 1200x630 Open Graph card |
+| **Marketing Ad Card** | `public/brand/as-marketing-card.svg` / `.png` | 1200x630 High-impact marketing deliverable |
 | **LinkedIn Banner** | `brand/linkedin/linkedin-banner.svg` | 1584x396 profile banner |
 | **GitHub Header** | `brand/github/header.svg` | GitHub profile banner |
+| **Master PNG Exports**| `public/brand/*.png` | 1024x1024 high-res raster renders |
 
 ### Validation Across Display Sizes
 - **16 × 16 px:** Favicon geometry tested with 2.6px stroke weight; zero sub-pixel blurring.

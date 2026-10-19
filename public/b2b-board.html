@@ -1460,38 +1460,60 @@
     }
 
     function saveState() {
+      makeLocalSafetyBackup("تغییرات بورد");
       localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
       updateAnalytics();
 
       clearTimeout(syncDebounceTimer);
       syncDebounceTimer = setTimeout(async () => {
-        updateSyncUI('syncing', 'در حال ذخیره...');
-        // 1. Instant background push to LAN Node (smart-db)
+        updateSyncUI('syncing', 'در حال ذخیره روی سرور...');
+
+        // 1. PRIORITY 1: Direct VPS (Same-Origin / Direct IP - 0ms latency, always works)
+        if (DIRECT_VPS_ENDPOINT) {
+          try {
+            const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-User-Name": currentUserName || "کاربر"
+              },
+              body: JSON.stringify(accounts)
+            }, 3000);
+            if (res.ok) {
+              updateSyncUI('synced', 'ذخیره شد روی سرور استکهلم');
+              return;
+            }
+          } catch(e) {
+            console.warn("Direct VPS save err:", e);
+          }
+        }
+
+        // 2. Secondary: Sovereign LAN Node
         try {
           const res = await fetchWithTimeout(LAN_NODE_ENDPOINT, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "X-User-Name": currentUserName || "ناشناس"
+              "X-User-Name": currentUserName || "کاربر"
             },
             body: JSON.stringify(accounts)
-          }, 3000);
+          }, 1500);
           if (res.ok) {
             updateSyncUI('synced', 'ذخیره شد (smart-db)');
             return;
           }
         } catch(e) {}
 
-        // 2. Secondary fallback to Tunnel
+        // 3. Fallback: Tunnel
         try {
           const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "X-User-Name": currentUserName || "ناشناس"
+              "X-User-Name": currentUserName || "کاربر"
             },
             body: JSON.stringify(accounts)
-          }, 4000);
+          }, 2500);
           if (res.ok) {
             updateSyncUI('synced', 'ذخیره شد (سرور)');
             return;
@@ -1499,7 +1521,7 @@
         } catch(e) {}
 
         updateSyncUI('synced', 'ذخیره در مرورگر');
-      }, 500);
+      }, 300);
     }
 
     let activeFilterRole = "all";
