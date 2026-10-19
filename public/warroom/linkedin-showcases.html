@@ -464,6 +464,7 @@
 
   <!-- SCRIPT ENGINE -->
   <script>
+    const LAN_SHOWCASE_ENDPOINT = "http://192.168.1.136:3001/api/warroom/showcases";
     const CLOUD_SHOWCASE_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/showcases";
     const DIRECT_VPS_SHOWCASE_ENDPOINT = window.location.hostname === "109.120.131.224" ? "/api/warroom/showcases" : "";
 
@@ -694,11 +695,54 @@
       return sessions[currentSessionKey]?.calendar || initialCalendar;
     }
 
-    // --- CLOUD SYNC ENGINE (SOVEREIGN VPS + CLOUDFLARE TUNNEL) ---
+    // --- CLOUD SYNC ENGINE (SOVEREIGN VPS + CLOUDFLARE TUNNEL + LAN NODE) ---
     async function pushShowcasesToCloud() {
       const btn = document.getElementById("btnCloudPush");
       if (btn) btn.innerText = "⏳ در حال ارسال...";
 
+      // 1. Priority 1: Direct VPS Endpoint (Same-Origin / Direct IP - 0ms latency)
+      if (DIRECT_VPS_SHOWCASE_ENDPOINT) {
+        try {
+          const res = await fetch(DIRECT_VPS_SHOWCASE_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-User-Name": localStorage.getItem("pfg_user_name") || "کاربر ویترین"
+            },
+            body: JSON.stringify({ sessions: sessions, activeSession: currentSessionKey })
+          });
+          if (res.ok) {
+            alert("✅ کلیه نشست‌ها و تنظیمات ویترین با موفقیت روی سرور استکهلم ذخیره شد!");
+            if (btn) btn.innerText = "☁️ ارسال به سرور (Push)";
+            return;
+          }
+        } catch(e) {
+          console.warn("Direct VPS push err:", e);
+        }
+      }
+
+      // 2. Priority 2: Sovereign LAN Node (smart-db)
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1500);
+        const res = await fetch(LAN_SHOWCASE_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Name": localStorage.getItem("pfg_user_name") || "کاربر ویترین"
+          },
+          body: JSON.stringify({ sessions: sessions, activeSession: currentSessionKey }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+          alert("✅ کلیه نشست‌ها روی سرور محلی شرکت (smart-db) ذخیره شد!");
+          if (btn) btn.innerText = "☁️ ارسال به سرور (Push)";
+          return;
+        }
+      } catch(e) {}
+
+      // 3. Priority 3: Cloudflare Tunnel
       try {
         const res = await fetch(CLOUD_SHOWCASE_ENDPOINT, {
           method: "POST",
@@ -709,37 +753,73 @@
           body: JSON.stringify({ sessions: sessions, activeSession: currentSessionKey })
         });
         if (res.ok) {
-          alert("✅ کلیه نشست‌ها و تنظیمات صفحات ویترین با موفقیت روی سرور استکهلم ذخیره شد!");
-          if (btn) btn.innerText = "☁️ ارسال به سرور ابری (Push)";
+          alert("✅ نشست‌ها از طریق تونل کلودفلر ذخیره شد!");
+          if (btn) btn.innerText = "☁️ ارسال به سرور (Push)";
           return;
         }
-      } catch(e) {
-        console.warn("Cloud push error:", e);
-      }
+      } catch(e) {}
 
-      if (DIRECT_VPS_SHOWCASE_ENDPOINT) {
-        try {
-          const res2 = await fetch(DIRECT_VPS_SHOWCASE_ENDPOINT, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ sessions: sessions, activeSession: currentSessionKey })
-          });
-          if (res2.ok) {
-            alert("✅ اطلاعات روی سرور استکهلم ذخیره شد!");
-            if (btn) btn.innerText = "☁️ ارسال به سرور ابری (Push)";
-            return;
-          }
-        } catch(e) {}
-      }
-
-      if (btn) btn.innerText = "☁️ ارسال به سرور ابری (Push)";
-      alert("⚠️ ارسال به سرور با اختلال مواجه شد. تغییرات شما در حافظه این مرورگر ذخیره شده است. از دکمه «خروجی» برای دریافت فایل پشتیبان استفاده نمایید.");
+      if (btn) btn.innerText = "☁️ ارسال به سرور (Push)";
+      alert("⚠️ ارسال مستقیم با تاخیر مواجه شد. تغییرات شما در این مرورگر کاملاً محفوظ است. می‌توانید با زدن دکمه «📤 خروجی»، فایل پشتیبان JSON را دانلود کنید.");
     }
 
     async function pullShowcasesFromCloud() {
+      if (!confirm("⚠️ توجه: با دریافت اطلاعات از سرور، نشست‌های این صفحه با آخرین نسخه سرور همگام می‌شود. آیا ادامه می‌دهید؟")) {
+        return;
+      }
       const btn = document.getElementById("btnCloudPull");
+      if (btn) btn.innerText = "⏳ در حال دریافت...";
+
+      if (DIRECT_VPS_SHOWCASE_ENDPOINT) {
+        try {
+          const res = await fetch(DIRECT_VPS_SHOWCASE_ENDPOINT + "?t=" + Date.now());
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.sessions) {
+              sessions = data.sessions;
+              if (data.activeSession && sessions[data.activeSession]) {
+                currentSessionKey = data.activeSession;
+              }
+              saveCurrentStateToLocalStorage();
+              updateSessionDropdown();
+              selectDepartment(currentDept);
+              renderCalendar();
+              alert("✅ آخرین نشست‌ها از سرور استکهلم دریافت و بارگذاری شد!");
+              if (btn) btn.innerText = "☁️ دریافت از ابر (Pull)";
+              return;
+            }
+          }
+        } catch(e) {}
+      }
       if (btn) btn.innerText = "⏳ دریافت...";
 
+      // 1. Tier 1: LAN Sovereign Node (smart-db)
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const res = await fetch(LAN_SHOWCASE_ENDPOINT + "?t=" + Date.now(), { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.sessions && Object.keys(data.sessions).length > 0) {
+            sessions = data.sessions;
+            if (data.activeSession && sessions[data.activeSession]) {
+              currentSessionKey = data.activeSession;
+            }
+            saveCurrentSession();
+            updateSessionDropdown();
+            selectDepartment(currentDept);
+            renderCalendar();
+            alert("✅ آخرین نشست‌ها و صفحات از سرور محلی (smart-db) دریافت و همگام شد!");
+            if (btn) btn.innerText = "☁️ دریافت از سرور (Pull)";
+            return;
+          }
+        }
+      } catch(e) {
+        console.warn("LAN node showcase pull failed, trying WAN...", e);
+      }
+
+      // 2. Tier 2: Cloudflare Tunnel
       try {
         const res = await fetch(CLOUD_SHOWCASE_ENDPOINT + "?t=" + Date.now());
         if (res.ok) {
@@ -754,7 +834,7 @@
             selectDepartment(currentDept);
             renderCalendar();
             alert("✅ آخرین نشست‌ها و صفحات از سرور ابری دریافت و جایگزین شد!");
-            if (btn) btn.innerText = "☁️ دریافت از ابر (Pull)";
+            if (btn) btn.innerText = "☁️ دریافت از سرور (Pull)";
             return;
           }
         }
@@ -762,7 +842,7 @@
         console.warn("Cloud pull error:", e);
       }
 
-      if (btn) btn.innerText = "☁️ دریافت از ابر (Pull)";
+      if (btn) btn.innerText = "☁️ دریافت از سرور (Pull)";
       alert("⚠️ دریافت از سرور ناموفق بود یا هنوز داده‌ای در سرور ثبت نشده است.");
     }
 

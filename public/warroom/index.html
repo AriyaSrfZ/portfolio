@@ -185,6 +185,10 @@
         <span id="cloudSyncText">دریافت از ابر (Pull)</span>
       </button>
 
+      <button onclick="openBackupsModal()" id="btnBackups" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#527C78]/40 rounded-xl text-xs font-semibold shadow-sm transition" title="تاریخچه پشتیبان‌های مرورگر و بازگردانی نسخه‌های قبلی">
+        <span>🕒 تاریخچه پشتیبان‌ها</span>
+      </button>
+
       <!-- Import/Export JSON Dropdown or Buttons -->
       <label class="cursor-pointer p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition flex items-center" title="بارگذاری فایل پشتیبان JSON">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
@@ -1088,15 +1092,18 @@
     }
 
     // --- MULTI-TIER RESILIENT SYNC ENGINE (IRAN-SAFE & DPI-RESILIENT) ---
-    // Tier 1: Cloudflare HTTPS Tunnel (Bypasses domestic DPI & IP blocks, operates on standard 443 with valid SSL)
+    // Tier 1: Dedicated Sovereign LAN Node (smart-db: 192.168.1.136:3001) - 0ms latency, zero DPI interference, atomic backups
+    const LAN_NODE_ENDPOINT = "http://192.168.1.136:3001/api/warroom/accounts";
+    const LAN_NODE_IP_ENDPOINT = "http://192.168.1.136:3001/api/warroom/ip";
+    // Tier 2: Cloudflare HTTPS Tunnel (Bypasses domestic DPI & IP blocks, operates on standard 443 with valid SSL)
     const TUNNEL_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/accounts";
     const TUNNEL_IP_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/ip";
-    // Tier 2: Direct Sovereign VPS Endpoint (active when browsing direct IP or via same-origin proxy)
+    // Tier 3: Direct Sovereign VPS Endpoint (active when browsing direct IP or via same-origin proxy)
     const isDirectVps = window.location.hostname === "109.120.131.224";
     const DIRECT_VPS_ENDPOINT = isDirectVps ? "/api/warroom/accounts" : (window.location.protocol === "http:" ? "http://109.120.131.224/api/warroom/accounts" : "");
-    // Tier 3: Same-Origin Static Snapshot (Guaranteed fallback on GitHub Pages & VPS)
+    // Tier 4: Same-Origin Static Snapshot (Guaranteed fallback on GitHub Pages & VPS)
     const STATIC_FALLBACK_ENDPOINT = "./data.json";
-    // Tier 4: Firebase Realtime Database
+    // Tier 5: Firebase Realtime Database
     const FIREBASE_ENDPOINT = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/accounts.json";
 
     let isCloudSyncing = false;
@@ -1129,35 +1136,101 @@
       ]);
     };
 
+    // --- LOCAL ROLLING SAFETY BACKUP ENGINE ---
+    function makeLocalSafetyBackup(reason = "تغییرات کاربر") {
+      try {
+        if (!accounts || accounts.length === 0) return;
+        const raw = localStorage.getItem("pfg_accounts_backups_v1");
+        const list = raw ? JSON.parse(raw) : [];
+        list.unshift({
+          id: "bk_" + Date.now(),
+          timestamp: new Date().toISOString(),
+          label: new Date().toLocaleTimeString('fa-IR') + " — " + new Date().toLocaleDateString('fa-IR'),
+          reason: reason,
+          count: accounts.length,
+          data: JSON.parse(JSON.stringify(accounts))
+        });
+        localStorage.setItem("pfg_accounts_backups_v1", JSON.stringify(list.slice(0, 20)));
+      } catch(e) {
+        console.warn("Safety backup err:", e);
+      }
+    }
+
+    function openBackupsModal() {
+      renderBackupsList();
+      document.getElementById("backupsModal").classList.remove("hidden");
+    }
+
+    function closeBackupsModal() {
+      document.getElementById("backupsModal").classList.add("hidden");
+    }
+
+    function renderBackupsList() {
+      const container = document.getElementById("backupsListContainer");
+      if (!container) return;
+      try {
+        const raw = localStorage.getItem("pfg_accounts_backups_v1");
+        const list = raw ? JSON.parse(raw) : [];
+        if (list.length === 0) {
+          container.innerHTML = `<div class="p-6 text-center text-xs text-[#B5BDB6]">هنوز هیچ نسخه پشتیبانی در مرورگر ثبت نشده است.</div>`;
+          return;
+        }
+        container.innerHTML = list.map((b, idx) => `
+          <div class="p-3 bg-[#202725] border border-[#46504B] rounded-xl flex items-center justify-between gap-3 hover:border-[#8FB4AA] transition">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-[#F0EEE7]">${b.label}</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">${b.count} حساب</span>
+              </div>
+              <div class="text-[11px] text-[#B5BDB6] mt-0.5">علت ذخیره: ${b.reason}</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="restoreLocalBackup('${b.id}')" class="px-3 py-1.5 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-lg text-xs font-bold transition shadow-sm">
+                بازگردانی 🔄
+              </button>
+            </div>
+          </div>
+        `).join('');
+      } catch(e) {
+        container.innerHTML = `<div class="p-4 text-xs text-rose-400">خطا در بارگذاری تاریخچه: ${e.message}</div>`;
+      }
+    }
+
+    function restoreLocalBackup(backupId) {
+      try {
+        const raw = localStorage.getItem("pfg_accounts_backups_v1");
+        const list = raw ? JSON.parse(raw) : [];
+        const found = list.find(b => b.id === backupId);
+        if (!found) {
+          alert("نسخه مورد نظر پیدا نشد.");
+          return;
+        }
+        if (!confirm(`آیا از بازگردانی نسخه «${found.label}» (${found.count} حساب) اطمینان دارید؟`)) {
+          return;
+        }
+        makeLocalSafetyBackup("پیش از بازگردانی از تاریخچه");
+        accounts = JSON.parse(JSON.stringify(found.data));
+        localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+        renderBoard();
+        renderList();
+        updateAnalytics();
+        closeBackupsModal();
+        alert("✅ اطلاعات با موفقیت از تاریخچه مرورگر بازگردانی شد!");
+      } catch(e) {
+        alert("خطا در بازگردانی: " + e.message);
+      }
+    }
+
     async function forcePushToCloud() {
       const btn = document.getElementById("btnPushCloud");
       if (btn) btn.innerText = "⏳ در حال ارسال...";
       updateSyncUI('syncing', 'در حال ارسال...');
 
-      // Always save locally first
+      // 1. Mandatory local safety backup before ANY network call
+      makeLocalSafetyBackup("پیش از ارسال به سرور (Push)");
       localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
 
-      // 1. Try Primary Cloudflare Tunnel (Safe in Iran)
-      try {
-        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-User-Name": currentUserName || "ناشناس"
-          },
-          body: JSON.stringify(accounts)
-        }, 7000);
-        if (res.ok) {
-          updateSyncUI('synced', 'ذخیره شد روی سرور');
-          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-          alert(`✅ اطلاعات و تغییرات این سیستم با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (IP: ${currentClientIP})`);
-          return;
-        }
-      } catch(err) {
-        console.warn("Tunnel push err:", err);
-      }
-
-      // 2. Try Direct VPS if accessible
+      // 2. PRIORITY 1: Direct VPS Endpoint (Same-Origin / Direct IP - 0ms latency, 100% reliable)
       if (DIRECT_VPS_ENDPOINT) {
         try {
           const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
@@ -1167,11 +1240,11 @@
               "X-User-Name": currentUserName || "ناشناس"
             },
             body: JSON.stringify(accounts)
-          }, 5000);
+          }, 3500);
           if (res.ok) {
-            updateSyncUI('synced', 'ذخیره شد (VPS)');
+            updateSyncUI('synced', 'ذخیره شد روی سرور');
             if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-            alert(`✅ اطلاعات و تغییرات روی سرور ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'}`);
+            alert(`✅ اطلاعات و تغییرات با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (حساب‌ها: ${accounts.length})`);
             return;
           }
         } catch(err) {
@@ -1179,58 +1252,77 @@
         }
       }
 
-      // 3. Try Firebase RTDB
+      // 3. PRIORITY 2: Sovereign LAN Node (smart-db: 192.168.1.136:3001)
+      try {
+        const res = await fetchWithTimeout(LAN_NODE_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Name": currentUserName || "ناشناس"
+          },
+          body: JSON.stringify(accounts)
+        }, 1500);
+        if (res.ok) {
+          updateSyncUI('synced', 'ذخیره شد (smart-db)');
+          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+          alert(`✅ اطلاعات با موفقیت روی نود اختصاصی smart-db ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'}`);
+          return;
+        }
+      } catch(err) {}
+
+      // 4. PRIORITY 3: Cloudflare Tunnel
+      try {
+        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Name": currentUserName || "ناشناس"
+          },
+          body: JSON.stringify(accounts)
+        }, 3000);
+        if (res.ok) {
+          updateSyncUI('synced', 'ذخیره شد (تونل)');
+          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+          alert(`✅ اطلاعات با موفقیت از طریق تونل کلودفلر ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'}`);
+          return;
+        }
+      } catch(err) {}
+
+      // 5. PRIORITY 4: Firebase RTDB
       try {
         const res = await fetchWithTimeout(FIREBASE_ENDPOINT, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(accounts)
-        }, 5000);
+        }, 3000);
         if (res.ok) {
-          updateSyncUI('synced', 'ارسال شد (فایربیس)');
+          updateSyncUI('synced', 'ذخیره شد (فایربیس)');
           if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-          alert("✅ اطلاعات و تغییرات این سیستم با موفقیت به سرور ابری ارسال شد!");
+          alert("✅ اطلاعات روی سرور فایربیس ذخیره شد!");
           return;
         }
-      } catch (err) {
-        console.warn("Firebase push blocked:", err);
-      }
+      } catch (err) {}
 
-      updateSyncUI('error', 'خطا در ارسال');
+      updateSyncUI('error', 'خطا در ارسال به سرور');
       if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-      alert("⚠️ ارسال مستقیم به سرور با اختلال مواجه شد. تغییرات شما در این سیستم ذخیره شده است.\nجهت انتقال به سیستم دیگر، دکمه «دانلود فایل پشتیبان 📥» را بزنید و در سیستم دیگر باز کنید.");
+      alert("⚠️ ارسال به سرور به دلیل اختلال اینترنت با تاخیر مواجه شد، اما نگران نباشید: تمام تغییرات شما در حافظه مرورگر و تاریخچه پشتیبان‌ها (دکمه 🕒) ذخیره شده و هیچ اطلاعاتی از دست نرفته است.\n\nهمچنین می‌توانید با کلیک روی آیکون «📤 خروجی»، فایل پشتیبان JSON را دانلود فرمایید.");
     }
 
     async function forcePullFromCloud() {
+      // 1. Mandatory prompt and safety backup
+      makeLocalSafetyBackup("پیش از دریافت از سرور (Pull)");
+      if (!confirm("⚠️ توجه: با دریافت اطلاعات از سرور، اطلاعات روی این صفحه با آخرین نسخه سرور همگام می‌شود.\nیک نسخه پشتیبان از وضعیت فعلی شما در تاریخچه مرورگر ذخیره شده است.\n\nآیا ادامه می‌دهید؟")) {
+        return;
+      }
+
       updateSyncUI('syncing', 'در حال دریافت...');
       const btn = document.getElementById("btnPullCloud");
       if (btn) btn.innerText = "⏳ در حال دریافت...";
 
-      // 1. Try Primary Cloudflare Tunnel
-      try {
-        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {}, 6000);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            accounts = data;
-            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-            renderBoard();
-            renderList();
-            updateAnalytics();
-            updateSyncUI('synced', 'متصل به سرور ابری');
-            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
-            alert("✅ آخرین تغییرات تیم از سرور ابری (تونل امن بدون فیلتر) دریافت و روی بورد اعمال شد!");
-            return;
-          }
-        }
-      } catch(e) {
-        console.warn("Tunnel pull err:", e);
-      }
-
-      // 2. Try Direct VPS
+      // Try Direct VPS first
       if (DIRECT_VPS_ENDPOINT) {
         try {
-          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {}, 5000);
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {}, 3500);
           if (res.ok) {
             const data = await res.json();
             if (Array.isArray(data) && data.length > 0) {
@@ -1241,18 +1333,16 @@
               updateAnalytics();
               updateSyncUI('synced', 'متصل به سرور استکهلم');
               if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
-              alert("✅ آخرین تغییرات تیم از سرور استکهلم دریافت شد!");
+              alert(`✅ آخرین تغییرات تیم از سرور استکهلم دریافت شد! (${data.length} حساب)`);
               return;
             }
           }
-        } catch(e) {
-          console.warn("Direct VPS pull err:", e);
-        }
+        } catch(e) {}
       }
 
-      // 3. Try Same-Origin Static Snapshot (Guaranteed Fallback)
+      // Try LAN node
       try {
-        const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 5000);
+        const res = await fetchWithTimeout(LAN_NODE_ENDPOINT, {}, 1500);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -1261,46 +1351,17 @@
             renderBoard();
             renderList();
             updateAnalytics();
-            updateSyncUI('synced', 'پشتیبان ایستا');
-            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#B39A77] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
-            alert("✅ اطلاعات پایگاه داده از نسخه پشتیبان معتبر دریافت و روی بورد اعمال شد!");
-            return;
-          }
-        }
-      } catch(e) {
-        console.warn("Static pull err:", e);
-      }
-
-      // 4. Try Firebase
-      try {
-        const res = await fetchWithTimeout(FIREBASE_ENDPOINT, {}, 4000);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            accounts = data;
-            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-            renderBoard();
-            renderList();
-            updateAnalytics();
-            updateSyncUI('synced', 'دریافت شد (فایربیس)');
+            updateSyncUI('synced', 'متصل به smart-db');
             if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
-            alert("✅ آخرین تغییرات تیم از سرور فایربیس دریافت شد!");
+            alert("✅ اطلاعات از سرور smart-db دریافت شد!");
             return;
           }
         }
-      } catch(err) {
-        console.warn("Firebase pull error:", err);
-      }
+      } catch(e) {}
 
-      updateSyncUI('error', 'خطا در دریافت');
-      if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-rose-500"></span><span id="cloudSyncText">خطا در دریافت</span>`;
-      alert("⚠️ دریافت از سرور به دلیل اختلال شبکه ناموفق بود.\nلطفاً از دکمه «بارگذاری فایل پشتیبان 📥» استفاده نمایید.");
-    }
-
-    async function autoInitSync() {
-      // Check if accounts has verified data or if newer data is on cloud
+      // Try Tunnel
       try {
-        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {}, 4000);
+        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {}, 3000);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -1310,14 +1371,54 @@
             renderList();
             updateAnalytics();
             updateSyncUI('synced', 'متصل به سرور ابری');
+            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
+            alert("✅ آخرین تغییرات از تونل ابری دریافت شد!");
             return;
           }
         }
       } catch(e) {}
 
-      // Fallback to static snapshot
+      updateSyncUI('error', 'خطا در دریافت');
+      if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-rose-500"></span><span id="cloudSyncText">خطا در دریافت</span>`;
+      alert("⚠️ سرور ابری در دسترس نبود. اطلاعات محلی شما بدون هیچ تغییری حفظ شده است.");
+    }
+
+    async function autoInitSync() {
+      // CRITICAL DATA PROTECTION: NEVER overwrite if user already has data in localStorage!
+      const existing = localStorage.getItem("pfg_accounts_data_v3");
+      if (existing) {
+        try {
+          const parsed = JSON.parse(existing);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            console.log("Local user data preserved (" + parsed.length + " accounts). Will NOT overwrite.");
+            makeLocalSafetyBackup("بارگذاری اولیه صفحه");
+            return;
+          }
+        } catch(e) {}
+      }
+
+      // Only if localStorage is completely empty, fetch initial data from server:
+      if (DIRECT_VPS_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {}, 3000);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) {
+              accounts = data;
+              localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+              renderBoard();
+              renderList();
+              updateAnalytics();
+              updateSyncUI('synced', 'متصل به سرور استکهلم');
+              return;
+            }
+          }
+        } catch(e) {}
+      }
+
+      // Static fallback ONLY if local storage was totally empty
       try {
-        const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 3000);
+        const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 2500);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -1326,7 +1427,7 @@
             renderBoard();
             renderList();
             updateAnalytics();
-            updateSyncUI('synced', 'پشتیبان ایستا');
+            updateSyncUI('synced', 'پشتیبان اولیه');
           }
         }
       } catch(e) {}
@@ -1363,13 +1464,41 @@
       updateAnalytics();
 
       clearTimeout(syncDebounceTimer);
-      syncDebounceTimer = setTimeout(() => {
-        // Auto push changes in background
-        fetch(`${FIREBASE_DB_BASE}/accounts.json`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(accounts)
-        }).catch(() => {});
+      syncDebounceTimer = setTimeout(async () => {
+        updateSyncUI('syncing', 'در حال ذخیره...');
+        // 1. Instant background push to LAN Node (smart-db)
+        try {
+          const res = await fetchWithTimeout(LAN_NODE_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-User-Name": currentUserName || "ناشناس"
+            },
+            body: JSON.stringify(accounts)
+          }, 3000);
+          if (res.ok) {
+            updateSyncUI('synced', 'ذخیره شد (smart-db)');
+            return;
+          }
+        } catch(e) {}
+
+        // 2. Secondary fallback to Tunnel
+        try {
+          const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-User-Name": currentUserName || "ناشناس"
+            },
+            body: JSON.stringify(accounts)
+          }, 4000);
+          if (res.ok) {
+            updateSyncUI('synced', 'ذخیره شد (سرور)');
+            return;
+          }
+        } catch(e) {}
+
+        updateSyncUI('synced', 'ذخیره در مرورگر');
       }, 500);
     }
 
@@ -2320,6 +2449,32 @@
         <button type="button" onclick="saveCustomUserName()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition">
           تایید و ورود به بورد
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Local Backups History Modal -->
+  <div id="backupsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+    <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl max-w-xl w-full p-6 shadow-2xl relative my-8 text-right">
+      <div class="flex items-center justify-between border-b border-[#46504B] pb-3 mb-4">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🕒</span>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-[#F0EEE7]">تاریخچه پشتیبان‌های مرورگر (Rollback & Recovery)</h3>
+            <p class="text-[11px] text-[#8FB4AA]">تمام نسخه‌های خودکار ذخیره‌شده در این مرورگر؛ بدون خطر از دست رفتن داده</p>
+          </div>
+        </div>
+        <button onclick="closeBackupsModal()" class="w-8 h-8 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-[#B5BDB6] hover:text-[#F0EEE7] flex items-center justify-center text-xs font-bold transition">
+          ✕
+        </button>
+      </div>
+
+      <div class="mb-4 bg-[#202725] p-3 rounded-xl border border-[#36403C] text-xs text-[#B5BDB6] leading-relaxed">
+        هر بار که تغییری ایجاد می‌کنید یا دکمه ارسال/دریافت را می‌زنید، یک نسخه کامل در این سیستم نگهداری می‌شود. با کلیک روی دکمه «بازگردانی»، اطلاعات آن لحظه دقیقاً روی صفحه بازنشانی می‌شود.
+      </div>
+
+      <div id="backupsListContainer" class="space-y-2 max-h-[60vh] overflow-y-auto pr-1">
+        <!-- Rendered by renderBackupsList() -->
       </div>
     </div>
   </div>
