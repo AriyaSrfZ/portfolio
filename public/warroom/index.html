@@ -1039,13 +1039,33 @@
     // --- MULTI-TIER RESILIENT SYNC ENGINE (IRAN-SAFE & PERMANENT HTTPS) ---
     const isDirectVps = window.location.hostname === "109.120.131.224";
     const isLocalOrigin = isDirectVps || window.location.hostname === "warroom.aria-haross.ir";
-    // Tier 1: Primary API Endpoint (Permanent HTTPS Cloudflare tunnel or same-origin)
-    const PRIMARY_API_ENDPOINT = isLocalOrigin ? "/api/warroom/accounts" : "https://warroom.aria-haross.ir/api/warroom/accounts";
+    // Tier 1 (local/VPS): Same-origin API
+    const PRIMARY_API_ENDPOINT = isLocalOrigin ? "/api/warroom/accounts" : null;
     const PRIMARY_IP_ENDPOINT = isLocalOrigin ? "/api/warroom/ip" : "https://warroom.aria-haross.ir/api/warroom/ip";
-    // Tier 2: Direct Sovereign VPS Endpoint (active when browsing direct IP or HTTP)
+    // Tier 2: Firebase RTDB — confirmed reachable from domestic Iran over HTTPS
+    const FIREBASE_ENDPOINT = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/accounts.json";
+    // Tier 3: Direct VPS HTTP (only when page is loaded over http://)
     const DIRECT_VPS_ENDPOINT = isDirectVps ? "/api/warroom/accounts" : (window.location.protocol === "http:" ? "http://109.120.131.224/api/warroom/accounts" : "");
-    // Tier 3: Same-Origin Static Snapshot (Guaranteed fallback on GitHub Pages & VPS)
+    // Tier 4: Same-Origin Static Snapshot fallback
     const STATIC_FALLBACK_ENDPOINT = "./data.json";
+
+    // Helper: push array to Firebase (PUT), returns true on success
+    async function firebasePush(arr) {
+      const res = await fetchWithTimeout(FIREBASE_ENDPOINT, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(arr)
+      }, 6000);
+      return res.ok;
+    }
+    // Helper: pull array from Firebase (GET), returns array or null
+    async function firebasePull() {
+      const res = await fetchWithTimeout(FIREBASE_ENDPOINT + "?t=" + Date.now(), {}, 6000);
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) return data;
+      return null;
+    }
 
     async function detectClientIP() {
       // 1. Try Primary IP endpoint
@@ -1282,35 +1302,44 @@
       makeLocalSafetyBackup("پیش از ارسال به سرور (Push)");
       localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
 
-      // 2. PRIORITY 1: Primary API Endpoint (Permanent HTTPS / Same-Origin)
+      // 2. PRIORITY 1: Same-origin API (local/VPS)
+      if (PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-User-Name": currentUserName || "کاربر" },
+            body: JSON.stringify(accounts)
+          }, 5000);
+          if (res.ok) {
+            updateSyncUI('synced', 'ذخیره شد روی سرور ابری');
+            if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+            alert(`✅ اطلاعات با موفقیت روی سرور ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (حساب‌ها: ${accounts.length})`);
+            return;
+          }
+        } catch(err) {
+          console.warn("Primary push err:", err);
+        }
+      }
+
+      // 3. PRIORITY 2: Firebase RTDB (works from domestic Iran over HTTPS)
       try {
-        const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-User-Name": currentUserName || "کاربر"
-          },
-          body: JSON.stringify(accounts)
-        }, 5000);
-        if (res.ok) {
-          updateSyncUI('synced', 'ذخیره شد روی سرور ابری');
+        const ok = await firebasePush(accounts);
+        if (ok) {
+          updateSyncUI('synced', 'ذخیره شد روی Firebase');
           if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-          alert(`✅ اطلاعات و تغییرات با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (حساب‌ها: ${accounts.length})`);
+          alert(`✅ اطلاعات با موفقیت روی Firebase ذخیره شد! (${accounts.length} حساب)`);
           return;
         }
       } catch(err) {
-        console.warn("Primary push err:", err);
+        console.warn("Firebase push err:", err);
       }
 
-      // 3. PRIORITY 2: Direct VPS HTTP fallback (if protocol is http)
+      // 4. PRIORITY 3: Direct VPS HTTP fallback (if protocol is http)
       if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
         try {
           const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-User-Name": currentUserName || "کاربر"
-            },
+            headers: { "Content-Type": "application/json", "X-User-Name": currentUserName || "کاربر" },
             body: JSON.stringify(accounts)
           }, 3500);
           if (res.ok) {
@@ -1344,42 +1373,39 @@
       const btn = document.getElementById("btnPullCloud");
       if (btn) btn.innerText = "⏳ در حال دریافت...";
 
-      // 1. Try Primary Endpoint
-      try {
-        const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 5000);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            accounts = data;
-            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-            renderBoard();
-            renderList();
-            updateAnalytics();
-            updateSyncUI('synced', 'متصل به سرور ابری');
-            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
-            alert(`✅ آخرین تغییرات تیم از سرور دریافت شد! (${data.length} حساب)`);
-            return;
+      const applyData = (data, source) => {
+        accounts = data;
+        localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+        renderBoard(); renderList(); updateAnalytics();
+        updateSyncUI('synced', `متصل به ${source}`);
+        if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
+        alert(`✅ آخرین تغییرات تیم از ${source} دریافت شد! (${data.length} حساب)`);
+      };
+
+      // 1. Try Same-origin VPS API
+      if (PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 5000);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) { applyData(data, 'سرور استکهلم'); return; }
           }
-        }
+        } catch(e) {}
+      }
+
+      // 2. Try Firebase RTDB
+      try {
+        const data = await firebasePull();
+        if (data) { applyData(data, 'Firebase'); return; }
       } catch(e) {}
 
-      // 2. Try Direct VPS fallback
+      // 3. Try Direct VPS HTTP fallback
       if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
         try {
           const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT + "?t=" + Date.now(), {}, 3500);
           if (res.ok) {
             const data = await res.json();
-            if (Array.isArray(data) && data.length > 0) {
-              accounts = data;
-              localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-              renderBoard();
-              renderList();
-              updateAnalytics();
-              updateSyncUI('synced', 'متصل به سرور استکهلم');
-              if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
-              alert(`✅ آخرین تغییرات تیم از سرور استکهلم دریافت شد! (${data.length} حساب)`);
-              return;
-            }
+            if (Array.isArray(data) && data.length > 0) { applyData(data, 'سرور استکهلم (HTTP)'); return; }
           }
         } catch(e) {}
       }
@@ -1403,36 +1429,37 @@
         } catch(e) {}
       }
 
-      // Only if localStorage is completely empty, fetch initial data from server:
-      try {
-        const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 4000);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            accounts = data;
-            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-            renderBoard();
-            renderList();
-            updateAnalytics();
-            updateSyncUI('synced', 'متصل به سرور ابری');
-            return;
+      const applyInit = (data, src) => {
+        accounts = data;
+        localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+        renderBoard(); renderList(); updateAnalytics();
+        updateSyncUI('synced', src);
+      };
+
+      // Only if localStorage is completely empty, fetch initial data:
+      // 1. Same-origin API (local/VPS)
+      if (PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 4000);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) { applyInit(data, 'متصل به سرور استکهلم'); return; }
           }
-        }
+        } catch(e) {}
+      }
+
+      // 2. Firebase RTDB (primary for GitHub Pages / ariya-sarrafzadeh.ir)
+      try {
+        const data = await firebasePull();
+        if (data) { applyInit(data, 'متصل به Firebase'); return; }
       } catch(e) {}
 
-      // Static fallback ONLY if local storage was totally empty
+      // 3. Static fallback ONLY if all network sources failed
       try {
         const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 2500);
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            accounts = data;
-            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-            renderBoard();
-            renderList();
-            updateAnalytics();
-            updateSyncUI('synced', 'پشتیبان اولیه');
-          }
+          if (Array.isArray(data) && data.length > 0) { applyInit(data, 'پشتیبان اولیه'); }
         }
       } catch(e) {}
     }
@@ -1472,39 +1499,35 @@
       syncDebounceTimer = setTimeout(async () => {
         updateSyncUI('syncing', 'در حال ذخیره روی سرور...');
 
-        // 1. Primary API Endpoint (Permanent HTTPS / Same-Origin)
-        try {
-          const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-User-Name": currentUserName || "کاربر"
-            },
-            body: JSON.stringify(accounts)
-          }, 4000);
-          if (res.ok) {
-            updateSyncUI('synced', 'ذخیره شد روی سرور ابری');
-            return;
+        // 1. Same-origin API (local/VPS)
+        if (PRIMARY_API_ENDPOINT) {
+          try {
+            const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT, {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "X-User-Name": currentUserName || "کاربر" },
+              body: JSON.stringify(accounts)
+            }, 4000);
+            if (res.ok) { updateSyncUI('synced', 'ذخیره شد روی سرور استکهلم'); return; }
+          } catch(e) {
+            console.warn("Primary save err:", e);
           }
-        } catch(e) {
-          console.warn("Primary save err:", e);
         }
 
-        // 2. Direct VPS HTTP fallback (if protocol is http)
+        // 2. Firebase RTDB (primary for GitHub Pages / ariya-sarrafzadeh.ir)
+        try {
+          const ok = await firebasePush(accounts);
+          if (ok) { updateSyncUI('synced', 'ذخیره شد روی Firebase'); return; }
+        } catch(e) {}
+
+        // 3. Direct VPS HTTP fallback (if protocol is http)
         if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
           try {
             const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
               method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "X-User-Name": currentUserName || "کاربر"
-              },
+              headers: { "Content-Type": "application/json", "X-User-Name": currentUserName || "کاربر" },
               body: JSON.stringify(accounts)
             }, 3000);
-            if (res.ok) {
-              updateSyncUI('synced', 'ذخیره شد روی سرور استکهلم');
-              return;
-            }
+            if (res.ok) { updateSyncUI('synced', 'ذخیره شد روی سرور استکهلم'); return; }
           } catch(e) {}
         }
 
