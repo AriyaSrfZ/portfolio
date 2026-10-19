@@ -112,6 +112,17 @@
 </head>
 <body class="text-white min-h-screen antialiased flex flex-col selection:bg-[#527C78]/40 selection:text-white">
 
+  <!-- IRAN UNFILTERED DOMESTIC ROUTE BANNER (Only on ariya-sarrafzadeh.ir) -->
+  <div id="iranDpiBanner" class="hidden bg-[#2D241E] border-b border-[#B39A77]/40 text-[#F0EEE7] px-4 py-2.5 text-xs flex flex-wrap items-center justify-between gap-3 shadow-md z-50">
+    <div class="flex items-center gap-2">
+      <span class="text-base">⚡</span>
+      <span><strong>سرور مستقیم و بدون فیلتر:</strong> جهت ذخیره آنی و بدون قطعی بورد در اینترنت ایران، به سرور مستقیم متصل شوید:</span>
+    </div>
+    <button onclick="migrateToDirectServer()" class="px-3.5 py-1.5 bg-[#B39A77] hover:bg-[#968060] text-[#171C1A] rounded-xl font-bold transition flex items-center gap-1.5 shadow-sm">
+      <span>انتقال آنی به نسخه مستقیم (بدون فیلتر) 🚀</span>
+    </button>
+  </div>
+
   <!-- Top Glass Navigation Bar (Apple Style) -->
     <!-- Top Navigation Bar (ClickUp Style) -->
     <!-- Top Navigation Bar (iPhone iOS Style) -->
@@ -1217,6 +1228,51 @@
       }
     }
 
+    function migrateToDirectServer() {
+      makeLocalSafetyBackup("پیش از انتقال به سرور مستقیم");
+      const payload = encodeURIComponent(JSON.stringify(accounts));
+      const user = encodeURIComponent(currentUserName || "");
+      window.location.href = `http://109.120.131.224/warroom/#import=${payload}&user=${user}`;
+    }
+
+    function checkDirectMigrationOnLoad() {
+      // 1. Show migration banner on ariya-sarrafzadeh.ir
+      if (window.location.hostname === "ariya-sarrafzadeh.ir") {
+        const banner = document.getElementById("iranDpiBanner");
+        if (banner) banner.classList.remove("hidden");
+      }
+
+      // 2. Consume migration hash if redirected to direct VPS
+      if (window.location.hash && window.location.hash.includes("import=")) {
+        try {
+          const hashStr = window.location.hash.substring(1);
+          const params = new URLSearchParams(hashStr);
+          const rawAccounts = params.get("import");
+          const rawUser = params.get("user");
+          if (rawAccounts) {
+            const imported = JSON.parse(rawAccounts);
+            if (Array.isArray(imported) && imported.length > 0) {
+              accounts = imported;
+              localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+              if (rawUser) {
+                currentUserName = rawUser;
+                localStorage.setItem("pfg_user_name", rawUser);
+                updateUserBadgeUI();
+              }
+              window.history.replaceState(null, null, window.location.pathname);
+              saveState();
+              renderBoard();
+              renderList();
+              updateAnalytics();
+              alert(`✅ کلیه اطلاعات (${imported.length} حساب) با موفقیت به سرور مستقیم و بدون فیلتر استکهلم منتقل و ذخیره شد!`);
+            }
+          }
+        } catch(e) {
+          console.warn("Migration import err:", e);
+        }
+      }
+    }
+
     async function forcePushToCloud() {
       const btn = document.getElementById("btnPushCloud");
       if (btn) btn.innerText = "⏳ در حال ارسال...";
@@ -1268,6 +1324,12 @@
 
       updateSyncUI('error', 'خطا در ارسال به سرور');
       if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+      if (window.location.hostname === "ariya-sarrafzadeh.ir") {
+        if (confirm("⚠️ ارتباط با سرور ابری به دلیل فیلترینگ اینترنت ایران مسدود شد.\nآیا مایلید با ۱ کلیک اطلاعات خود را به سرور مستقیم استکهلم (کاملاً بدون فیلتر و با ذخیره ۱۰۰٪ پایدار) منتقل فرمایید؟")) {
+          migrateToDirectServer();
+          return;
+        }
+      }
       alert("⚠️ ارسال به سرور با تاخیر مواجه شد، اما نگران نباشید: تمام تغییرات شما در حافظه مرورگر و تاریخچه پشتیبان‌ها (دکمه 🕒) ذخیره شده و هیچ اطلاعاتی از دست نرفته است.\n\nهمچنین می‌توانید با کلیک روی آیکون «📤 خروجی»، فایل پشتیبان JSON را دانلود فرمایید.");
     }
 
@@ -2234,6 +2296,7 @@
     renderBoard();
     detectClientIP();
     autoInitSync();
+    checkDirectMigrationOnLoad();
   </script>
   <!-- SHEETS GUIDE MODAL -->
   <div id="sheetsGuideModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
