@@ -1025,10 +1025,21 @@
     let currentUserName = localStorage.getItem("pfg_user_name") || "";
     let currentClientIP = "در حال دریافت...";
 
+    // --- MULTI-TIER RESILIENT SYNC ENGINE (IRAN-SAFE & PERMANENT HTTPS) ---
+    const isDirectVps = window.location.hostname === "109.120.131.224";
+    const isLocalOrigin = isDirectVps || window.location.hostname === "warroom.aria-haross.ir";
+    // Tier 1: Primary API Endpoint (Permanent HTTPS Cloudflare tunnel or same-origin)
+    const PRIMARY_API_ENDPOINT = isLocalOrigin ? "/api/warroom/accounts" : "https://warroom.aria-haross.ir/api/warroom/accounts";
+    const PRIMARY_IP_ENDPOINT = isLocalOrigin ? "/api/warroom/ip" : "https://warroom.aria-haross.ir/api/warroom/ip";
+    // Tier 2: Direct Sovereign VPS Endpoint (active when browsing direct IP or HTTP)
+    const DIRECT_VPS_ENDPOINT = isDirectVps ? "/api/warroom/accounts" : (window.location.protocol === "http:" ? "http://109.120.131.224/api/warroom/accounts" : "");
+    // Tier 3: Same-Origin Static Snapshot (Guaranteed fallback on GitHub Pages & VPS)
+    const STATIC_FALLBACK_ENDPOINT = "./data.json";
+
     async function detectClientIP() {
-      // 1. Try Tunnel IP endpoint (direct from sovereign VPS)
+      // 1. Try Primary IP endpoint
       try {
-        const res = await fetch("https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/ip", { signal: AbortSignal.timeout(3000) });
+        const res = await fetch(PRIMARY_IP_ENDPOINT, { signal: AbortSignal.timeout(3000) });
         if (res.ok) {
           const d = await res.json();
           if (d.ip) {
@@ -1090,21 +1101,6 @@
       }
       selectUserPreset(val);
     }
-
-    // --- MULTI-TIER RESILIENT SYNC ENGINE (IRAN-SAFE & DPI-RESILIENT) ---
-    // Tier 1: Dedicated Sovereign LAN Node (smart-db: 192.168.1.136:3001) - 0ms latency, zero DPI interference, atomic backups
-    const LAN_NODE_ENDPOINT = "http://192.168.1.136:3001/api/warroom/accounts";
-    const LAN_NODE_IP_ENDPOINT = "http://192.168.1.136:3001/api/warroom/ip";
-    // Tier 2: Cloudflare HTTPS Tunnel (Bypasses domestic DPI & IP blocks, operates on standard 443 with valid SSL)
-    const TUNNEL_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/accounts";
-    const TUNNEL_IP_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/ip";
-    // Tier 3: Direct Sovereign VPS Endpoint (active when browsing direct IP or via same-origin proxy)
-    const isDirectVps = window.location.hostname === "109.120.131.224";
-    const DIRECT_VPS_ENDPOINT = isDirectVps ? "/api/warroom/accounts" : (window.location.protocol === "http:" ? "http://109.120.131.224/api/warroom/accounts" : "");
-    // Tier 4: Same-Origin Static Snapshot (Guaranteed fallback on GitHub Pages & VPS)
-    const STATIC_FALLBACK_ENDPOINT = "./data.json";
-    // Tier 5: Firebase Realtime Database
-    const FIREBASE_ENDPOINT = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/accounts.json";
 
     let isCloudSyncing = false;
     let syncDebounceTimer = null;
@@ -1230,82 +1226,49 @@
       makeLocalSafetyBackup("پیش از ارسال به سرور (Push)");
       localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
 
-      // 2. PRIORITY 1: Direct VPS Endpoint (Same-Origin / Direct IP - 0ms latency, 100% reliable)
-      if (DIRECT_VPS_ENDPOINT) {
+      // 2. PRIORITY 1: Primary API Endpoint (Permanent HTTPS / Same-Origin)
+      try {
+        const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-User-Name": currentUserName || "کاربر"
+          },
+          body: JSON.stringify(accounts)
+        }, 5000);
+        if (res.ok) {
+          updateSyncUI('synced', 'ذخیره شد روی سرور ابری');
+          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+          alert(`✅ اطلاعات و تغییرات با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (حساب‌ها: ${accounts.length})`);
+          return;
+        }
+      } catch(err) {
+        console.warn("Primary push err:", err);
+      }
+
+      // 3. PRIORITY 2: Direct VPS HTTP fallback (if protocol is http)
+      if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
         try {
           const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "X-User-Name": currentUserName || "ناشناس"
+              "X-User-Name": currentUserName || "کاربر"
             },
             body: JSON.stringify(accounts)
           }, 3500);
           if (res.ok) {
             updateSyncUI('synced', 'ذخیره شد روی سرور');
             if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-            alert(`✅ اطلاعات و تغییرات با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (حساب‌ها: ${accounts.length})`);
+            alert(`✅ اطلاعات با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'}`);
             return;
           }
-        } catch(err) {
-          console.warn("Direct VPS push err:", err);
-        }
+        } catch(err) {}
       }
-
-      // 3. PRIORITY 2: Sovereign LAN Node (smart-db: 192.168.1.136:3001)
-      try {
-        const res = await fetchWithTimeout(LAN_NODE_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-User-Name": currentUserName || "ناشناس"
-          },
-          body: JSON.stringify(accounts)
-        }, 1500);
-        if (res.ok) {
-          updateSyncUI('synced', 'ذخیره شد (smart-db)');
-          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-          alert(`✅ اطلاعات با موفقیت روی نود اختصاصی smart-db ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'}`);
-          return;
-        }
-      } catch(err) {}
-
-      // 4. PRIORITY 3: Cloudflare Tunnel
-      try {
-        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-User-Name": currentUserName || "ناشناس"
-          },
-          body: JSON.stringify(accounts)
-        }, 3000);
-        if (res.ok) {
-          updateSyncUI('synced', 'ذخیره شد (تونل)');
-          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-          alert(`✅ اطلاعات با موفقیت از طریق تونل کلودفلر ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'}`);
-          return;
-        }
-      } catch(err) {}
-
-      // 5. PRIORITY 4: Firebase RTDB
-      try {
-        const res = await fetchWithTimeout(FIREBASE_ENDPOINT, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(accounts)
-        }, 3000);
-        if (res.ok) {
-          updateSyncUI('synced', 'ذخیره شد (فایربیس)');
-          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-          alert("✅ اطلاعات روی سرور فایربیس ذخیره شد!");
-          return;
-        }
-      } catch (err) {}
 
       updateSyncUI('error', 'خطا در ارسال به سرور');
       if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
-      alert("⚠️ ارسال به سرور به دلیل اختلال اینترنت با تاخیر مواجه شد، اما نگران نباشید: تمام تغییرات شما در حافظه مرورگر و تاریخچه پشتیبان‌ها (دکمه 🕒) ذخیره شده و هیچ اطلاعاتی از دست نرفته است.\n\nهمچنین می‌توانید با کلیک روی آیکون «📤 خروجی»، فایل پشتیبان JSON را دانلود فرمایید.");
+      alert("⚠️ ارسال به سرور با تاخیر مواجه شد، اما نگران نباشید: تمام تغییرات شما در حافظه مرورگر و تاریخچه پشتیبان‌ها (دکمه 🕒) ذخیره شده و هیچ اطلاعاتی از دست نرفته است.\n\nهمچنین می‌توانید با کلیک روی آیکون «📤 خروجی»، فایل پشتیبان JSON را دانلود فرمایید.");
     }
 
     async function forcePullFromCloud() {
@@ -1319,10 +1282,29 @@
       const btn = document.getElementById("btnPullCloud");
       if (btn) btn.innerText = "⏳ در حال دریافت...";
 
-      // Try Direct VPS first
-      if (DIRECT_VPS_ENDPOINT) {
+      // 1. Try Primary Endpoint
+      try {
+        const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 5000);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            accounts = data;
+            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+            renderBoard();
+            renderList();
+            updateAnalytics();
+            updateSyncUI('synced', 'متصل به سرور ابری');
+            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
+            alert(`✅ آخرین تغییرات تیم از سرور دریافت شد! (${data.length} حساب)`);
+            return;
+          }
+        }
+      } catch(e) {}
+
+      // 2. Try Direct VPS fallback
+      if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
         try {
-          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {}, 3500);
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT + "?t=" + Date.now(), {}, 3500);
           if (res.ok) {
             const data = await res.json();
             if (Array.isArray(data) && data.length > 0) {
@@ -1339,44 +1321,6 @@
           }
         } catch(e) {}
       }
-
-      // Try LAN node
-      try {
-        const res = await fetchWithTimeout(LAN_NODE_ENDPOINT, {}, 1500);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            accounts = data;
-            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-            renderBoard();
-            renderList();
-            updateAnalytics();
-            updateSyncUI('synced', 'متصل به smart-db');
-            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
-            alert("✅ اطلاعات از سرور smart-db دریافت شد!");
-            return;
-          }
-        }
-      } catch(e) {}
-
-      // Try Tunnel
-      try {
-        const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {}, 3000);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            accounts = data;
-            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-            renderBoard();
-            renderList();
-            updateAnalytics();
-            updateSyncUI('synced', 'متصل به سرور ابری');
-            if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
-            alert("✅ آخرین تغییرات از تونل ابری دریافت شد!");
-            return;
-          }
-        }
-      } catch(e) {}
 
       updateSyncUI('error', 'خطا در دریافت');
       if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-rose-500"></span><span id="cloudSyncText">خطا در دریافت</span>`;
@@ -1398,23 +1342,21 @@
       }
 
       // Only if localStorage is completely empty, fetch initial data from server:
-      if (DIRECT_VPS_ENDPOINT) {
-        try {
-          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {}, 3000);
-          if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data) && data.length > 0) {
-              accounts = data;
-              localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
-              renderBoard();
-              renderList();
-              updateAnalytics();
-              updateSyncUI('synced', 'متصل به سرور استکهلم');
-              return;
-            }
+      try {
+        const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 4000);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            accounts = data;
+            localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+            renderBoard();
+            renderList();
+            updateAnalytics();
+            updateSyncUI('synced', 'متصل به سرور ابری');
+            return;
           }
-        } catch(e) {}
-      }
+        }
+      } catch(e) {}
 
       // Static fallback ONLY if local storage was totally empty
       try {
@@ -1468,8 +1410,26 @@
       syncDebounceTimer = setTimeout(async () => {
         updateSyncUI('syncing', 'در حال ذخیره روی سرور...');
 
-        // 1. PRIORITY 1: Direct VPS (Same-Origin / Direct IP - 0ms latency, always works)
-        if (DIRECT_VPS_ENDPOINT) {
+        // 1. Primary API Endpoint (Permanent HTTPS / Same-Origin)
+        try {
+          const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-User-Name": currentUserName || "کاربر"
+            },
+            body: JSON.stringify(accounts)
+          }, 4000);
+          if (res.ok) {
+            updateSyncUI('synced', 'ذخیره شد روی سرور ابری');
+            return;
+          }
+        } catch(e) {
+          console.warn("Primary save err:", e);
+        }
+
+        // 2. Direct VPS HTTP fallback (if protocol is http)
+        if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
           try {
             const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
               method: "POST",
@@ -1483,42 +1443,8 @@
               updateSyncUI('synced', 'ذخیره شد روی سرور استکهلم');
               return;
             }
-          } catch(e) {
-            console.warn("Direct VPS save err:", e);
-          }
+          } catch(e) {}
         }
-
-        // 2. Secondary: Sovereign LAN Node
-        try {
-          const res = await fetchWithTimeout(LAN_NODE_ENDPOINT, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-User-Name": currentUserName || "کاربر"
-            },
-            body: JSON.stringify(accounts)
-          }, 1500);
-          if (res.ok) {
-            updateSyncUI('synced', 'ذخیره شد (smart-db)');
-            return;
-          }
-        } catch(e) {}
-
-        // 3. Fallback: Tunnel
-        try {
-          const res = await fetchWithTimeout(TUNNEL_ENDPOINT, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-User-Name": currentUserName || "کاربر"
-            },
-            body: JSON.stringify(accounts)
-          }, 2500);
-          if (res.ok) {
-            updateSyncUI('synced', 'ذخیره شد (سرور)');
-            return;
-          }
-        } catch(e) {}
 
         updateSyncUI('synced', 'ذخیره در مرورگر');
       }, 300);

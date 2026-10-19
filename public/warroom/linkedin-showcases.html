@@ -464,9 +464,10 @@
 
   <!-- SCRIPT ENGINE -->
   <script>
-    const LAN_SHOWCASE_ENDPOINT = "http://192.168.1.136:3001/api/warroom/showcases";
-    const CLOUD_SHOWCASE_ENDPOINT = "https://artistic-muslim-sit-sent.trycloudflare.com/api/warroom/showcases";
-    const DIRECT_VPS_SHOWCASE_ENDPOINT = window.location.hostname === "109.120.131.224" ? "/api/warroom/showcases" : "";
+    const isDirectVps = window.location.hostname === "109.120.131.224";
+    const isLocalOrigin = isDirectVps || window.location.hostname === "warroom.aria-haross.ir";
+    const CLOUD_SHOWCASE_ENDPOINT = isLocalOrigin ? "/api/warroom/showcases" : "https://warroom.aria-haross.ir/api/warroom/showcases";
+    const DIRECT_VPS_SHOWCASE_ENDPOINT = isDirectVps ? "/api/warroom/showcases" : (window.location.protocol === "http:" ? "http://109.120.131.224/api/warroom/showcases" : "");
 
     // Default Baseline Strategy
     const initialPagesData = {
