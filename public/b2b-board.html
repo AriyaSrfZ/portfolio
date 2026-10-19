@@ -1067,14 +1067,20 @@
 
     // LocalStorage State Management
     let accounts = [];
+    let hasLocalUserEdits = false;
     try {
       const saved = localStorage.getItem("pfg_accounts_data_v3");
       if (saved) {
-        accounts = JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          accounts = parsed;
+          hasLocalUserEdits = true;
+        } else {
+          accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
+        }
       } else {
-        // Initialize all accounts at start point: prospect
+        // Fallback default until autoInitSync pulls live database from cloud
         accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
-        localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
       }
     } catch(e) {
       accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
@@ -1465,19 +1471,6 @@
     }
 
     async function autoInitSync() {
-      // CRITICAL DATA PROTECTION: NEVER overwrite if user already has data in localStorage!
-      const existing = localStorage.getItem("pfg_accounts_data_v3");
-      if (existing) {
-        try {
-          const parsed = JSON.parse(existing);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            console.log("Local user data preserved (" + parsed.length + " accounts). Will NOT overwrite.");
-            makeLocalSafetyBackup("بارگذاری اولیه صفحه");
-            return;
-          }
-        } catch(e) {}
-      }
-
       const applyInit = (data, src) => {
         accounts = data;
         localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
@@ -1485,14 +1478,16 @@
         updateSyncUI('synced', src);
       };
 
-      // Only if localStorage is completely empty, fetch initial data:
       // 1. Same-origin API (local/VPS)
       if (PRIMARY_API_ENDPOINT) {
         try {
           const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 4000);
           if (res.ok) {
             const data = await res.json();
-            if (Array.isArray(data) && data.length > 0) { applyInit(data, 'متصل به سرور استکهلم'); return; }
+            if (Array.isArray(data) && data.length > 0) {
+              applyInit(data, 'متصل به سرور استکهلم');
+              return;
+            }
           }
         } catch(e) {}
       }
@@ -1500,17 +1495,36 @@
       // 2. Firebase RTDB (primary for GitHub Pages / ariya-sarrafzadeh.ir)
       try {
         const data = await firebasePull();
-        if (data) { applyInit(data, 'متصل به Firebase'); return; }
-      } catch(e) {}
-
-      // 3. Static fallback ONLY if all network sources failed
-      try {
-        const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 2500);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) { applyInit(data, 'پشتیبان اولیه'); }
+        if (data && data.length > 0) {
+          applyInit(data, 'متصل به Firebase');
+          return;
         }
       } catch(e) {}
+
+      // 3. Direct VPS HTTP fallback
+      if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT + "?t=" + Date.now(), {}, 3500);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) {
+              applyInit(data, 'متصل به سرور استکهلم (HTTP)');
+              return;
+            }
+          }
+        } catch(e) {}
+      }
+
+      // 4. Static fallback
+      if (!hasLocalUserEdits) {
+        try {
+          const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 2500);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) { applyInit(data, 'پشتیبان اولیه'); }
+          }
+        } catch(e) {}
+      }
     }
 
     function importDataJSON(event) {
