@@ -37,6 +37,8 @@ export default function BackgroundController() {
       { id: 'data-pipeline', env: 'recon' },
       { id: 'incident-dossiers', env: 'incidents' },
       { id: 'lifecycle', env: 'incidents' },
+      { id: 'ai-workforce', env: 'core' },
+      { id: 'book', env: 'core' },
     ];
 
     const observer = new IntersectionObserver(

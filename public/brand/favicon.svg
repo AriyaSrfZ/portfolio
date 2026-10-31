@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- AS High-Clarity Browser Favicon (32x32) -->
+  <rect width="32" height="32" rx="8" fill="#171C1A" />
+  <g transform="translate(1, 1) scale(0.25)">
+    <path d="M33 94 L59.5 24 C59.8 23.2 60.2 23.2 60.5 24 L87 94" 
+          stroke="#F0EEE7" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="42" y1="65" x2="48" y2="65" stroke="#F0EEE7" stroke-width="11" stroke-linecap="round" />
+    <line x1="68" y1="65" x2="76" y2="65" stroke="#F0EEE7" stroke-width="11" stroke-linecap="round" />
+    <path d="M77 42 C74 30 62 25 50 29 C40 33 39 44 46 51 L66 69 C74 77 72 88 62 92 C50 96 38 90 35 78" 
+          stroke="#8FB4AA" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

@@ -97,7 +97,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       window.addEventListener('mousedown', handleClickOutside);
 
       // Deterministic Scroll Spy
-      const sectionIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'book'];
+      const sectionIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'ai-workforce', 'book'];
       const handleNavScroll = () => {
         for (const id of sectionIds) {
           const el = document.getElementById(id);
@@ -133,6 +133,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         { label: 'مغایرت‌گیری', target: 'reconciliation-engine', env: 'recon' as ActiveEnvironment },
         { label: 'بحران‌ها', target: 'incident-dossiers', env: 'incidents' as ActiveEnvironment },
         { label: 'چرخه محصول', target: 'lifecycle', env: 'core' as ActiveEnvironment },
+        { label: 'هوش مصنوعی', target: 'ai-workforce', env: 'core' as ActiveEnvironment },
         { label: 'مشاوره', target: 'book', env: 'core' as ActiveEnvironment },
       ]
     : [
@@ -142,6 +143,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         { label: 'Reconcile', target: 'reconciliation-engine', env: 'recon' as ActiveEnvironment },
         { label: 'Incidents', target: 'incident-dossiers', env: 'incidents' as ActiveEnvironment },
         { label: 'Lifecycle', target: 'lifecycle', env: 'core' as ActiveEnvironment },
+        { label: 'AI Swarm', target: 'ai-workforce', env: 'core' as ActiveEnvironment },
         { label: 'Consultation', target: 'book', env: 'core' as ActiveEnvironment },
       ];
 
@@ -149,6 +151,9 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
     setActiveSection(targetId);
     setMobileMenuOpen(false);
     window.dispatchEvent(new CustomEvent('ambient-env-change', { detail: env }));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('dossier-select', { detail: { id: targetId } }));
+    }
     const el = document.getElementById(targetId);
     if (el) {
       e.preventDefault();
@@ -211,6 +216,12 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           <span className="hidden lg:block w-px h-4 bg-[var(--border)] mx-1"></span>
 
           {/* Secondary Links */}
+          <a
+            href={isFa ? `${baseUrl}fa/achievements/` : `${baseUrl}achievements/`}
+            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-[var(--accent-primary)] hover:text-white transition-colors"
+          >
+            {isFa ? 'دستاوردها' : 'Achievements'}
+          </a>
           <a
             href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`}
             className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"

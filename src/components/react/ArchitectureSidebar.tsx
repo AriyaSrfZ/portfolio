@@ -22,7 +22,8 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
         { id: 'reconciliation-engine', pageNum: '۰۴', label: 'مغایرت‌گیری و تسویه زودهنگام پذیرندگان', tag: 'بخش ۰۴' },
         { id: 'incident-dossiers', pageNum: '۰۵', label: 'آرشیو بحران‌های زنده در پروداکشن', tag: 'بخش ۰۵' },
         { id: 'lifecycle', pageNum: '۰۶', label: 'چرخه حیات محصول فنی', tag: 'بخش ۰۶' },
-        { id: 'book', pageNum: '۰۷', label: 'جلسه بررسی معماری و مشاوره تخصصی', tag: 'بخش ۰۷' },
+        { id: 'ai-workforce', pageNum: '۰۷', label: 'نیروی کار هوش مصنوعی و اتوماسیون', tag: 'بخش ۰۷' },
+        { id: 'book', pageNum: '۰۸', label: 'جلسه بررسی معماری و مشاوره تخصصی', tag: 'بخش ۰۸' },
       ]
     : [
         { id: 'overview', pageNum: '', label: 'Overview', tag: 'OVERVIEW' },
@@ -32,7 +33,8 @@ export default function ArchitectureSidebar({ locale = 'en' }: ArchitectureSideb
         { id: 'reconciliation-engine', pageNum: '04', label: 'Reconciliation & Payouts', tag: 'SECTION 04' },
         { id: 'incident-dossiers', pageNum: '05', label: 'Production Incident Archive', tag: 'SECTION 05' },
         { id: 'lifecycle', pageNum: '06', label: 'Product Lifecycle Arc', tag: 'SECTION 06' },
-        { id: 'book', pageNum: '07', label: 'Architecture Review & Intake', tag: 'SECTION 07' },
+        { id: 'ai-workforce', pageNum: '07', label: 'Autonomous AI Workforce', tag: 'SECTION 07' },
+        { id: 'book', pageNum: '08', label: 'Architecture Review & Intake', tag: 'SECTION 08' },
       ];
 
   useEffect(() => {

@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AIWorkforceHub from '../components/react/AIWorkforceHub';
+import { stats } from '../data/stats';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const achievementsList = [
+  {
+    pillar: 'Pillar 01 · Life Dashboard',
+    title: 'Autonomous Executive Command Console & Life Dashboard',
+    desc: 'Unified single-pane glass aggregating calendars, executive email queues, Linear tasks, and real-time system alarms. Executes automated 07:00 AM daily briefings that rank decisions by leverage, eliminating fragmented context switching.',
+    metric: stats.aiLifeDashboardSync.en,
+    gain: stats.aiReclaimedHoursWeekly.en,
+    tags: ['Single-Pane UI', 'Google Calendar API', 'Gmail Triage', 'Linear / GitHub', 'Daily 07:00 Brief'],
+  },
+  {
+    pillar: 'Pillar 02 · Second Brain',
+    title: 'Obsidian Knowledge Vault & Agentic Context Engine',
+    desc: 'Centralized markdown second brain indexing corporate contracts, banking agreements, SOPs, architecture RFCs, and meeting transcripts. Connected to Claude and local MCP tools with sub-50ms deterministic context retrieval.',
+    metric: stats.aiSecondBrainDocs.en,
+    gain: '100% Grounded Memory',
+    tags: ['Obsidian Markdown Vault', 'MCP Graph Query', 'Zero Hallucination', 'Contracts & Legal Admin'],
+  },
+  {
+    pillar: 'Pillar 03 · Executive Assistant',
+    title: 'Diurnal Executive Assistant Agent & Weekly Retrospective',
+    desc: 'Autonomous daily assistant operating on a strict morning kickoff and evening retro schedule. Enforces Eisenhower matrix priority ranking, audits daily task completion, and rolls up compound weekly performance analytics.',
+    metric: stats.aiExecutiveAssistantLoop.en,
+    gain: 'Compound Weekly Gains',
+    tags: ['AM Kickoff Protocol', 'PM Retro Audit', 'Weekly Rollups', 'Eisenhower Leverage Matrix'],
+  },
+  {
+    pillar: 'Pillar 04 · Content Marketing',
+    title: 'Brand-Aligned & ICP-Tuned Content Marketing Agent',
+    desc: 'Autonomous technical publishing pipeline monitoring industry signal and generating humanized LinkedIn posts, architectural whitepapers, and newsletter drops with tested hook formulas and zero AI slop.',
+    metric: stats.aiContentMarketingEngine.en,
+    gain: 'Multi-Channel Authority',
+    tags: ['21 Tested Hook Formulas', 'Anti-Slop Linter', 'ICP Targeting', 'LinkedIn & Newsletter Engine'],
+  },
+  {
+    pillar: 'Pillar 05 · AI Workforce',
+    title: 'Hierarchical Multi-Agent Swarm Led by Jarvis (Chief of Staff)',
+    desc: 'Distributed multi-agent hierarchy orchestrated by an AI Chief of Staff (Jarvis) delegating tasks across 6 specialized sub-agents: Executive Assistant, Content Agent, Research Agent, Sales Agent, Operations Agent, and Analytics Agent.',
+    metric: stats.aiWorkforceAgentCount.en,
+    gain: 'Autonomous Delegation',
+    tags: ['Chief of Staff Swarm', '6 Specialist Sub-Agents', 'JSON-RPC Message Bus', 'Consensus Verification'],
+  },
+];
+---
+
+<Layout
+  title="Achievements & Autonomous AI Implementations — Ariya Sarrafzadeh"
+  description="Proven track record across mission-critical financial systems, national telecom infrastructure, and cutting-edge autonomous AI agent implementations."
+>
+  <main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 font-sans">
+    
+    <!-- Hero Header Banner -->
+    <div class="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 sm:p-10 mb-8 shadow-sm">
+      <div class="flex items-center gap-2 mb-3 font-mono text-xs text-[var(--text-secondary)] uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-[#B39A77]"></span>
+        <span>PRODUCTION VERIFIED ACHIEVEMENTS · AUTONOMOUS OPERATIONS</span>
+        <div class="h-px flex-1 bg-[var(--border)]"></div>
+        <span class="text-xs text-[var(--accent-primary)] font-mono font-semibold">5 CORE AI PILLARS</span>
+      </div>
+      
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase text-[var(--text-primary)] mb-4 tracking-tight">
+        Production Achievements &amp; Autonomous AI Systems
+      </h1>
+      
+      <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed max-w-3xl mb-6">
+        A definitive record of systems engineered and operating in production: from 50,000 TPS zero-drift double-entry financial ledgers and national SMS switches, to the 5 core Claude autonomous systems that put operators in the top 1% of AI capability.
+      </p>
+
+      <!-- Key Proof Metrics Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-mono text-xs pt-2 border-t border-[var(--border)]">
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Experience</span>
+          <span class="text-sm font-bold text-[var(--text-primary)]">{stats.experienceYears.en}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Telecom Volume</span>
+          <span class="text-sm font-bold text-[var(--text-primary)]">{stats.telecomHubAnnualVolume.badgeEn}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Ledger Parity</span>
+          <span class="text-sm font-bold text-emerald-400">{stats.financialDriftPercent.en}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Autonomous Swarm</span>
+          <span class="text-sm font-bold text-cyan-400">{stats.aiWorkforceAgentCount.shortEn}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Knowledge Vault</span>
+          <span class="text-sm font-bold text-amber-400">{stats.aiSecondBrainDocs.shortEn}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Weekly Leverage</span>
+          <span class="text-sm font-bold text-[var(--accent-primary)]">{stats.aiReclaimedHoursWeekly.shortEn}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Interactive Component Stage -->
+    <div class="mb-12">
+      <div class="flex items-center justify-between mb-4 px-1">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>Interactive AI Workforce Hub</span>
+          </h2>
+          <p class="text-xs text-[var(--text-secondary)]">Explore the live topology and simulated dispatches of the 5 weekend Claude implementations.</p>
+        </div>
+      </div>
+      
+      <AIWorkforceHub client:load locale="en" />
+    </div>
+
+    <!-- The 5 AI Achievements Deep Dive -->
+    <div class="space-y-6 mb-12">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-[var(--text-primary)] uppercase tracking-tight">
+          The 5 Core AI Systems Built &amp; Deployed
+        </h2>
+        <p class="text-xs text-[var(--text-secondary)] mt-1">
+          Detailed breakdown of the architectural invariants, tools, and real-world outcomes of each weekend build.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {achievementsList.map((item, idx) => (
+          <article class="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all shadow-sm group">
+            <div>
+              <div class="flex items-center justify-between border-b border-[var(--border)] pb-2.5 mb-3 text-xs font-mono">
+                <span class="text-[10px] font-bold text-[var(--accent-primary)] uppercase">{item.pillar}</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-[var(--surface-elevated)] border border-[var(--border)] text-emerald-400 font-semibold">{item.metric}</span>
+              </div>
+              <h3 class="text-base font-bold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors">
+                {item.title}
+              </h3>
+              <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-4">
+                {item.desc}
+              </p>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono text-[var(--text-secondary)] pt-3 border-t border-[var(--border)] mb-3">
+                <span>Production Gain:</span>
+                <span class="font-bold text-[var(--text-primary)]">{item.gain}</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                {item.tags.map((t) => (
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[var(--surface-elevated)] border border-[var(--border)] text-[var(--text-secondary)]">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- Back to Case Studies / Action Banner -->
+    <div class="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 text-center font-mono">
+      <h3 class="text-base font-bold text-[var(--text-primary)] mb-2">Want to Review the Full Infrastructure Dossiers?</h3>
+      <p class="text-xs text-[var(--text-secondary)] max-w-xl mx-auto mb-5 leading-relaxed font-sans">
+        Review production case studies detailing payment switches, ISO 8583 banking telegrams, double-entry ledger proofs, and high-throughput SMPP SMS infrastructure.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href={`${baseUrl}work/`} class="px-5 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider bg-[var(--surface-elevated)] border border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent-primary)] transition-all">
+          Explore Production Case Studies &rarr;
+        </a>
+        <a href={`${baseUrl}#book`} class="px-5 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-light)] transition-all shadow-md">
+          Book an Architecture Consultation &darr;
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

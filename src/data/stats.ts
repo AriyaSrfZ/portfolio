@@ -321,6 +321,68 @@ export const stats = {
     en: "OTP Delivery < 2,000ms",
     fa: "OTP Delivery < 2,000ms",
   },
+  // =========================================================================
+  // 08. AUTONOMOUS AI & AGENTIC WORKFORCE (5 KEY PILLARS)
+  // =========================================================================
+  aiWorkforceAgentCount: {
+    raw: 6,
+    en: "6 Specialist Agents",
+    fa: "۶ عامل تخصصی خودگردان",
+    shortEn: "6 AI AGENTS",
+    shortFa: "۶ عامل هوشمند",
+    textEn: "Chief of Staff orchestrating 6 specialist agents",
+    textFa: "معماری ارشد هوش مصنوعی راهبر ۶ عامل تخصصی",
+    badgeEn: "Chief of Staff Swarm",
+    badgeFa: "تیم عامل‌های خودگردان",
+  },
+  aiSecondBrainDocs: {
+    raw: 1200,
+    en: "1,200+ Vault Docs",
+    fa: "۱۲۰۰+ سند دانشی",
+    shortEn: "1.2K DOCS",
+    shortFa: "۱٫۲K سند",
+    textEn: "1,200+ linked Obsidian vault documents",
+    textFa: "بیش از ۱۲۰۰ سند پیوند‌خورده در آبسیدین",
+    badgeEn: "Obsidian RAG Vault",
+    badgeFa: "مخزن دانشی آبسیدین",
+  },
+  aiLifeDashboardSync: {
+    raw: "Daily 07:00",
+    en: "Daily 07:00 Briefing",
+    fa: "گزارش روزانه ۰۷:۰۰",
+    shortEn: "07:00 AM SYNC",
+    shortFa: "همگام‌سازی ۰۷:۰۰",
+    textEn: "Automated morning briefing across calendar, tasks, and telemetry",
+    textFa: "گزارش تحلیلی صبحگاهی یکپارچه از تقویم، وظایف و تله‌متری",
+  },
+  aiExecutiveAssistantLoop: {
+    raw: 2,
+    en: "Diurnal Check-in (AM/PM)",
+    fa: "چک‌این دوگانه صبح و شب",
+    shortEn: "DIURNAL AM/PM",
+    shortFa: "چرخه روزانه/شبانه",
+    textEn: "Diurnal morning kickoff, evening retro, and weekly rollups",
+    textFa: "برنامه‌ریزی صبحگاهی، بازنگری شبانه و تحلیل هفتگی روند اهداف",
+  },
+  aiContentMarketingEngine: {
+    raw: 100,
+    en: "100% Brand-Aligned",
+    fa: "انطباق ۱۰۰٪ با هویت برند",
+    shortEn: "ZERO-SLOP",
+    shortFa: "بدون اسلوپ",
+    textEn: "Anti-slop humanized content engine tuned to brand voice and ICP",
+    textFa: "خط تولید محتوای انسانی منطبق با پرسونای مخاطب و برند",
+  },
+  aiReclaimedHoursWeekly: {
+    raw: 25,
+    en: "25+ Hours / Week",
+    fa: "۲۵+ ساعت صرفه‌جویی هفتگی",
+    shortEn: "+25H RECLAIMED",
+    shortFa: "۲۵+ ساعت در هفته",
+    textEn: "25+ hours of executive bandwidth reclaimed weekly",
+    textFa: "بیش از ۲۵ ساعت بازیابی زمان مدیریتی در هر هفته",
+  },
 } as const;
 
 export type StatKey = keyof typeof stats;
+

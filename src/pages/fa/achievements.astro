@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AIWorkforceHub from '../../components/react/AIWorkforceHub';
+import { stats } from '../../data/stats';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const achievementsListFa = [
+  {
+    pillar: 'ستون اول · داشبورد زندگی',
+    title: 'کنسول فرماندهی اجرایی و داشبورد متمرکز زندگی',
+    desc: 'تک‌صفحه شیشه‌ای تجمیع تقویم‌های کاری، صف ایمیل‌های مدیریتی، تسک‌های تیم و هشدارهای زیرساخت. اجرای گزارش خلاصه صبحگاهی در ساعت ۰۷:۰۰ که تصمیمات را بر اساس بالاترین ضریب اهرمی مرتب کرده و حواس‌پرتی ناشی از سوئیچ مکرر میان ابزارها را حذف می‌کند.',
+    metric: stats.aiLifeDashboardSync.fa,
+    gain: stats.aiReclaimedHoursWeekly.fa,
+    tags: ['رابط تک‌صفحه', 'Google Calendar API', 'تریاژ ایمیل Gmail', 'ابزار Linear و گیت‌هاب', 'گزارش ۰۷:۰۰ صبح'],
+  },
+  {
+    pillar: 'ستون دوم · مغز دوم',
+    title: 'مخزن دانشی آبسیدین و موتور پردازش کانتکست عامل‌ها',
+    desc: 'مغز دوم متمرکز بر بستر مارک‌داون برای ایندکس قراردادهای تجاری، اسناد بانکی، قوانین، مستندات معماری و صورت‌جلسات. اتصال پایدار به کلود و ابزارهای محلی MCP با سرعت بازیابی زیر ۵۰ میلی‌ثانیه برای ارائه پاسخ‌های بدون توهم.',
+    metric: stats.aiSecondBrainDocs.fa,
+    gain: 'حافظه ۱۰۰٪ مبتنی بر واقعیت',
+    tags: ['مخزن مارک‌داون Obsidian', 'کوئری گراف با MCP', 'حذف توهم هوش مصنوعی', 'مدیریت قراردادها و اسناد'],
+  },
+  {
+    pillar: 'ستون سوم · دستیار اجرایی',
+    title: 'دستیار اجرایی دوگانه (صبح و شب) و گزارش هفتگی تجمیعی',
+    desc: 'عامل خودگردان روزانه با دو پروتکل منظم صبحگاهی و ارزیابی شبانه. اولویت‌بندی کارها با ماتریس آیزنهاور، ممیزی دقیق موارد انجام‌شده و تجمیع داده‌ها در پایان هر هفته برای رصد و بهبود مستمر نرخ پیشرفت اهداف.',
+    metric: stats.aiExecutiveAssistantLoop.fa,
+    gain: 'رشد و بهبود مرکب هفتگی',
+    tags: ['پروتکل شروع صبحگاه', 'ممیزی کارنامه شبانه', 'گزارش تجمیعی هفتگی', 'ماتریس اهرمی آیزنهاور'],
+  },
+  {
+    pillar: 'ستون چهارم · بازاریابی محتوا',
+    title: 'عامل تولید محتوا و دیده‌شدن برند منطبق بر پرسونای مخاطب (ICP)',
+    desc: 'خط لوله خودکار انتشار فنی که با رصد سیگنال‌های بازار و بهره‌گیری از ۲۱ فرمول اثبات‌شده هوک، پست‌های تخصصی لینکدین، مقالات فنی و خبرنامه‌ها را با لحن انسانی و عاری از هرگونه کلیشه و اسلوپ هوش مصنوعی تولید می‌کند.',
+    metric: stats.aiContentMarketingEngine.fa,
+    gain: 'مرجعیت چندکاناله برند',
+    tags: ['۲۱ فرمول تست‌شده هوک', 'پالایشگر ضد اسلوپ', 'پرسونای مخاطب ICP', 'موتور انتشار لینکدین'],
+  },
+  {
+    pillar: 'ستون پنجم · نیروی کار عامل‌ها',
+    title: 'تیم سلسله‌مراتبی عامل‌های هوشمند با راهبری جارویس (مدیر ارشد ستادی)',
+    desc: 'معماری توزیع‌شده چندعاملی تحت هدایت مدیر ارشد ستادی (جارویس) برای هدایت ۶ عامل متخصص: دستیار اجرایی، عامل محتوا، عامل پژوهش عمیق، عامل فروش، عامل عملیات و عامل تحلیل داده و تله‌متری.',
+    metric: stats.aiWorkforceAgentCount.fa,
+    gain: 'تفویض وظایف کاملاً خودگردان',
+    tags: ['تیم تحت امر Chief of Staff', '۶ عامل تخصصی', 'گذرگاه پیام JSON-RPC', 'اعتبارسنجی با اجماع'],
+  },
+];
+---
+
+<Layout
+  title="دستاوردها و سیستم‌های خودگردان هوش مصنوعی — آریا صراف‌زاده"
+  description="کارنامه مستند در مهندسی سوییچ‌های مالی پرترافیک، زیرساخت ملی پیامک و استقرار سیستم‌های خودگردان هوش مصنوعی."
+  lang="fa"
+  dir="rtl"
+>
+  <main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 font-['Vazirmatn',sans-serif]" dir="rtl">
+    
+    <!-- Hero Header Banner -->
+    <div class="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 sm:p-10 mb-8 shadow-sm">
+      <div class="flex items-center gap-2 mb-3 font-mono text-xs text-[var(--text-secondary)] uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-[#B39A77]"></span>
+        <span>دستاوردهای اثبات‌شده عملیاتی · سیستم‌های خودگردان</span>
+        <div class="h-px flex-1 bg-[var(--border)]"></div>
+        <span class="text-xs text-[var(--accent-primary)] font-mono font-semibold" dir="ltr">5 AI PILLARS</span>
+      </div>
+      
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase text-[var(--text-primary)] mb-4 tracking-tight">
+        دستاوردهای عملیاتی و سیستم‌های خودگردان هوش مصنوعی
+      </h1>
+      
+      <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed max-w-3xl mb-6">
+        گزارش دستاوردهای واقعی در محیط عملیاتی: از دفاتر کل دوطرفه با ظرفیت ۵۰ هزار تراکنش و مغایرت مالی صفر و سوییچ‌های ملی پیامک، تا پنج سیستم بنیادین در کلود که مجریان آن را در جمع ۱٪ برتر کاربران حرفه‌ای هوش مصنوعی قرار می‌دهد.
+      </p>
+
+      <!-- Key Proof Metrics Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-mono text-xs pt-2 border-t border-[var(--border)]" dir="ltr">
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3 text-center">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Experience</span>
+          <span class="text-sm font-bold text-[var(--text-primary)]">{stats.experienceYears.en}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3 text-center">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Telecom Volume</span>
+          <span class="text-sm font-bold text-[var(--text-primary)]">{stats.telecomHubAnnualVolume.badgeEn}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3 text-center">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Ledger Parity</span>
+          <span class="text-sm font-bold text-emerald-400">{stats.financialDriftPercent.en}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3 text-center">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Autonomous Swarm</span>
+          <span class="text-sm font-bold text-cyan-400">{stats.aiWorkforceAgentCount.shortEn}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3 text-center">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Knowledge Vault</span>
+          <span class="text-sm font-bold text-amber-400">{stats.aiSecondBrainDocs.shortEn}</span>
+        </div>
+        <div class="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3 text-center">
+          <span class="text-[10px] text-[var(--text-secondary)] block uppercase">Weekly Leverage</span>
+          <span class="text-sm font-bold text-[var(--accent-primary)]">{stats.aiReclaimedHoursWeekly.shortEn}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Interactive Component Stage -->
+    <div class="mb-12">
+      <div class="flex items-center justify-between mb-4 px-1">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>داشبورد تعاملی نیروی کار هوش مصنوعی (AI Workforce Hub)</span>
+          </h2>
+          <p class="text-xs text-[var(--text-secondary)]">بررسی توپولوژی زنده و شبیه‌سازی فرایندها در پنج پروژه ساخته‌شده در کلود.</p>
+        </div>
+      </div>
+      
+      <AIWorkforceHub client:load locale="fa" />
+    </div>
+
+    <!-- The 5 AI Achievements Deep Dive -->
+    <div class="space-y-6 mb-12">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-[var(--text-primary)] uppercase tracking-tight">
+          پنج ستون هوش مصنوعی پیاده‌سازی‌شده
+        </h2>
+        <p class="text-xs text-[var(--text-secondary)] mt-1">
+          تحلیل دقیق الزامات معماری، ابزارهای به‌کاررفته و دستاوردهای عینی هر یک از پروژه‌ها.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {achievementsListFa.map((item) => (
+          <article class="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all shadow-sm group">
+            <div>
+              <div class="flex items-center justify-between border-b border-[var(--border)] pb-2.5 mb-3 text-xs font-mono">
+                <span class="text-[10px] font-bold text-[var(--accent-primary)] uppercase">{item.pillar}</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-[var(--surface-elevated)] border border-[var(--border)] text-emerald-400 font-semibold">{item.metric}</span>
+              </div>
+              <h3 class="text-base font-bold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors">
+                {item.title}
+              </h3>
+              <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-4">
+                {item.desc}
+              </p>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono text-[var(--text-secondary)] pt-3 border-t border-[var(--border)] mb-3">
+                <span>دستاورد عملیاتی:</span>
+                <span class="font-bold text-[var(--text-primary)]">{item.gain}</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                {item.tags.map((t) => (
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[var(--surface-elevated)] border border-[var(--border)] text-[var(--text-secondary)]">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- Back to Case Studies / Action Banner -->
+    <div class="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 text-center font-mono">
+      <h3 class="text-base font-bold text-[var(--text-primary)] mb-2 font-['Vazirmatn',sans-serif]">مشاهده سایر پرونده‌های معماری زیرساخت</h3>
+      <p class="text-xs text-[var(--text-secondary)] max-w-xl mx-auto mb-5 leading-relaxed font-['Vazirmatn',sans-serif]">
+        بررسی پرونده‌های عملیاتی سوییچ‌های بانکی، پیام‌های مالی ISO 8583، اثبات دفاتر کل دوطرفه و زیرساخت مخابراتی SMPP.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href={`${baseUrl}fa/work/`} class="px-5 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider bg-[var(--surface-elevated)] border border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent-primary)] transition-all font-['Vazirmatn',sans-serif]">
+          مشاهده پرونده‌های معماری &larr;
+        </a>
+        <a href={`${baseUrl}fa/#book`} class="px-5 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-light)] transition-all shadow-md font-['Vazirmatn',sans-serif]">
+          درخواست مشاوره معماری سیستم &darr;
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

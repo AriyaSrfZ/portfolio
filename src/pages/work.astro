@@ -59,6 +59,19 @@ const caseStudies = [
     badge: `${stats.merchantPayoutWindow.raw}h Early Settlement`,
     tags: ['Spring Batch Reconciler', 'Auto-Healing Refund-MNG', 'RabbitMQ Event Mesh', 'Paya/Satna Bank-Proxy', 'Early Merchant Settlement']
   },
+  {
+    id: '05',
+    category: 'Autonomous AI & Agents',
+    title: 'Autonomous AI Workforce: Life Dashboard, Second Brain & Chief of Staff',
+    summary: 'Hierarchical multi-agent workforce led by an AI Chief of Staff (Jarvis) orchestrating 6 specialist sub-agents, integrated with an Obsidian Second Brain and automated 07:00 AM Life Dashboard.',
+    problem: 'Executive cognitive overload, fragmented communication across tools, unindexed knowledge silos, and ad-hoc content creation consuming 25+ hours weekly.',
+    decision: 'Architected 5 core Claude & MCP agent systems: single-pane Life Dashboard, 1,200+ note Obsidian Second Brain RAG, diurnal Executive Assistant, brand-aligned Content Marketing agent, and a multi-agent Chief of Staff swarm.',
+    tradeoff: 'Enforced strict tool schemas, local markdown memory persistence, and bounded agent verification loops over unconstrained non-deterministic LLM autonomy.',
+    outcome: `Reclaimed ${stats.aiReclaimedHoursWeekly.en}, unified 1,200+ vault notes with sub-50ms context retrieval, and deployed an autonomous 6-agent workforce in production.`,
+    link: `${baseUrl}achievements/`,
+    badge: stats.aiWorkforceAgentCount.badgeEn,
+    tags: ['AI Chief of Staff', 'Obsidian Second Brain', 'Life Dashboard', 'Executive Assistant Loop', 'Brand Content Engine', 'Multi-Agent Swarm']
+  },
 ];
 ---
 
@@ -74,7 +87,7 @@ const caseStudies = [
         <span class="w-1.5 h-1.5 rounded-full bg-[#B39A77]"></span>
         <span>PRODUCTION INITIATIVES · ARCHITECTURAL DOSSIERS</span>
         <div class="h-px flex-1 bg-[var(--border)]"></div>
-        <span class="text-[10px] text-[var(--text-secondary)] font-mono">4 CASE STUDIES</span>
+        <span class="text-[10px] text-[var(--text-secondary)] font-mono">5 CASE STUDIES</span>
       </div>
       <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[var(--text-primary)] mb-3 tracking-tight">
         Systems Architecture &amp; Case Studies
@@ -84,7 +97,7 @@ const caseStudies = [
       </p>
     </div>
 
-    <!-- 4 Case Study Cards Grid -->
+    <!-- 5 Case Study Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {caseStudies.map((study) => (
         <article class="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all duration-200 group shadow-sm">

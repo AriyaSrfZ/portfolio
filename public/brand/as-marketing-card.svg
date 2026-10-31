@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Brand Second Brain Marketing Deliverable Card (1200x630) -->
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="card-glow" cx="85%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#527C78" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#171C1A" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="card-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#252C29" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Deep Canvas -->
+  <rect width="1200" height="630" fill="#171C1A" />
+  <rect width="1200" height="630" fill="url(#card-grid)" />
+  <rect width="1200" height="630" fill="url(#card-glow)" />
+
+  <!-- Outer Structural Border -->
+  <rect x="24" y="24" width="1152" height="582" rx="20" stroke="#36403C" stroke-width="2" />
+
+  <!-- Top Pillar Badge -->
+  <g transform="translate(72, 72)">
+    <rect width="330" height="34" rx="6" fill="#202725" stroke="#46504B" stroke-width="1" />
+    <circle cx="20" cy="17" r="4" fill="#8FB4AA" />
+    <text x="36" y="22" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" fill="#8FB4AA" letter-spacing="1.5">MISSION-CRITICAL INFRASTRUCTURE</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="72" y="200" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="64" font-weight="700" fill="#F0EEE7" letter-spacing="-1">
+    SYSTEMS THAT HOLD
+  </text>
+  <text x="72" y="275" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="64" font-weight="700" fill="#8FB4AA" letter-spacing="-1">
+    UNDER PRESSURE.
+  </text>
+
+  <!-- Telemetry Strip -->
+  <g transform="translate(72, 335)">
+    <rect width="780" height="48" rx="8" fill="#202725" stroke="#36403C" stroke-width="1" />
+    <text x="24" y="30" font-family="'IBM Plex Mono', monospace" font-size="15" font-weight="500" fill="#B5BDB6">
+      <tspan fill="#8FB4AA">50,000+ TPS</tspan> · &lt; 30ms SLA · <tspan fill="#B39A77">0.00% Drift (2PC)</tspan> · ISO 8583 · SMPP 3.4
+    </text>
+  </g>
+
+  <!-- Supporting Narrative -->
+  <text x="72" y="435" font-family="'IBM Plex Sans', sans-serif" font-size="20" font-weight="400" fill="#B5BDB6" width="700">
+    Distributed ACID ledgers, zero-financial-drift switching rails, and high-concurrency carrier infrastructure.
+  </text>
+
+  <!-- Bottom Identity Bar -->
+  <line x1="72" y1="495" x2="1128" y2="495" stroke="#36403C" stroke-width="1.5" />
+
+  <g transform="translate(72, 520)">
+    <!-- Squircle Monogram Badge (48x48) -->
+    <g transform="scale(0.4)">
+      <rect x="4" y="4" width="112" height="112" rx="28" fill="#202725" stroke="#527C78" stroke-width="2" />
+      <path d="M33 94 L59.5 24 C59.8 23.2 60.2 23.2 60.5 24 L87 94" 
+            stroke="#F0EEE7" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="42" y1="65" x2="48" y2="65" stroke="#F0EEE7" stroke-width="9" stroke-linecap="round" />
+      <line x1="68" y1="65" x2="76" y2="65" stroke="#F0EEE7" stroke-width="9" stroke-linecap="round" />
+      <path d="M77 42 C74 30 62 25 50 29 C40 33 39 44 46 51 L66 69 C74 77 72 88 62 92 C50 96 38 90 35 78" 
+            stroke="#8FB4AA" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <!-- Author Info -->
+    <text x="64" y="24" font-family="'IBM Plex Sans', sans-serif" font-size="18" font-weight="600" fill="#F0EEE7">Ariya Sarrafzadeh</text>
+    <text x="64" y="42" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="500" fill="#8FB4AA">Principal Systems Architect &amp; Product Leader</text>
+  </g>
+
+  <!-- Attribution Link -->
+  <g transform="translate(930, 538)">
+    <text x="0" y="16" font-family="'IBM Plex Mono', monospace" font-size="16" font-weight="500" fill="#8B958E" letter-spacing="1">ariya-sarrafzadeh.ir</text>
+  </g>
+</svg>

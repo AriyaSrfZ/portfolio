@@ -59,6 +59,19 @@ const caseStudies = [
     badge: `تسویه پیش از موعد ${stats.merchantPayoutWindow.raw}h`,
     tags: ['مغایرت‌گیری Spring Batch', 'سرویس خودترمیمی Refund-MNG', 'مش رویداد RabbitMQ', 'تسویه پیش از موعد پذیرندگان', 'پایپ‌لاین پایا و ساتنا']
   },
+  {
+    id: '۰۵',
+    category: 'هوش مصنوعی خودگردان و عامل‌ها',
+    title: 'نیروی کار عامل‌های هوش مصنوعی: داشبورد زندگی، مغز دوم و مدیر ارشد ستادی (Chief of Staff)',
+    summary: 'معماری سلسله‌مراتبی عامل‌های هوشمند با راهبری مدیر ارشد ستادی (جارویس) برای هدایت ۶ عامل تخصصی، متصل به مخزن دانشی آبسیدین و داشبورد خودکار ۰۷:۰۰ صبح.',
+    problem: 'فشار شناختی بر مدیریت، پراکندگی ابزارهای کاری و ارتباطی، جزایر اطلاعاتی نامنظم و اتلاف بیش از ۲۵ ساعت در هفته برای کارهای تکراری.',
+    decision: 'توسعه پنج سیستم بنیادین بر بستر کلود و پروتکل MCP: داشبورد متمرکز زندگی، مغز دوم در آبسیدین با ۱۲۰۰+ سند، دستیار اجرایی دوگانه (صبح/شب)، عامل بازاریابی محتوا و تیم عامل‌های تخصصی تحت نظر Chief of Staff.',
+    tradeoff: 'اولویت دادن به اسکیماهای اعتبارسنجی ابزار، ماندگاری قطعی حافظه در مارک‌داون و کنترل انسان در حلقه بر استقلال بی‌مهار و غیرقطعی مدل‌ها.',
+    outcome: `صرفه‌جویی بیش از ${stats.aiReclaimedHoursWeekly.fa}، اتصال بیش از ۱۲۰۰ سند دانشی با بازیابی زیر ۵۰ میلی‌ثانیه و استقرار ۶ عامل خودگردان در محیط واقعی.`,
+    link: `${baseUrl}fa/achievements/`,
+    badge: stats.aiWorkforceAgentCount.badgeFa,
+    tags: ['مدیر ارشد ستادی AI', 'مغز دوم آبسیدین', 'داشبورد زندگی', 'دستیار اجرایی AM/PM', 'موتور تولید محتوای برند', 'تیم عامل‌های خودگردان']
+  },
 ];
 ---
 
@@ -76,7 +89,7 @@ const caseStudies = [
         <span class="w-1.5 h-1.5 rounded-full bg-[#B39A77]"></span>
         <span>پروژه‌های اجرایی · پرونده‌های معماری پروداکشن</span>
         <div class="h-px flex-1 bg-[var(--border)]"></div>
-        <span class="text-[10px] text-[var(--text-secondary)] font-mono" dir="ltr">4 CASE STUDIES</span>
+        <span class="text-[10px] text-[var(--text-secondary)] font-mono" dir="ltr">5 CASE STUDIES</span>
       </div>
       <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[var(--text-primary)] mb-3 tracking-tight">
         معماری سیستم‌ها و نمونه‌های موردی
@@ -86,7 +99,7 @@ const caseStudies = [
       </p>
     </div>
 
-    <!-- 4 Case Study Cards Grid -->
+    <!-- 5 Case Study Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {caseStudies.map((study) => (
         <article class="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all duration-200 group shadow-sm">

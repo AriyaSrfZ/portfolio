@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import LandingStage from '../components/react/LandingStage';
 import ArchitectureSidebar from '../components/react/ArchitectureSidebar';
 import BookingSection from '../components/BookingSection.astro';
+import AIWorkforceHub from '../components/react/AIWorkforceHub';
 import { stats } from '../data/stats';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
@@ -49,8 +50,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             <button data-dossier-tab="lifecycle" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
               06 · Product Lifecycle
             </button>
+            <button data-dossier-tab="ai-workforce" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
+              07 · Autonomous AI
+            </button>
             <button data-dossier-tab="book" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
-              07 · Architecture Intake
+              08 · Architecture Intake
             </button>
           </div>
         </div>
@@ -1093,24 +1097,81 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </a>
         <span class="text-[10px] text-neutral-500 uppercase tracking-wider font-mono">SECTION 06</span>
         <a href="#book" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-all">
-          <span>Next: Intake &amp; Booking</span>
+          <span>Next: Autonomous AI Workforce</span>
           <span>&darr;</span>
         </a>
       </div>
     </section>
 
+    <!-- SECTION 07: Autonomous AI Workforce & Operations -->
+    <section id="ai-workforce" data-dossier-panel class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all hidden">
+      <!-- Header -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between border-b border-white/5 pb-3">
+          <div class="flex items-center gap-2 font-mono text-xs text-neutral-400 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>07 · AUTONOMOUS AI WORKFORCE &amp; OPERATIONS</span>
+          </div>
+          <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 rounded">
+            JARVIS CHIEF OF STAFF
+          </span>
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+          The 5 Core AI Systems: Life Dashboard, Obsidian Second Brain &amp; Agent Workforce
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+          Distributed multi-agent hierarchy orchestrated by an AI Chief of Staff across 6 specialist sub-agents, combined with an automated single-pane Life Dashboard and an integrated Obsidian Second Brain.
+        </p>
+      </div>
 
-    <!-- SECTION 07: Architecture Intake & Consultation -->
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+        <div class="bg-[var(--surface-card)] border border-white/5 rounded-lg p-3">
+          <span class="text-neutral-500 block text-[10px] uppercase">Specialist Swarm</span>
+          <span class="text-white font-semibold text-sm">{stats.aiWorkforceAgentCount.en}</span>
+        </div>
+        <div class="bg-[var(--surface-card)] border border-white/5 rounded-lg p-3">
+          <span class="text-neutral-500 block text-[10px] uppercase">Second Brain Vault</span>
+          <span class="text-cyan-400 font-semibold text-sm">{stats.aiSecondBrainDocs.en}</span>
+        </div>
+        <div class="bg-[var(--surface-card)] border border-white/5 rounded-lg p-3">
+          <span class="text-neutral-500 block text-[10px] uppercase">Morning Brief Cadence</span>
+          <span class="text-emerald-400 font-semibold text-sm">{stats.aiLifeDashboardSync.en}</span>
+        </div>
+        <div class="bg-[var(--surface-card)] border border-white/5 rounded-lg p-3">
+          <span class="text-neutral-500 block text-[10px] uppercase">Reclaimed Leverage</span>
+          <span class="text-amber-400 font-semibold text-sm">{stats.aiReclaimedHoursWeekly.en}</span>
+        </div>
+      </div>
+
+      <!-- Live Interactive AI Workforce Component -->
+      <AIWorkforceHub client:load locale="en" />
+
+      <!-- Stepper Nav -->
+      <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+        <a href="#lifecycle" class="text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors">
+          <span>&uarr;</span>
+          <span>Previous: Product Lifecycle</span>
+        </a>
+        <span class="text-[10px] text-neutral-500 uppercase tracking-wider font-mono">SECTION 07</span>
+        <a href="#book" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-all">
+          <span>Next: Architecture Intake</span>
+          <span>&darr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 08: Architecture Intake & Consultation -->
     <section id="book" data-dossier-panel class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 hover:border-white/20 transition-all hidden">
       <BookingSection />
       
       <!-- Rolling Stepper Bar -->
       <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-        <a href="#lifecycle" class="text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors">
+        <a href="#ai-workforce" class="text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors">
           <span>↑</span>
-          <span>Previous: Product Lifecycle</span>
+          <span>Previous: Autonomous AI Workforce</span>
         </a>
-        <span class="text-[10px] text-neutral-500 uppercase tracking-wider font-mono">SECTION 07</span>
+        <span class="text-[10px] text-neutral-500 uppercase tracking-wider font-mono">SECTION 08</span>
         <a href="#overview" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-all">
           <span>Top: Return to Overview</span>
           <span>↑</span>
@@ -1178,7 +1239,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
     function init() {
       const hash = window.location.hash.replace('#', '');
-      const validIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'book'];
+      const validIds = ['payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'ai-workforce', 'book'];
       if (hash && validIds.includes(hash)) {
         activateDossier(hash, false);
       } else {
@@ -1210,7 +1271,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         const href = anchor.getAttribute('href');
         if (href) {
           const id = href.replace('#', '');
-          const validIds = ['overview', 'payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'book'];
+          const validIds = ['overview', 'payment-settlement', 'payment-switch', 'fraud-forensics', 'reconciliation-engine', 'incident-dossiers', 'lifecycle', 'ai-workforce', 'book'];
           if (validIds.includes(id)) {
             e.preventDefault();
             activateDossier(id, true);
