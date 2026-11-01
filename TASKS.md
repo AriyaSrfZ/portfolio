@@ -20,5 +20,5 @@
 ### TASK-03: Stockholm VPS Deployment Pipeline
 * **Model Recommendation**: `Haiku 5.5 (Low Effort)`
 * **Deliverable**: `scripts/deploy_stockholm_v1.sh`
-* **Scope**: Write deterministic deployment script that executes `npm run build` and syncs `dist/` over SSH to Stockholm VPS (`109.120.131.224:8088`), ensuring proper file permissions and zero-downtime static swap.
+* **Scope**: Write deterministic deployment script that executes `npm run build` and syncs `dist/` over SSH to Stockholm VPS, ensuring proper file permissions and zero-downtime static swap.
 * **Success Criteria**: Dry run script executes with 0 exit code and validates remote target path.
