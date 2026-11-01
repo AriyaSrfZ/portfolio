@@ -42,6 +42,11 @@ Never use generic Tailwind purple/blue gradients. All UI strictly adheres to:
 
 ---
 
+## 04.1 / CAREER CONTEXT
+For any resume, cover letter, or job-application work, read `docs/career/CAREER_CONTEXT.md` first.
+
+---
+
 ## 05 / STRICT OPERATIONAL GUARDRAILS
 1. **Build Verification**: Always run `npm run build` after editing and verify zero compilation errors before reporting.
 2. **Strict ADHD Versioning**: Create `src/pages/index_v2.astro` when testing major layout variations. Maintain `VERSIONS.md`.
