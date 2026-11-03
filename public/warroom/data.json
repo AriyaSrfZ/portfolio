@@ -11,7 +11,7 @@
     "website": "https://taline.ir",
     "decisionMaker": "محسن ابوالفتحی (مدیرعامل و هم‌بنیان‌گذار) — in/mohsen-abolfathi-489a27b8",
     "approver": "سید مصطفی افزونی (رئیس هیئت‌مدیره) — in/afzouni",
-    "techLead": "امیرحسین شیخ‌الاسلامی (Senior Software Engineer — in/amirhsheikh) / سرپرست فنی و TechOps",
+    "techLead": "امیرحسین شیخ‌الاسلامی (Senior Backend & Ledger — in/amirhsheikh) / حمیدرضا دهقان (Frontend Developer — in/hamidreza-dehghan)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "در انتظار بررسی",
@@ -87,14 +87,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "مهندس ارشد بک‌اند و سیستم‌های پرداخت",
         "name": "امیرحسین شیخ‌الاسلامی",
+        "role": "مهندس ارشد نرم‌افزار / سیستم‌های پرداخت و لجر طلاین",
         "linkedin": "https://www.linkedin.com/in/amirhsheikh/"
       },
       {
-        "role": "سرپرست پشتیبانی فنی و TechOps",
-        "name": "واحد فنی طلاین",
-        "channel": "پارک علم و فناوری یزد"
+        "name": "حمیدرضا دهقان",
+        "role": "مهندس ارشد فرانت‌اند و وب‌اپلیکیشن طلاین",
+        "linkedin": "https://www.linkedin.com/in/hamidreza-dehghan"
       }
     ]
   },
@@ -110,7 +110,7 @@
     "website": "https://tarabarnet.com",
     "decisionMaker": "محمد صدوقی (مدیرعامل تارا ترابر نت) — in/mohammad-sadoughi / مسعود آراسته (مدیرعامل حصین) — in/masoudarasteh",
     "approver": "سید حسین غفوری (مدیر سرمایه‌گذاری حصین) — in/seyyed-hossein-ghafoori-02848b3b / کیوان جعفری (هم‌بنیان‌گذار)",
-    "techLead": "سرپرست زیرساخت و دواپس (هلدینگ حصین) / مدیر محصول اپلیکیشن رانندگان",
+    "techLead": "ابوذر نوری (قائم‌مقام مدیرعامل و COO — in/abouzar-noori-4940424b) / حسین فراهانی (سرپرست توسعه بک‌اند — in/hosseinf)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "در انتظار تایید (Pending)",
@@ -180,14 +180,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "سرپرست زیرساخت و دواپس",
-        "name": "دپارتمان نرم‌افزار حصین",
-        "channel": "هلدینگ حصین — ۰۲۱۸۸۸۸۴۰۰۰"
+        "name": "ابوذر نوری",
+        "role": "قائم‌مقام مدیرعامل و مدیر ارشد عملیات (COO / CTO سابق طاقچه)",
+        "linkedin": "https://www.linkedin.com/in/abouzar-noori-4940424b/"
       },
       {
-        "role": "مدیر محصول اپلیکیشن رانندگان",
-        "name": "تیم محصول ترابرنت",
-        "channel": "دبیرخانه ترابرنت"
+        "name": "حسین فراهانی",
+        "role": "سرپرست تیم توسعه بک‌اند و سیستم‌های اعلام بار ترابرنت",
+        "linkedin": "https://www.linkedin.com/in/hosseinf/"
       }
     ]
   },
@@ -203,7 +203,7 @@
     "website": "https://zarpay24.com",
     "decisionMaker": "نازنین مطلبی (بنیان‌گذار و مدیرعامل) — in/nazanin-motallebi",
     "approver": "علی دلبر (مدیر ارشد محصول) — in/alidelbar",
-    "techLead": "سرپرست مهندسی نرم‌افزار و API / مدیر محصول درگاه پرداخت",
+    "techLead": "سید علی دلبر واقف (مدیر ارشد محصول — in/ali-delbar-b2a780214) / نازنین مطلبی (مدیرعامل و راهبر عملیاتی — in/nazanin-motallebi)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "در انتظار تایید (Pending)",
@@ -242,14 +242,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "سرپرست مهندسی نرم‌افزار و API",
-        "name": "تیم فنی زرپی۲۴",
-        "channel": "۰۲۱۹۱۰۷۰۶۱۴"
+        "name": "سید علی دلبر واقف",
+        "role": "مدیر ارشد محصول زرپی۲۴ / مدیر محصول سابق آبان‌وام",
+        "linkedin": "https://www.linkedin.com/in/ali-delbar-b2a780214/"
       },
       {
-        "role": "مدیر محصول درگاه پرداخت",
-        "name": "تیم محصول زرپی",
-        "channel": "دفتر مرکزی زرپی۲۴"
+        "name": "نازنین مطلبی",
+        "role": "مدیرعامل و راهبر فنی و عملیاتی نیک زرپی",
+        "linkedin": "https://www.linkedin.com/in/nazanin-motallebi"
       }
     ]
   },
@@ -265,7 +265,7 @@
     "website": "https://ubaar.ir",
     "decisionMaker": "حامد تاج‌الدین (مدیرعامل و هم‌بنیان‌گذار) — in/hamed-tajedin-99ab4149",
     "approver": "مهدی نایبی (هم‌بنیان‌گذار هلدینگ) — in/mehdi-nayebi-68a4731",
-    "techLead": "سرپرست موتور دیسپچ و اعلام بار / مدیر عملیات ناوگان و ترابری",
+    "techLead": "امیرحسام صلواتی (مدیر ارشد فناوری و CTO — in/amir-hesam-salavati-96a58b25) / آریا خجسته (مدیر محصول سازمانی — in/arya-khojasteh-akj)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "ورود مستقیم مدیرعامل",
@@ -329,14 +329,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "سرپرست موتور دیسپچ و اعلام بار",
-        "name": "تیم فنی سانا گستر سبز",
-        "channel": "پرتال سازمانی اوبار"
+        "name": "امیرحسام صلواتی",
+        "role": "مدیر ارشد فناوری و هم‌بنیان‌گذار (CTO / زیرساخت دیسپچ اوبار)",
+        "linkedin": "https://www.linkedin.com/in/amir-hesam-salavati-96a58b25/"
       },
       {
-        "role": "مدیر عملیات ناوگان و ترابری",
-        "name": "تیم عملیات باربری",
-        "channel": "واحد دیسپچ اوبار"
+        "name": "آریا خجسته",
+        "role": "مدیر محصول ارشد سازمانی سانا گستر سبز (اوبار / آچاره)",
+        "linkedin": "https://www.linkedin.com/in/arya-khojasteh-akj"
       }
     ]
   },
@@ -352,7 +352,7 @@
     "website": "https://sanadpardaz.com",
     "decisionMaker": "مهندس محمد ظاهری (بنیان‌گذار، مدیرعامل و رئیس هیئت‌مدیره سندپرداز / عضو سازمان نظام صنفی رایانه‌ای)",
     "approver": "شورای معاونین و هیئت‌مدیره گروه سندپرداز",
-    "techLead": "مدیر توسعه و محصول S-ERP / سرپرست پشتیبانی فنی استقرار صنعتی",
+    "techLead": "مهدی زهره‌وند (مهندس نرم‌افزار S-ERP — in/mehdi-zohrevand-242530127) / محمد ظاهری (مدیرعامل و معمار ارشد سیستم — in/mohammad-zaheri-9296b6b6)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "آماده ارسال ریکوئست به محمد ظاهری",
@@ -391,14 +391,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "مدیر توسعه و محصول S-ERP",
-        "name": "دپارتمان محصول سندپرداز",
-        "channel": "دبیرخانه نصر تهران"
+        "name": "مهدی زهره‌وند",
+        "role": "مهندس نرم‌افزار و توسعه سیستم‌های فرایندی S-ERP سندپرداز",
+        "linkedin": "https://www.linkedin.com/in/mehdi-zohrevand-242530127/"
       },
       {
-        "role": "سرپرست پشتیبانی فنی استقرار صنعتی",
-        "name": "تیم فنی ERP",
-        "channel": "پشتیبانی مشتریان سندپرداز"
+        "name": "محمد ظاهری",
+        "role": "مدیرعامل و طراح ارشد سیستم‌های فرایندی S-ERP سندپرداز",
+        "linkedin": "https://www.linkedin.com/in/mohammad-zaheri-9296b6b6/"
       }
     ]
   },
@@ -414,7 +414,7 @@
     "website": "https://chargoon.com",
     "decisionMaker": "فرزاد رحمانی (مدیرعامل چارگون) — in/farzad-rahmani-5b521079",
     "approver": "شاهین طبری (رئیس هیئت‌مدیره و هم‌بنیان‌گذار چارگون) — in/shahintabary",
-    "techLead": "شهباز توکلی (مدیر فنی چارگون) / مدیر محصول اتوماسیون اداری دیدگاه ۳۶۰",
+    "techLead": "فرهاد شکاری (مهندس ارشد نرم‌افزار دیدگاه — in/farhadshekari) / کامران ناطقیان (سرپرست تیم فنی دیدگاه)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "فرزاد رحمانی: در انتظار تایید (Pending) | شاهین طبری: آماده ارسال ریکوئست",
@@ -444,14 +444,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "مدیر فنی و توسعه زیرساخت",
-        "name": "شهباز توکلی",
-        "channel": "واحد فنی چارگون"
+        "name": "فرهاد شکاری",
+        "role": "مهندس ارشد نرم‌افزار و زیرساخت سازمانی دیدگاه چارگون",
+        "linkedin": "https://www.linkedin.com/in/farhadshekari/"
       },
       {
-        "role": "مدیر محصول اتوماسیون اداری دیدگاه ۳۶۰",
-        "name": "سبد محصول دیدگاه",
-        "channel": "پورتال چارگون"
+        "name": "کامران ناطقیان",
+        "role": "سرپرست تیم فنی و مهندسی نرم‌افزار دیدگاه چارگون",
+        "profile": "https://theorg.com/org/chargoon/person/kamran-nateghian"
       }
     ]
   },
@@ -467,7 +467,7 @@
     "website": "https://goldika.ir",
     "decisionMaker": "علیرضا عیوضی (مدیرعامل و هم‌بنیان‌گذار) — in/alireza-eyvazi",
     "approver": "هم‌بنیان‌گذاران شریف",
-    "techLead": "سرپرست مهندسی بک‌اند معاملات طلا / مدیر محصول معاملات خرد",
+    "techLead": "علیرضا عیوضی ولازجردی (مدیرعامل و راهبر فنی شریف — in/alireza-eyvazi) / علی نظری‌ها (نایب‌رئیس هیئت‌مدیره و سرپرست عملیات)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "در انتظار تایید (Pending)",
@@ -531,14 +531,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "سرپرست مهندسی بک‌اند معاملات طلا",
-        "name": "تیم نرم‌افزار گلدیکا",
-        "channel": "دفتر دانشگاه شریف: ۰۲۱۹۱۰۹۰۶۰۰"
+        "name": "علیرضا عیوضی ولازجردی",
+        "role": "مدیرعامل و هم‌بنیان‌گذار (راهبر فنی گنجینه زرین شریف)",
+        "linkedin": "https://www.linkedin.com/in/alireza-eyvazi/"
       },
       {
-        "role": "مدیر محصول معاملات خرد طلا",
-        "name": "تیم محصول شریف",
-        "channel": "پشتیبانی پلتفرم گلدیکا"
+        "name": "علی نظری‌ها",
+        "role": "نایب‌رئیس هیئت‌مدیره و سرپرست زنجیره تامین و عملیات طلا",
+        "channel": "دفتر نوآوری دانشگاه صنعتی شریف / گلدیکا"
       }
     ]
   },
@@ -554,7 +554,7 @@
     "website": "https://qesta.ir",
     "decisionMaker": "محمدرضا آشتیانی (مدیرعامل و بنیان‌گذار) — in/ashtianimr",
     "approver": "هیئت‌مدیره اعتبار آفرین شریف",
-    "techLead": "سرپرست فنی درگاه‌های استعلام و وب‌هوک / مدیر محصول قسطاکارت",
+    "techLead": "فرشید اردوانی (رئیس هیئت‌مدیره — in/farshid-ardavani-0a2a1928) / محمدرضا آشتیانی (مدیرعامل و هم‌بنیان‌گذار — in/ashtianimr)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "در انتظار تایید (Pending)",
@@ -618,14 +618,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "سرپرست فنی درگاه‌های استعلام و وب‌هوک",
-        "name": "تیم زیرساخت اعتبارسنجی",
-        "channel": "برج فناوری شریف: ۰۲۱۹۱۰۷۰۰۹۲"
+        "name": "فرشید اردوانی",
+        "role": "رئیس هیئت‌مدیره اعتبار آفرین شریف / مدیرعامل فینووا",
+        "linkedin": "https://www.linkedin.com/in/farshid-ardavani-0a2a1928"
       },
       {
-        "role": "مدیر محصول قسطاکارت",
-        "name": "تیم محصول تسهیلات",
-        "channel": "دفتر مرکزی قسطا"
+        "name": "محمدرضا آشتیانی",
+        "role": "مدیرعامل و هم‌بنیان‌گذار قسطا (اعتبار آفرین شریف)",
+        "linkedin": "https://www.linkedin.com/in/ashtianimr/"
       }
     ]
   },
@@ -641,7 +641,7 @@
     "website": "https://wallgold.ir",
     "decisionMaker": "بردیا احمدنیا (هم‌بنیان‌گذار و بیزینس والکس) — in/bardia-ahmadnia",
     "approver": "پرستو جباری (مدیر محصول وال‌گلد) — in/parastoo-jbr-55958a246",
-    "techLead": "سرپرست فنی بک‌اند پلتفرم / مدیر محصول تسهیلات و پس‌انداز طلا",
+    "techLead": "مسعود باقری (معاون فنی و محصول والکس) / بردیا احمدنیا (هم‌بنیان‌گذار و توسعه کسب‌وکار — in/bardia-ahmadnia)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "در انتظار تایید (Pending)",
@@ -671,14 +671,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "سرپرست فنی بک‌اند پلتفرم",
-        "name": "تیم فنی وال‌گلد / والکس",
-        "channel": "واحد زیرساخت والکس"
+        "name": "مسعود باقری",
+        "role": "معاون فنی و محصول والکس و وال‌گلد / مدیر ارشد اجرایی",
+        "profile": "https://virgool.io/@masoud.bagheri79"
       },
       {
-        "role": "مدیر محصول تسهیلات و پس‌انداز طلا",
-        "name": "تیم محصول وال‌گلد",
-        "channel": "پلتفرم والکس"
+        "name": "بردیا احمدنیا",
+        "role": "هم‌بنیان‌گذار و مدیر توسعه کسب‌وکار والکس و وال‌گلد",
+        "linkedin": "https://www.linkedin.com/in/bardia-ahmadnia/"
       }
     ]
   },
@@ -694,7 +694,7 @@
     "website": "https://postex.ir",
     "decisionMaker": "بابک عقیلی‌نسب (هم‌بنیان‌گذار و مدیرعامل هلدینگ پستکس) — in/babak-aghilinasab-74274489",
     "approver": "هیئت‌مدیره پستکس",
-    "techLead": "سرپرست توسعه وب‌سرویس پستی / مدیر عملیات لجستیک سازمانی",
+    "techLead": "احسان جهانی (مدیر ارشد فناوری و نوآوری — in/ehsanjahani) / بابک عقیلی‌نسب (مدیرعامل و هم‌بنیان‌گذار — in/babak-aghilinasab-74274489)",
     "assigneeResearcher": "",
     "assigneeDrafter": "",
     "csuiteStatus": "در انتظار تایید (Pending)",
@@ -733,14 +733,14 @@
     ],
     "layer2Contacts": [
       {
-        "role": "سرپرست توسعه وب‌سرویس پستی",
-        "name": "تیم فنی پستکس",
-        "channel": "پرتال توسعه‌دهندگان postex.ir"
+        "name": "احسان جهانی",
+        "role": "مدیر ارشد فناوری و نوآوری / هم‌بنیان‌گذار پستکس",
+        "linkedin": "https://www.linkedin.com/in/ehsanjahani/"
       },
       {
-        "role": "مدیر عملیات لجستیک سازمانی",
-        "name": "واحد سازمانی پستکس",
-        "channel": "دفتر مرکزی هلدینگ پستکس"
+        "name": "بابک عقیلی‌نسب",
+        "role": "مدیرعامل و هم‌بنیان‌گذار گروه پستکس و هاب پستی",
+        "linkedin": "https://www.linkedin.com/in/babak-aghilinasab-74274489/"
       }
     ]
   }
