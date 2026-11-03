@@ -2269,6 +2269,13 @@
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
+      } else if (doc.url) {
+        const a = document.createElement("a");
+        a.href = doc.url;
+        a.download = doc.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       } else {
         // Fallback for pre-seeded template records: generate a descriptive companion file
         const blob = new Blob([
@@ -2391,7 +2398,7 @@
       alert("متن کپی شد!");
     }
 
-    const GAPGPT_DEFAULT_KEY = "sk-03RPsKOilJCt5S338yIm8vHAgHhAYVXavvrZ0m6uoKYbfPaf";
+    const GAPGPT_DEFAULT_KEY = "";
     function getGapGptKey() {
       return localStorage.getItem("pfg_gapgpt_api_key") || GAPGPT_DEFAULT_KEY;
     }
