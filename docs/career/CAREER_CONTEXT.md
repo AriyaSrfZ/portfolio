@@ -4,6 +4,7 @@ Read this before writing any resume, cover letter, or job-application text for A
 Facts below come from Ariya directly (Nov 2026). Do not invent beyond them.
 
 ## Resume rules
+- Contact email on resumes and job applications: aria.sarrafzadeh@gmail.com. (ariasg2002@gmail.com is for project clients.)
 - Omit birth year, graduation year, and dates before 1395 (2016). Iranian postings often cap age.
 - Pre-2016 roles (regional sales manager, IT consultancy CEO) go in one undated "previous roles" line.
 - Degree: BSc Software Engineering, Islamic Azad University, South Tehran. No year.
