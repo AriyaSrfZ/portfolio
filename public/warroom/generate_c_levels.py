@@ -4,9 +4,6 @@ def generate():
     with open('/home/aria/projects/portfolio/public/warroom/data.json', 'r', encoding='utf-8') as f:
         accounts = json.load(f)
 
-    # Strictly 10 phase 1 accounts
-    accounts = [a for a in accounts if a.get('phase') == 'phase1' or 'phase1' in str(a.get('phase', ''))][:10]
-
     doc_map = {
         'acc-1': 'طلاین.docx',
         'acc-2': 'ترابرنت.docx',
@@ -23,36 +20,48 @@ def generate():
     rows_html = []
 
     for acc in accounts:
-        acc_id = acc.get('id')
+        acc_id = acc.get('id', '')
         num = acc.get('num', '')
         name = acc.get('name', '')
         vertical = acc.get('vertical', '')
         website = acc.get('website', '')
         clean_web = website.replace('https://', '').replace('http://', '').strip('/')
         linkedin = acc.get('linkedin', '')
-        
-        # doc
-        doc_file = doc_map.get(acc_id, f"{name.split()[0]}.docx")
-        
+        phase = acc.get('phase', 'phase1')
+        is_phase2 = (phase == 'phase2')
+
         # DM
         dm_raw = acc.get('decisionMaker', '')
         dm_parts = dm_raw.split(' — ')
         dm_title = dm_parts[0].strip() if dm_parts else ''
         dm_handle = dm_parts[1].strip() if len(dm_parts) > 1 else ''
-        
+
         # Layer 2 contacts
         l2_list = acc.get('layer2Contacts', [])
         l2_cards = []
         for c in l2_list:
             c_name = c.get('name', '')
             c_role = c.get('role', '')
-            c_li = c.get('linkedin')
-            
+            c_li = c.get('linkedin', '')
+
             li_link_html = ''
             if c_li and c_li.strip():
-                li_link_html = f'<a href="{c_li}" target="_blank" class="text-[10px] text-[#8FB4AA] hover:text-[#B5D6CC] hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>'
-                
-            card_html = f'''            <div class="p-2.5 rounded-xl bg-[#1E2422]/90 hover:bg-[#1E2422] border border-[#46504B]/70 hover:border-[#8FB4AA]/50 transition space-y-1">
+                if is_phase2:
+                    li_link_html = f'<a href="{c_li}" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>'
+                else:
+                    li_link_html = f'<a href="{c_li}" target="_blank" class="text-[10px] text-[#8FB4AA] hover:text-[#B5D6CC] hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>'
+
+            if is_phase2:
+                card_html = f'''            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">{c_name}</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">{c_role}</div>
+              {li_link_html}
+            </div>'''
+            else:
+                card_html = f'''            <div class="p-2.5 rounded-xl bg-[#1E2422]/90 hover:bg-[#1E2422] border border-[#46504B]/70 hover:border-[#8FB4AA]/50 transition space-y-1">
               <div class="flex items-center justify-between">
                 <span class="font-bold text-white text-[11px]">{c_name}</span>
                 <span class="text-[9px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 font-medium">فعال</span>
@@ -62,25 +71,31 @@ def generate():
             </div>'''
             l2_cards.append(card_html)
         l2_cards_html = '\n'.join(l2_cards)
-        
+
         # Status column
         stage = acc.get('stage', '')
-        
-        # shortcode
-        shortcode = ''
-        for com in acc.get('comments', []):
-            t = com.get('text', '')
-            if 'سرشماره' in t:
-                parts = t.split()
-                if len(parts) > 1:
-                    shortcode = parts[1]
-                    
-        if stage == 'outreach':
-            shortcode_html = ''
-            if shortcode:
-                shortcode_html = f'''\n          <div class="text-[11px] text-white font-mono mt-0.5"><span class="text-[#8FB4AA]">سرشماره:</span> <span class="bg-[#1E2422] px-1.5 py-0.5 rounded border border-[#46504B]" dir="ltr">{shortcode}</span></div>'''
-                
-            status_html = f'''<div class="space-y-1.5">
+
+        if is_phase2:
+            status_html = '''<div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>'''
+        else:
+            # Phase 1 shortcode check
+            shortcode = ''
+            for com in acc.get('comments', []):
+                t = com.get('text', '')
+                if 'سرشماره' in t:
+                    parts = t.split()
+                    if len(parts) > 1:
+                        shortcode = parts[1]
+
+            if stage == 'outreach':
+                shortcode_html = ''
+                if shortcode:
+                    shortcode_html = f'''\n          <div class="text-[11px] text-white font-mono mt-0.5"><span class="text-[#8FB4AA]">سرشماره:</span> <span class="bg-[#1E2422] px-1.5 py-0.5 rounded border border-[#46504B]" dir="ltr">{shortcode}</span></div>'''
+
+                status_html = f'''<div class="space-y-1.5">
           <div class="flex items-center gap-1.5 flex-wrap">
             <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 whitespace-nowrap">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -92,8 +107,8 @@ def generate():
           </div>{shortcode_html}
           <div class="text-[10px] text-slate-400">ارسال فیزیکی و ممیزی توسط فائزه</div>
         </div>'''
-        else:
-            status_html = '''<div class="space-y-1.5">
+            else:
+                status_html = '''<div class="space-y-1.5">
           <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30 whitespace-nowrap">
             📝 تدوین نامه و روت
           </span>
@@ -103,31 +118,49 @@ def generate():
         # Tier badge
         tier = acc.get('tier', '')
         score = acc.get('score', '')
-        if 'Tier A' in tier:
+        if is_phase2:
+            badge_cls = 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
+        elif 'Tier A' in tier:
             badge_cls = 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
         elif 'Strategic' in tier:
             badge_cls = 'bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40'
         else:
             badge_cls = 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-            
-        dm_handle_html = f'<div class="text-[10px] text-slate-400 mt-0.5 font-mono" dir="ltr">{dm_handle}</div>' if dm_handle else ''
-        
-        row_html = f'''      <tr class="hover:bg-[#343C38]/50 transition">
-        <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">{num}</td>
+
+        # Row styling & specific column customization
+        if is_phase2:
+            row_cls = "phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition"
+            num_html = f'<td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">{num}</td>'
+            company_sub = f'''<div class="text-[11px] text-slate-400 mt-0.5"><a href="{website}" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">{clean_web}</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>'''
+            linkedin_link = f'<a href="{linkedin}" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>'
+            dm_handle_html = f'<div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">{dm_handle}</div>' if dm_handle else ''
+            l2_col_cls = "py-3.5 px-4 min-w-[280px] bg-cyan-950/30"
+        else:
+            row_cls = "phase-row hover:bg-[#343C38]/50 transition"
+            num_html = f'<td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">{num}</td>'
+            doc_file = doc_map.get(acc_id, f"{name.split()[0]}.docx")
+            company_sub = f'''<div class="text-[11px] text-slate-400 mt-0.5"><a href="{website}" target="_blank" class="hover:text-[#8FB4AA] hover:underline font-mono" dir="ltr">{clean_web}</a></div>
+          <a href="/docs/{doc_file}" download class="inline-flex items-center gap-1 mt-1 text-[10px] text-[#D8B486] hover:text-[#E8C496] bg-[#B39A77]/15 px-2 py-0.5 rounded border border-[#B39A77]/30 font-medium"><span>📄 {doc_file}</span></a>'''
+            linkedin_link = f'<a href="{linkedin}" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>'
+            dm_handle_html = f'<div class="text-[10px] text-slate-400 mt-0.5 font-mono" dir="ltr">{dm_handle}</div>' if dm_handle else ''
+            l2_col_cls = "py-3.5 px-4 min-w-[280px] bg-black/10"
+
+        row_html = f'''      <tr data-phase="{phase}" class="{row_cls}">
+        {num_html}
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">{name}</div>
-          <div class="text-[11px] text-slate-400 mt-0.5"><a href="{website}" target="_blank" class="hover:text-[#8FB4AA] hover:underline font-mono" dir="ltr">{clean_web}</a></div>
-          <a href="/docs/{doc_file}" download class="inline-flex items-center gap-1 mt-1 text-[10px] text-[#D8B486] hover:text-[#E8C496] bg-[#B39A77]/15 px-2 py-0.5 rounded border border-[#B39A77]/30 font-medium"><span>📄 {doc_file}</span></a>
+          {company_sub}
         </td>
         <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">{vertical}</td>
         <td class="py-3.5 px-4 min-w-[130px]">
-          <a href="{linkedin}" target="_blank" class="inline-flex items-center gap-1 text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+          {linkedin_link}
         </td>
         <td class="py-3.5 px-4 min-w-[220px]">
           <div class="font-bold text-white text-xs leading-snug">{dm_title}</div>
           {dm_handle_html}
         </td>
-        <td class="py-3.5 px-4 min-w-[280px] bg-black/10">
+        <td class="{l2_col_cls}">
           <div class="space-y-2">
 {l2_cards_html}
           </div>
@@ -179,6 +212,9 @@ def generate():
       color: var(--text-primary);
     }}
     .font-mono {{ font-family: 'IBM Plex Mono', monospace; }}
+    .phase-row {{
+      transition: opacity 0.25s ease-in-out, background-color 0.15s ease;
+    }}
   </style>
 </head>
 <body class="min-h-screen py-6">
@@ -188,10 +224,10 @@ def generate():
       <div>
         <div class="flex items-center gap-2 text-xs text-[#8FB4AA] font-mono mb-1.5">
           <span class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span>
-          <span>B2B ACCOUNT-BASED MARKETING — VERIFIED C-SUITE & LAYER-2 DIRECTORY (10 ACCOUNTS)</span>
+          <span>B2B ACCOUNT-BASED MARKETING — VERIFIED C-SUITE & LAYER-2 DIRECTORY (20 ACCOUNTS)</span>
         </div>
-        <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">شناسنامه مدیران ارشد و رابطین لایه دوم ۱۰ حساب کلیدی هدف</h1>
-        <p class="text-xs text-[#B5BDB6] mt-1.5">پایگاه جامع پروفایل‌های فردی لینکدین جهت برقراری ارتباط هدفمند، پیگیری نامه‌ها و ممیزی شبکه‌ای</p>
+        <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">شناسنامه مدیران ارشد و رابطین لایه دوم ۲۰ حساب کلیدی هدف</h1>
+        <p class="text-xs text-[#B5BDB6] mt-1.5">پایگاه جامع پروفایل‌های فردی لینکدین جهت برقراری ارتباط هدفمند، پیگیری نامه‌ها و ممیزی شبکه‌ای فاز ۱ و فاز ۲</p>
       </div>
       <div class="flex items-center gap-2.5 flex-wrap">
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
@@ -209,15 +245,31 @@ def generate():
       </div>
     </header>
 
+    <!-- Phase Switcher Tab Bar -->
+    <div class="flex items-center gap-2.5 p-2 bg-[#252C29] border border-[#46504B] rounded-2xl overflow-x-auto shadow-lg">
+      <button onclick="switchPhase('all')" id="tab-all" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-[#46504B] transition flex items-center gap-2 whitespace-nowrap">
+        <span>همه حسابها (۲۰)</span>
+        <span class="px-2 py-0.5 rounded-full bg-white/10 text-slate-300 text-[10px] font-mono">۲۰</span>
+      </button>
+      <button onclick="switchPhase('phase1')" id="tab-phase1" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap">
+        <span>🌿 فاز ۱: ۱۰ حساب سازمانی (پیگیری ثانویه)</span>
+        <span class="px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 text-[10px] font-mono font-bold">۱۰</span>
+      </button>
+      <button onclick="switchPhase('phase2')" id="tab-phase2" class="px-4 py-2 rounded-xl text-xs font-semibold text-cyan-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap">
+        <span>⚡ فاز ۲: ۱۰ حساب بکر V2 (استراتژی ملایم Hot Failover)</span>
+        <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-mono font-bold">۱۰</span>
+      </button>
+    </div>
+
     <!-- Table of Accounts & C-Levels -->
     <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl shadow-2xl overflow-hidden">
-      <!-- Section 1 Header Banner -->
-      <div class="p-4 bg-[#252C29] border-b border-[#46504B] flex items-center justify-between">
+      <!-- Section Header Banner -->
+      <div id="sectionHeaderBanner" class="p-4 bg-[#252C29] border-b border-[#46504B] flex items-center justify-between">
         <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-          <h2 class="font-bold text-sm text-white">فاز اول: ۱۰ حساب فعال با پیگیری نامه‌های فیزیکی ارسالی</h2>
+          <span id="sectionBannerDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <h2 id="sectionBannerTitle" class="font-bold text-sm text-white">فاز اول: ۱۰ حساب فعال با پیگیری نامه‌های فیزیکی ارسالی</h2>
         </div>
-        <span class="text-xs font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded border border-emerald-500/30 font-bold">۱۰ حساب فاز ۱</span>
+        <span id="sectionBannerBadge" class="text-xs font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded border border-emerald-500/30 font-bold">۱۰ حساب فاز ۱</span>
       </div>
 
       <div class="overflow-x-auto">
@@ -250,6 +302,73 @@ def generate():
 
     </div>
   </div>
+
+  <script>
+    function switchPhase(phase) {{
+      const rows = document.querySelectorAll('tr[data-phase]');
+      rows.forEach(r => {{
+        if (phase === 'all' || r.getAttribute('data-phase') === phase) {{
+          r.classList.remove('hidden');
+          r.style.opacity = '0';
+          r.style.transition = 'opacity 0.25s ease-in-out';
+          requestAnimationFrame(() => {{
+            r.style.opacity = '1';
+          }});
+        }} else {{
+          r.classList.add('hidden');
+        }}
+      }});
+
+      // Tab button active styling
+      const tabs = [
+        {{ id: 'tab-all', phase: 'all', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-white/20 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-[#46504B] transition flex items-center gap-2 whitespace-nowrap' }},
+        {{ id: 'tab-phase1', phase: 'phase1', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-emerald-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-emerald-500/30 transition flex items-center gap-2 whitespace-nowrap' }},
+        {{ id: 'tab-phase2', phase: 'phase2', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-cyan-700 shadow-md border border-cyan-400 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-cyan-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap' }}
+      ];
+
+      tabs.forEach(t => {{
+        const btn = document.getElementById(t.id);
+        if (!btn) return;
+        if (t.phase === phase) {{
+          btn.className = t.activeCls;
+        }} else {{
+          btn.className = t.inactiveCls;
+        }}
+      }});
+
+      // Update banner text
+      const bannerTitle = document.getElementById('sectionBannerTitle');
+      const bannerBadge = document.getElementById('sectionBannerBadge');
+      const bannerDot = document.getElementById('sectionBannerDot');
+      if (phase === 'phase1') {{
+        if (bannerTitle) bannerTitle.innerText = "فاز اول: ۱۰ حساب فعال با پیگیری نامه‌های فیزیکی ارسالی";
+        if (bannerBadge) {{
+          bannerBadge.innerText = "۱۰ حساب فاز ۱";
+          bannerBadge.className = "text-xs font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded border border-emerald-500/30 font-bold";
+        }}
+        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
+      }} else if (phase === 'phase2') {{
+        if (bannerTitle) bannerTitle.innerText = "فاز دوم: ۱۰ حساب بکر V2 با استراتژی ملایم Hot Failover (تست ۵۰k رایگان)";
+        if (bannerBadge) {{
+          bannerBadge.innerText = "۱۰ حساب فاز ۲";
+          bannerBadge.className = "text-xs font-mono text-cyan-300 bg-cyan-500/15 px-2.5 py-0.5 rounded border border-cyan-500/30 font-bold";
+        }}
+        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse";
+      }} else {{
+        if (bannerTitle) bannerTitle.innerText = "نمایش جامع: ۲۰ حساب کلیدی هدف (فاز اول و فاز دوم)";
+        if (bannerBadge) {{
+          bannerBadge.innerText = "۲۰ حساب فعال";
+          bannerBadge.className = "text-xs font-mono text-[#8FB4AA] bg-[#527C78]/20 px-2.5 py-0.5 rounded border border-[#527C78]/40 font-bold";
+        }}
+        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-[#8FB4AA]";
+      }}
+    }}
+
+    // Default to phase1 view on load
+    document.addEventListener("DOMContentLoaded", () => {{
+      switchPhase('phase1');
+    }});
+  </script>
 </body>
 </html>
 '''

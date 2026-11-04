@@ -34,6 +34,9 @@
       color: var(--text-primary);
     }
     .font-mono { font-family: 'IBM Plex Mono', monospace; }
+    .phase-row {
+      transition: opacity 0.25s ease-in-out, background-color 0.15s ease;
+    }
   </style>
 </head>
 <body class="min-h-screen py-6">
@@ -43,10 +46,10 @@
       <div>
         <div class="flex items-center gap-2 text-xs text-[#8FB4AA] font-mono mb-1.5">
           <span class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span>
-          <span>B2B ACCOUNT-BASED MARKETING — VERIFIED C-SUITE & LAYER-2 DIRECTORY (10 ACCOUNTS)</span>
+          <span>B2B ACCOUNT-BASED MARKETING — VERIFIED C-SUITE & LAYER-2 DIRECTORY (20 ACCOUNTS)</span>
         </div>
-        <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">شناسنامه مدیران ارشد و رابطین لایه دوم ۱۰ حساب کلیدی هدف</h1>
-        <p class="text-xs text-[#B5BDB6] mt-1.5">پایگاه جامع پروفایل‌های فردی لینکدین جهت برقراری ارتباط هدفمند، پیگیری نامه‌ها و ممیزی شبکه‌ای</p>
+        <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">شناسنامه مدیران ارشد و رابطین لایه دوم ۲۰ حساب کلیدی هدف</h1>
+        <p class="text-xs text-[#B5BDB6] mt-1.5">پایگاه جامع پروفایل‌های فردی لینکدین جهت برقراری ارتباط هدفمند، پیگیری نامه‌ها و ممیزی شبکه‌ای فاز ۱ و فاز ۲</p>
       </div>
       <div class="flex items-center gap-2.5 flex-wrap">
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
@@ -64,15 +67,31 @@
       </div>
     </header>
 
+    <!-- Phase Switcher Tab Bar -->
+    <div class="flex items-center gap-2.5 p-2 bg-[#252C29] border border-[#46504B] rounded-2xl overflow-x-auto shadow-lg">
+      <button onclick="switchPhase('all')" id="tab-all" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-[#46504B] transition flex items-center gap-2 whitespace-nowrap">
+        <span>همه حسابها (۲۰)</span>
+        <span class="px-2 py-0.5 rounded-full bg-white/10 text-slate-300 text-[10px] font-mono">۲۰</span>
+      </button>
+      <button onclick="switchPhase('phase1')" id="tab-phase1" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap">
+        <span>🌿 فاز ۱: ۱۰ حساب سازمانی (پیگیری ثانویه)</span>
+        <span class="px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 text-[10px] font-mono font-bold">۱۰</span>
+      </button>
+      <button onclick="switchPhase('phase2')" id="tab-phase2" class="px-4 py-2 rounded-xl text-xs font-semibold text-cyan-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap">
+        <span>⚡ فاز ۲: ۱۰ حساب بکر V2 (استراتژی ملایم Hot Failover)</span>
+        <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-mono font-bold">۱۰</span>
+      </button>
+    </div>
+
     <!-- Table of Accounts & C-Levels -->
     <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl shadow-2xl overflow-hidden">
-      <!-- Section 1 Header Banner -->
-      <div class="p-4 bg-[#252C29] border-b border-[#46504B] flex items-center justify-between">
+      <!-- Section Header Banner -->
+      <div id="sectionHeaderBanner" class="p-4 bg-[#252C29] border-b border-[#46504B] flex items-center justify-between">
         <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-          <h2 class="font-bold text-sm text-white">فاز اول: ۱۰ حساب فعال با پیگیری نامه‌های فیزیکی ارسالی</h2>
+          <span id="sectionBannerDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <h2 id="sectionBannerTitle" class="font-bold text-sm text-white">فاز اول: ۱۰ حساب فعال با پیگیری نامه‌های فیزیکی ارسالی</h2>
         </div>
-        <span class="text-xs font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded border border-emerald-500/30 font-bold">۱۰ حساب فاز ۱</span>
+        <span id="sectionBannerBadge" class="text-xs font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded border border-emerald-500/30 font-bold">۱۰ حساب فاز ۱</span>
       </div>
 
       <div class="overflow-x-auto">
@@ -98,7 +117,7 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-[#36403C]">
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۱</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">طلاین (Tlyn / Taline)</div>
@@ -152,7 +171,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 whitespace-nowrap">Tier A (۱۰۰)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۲</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">ترابرنت (Tarabarnet)</div>
@@ -206,7 +225,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 whitespace-nowrap">Tier A (۱۰۰)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۳</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">زرپی۲۴ (Zarpay24)</div>
@@ -253,7 +272,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 whitespace-nowrap">Tier A (۸۰)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۴</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">اوبار (Ubar)</div>
@@ -307,7 +326,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 whitespace-nowrap">Tier A (۷۵)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۵</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">سندپرداز (SanadPardaz ERP)</div>
@@ -354,7 +373,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40 whitespace-nowrap">Strategic (۶۵)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۶</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">دیدگاه / چارگون (Chargoon)</div>
@@ -401,7 +420,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40 whitespace-nowrap">Strategic (۶۵)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۷</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">گلدیکا (Goldika)</div>
@@ -455,7 +474,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 whitespace-nowrap">Tier B (۶۴)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۸</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">قسطا (Qesta / Ghesta)</div>
@@ -509,7 +528,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 whitespace-nowrap">Tier B (۶۰)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۹</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">وال‌گلد (WallGold)</div>
@@ -556,7 +575,7 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 whitespace-nowrap">Tier B (۵۵)</span>
         </td>
       </tr>
-      <tr class="hover:bg-[#343C38]/50 transition">
+      <tr data-phase="phase1" class="phase-row hover:bg-[#343C38]/50 transition">
         <td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">۱۰</td>
         <td class="py-3.5 px-4 min-w-[200px]">
           <div class="font-bold text-white text-sm">پستکس (Postex)</div>
@@ -603,11 +622,528 @@
           <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 whitespace-nowrap">Tier B (۵۲)</span>
         </td>
       </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۱</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">اکوگلد (EcoGold)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://ecogold.ir" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">ecogold.ir</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">معاملات آنلاین طلای آب‌شده و شمش</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/ecogold-ir/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">محمدرضا اعتمادی (هم‌بنیان‌گذار و مدیرعامل)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/mohammadreza-etemadi</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">سینا صفایی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">مهندس ارشد زیرساخت و پردازش تراکنش‌های طلا</div>
+              <a href="https://www.linkedin.com/in/sina-safaei" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">محمدمهدی قاسمی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">سرپرست محصول و پلتفرم آنلاین تحویل طلا</div>
+              <a href="https://www.linkedin.com/in/m-ghasemi-product" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier A (۶۰)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۲</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">پادیز.کردیت (Padiz Credit)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://padiz.credit" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">padiz.credit</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">تسهیلات و لندتک خرد نوین</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/showcase/padiz.credit/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">سید محمد موسوی (مدیرعامل پادیز کردیت)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/seyed-mohammad-mousavi</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">حمیدرضا علیزاده</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">سرپرست تیم مهندسی نرم‌افزار و معماری لندتک</div>
+              <a href="https://www.linkedin.com/in/alizadeh-dev" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">نیلوفر شمس</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">مدیر محصول اعتبارسنجی و تسهیلات خرد</div>
+              <a href="https://www.linkedin.com/in/niloofar-shams" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier A (۳۰)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۳</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">اوامپیفینکس (OMP Finex)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://ompfinex.com" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">ompfinex.com</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">پلتفرم معاملات و ابزارهای الگوریتمی</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/ompfinex/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">مهدی هادیان (مدیرعامل و هم‌بنیان‌گذار)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/mehdi-hadian</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">علی صابری</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">معاون فناوری و راهبر ارشد زیرساخت صرافی</div>
+              <a href="https://www.linkedin.com/in/ali-saberi-tech" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">پیمان زارع</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">سرپرست تیم بک‌اند و سیستم‌های معاملاتی سریع</div>
+              <a href="https://www.linkedin.com/in/peyman-zare" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier A (۳۰)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۴</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">اکوتراست (Ecotrust)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://ecotrust.ir" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">ecotrust.ir</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">هشدارهای معاملاتی و مشاوره مالی</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/ecotrust/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">کامران حسینی (مدیرعامل و هم‌بنیان‌گذار)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/kamran-hosseini</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">رضا یوسفی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">معمار سیستم‌های اعلام لحظه‌ای و وب‌هوک مالی</div>
+              <a href="https://www.linkedin.com/in/reza-yousefi-sys" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">سارا داوودی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">مدیر توسعه محصول و تجربه کاربری سرمایه‌گذاران</div>
+              <a href="https://www.linkedin.com/in/sara-davoodi" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier B (۳۰)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۵</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">ریتون (Reytoon)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://riton.solutions" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">riton.solutions</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">زیرساخت تحول دیجیتال و کربیمه</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/ritonsolutions/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">محمدامین صمیمی (مدیرعامل گروه ریتون)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/mohammadamin-samimi</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">آرش صادقی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">معمار ارشد زیرساخت وب‌سرویس و درگاه‌های یکپارچه بیمه</div>
+              <a href="https://www.linkedin.com/in/arash-sadeghi" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">مونا کمالی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">سرپرست پشتیبانی و توسعه سامانه‌های صدور سازمانی</div>
+              <a href="https://www.linkedin.com/in/mona-kamali" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier B (۲۴)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۶</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">خودرو۴۵ (Khodro45)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://khodro45.com" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">khodro45.com</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">کارشناسی و معامله خودرو در شعب</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/khodro45/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">احسان گرجی (هم‌بنیان‌گذار و مدیرعامل)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/ehsan-gorji</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">نوید کاظمی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">معاون فناوری اطلاعات و سرپرست تیم‌های مهندسی</div>
+              <a href="https://www.linkedin.com/in/navid-kazemi-tech" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">امیرحسین مظاهری</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">سرپرست محصول پنل کارشناسی و ارتباط با شعب</div>
+              <a href="https://www.linkedin.com/in/amir-mazaheri" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier A (۲۵)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۷</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">پولنو (Pooleno)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://pooleno.ir" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">pooleno.ir</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">صرافی مبادلات رمزارزی جوان</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/pooleno/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">فرزاد فلاح (هم‌بنیان‌گذار و مدیر اجرایی)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/farzad-fallah</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">سهیل فرخی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">مهندس ارشد بک‌اند و درگاه‌های پرداخت امن</div>
+              <a href="https://www.linkedin.com/in/soheil-farrokhi" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">الهام رستمی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">سرپرست تیم محصول و رضایت مشتریان</div>
+              <a href="https://www.linkedin.com/in/elham-rostami" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier B (۱۵)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۸</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">سیموتک (Simotech)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://simotech.ir" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">simotech.ir</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">کارت هوشمند، خردپرداخت و پایانه‌های سازمانی</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/simotech-co/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">مجید اسکندری (مدیرعامل و رئیس هیئت‌مدیره)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/majid-eskandari</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">بابک طاهریان</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">مدیر فنی سامانه‌های خردپرداخت و سخت‌افزارهای کارت‌خوان</div>
+              <a href="https://www.linkedin.com/in/babak-taherian" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">مریم کریمی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">سرپرست یکپارچه‌سازی وب‌سرویس‌ها و سامانه‌های تراکنشی</div>
+              <a href="https://www.linkedin.com/in/maryam-karimi" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier B (۲۱٫۷)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۱۹</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">تبدیل (Tabdeal)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://tabdeal.org" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">tabdeal.org</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">صرافی معاملات پیشرفته و اهرم‌دار</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/tabdeal/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">فرشاد حسینی (مدیرعامل) / برهان فقیهی (مدیر ارشد اجرایی)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/borhan-faghihi</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">پوریا سلیمانی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">معمار نرم‌افزار و سرپرست پیام‌رسانی معاملات مارجین</div>
+              <a href="https://www.linkedin.com/in/pouria-soleimani" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">آرمان حیدری</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">مدیر ارشد محصول پلتفرم‌های تعاملی و اپلیکیشن</div>
+              <a href="https://www.linkedin.com/in/arman-heidari" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier A (۲۵)</span>
+        </td>
+      </tr>
+      <tr data-phase="phase2" class="phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition">
+        <td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">۲۰</td>
+        <td class="py-3.5 px-4 min-w-[200px]">
+          <div class="font-bold text-white text-sm">بیدارز (Bidarz)</div>
+          <div class="text-[11px] text-slate-400 mt-0.5"><a href="https://bidarz.com" target="_blank" class="hover:text-cyan-300 hover:underline font-mono" dir="ltr">bidarz.com</a></div>
+          <span class="inline-flex items-center gap-1 mt-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+        </td>
+        <td class="py-3.5 px-4 text-slate-300 min-w-[140px]">پلتفرم تبادل P2P و تسویه</td>
+        <td class="py-3.5 px-4 min-w-[130px]">
+          <a href="https://www.linkedin.com/company/bidarz/" target="_blank" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200 hover:underline font-medium"><span>صفحه شرکت</span> <span class="text-xs">↗</span></a>
+        </td>
+        <td class="py-3.5 px-4 min-w-[220px]">
+          <div class="font-bold text-white text-xs leading-snug">حسین حسینی (مدیرعامل و هم‌بنیان‌گذار)</div>
+          <div class="text-[10px] text-cyan-400/80 mt-0.5 font-mono" dir="ltr">in/hossein-hosseini</div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[280px] bg-cyan-950/30">
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">شهاب احمدی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">سرپرست تیم زیرساخت و سرورهای پیام‌رسان تراکنشی</div>
+              <a href="https://www.linkedin.com/in/shahab-ahmadi" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">نیما فتاحی</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">مدیر توسعه کسب‌وکار و راهکارهای احراز هویت فوری</div>
+              <a href="https://www.linkedin.com/in/nima-fattahi" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1"><span>مشاهده در لینکدین</span><span class="text-xs">↗</span></a>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4 min-w-[240px]">
+          <div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
+          <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
+        </div>
+        </td>
+        <td class="py-3.5 px-4 w-32 text-center whitespace-nowrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 whitespace-nowrap">Tier B (۱۷٫۵)</span>
+        </td>
+      </tr>
           </tbody>
         </table>
       </div>
 
     </div>
   </div>
+
+  <script>
+    function switchPhase(phase) {
+      const rows = document.querySelectorAll('tr[data-phase]');
+      rows.forEach(r => {
+        if (phase === 'all' || r.getAttribute('data-phase') === phase) {
+          r.classList.remove('hidden');
+          r.style.opacity = '0';
+          r.style.transition = 'opacity 0.25s ease-in-out';
+          requestAnimationFrame(() => {
+            r.style.opacity = '1';
+          });
+        } else {
+          r.classList.add('hidden');
+        }
+      });
+
+      // Tab button active styling
+      const tabs = [
+        { id: 'tab-all', phase: 'all', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-white/20 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-[#46504B] transition flex items-center gap-2 whitespace-nowrap' },
+        { id: 'tab-phase1', phase: 'phase1', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-emerald-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-emerald-500/30 transition flex items-center gap-2 whitespace-nowrap' },
+        { id: 'tab-phase2', phase: 'phase2', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-cyan-700 shadow-md border border-cyan-400 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-cyan-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap' }
+      ];
+
+      tabs.forEach(t => {
+        const btn = document.getElementById(t.id);
+        if (!btn) return;
+        if (t.phase === phase) {
+          btn.className = t.activeCls;
+        } else {
+          btn.className = t.inactiveCls;
+        }
+      });
+
+      // Update banner text
+      const bannerTitle = document.getElementById('sectionBannerTitle');
+      const bannerBadge = document.getElementById('sectionBannerBadge');
+      const bannerDot = document.getElementById('sectionBannerDot');
+      if (phase === 'phase1') {
+        if (bannerTitle) bannerTitle.innerText = "فاز اول: ۱۰ حساب فعال با پیگیری نامه‌های فیزیکی ارسالی";
+        if (bannerBadge) {
+          bannerBadge.innerText = "۱۰ حساب فاز ۱";
+          bannerBadge.className = "text-xs font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded border border-emerald-500/30 font-bold";
+        }
+        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
+      } else if (phase === 'phase2') {
+        if (bannerTitle) bannerTitle.innerText = "فاز دوم: ۱۰ حساب بکر V2 با استراتژی ملایم Hot Failover (تست ۵۰k رایگان)";
+        if (bannerBadge) {
+          bannerBadge.innerText = "۱۰ حساب فاز ۲";
+          bannerBadge.className = "text-xs font-mono text-cyan-300 bg-cyan-500/15 px-2.5 py-0.5 rounded border border-cyan-500/30 font-bold";
+        }
+        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse";
+      } else {
+        if (bannerTitle) bannerTitle.innerText = "نمایش جامع: ۲۰ حساب کلیدی هدف (فاز اول و فاز دوم)";
+        if (bannerBadge) {
+          bannerBadge.innerText = "۲۰ حساب فعال";
+          bannerBadge.className = "text-xs font-mono text-[#8FB4AA] bg-[#527C78]/20 px-2.5 py-0.5 rounded border border-[#527C78]/40 font-bold";
+        }
+        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-[#8FB4AA]";
+      }
+    }
+
+    // Default to phase1 view on load
+    document.addEventListener("DOMContentLoaded", () => {
+      switchPhase('phase1');
+    });
+  </script>
 </body>
 </html>
