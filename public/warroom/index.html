@@ -155,6 +155,11 @@
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
         نمای پایپ‌لاین (List)
       </button>
+      <button onclick="switchView('layer2')" id="btnViewLayer2" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition" title="جدول کانتکت‌ها و رابطین لایه دوم">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <span>کانتکت‌های لایه ۲</span>
+        <span class="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold">۲۰</span>
+      </button>
       <button onclick="switchView('analytics')" id="btnViewAnalytics" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
         آمار و متریک‌ها
@@ -373,6 +378,7 @@
             <th class="p-3.5">نام شرکت و اولویت</th>
             <th class="p-3.5">حوزه فعالیت</th>
             <th class="p-3.5">تصمیم‌گیرندگان</th>
+            <th class="p-3.5">رابطین لایه ۲</th>
             <th class="p-3.5 text-center">مرحله (Stage)</th>
             <th class="p-3.5 text-center">پیوست‌ها</th>
             <th class="p-3.5 text-center">مسئولین</th>
@@ -381,6 +387,44 @@
         </thead>
         <tbody id="listTableBody" class="divide-y divide-white/5"></tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- VIEW 4: LAYER-2 TECHNICAL & OPERATIONS NETWORK (جدول لایه دوم ارتباطات) -->
+  <div id="viewLayer2" class="hidden flex-1 p-4 lg:p-8 space-y-4 max-w-7xl mx-auto w-full">
+    <!-- Header banner -->
+    <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl p-5 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 text-xs text-[#8FB4AA] font-mono mb-1">
+          <span class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span>
+          <span>LAYER-2 B2B NETWORK DIRECTORY — VERIFIED TECHNICAL & PRODUCT CONTACTS</span>
+        </div>
+        <h2 class="text-lg font-black text-white">جدول رصد و کانتکت‌های لایه دوم (۲۰ رابط فنی، محصول و عملیات)</h2>
+        <p class="text-xs text-[#B5BDB6] mt-1">شناسایی حداقل ۲ رابط معتبر فنی یا محصول در هر یک از ۱۰ حساب کلیدی جهت تسهیل پیگیری نامه‌ها و برقراری ارتباط تخصصی</p>
+      </div>
+      <div class="flex items-center gap-2 w-full md:w-auto">
+        <input type="text" id="layer2SearchInput" oninput="renderLayer2Table()" placeholder="🔍 جستجو در رابطین، تخصص‌ها یا شرکت‌ها..." class="bg-[#1E2422] text-white border border-[#46504B] rounded-xl px-3.5 py-2 text-xs w-full md:w-64 focus:outline-none focus:border-[#8FB4AA]">
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="ios-column rounded-2xl overflow-hidden shadow-2xl border border-[#46504B]">
+      <div class="overflow-x-auto">
+        <table class="w-full text-right text-xs">
+          <thead class="bg-[#343C38] text-[#B5BDB6] border-b border-[#46504B] font-semibold">
+            <tr>
+              <th class="p-3.5 w-12 text-center font-mono">#</th>
+              <th class="p-3.5">شرکت و برند</th>
+              <th class="p-3.5">وضعیت نامه و اقدام</th>
+              <th class="p-3.5">مدیر ارشد (C-Level)</th>
+              <th class="p-3.5">رابط اول لایه ۲ (فنی / محصول)</th>
+              <th class="p-3.5">رابط دوم لایه ۲ (فنی / عملیات)</th>
+              <th class="p-3.5 text-center">عملیات</th>
+            </tr>
+          </thead>
+          <tbody id="layer2TableBody" class="divide-y divide-[#36403C]"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -2243,6 +2287,98 @@
       { id: "won", title: "۶. پایلوت و بسته‌شده", color: "bg-[#30D158]" }
     ];
 
+    // RENDER LAYER-2 CONTACTS TABLE
+    function renderLayer2Table() {
+      const tbody = document.getElementById("layer2TableBody");
+      if (!tbody) return;
+      tbody.innerHTML = "";
+
+      const query = (document.getElementById("layer2SearchInput")?.value || "").toLowerCase().trim();
+
+      accounts.forEach(acc => {
+        const l2 = acc.layer2Contacts || [];
+        const c1 = l2[0] || {};
+        const c2 = l2[1] || {};
+
+        if (query) {
+          const match = acc.name.toLowerCase().includes(query) ||
+                        (c1.name && c1.name.toLowerCase().includes(query)) ||
+                        (c1.role && c1.role.toLowerCase().includes(query)) ||
+                        (c2.name && c2.name.toLowerCase().includes(query)) ||
+                        (c2.role && c2.role.toLowerCase().includes(query)) ||
+                        (acc.decisionMaker && acc.decisionMaker.toLowerCase().includes(query));
+          if (!match) return;
+        }
+
+        const isOutreach = (acc.stage === "outreach");
+        const scComment = (acc.comments || []).find(c => c.text && c.text.includes("سرشماره"));
+        const scNumber = scComment ? scComment.text.replace("سرشماره", "").trim() : "";
+
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-[#343C38]/50 transition cursor-pointer";
+        tr.onclick = () => openDetailDrawer(acc.id);
+
+        const formatContact = (c) => {
+          if (!c.name) return '<span class="text-slate-500">تعیین نشده</span>';
+          const shortLi = c.linkedin ? c.linkedin.replace("https://www.linkedin.com/", "").replace("http://www.linkedin.com/", "") : "";
+          return `
+            <div class="space-y-1">
+              <div class="flex items-center gap-1.5">
+                <span class="font-bold text-white text-xs">${c.name}</span>
+                <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded font-medium border border-emerald-500/20">فعال</span>
+              </div>
+              <div class="text-[10px] text-slate-300 leading-tight">${c.role || c.title || ""}</div>
+              ${c.linkedin ? `
+                <a href="${c.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-[10px] text-[#8FB4AA] hover:underline font-mono inline-flex items-center gap-1 mt-0.5">
+                  <span>${shortLi}</span> ↗
+                </a>
+              ` : ""}
+            </div>
+          `;
+        };
+
+        tr.innerHTML = `
+          <td class="p-3.5 text-center font-mono text-slate-400">${acc.num}</td>
+          <td class="p-3.5">
+            <div class="font-bold text-white text-xs">${acc.name}</div>
+            <div class="text-[10px] text-slate-400 mt-0.5">${acc.vertical}</div>
+            <span class="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-mono ${acc.tier === 'Tier A' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-white/10 text-slate-300'}">${acc.tier}</span>
+          </td>
+          <td class="p-3.5">
+            ${isOutreach ? `
+              <div class="space-y-1">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  نامه فیزیکی ارسال شد
+                </span>
+                ${scNumber ? `
+                  <div class="text-[10px] text-amber-300 font-mono">
+                    سرشماره: <span class="bg-black/30 px-1.5 py-0.5 rounded border border-amber-500/30">${scNumber}</span>
+                  </div>
+                ` : ""}
+              </div>
+            ` : `
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                📝 در حال تدوین نامه و روت
+              </span>
+            `}
+          </td>
+          <td class="p-3.5">
+            <div class="text-white font-medium text-xs">${(acc.decisionMaker || "").split("—")[0].trim()}</div>
+            <div class="text-slate-400 text-[10px] mt-0.5">${(acc.decisionMaker || "").includes("—") ? acc.decisionMaker.split("—")[1].trim() : ""}</div>
+          </td>
+          <td class="p-3.5 bg-black/10">${formatContact(c1)}</td>
+          <td class="p-3.5 bg-black/10">${formatContact(c2)}</td>
+          <td class="p-3.5 text-center">
+            <button onclick="event.stopPropagation(); openDetailDrawer('${acc.id}');" class="px-3 py-1 bg-white/10 hover:bg-[#527C78] text-white rounded-lg text-[11px] transition">
+              پرونده
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
     // RENDER KANBAN BOARD
     function renderBoard() {
       stages.forEach(st => {
@@ -2274,6 +2410,15 @@
             tierBadgeClass = "bg-slate-500/15 text-slate-300 border border-slate-500/20 font-medium";
           }
 
+          const l2List = acc.layer2Contacts || [];
+          const l2CardHtml = l2List.length > 0 ? `
+            <div class="mt-2 pt-1.5 border-t border-[#36403C] text-[10px] text-slate-300 flex items-center justify-between">
+              <span class="text-sky-300 truncate max-w-[170px]" title="${l2List.map(c => c.name + ' (' + (c.role||'') + ')').join(' | ')}">
+                👥 لایه ۲: ${l2List.map(c => c.name).join("، ")}
+              </span>
+              <span class="px-1.5 py-0.2 rounded bg-sky-500/15 text-sky-400 font-mono text-[9px] border border-sky-500/25">${l2List.length} کانتکت</span>
+            </div>
+          ` : "";
           card.innerHTML = `
             <div class="flex items-center justify-between mb-2">
               <span class="px-2 py-0.5 rounded text-[10px] font-mono ${tierBadgeClass}">${acc.tier}</span>
@@ -2325,6 +2470,7 @@
                 ` : ''}
               </div>
             </div>
+            ${l2CardHtml}
           `;
           colEl.appendChild(card);
         });
@@ -2355,6 +2501,19 @@
           <td class="p-3.5">
             <div class="text-slate-200 font-medium">${acc.decisionMaker}</div>
             <div class="text-slate-400 text-[11px] mt-0.5">${acc.techLead}</div>
+          </td>
+          <td class="p-3.5">
+            ${(acc.layer2Contacts && acc.layer2Contacts.length > 0) ? `
+              <div class="space-y-1">
+                ${acc.layer2Contacts.map(c => `
+                  <div class="text-[11px] flex items-center gap-1">
+                    <span class="text-sky-300 font-medium">${c.name}</span>
+                    <span class="text-slate-400 text-[10px]">(${c.role || ""})</span>
+                    ${c.linkedin ? `<a href="${c.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-[#8FB4AA] hover:underline text-[10px]">↗</a>` : ""}
+                  </div>
+                `).join("")}
+              </div>
+            ` : `<span class="text-slate-500 text-[10px]">-</span>`}
           </td>
           <td class="p-3.5 text-center">
             <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/10 text-slate-200">${stageObj.title}</span>
@@ -2983,10 +3142,11 @@
 
     // Filters & Switchers
     function switchView(view) {
-      ['board', 'list', 'analytics'].forEach(v => {
+      ['board', 'list', 'layer2', 'analytics'].forEach(v => {
         const btn = document.getElementById(`btnView${v.charAt(0).toUpperCase() + v.slice(1)}`);
         const el = document.getElementById(`view${v.charAt(0).toUpperCase() + v.slice(1)}`);
         if (v === view) {
+          if (v === 'layer2') renderLayer2Table();
           btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/15 text-white shadow-sm transition";
           el.classList.remove("hidden");
         } else {
