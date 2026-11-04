@@ -1478,6 +1478,20 @@
         updateSyncUI('synced', src);
       };
 
+      // 0. Same-Origin data.json (immediate authoritative sync for Stockholm VPS / local)
+      try {
+        const res = await fetchWithTimeout("./data.json?t=" + Date.now(), {}, 2500);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            applyInit(data, 'متصل به پایگاه داده سرور (data.json)');
+            // Also push to Firebase in background to keep cloud in sync
+            firebasePush(data).catch(() => {});
+            return;
+          }
+        }
+      } catch(e) {}
+
       // 1. Same-origin API (local/VPS)
       if (PRIMARY_API_ENDPOINT) {
         try {
