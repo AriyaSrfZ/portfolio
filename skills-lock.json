@@ -217,6 +217,18 @@
       "skillPath": "skills/lingo/SKILL.md",
       "computedHash": "456a547f6835e0e45bf2b3cbdf66bae60292a5dc1bf0fdb80871591129907d81"
     },
+    "linkedin-posts": {
+      "source": "kostja94/marketing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/platforms/linkedin/SKILL.md",
+      "computedHash": "d487f95483268a7571e4a1a3be63a888388277863ad95def651ed33ee53b2dbd"
+    },
+    "linkedin-profile-optimizer": {
+      "source": "paramchoudhary/resumeskills",
+      "sourceType": "github",
+      "skillPath": "skills/linkedin-profile-optimizer/SKILL.md",
+      "computedHash": "2d49d4fb126ddfdc630542e0844e87822abb8960030788de7cafa5deae7d736c"
+    },
     "material": {
       "source": "bergside/awesome-design-skills",
       "sourceType": "github",
