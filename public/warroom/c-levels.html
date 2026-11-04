@@ -55,6 +55,9 @@
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
           <span>← بازگشت به اتاق جنگ</span>
         </a>
+        <a href="/list2.html" class="px-3.5 py-2 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white rounded-xl text-xs font-bold shadow-md transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>⚡ صفحه اختصاصی لیست دوم (V2)</span>
+        </a>
         <a href="/meeting-nov2.html" class="px-3.5 py-2 bg-[#B39A77] hover:bg-[#9E8664] text-[#202725] rounded-xl text-xs font-bold transition flex items-center gap-1.5">
           <span>📋 صورتجلسه ۱۱ آبان</span>
         </a>
@@ -73,7 +76,7 @@
         <span>همه حسابها (۲۰)</span>
         <span class="px-2 py-0.5 rounded-full bg-white/10 text-slate-300 text-[10px] font-mono">۲۰</span>
       </button>
-      <button onclick="switchPhase('phase1')" id="tab-phase1" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap">
+      <button onclick="switchPhase('all')" id="tab-phase1" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap">
         <span>🌿 فاز ۱: ۱۰ حساب سازمانی (پیگیری ثانویه)</span>
         <span class="px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 text-[10px] font-mono font-bold">۱۰</span>
       </button>
@@ -1142,7 +1145,7 @@
 
     // Default to phase1 view on load
     document.addEventListener("DOMContentLoaded", () => {
-      switchPhase('phase1');
+      switchPhase('all');
     });
   </script>
 </body>
