@@ -165,6 +165,10 @@ class OperationsBehavioralGraph:
             self.log("TELEGRAM", "Telegram payload compiled (dry-run mode).")
             return text
 
+        if os.environ.get("ALLOW_TELEGRAM_DISPATCH") != "YES_CONFIRMED":
+            self.log("TELEGRAM", "BLOCKED: Dispatch refused without ALLOW_TELEGRAM_DISPATCH='YES_CONFIRMED'", "WARN")
+            return False
+
         # Execute Telegram dispatch via proxy
         try:
             proxy_handler = urllib.request.ProxyHandler({"http": TG_PROXY, "https": TG_PROXY})
