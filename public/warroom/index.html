@@ -254,20 +254,7 @@
   <div class="px-4 lg:px-8 py-3.5 bg-[#171C1A] border-b border-[#46504B] flex flex-wrap items-center justify-between gap-4">
     <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
       <span class="text-slate-400 font-medium ml-1">مسئولین:</span>
-            <!-- Phase Filter Segmented Control -->
-      <div class="flex items-center bg-[#1E2422] p-1 rounded-xl border border-[#46504B] text-xs">
-        <button onclick="filterByPhase('all')" id="pf-all" class="px-3 py-1 rounded-lg font-bold bg-[#343C38] text-white shadow-sm transition">
-          همه (۲۰)
-        </button>
-        <button onclick="filterByPhase('phase1')" id="pf-phase1" class="px-3 py-1 rounded-lg font-medium text-emerald-400 hover:text-white transition">
-          فاز ۱ — نامه‌نگاری (۱۰)
-        </button>
-        <button onclick="filterByPhase('phase2')" id="pf-phase2" class="px-3 py-1 rounded-lg font-medium text-violet-300 hover:text-white transition">
-          فاز ۲ — توسعه جدید (۱۰)
-        </button>
-      </div>
-
-      <button onclick="filterByRole('all')" id="rf-all" class="px-3 py-1 rounded-lg bg-[#527C78] text-white font-semibold shadow-sm transition">همه</button>
+            <button onclick="filterByRole('all')" id="rf-all" class="px-3 py-1 rounded-lg bg-[#527C78] text-white font-semibold shadow-sm transition">همه</button>
       <button onclick="filterByRole('unassigned')" id="rf-unassigned" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-amber-300 hover:text-white border border-amber-500/20 transition whitespace-nowrap">⏳ بدون مسئول (آماده پذیرش)</button>
       <button onclick="filterByRole('shahroozi')" id="rf-shahroozi" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم شهروزی</button>
       <button onclick="filterByRole('moosapour')" id="rf-moosapour" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم موسی‌پور</button>
@@ -1678,261 +1665,11 @@
                   }
             ],
             "phase": "phase1"
-      },
-      {
-            "id": "acc-11",
-            "num": "۱۱",
-            "name": "میلی‌گلد (Milli Gold)",
-            "vertical": "معاملات برخط طلای خرد و آبشده",
-            "tier": "Tier A",
-            "score": "۹۵",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/milli-gold/",
-            "website": "https://milli.gold",
-            "decisionMaker": "احسان عجم (مدیرعامل و هم‌بنیان‌گذار)",
-            "approver": "هیئت‌مدیره توسعه فناوری ترنج",
-            "techLead": "سرپرست زیرساخت، دواپس و معماری سرور",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "افت شدید کیفیت OTP و تاخیر پیامک ثبت سفارش در زمان نوسانات ثانیه‌ای قیمت طلا و ریزش کاربران در مراحل تسویه.",
-            "hookCeo": "جناب آقای مهندس عجم عزیز، با سلام. جهش خیره‌کننده میلی‌گلد در دسترس‌پذیر کردن پس‌انداز طلا برای عموم جامعه افتخار بزرگی است. در پلتفرمی با میلیون‌ها کاربر که نبض معاملات با ثانیه‌ها می‌زند، تاخیر در تحویل پیامک OTP معادل از دست رفتن اعتماد سرمایه‌گذار و تماس‌های سنگین مرکز پشتیبانی است. پرشیا فاوا با اتصال مستقیم اپراتوری و روت دوم تستی بدون قطعی، پایداری P99 زیر ۲ ثانیه را برای میلی‌گلد تضمین می‌نماید. آماده‌ایم در جلسه‌ای مشترک، مدل پایلوت را خدمتتان تشریح نماییم.",
-            "hookTech": "درود. زیرساخت اختصاصی پرشیا فاوا با ظرفیت همزمانی بالا (High TPS) و وب‌هوک وضعیت تا سطح گوشی (Handset Delivery Report)، مانع تشکیل صف پیامک در پیک نوسان طلا می‌شود. روت تستی بدون تغییر در کدبیس اصلی ظرف ۲ ساعت قابل فعال‌سازی است.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-12",
-            "num": "۱۲",
-            "name": "تیپاکس (Tipax)",
-            "vertical": "پست سریع خصوصی و لجستیک مرسولات",
-            "tier": "Tier A",
-            "score": "۹۲",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/tipaxco/",
-            "website": "https://tipaxco.com",
-            "decisionMaker": "دکتر مهرداد فاخر (مدیرعامل و رئیس هیئت‌مدیره هلدینگ فاخر)",
-            "approver": "معاونت بازرگانی و لجستیک هلدینگ فاخر",
-            "techLead": "معاونت فناوری اطلاعات و زیرساخت تیپاکس",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "تاخیر در پیامک کدهای تحویل بسته (Delivery OTP) به گیرندگان نهایی و صف‌بندی در ساعات توزیع که منجر به معطلی سفیران می‌شود.",
-            "hookCeo": "جناب آقای دکتر فاخر گرامی، وقت بخیر. جایگاه تیپاکس به عنوان ستون فقرات لجستیک سریع کشور نیازمند زیرساخت ارتباطی با حداکثر ضریب اطمینان است. در تیراژ میلیونی توزیع بسته‌ها، پیامک کد تحویل مستقیم‌ترین نقطه تماس با مشتری است. پرشیا فاوا با خطوط پایدار اختصاصی مخابراتی و اتصال مستقیم SMPP، تعرفه پلکانی رقابتی و نرخ تحویل بالای ۹۸٫۵٪ را ویژه شبکه تیپاکس تضمین می‌کند.",
-            "hookTech": "عرض سلام. برای هاب مرسولات تیپاکس، روتینگ هوشمند پرشیا فاوا ترافیک کدهای تحویل را از صف‌های عمومی جدا کرده و با اولویت فوری ارسال می‌کند تا تاخیر به صفر نزدیک شود.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-13",
-            "num": "۱۳",
-            "name": "الوپیک (Alopeyk)",
-            "vertical": "پیک موتوری و لجستیک درون‌شهری",
-            "tier": "Tier A",
-            "score": "۸۸",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/alopeyk/",
-            "website": "https://alopeyk.com",
-            "decisionMaker": "مدیرعامل و هیئت‌مدیره سامان پرداز هدف",
-            "approver": "معاونت عملیات و ناوگان",
-            "techLead": "مدیر ارشد مهندسی و سرپرست بک‌اند",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "ترافیک سنگین رویدادمحور در ساعات اوج بارندگی و ناهار، و ریزش درخواست‌ها به دلیل تاخیر کدهای تایید سفارش سفیران.",
-            "hookCeo": "مدیریت محترم الوپیک، سلام و درود. در بیزینس‌های Real-time On-demand مانند الوپیک، تاخیر چند ثانیه‌ای پیامک به معنای لغو سفر یا معطلی سفیر است. پرشیا فاوا با تضمین تاخیر زیر ۲ ثانیه و مدل تسویه پس‌پرداخت (Postpaid) معتبر، هزینه‌های سربار رسوب نقدینگی را حذف و ترافیک لحظه‌ای شما را بیمه می‌کند.",
-            "hookTech": "درود و احترام. وب‌سرویس REST و اتصال پرسرعت SMPP پرشیا فاوا مجهز به Failover خودکار است که در لحظه افت کیفیت هر اپراتور، پیامک‌های سفیران را بدون وقفه از روت پشتیبان منتقل می‌سازد.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-14",
-            "num": "۱۴",
-            "name": "لندو (Lendo / پیشگامان اعتبار آفرین)",
-            "vertical": "لندتک و خرید اقساطی کالا",
-            "tier": "Tier B",
-            "score": "۸۵",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/lendo-ir/",
-            "website": "https://lendo.ir",
-            "decisionMaker": "امیر حق‌رنجبر (مدیرعامل و هم‌بنیان‌گذار)",
-            "approver": "معاونت اعتبارسنجی و مالی (فینوداد / بانک آینده)",
-            "techLead": "سرپرست محصول و معماری نرم‌افزار",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "تاخیر پیامک‌های امضای دیجیتال قرارداد، سفته الکترونیک و یادآوری اقساط که سبب انصراف متقاضی وام می‌شود.",
-            "hookCeo": "جناب آقای حق‌رنجبر عزیز، سلام. پیشگامی لندو در گسترش تسهیلات خرد خرید کالا الگوی لندتک کشور است. پیامک‌های اعتبارسنجی، سفته الکترونیک و سررسید اقساط، شریان حیاتی پلتفرم اعتباری هستند. زیرساخت پرشیا فاوا با تحویل تضمینی کدهای خدماتی و وب‌هوک وضعیت قطعی، از انصراف متقاضیان در مراحل پایانی وام پیشگیری می‌کند.",
-            "hookTech": "سلام و ادب. ما در پرشیا فاوا پایپ مستقل بانکی بدون مسدودی برای پیامک‌های مالی فراهم کرده‌ایم که فرآیند امضای قراردادهای لندو را بدون اصطکاک به سرانجام می‌رساند.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-15",
-            "num": "۱۵",
-            "name": "سپیدار سیستم (Sepidar System)",
-            "vertical": "نرم‌افزار مالی و ERP اصناف و شرکت‌های متوسط",
-            "tier": "ISV",
-            "score": "۸۵",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/sepidarsystem/",
-            "website": "https://sepidarsystem.com",
-            "decisionMaker": "حمیدرضا رابعی (مدیرعامل سپیدار سیستم)",
-            "approver": "شورای معاونین و توسعه اکوسیستم همکاران سیستم",
-            "techLead": "مدیر توسعه محصول سپیدار و راهکاران ابری",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "عدم تعبیه درگاه پیش‌فرض پیامک مستقیم در بسته پایه سپیدار و از دست رفتن جریان درآمد پایدار ری‌شیرینگ پیامک بیش از ۸۰ هزار کاربر فعال.",
-            "hookCeo": "جناب آقای مهندس رابعی گرامی، سلام و درود. شبکه گسترده مشتریان سپیدار سیستم پتانسیل کم‌نظیری برای خلق جریان درآمد پایدار (Recurring Revenue) فراهم کرده است. با تعبیه درگاه پیامک پرشیا فاوا در بسته پایه سپیدار، علاوه بر ارسال خودکار اسناد مالیاتی و مانده‌حساب، درآمد حاصل از میلیاردها پیامک ارسالی در قالب مدل Revenue Share پایدار بین دو مجموعه تقسیم خواهد شد.",
-            "hookTech": "درود فراوان. ماژول ارتباطی و SDK سبک پرشیا فاوا سازگار با پایگاه داده و وب‌سرویس سپیدار آماده شده است تا بدون پیچیدگی فنی، ارسال خودکار فاکتورها برای کارخانجات و اصناف فعال شود.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-16",
-            "num": "۱۶",
-            "name": "داریک (Darik Gold)",
-            "vertical": "معاملات آنلاین شمش و طلا",
-            "tier": "Tier B",
-            "score": "۸۰",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/darik-gold/",
-            "website": "https://darik.gold",
-            "decisionMaker": "مدیرعامل و هیئت‌مدیره توسعه مبادلات زرین",
-            "approver": "مدیر حقوقی و نظارت بانکی",
-            "techLead": "مدیر فناوری اطلاعات و زیرساخت مبادلات",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "نیاز به ارسال فاکتورهای رسمی در معاملات شبانه‌روزی و عدم وجود پشتیبانی پرووایدرهای واسط در شیفت‌های شب.",
-            "hookCeo": "مدیریت محترم داریک، با سلام. فعالیت پیوسته پلتفرم شما در معاملات طلا نیازمند زیرساختی است که در تمام ساعات شبانه‌روز پایداری زیر ۲ ثانیه و پشتیبانی لایه دو ارائه دهد. پرشیا فاوا با وب‌هوک معتبر قضایی و فاکتورهای قانونی، امنیت مبادلات طلا را تضمین می‌کند.",
-            "hookTech": "درود. گزارش‌های دلیوری در سطح گوشی (Handset Delivery Report) به صورت رویدادی روی سرورهای شما پوش می‌شود تا استنادپذیری حقوقی معاملات داریک ارتقا یابد.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-17",
-            "num": "۱۷",
-            "name": "فناوری اطلاعات پارمیس (Parmis ERP)",
-            "vertical": "نرم‌افزارهای یکپارچه مالی، ابری و ERP",
-            "tier": "ISV",
-            "score": "۷۸",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/parmisit/",
-            "website": "https://parmisit.com",
-            "decisionMaker": "مظاهر مرجانی (مدیرعامل و بنیان‌گذار)",
-            "approver": "مدیر فروش و بازاریابی پارمیس",
-            "techLead": "مدیر محصول پارمیس کلود و راهکارهای وب",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "نیاز مشتریان شرکتی و کارگاهی به وب‌سرویس پیامک پایدار و مسدود شدن پیامک‌های اصناف به دلیل بلک‌لیست تبلیغاتی خطوط عمومی.",
-            "hookCeo": "جناب آقای مرجانی عزیز، سلام و احترام. توسعه راهکارهای ابری پارمیس نقش ارزنده‌ای در تحول دیجیتال کسب‌وکارهای ایرانی دارد. پیشنهاد ما ادغام درگاه پیامک سازمانی پرشیا فاوا در بستر ابری پارمیس با خطوط خدماتی بدون بلک‌لیست و مدل درآمد اشتراکی ماهانه است.",
-            "hookTech": "عرض سلام. SDK ماژولار پرشیا فاوا قابلیت اتصال به زیرساخت ابری پارمیس را داراست تا کاربران شما بدون نیاز به تشریفات پیچیده مخابراتی، بلافاصله از داخل نرم‌افزار پیامک ارسال کنند.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-18",
-            "num": "۱۸",
-            "name": "ازکی‌وام (AzkiVam)",
-            "vertical": "پلتفرم اعتبارسنجی و تسهیلات اقساطی",
-            "tier": "Tier B",
-            "score": "۷۵",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/azkivam/",
-            "website": "https://azkivam.com",
-            "decisionMaker": "مدیریت ارشد اجرایی ازکی‌وام",
-            "approver": "معاونت ریسک و مالی",
-            "techLead": "سرپرست محصول و مهندسی نرم‌افزار",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "افت کیفیت ارسال کدهای استعلام حساب و تایید قرارداد در لحظه پرداخت آنلاین اقساطی که موجب لغو خرید سبد می‌شود.",
-            "hookCeo": "مدیریت محترم ازکی‌وام، سلام و احترام. در صنعت وام‌دهی دیجیتال، ثانیه‌ها سرنوشت نهایی شدن خرید اقساطی را رقم می‌زنند. پرشیا فاوا با روت مستقیم بانکی، کدهای احراز هویت و استعلام متقاضیان را با حداکثر سرعت و بدون ریزش منتقل می‌کند.",
-            "hookTech": "درود فراوان. مانیتورینگ خودکار سرورهای پرشیا فاوا تاخیر P99 زیر ۲ ثانیه را برای وب‌هوک‌های اعتبارسنجی تضمین می‌کند.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-19",
-            "num": "۱۹",
-            "name": "بارپین (Barpin / پایانه هوشمند بار)",
-            "vertical": "سامانه اعلام بار و بازارگاه حمل‌ونقل جاده‌ای",
-            "tier": "Tier A",
-            "score": "۷۴",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/barpin/",
-            "website": "https://barpin.net",
-            "decisionMaker": "مدیران ارشد و هیئت‌مدیره بارپین",
-            "approver": "مدیر عملیات ناوگان و پایانه‌ها",
-            "techLead": "سرپرست فنی و محصول رانندگان",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "عدم دسترسی رانندگان جاده‌ای به اینترنت پایدار و وابستگی حیاتی به پیامک اعلام بار؛ مسدود بودن خطوط رانندگان روی سرشماره‌های تبلیغاتی.",
-            "hookCeo": "مدیریت محترم بارپین، با سلام. رانندگان ناوگان سنگین چشم‌انتظار پیامک‌های اعلام بار لحظه‌ای هستند. پرشیا فاوا با خطوط خدماتی اپراتوری و پوشش سراسری آنتن‌های جاده‌ای، مانع سوختن نوبت بار ناوگان شما می‌شود.",
-            "hookTech": "عرض ادب. ما با اتصال SMPP و مکانیسم خودکار تلاش مجدد (Smart Retry) روی دکل‌های بین‌شهری، نرخ تحویل موفق پیامک بارنامه را به اوج می‌رسانیم.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
-      },
-      {
-            "id": "acc-20",
-            "num": "۲۰",
-            "name": "گروه نرم‌افزاری محک (Mahak Soft)",
-            "vertical": "نرم‌افزارهای حسابداری و مالی اصناف و فروشگاه‌ها",
-            "tier": "ISV",
-            "score": "۷۲",
-            "stage": "prospect",
-            "linkedin": "https://www.linkedin.com/company/mahaksoft/",
-            "website": "https://mahaksoft.com",
-            "decisionMaker": "فرهاد الیشایی (مدیرعامل و بنیان‌گذار محک)",
-            "approver": "مدیر بازرگانی و فروش",
-            "techLead": "مدیر فنی و زنجیره ارزش نرم‌افزار",
-            "assigneeResearcher": "",
-            "assigneeDrafter": "",
-            "csuiteStatus": "در انتظار پیگیری",
-            "pain": "ترافیک سنگین دوره‌ای ارسال فاکتور و مانده‌حساب اصناف در پایان هر ماه و افت کیفیت پنل‌های عمومی.",
-            "hookCeo": "جناب آقای مهندس الیشایی عزیز، درود و احترام. جامعه گسترده اصناف و فروشگاه‌های تحت پوشش محک نیازمند زیرساخت پیامک مستقیم با تعرفه اقتصادی پلکانی هستند. آماده‌ایم ماژول رسمی پرشیا فاوا را با مدل سودآوری مستمر به سبد محصولات محک اضافه نماییم.",
-            "hookTech": "درود. وب‌سرویس پرشیا فاوا با معماری چندمستاجره (Multi-tenant) هماهنگ بوده و ارسال هم‌زمان فاکتورهای هزاران فروشگاه را بدون ایجاد بار پردازشی مدیریت می‌کند.",
-            "docs": [],
-            "phase": "phase2",
-            "actions": [],
-            "comments": [],
-            "layer2Contacts": []
       }
 ];
 
     // LocalStorage State Management with Anti-Stale Migration
-    const CURRENT_DATA_VERSION = "2026-11-04-phase2-v5";
+    const CURRENT_DATA_VERSION = "2026-11-04-strictly-10-v6";
     const storedVersion = localStorage.getItem("pfg_data_version");
     if (storedVersion !== CURRENT_DATA_VERSION) {
       console.log("War Room: Detected older data version, purging stale cache to apply authoritative server state.");
@@ -2548,25 +2285,7 @@
     }
 
     let activeFilterRole = "all";
-    let activePhaseFilter = "all";
     let activeSearch = "";
-
-    function filterByPhase(phase) {
-      activePhaseFilter = phase;
-      ['all', 'phase1', 'phase2'].forEach(p => {
-        const btn = document.getElementById(`pf-${p}`);
-        if (!btn) return;
-        if (p === phase) {
-          btn.className = "px-3 py-1 rounded-lg font-bold bg-[#343C38] text-white shadow-sm transition";
-        } else {
-          btn.className = "px-3 py-1 rounded-lg font-medium text-slate-400 hover:text-white transition";
-        }
-      });
-      renderBoard();
-      renderList();
-      renderLayer2Table();
-      updateAnalytics();
-    }
     let selectedAccount = accounts[0];
 
     const stages = [
@@ -2685,11 +2404,8 @@
 
         const colEl = document.getElementById(`col-${st.id}`);
         inStage.forEach(acc => {
-          const isPhase2 = (acc.phase === 'phase2');
           const card = document.createElement("div");
-          card.className = isPhase2 
-            ? "modern-card p-3.5 rounded-xl cursor-pointer relative group border-violet-500/35 bg-[#251F33] hover:border-violet-400 shadow-md"
-            : "modern-card p-3.5 rounded-xl cursor-pointer relative group border-[#36403C] hover:border-[#8FB4AA]";
+          card.className = "modern-card p-3.5 rounded-xl cursor-pointer relative group";
           card.draggable = true;
           card.ondragstart = (e) => drag(e, acc.id);
           card.onclick = () => openDetailDrawer(acc.id);
@@ -2840,8 +2556,7 @@
                               acc.techLead.toLowerCase().includes(q) ||
                               acc.pain.toLowerCase().includes(q);
         if (!matchesSearch) return false;
-        if (activePhaseFilter !== "all" && acc.phase !== activePhaseFilter) return false;
-
+        
         if (activeFilterRole === "unassigned") {
           return !acc.assigneeResearcher && !acc.assigneeDrafter && !acc.assigneeApprover;
         }
