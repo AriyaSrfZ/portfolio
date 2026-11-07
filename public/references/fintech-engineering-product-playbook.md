@@ -2,7 +2,7 @@
 ## راهنمای جامع معماری سیستم‌های مالی، ریل‌های پرداخت و جعبه‌ابزار مدیران محصول فنی
 
 **Author:** Ariya Sarrafzadeh  
-**Domain:** [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir)  
+**Domain:** [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz)  
 **Target Audience:** Fintech Product Managers, Distributed Systems Architects, Lead Engineers, and Platform Builders  
 **Topics:** Distributed Financial Ledgers, Remittance Pipelines, Idempotency, Card Security (CVV/PCI-DSS), Asynchronous Provider Workflows, Technical PM GitHub Arsenal  
 **Languages:** English & Persian (فارسی و انگلیسی)  
@@ -468,4 +468,4 @@ Before approving any architectural design or product release in a financial envi
 - [ ] **Clear Failure & Rollback Semantics**: Ensure that when timeouts occur on third-party bank switches, the system automatically transitions into an isolated pending queue rather than blind retries or premature transaction abandonment.
 
 ---
-*Published as an open technical resource for the Iranian and Global Fintech & Product Management Community at [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir).*
+*Published as an open technical resource for the Iranian and Global Fintech & Product Management Community at [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz).*

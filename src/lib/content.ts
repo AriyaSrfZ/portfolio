@@ -1,6 +1,6 @@
 export type Locale = "en" | "fa";
 
-export const LIVE_SITE = "https://ariya-sarrafzadeh.ir";
+export const LIVE_SITE = "https://ariya-sarrafzadeh.xyz";
 export const LINKEDIN = "https://www.linkedin.com/in/ariya-sarrafzadeh/";
 export const EMAIL = "ariasg2002@gmail.com";
 export const CAL_URL = "https://cal.com/ariya-sarrafzadeh/15min";
@@ -214,7 +214,7 @@ export const copy: Record<Locale, Copy> = {
         "Technical Product Owner and Systems Architect. Payment switches, national SMS routing, and fraud isolation at production scale.",
     },
     proposal: {
-      label: "Design proposal for ariya-sarrafzadeh.ir — interactive study, not the live site.",
+      label: "Design proposal for ariya-sarrafzadeh.xyz — interactive study, not the live site.",
       live: "Open live site",
       notes: "Why it changed",
     },
@@ -666,7 +666,7 @@ export const copy: Record<Locale, Copy> = {
         "مالک فنی محصول و مدیر ارشد محصول. سوییچ پرداخت، مسیریابی پیامک ملی، جداسازی تقلب در مقیاس عملیاتی.",
     },
     proposal: {
-      label: "پیشنهاد طراحی برای ariya-sarrafzadeh.ir — مطالعه تعاملی، نه سایت زنده",
+      label: "پیشنهاد طراحی برای ariya-sarrafzadeh.xyz — مطالعه تعاملی، نه سایت زنده",
       live: "مشاهده سایت زنده",
       notes: "چرا عوض شد",
     },

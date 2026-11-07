@@ -8,12 +8,12 @@ info:
   contact:
     name: Ariya Sarrafzadeh
     email: ariasg2002@gmail.com
-    url: https://ariya-sarrafzadeh.ir/contact
+    url: https://ariya-sarrafzadeh.xyz/contact
   license:
     name: MIT / Technical Portfolio Reference
-    url: https://ariya-sarrafzadeh.ir/privacy
+    url: https://ariya-sarrafzadeh.xyz/privacy
 servers:
-- url: https://ariya-sarrafzadeh.ir
+- url: https://ariya-sarrafzadeh.xyz
   description: Production Primary Gateway
 paths:
   /api/v1/health:
@@ -444,7 +444,7 @@ components:
           example: 55 KB
         pdf_url:
           type: string
-          example: https://ariya-sarrafzadeh.ir/references/pci-dss-v4-0-quick-reference-guide.pdf
+          example: https://ariya-sarrafzadeh.xyz/references/pci-dss-v4-0-quick-reference-guide.pdf
     ConsultationRequest:
       type: object
       required:
@@ -497,7 +497,7 @@ components:
         type:
           type: string
           format: uri
-          example: https://ariya-sarrafzadeh.ir/docs/errors#resource-not-found
+          example: https://ariya-sarrafzadeh.xyz/docs/errors#resource-not-found
         title:
           type: string
           example: Resource Not Found
@@ -522,10 +522,10 @@ components:
           properties:
             openapi:
               type: string
-              example: https://ariya-sarrafzadeh.ir/openapi.json
+              example: https://ariya-sarrafzadeh.xyz/openapi.json
             docs:
               type: string
-              example: https://ariya-sarrafzadeh.ir/docs
+              example: https://ariya-sarrafzadeh.xyz/docs
             llms:
               type: string
-              example: https://ariya-sarrafzadeh.ir/llms.txt
+              example: https://ariya-sarrafzadeh.xyz/llms.txt

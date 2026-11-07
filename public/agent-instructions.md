@@ -1,9 +1,9 @@
 # Agent Instructions & Machine Interaction Protocol
 
-**Target Entity:** Ariya Sarrafzadeh Systems Architecture Portfolio (`https://ariya-sarrafzadeh.ir`)  
+**Target Entity:** Ariya Sarrafzadeh Systems Architecture Portfolio (`https://ariya-sarrafzadeh.xyz`)  
 **Specification Version:** 1.0.0 (Agent Readiness Protocol)  
-**Machine Entrypoint:** `https://ariya-sarrafzadeh.ir/openapi.json`  
-**LLM Index:** `https://ariya-sarrafzadeh.ir/llms.txt`  
+**Machine Entrypoint:** `https://ariya-sarrafzadeh.xyz/openapi.json`  
+**LLM Index:** `https://ariya-sarrafzadeh.xyz/llms.txt`  
 
 ---
 

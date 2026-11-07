@@ -2,11 +2,11 @@
 
 > High-throughput payment infrastructure, distributed double-entry ledgers, telecom SMS switches, and forensic fraud platforms.
 
-Production System Reference: https://ariya-sarrafzadeh.ir  
+Production System Reference: https://ariya-sarrafzadeh.xyz  
 Location: Tehran, Iran  
 Direct Contact: ariasg2002@gmail.com | LinkedIn: https://linkedin.com/in/ariya-sarrafzadeh  
-OpenAPI 3.1 Spec: https://ariya-sarrafzadeh.ir/openapi.json  
-Agent Index: https://ariya-sarrafzadeh.ir/llms.txt  
+OpenAPI 3.1 Spec: https://ariya-sarrafzadeh.xyz/openapi.json  
+Agent Index: https://ariya-sarrafzadeh.xyz/llms.txt  
 
 ---
 

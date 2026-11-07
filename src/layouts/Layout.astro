@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 
 const isFa = lang === 'fa';
-const siteUrl = 'https://ariya-sarrafzadeh.ir';
+const siteUrl = 'https://ariya-sarrafzadeh.xyz';
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(image, siteUrl).href;
 
@@ -34,12 +34,12 @@ const jsonLdPerson = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://ariya-sarrafzadeh.ir/#person",
+      "@id": "https://ariya-sarrafzadeh.xyz/#person",
       "name": "Ariya Sarrafzadeh",
       "alternateName": "آریا صراف‌زاده",
       "jobTitle": "Principal Systems Architect & Technical Product Leader",
       "description": SUPPORTING_STATEMENT,
-      "url": "https://ariya-sarrafzadeh.ir",
+      "url": "https://ariya-sarrafzadeh.xyz",
       "email": "ariasg2002@gmail.com",
       "sameAs": [
         "https://github.com/AriyaSrfZ",
@@ -66,10 +66,10 @@ const jsonLdPerson = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://ariya-sarrafzadeh.ir/#website",
-      "url": "https://ariya-sarrafzadeh.ir",
+      "@id": "https://ariya-sarrafzadeh.xyz/#website",
+      "url": "https://ariya-sarrafzadeh.xyz",
       "name": "Ariya Sarrafzadeh — Systems Architecture & Engineering Portfolio",
-      "publisher": { "@id": "https://ariya-sarrafzadeh.ir/#person" },
+      "publisher": { "@id": "https://ariya-sarrafzadeh.xyz/#person" },
       "inLanguage": ["en", "fa"]
     },
     {
@@ -78,16 +78,16 @@ const jsonLdPerson = {
       "url": canonicalUrl,
       "name": title,
       "description": description,
-      "isPartOf": { "@id": "https://ariya-sarrafzadeh.ir/#website" },
-      "about": { "@id": "https://ariya-sarrafzadeh.ir/#person" },
+      "isPartOf": { "@id": "https://ariya-sarrafzadeh.xyz/#website" },
+      "about": { "@id": "https://ariya-sarrafzadeh.xyz/#person" },
       "inLanguage": lang
     },
     {
       "@type": "Organization",
-      "@id": "https://ariya-sarrafzadeh.ir/#organization",
+      "@id": "https://ariya-sarrafzadeh.xyz/#organization",
       "name": "Ariya Sarrafzadeh Systems Engineering",
-      "url": "https://ariya-sarrafzadeh.ir",
-      "logo": "https://ariya-sarrafzadeh.ir/brand/as-lockup-dark.svg",
+      "url": "https://ariya-sarrafzadeh.xyz",
+      "logo": "https://ariya-sarrafzadeh.xyz/brand/as-lockup-dark.svg",
       "contactPoint": [
         {
           "@type": "ContactPoint",

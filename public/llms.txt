@@ -31,12 +31,12 @@ Consult Ariya Sarrafzadeh's technical reference, architecture dossiers, and API 
 
 ## How an agent should call
 
-- **Machine-Readable API Spec:** Fetch `https://ariya-sarrafzadeh.ir/openapi.json` or `https://ariya-sarrafzadeh.ir/api/openapi.yaml` for complete endpoint schemas.
-- **LLM Function Calling Tools:** Import tool definitions directly from `https://ariya-sarrafzadeh.ir/api/tools.json`.
-- **System Telemetry:** Query `https://ariya-sarrafzadeh.ir/api/v1/health.json` for live platform operational status.
-- **Architect Credentials:** Query `https://ariya-sarrafzadeh.ir/api/v1/profile.json` for verified production claims.
-- **Bilingual Fintech Lexicon (1,012 Terms):** Search `https://ariya-sarrafzadeh.ir/api/v1/dictionary.json` or browse `https://ariya-sarrafzadeh.ir/dictionary/`.
-- **Architecture Consultation Intake:** Submit structured review requests to `POST https://ariya-sarrafzadeh.ir/api/v1/intake` or schedule via `https://cal.com/ariya-sarrafzadeh/15min`.
+- **Machine-Readable API Spec:** Fetch `https://ariya-sarrafzadeh.xyz/openapi.json` or `https://ariya-sarrafzadeh.xyz/api/openapi.yaml` for complete endpoint schemas.
+- **LLM Function Calling Tools:** Import tool definitions directly from `https://ariya-sarrafzadeh.xyz/api/tools.json`.
+- **System Telemetry:** Query `https://ariya-sarrafzadeh.xyz/api/v1/health.json` for live platform operational status.
+- **Architect Credentials:** Query `https://ariya-sarrafzadeh.xyz/api/v1/profile.json` for verified production claims.
+- **Bilingual Fintech Lexicon (1,012 Terms):** Search `https://ariya-sarrafzadeh.xyz/api/v1/dictionary.json` or browse `https://ariya-sarrafzadeh.xyz/dictionary/`.
+- **Architecture Consultation Intake:** Submit structured review requests to `POST https://ariya-sarrafzadeh.xyz/api/v1/intake` or schedule via `https://cal.com/ariya-sarrafzadeh/15min`.
 
 ## When NOT to use this
 
@@ -46,34 +46,34 @@ Consult Ariya Sarrafzadeh's technical reference, architecture dossiers, and API 
 
 ## Core Resources & Documentation
 
-- [OpenAPI 3.1 Specification](https://ariya-sarrafzadeh.ir/openapi.json): Full REST API definition for automated agent tooling.
-- [Developer Portal](https://ariya-sarrafzadeh.ir/developers): Official developer portal, sandbox, API quickstarts, and CLI tooling.
-- [Developer API Reference](https://ariya-sarrafzadeh.ir/docs): Complete endpoints, schemas, rate limits, and integration examples.
-- [Fintech Dictionary](https://ariya-sarrafzadeh.ir/dictionary/): 1,012 terms across ledgers, switching, telecom, and Iranian regulatory rails.
-- [Persian Fintech Dictionary](https://ariya-sarrafzadeh.ir/fa/dictionary/): Persian engineering reference and case studies.
-- [Architecture Dossiers](https://ariya-sarrafzadeh.ir/api/v1/dossiers.json): The 4 core production system dossiers.
-- [Full LLM Context](https://ariya-sarrafzadeh.ir/llms-full.txt): Comprehensive technical specifications and invariants.
-- [Agent Instructions](https://ariya-sarrafzadeh.ir/agent-instructions.md): Directives for autonomous coding agents.
-- [About Ariya Sarrafzadeh](https://ariya-sarrafzadeh.ir/about): Professional background, executive foundation, and 0-to-scale story.
-- [Contact & Consultation](https://ariya-sarrafzadeh.ir/contact): Direct communication channels, Cal.com scheduling, and review SLAs.
-- [Privacy Policy](https://ariya-sarrafzadeh.ir/privacy): Zero-retention tokenization, telemetry, and compliance disclosures.
+- [OpenAPI 3.1 Specification](https://ariya-sarrafzadeh.xyz/openapi.json): Full REST API definition for automated agent tooling.
+- [Developer Portal](https://ariya-sarrafzadeh.xyz/developers): Official developer portal, sandbox, API quickstarts, and CLI tooling.
+- [Developer API Reference](https://ariya-sarrafzadeh.xyz/docs): Complete endpoints, schemas, rate limits, and integration examples.
+- [Fintech Dictionary](https://ariya-sarrafzadeh.xyz/dictionary/): 1,012 terms across ledgers, switching, telecom, and Iranian regulatory rails.
+- [Persian Fintech Dictionary](https://ariya-sarrafzadeh.xyz/fa/dictionary/): Persian engineering reference and case studies.
+- [Architecture Dossiers](https://ariya-sarrafzadeh.xyz/api/v1/dossiers.json): The 4 core production system dossiers.
+- [Full LLM Context](https://ariya-sarrafzadeh.xyz/llms-full.txt): Comprehensive technical specifications and invariants.
+- [Agent Instructions](https://ariya-sarrafzadeh.xyz/agent-instructions.md): Directives for autonomous coding agents.
+- [About Ariya Sarrafzadeh](https://ariya-sarrafzadeh.xyz/about): Professional background, executive foundation, and 0-to-scale story.
+- [Contact & Consultation](https://ariya-sarrafzadeh.xyz/contact): Direct communication channels, Cal.com scheduling, and review SLAs.
+- [Privacy Policy](https://ariya-sarrafzadeh.xyz/privacy): Zero-retention tokenization, telemetry, and compliance disclosures.
 
 ## Authoritative Regulatory Specifications (17 Real PDFs)
 
-- [PCI DSS v4.0 Quick Reference Guide](https://ariya-sarrafzadeh.ir/references/pci-dss-v4-0-quick-reference-guide.pdf): Token vault security and cardholder data isolation.
-- [ISO 20022 Messaging Schemas](https://ariya-sarrafzadeh.ir/references/iso-20022-financial-messaging-reference.pdf): Interbank financial services telegram definitions (pacs.008, pacs.002).
-- [FATF Travel Rule Guidance](https://ariya-sarrafzadeh.ir/references/fatf-travel-rule-virtual-assets-guidance.pdf): Recommendation 16 inter-VASP data exchange standards.
-- [Open Banking UK API Architecture](https://ariya-sarrafzadeh.ir/references/open-banking-uk-api-architecture.pdf): Read/write data profile, AISP/PISP roles, and mTLS security.
-- [OpenID FAPI 1.0 Advanced](https://ariya-sarrafzadeh.ir/references/openid-fapi-security-profile.pdf): Sender-constrained tokens, PAR, and JARM profiles.
-- [BIS / CPMI Principles for FMIs](https://ariya-sarrafzadeh.ir/references/bis-cpmi-financial-market-infrastructures.pdf): Core standards for systemic payment rails.
-- [ECB Electronic Payment Instruments Framework](https://ariya-sarrafzadeh.ir/references/ecb-electronic-payment-instruments-framework.pdf): PISA oversight guidelines.
-- [EMVCo 3-D Secure 2.0 & Tokenisation](https://ariya-sarrafzadeh.ir/references/emvco-3ds-tokenisation-reference.pdf): Frictionless risk-based authentication.
-- [CFPB Consumer Protection & Regulation E](https://ariya-sarrafzadeh.ir/references/cfpb-consumer-financial-protection-framework.pdf): Statutory dispute resolution timelines.
-- [CFPB BNPL Product Structure](https://ariya-sarrafzadeh.ir/references/cfpb-bnpl-product-structure-reference.pdf): Buy Now, Pay Later underwriting architecture.
-- [Basel III Framework Overview](https://ariya-sarrafzadeh.ir/references/basel-iii-framework-overview.pdf): Capital adequacy, LCR, and operational resilience.
-- [FedNow Service Specification](https://ariya-sarrafzadeh.ir/references/fednow-settlement-rails-reference.pdf): 24x7x365 instant payments settlement rules.
-- [Visa Core Rules & ISO 8583 Processing](https://ariya-sarrafzadeh.ir/references/visa-iso8583-integration-reference.pdf): Dual-message system transaction routing.
-- [GSMA Mobile Money API](https://ariya-sarrafzadeh.ir/references/gsma-mobile-money-api-specification.pdf): Asynchronous webhooks and mobile wallet protocols.
-- [IMF Digital Finance Lexicon](https://ariya-sarrafzadeh.ir/references/imf-digital-money-policy-reference.pdf): CBDC architecture and cross-border rails.
-- [Distributed Ledger Consensus Lexicon](https://ariya-sarrafzadeh.ir/references/blockchain-consensus-ledger-lexicon.pdf): BFT/Raft state machine consistency.
-- [Iranian Interbank Architecture (FA)](https://ariya-sarrafzadeh.ir/references/iranian-fintech-system-architecture-fa.pdf): National banking, Shetab, Shaparak, Paya, Satna, Harim, and Shahkar specs.
+- [PCI DSS v4.0 Quick Reference Guide](https://ariya-sarrafzadeh.xyz/references/pci-dss-v4-0-quick-reference-guide.pdf): Token vault security and cardholder data isolation.
+- [ISO 20022 Messaging Schemas](https://ariya-sarrafzadeh.xyz/references/iso-20022-financial-messaging-reference.pdf): Interbank financial services telegram definitions (pacs.008, pacs.002).
+- [FATF Travel Rule Guidance](https://ariya-sarrafzadeh.xyz/references/fatf-travel-rule-virtual-assets-guidance.pdf): Recommendation 16 inter-VASP data exchange standards.
+- [Open Banking UK API Architecture](https://ariya-sarrafzadeh.xyz/references/open-banking-uk-api-architecture.pdf): Read/write data profile, AISP/PISP roles, and mTLS security.
+- [OpenID FAPI 1.0 Advanced](https://ariya-sarrafzadeh.xyz/references/openid-fapi-security-profile.pdf): Sender-constrained tokens, PAR, and JARM profiles.
+- [BIS / CPMI Principles for FMIs](https://ariya-sarrafzadeh.xyz/references/bis-cpmi-financial-market-infrastructures.pdf): Core standards for systemic payment rails.
+- [ECB Electronic Payment Instruments Framework](https://ariya-sarrafzadeh.xyz/references/ecb-electronic-payment-instruments-framework.pdf): PISA oversight guidelines.
+- [EMVCo 3-D Secure 2.0 & Tokenisation](https://ariya-sarrafzadeh.xyz/references/emvco-3ds-tokenisation-reference.pdf): Frictionless risk-based authentication.
+- [CFPB Consumer Protection & Regulation E](https://ariya-sarrafzadeh.xyz/references/cfpb-consumer-financial-protection-framework.pdf): Statutory dispute resolution timelines.
+- [CFPB BNPL Product Structure](https://ariya-sarrafzadeh.xyz/references/cfpb-bnpl-product-structure-reference.pdf): Buy Now, Pay Later underwriting architecture.
+- [Basel III Framework Overview](https://ariya-sarrafzadeh.xyz/references/basel-iii-framework-overview.pdf): Capital adequacy, LCR, and operational resilience.
+- [FedNow Service Specification](https://ariya-sarrafzadeh.xyz/references/fednow-settlement-rails-reference.pdf): 24x7x365 instant payments settlement rules.
+- [Visa Core Rules & ISO 8583 Processing](https://ariya-sarrafzadeh.xyz/references/visa-iso8583-integration-reference.pdf): Dual-message system transaction routing.
+- [GSMA Mobile Money API](https://ariya-sarrafzadeh.xyz/references/gsma-mobile-money-api-specification.pdf): Asynchronous webhooks and mobile wallet protocols.
+- [IMF Digital Finance Lexicon](https://ariya-sarrafzadeh.xyz/references/imf-digital-money-policy-reference.pdf): CBDC architecture and cross-border rails.
+- [Distributed Ledger Consensus Lexicon](https://ariya-sarrafzadeh.xyz/references/blockchain-consensus-ledger-lexicon.pdf): BFT/Raft state machine consistency.
+- [Iranian Interbank Architecture (FA)](https://ariya-sarrafzadeh.xyz/references/iranian-fintech-system-architecture-fa.pdf): National banking, Shetab, Shaparak, Paya, Satna, Harim, and Shahkar specs.
