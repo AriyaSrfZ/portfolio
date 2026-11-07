@@ -45,20 +45,15 @@ In our production audits of national telecom routing switches, carrier-grade SMS
 
 Pushing high-volume transactional traffic through standard HTTP REST layers triggers immediate socket collapse. In this whitepaper, we formalize the architecture of a high-throughput telecom messaging switch operating directly over Short Message Peer-to-Peer (SMPP) protocol v3.4. We analyze the mechanics of carrier-side sliding window saturation, establish the mathematical queue limits governing window exhaustion, and detail our multi-bind dynamic throttling engine that isolates critical banking one-time passwords (OTPs) from bulk commercial campaigns.
 
-```
-+-----------------------------------------------------------------------------------+
-|                        HIGH-THROUGHPUT SMPP SWITCH ARCHITECTURE                   |
-+-----------------------------------------------------------------------------------+
-|  [Ingress Queue]                                                                  |
-|   |--> Critical Tier (Banking OTPs, 2FA)  --> Binds 01-08 (W_max=16, Strict SLA) |
-|   +--> Commercial Tier (Promos, Marketing) --> Binds 09-16 (Token-Bucket Throttled)|
-|                                                                                   |
-|  [Carrier Socket Mesh]                                                            |
-|   +--- Dynamic RTT Monitor (EWMA Sliding Window Controller)                       |
-|   +--- Atomic Sequence Tracker (Mutex-Free Window Counter)                        |
-|   +--- Asynchronous DLR Pipeline (Kafka Distributed Event Stream)                 |
-+-----------------------------------------------------------------------------------+
-```
+<div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
+  <img
+    src="/diagrams/telecom-smpp-sliding-window-schematic.svg"
+    alt="High-Throughput Telecom SMPP Sliding Window Switch Architecture"
+    class="w-full h-auto object-contain rounded-lg"
+    loading="lazy"
+  />
+  <p class="text-[11px] font-mono text-[var(--text-secondary)] mt-3 text-center">Fig 1.0: Little's Law buffer saturation, multi-bind VIP socket isolation, and EWMA RTT throttling</p>
+</div>
 
  - -
 

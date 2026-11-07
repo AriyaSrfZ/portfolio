@@ -1,7 +1,7 @@
 # The Technical & AI Product Manager's Playbook: Core Frameworks & Open-Source Arsenal
 
 **Author:** Ariya Sarrafzadeh  
-**Website:** [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir)  
+**Website:** [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz)  
 **Target Audience:** Technical Product Managers, Platform PMs, AI Product Leaders, and Engineering Leads  
 **Topics:** 10 Essential PM Frameworks, Prioritization, Growth Loops, AI Thinking, 17 Open-Source GitHub Repositories, Technical PRD Engineering  
 
@@ -250,4 +250,4 @@ graph TD
 | **Customer Feedback** | Kano Model | `LogChimp` | Aggregate merchant feature requests (e.g., multi-IBAN payouts) and publish transparent API updates. |
 
 ---
-*Published as an open technical guide for product managers and platform leaders at [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir).*
+*Published as an open technical guide for product managers and platform leaders at [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz).*

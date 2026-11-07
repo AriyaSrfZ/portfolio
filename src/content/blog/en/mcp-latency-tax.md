@@ -122,52 +122,15 @@ In high-throughput agent loops, every sequential tool invocation compounds end-t
 
 To insulate the reasoning model from raw database schema leakage, we introduce a deterministic Client-Side Schema Projection Gateway between the MCP Server and the Agent Context Ingress.
 
-```
-+-----------------------------------------------------------------------------+
-|                            AI AGENT RUNTIME                                 |
-|                                                                             |
-|   +---------------------+               +-------------------------------+   |
-|   | Agent Task Planner  | ------------> | Tool Call Invocation Dispatch |   |
-|   +---------------------+               +-------------------------------+   |
-|              ^                                          |                   |
-+--------------|------------------------------------------|-------------------+
-               |                                          | JSON-RPC Request
-               | Clean Context Window                     v
-+-----------------------------------------------------------------------------+
-|                CLIENT-SIDE SCHEMA PROJECTION GATEWAY (MIDDLEWARE)           |
-|                                                                             |
-|   +---------------------------------------------------------------------+   |
-|   | GATE 1: Dynamic Intent-Driven Schema Projection Engine              |   |
-|   |         - Matches tool call intent against declared field schema    |   |
-|   |         - Drops foreign keys, internal IDs, and null keys           |   |
-|   +---------------------------------------------------------------------+   |
-|                                     |                                       |
-|                                     v                                       |
-|   +---------------------------------------------------------------------+   |
-|   | GATE 2: Structural Serialization & Markdown Compression             |   |
-|   |         - Converts verbose JSON key-value trees into tables         |   |
-|   |         - Eliminates repetitive structural quote/bracket syntax     |   |
-|   +---------------------------------------------------------------------+   |
-|                                     |                                       |
-|                                     v                                       |
-|   +---------------------------------------------------------------------+   |
-|   | GATE 3: Token Ceiling Guard & Cursor Pagination Handler             |   |
-|   |         - Enforces hard 1,500 token output ceiling                  |   |
-|   |         - Generates continuation cursor pointers if cap exceeded    |   |
-|   +---------------------------------------------------------------------+   |
-+-----------------------------------------------------------------------------+
-        |                                                     ^
-        | tools/call                                          | Raw JSON Payload
-        v                                                     | (4,000 Tokens)
-+-----------------------------------------------------------------------------+
-|                          RAW ENTERPRISE MCP SERVER                          |
-|                                                                             |
-|   +-----------------------+              +------------------------------+   |
-|   | MCP Service Interface | <----------> | Enterprise Relational DB     |   |
-|   | (JSON-RPC 2.0 Stdio)  |              | (Users, Orders, Audit Logs)  |   |
-|   +-----------------------+              +------------------------------+   |
-+-----------------------------------------------------------------------------+
-```
+<div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
+  <img
+    src="/diagrams/mcp-latency-projection-schematic.svg"
+    alt="MCP Client-Side Schema Projection Gateway Architecture"
+    class="w-full h-auto object-contain rounded-lg"
+    loading="lazy"
+  />
+  <p class="text-[11px] font-mono text-[var(--text-secondary)] mt-3 text-center">Fig 1.0: MCP client-side schema projection gateway, 70% token pruning, and sub-second TTFT restoration</p>
+</div>
 
  - -
 

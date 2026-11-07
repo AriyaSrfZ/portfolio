@@ -1,7 +1,7 @@
 /**
  * Cloudflare Worker for Accept: text/markdown Content Negotiation
  * 
- * Attach this Worker to the route: ariya-sarrafzadeh.ir/* (or ariya-sarrafzadeh.ir/)
+ * Attach this Worker to the route: ariya-sarrafzadeh.xyz/* (or ariya-sarrafzadeh.xyz/)
  * It inspects incoming HTTP "Accept" headers. If an AI agent or crawler requests
  * "text/markdown", it fetches the canonical /index.md representation directly from origin
  * and returns it with Content-Type: text/markdown; charset=utf-8 and Vary: Accept.

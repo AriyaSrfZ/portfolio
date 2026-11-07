@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="auto" class="w-full h-auto" preserveAspectRatio="xMidYMid meet" dir="ltr" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+
+  <defs>
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#527C78" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#527C78" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B39A77" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#B39A77" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FB4AA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#8FB4AA" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="rose-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C85A5A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#C85A5A" stop-opacity="0.02"/>
+    </linearGradient>
+    <pattern id="grid-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#F3F0E8" fill-opacity="0.04"/>
+    </pattern>
+    <marker id="arr-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8FB4AA"/>
+    </marker>
+    <marker id="arr-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#B39A77"/>
+    </marker>
+    <marker id="arr-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#C85A5A"/>
+    </marker>
+  </defs>
+  <style>
+    text {
+      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+  <rect width="1000" height="520" fill="#171C1A" rx="14"/>
+  <rect width="1000" height="520" fill="url(#grid-dots)" rx="14"/>
+  <rect width="998" height="518" x="1" y="1" fill="none" stroke="#F3F0E8" stroke-opacity="0.08" rx="13"/>
+
+  <!-- Header -->
+  <g transform="translate(32, 28)">
+    <circle cx="6" cy="10" r="5" fill="#8FB4AA"/>
+    <text x="20" y="14" fill="#8FB4AA" font-size="12" font-weight="700" letter-spacing="1.2">ARCHITECTURE SCHEMATIC · AUTONOMOUS AI SWARM GOVERNANCE</text>
+    <text x="20" y="30" fill="#B5BDB6" font-size="9.5">QUADRATIC TOKEN EXPLOSION · DETERMINISTIC AST COMPILER CAGES · MULTI-TIER ROUTING</text>
+    <rect x="630" y="0" width="306" height="28" rx="6" fill="#8FB4AA" fill-opacity="0.1" stroke="#8FB4AA" stroke-opacity="0.35"/>
+    <circle cx="644" cy="14" r="4" fill="#8FB4AA"/>
+    <text x="656" y="18" fill="#8FB4AA" font-size="10" font-weight="700">INVARIANT: COMPILER &gt; PROSE CRITIQUE</text>
+  </g>
+
+  <!-- COL 1: The Conversational Spiral -->
+  <g transform="translate(32, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#C85A5A" font-size="11" font-weight="700">01. CONVERSATIONAL SPIRAL</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="135" rx="6" fill="#171C1A" stroke="#C85A5A" stroke-opacity="0.6"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">PROSE-BASED PEER REVIEW:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">Coder debates Reviewer in English prose</text>
+      <text x="10" y="54" fill="#C85A5A" font-size="8.5">Semantic drift &amp; stylistic bikeshedding</text>
+      <text x="10" y="70" fill="#F0EEE7" font-size="8.5">Underlying syntax bug remains uncaught</text>
+      
+      <rect x="10" y="85" width="232" height="40" rx="4" fill="#202725"/>
+      <text x="16" y="102" fill="#C85A5A" font-size="9" font-weight="700">O(T^2) TOKEN EXPLOSION</text>
+      <text x="16" y="118" fill="#B5BDB6" font-size="8.5">Arithmetic progression context growth</text>
+    </g>
+
+    <g transform="translate(14, 200)">
+      <rect width="252" height="170" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">COST ACCUMULATION DERIVATION:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">W(t) = C_0 + t * Delta_k</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="8.5">C_total(T) = sum( W(t)*P_in + Delta_out*P_out )</text>
+      
+      <rect x="10" y="70" width="232" height="85" rx="4" fill="#171C1A"/>
+      <text x="16" y="90" fill="#B39A77" font-size="9" font-weight="700">Mathematical Proof:</text>
+      <text x="16" y="108" fill="#F0EEE7" font-size="9.5">C_total(T) = Delta_k*P_in*T(T+1)/2</text>
+      <text x="16" y="128" fill="#C85A5A" font-size="14" font-weight="700">= O(T^2) QUADRATIC COST</text>
+      <text x="16" y="146" fill="#B5BDB6" font-size="8.5">Inference cost explodes without a compiler</text>
+    </g>
+  </g>
+
+  <!-- Connect 1 -> 2 -->
+  <line x1="312" y1="280" x2="358" y2="280" stroke="#8FB4AA" stroke-width="2" marker-end="url(#arr-cyan)"/>
+
+  <!-- COL 2: Deterministic Compiler Cage -->
+  <g transform="translate(360, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">02. COMPILER CAGE GATE</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="135" rx="6" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.6"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">DETERMINISTIC VERIFICATION:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">1. AST Parser (ast.parse / tree-sitter)</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="8.5">2. Security Import Whitelist Validator</text>
+      <text x="10" y="70" fill="#F0EEE7" font-size="8.5">3. Local Type Checker (mypy / tsc)</text>
+      <text x="10" y="86" fill="#F0EEE7" font-size="8.5">4. Local Automated Unit Tests (pytest/go)</text>
+
+      <rect x="10" y="98" width="232" height="28" rx="4" fill="#292F2D"/>
+      <text x="16" y="116" fill="#8FB4AA" font-size="9" font-weight="700">ZERO AI TOKENS CONSUMED</text>
+    </g>
+
+    <g transform="translate(14, 200)">
+      <rect width="252" height="170" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#B39A77" font-size="10" font-weight="700">STRUCTURED COMPILER FEEDBACK:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">Compiler errors fed directly to coder:</text>
+      <text x="10" y="54" fill="#8FB4AA" font-size="8.5">&bull; Line numbers, AST node IDs</text>
+      <text x="10" y="70" fill="#8FB4AA" font-size="8.5">&bull; Exact syntax exception traces</text>
+      
+      <rect x="10" y="85" width="232" height="70" rx="4" fill="#171C1A"/>
+      <text x="16" y="104" fill="#8FB4AA" font-size="9" font-weight="700">Reviewer Activation Invariant:</text>
+      <text x="16" y="122" fill="#F0EEE7" font-size="8.5">Reviewer model NEVER called until</text>
+      <text x="16" y="142" fill="#B39A77" font-size="8.5">patch compiles cleanly and passes tests</text>
+    </g>
+  </g>
+
+  <!-- Connect 2 -> 3 -->
+  <line x1="640" y1="280" x2="686" y2="280" stroke="#8FB4AA" stroke-width="2" marker-end="url(#arr-cyan)"/>
+
+  <!-- COL 3: Circuit Breaker & Routing -->
+  <g transform="translate(688, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">03. CIRCUIT BREAKER &amp; ROUTING</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="120" rx="6" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.8"/>
+      <text x="10" y="22" fill="#8FB4AA" font-size="10" font-weight="700">TOKEN-BUCKET CIRCUIT BREAKER:</text>
+      <text x="10" y="42" fill="#F0EEE7" font-size="8.5">&bull; Hard Token Ceiling: 250k / task</text>
+      <text x="10" y="58" fill="#F0EEE7" font-size="8.5">&bull; Max Self-Correction: 4 Turns</text>
+      <text x="10" y="76" fill="#C85A5A" font-size="9" font-weight="700">AUTOMATIC ROLLBACK TRIGGER:</text>
+      <text x="10" y="94" fill="#F0EEE7" font-size="8.5">Aborts run, resets git worktree,</text>
+      <text x="10" y="108" fill="#B5BDB6" font-size="8">alerts human engineer with exact failure</text>
+    </g>
+
+    <g transform="translate(14, 185)">
+      <rect width="252" height="185" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">STATIC MODEL TIER ROUTING:</text>
+      
+      <circle cx="16" cy="45" r="3" fill="#8FB4AA"/>
+      <text x="26" y="48" fill="#F0EEE7" font-size="8.5">Scout: 8B local (File maps, search)</text>
+      
+      <circle cx="16" cy="70" r="3" fill="#8FB4AA"/>
+      <text x="26" y="73" fill="#F0EEE7" font-size="8.5">Architect: Frontier (Filtered code slice)</text>
+      
+      <circle cx="16" cy="95" r="3" fill="#8FB4AA"/>
+      <text x="26" y="98" fill="#F0EEE7" font-size="8.5">Compiler: Deterministic local (0 tokens)</text>
+
+      <rect x="10" y="115" width="232" height="55" rx="4" fill="#171C1A"/>
+      <text x="16" y="135" fill="#8FB4AA" font-size="9" font-weight="700">Cost Containment:</text>
+      <text x="16" y="153" fill="#F0EEE7" font-size="11" font-weight="700">O(T^2) &rarr; O(1) CONSTANT COST</text>
+      <text x="16" y="165" fill="#B39A77" font-size="8.5">Deterministic Guardrails Protect Budget</text>
+    </g>
+  </g>
+</svg>

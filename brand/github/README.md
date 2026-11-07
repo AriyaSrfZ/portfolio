@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://ariya-sarrafzadeh.ir/brand/github-header.svg" alt="Ariya Sarrafzadeh — Systems that hold under pressure" width="100%" />
+  <img src="https://ariya-sarrafzadeh.xyz/brand/github-header.svg" alt="Ariya Sarrafzadeh — Systems that hold under pressure" width="100%" />
 </p>
 
 # Ariya Sarrafzadeh (@AriyaSrfZ)
@@ -7,7 +7,7 @@
 
 I work at the intersection of systems architecture, engineering, and product thinking—designing dependable technology for complex, high-stakes environments.
 
-[![Website](https://img.shields.io/badge/Website-ariya--sarrafzadeh.ir-527C78?style=flat-square)](https://ariya-sarrafzadeh.ir)
+[![Website](https://img.shields.io/badge/Website-ariya--sarrafzadeh.ir-527C78?style=flat-square)](https://ariya-sarrafzadeh.xyz)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Ariya%20Sarrafzadeh-303936?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/ariya-sarrafzadeh/)
 [![Email](https://img.shields.io/badge/Contact-ariasg2002%40gmail.com-202725?style=flat-square)](mailto:ariasg2002@gmail.com)
 

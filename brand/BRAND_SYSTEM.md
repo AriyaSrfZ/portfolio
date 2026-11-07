@@ -8,7 +8,7 @@
 - **Brand Name:** Ariya Sarrafzadeh
 - **Farsi Name:** آریا صراف‌زاده
 - **Technical Handle:** AriyaSrfZ
-- **Primary Website:** `https://ariya-sarrafzadeh.ir`
+- **Primary Website:** `https://ariya-sarrafzadeh.xyz`
 - **Brand Archetype:** The Systems Thinker
 - **Positioning:** A systems architect and technology professional connecting engineering depth, operational reality, and product outcomes.
 - **Core Promise:** Complexity, made dependable.
@@ -103,7 +103,7 @@ The AS monogram embodies architectural precision through clean geometry, balance
 
 ## 5. Multi-Channel Guidance
 
-1. **Portfolio Website (`https://ariya-sarrafzadeh.ir`):**
+1. **Portfolio Website (`https://ariya-sarrafzadeh.xyz`):**
    - Implements semantic CSS tokens centrally in `src/styles/global.css`.
    - Supports seamless Dark, Light, and System match modes with zero flash.
 2. **LinkedIn Profile:**

@@ -60,33 +60,15 @@ This pattern breaks during high-throughput batch operations:
 ### 2.1 Logical Replication Slots and WAL Retention
 PostgreSQL logical decoding relies on replication slots created with `pg_create_logical_replication_slot()`. In PostgreSQL 16, the logical decoding plugin `pgoutput` streams committed transaction data directly to Debezium.
 
-```
-+==================================================================================-+
-|                            PostgreSQL 16 Engine                                   |
-|                                                                                   |
-|  +====================+         +====================+         +==============-+  |
-|  | Client Transaction | ======> | Shared Buffer Pool | ======> | Data Files    |  |
-|  +====================+         +====================+         +==============-+  |
-|            |                              |                                       |
-|            v                              v                                       |
-|  +============================================================================-+  |
-|  |                 Write-Ahead Log (WAL) Ring Buffer (16MB Segments)           |  |
-|  |  [0/1A20000] -> [0/1A24000] -> [0/1A28000] -> [0/1A2C000] -> [0/1A30000]     |  |
-|  +============================================================================-+  |
-|            |                                              ^                       |
-|            | (Logical Decoding via pgoutput)              | restart_lsn           |
-|            v                                              | retention hold        |
-|  +============================================================================-+  |
-|  | Replication Slot: 'debezium_cdc_slot' (confirmed_flush_lsn: 0/1A24000)      |  |
-|  +============================================================================-+  |
-+==================================================================================-+
-                                     |
-                                     | TCP Streaming Connection
-                                     v
-                  +======================================+
-                  | Debezium Kafka Connect Engine (Lag)  |
-                  +======================================+
-```
+<div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
+  <img
+    src="/diagrams/cdc-wal-cache-poisoning-schematic.svg"
+    alt="PostgreSQL 16 WAL Saturation and CDC Distributed Cache Poisoning Architecture"
+    class="w-full h-auto object-contain rounded-lg"
+    loading="lazy"
+  />
+  <p class="text-[11px] font-mono text-[var(--text-secondary)] mt-3 text-center">Fig 1.0: PostgreSQL 16 WAL retention lag, Debezium offset delay, and Redis Lua monotonic LSN CAS validation</p>
+</div>
 
 Replication progress is tracked by two Log Sequence Numbers (LSNs):
 - `restart_lsn`: The oldest WAL position required to replay uncommitted or in-flight transactions. The database engine can't delete or recycle any WAL segment newer than this address.

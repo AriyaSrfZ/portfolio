@@ -4,6 +4,7 @@ import FloatingNavbar from '../components/react/FloatingNavbar';
 import BackgroundController from '../components/react/BackgroundController';
 import Velaris from '../components/ui/velaris';
 import Analytics from '../components/Analytics.astro';
+import ImageLightbox from '../components/ImageLightbox.astro';
 import { BRAND_NAME, BRAND_NAME_FA, PRIMARY_TAGLINE, PRIMARY_TAGLINE_FA, SUPPORTING_STATEMENT, SUPPORTING_STATEMENT_FA } from '../consts';
 
 interface Props {
@@ -258,5 +259,6 @@ const jsonLdPerson = {
 
     requestAnimationFrame(raf);
   </script>
+  <ImageLightbox />
 </body>
 </html>

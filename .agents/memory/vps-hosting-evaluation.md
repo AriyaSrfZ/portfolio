@@ -27,16 +27,16 @@ The current Astro build generates pure static output in `dist/`. You can host it
 ```nginx
 server {
     listen 80;
-    server_name ariya-sarrafzadeh.ir;
+    server_name ariya-sarrafzadeh.xyz;
     return 301 https://$host$request_uri;
 }
 
 server {
     listen 443 ssl http2;
-    server_name ariya-sarrafzadeh.ir;
+    server_name ariya-sarrafzadeh.xyz;
 
-    ssl_certificate /etc/letsencrypt/live/ariya-sarrafzadeh.ir/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/ariya-sarrafzadeh.ir/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/ariya-sarrafzadeh.xyz/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/ariya-sarrafzadeh.xyz/privkey.pem;
 
     root /var/www/portfolio/dist;
     index index.html;

@@ -45,15 +45,15 @@ Global payment networks are executing a multi-year migration from legacy SWIFT M
 
 This mismatch introduces an asynchronous data loss vulnerability: the silent truncation of structured remittance information at translator gateways.
 
-```
-+-------------------+       +--------------------+       +-----------------------+
-| Originator System | ----> | Translator Gateway | ----> | Correspondent Network |
-|  pacs.008 (XML)   |       |  SWIFT MT/MX RFC   |       |      MT103 Flat       |
-+-------------------+       +--------------------+       +-----------------------+
-  Structured Remittance       Field 70: 4x35 bytes         Silent Truncation
-  Infinite Depth              Total 140 Chars Max          STP Succeeded
-                                                           Reconciliation Failed
-```
+<div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
+  <img
+    src="/diagrams/iso20022-truncation-trap-schematic.svg"
+    alt="ISO 20022 to SWIFT MT103 Downward Translation and Truncation Architecture"
+    class="w-full h-auto object-contain rounded-lg"
+    loading="lazy"
+  />
+  <p class="text-[11px] font-mono text-[var(--text-secondary)] mt-3 text-center">Fig 1.0: pacs.008 XML hierarchy vs MT103 Field 70 truncation and deterministic SHA-256 preservation rail</p>
+</div>
 
 When you downgrade an ISO 20022 XML tree to an MT103 message, the translator encounters the hard capacity limits of MT103 Field 70 (`Remittance Information`). While the XML source schema allows extensive remittance structures with arbitrary invoice lines, tax references, and creditor identifiers, MT103 Field 70 is restricted to a maximum of 4 lines of 35 characters each (140 characters total).
 

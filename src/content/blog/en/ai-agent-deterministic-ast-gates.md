@@ -45,25 +45,15 @@ We've all heard multi-agent frameworks promise self-healing codebases and autono
 
 In this whitepaper, we formalize the architecture of a production AI agent governance engine. We analyze the mathematical cost functions of recursive multi-agent conversations, establish our deterministic Abstract Syntax Tree (AST) validation gates, and detail the token-bucket circuit breaker mechanisms that enclose probabilistic language models within strict, predictable compiler cages.
 
-```
-+-----------------------------------------------------------------------------------+
-|                     DETERMINISTIC COMPILER CAGE ARCHITECTURE                      |
-+-----------------------------------------------------------------------------------+
-|  [Planner Agent] --> Synthesizes Architectural Plan                               |
-|        v                                                                          |
-|  [Coder Agent]   --> Generates Code Patch                                         |
-|        v                                                                          |
-|  [COMPILER CAGE (Deterministic AST Gate - Zero AI Tokens Used)]                    |
-|        |--> Local AST Parser (ast.parse / tree-sitter)                            |
-|        |--> Symbol Table Resolution & Import Sanitizer                            |
-|        +--> Type Checker (mypy / tsc) & Unit Test Suite                           |
-|        |                                                                          |
-|        +-- [PASS] --> Reviewer Agent (Final Cognitive Signoff)                    |
-|        +-- [FAIL] --> Structured Compiler Error Fed Back to Coder (Max 4 Turns)   |
-|                                                                                   |
-|  [Token-Bucket Circuit Breaker] (Enforces Hard Budget & Rollback on Runaway)     |
-+-----------------------------------------------------------------------------------+
-```
+<div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
+  <img
+    src="/diagrams/ai-agent-compiler-cage-schematic.svg"
+    alt="Deterministic Compiler Cage and AST Gate Architecture for AI Agents"
+    class="w-full h-auto object-contain rounded-lg"
+    loading="lazy"
+  />
+  <p class="text-[11px] font-mono text-[var(--text-secondary)] mt-3 text-center">Fig 1.0: Quadratic token cost O(T^2) prevention, local AST compiler cage, and token-bucket circuit breaker</p>
+</div>
 
  - -
 

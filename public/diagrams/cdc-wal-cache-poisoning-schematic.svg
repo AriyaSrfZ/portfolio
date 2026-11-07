@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="auto" class="w-full h-auto" preserveAspectRatio="xMidYMid meet" dir="ltr" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+
+  <defs>
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#527C78" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#527C78" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B39A77" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#B39A77" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FB4AA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#8FB4AA" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="rose-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C85A5A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#C85A5A" stop-opacity="0.02"/>
+    </linearGradient>
+    <pattern id="grid-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#F3F0E8" fill-opacity="0.04"/>
+    </pattern>
+    <marker id="arr-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8FB4AA"/>
+    </marker>
+    <marker id="arr-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#B39A77"/>
+    </marker>
+    <marker id="arr-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#C85A5A"/>
+    </marker>
+  </defs>
+  <style>
+    text {
+      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+  <rect width="1000" height="520" fill="#171C1A" rx="14"/>
+  <rect width="1000" height="520" fill="url(#grid-dots)" rx="14"/>
+  <rect width="998" height="518" x="1" y="1" fill="none" stroke="#F3F0E8" stroke-opacity="0.08" rx="13"/>
+
+  <!-- Header -->
+  <g transform="translate(32, 28)">
+    <circle cx="6" cy="10" r="5" fill="#8FB4AA"/>
+    <text x="20" y="14" fill="#8FB4AA" font-size="12" font-weight="700" letter-spacing="1.2">ARCHITECTURE SCHEMATIC · CHANGE DATA CAPTURE (CDC)</text>
+    <text x="20" y="30" fill="#B5BDB6" font-size="9.5">POSTGRES WAL SATURATION · REPLICATION LAG · MONOTONIC LSN VERIFICATION</text>
+    <rect x="630" y="0" width="306" height="28" rx="6" fill="#8FB4AA" fill-opacity="0.1" stroke="#8FB4AA" stroke-opacity="0.35"/>
+    <circle cx="644" cy="14" r="4" fill="#8FB4AA"/>
+    <text x="656" y="18" fill="#8FB4AA" font-size="10" font-weight="700">INVARIANT: STRICT MONOTONIC LSN LEASES</text>
+  </g>
+
+  <!-- COL 1: PostgreSQL WAL -->
+  <g transform="translate(32, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">01. WRITE PATH (POSTGRES)</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="110" rx="6" fill="#171C1A" stroke="#46504B"/>
+      <text x="10" y="20" fill="#B39A77" font-size="9.5">WAL Segment Ring: pg_wal</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="9">Commit Transaction: T_k</text>
+      <text x="10" y="56" fill="#8FB4AA" font-size="10" font-weight="700">COMMIT LSN: 0/16B3840</text>
+      <text x="10" y="74" fill="#B5BDB6" font-size="8.5">max_slot_wal_keep_size = 10GB</text>
+      <text x="10" y="90" fill="#B5BDB6" font-size="8.5">Logical Decoding Plugin: pgoutput</text>
+      <text x="10" y="102" fill="#B5BDB6" font-size="8.5">Streams mutation stream to Debezium</text>
+    </g>
+
+    <g transform="translate(14, 175)">
+      <rect width="252" height="195" rx="6" fill="#292F2D" stroke="#C85A5A" stroke-opacity="0.6"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">REPLICATION LAG WINDOW:</text>
+      <text x="10" y="38" fill="#B5BDB6" font-size="8.5">Delta = t_cache_apply - t_commit</text>
+      
+      <rect x="10" y="50" width="232" height="50" rx="4" fill="#171C1A"/>
+      <text x="16" y="70" fill="#C85A5A" font-size="10" font-weight="700">450ms LAG SPIKE</text>
+      <text x="16" y="88" fill="#B5BDB6" font-size="8.5">Under peak 12,000 IOPS batch flush</text>
+
+      <text x="10" y="125" fill="#F0EEE7" font-size="9">Vulnerability Window:</text>
+      <text x="10" y="145" fill="#B5BDB6" font-size="8.5">Read-through queries hit replica before</text>
+      <text x="10" y="160" fill="#B5BDB6" font-size="8.5">Kafka CDC consumer updates Redis.</text>
+      <text x="10" y="180" fill="#C85A5A" font-size="8.5">Dirty reads threaten e-commerce stock!</text>
+    </g>
+  </g>
+
+  <!-- Connect 1 -> 2 -->
+  <line x1="312" y1="280" x2="358" y2="280" stroke="#C85A5A" stroke-width="2" marker-end="url(#arr-rose)"/>
+
+  <!-- COL 2: Cache Poisoning Trap -->
+  <g transform="translate(360, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#C85A5A" font-size="11" font-weight="700">02. CACHE POISONING RACE</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="135" rx="6" fill="#171C1A" stroke="#C85A5A"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">THE RACE MECHANICS:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">1. User updates item price to $80</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="8.5">2. App writes DB (LSN 100), invalidates</text>
+      <text x="10" y="70" fill="#C85A5A" font-size="8.5">3. Concurrent read loads replica ($100)</text>
+      <text x="10" y="86" fill="#C85A5A" font-size="8.5">4. Stale read writes $100 back to Redis!</text>
+      
+      <rect x="10" y="98" width="232" height="28" rx="4" fill="#292F2D"/>
+      <text x="16" y="116" fill="#C85A5A" font-size="8.5">PERMANENT CACHE CORRUPTION</text>
+    </g>
+
+    <g transform="translate(14, 200)">
+      <rect width="252" height="170" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#B39A77" font-size="10" font-weight="700">DEBEZIUM OFFSET LAG:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">Kafka partition offset queue backlog</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="8.5">stalls invalidate events across</text>
+      <text x="10" y="70" fill="#F0EEE7" font-size="8.5">multi-region edge Redis nodes.</text>
+
+      <rect x="10" y="85" width="232" height="70" rx="4" fill="#171C1A"/>
+      <text x="16" y="104" fill="#C85A5A" font-size="9" font-weight="700">Real-World Outage:</text>
+      <text x="16" y="122" fill="#F0EEE7" font-size="8.5">Cart checkout honors stale discount</text>
+      <text x="16" y="142" fill="#B5BDB6" font-size="8.5">Financial drift accumulates unmonitored</text>
+    </g>
+  </g>
+
+  <!-- Connect 2 -> 3 -->
+  <line x1="640" y1="280" x2="686" y2="280" stroke="#8FB4AA" stroke-width="2" marker-end="url(#arr-cyan)"/>
+
+  <!-- COL 3: Monotonic LSN Remediation -->
+  <g transform="translate(688, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">03. MONOTONIC LSN LEASE</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="120" rx="6" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.8"/>
+      <text x="10" y="22" fill="#8FB4AA" font-size="10" font-weight="700">REDIS LUA CAS SCRIPT:</text>
+      <text x="10" y="42" fill="#F0EEE7" font-size="8.5">local cur_lsn = redis.call('HGET', k, 'lsn')</text>
+      <text x="10" y="58" fill="#F0EEE7" font-size="8.5">if not cur_lsn or new_lsn &gt;= cur_lsn then</text>
+      <text x="10" y="74" fill="#8FB4AA" font-size="8.5">  redis.call('HMSET', k, 'd', v, 'lsn', new_lsn)</text>
+      <text x="10" y="90" fill="#8FB4AA" font-size="8.5">  return 1</text>
+      <text x="10" y="106" fill="#C85A5A" font-size="8.5">else return 0 -- REJECT STALE WRITE!</text>
+    </g>
+
+    <g transform="translate(14, 185)">
+      <rect width="252" height="185" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">PRODUCTION GUARANTEES:</text>
+      
+      <circle cx="16" cy="45" r="3" fill="#8FB4AA"/>
+      <text x="26" y="48" fill="#F0EEE7" font-size="8.5">Zero Stale Overwrites: 100% Guaranteed</text>
+      
+      <circle cx="16" cy="70" r="3" fill="#8FB4AA"/>
+      <text x="26" y="73" fill="#F0EEE7" font-size="8.5">Poison Quarantine: Dead Letter Queue</text>
+      
+      <circle cx="16" cy="95" r="3" fill="#8FB4AA"/>
+      <text x="26" y="98" fill="#F0EEE7" font-size="8.5">Safe Read Leases with 30s TTL</text>
+
+      <rect x="10" y="115" width="232" height="55" rx="4" fill="#171C1A"/>
+      <text x="16" y="135" fill="#8FB4AA" font-size="9" font-weight="700">Distributed Verification:</text>
+      <text x="16" y="153" fill="#F0EEE7" font-size="8.5">LSN monotonic ordering survives</text>
+      <text x="16" y="165" fill="#B39A77" font-size="8.5">arbitrary consumer lag spikes.</text>
+    </g>
+  </g>
+</svg>

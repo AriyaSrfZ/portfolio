@@ -45,23 +45,15 @@ Our enterprise financial ledgers must guarantee absolute double-entry consistenc
 
 In this whitepaper, we detail the production architecture of a high-scale financial ledger engine. We analyze the mathematical penalties imposed by Amdahl's Law on lock-based database balance mutations, demonstrate our lock-free balance reservation state machine implemented via the LMAX Disruptor ring buffer pattern, and explain our asynchronous shadow ledger reconciliation pipeline.
 
-```
-+-----------------------------------------------------------------------------------+
-|                        ZERO-LOCK LEDGER PIPELINE TOPOLOGY                         |
-+-----------------------------------------------------------------------------------+
-|  [Ingress API]                                                                    |
-|    |--> Idempotency Verification (Atomic Redis Key Lease, 86,400s TTL)            |
-|    v                                                                              |
-|  [In-Memory LMAX Ring Buffer]                                                     |
-|    |--> Lock-Free Sequencer (Atomic Counter, Cache-Line Padded)                  |
-|    |--> Business Logic Processor (Single-Writer Balance Reservation)              |
-|    |    [Available -> Reserved State Partitioning]                                |
-|    v                                                                              |
-|  [Asynchronous Journal Egress]                                                    |
-|    +--> Kafka Append-Only Event Log (Immutable Financial Facts)                   |
-|    +--> ScyllaDB + PostgreSQL Cold Stores (Auditable Double-Entry Ledgers)        |
-+-----------------------------------------------------------------------------------+
-```
+<div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
+  <img
+    src="/diagrams/fintech-lmax-disruptor-schematic.svg"
+    alt="Zero-Lock Financial Ledger Engine and LMAX Disruptor Sequencer Architecture"
+    class="w-full h-auto object-contain rounded-lg"
+    loading="lazy"
+  />
+  <p class="text-[11px] font-mono text-[var(--text-secondary)] mt-3 text-center">Fig 1.0: Amdahl's Law contention ceiling, LMAX Disruptor 64-byte sequencer, and 2-phase balance state machine</p>
+</div>
 
  - -
 
