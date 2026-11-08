@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="auto" class="w-full h-auto" preserveAspectRatio="xMidYMid meet" dir="ltr" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+
+  <defs>
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#527C78" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#527C78" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B39A77" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#B39A77" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FB4AA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#8FB4AA" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="rose-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C85A5A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#C85A5A" stop-opacity="0.02"/>
+    </linearGradient>
+    <pattern id="grid-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#F3F0E8" fill-opacity="0.04"/>
+    </pattern>
+    <marker id="arr-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8FB4AA"/>
+    </marker>
+    <marker id="arr-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#B39A77"/>
+    </marker>
+    <marker id="arr-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#C85A5A"/>
+    </marker>
+  </defs>
+  <style>
+    text {
+      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+  <rect width="1000" height="520" fill="#171C1A" rx="14"/>
+  <rect width="1000" height="520" fill="url(#grid-dots)" rx="14"/>
+  <rect width="998" height="518" x="1" y="1" fill="none" stroke="#F3F0E8" stroke-opacity="0.08" rx="13"/>
+
+  <!-- Header -->
+  <g transform="translate(32, 28)">
+    <circle cx="6" cy="10" r="5" fill="#8FB4AA"/>
+    <text x="20" y="14" fill="#8FB4AA" font-size="12" font-weight="700" letter-spacing="1.2">ARCHITECTURE SCHEMATIC · NATIONAL TELECOM SMS SWITCH</text>
+    <text x="20" y="30" fill="#B5BDB6" font-size="9.5">SMPP v3.4 SLIDING WINDOW · LITTLE'S LAW · MULTI-BIND VIP OTP ISOLATION</text>
+    <rect x="630" y="0" width="306" height="28" rx="6" fill="#8FB4AA" fill-opacity="0.1" stroke="#8FB4AA" stroke-opacity="0.35"/>
+    <circle cx="644" cy="14" r="4" fill="#8FB4AA"/>
+    <text x="656" y="18" fill="#8FB4AA" font-size="10" font-weight="700">INVARIANT: L = λ · R &lt; W_max (NO SPILL)</text>
+  </g>
+
+  <!-- COL 1: Dual-Tier Ingress -->
+  <g transform="translate(32, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">01. INGRESS: BIND ISOLATION</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="135" rx="6" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.6"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">TIER 1: VIP BANKING OTPS</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="9">&#8226; Binds 01 to 08 (Dedicated TCP)</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="9">&#8226; Window Depth W_max = 16</text>
+      <text x="10" y="70" fill="#F0EEE7" font-size="9">&#8226; Hard Cap: 150 TPS per bind</text>
+      <text x="10" y="88" fill="#8FB4AA" font-size="12" font-weight="700">&lt; 1,000 ms DELIVERY SLA</text>
+      <text x="10" y="106" fill="#B5BDB6" font-size="8.5">2FA, Security Codes, Banking Alerts</text>
+      <text x="10" y="120" fill="#B39A77" font-size="8.5">Never throttled by commercial bulk</text>
+    </g>
+
+    <g transform="translate(14, 200)">
+      <rect width="252" height="170" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#B39A77" font-size="10" font-weight="700">TIER 2: BULK COMMERCIAL</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">&#8226; Binds 09 to 16 (Marketing)</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="8.5">&#8226; Token Bucket Throttled</text>
+      <text x="10" y="70" fill="#F0EEE7" font-size="8.5">&#8226; Absorbs carrier backpressure</text>
+      
+      <rect x="10" y="85" width="232" height="70" rx="4" fill="#171C1A"/>
+      <text x="16" y="104" fill="#B39A77" font-size="9" font-weight="700">Traffic Segregation:</text>
+      <text x="16" y="122" fill="#F0EEE7" font-size="8.5">Zero cross-queue interference</text>
+      <text x="16" y="142" fill="#B5BDB6" font-size="8.5">Bulk pauses while OTPs stream live</text>
+    </g>
+  </g>
+
+  <!-- Connect 1 -> 2 -->
+  <line x1="312" y1="280" x2="358" y2="280" stroke="#8FB4AA" stroke-width="2" marker-end="url(#arr-cyan)"/>
+
+  <!-- COL 2: Carrier Sliding Window -->
+  <g transform="translate(360, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#B39A77" font-size="11" font-weight="700">02. SMPP v3.4 SLIDING WINDOW</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="135" rx="6" fill="#171C1A" stroke="#C85A5A" stroke-opacity="0.6"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">LITTLE'S LAW SATURATION:</text>
+      <text x="10" y="38" fill="#B5BDB6" font-size="9">In-Flight Buffer Formula:</text>
+      <text x="10" y="56" fill="#F0EEE7" font-size="12" font-weight="700">L = Lambda * R &lt; W_max</text>
+      
+      <rect x="10" y="70" width="232" height="52" rx="4" fill="#202725"/>
+      <text x="16" y="88" fill="#C85A5A" font-size="8.5">RTT Spike: 40ms &#8594; 350ms</text>
+      <text x="16" y="104" fill="#C85A5A" font-size="8.5">Window overflows in 64 milliseconds!</text>
+      <text x="16" y="118" fill="#B5BDB6" font-size="7.5">Carrier returns ESME_RTHROTTLED (0x58)</text>
+    </g>
+
+    <g transform="translate(14, 200)">
+      <rect width="252" height="170" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">SOCKET FLOW CONTROL:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">submit_sm dispatched asynchronously</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="8.5">submit_sm_resp decrements buffer</text>
+      <text x="10" y="70" fill="#F0EEE7" font-size="8.5">Atomic CAS sequence tracking</text>
+
+      <rect x="10" y="85" width="232" height="70" rx="4" fill="#171C1A"/>
+      <text x="16" y="104" fill="#8FB4AA" font-size="9" font-weight="700">Window Capacity:</text>
+      <text x="16" y="122" fill="#F0EEE7" font-size="8.5">Max throughput hard-capped by SMSC RTT</text>
+      <text x="16" y="142" fill="#B39A77" font-size="8.5">Dynamic throttling prevents TCP resets</text>
+    </g>
+  </g>
+
+  <!-- Connect 2 -> 3 -->
+  <line x1="640" y1="280" x2="686" y2="280" stroke="#8FB4AA" stroke-width="2" marker-end="url(#arr-cyan)"/>
+
+  <!-- COL 3: Dynamic EWMA Controller -->
+  <g transform="translate(688, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">03. DYNAMIC EWMA CONTROL</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="120" rx="6" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.8"/>
+      <text x="10" y="22" fill="#8FB4AA" font-size="10" font-weight="700">EWMA RTT CALCULATION:</text>
+      <text x="10" y="42" fill="#F0EEE7" font-size="8.5">R_ewma = alpha*r_k + (1-alpha)*R_prev</text>
+      <text x="10" y="58" fill="#B39A77" font-size="8.5">alpha = 0.15 (Weighted Reaction)</text>
+      <text x="10" y="76" fill="#F0EEE7" font-size="8.5">W_active = min(W_max, Target_SLA / R_ewma)</text>
+      <text x="10" y="94" fill="#8FB4AA" font-size="8.5">Contracts to 4 PDUs on carrier lag</text>
+      <text x="10" y="108" fill="#B5BDB6" font-size="8">Prevents buffer overflow before it hits</text>
+    </g>
+
+    <g transform="translate(14, 185)">
+      <rect width="252" height="185" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">PRODUCTION RELIABILITY:</text>
+      
+      <circle cx="16" cy="45" r="3" fill="#8FB4AA"/>
+      <text x="26" y="48" fill="#F0EEE7" font-size="8.5">Zero Socket Resets under flash sales</text>
+      
+      <circle cx="16" cy="70" r="3" fill="#8FB4AA"/>
+      <text x="26" y="73" fill="#F0EEE7" font-size="8.5">Async Kafka DLR Streaming Loop</text>
+      
+      <circle cx="16" cy="95" r="3" fill="#8FB4AA"/>
+      <text x="26" y="98" fill="#F0EEE7" font-size="8.5">No DB writes in TCP socket reader</text>
+
+      <rect x="10" y="115" width="232" height="55" rx="4" fill="#171C1A"/>
+      <text x="16" y="135" fill="#8FB4AA" font-size="9" font-weight="700">Proven Throughput:</text>
+      <text x="16" y="153" fill="#F0EEE7" font-size="12" font-weight="700">50M+ SMS / MONTH</text>
+      <text x="16" y="165" fill="#B39A77" font-size="8.5">Zero Dropped Banking Credentials</text>
+    </g>
+  </g>
+</svg>

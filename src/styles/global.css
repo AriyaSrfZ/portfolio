@@ -52,6 +52,13 @@ html:not([data-appearance="light"]) {
   --code-surface: #171C1A;
   --card-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.45);
 
+  /* Plan step 1: tokens previously used but never defined (ladder from Carbon/Basalt) */
+  --surface-card: #262E2B;
+  --surface-sunken: #171C1A;
+  --accent-warm: #B39A77;
+  --accent-light: #B4D0C8;
+  --text-muted: #8A948E;
+
   /* Legacy Bridge Tokens */
   --system-bg: var(--canvas);
   --system-grouped-bg: var(--surface);
@@ -84,6 +91,13 @@ html.light {
   --focus-indicator: #38645D;
   --code-surface: #E5E9E3;
   --card-shadow: 0 8px 24px -6px rgba(32, 39, 37, 0.08);
+
+  /* Plan step 1: tokens previously used but never defined (light mapping) */
+  --surface-card: #FFFFFF;
+  --surface-sunken: #E9E5DC;
+  --accent-warm: #8C7452;
+  --accent-light: #527C78;
+  --text-muted: #6B7670;
 
   /* Legacy Bridge Tokens */
   --system-bg: var(--canvas);

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De-AI Redesign Plan — v1</title>
+<style>
+:root{
+  --n0:#141917;--n1:#171C1A;--n2:#202725;--n3:#262E2B;--n4:#2D3532;--n5:#343C38;--n6:#46504B;--n7:#6B7670;--n8:#B5BDB6;--n9:#D5D0C6;--n10:#E9E5DC;--n11:#F3F0E8;
+  --p1:#2E4B48;--p2:#3F6662;--p3:#527C78;--p4:#6E9891;--p5:#8FB4AA;--p6:#B4D0C8;
+  --o1:#6B5A44;--o2:#B39A77;--o3:#D2BF9E;
+  --ink:#F0EEE7;--mute:#B5BDB6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--n2);color:var(--ink);font:15px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:40px 16px 80px}
+h1{font-size:30px;margin:0 0 8px;letter-spacing:-.01em}
+h2{font-size:20px;margin:48px 0 12px;padding-top:16px;border-top:1px solid var(--n5)}
+h3{font-size:15px;margin:20px 0 8px;color:var(--p5);font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em}
+p,li{color:var(--mute)} li{margin:4px 0}
+code,.mono{font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.tag{display:inline-block;font:11px/1 "IBM Plex Mono",monospace;padding:4px 7px;border:1px solid var(--n5);color:var(--o2);border-radius:2px;margin-right:6px}
+.grid{display:grid;gap:8px}
+.ramp{display:grid;grid-template-columns:repeat(12,1fr);gap:0;border:1px solid var(--n5)}
+.sw{height:96px;padding:8px;font:11px/1.3 "IBM Plex Mono",monospace;display:flex;flex-direction:column;justify-content:flex-end}
+.row{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--n5)}
+.row .sw{height:84px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.pair{grid-template-columns:1fr}.ramp{grid-template-columns:repeat(6,1fr)}}
+.panel{border:1px solid var(--n5);border-radius:4px;overflow:hidden}
+.panel-h{font:11px "IBM Plex Mono",monospace;padding:8px 12px;border-bottom:1px solid var(--n5);color:var(--mute);background:var(--n1)}
+.panel-b{padding:16px;background:var(--n2)}
+.card{border:1px solid var(--n5);padding:14px;margin-bottom:12px;background:var(--n3)}
+.card-old{border-radius:16px;background:linear-gradient(135deg,rgba(82,124,120,.35),rgba(179,154,119,.15));box-shadow:0 20px 50px -10px rgba(0,0,0,.6);border:1px solid rgba(143,180,170,.4)}
+.pill-old{display:inline-block;border-radius:999px;background:rgba(143,180,170,.15);color:#8FB4AA;font:11px sans-serif;padding:4px 10px;margin-bottom:8px}
+.dot-old{display:inline-block;width:8px;height:8px;border-radius:50%;background:#8FB4AA;box-shadow:0 0 12px #8FB4AA;margin-right:6px}
+.emoji-old{font-size:18px;margin-right:6px}
+.tag-new{font:11px "IBM Plex Mono",monospace;color:var(--o2);border:1px solid var(--n6);padding:2px 6px;margin-right:6px;border-radius:2px}
+.bar{height:6px;background:var(--n5);margin:8px 0}
+.bar>i{display:block;height:100%;background:var(--p3);width:70%}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td,th{border-bottom:1px solid var(--n5);padding:8px 6px;text-align:left;vertical-align:top}
+th{color:var(--o2);font:11px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.05em}
+td code{color:var(--p5)}
+.bad{color:#C85A5A}
+.ok{color:var(--p5)}
+</style>
+</head>
+<body>
+<main>
+
+<span class="tag">PLAN</span><span class="tag">v1</span><span class="tag">2026-11-08</span>
+<h1>Removing the AI-generated look</h1>
+<p>Scope: the public Astro site (~60 pages). Keeps your fonts (IBM Plex Sans, IBM Plex Mono, Vazirmatn). Replaces the icon style, expands the palette into real tonal levels, and removes the decorative patterns that read as generated. Nothing here is applied yet; this is the plan and the visual reference.</p>
+
+<h2>1. What is actually wrong (audit findings)</h2>
+<table>
+<tr><th>Finding</th><th>Where</th><th>Effect</th></tr>
+<tr><td><code>--surface-card</code>, <code>--surface-sunken</code>, <code>--accent-warm</code>, <code>--accent-light</code> are used but never defined</td><td>global.css vs ~300 uses in index, whitepapers, blog</td><td class="bad">Backgrounds fall through to transparent. Surfaces look flat and inconsistent. This is the biggest single cause of the "only 3-4 colours" feel.</td></tr>
+<tr><td>Full decorative stack: Aurora background, Spotlight card, BorderBeam, gradient overlays, glow box-shadows</td><td>AuroraBackground.tsx, SpotlightCard.tsx, Hero.astro, global.css</td><td class="bad">The classic generated-landing signature.</td></tr>
+<tr><td>Pill badges everywhere (35 rounded-full on home, same on FA home)</td><td>index.astro, fa/index.astro, Hero.astro</td><td class="bad">Rounded pills in every section; your own palette rule bans them.</td></tr>
+<tr><td>Emoji and ✓/✕ glyphs as UI icons</td><td>FloatingNavbar.tsx, FintechDictionary.tsx, builders-community-hero-demo.tsx</td><td class="bad">Icon style you dislike, plus inconsistent weight and colour.</td></tr>
+<tr><td>Lucide icons mixed in with emoji</td><td>AIWorkforceHub.tsx, builders-community-hero.tsx</td><td class="bad">Two icon languages on one page.</td></tr>
+<tr><td>Glassmorphism (backdrop-blur, translucent surfaces), shadow-2xl on cards</td><td>Hero.astro, whitepapers.astro, global.css</td><td class="bad">Adds the "floating glass" look without any content reason.</td></tr>
+<tr><td>Bracket metric tags <code>[METRIC]</code> on every card and chip</td><td>whitepapers.astro, Hero.astro</td><td>Fine as an idea, but overused: every element is a tag, so none is.</td></tr>
+<tr><td>Pulse dots (<code>animate-pulse</code>, glowing status dot) on a static portfolio</td><td>Hero.astro</td><td>Decorative motion with no meaning.</td></tr>
+</table>
+
+<h2>2. Palette: real tonal levels, not 3-4 colours</h2>
+<p>Keep your five canonical colours as the anchors. Derive a full ramp from them so every surface, border and text level has its own step. Use the ramp, not raw hex, in components.</p>
+
+<h3>Neutral ramp (green-grey, from Carbon to Porcelain)</h3>
+<div class="ramp">
+  <div class="sw" style="background:#141917">n0<br>#141917</div>
+  <div class="sw" style="background:#171C1A">n1<br>#171C1A</div>
+  <div class="sw" style="background:#202725">n2 Carbon<br>#202725</div>
+  <div class="sw" style="background:#262E2B">n3<br>#262E2B</div>
+  <div class="sw" style="background:#2D3532">n4<br>#2D3532</div>
+  <div class="sw" style="background:#343C38">n5 Basalt<br>#343C38</div>
+  <div class="sw" style="background:#46504B">n6<br>#46504B</div>
+  <div class="sw" style="background:#6B7670">n7<br>#6B7670</div>
+  <div class="sw" style="background:#B5BDB6;color:#141917">n8<br>#B5BDB6</div>
+  <div class="sw" style="background:#D5D0C6;color:#141917">n9<br>#D5D0C6</div>
+  <div class="sw" style="background:#E9E5DC;color:#141917">n10 Paper<br>#E9E5DC</div>
+  <div class="sw" style="background:#F3F0E8;color:#141917">n11 Porcelain<br>#F3F0E8</div>
+</div>
+
+<h3>Patina accent ramp</h3>
+<div class="row">
+  <div class="sw" style="background:#2E4B48">p1<br>#2E4B48</div>
+  <div class="sw" style="background:#3F6662">p2<br>#3F6662</div>
+  <div class="sw" style="background:#527C78">p3 Patina<br>#527C78</div>
+  <div class="sw" style="background:#6E9891;color:#141917">p4<br>#6E9891</div>
+  <div class="sw" style="background:#8FB4AA;color:#141917">p5 Patina light<br>#8FB4AA</div>
+  <div class="sw" style="background:#B4D0C8;color:#141917">p6<br>#B4D0C8</div>
+</div>
+
+<h3>Ochre ramp (executive / timestamps only)</h3>
+<div class="row" style="grid-template-columns:repeat(3,1fr)">
+  <div class="sw" style="background:#6B5A44">o1<br>#6B5A44</div>
+  <div class="sw" style="background:#B39A77;color:#141917">o2 Ochre<br>#B39A77</div>
+  <div class="sw" style="background:#D2BF9E;color:#141917">o3<br>#D2BF9E</div>
+</div>
+
+<h3>Semantic role map (dark theme)</h3>
+<table>
+<tr><th>Role token</th><th>Value</th><th>Used for</th></tr>
+<tr><td><code>--canvas</code></td><td>n2 #202725</td><td>Page background</td></tr>
+<tr><td><code>--surface-0</code></td><td>n1 #171C1A</td><td>Recessed areas, code blocks</td></tr>
+<tr><td><code>--surface-1</code></td><td>n3 #262E2B</td><td>Cards and panels (replaces the undefined surface-card)</td></tr>
+<tr><td><code>--surface-2</code></td><td>n4 #2D3532</td><td>Hover, raised rows</td></tr>
+<tr><td><code>--border</code></td><td>n5 #343C38</td><td>Hairlines and dividers</td></tr>
+<tr><td><code>--border-strong</code></td><td>n6 #46504B</td><td>Inputs, focus-adjacent borders</td></tr>
+<tr><td><code>--text-1</code> / <code>--text-2</code> / <code>--text-3</code></td><td>n11 / n8 / n7</td><td>Headline, body, meta (three real levels)</td></tr>
+<tr><td><code>--accent</code></td><td>p5 #8FB4AA</td><td>Key metrics, active nav, links</td></tr>
+<tr><td><code>--accent-strong</code></td><td>p6 #B4D0C8</td><td>Hover on accent text</td></tr>
+<tr><td><code>--accent-quiet</code></td><td>p1 #2E4B48</td><td>Tinted backgrounds behind accent text</td></tr>
+<tr><td><code>--executive</code></td><td>o2 #B39A77</td><td>Timestamps, exec tags only</td></tr>
+</table>
+<p>Light theme maps the same roles to the ramp from the other end (n11 canvas, n10 surface, n9 border, n1 text, p2 accent). Contrast targets: body text ≥ 7:1, meta text ≥ 4.5:1, verified before merge.</p>
+
+<h2>3. Icons: remove the current style, do not replace it with another set</h2>
+<ul>
+  <li>Remove every emoji and ✓/✕ glyph used as UI decoration (navbar theme check, dictionary tags, demo hero).</li>
+  <li>Remove the mixed Lucide icons from the two components where they appear.</li>
+  <li>Where a state must be shown, use a text label in the mono tag style (<span class="tag-new">ACTIVE</span>) or a 1px rule, not an icon.</li>
+  <li>Where an icon is truly needed (theme switch, external-link arrow), use a single 1.5px line set in one colour (n8), one size (16px). Confirm your preference before adding any set; the plan defaults to none.</li>
+</ul>
+
+<h2>4. Surfaces, shape and motion</h2>
+<ul>
+  <li>Radius: 2px for tags and inputs, 4px for cards. Remove <code>rounded-full</code> except avatars.</li>
+  <li>Elevation: flat by default. One border, no shadow. Shadows only on the single modal/overlay layer.</li>
+  <li>Remove glassmorphism and <code>backdrop-blur</code> from navbar and cards; use solid n2 with a border.</li>
+  <li>Remove Aurora background, SpotlightCard glow, BorderBeam, and gradient overlays on the hero portrait.</li>
+  <li>Motion: remove <code>animate-pulse</code> and looping effects. Keep one 150ms colour transition on hover.</li>
+</ul>
+
+<h2>5. Typography (fonts unchanged)</h2>
+<ul>
+  <li>IBM Plex Sans for prose and headings, IBM Plex Mono for metrics, tags and labels, Vazirmatn for Farsi.</li>
+  <li>Headings: weight 600, tracking -0.01em. Remove all-caps headings on long titles; keep all-caps only for mono labels.</li>
+  <li>Metrics: mono, tabular figures, n11 colour. This is the one place the page should look technical.</li>
+</ul>
+
+<h2>6. Before / after (CSS mockups, not live screenshots)</h2>
+<div class="pair">
+  <div class="panel">
+    <div class="panel-h">CURRENT — generated look</div>
+    <div class="panel-b">
+      <span class="pill-old"><span class="dot-old"></span>PRINCIPAL SYSTEMS ARCHITECT</span>
+      <div class="card card-old">
+        <div><span class="emoji-old">🚀</span> <b>15+ YRS</b></div>
+        <div style="color:#B5BDB6;font-size:13px">Production infrastructure</div>
+      </div>
+      <div class="card" style="background:transparent;border-color:#343C38">
+        <div style="font:11px monospace;color:#B39A77">[CRITICAL CORE]</div>
+        <div style="color:#F0EEE7">1B+ SMS — SMPP 3.4 hub messages</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-h">PROPOSED — tonal, flat</div>
+    <div class="panel-b" style="background:#202725">
+      <div class="card" style="background:#262E2B">
+        <div class="tag-new">PRODUCTION · 15+ YRS</div>
+        <div style="font:600 26px/1.1 'IBM Plex Mono',monospace;color:#F3F0E8;margin:8px 0 4px">1B+</div>
+        <div style="color:#B5BDB6;font-size:13px">SMPP 3.4 hub messages per year</div>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="card" style="background:#262E2B">
+        <div class="tag-new">FLOW CONTROL</div>
+        <div style="font:600 26px/1.1 'IBM Plex Mono',monospace;color:#8FB4AA;margin:8px 0 4px">50K TPS</div>
+        <div style="color:#B5BDB6;font-size:13px">Peak concurrent throughput</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>7. Execution order (verify at each step)</h2>
+<table>
+<tr><th>#</th><th>Step</th><th>Verify</th></tr>
+<tr><td>1</td><td>Define the missing tokens (surface-card, surface-sunken, accent-warm, accent-light) from the ramp, nothing else. Build.</td><td>Build passes; screenshots show visible surfaces on home and whitepapers.</td></tr>
+<tr><td>2</td><td>Replace hard-coded hex and <code>var(--…)</code> names with the new role tokens. Keep old names as aliases so nothing breaks. Build.</td><td><code>grep</code> finds no undefined tokens.</td></tr>
+<tr><td>3</td><td>Remove Aurora, Spotlight, BorderBeam, glass, glow shadows, gradient overlays.</td><td>Hero and cards render flat; no console errors.</td></tr>
+<tr><td>4</td><td>Replace pills with 2px tags; remove <code>rounded-full</code> except avatar.</td><td>Count of rounded-full drops to avatar only.</td></tr>
+<tr><td>5</td><td>Remove emoji and ✓/✕ glyphs; remove Lucide where mixed.</td><td>No emoji in src/ outside content.</td></tr>
+<tr><td>6</td><td>Light theme mapping and contrast check.</td><td>Text contrast meets targets in both themes.</td></tr>
+<tr><td>7</td><td>Mobile pass at 375px, both languages (FA RTL).</td><td>No horizontal scroll; 16px gutters.</td></tr>
+</table>
+
+<h2>8. Decisions needed from you</h2>
+<ol>
+  <li>Icons: confirm "none by default" (plan), or name a set you prefer.</li>
+  <li>Whether to keep the bracket <code>[METRIC]</code> tags on whitepaper cards (reduce to one per card) or drop them.</li>
+  <li>Approve step 1 (defining the missing tokens) as the first change; it is the lowest-risk, highest-impact step.</li>
+</ol>
+
+</main>
+</body>
+</html>

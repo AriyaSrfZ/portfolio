@@ -47,7 +47,7 @@ This mismatch introduces an asynchronous data loss vulnerability: the silent tru
 
 <div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
-    src="/diagrams/iso20022-truncation-trap-schematic.svg"
+    src="/diagrams/iso20022-truncation-trap-schematic_v2.svg"
     alt="ISO 20022 to SWIFT MT103 Downward Translation and Truncation Architecture"
     class="w-full h-auto object-contain rounded-lg"
     loading="lazy"

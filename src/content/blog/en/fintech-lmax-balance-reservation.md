@@ -47,7 +47,7 @@ In this whitepaper, we detail the production architecture of a high-scale financ
 
 <div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
-    src="/diagrams/fintech-lmax-disruptor-schematic.svg"
+    src="/diagrams/fintech-lmax-disruptor-schematic_v2.svg"
     alt="Zero-Lock Financial Ledger Engine and LMAX Disruptor Sequencer Architecture"
     class="w-full h-auto object-contain rounded-lg"
     loading="lazy"

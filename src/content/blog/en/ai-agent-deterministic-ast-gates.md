@@ -47,7 +47,7 @@ In this whitepaper, we formalize the architecture of a production AI agent gover
 
 <div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
-    src="/diagrams/ai-agent-compiler-cage-schematic.svg"
+    src="/diagrams/ai-agent-compiler-cage-schematic_v2.svg"
     alt="Deterministic Compiler Cage and AST Gate Architecture for AI Agents"
     class="w-full h-auto object-contain rounded-lg"
     loading="lazy"

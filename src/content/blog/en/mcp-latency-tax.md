@@ -124,7 +124,7 @@ To insulate the reasoning model from raw database schema leakage, we introduce a
 
 <div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
-    src="/diagrams/mcp-latency-projection-schematic.svg"
+    src="/diagrams/mcp-latency-projection-schematic_v2.svg"
     alt="MCP Client-Side Schema Projection Gateway Architecture"
     class="w-full h-auto object-contain rounded-lg"
     loading="lazy"

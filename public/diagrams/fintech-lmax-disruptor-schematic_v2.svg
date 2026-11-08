@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="auto" class="w-full h-auto" preserveAspectRatio="xMidYMid meet" dir="ltr" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+
+  <defs>
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#527C78" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#527C78" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B39A77" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#B39A77" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FB4AA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#8FB4AA" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="rose-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C85A5A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#C85A5A" stop-opacity="0.02"/>
+    </linearGradient>
+    <pattern id="grid-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#F3F0E8" fill-opacity="0.04"/>
+    </pattern>
+    <marker id="arr-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8FB4AA"/>
+    </marker>
+    <marker id="arr-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#B39A77"/>
+    </marker>
+    <marker id="arr-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#C85A5A"/>
+    </marker>
+  </defs>
+  <style>
+    text {
+      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+  <rect width="1000" height="520" fill="#171C1A" rx="14"/>
+  <rect width="1000" height="520" fill="url(#grid-dots)" rx="14"/>
+  <rect width="998" height="518" x="1" y="1" fill="none" stroke="#F3F0E8" stroke-opacity="0.08" rx="13"/>
+
+  <!-- Header -->
+  <g transform="translate(32, 28)">
+    <circle cx="6" cy="10" r="5" fill="#8FB4AA"/>
+    <text x="20" y="14" fill="#8FB4AA" font-size="12" font-weight="700" letter-spacing="1.2">ARCHITECTURE SCHEMATIC · HIGH-THROUGHPUT FINANCIAL LEDGER</text>
+    <text x="20" y="30" fill="#B5BDB6" font-size="9.5">LMAX DISRUPTOR · ZERO-LOCK BALANCE RESERVATION · CACHE-LINE PADDING</text>
+    <rect x="630" y="0" width="306" height="28" rx="6" fill="#8FB4AA" fill-opacity="0.1" stroke="#8FB4AA" stroke-opacity="0.35"/>
+    <circle cx="644" cy="14" r="4" fill="#8FB4AA"/>
+    <text x="656" y="18" fill="#8FB4AA" font-size="10" font-weight="700">INVARIANT: Σ DEBITS - Σ CREDITS = 0</text>
+  </g>
+
+  <!-- COL 1: The Locking Bottleneck (Amdahl's Law) -->
+  <g transform="translate(32, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#C85A5A" font-size="11" font-weight="700">01. RELATIONAL LOCK BOTTLENECK</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="120" rx="6" fill="#171C1A" stroke="#C85A5A" stroke-opacity="0.6"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">SELECT ... FOR UPDATE TRAP:</text>
+      <text x="10" y="38" fill="#B5BDB6" font-size="9">Amdahl's Law Serialization Ceiling:</text>
+      <text x="10" y="56" fill="#F0EEE7" font-size="11" font-weight="700">S(N) = 1 / (s + (1-s)/N)</text>
+      <rect x="10" y="68" width="232" height="42" rx="4" fill="#202725"/>
+      <text x="16" y="86" fill="#C85A5A" font-size="9" font-weight="700">s = 0.05 (5% lock duration)</text>
+      <text x="16" y="100" fill="#C85A5A" font-size="11" font-weight="700">S_max = 20x SPEEDUP CAP!</text>
+    </g>
+
+    <g transform="translate(14, 185)">
+      <rect width="252" height="185" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">HIGH-CONCURRENCY CRISIS:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">Under 5,000 TPS flash sales:</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="8.5">&#8226; Row lock contention explodes</text>
+      <text x="10" y="70" fill="#F0EEE7" font-size="8.5">&#8226; DB connection pools exhaust in 2s</text>
+      <text x="10" y="86" fill="#C85A5A" font-size="8.5">&#8226; Cascading timeouts cause dropouts</text>
+      
+      <rect x="10" y="100" width="232" height="65" rx="4" fill="#171C1A"/>
+      <text x="16" y="120" fill="#B39A77" font-size="9" font-weight="700">Architectural Reality:</text>
+      <text x="16" y="138" fill="#F0EEE7" font-size="8.5">Adding CPU cores fails to solve</text>
+      <text x="16" y="152" fill="#B5BDB6" font-size="8.5">relational mutex serial fraction.</text>
+    </g>
+  </g>
+
+  <!-- Connect 1 -> 2 -->
+  <line x1="312" y1="280" x2="358" y2="280" stroke="#8FB4AA" stroke-width="2" marker-end="url(#arr-cyan)"/>
+
+  <!-- COL 2: LMAX Ring Buffer -->
+  <g transform="translate(360, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">02. LMAX RING BUFFER SEQUENCER</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="135" rx="6" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.6"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">64-BYTE CACHE-LINE PADDING:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">Prevents CPU false sharing across cores</text>
+      
+      <rect x="10" y="50" width="232" height="40" rx="4" fill="#292F2D"/>
+      <text x="16" y="68" fill="#B39A77" font-size="8.5">type PaddedSequence struct {</text>
+      <text x="16" y="82" fill="#8FB4AA" font-size="8.5">  _ [7]uint64; value int64; _ [7]uint64 }</text>
+
+      <text x="10" y="110" fill="#F0EEE7" font-size="8.5">Single-writer memory sequencer</text>
+      <text x="10" y="125" fill="#8FB4AA" font-size="9" font-weight="700">SUB-500 MICROSECOND LATENCY</text>
+    </g>
+
+    <g transform="translate(14, 200)">
+      <rect width="252" height="170" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">TWO-PHASE BALANCE INVARIANT:</text>
+      <text x="10" y="40" fill="#F0EEE7" font-size="10" font-weight="700">B_total = B_available + B_reserved</text>
+      
+      <rect x="10" y="55" width="232" height="95" rx="4" fill="#171C1A"/>
+      <text x="16" y="75" fill="#8FB4AA" font-size="8.5">1. Check: Amount &lt;= B_available</text>
+      <text x="16" y="93" fill="#8FB4AA" font-size="8.5">2. Reserve: Atomic CAS into B_reserved</text>
+      <text x="16" y="111" fill="#F0EEE7" font-size="8.5">3. Settle: Decrement B_reserved + Journal</text>
+      <text x="16" y="129" fill="#B39A77" font-size="8.5">4. Rollback: Release back to B_available</text>
+    </g>
+  </g>
+
+  <!-- Connect 2 -> 3 -->
+  <line x1="640" y1="280" x2="686" y2="280" stroke="#8FB4AA" stroke-width="2" marker-end="url(#arr-cyan)"/>
+
+  <!-- COL 3: Continuous Shadow Reconciliation -->
+  <g transform="translate(688, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">03. SHADOW AUDIT PIPELINE</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="120" rx="6" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.8"/>
+      <text x="10" y="22" fill="#8FB4AA" font-size="10" font-weight="700">APPEND-ONLY EVENT LOG:</text>
+      <text x="10" y="42" fill="#F0EEE7" font-size="8.5">Reservations stream to Kafka partition</text>
+      <text x="10" y="58" fill="#F0EEE7" font-size="8.5">Immutable facts stored in ScyllaDB</text>
+      <text x="10" y="76" fill="#8FB4AA" font-size="9" font-weight="700">30-SECOND RECONCILIATION LOOP:</text>
+      <text x="10" y="94" fill="#B39A77" font-size="9">SUM(Debits) - SUM(Credits) = 0</text>
+      <text x="10" y="108" fill="#B5BDB6" font-size="8">Trips circuit breaker on &gt; 0 drift</text>
+    </g>
+
+    <g transform="translate(14, 185)">
+      <rect width="252" height="185" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">ENTERPRISE PERFORMANCE:</text>
+      
+      <circle cx="16" cy="45" r="3" fill="#8FB4AA"/>
+      <text x="26" y="48" fill="#F0EEE7" font-size="8.5">Throughput: 5,000+ TPS Lock-Free</text>
+      
+      <circle cx="16" cy="70" r="3" fill="#8FB4AA"/>
+      <text x="26" y="73" fill="#F0EEE7" font-size="8.5">Zero Database Deadlocks</text>
+      
+      <circle cx="16" cy="95" r="3" fill="#8FB4AA"/>
+      <text x="26" y="98" fill="#F0EEE7" font-size="8.5">Deterministic Financial Settlement</text>
+
+      <rect x="10" y="115" width="232" height="55" rx="4" fill="#171C1A"/>
+      <text x="16" y="135" fill="#8FB4AA" font-size="9" font-weight="700">Financial Integrity:</text>
+      <text x="16" y="153" fill="#F0EEE7" font-size="11" font-weight="700">ABSOLUTE ACID CONSISTENCY</text>
+      <text x="16" y="165" fill="#B39A77" font-size="8.5">Without Holding Database Row Locks</text>
+    </g>
+  </g>
+</svg>

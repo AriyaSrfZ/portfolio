@@ -47,7 +47,7 @@ Pushing high-volume transactional traffic through standard HTTP REST layers trig
 
 <div class="my-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] p-3 sm:p-5 shadow-2xl" dir="ltr">
   <img
-    src="/diagrams/telecom-smpp-sliding-window-schematic.svg"
+    src="/diagrams/telecom-smpp-sliding-window-schematic_v2.svg"
     alt="High-Throughput Telecom SMPP Sliding Window Switch Architecture"
     class="w-full h-auto object-contain rounded-lg"
     loading="lazy"

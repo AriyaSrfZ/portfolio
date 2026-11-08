@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="auto" class="w-full h-auto" preserveAspectRatio="xMidYMid meet" dir="ltr" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+
+  <defs>
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#527C78" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#527C78" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B39A77" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#B39A77" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FB4AA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#8FB4AA" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="rose-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C85A5A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#C85A5A" stop-opacity="0.02"/>
+    </linearGradient>
+    <pattern id="grid-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#F3F0E8" fill-opacity="0.04"/>
+    </pattern>
+    <marker id="arr-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8FB4AA"/>
+    </marker>
+    <marker id="arr-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#B39A77"/>
+    </marker>
+    <marker id="arr-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#C85A5A"/>
+    </marker>
+  </defs>
+  <style>
+    text {
+      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+  <rect width="1000" height="520" fill="#171C1A" rx="14"/>
+  <rect width="1000" height="520" fill="url(#grid-dots)" rx="14"/>
+  <rect width="998" height="518" x="1" y="1" fill="none" stroke="#F3F0E8" stroke-opacity="0.08" rx="13"/>
+
+  <!-- Header -->
+  <g transform="translate(32, 28)">
+    <circle cx="6" cy="10" r="5" fill="#8FB4AA"/>
+    <text x="20" y="14" fill="#8FB4AA" font-size="12" font-weight="700" letter-spacing="1.2">ARCHITECTURE SCHEMATIC · ISO 20022 CROSS-BORDER RAIL</text>
+    <text x="20" y="30" fill="#B5BDB6" font-size="9.5">pacs.008 XML HIERARCHY · SWIFT CBPR+ DOWNGRADE · FIELD 70 DATA SURVIVAL</text>
+    <rect x="630" y="0" width="306" height="28" rx="6" fill="#8FB4AA" fill-opacity="0.1" stroke="#8FB4AA" stroke-opacity="0.35"/>
+    <circle cx="644" cy="14" r="4" fill="#8FB4AA"/>
+    <text x="656" y="18" fill="#8FB4AA" font-size="10" font-weight="700">INVARIANT: SHA-256 HASH SURVIVES DOWNGRADE</text>
+  </g>
+
+  <!-- COL 1: Upstream Ingress pacs.008 -->
+  <g transform="translate(32, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#8FB4AA" font-size="11" font-weight="700">01. INGRESS: pacs.008 (XML)</text>
+    
+    <g transform="translate(14, 50)">
+      <rect width="252" height="110" rx="6" fill="#171C1A" stroke="#46504B"/>
+      <text x="10" y="20" fill="#B39A77" font-size="9.5">&lt;RmtInf&gt;</text>
+      <text x="22" y="36" fill="#8FB4AA" font-size="9.5">&lt;Strd&gt;&lt;RfrdDocInf&gt;</text>
+      <text x="34" y="52" fill="#F0EEE7" font-size="9">&lt;Nb&gt;INV-2026-X892&lt;/Nb&gt;</text>
+      <text x="34" y="68" fill="#F0EEE7" font-size="9">&lt;Amt&gt;850000.00 USD&lt;/Amt&gt;</text>
+      <text x="22" y="84" fill="#8FB4AA" font-size="9.5">&lt;/RfrdDocInf&gt;&lt;/Strd&gt;</text>
+      <text x="10" y="100" fill="#B39A77" font-size="9.5">&lt;/RmtInf&gt;</text>
+    </g>
+
+    <g transform="translate(14, 175)">
+      <rect width="252" height="60" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#B5BDB6" font-size="9">Structured Remittance Container</text>
+      <text x="10" y="36" fill="#8FB4AA" font-size="11" font-weight="700">UNCONSTRAINED LENGTH</text>
+      <text x="10" y="50" fill="#B5BDB6" font-size="8.5">Arbitrary Invoice &amp; Tax Nodes (KB Range)</text>
+    </g>
+
+    <g transform="translate(14, 250)">
+      <rect width="252" height="120" rx="6" fill="#171C1A" stroke="#8FB4AA" stroke-opacity="0.4"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">ARCHITECTURAL GATE 1:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="9">Deterministic Pre-Hash</text>
+      <rect x="10" y="50" width="232" height="28" rx="4" fill="#292F2D"/>
+      <text x="16" y="68" fill="#B39A77" font-size="8.5">SHA-256(CanonicalRemittance)</text>
+      <text x="10" y="96" fill="#B5BDB6" font-size="8.5">Stored in :20: EndToEndId</text>
+      <text x="10" y="110" fill="#8FB4AA" font-size="8.5">Preserved Across Intermediaries</text>
+    </g>
+  </g>
+
+  <!-- Connect 1 -> 2 -->
+  <line x1="312" y1="280" x2="358" y2="280" stroke="#8FB4AA" stroke-width="2" marker-end="url(#arr-cyan)"/>
+
+  <!-- COL 2: Translator Gateway (Field 70 Trap) -->
+  <g transform="translate(360, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#B39A77" font-size="11" font-weight="700">02. TRANSLATOR: SWIFT CBPR+</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="135" rx="6" fill="#171C1A" stroke="#C85A5A" stroke-opacity="0.6"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">MT103 FIELD 70 HARD LIMIT:</text>
+      <text x="10" y="36" fill="#B5BDB6" font-size="9">Max 4 Lines x 35 Characters</text>
+      <rect x="10" y="46" width="232" height="74" rx="4" fill="#202725"/>
+      <text x="16" y="62" fill="#F0EEE7" font-size="8.5">:70:/INV/INV-2026-X892/AMT/850000</text>
+      <text x="16" y="78" fill="#F0EEE7" font-size="8.5">/TAX/US98273641/REF/PAYMENT-FOR-Q3</text>
+      <text x="16" y="94" fill="#C85A5A" font-size="8.5">[xxx SILENT TRUNCATION AT 140B xxx]</text>
+      <text x="16" y="110" fill="#B5BDB6" font-size="8">Tax, Buyer ID, Invoice Sub-lines STRIPPED</text>
+    </g>
+
+    <g transform="translate(14, 200)">
+      <rect width="252" height="170" rx="6" fill="#292F2D" stroke="#46504B"/>
+      <text x="10" y="20" fill="#8FB4AA" font-size="10" font-weight="700">MAPPING MECHANICS:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="8.5">XML Tree flattened into ASCII text</text>
+      <text x="10" y="54" fill="#F0EEE7" font-size="8.5">Non-ASCII characters sanitized</text>
+      <text x="10" y="70" fill="#C85A5A" font-size="8.5">No exception thrown to caller!</text>
+      
+      <rect x="10" y="85" width="232" height="70" rx="4" fill="#171C1A"/>
+      <text x="16" y="104" fill="#B39A77" font-size="9" font-weight="700">Capacity Ceiling:</text>
+      <text x="16" y="122" fill="#F0EEE7" font-size="13" font-weight="700">140 CHARACTERS MAX</text>
+      <text x="16" y="142" fill="#B5BDB6" font-size="8.5">4 x 35 bytes SWIFT X-Char Set</text>
+    </g>
+  </g>
+
+  <!-- Connect 2 -> 3 -->
+  <line x1="640" y1="280" x2="686" y2="280" stroke="#C85A5A" stroke-width="2" marker-end="url(#arr-rose)"/>
+
+  <!-- COL 3: Downstream Impact & Remediation -->
+  <g transform="translate(688, 85)">
+    <rect width="280" height="395" rx="10" fill="#202725" stroke="#303936"/>
+    <rect width="280" height="34" rx="10" fill="#292F2D" stroke="#303936"/>
+    <text x="14" y="22" fill="#C85A5A" font-size="11" font-weight="700">03. IMPACT &amp; SUSPENSE FREEZE</text>
+
+    <g transform="translate(14, 50)">
+      <rect width="252" height="85" rx="6" fill="#171C1A" stroke="#C85A5A" stroke-opacity="0.8"/>
+      <text x="10" y="20" fill="#C85A5A" font-size="10" font-weight="700">FALSE STP SUCCESS:</text>
+      <text x="10" y="38" fill="#F0EEE7" font-size="9">&#8226; RTGS Settlement: Succeeded (Green)</text>
+      <text x="10" y="54" fill="#C85A5A" font-size="9">&#8226; ERP Auto-Reconciliation: FAILED</text>
+      <text x="10" y="70" fill="#B39A77" font-size="9">&#8226; Funds Frozen in Suspense: 72 Hours</text>
+    </g>
+
+    <g transform="translate(14, 150)">
+      <rect width="252" height="220" rx="6" fill="#292F2D" stroke="#8FB4AA" stroke-opacity="0.6"/>
+      <text x="10" y="22" fill="#8FB4AA" font-size="10" font-weight="700">REMEDIATION ARCHITECTURE:</text>
+      
+      <circle cx="16" cy="45" r="3" fill="#8FB4AA"/>
+      <text x="26" y="48" fill="#F0EEE7" font-size="8.5">Pre-downgrade length validator</text>
+      
+      <circle cx="16" cy="70" r="3" fill="#8FB4AA"/>
+      <text x="26" y="73" fill="#F0EEE7" font-size="8.5">Deterministic SHA-256 hash match</text>
+      
+      <circle cx="16" cy="95" r="3" fill="#8FB4AA"/>
+      <text x="26" y="98" fill="#F0EEE7" font-size="8.5">Live pacs.002 status webhook stream</text>
+
+      <rect x="10" y="115" width="232" height="90" rx="4" fill="#171C1A"/>
+      <text x="16" y="135" fill="#8FB4AA" font-size="9" font-weight="700">Production Outcome:</text>
+      <text x="16" y="155" fill="#F0EEE7" font-size="12" font-weight="700">0% UNMATCHED CREDITS</text>
+      <text x="16" y="175" fill="#B5BDB6" font-size="8.5">Eliminates corporate liquidity delay</text>
+      <text x="16" y="193" fill="#B39A77" font-size="8.5">ISO 11649 Creditor Ref Validated</text>
+    </g>
+  </g>
+</svg>
