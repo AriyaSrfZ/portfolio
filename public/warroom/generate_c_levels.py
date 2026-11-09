@@ -4,10 +4,16 @@ import json
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(SCRIPT_DIR, 'data.json')
 OUTPUT_FILE = os.path.join(SCRIPT_DIR, 'c-levels.html')
+MODAL_SNIPPET_FILE = os.path.join(SCRIPT_DIR, 'audit_modal_snippet.html')
 
 def generate():
     with open(DATA_FILE, 'r', encoding='utf-8') as f:
         accounts = json.load(f)
+
+    modal_snippet = ''
+    if os.path.exists(MODAL_SNIPPET_FILE):
+        with open(MODAL_SNIPPET_FILE, 'r', encoding='utf-8') as mf:
+            modal_snippet = mf.read()
 
     doc_map = {
         'acc-1': 'طلاین.docx',
@@ -191,8 +197,9 @@ def generate():
             row_cls = "phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition"
             num_html = f'<td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">{num}</td>'
             company_col = f'''<div class="font-bold text-white text-sm">{name}</div>
-          <div class="flex items-center gap-2 mt-1.5">
+          <div class="flex items-center gap-2 mt-1.5 flex-wrap">
             <span class="inline-flex items-center gap-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
+            <button onclick="openAuditModal('{acc_id}')" class="inline-flex items-center gap-1 text-[10px] text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30 font-medium transition cursor-pointer"><span>✏️</span> <span>ثبت اصلاح / خطا</span></button>
           </div>
           {metadata_details_html}'''
             l2_col_cls = "py-3.5 px-4 min-w-[280px] bg-cyan-950/30"
@@ -201,8 +208,9 @@ def generate():
             num_html = f'<td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">{num}</td>'
             doc_file = doc_map.get(acc_id, f"{name.split()[0]}.docx")
             company_col = f'''<div class="font-bold text-white text-sm">{name}</div>
-          <div class="flex items-center gap-2 mt-1.5">
+          <div class="flex items-center gap-2 mt-1.5 flex-wrap">
             <a href="/docs/{doc_file}" download class="inline-flex items-center gap-1 text-[10px] text-[#D8B486] hover:text-[#E8C496] bg-[#B39A77]/15 px-2 py-0.5 rounded border border-[#B39A77]/30 font-medium"><span>📄 {doc_file}</span></a>
+            <button onclick="openAuditModal('{acc_id}')" class="inline-flex items-center gap-1 text-[10px] text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30 font-medium transition cursor-pointer"><span>✏️</span> <span>ثبت اصلاح / خطا</span></button>
           </div>
           {metadata_details_html}'''
             l2_col_cls = "py-3.5 px-4 min-w-[280px] bg-black/10"
@@ -275,7 +283,7 @@ def generate():
         <p class="text-xs text-[#B5BDB6] mt-1.5">تمرکز بر روت دیجیتال (لینکدین و وب‌سایت) جهت تسهیل ارتباط تیم، با دسترسی به متادیتای ثبتی و تلفن از طریق دکمه اطلاعات</p>
       </div>
       <div class="flex items-center gap-2.5 flex-wrap">
-        <button onclick="window.openAuditChat()" class="px-3.5 py-2 bg-gradient-to-r from-amber-600/90 to-amber-700/90 hover:from-amber-500 hover:to-amber-600 text-amber-100 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border border-amber-400/40 shadow-lg shadow-amber-950/40">
+        <button onclick="openAuditModal()" class="px-3.5 py-2 bg-gradient-to-r from-amber-600/90 to-amber-700/90 hover:from-amber-500 hover:to-amber-600 text-amber-100 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border border-amber-400/40 shadow-lg shadow-amber-950/40 cursor-pointer">
           <span>✍️ ثبت خطا و یادداشت ممیزی (فائزه)</span>
         </button>
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
@@ -388,13 +396,15 @@ def generate():
     document.addEventListener('DOMContentLoaded', () => {{
       switchPhase('phase1');
     }});
+    window.accounts = {json.dumps(accounts, ensure_ascii=False)};
   </script>
-  <script src="/warroom/audit-chat.js"></script>
 </body>
 </html>'''
 
+    full_html = html_template.replace('</body>', f'\n{modal_snippet}\n</body>') if modal_snippet else html_template
+
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        f.write(html_template)
+        f.write(full_html)
 
     print(f"Successfully generated clean digital-first {OUTPUT_FILE}")
 

@@ -58,8 +58,20 @@ class WarroomHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_HEAD(self):
+        parsed = urlparse(self.path)
+        clean_path = unquote(parsed.path)
+        if clean_path in ["", "/"]:
+            clean_path = "/index.html"
+        target = os.path.normpath(os.path.join(WEB_DIR, clean_path.lstrip("/")))
+        if os.path.isdir(target):
+            target = os.path.join(target, "index.html")
+        ctype, _ = mimetypes.guess_type(target)
+        if not ctype:
+            ctype = "text/html; charset=utf-8" if target.endswith(".html") else "application/octet-stream"
+        elif ("text" in ctype or "javascript" in ctype or "json" in ctype) and "charset" not in ctype:
+            ctype += "; charset=utf-8"
         self.send_response(200)
-        self._send_common_headers()
+        self._send_common_headers(ctype)
         self.end_headers()
 
     def get_client_ip(self):

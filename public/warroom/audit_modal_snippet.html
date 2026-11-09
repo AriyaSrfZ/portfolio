@@ -1,0 +1,346 @@
+<!-- ========================================================================= -->
+<!-- Persia Fava B2B War Room — Dedicated Self-Contained Audit & Corrections Modal -->
+<!-- Special Portal for: سرکار خانم کوشکشتانی (فائزه) & Team -->
+<!-- ========================================================================= -->
+
+<style>
+  .audit-custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .audit-custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  .audit-custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.3);
+    border-radius: 8px;
+  }
+  .audit-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(6, 182, 212, 0.6);
+  }
+</style>
+
+<!-- Dedicated Audit Modal (Embedded Directly in DOM) -->
+<div id="modalAuditChat" class="fixed inset-0 z-[9999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 hidden animate-fade-in" onclick="if(event.target===this) closeAuditModal()">
+  <div class="bg-[#12191B] border border-cyan-500/40 rounded-3xl w-full max-w-2xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden font-sans text-right" dir="rtl">
+    
+    <!-- Modal Header -->
+    <div class="px-6 py-4 bg-gradient-to-r from-[#172327] to-[#1C2C30] border-b border-cyan-500/30 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-xl shadow-inner">
+          👩‍💻
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="font-black text-base text-white">میز گفت‌وگو و ثبت تصحیحات ممیزی</h2>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold">پایشگر خودکار سرور فعال است ●</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">کانال مستقیم سرکار خانم کوشکشتانی (فائزه) با پایشگر پایپ‌لاین — اصلاح خودکار در کمتر از ۵ ثانیه</p>
+        </div>
+      </div>
+      <button onclick="closeAuditModal()" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-red-500/20 text-slate-300 hover:text-red-300 flex items-center justify-center text-sm font-bold transition">
+        ✕
+      </button>
+    </div>
+
+    <!-- Modal Body (Scrollable) -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-4 audit-custom-scrollbar bg-[#0E1416]">
+      
+      <!-- Quick Instructions Alert -->
+      <div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-xs text-cyan-200 leading-relaxed flex items-start gap-2.5">
+        <span class="text-base">💡</span>
+        <div>
+          هرگونه آدرس سایت جدید، لینکدین، شماره تلفن یا نام اشتباه را در فرم زیر وارد کنید. با زدن دکمه ثبت، سیستم سرور استکهلم درجا اطلاعات را تغییر داده و بورد را بازتولید می‌کند.
+        </div>
+      </div>
+
+      <!-- Form Card -->
+      <div class="p-4 rounded-2xl bg-[#151D20] border border-cyan-500/20 space-y-3">
+        
+        <!-- Row 1: Account Selection -->
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">شرکت یا حساب مربوطه:</label>
+          <select id="modalAuditAccountSelect" onchange="onModalAccountChanged()" class="w-full text-xs bg-[#1C2629] text-white border border-[#2D3E42] rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-400 transition font-sans">
+            <option value="all">-- انتخاب شرکت برای تصحیح یا یادداشت عمومی --</option>
+            <option value="acc-1">[#۱] طلاین (Tlyn / Taline)</option>
+            <option value="acc-2">[#۲] ترابرنت (Tarabarnet)</option>
+            <option value="acc-3">[#۳] زرپی۲۴ (Zarpay24)</option>
+            <option value="acc-4">[#۴] اوبار (Ubar)</option>
+            <option value="acc-5">[#۵] سندپرداز (SanadPardaz ERP)</option>
+            <option value="acc-6">[#۶] دیدگاه / چارگون (Chargoon)</option>
+            <option value="acc-7">[#۷] گلدیکا (Goldika)</option>
+            <option value="acc-8">[#۸] قسطا (Qesta / Ghesta)</option>
+            <option value="acc-9">[#۹] وال‌گلد (WallGold)</option>
+            <option value="acc-10">[#۱۰] پستکس (Postex)</option>
+            <option value="acc-11">[#۱۱] اکوگلد (EcoGold)</option>
+            <option value="acc-12">[#۱۲] پادیز (تسهیلات و لندتک سیموتک)</option>
+            <option value="acc-13">[#۱۳] اوامپیفینکس (OMP Finex)</option>
+            <option value="acc-14">[#۱۴] اکوتراست (Ecotrust)</option>
+            <option value="acc-15">[#۱۵] ریتون (Reytoon)</option>
+            <option value="acc-16">[#۱۶] خودرو۴۵ (Khodro45)</option>
+            <option value="acc-17">[#۱۷] پولنو (Pooleno)</option>
+            <option value="acc-18">[#۱۸] سیموتک (Simotech)</option>
+            <option value="acc-19">[#۱۹] تبدیل (Tabdeal)</option>
+            <option value="acc-20">[#۲۰] بیدارز (Bidarz)</option>
+          </select>
+        </div>
+
+        <!-- Row 2: Direct Website & LinkedIn Inputs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-medium text-slate-300 mb-1">🌐 آدرس صحیح وب‌سایت (دامنه):</label>
+            <input type="text" id="modalAuditWebsiteInput" placeholder="https://example.ir" dir="ltr" class="w-full text-xs font-mono bg-[#1C2629] text-cyan-300 placeholder-slate-500 border border-[#2D3E42] rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-400 transition">
+          </div>
+          <div>
+            <label class="block text-[11px] font-medium text-slate-300 mb-1">💼 آدرس صحیح لینکدین:</label>
+            <input type="text" id="modalAuditLinkedinInput" placeholder="https://linkedin.com/company/..." dir="ltr" class="w-full text-xs font-mono bg-[#1C2629] text-sky-300 placeholder-slate-500 border border-[#2D3E42] rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-400 transition">
+          </div>
+        </div>
+
+        <!-- Row 3: Phone & Decision Maker Inputs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-medium text-slate-300 mb-1">📞 شماره تماس یا تلفن دفتر:</label>
+            <input type="text" id="modalAuditPhoneInput" placeholder="021-..." dir="ltr" class="w-full text-xs font-mono bg-[#1C2629] text-emerald-300 placeholder-slate-500 border border-[#2D3E42] rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-400 transition">
+          </div>
+          <div>
+            <label class="block text-[11px] font-medium text-slate-300 mb-1">👤 مدیرعامل یا شخص تصمیم‌گیرنده:</label>
+            <input type="text" id="modalAuditCeoInput" placeholder="نام و سمت مدیر..." class="w-full text-xs bg-[#1C2629] text-slate-200 placeholder-slate-500 border border-[#2D3E42] rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-400 transition">
+          </div>
+        </div>
+
+        <!-- Row 4: Note Textarea -->
+        <div>
+          <label class="block text-[11px] font-medium text-slate-300 mb-1">📝 یادداشت، خطاها یا توضیحات تکمیلی (ارسال پیام به سیستم):</label>
+          <textarea id="modalAuditNotesInput" rows="2" placeholder="توضیحات خطا را بنویسید (مثلاً: این آدرس سایت درسته، قبلی کار نمیکرد و لینکدین کل شرکت داخل این سایته...)" class="w-full text-xs bg-[#1C2629] text-slate-100 placeholder-slate-500 border border-[#2D3E42] rounded-xl p-2.5 focus:outline-none focus:border-cyan-400 resize-none transition font-sans"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex items-center justify-between pt-1">
+          <span id="modalAuditStatusText" class="text-xs text-slate-400"></span>
+          <button id="modalAuditSubmitBtn" onclick="submitModalAuditCorrection()" class="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs font-black shadow-lg shadow-emerald-900/40 transition flex items-center gap-2 transform active:scale-95 cursor-pointer">
+            <span>ثبت و اعمال خودکار روی سامانه</span>
+            <span class="text-sm">🚀</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat History Stream inside Modal -->
+      <div class="space-y-2 pt-2">
+        <div class="flex items-center justify-between text-xs text-slate-400 px-1">
+          <span class="font-bold flex items-center gap-1.5">
+            <span>💬 سوابق یادداشت‌ها و پاسخ‌های پایشگر خودکار</span>
+            <span id="modalAuditBadgeCount" class="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-mono text-[10px]">۰</span>
+          </span>
+          <button onclick="loadModalAuditChatHistory()" class="text-cyan-400 hover:underline text-[11px] flex items-center gap-1 cursor-pointer">
+            <span>🔄 به‌روزرسانی لحظه‌ای</span>
+          </button>
+        </div>
+        <div id="modalAuditChatStream" class="space-y-2.5 max-h-56 overflow-y-auto audit-custom-scrollbar p-1">
+          <!-- Messages rendered dynamically -->
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Floating Action Button at Bottom Left -->
+<div id="pfg-floating-audit-btn" class="fixed bottom-6 left-6 z-[9998]" dir="rtl">
+  <button onclick="openAuditModal()" class="group flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-[#141C1E]/95 hover:bg-[#1B272A] text-emerald-300 border border-emerald-500/40 hover:border-emerald-400 shadow-2xl transition duration-200 transform hover:scale-[1.03] backdrop-blur-md cursor-pointer">
+    <span class="relative flex h-3 w-3">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+    </span>
+    <span class="font-bold text-xs">💬 گفتگوی ممیزی و ثبت خطا</span>
+    <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-medium">فائزه</span>
+  </button>
+</div>
+
+<!-- Modal Controller Script -->
+<script>
+  // Ensure accounts catalog in memory
+  let cachedAccounts = [];
+  let auditHistoryPollInterval = null;
+
+  function openAuditModal(targetId) {
+    const modal = document.getElementById('modalAuditChat');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    
+    // Check if we have cached accounts
+    if (cachedAccounts.length === 0) {
+      if (typeof accounts !== 'undefined' && Array.isArray(accounts) && accounts.length > 0) {
+        cachedAccounts = accounts;
+      } else if (window.accounts && Array.isArray(window.accounts) && window.accounts.length > 0) {
+        cachedAccounts = window.accounts;
+      } else {
+        fetch('/data.json')
+          .then(r => r.json())
+          .then(d => { cachedAccounts = d; if(targetId) syncModalInputsWithAccount(targetId); })
+          .catch(() => {
+            fetch('/warroom/data.json')
+              .then(r => r.json())
+              .then(d => { cachedAccounts = d; if(targetId) syncModalInputsWithAccount(targetId); });
+          });
+      }
+    }
+
+    if (targetId) {
+      const select = document.getElementById('modalAuditAccountSelect');
+      if (select) select.value = targetId;
+      syncModalInputsWithAccount(targetId);
+    }
+    loadModalAuditChatHistory();
+    if (!auditHistoryPollInterval) {
+      auditHistoryPollInterval = setInterval(loadModalAuditChatHistory, 4000);
+    }
+  }
+
+  window.openAuditModal = openAuditModal;
+  window.openAuditChat = openAuditModal;
+
+  function closeAuditModal() {
+    const modal = document.getElementById('modalAuditChat');
+    if (modal) modal.classList.add('hidden');
+    if (auditHistoryPollInterval) {
+      clearInterval(auditHistoryPollInterval);
+      auditHistoryPollInterval = null;
+    }
+  }
+
+  function onModalAccountChanged() {
+    const select = document.getElementById('modalAuditAccountSelect');
+    if (!select) return;
+    syncModalInputsWithAccount(select.value);
+  }
+
+  function syncModalInputsWithAccount(accId) {
+    const acc = cachedAccounts.find(a => a.id === accId);
+    const webInput = document.getElementById('modalAuditWebsiteInput');
+    const liInput = document.getElementById('modalAuditLinkedinInput');
+    const phoneInput = document.getElementById('modalAuditPhoneInput');
+    const ceoInput = document.getElementById('modalAuditCeoInput');
+
+    if (acc) {
+      if (webInput) webInput.value = acc.website || '';
+      if (liInput) liInput.value = acc.linkedin || '';
+      if (phoneInput) phoneInput.value = acc.phone || '';
+      if (ceoInput) ceoInput.value = acc.decisionMaker || '';
+    } else {
+      if (webInput) webInput.value = '';
+      if (liInput) liInput.value = '';
+      if (phoneInput) phoneInput.value = '';
+      if (ceoInput) ceoInput.value = '';
+    }
+  }
+
+  async function submitModalAuditCorrection() {
+    const select = document.getElementById('modalAuditAccountSelect');
+    const webInput = document.getElementById('modalAuditWebsiteInput');
+    const liInput = document.getElementById('modalAuditLinkedinInput');
+    const phoneInput = document.getElementById('modalAuditPhoneInput');
+    const ceoInput = document.getElementById('modalAuditCeoInput');
+    const notesInput = document.getElementById('modalAuditNotesInput');
+    const submitBtn = document.getElementById('modalAuditSubmitBtn');
+    const statusText = document.getElementById('modalAuditStatusText');
+
+    const accId = select ? select.value : 'all';
+    const acc = cachedAccounts.find(a => a.id === accId) || { name: (select ? select.options[select.selectedIndex].text : 'عمومی') };
+
+    const notes = notesInput ? notesInput.value.trim() : '';
+    const newWeb = webInput ? webInput.value.trim() : '';
+    const newLi = liInput ? liInput.value.trim() : '';
+    const newPhone = phoneInput ? phoneInput.value.trim() : '';
+    const newCeo = ceoInput ? ceoInput.value.trim() : '';
+
+    if (!notes && !newWeb && !newLi && !newPhone && !newCeo) {
+      alert('لطفاً حداقل یکی از فیلدهای آدرس سایت، لینکدین، تلفن، مدیرعامل یا توضیحات را پر کنید.');
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'در حال ارسال و ثبت در سرور...';
+    }
+    if (statusText) statusText.innerText = 'در حال ثبت در صف پایشگر خودکار...';
+
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }) + ' — ' + now.toLocaleDateString('fa-IR');
+
+    const payload = {
+      id: 'audit-' + Date.now(),
+      sender: 'سرکار خانم کوشکشتانی (فائزه)',
+      role: 'ممیز داده و عملیات',
+      accountId: accId,
+      accountName: acc.name || 'عمومی',
+      newWebsite: newWeb,
+      newLinkedin: newLi,
+      newPhone: newPhone,
+      newCeo: newCeo,
+      text: notes || `اصلاح اطلاعات حساب ${acc.name}: وب‌سایت=${newWeb}, لینکدین=${newLi}, تلفن=${newPhone}, مدیرعامل=${newCeo}`,
+      timestamp: Date.now(),
+      timeStr: timeStr,
+      status: 'pending'
+    };
+
+    try {
+      await fetch('https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/faezeh_chat.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (statusText) statusText.innerHTML = '<span class="text-emerald-400 font-bold">✅ یادداشت شما با موفقیت ثبت شد و پایشگر خودکار سرور در حال اعمال آن است!</span>';
+      if (notesInput) notesInput.value = '';
+      loadModalAuditChatHistory();
+      setTimeout(() => {
+        if (statusText) statusText.innerText = '';
+      }, 5000);
+    } catch (e) {
+      console.error(e);
+      if (statusText) statusText.innerHTML = '<span class="text-amber-400">خطا در ارسال شبکه!</span>';
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>ثبت و اعمال خودکار روی سامانه</span> <span class="text-sm">🚀</span>';
+      }
+    }
+  }
+
+  async function loadModalAuditChatHistory() {
+    const stream = document.getElementById('modalAuditChatStream');
+    const badge = document.getElementById('modalAuditBadgeCount');
+    if (!stream) return;
+
+    try {
+      const res = await fetch('https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/faezeh_chat.json');
+      if (res.ok) {
+        const data = await res.json();
+        if (data) {
+          const list = Object.keys(data).map(k => ({ ...data[k], _key: k }));
+          list.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+          if (badge) badge.innerText = list.length;
+          stream.innerHTML = list.map(item => `
+            <div class="p-2.5 rounded-xl bg-[#172023] border ${item.status === 'resolved' ? 'border-emerald-500/30' : 'border-amber-500/30'} text-xs space-y-1">
+              <div class="flex items-center justify-between text-[11px]">
+                <div class="font-bold text-white">${item.accountName || 'عمومی'}</div>
+                <span class="text-[9.5px] font-mono text-slate-400" dir="ltr">${item.timeStr || ''}</span>
+              </div>
+              <div class="text-slate-200 leading-snug">${item.text || ''}</div>
+              <div class="flex items-center justify-between pt-1">
+                ${item.status === 'resolved' ? 
+                  '<span class="text-emerald-300 font-bold text-[10px]">✅ اصلاح و اعمال شد</span>' : 
+                  '<span class="text-amber-300 text-[10px]">⏳ در صف پایش</span>'}
+                ${item.resolutionNote ? `<span class="text-[10px] text-emerald-400">${item.resolutionNote}</span>` : ''}
+              </div>
+            </div>
+          `).join('');
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+</script>

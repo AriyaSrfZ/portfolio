@@ -77,6 +77,7 @@ def regenerate_and_deploy():
         # Copy to /var/www/warroom/web/
         os.system("cp /var/www/portfolio/warroom/c-levels.html /var/www/warroom/web/c-levels.html 2>/dev/null")
         os.system("cp /var/www/portfolio/warroom/list2.html /var/www/warroom/web/list2.html 2>/dev/null")
+        os.system("cp /var/www/portfolio/warroom/index.html /var/www/warroom/web/index.html 2>/dev/null")
         os.system("cp /var/www/portfolio/warroom/data.json /var/www/warroom/web/data.json 2>/dev/null")
         os.system("chown -R aria:aria /var/www/portfolio/warroom /var/www/warroom/web 2>/dev/null")
         log("Successfully regenerated HTML files and deployed to both web targets.")
@@ -138,24 +139,47 @@ def process_single_message(key, msg):
             "timestamp": int(time.time()*1000)
         })
 
-        # Auto-parse phone updates (e.g. 021...)
+        # Auto-parse website updates
         import re
-        phones = re.findall(r"(?:021-?\d{8}|۰۲۱-?[۰-۹]{۸})", text)
-        if phones and ("تلفن" in text or "شماره" in text):
-            new_phone = phones[0]
-            target_acc["phone"] = new_phone
-            resolution_note += f"تلفن دفتر به {new_phone} به‌روزرسانی شد. "
+        new_web = msg.get("newWebsite")
+        if not new_web:
+            web_matches = re.findall(r"https?://(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)", text)
+            for w in web_matches:
+                if "linkedin.com" not in w:
+                    new_web = w.rstrip(").,;")
+                    break
+        if new_web:
+            target_acc["website"] = new_web
+            resolution_note += f"آدرس وب‌سایت به {new_web} به‌روزرسانی شد. "
             updated = True
 
-        # Auto-parse linkedin updates (linkedin.com/...)
-        li_matches = re.findall(r"https?://(?:www\.)?linkedin\.com/[^\s]+", text)
-        if li_matches:
-            new_li = li_matches[0].rstrip(").,;")
-            if "company" in new_li:
-                target_acc["linkedin"] = new_li
-                resolution_note += f"لینکدین شرکت به {new_li} اصلاح گردید. "
-            else:
-                resolution_note += f"پیوند لینکدین جدید دریافت و به پرونده الصاق شد. "
+        # Auto-parse linkedin updates
+        new_li = msg.get("newLinkedin")
+        if not new_li:
+            li_matches = re.findall(r"https?://(?:www\.)?linkedin\.com/[^\s]+", text)
+            if li_matches:
+                new_li = li_matches[0].rstrip(").,;")
+        if new_li:
+            target_acc["linkedin"] = new_li
+            resolution_note += f"پیوند لینکدین به {new_li} به‌روزرسانی شد. "
+            updated = True
+
+        # Auto-parse phone updates
+        new_phone = msg.get("newPhone")
+        if not new_phone:
+            phones = re.findall(r"(?:021-?\d{8}|۰۲۱-?[۰-۹]{۸}|\b0\d{10}\b)", text)
+            if phones and ("تلفن" in text or "شماره" in text or "تماس" in text):
+                new_phone = phones[0]
+        if new_phone:
+            target_acc["phone"] = new_phone
+            resolution_note += f"شماره تلفن به {new_phone} به‌روزرسانی شد. "
+            updated = True
+
+        # Auto-parse CEO update
+        new_ceo = msg.get("newCeo")
+        if new_ceo:
+            target_acc["decisionMaker"] = new_ceo
+            resolution_note += f"نام تصمیم‌گیرنده ارشد به {new_ceo} اصلاح گردید. "
             updated = True
 
         if not resolution_note:
