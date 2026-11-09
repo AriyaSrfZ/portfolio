@@ -103,11 +103,45 @@ def process_single_message(key, msg):
     with open(DATA_JSON_PATH, "r", encoding="utf-8") as f:
         accounts = json.load(f)
 
+    COMPANY_KEYWORDS = {
+        "acc-1": ["طلاین", "taline", "tlyn"],
+        "acc-2": ["ترابرنت", "tarabarnet"],
+        "acc-3": ["زرپی", "zarpay"],
+        "acc-4": ["اوبار", "ubar"],
+        "acc-5": ["سندپرداز", "sanadpardaz"],
+        "acc-6": ["دیدگاه", "چارگون", "chargoon"],
+        "acc-7": ["گلدیکا", "goldika"],
+        "acc-8": ["قسطا", "qesta", "ghesta"],
+        "acc-9": ["وال گلد", "وال‌گلد", "والکس", "wallgold", "wallex"],
+        "acc-10": ["پستکس", "پست بار", "پست‌بار", "postex", "postbar"],
+        "acc-11": ["اکوگلد", "اکو گلد", "ecogold"],
+        "acc-12": ["پادیز", "پادیس", "padiz"],
+        "acc-13": ["اوامپیفینکس", "او ام پی فینکس", "او‌ام‌پی‌فینکس", "ompfinex", "omp finex"],
+        "acc-14": ["اکوتراست", "اکو تراست", "ecotrust"],
+        "acc-15": ["ریتون", "reytoon", "riton"],
+        "acc-16": ["خودرو۴۵", "خودرو 45", "khodro45"],
+        "acc-17": ["پولنو", "پول نو", "pooleno"],
+        "acc-18": ["سیموتک", "simotech", "سیمرغ تجارت", "stts"],
+        "acc-19": ["تبدیل", "tabdeal"],
+        "acc-20": ["بیدارز", "bidarz"]
+    }
+
     target_acc = None
     if acc_id and acc_id != "all":
         target_acc = next((a for a in accounts if a.get("id") == acc_id), None)
     elif acc_name and acc_name != "عمومی":
         target_acc = next((a for a in accounts if a.get("name", "").strip() in acc_name or acc_name.strip() in a.get("name", "")), None)
+
+    # Smart fallback: auto-detect company mentioned in text
+    if not target_acc and text:
+        text_lower = text.lower()
+        for aid, kw_list in COMPANY_KEYWORDS.items():
+            if any(kw in text_lower for kw in kw_list):
+                target_acc = next((a for a in accounts if a.get("id") == aid), None)
+                if target_acc:
+                    acc_name = target_acc.get("name", "")
+                    log(f"Auto-resolved target account from text keywords: [{acc_name}] (ID: {aid})")
+                    break
 
     resolution_note = ""
     updated = False

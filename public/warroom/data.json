@@ -891,7 +891,7 @@
     "tier": "Tier A",
     "score": "۶۰",
     "stage": "prospect",
-    "linkedin": "https://www.linkedin.com/company/ecogold-ir/",
+    "linkedin": "https://www.linkedin.com/company/Ecogold",
     "website": "https://ecogold.ir",
     "decisionMaker": "محمدرضا اعتمادی (هم‌بنیان‌گذار و مدیرعامل) — in/mohammadreza-etemadi",
     "approver": "سید علیرضا شریفی (رئیس هیئت‌مدیره)",
@@ -909,6 +909,12 @@
         "author": "جناب آقای صرافزاده",
         "text": "حساب بکر (شاخص IEI سطح ۱ با نمره ۶۰)؛ فاقد قرارداد بلندمدت با رقبای بزرگ. آماده ارائه آفر ملایم Hot Failover و تست ۵۰k پیامک هدیه بدون تعهد.",
         "time": "16:20 — ۱۴۰۵/۰۸/۱۴"
+      },
+      {
+        "id": "com-audit-ecogold-li",
+        "author": "ممیزی (سرکار خانم کوشکشتانی)",
+        "text": "تطبیق و ثبت آدرس رسمی صفحه شرکت اکوگلد در لینکدین: https://www.linkedin.com/company/Ecogold",
+        "time": "14:38 — ۱۴۰۵/۰۸/۱۹"
       }
     ],
     "actions": [
@@ -920,6 +926,15 @@
         "text": "شناسایی اولیه حساب در فاز ۲ بر اساس شاخص نفوذ رقبا (IEI)، ممیزی نقطه درد پیامکی و استخراج کانتکت‌های لایه دوم لینکدین",
         "time": "16:20 — ۱۴۰۵/۰۸/۱۴",
         "timestamp": 1792400000011
+      },
+      {
+        "id": "act-audit-ecogold-li",
+        "type": "audit",
+        "performer": "سرکار خانم کوشکشتانی (فائزه)",
+        "ip": "109.120.131.224",
+        "text": "به‌روزرسانی و ممیزی صفحه رسمی لینکدین اکوگلد به https://www.linkedin.com/company/Ecogold",
+        "time": "14:38 — ۱۴۰۵/۰۸/۱۹",
+        "timestamp": 1792400000028
       }
     ],
     "layer2Contacts": [

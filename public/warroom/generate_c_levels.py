@@ -283,8 +283,11 @@ def generate():
         <p class="text-xs text-[#B5BDB6] mt-1.5">تمرکز بر روت دیجیتال (لینکدین و وب‌سایت) جهت تسهیل ارتباط تیم، با دسترسی به متادیتای ثبتی و تلفن از طریق دکمه اطلاعات</p>
       </div>
       <div class="flex items-center gap-2.5 flex-wrap">
+        <a href="/faezeh.html" class="px-3.5 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-emerald-950/40">
+          <span>💬 صندوق مستقیم چت (فائزه)</span>
+        </a>
         <button onclick="openAuditModal()" class="px-3.5 py-2 bg-gradient-to-r from-amber-600/90 to-amber-700/90 hover:from-amber-500 hover:to-amber-600 text-amber-100 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border border-amber-400/40 shadow-lg shadow-amber-950/40 cursor-pointer">
-          <span>✍️ ثبت خطا و یادداشت ممیزی (فائزه)</span>
+          <span>✍️ ثبت خطا و یادداشت ممیزی</span>
         </button>
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
           <span>← بازگشت به اتاق جنگ</span>
@@ -297,6 +300,27 @@ def generate():
         </a>
       </div>
     </header>
+
+    <!-- Permanent Inline Quick-Chat Box (Faezeh Direct Line) -->
+    <div class="bg-[#182326] border border-cyan-500/40 rounded-2xl p-4 shadow-xl flex flex-col md:flex-row items-center justify-between gap-3 font-sans">
+      <div class="flex items-center gap-2.5 whitespace-nowrap">
+        <div class="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-lg shadow-inner">💬</div>
+        <div>
+          <div class="font-bold text-xs text-white">ارسال سریع پیام یا تصحیح خطا (فائزه):</div>
+          <div class="text-[10px] text-slate-400">هر پیام، سایت، لینکدین، شماره یا خطایی دارید مستقیم وارد کنید و ارسال را بزنید</div>
+        </div>
+      </div>
+      <div class="flex-1 w-full flex items-center gap-2">
+        <input type="text" id="quickAuditInlineInput" onkeydown="if(event.key==='Enter') submitQuickInlineAudit()" placeholder="مثال: لینکدین اکوگلد: https://www.linkedin.com/company/Ecogold یا سایت بیدارز https://..." dir="auto" class="flex-1 text-xs bg-[#0E1517] text-white placeholder-slate-500 border border-[#2B3B3F] rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-cyan-400 transition" />
+        <button onclick="submitQuickInlineAudit()" id="quickAuditInlineBtn" class="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs font-bold whitespace-nowrap shadow-md transition flex items-center gap-1.5 cursor-pointer">
+          <span>ارسال</span> <span>🚀</span>
+        </button>
+      </div>
+      <div class="flex items-center gap-2 text-xs">
+        <a href="/faezeh.html" class="text-cyan-400 hover:underline text-[11px] font-medium whitespace-nowrap">صفحه کامل چت ↗</a>
+        <span id="quickAuditInlineStatus" class="text-xs"></span>
+      </div>
+    </div>
 
     <!-- Phase Switcher Tabs -->
     <div class="flex items-center gap-3 bg-[#292F2D] border border-[#46504B] p-2 rounded-2xl">
@@ -397,6 +421,45 @@ def generate():
       switchPhase('phase1');
     }});
     window.accounts = {json.dumps(accounts, ensure_ascii=False)};
+
+    async function submitQuickInlineAudit() {{
+      const input = document.getElementById('quickAuditInlineInput');
+      const btn = document.getElementById('quickAuditInlineBtn');
+      const status = document.getElementById('quickAuditInlineStatus');
+      if (!input || !input.value.trim()) return;
+
+      const val = input.value.trim();
+      if (btn) {{ btn.disabled = true; btn.innerText = '...'; }}
+      if (status) {{ status.innerHTML = '<span class="text-amber-400 text-[11px]">در حال ارسال...</span>'; }}
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('fa-IR', {{ hour: '2-digit', minute: '2-digit' }}) + ' — ' + now.toLocaleDateString('fa-IR');
+
+      try {{
+        await fetch('https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/faezeh_chat.json', {{
+          method: 'POST',
+          headers: {{ 'Content-Type': 'application/json' }},
+          body: JSON.stringify({{
+            id: 'inline-' + Date.now(),
+            sender: 'سرکار خانم کوشکشتانی (فائزه)',
+            role: 'ممیز داده و عملیات',
+            accountId: 'all',
+            accountName: 'عمومی',
+            text: val,
+            timestamp: Date.now(),
+            timeStr: timeStr,
+            status: 'pending'
+          }})
+        }});
+        input.value = '';
+        if (status) {{ status.innerHTML = '<span class="text-emerald-400 font-bold text-[11px]">✅ ثبت شد و پایشگر در حال اعمال است</span>'; }}
+        setTimeout(() => {{ if (status) status.innerText = ''; }}, 6000);
+      }} catch(e) {{
+        if (status) {{ status.innerHTML = '<span class="text-red-400 text-[11px]">خطای شبکه!</span>'; }}
+      }} finally {{
+        if (btn) {{ btn.disabled = false; btn.innerHTML = '<span>ارسال</span> <span>🚀</span>'; }}
+      }}
+    }}
   </script>
 </body>
 </html>'''
