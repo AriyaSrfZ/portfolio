@@ -1,7 +1,12 @@
+import os
 import json
 
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_FILE = os.path.join(SCRIPT_DIR, 'data.json')
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, 'c-levels.html')
+
 def generate():
-    with open('/home/aria/projects/portfolio/public/warroom/data.json', 'r', encoding='utf-8') as f:
+    with open(DATA_FILE, 'r', encoding='utf-8') as f:
         accounts = json.load(f)
 
     doc_map = {
@@ -270,6 +275,9 @@ def generate():
         <p class="text-xs text-[#B5BDB6] mt-1.5">تمرکز بر روت دیجیتال (لینکدین و وب‌سایت) جهت تسهیل ارتباط تیم، با دسترسی به متادیتای ثبتی و تلفن از طریق دکمه اطلاعات</p>
       </div>
       <div class="flex items-center gap-2.5 flex-wrap">
+        <button onclick="window.openAuditChat()" class="px-3.5 py-2 bg-gradient-to-r from-amber-600/90 to-amber-700/90 hover:from-amber-500 hover:to-amber-600 text-amber-100 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border border-amber-400/40 shadow-lg shadow-amber-950/40">
+          <span>✍️ ثبت خطا و یادداشت ممیزی (فائزه)</span>
+        </button>
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
           <span>← بازگشت به اتاق جنگ</span>
         </a>
@@ -381,13 +389,14 @@ def generate():
       switchPhase('phase1');
     }});
   </script>
+  <script src="/warroom/audit-chat.js"></script>
 </body>
 </html>'''
 
-    with open('/home/aria/projects/portfolio/public/warroom/c-levels.html', 'w', encoding='utf-8') as f:
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write(html_template)
 
-    print("Successfully generated clean digital-first /home/aria/projects/portfolio/public/warroom/c-levels.html")
+    print(f"Successfully generated clean digital-first {OUTPUT_FILE}")
 
 if __name__ == '__main__':
     generate()
