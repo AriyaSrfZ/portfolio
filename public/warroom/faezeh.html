@@ -338,6 +338,22 @@
       </div>
     </div>
 
+    <!-- Collapsible Verified Contacts Directory for Faezeh -->
+    <details class="stream-card" style="border: 1px solid rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.05); border-radius: 20px;">
+      <summary style="font-weight: 800; font-size: 13px; color: #6EE7B7; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; padding: 4px 0;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span>📑</span>
+          <span>فهرست کامل و معتبر پیوندهای لینکدین ۲۰ حساب (C-Level و رابطین لایه ۲)</span>
+        </div>
+        <span style="font-size: 11px; color: #94A3B8; font-weight: 500;">برای مشاهده یا کپی کلیک کنید ▾</span>
+      </summary>
+      <div style="margin-top: 14px; border-top: 1px solid rgba(16, 185, 129, 0.2); padding-top: 12px;">
+        <div id="directoryContent" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 10px;">
+          <div style="color: #94A3B8; font-size: 11px; text-align: center; padding: 10px;">در حال بارگذاری فهرست کانتکت‌ها...</div>
+        </div>
+      </div>
+    </details>
+
     <!-- Main Message Input Form -->
     <div class="form-card">
       
@@ -537,6 +553,51 @@
     // Polling every 3 seconds
     setInterval(fetchChatHistory, 3000);
     document.addEventListener('DOMContentLoaded', fetchChatHistory);
+    async function loadDirectoryContacts() {
+      const container = document.getElementById('directoryContent');
+      if (!container) return;
+      try {
+        const res = await fetch('/data.json');
+        if (!res.ok) return;
+        const data = await res.json();
+        container.innerHTML = data.map(acc => {
+          const isP2 = (acc.phase === 'phase2');
+          const borderCol = isP2 ? 'rgba(6, 182, 212, 0.3)' : 'rgba(16, 185, 129, 0.25)';
+          const bgCol = isP2 ? 'rgba(6, 182, 212, 0.05)' : 'rgba(16, 185, 129, 0.05)';
+          const pLabel = isP2 ? 'فاز ۲ (ملایم)' : 'فاز ۱ (پیگیری)';
+          
+          const dmRaw = acc.decisionMaker || '';
+          const l2 = acc.layer2Contacts || [];
+
+          return `
+            <div style="background: ${bgCol}; border: 1px solid ${borderCol}; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-weight: 700; color: #fff; font-size: 12px;">[#${acc.num}] ${acc.name}</span>
+                <span style="font-size: 10px; padding: 2px 8px; border-radius: 6px; font-weight: 600; border: 1px solid ${borderCol}; color: ${isP2 ? '#67E8F9' : '#6EE7B7'};">${pLabel}</span>
+              </div>
+              <div style="font-size: 11px; color: #CBD5E1; line-height: 1.4;">
+                <span style="color: #94A3B8;">مدیر ارشد:</span> ${dmRaw}
+              </div>
+              <div style="margin-top: 4px; display: flex; flex-direction: column; gap: 4px;">
+                ${l2.map(c => `
+                  <div style="background: rgba(0,0,0,0.25); border-radius: 8px; padding: 6px 8px; font-size: 10.5px; display: flex; align-items: center; justify-content: space-between; gap: 6px;">
+                    <div style="min-width: 0; flex: 1;">
+                      <div style="font-weight: 600; color: #F1F5F9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${c.name}</div>
+                      <div style="color: #94A3B8; font-size: 9.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${c.role || ''}</div>
+                    </div>
+                    ${c.linkedin ? `<a href="${c.linkedin}" target="_blank" style="color: ${isP2 ? '#22D3EE' : '#38BDF8'}; text-decoration: none; font-size: 10px; font-weight: 600; padding: 3px 7px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 6px; white-space: nowrap;">لینکدین ↗</a>` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch(e) {
+        console.warn('Directory load err', e);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadDirectoryContacts);
+
   </script>
 </body>
 </html>
