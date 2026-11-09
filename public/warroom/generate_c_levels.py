@@ -27,7 +27,6 @@ def generate():
         nat_id = acc.get('nationalId', '')
         reg_num = acc.get('regNum', '')
         phone = acc.get('phone', '')
-        support_phone = acc.get('supportPhone', '')
         address = acc.get('address', '')
         vertical = acc.get('vertical', '')
         website = acc.get('website', '')
@@ -45,57 +44,44 @@ def generate():
         dm_li_html = ''
         if dm_handle and 'in/' in dm_handle:
             clean_handle = dm_handle.replace('in/', '').strip('/')
-            dm_li_html = f'''<div class="mt-1">
-              <a href="https://www.linkedin.com/in/{clean_handle}/" target="_blank" class="text-[10px] text-[#8FB4AA] hover:text-[#B5D6CC] hover:underline font-mono inline-flex items-center gap-1">
+            dm_li_html = f'''<div class="mt-1.5">
+              <a href="https://www.linkedin.com/in/{clean_handle}/" target="_blank" class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] bg-[#0A66C2]/15 hover:bg-[#0A66C2]/25 text-sky-300 hover:text-white border border-[#0A66C2]/30 transition font-mono font-medium" dir="ltr">
                 <span>in/{clean_handle}</span> <span class="text-xs">↗</span>
               </a>
             </div>'''
         elif is_phase2:
-            dm_li_html = '''<div class="mt-1 flex items-center gap-1 text-[10px] text-cyan-300/80 font-medium">
-              <span>🏛 استعلام ثبتی رسمی (رسمیو)</span>
+            dm_li_html = '''<div class="mt-1.5 flex items-center gap-1 text-[10px] text-cyan-300/80 font-medium">
+              <span>عضو ارشد کمیته تصمیم‌گیری</span>
             </div>'''
         else:
-            dm_li_html = '''<div class="mt-1 flex items-center gap-1 text-[10px] text-emerald-400/80 font-medium">
-              <span>🏛 استعلام رسمی ثبت شرکت‌ها</span>
+            dm_li_html = '''<div class="mt-1.5 flex items-center gap-1 text-[10px] text-emerald-400/80 font-medium">
+              <span>عضو ارشد کمیته تصمیم‌گیری</span>
             </div>'''
 
-        # Layer 2 contacts
+        # Layer 2 contacts (Clean Digital View: Name, Role, and direct LinkedIn profile link)
         l2_list = acc.get('layer2Contacts', [])
         l2_cards = []
         for c in l2_list:
             c_name = c.get('name', '')
             c_role = c.get('role', '')
             c_li = c.get('linkedin', '')
-            c_phone = c.get('phone', phone)
-            c_channel = c.get('channel', f"دفتر مرکزی ({phone})")
 
             li_link_html = ''
             if c_li and c_li.strip() and 'linkedin.com/search' not in c_li:
-                accent_color = 'cyan' if is_phase2 else '#8FB4AA'
-                hover_color = 'cyan-100' if is_phase2 else '#B5D6CC'
-                li_link_html = f'''<div class="pt-0.5">
-                  <a href="{c_li}" target="_blank" class="text-[10px] text-[{accent_color}] hover:text-[{hover_color}] hover:underline font-medium inline-flex items-center gap-1">
-                    <span>پروفایل فردی لینکدین</span> <span class="text-xs">↗</span>
+                accent_btn = 'bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border-cyan-500/30' if is_phase2 else 'bg-[#0A66C2]/15 hover:bg-[#0A66C2]/25 text-sky-300 border-[#0A66C2]/30'
+                li_link_html = f'''<div class="pt-1">
+                  <a href="{c_li}" target="_blank" class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] {accent_btn} hover:text-white border transition font-medium">
+                    <span>مشاهده در لینکدین</span> <span class="text-xs">↗</span>
                   </a>
-                </div>'''
-
-            phone_html = ''
-            if c_phone:
-                phone_html = f'''<div class="flex items-center justify-between text-[10px] pt-0.5">
-                  <a href="tel:{c_phone}" class="text-emerald-400 hover:text-emerald-300 hover:underline font-mono font-semibold inline-flex items-center gap-1" dir="ltr">
-                    <span>📞</span> <span>{c_phone}</span>
-                  </a>
-                  <span class="text-slate-400 text-[9px] truncate max-w-[130px]">{c_channel}</span>
                 </div>'''
 
             if is_phase2:
                 card_html = f'''            <div class="p-2.5 rounded-xl bg-[#142326]/90 hover:bg-[#182C30] border border-cyan-500/30 hover:border-cyan-400/60 transition space-y-1">
               <div class="flex items-center justify-between">
                 <span class="font-bold text-white text-[11px]">{c_name}</span>
-                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">احراز شده</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">رابط لایه ۲</span>
               </div>
               <div class="text-[10px] text-slate-300 leading-tight">{c_role}</div>
-              {phone_html}
               {li_link_html}
             </div>'''
             else:
@@ -105,7 +91,6 @@ def generate():
                 <span class="text-[9px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 font-medium">فعال</span>
               </div>
               <div class="text-[10px] text-slate-300 leading-tight">{c_role}</div>
-              {phone_html}
               {li_link_html}
             </div>'''
             l2_cards.append(card_html)
@@ -166,57 +151,55 @@ def generate():
         else:
             badge_cls = 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
 
-        # Row styling & specific column customization
+        # Metadata popover details (clean modal drawer popover instead of raw table clutter)
+        metadata_details_html = f'''<details class="group mt-2 relative">
+            <summary class="cursor-pointer inline-flex items-center gap-1 px-2 py-0.5 rounded text-[9.5px] bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 border border-white/10 transition select-none">
+              <span>🏛️ متادیتا و تلفن ثبتی</span>
+              <span class="text-[8px] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <div class="mt-1.5 p-2.5 rounded-xl bg-[#141B1E] border border-white/10 text-[10.5px] space-y-1.5 text-slate-300 shadow-2xl">
+              <div><span class="text-slate-500">نام ثبتی:</span> <span class="font-medium text-slate-200">{reg_name}</span></div>
+              {f'<div><span class="text-slate-500 font-mono">شناسه ملی:</span> <span class="font-mono text-cyan-300 font-bold">{nat_id}</span></div>' if nat_id else ''}
+              {f'<div><span class="text-slate-500 font-mono">شماره ثبت:</span> <span class="font-mono text-slate-300">{reg_num}</span></div>' if reg_num else ''}
+              {f'<div><span class="text-slate-500">تلفن دفتر:</span> <a href="tel:{phone}" class="font-mono text-emerald-400 hover:underline font-bold" dir="ltr">{phone}</a></div>' if phone else ''}
+              {f'<div><span class="text-slate-500">نشانی دفتر:</span> <span class="text-slate-300 text-[10px]">{address}</span></div>' if address else ''}
+            </div>
+          </details>'''
+
+        # Digital Channels Column (Website & Company LinkedIn)
+        li_company_btn = f'''<div>
+            <a href="{linkedin}" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#0A66C2]/15 hover:bg-[#0A66C2]/25 border border-[#0A66C2]/30 text-sky-300 hover:text-white transition">
+              <span>💼</span> <span>لینکدین شرکت</span> <span class="text-[10px]">↗</span>
+            </a>
+          </div>''' if linkedin and 'linkedin.com' in linkedin else ''
+
+        contact_col = f'''<div class="space-y-1.5">
+          <div>
+            <a href="{website}" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/5 hover:bg-white/10 border border-white/10 text-cyan-300 hover:text-cyan-200 transition" dir="ltr">
+              <span>🌐</span> <span>{clean_web}</span> <span class="text-[10px]">↗</span>
+            </a>
+          </div>
+          {li_company_btn}
+        </div>'''
+
         if is_phase2:
             row_cls = "phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition"
             num_html = f'<td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">{num}</td>'
             company_col = f'''<div class="font-bold text-white text-sm">{name}</div>
-          <div class="text-[10.5px] text-cyan-300/90 font-medium mt-1">🏛 {reg_name}</div>
-          <div class="text-[10px] text-slate-400 font-mono mt-0.5 flex items-center gap-2">
-            <span>شناسه ملی: <span class="text-slate-200 font-bold">{nat_id}</span></span>
-            {f'<span>ثبت: <span class="text-slate-200">{reg_num}</span></span>' if reg_num else ''}
-          </div>
           <div class="flex items-center gap-2 mt-1.5">
             <span class="inline-flex items-center gap-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
-          </div>'''
-            
-            contact_col = f'''<div class="space-y-1.5">
-            <a href="tel:{phone}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25 transition" dir="ltr">
-              <span>📞</span> <span>{phone}</span>
-            </a>
-            <div>
-              <a href="{website}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-cyan-400 hover:text-cyan-200 hover:underline font-mono" dir="ltr">
-                <span>{clean_web}</span> <span class="text-xs">↗</span>
-              </a>
-            </div>
-            <div class="text-[9.5px] text-slate-400 truncate max-w-[160px]" title="{address}">{address}</div>
-          </div>'''
+          </div>
+          {metadata_details_html}'''
             l2_col_cls = "py-3.5 px-4 min-w-[280px] bg-cyan-950/30"
         else:
             row_cls = "phase-row hover:bg-[#343C38]/50 transition"
             num_html = f'<td class="py-3.5 px-4 text-center font-mono text-slate-400 w-12">{num}</td>'
             doc_file = doc_map.get(acc_id, f"{name.split()[0]}.docx")
             company_col = f'''<div class="font-bold text-white text-sm">{name}</div>
-          <div class="text-[10.5px] text-[#B5BDB6] font-medium mt-1">🏛 {reg_name}</div>
-          <div class="text-[10px] text-slate-400 font-mono mt-0.5 flex items-center gap-2">
-            <span>شناسه ملی: <span class="text-slate-200 font-bold">{nat_id}</span></span>
-            {f'<span>ثبت: <span class="text-slate-200">{reg_num}</span></span>' if reg_num else ''}
-          </div>
           <div class="flex items-center gap-2 mt-1.5">
             <a href="/docs/{doc_file}" download class="inline-flex items-center gap-1 text-[10px] text-[#D8B486] hover:text-[#E8C496] bg-[#B39A77]/15 px-2 py-0.5 rounded border border-[#B39A77]/30 font-medium"><span>📄 {doc_file}</span></a>
-          </div>'''
-
-            contact_col = f'''<div class="space-y-1.5">
-            <a href="tel:{phone}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition" dir="ltr">
-              <span>📞</span> <span>{phone}</span>
-            </a>
-            <div>
-              <a href="{website}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-[#8FB4AA] hover:text-[#A6C8BE] hover:underline font-mono" dir="ltr">
-                <span>{clean_web}</span> <span class="text-xs">↗</span>
-              </a>
-            </div>
-            {f'<a href="{linkedin}" target="_blank" class="text-[10px] text-slate-400 hover:text-slate-200 block">لینکدین شرکت ↗</a>' if linkedin and 'linkedin.com' in linkedin else ''}
-          </div>'''
+          </div>
+          {metadata_details_html}'''
             l2_col_cls = "py-3.5 px-4 min-w-[280px] bg-black/10"
 
         row_html = f'''      <tr data-phase="{phase}" class="{row_cls}">
@@ -261,32 +244,17 @@ def generate():
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/misc/Farsi-Digits/Vazirmatn-FD-font-face.css" rel="stylesheet" type="text/css" />
   <style>
-    :root {{
-      --canvas: #202725;
-      --surface: #292F2D;
-      --surface-elevated: #343C38;
-      --surface-hover: #3D4742;
-      --border: #46504B;
-      --border-subtle: #36403C;
-      --text-primary: #F0EEE7;
-      --text-secondary: #B5BDB6;
-      --accent-primary: #8FB4AA;
-      --accent-deep: #527C78;
-      --ochre: #B39A77;
-    }}
     body {{
-      font-family: 'Vazirmatn FD', 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-      background-color: var(--canvas);
+      font-family: 'Vazirmatn FD', 'IBM Plex Sans', system-ui, sans-serif;
+      background-color: #202725;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(143, 180, 170, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(179, 154, 119, 0.06) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(82, 124, 120, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(179, 154, 119, 0.1) 0px, transparent 50%);
       background-attachment: fixed;
-      color: var(--text-primary);
+      color: #F0EEE7;
     }}
     .font-mono {{ font-family: 'IBM Plex Mono', monospace; }}
-    .phase-row {{
-      transition: opacity 0.25s ease-in-out, background-color 0.15s ease;
-    }}
+    details > summary::-webkit-details-marker {{ display: none; }}
   </style>
 </head>
 <body class="min-h-screen py-6">
@@ -296,10 +264,10 @@ def generate():
       <div>
         <div class="flex items-center gap-2 text-xs text-[#8FB4AA] font-mono mb-1.5">
           <span class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span>
-          <span>B2B ACCOUNT-BASED MARKETING — VERIFIED CORPORATE & C-SUITE DIRECTORY (20 ACCOUNTS)</span>
+          <span>B2B ACCOUNT-BASED MARKETING — DIGITAL ROUTE & C-SUITE DIRECTORY (20 ACCOUNTS)</span>
         </div>
-        <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">شناسنامه رسمی، هویت ثبتی و رابطین تصمیم‌گیرنده ۲۰ حساب هدف</h1>
-        <p class="text-xs text-[#B5BDB6] mt-1.5">اطلاعات احراز‌شده ثبتی (سامانه رسمیو و ثبت شرکت‌ها)، تلفن‌های مستقیم دفتر مرکزی و دبیرخانه‌ها، و پروفایل‌های واقعی مدیران ارشد</p>
+        <h1 class="text-xl sm:text-2xl font-black text-[#F0EEE7]">شناسنامه دیجیتال، مدیران ارشد و رابطین لایه دوم ۲۰ حساب هدف</h1>
+        <p class="text-xs text-[#B5BDB6] mt-1.5">تمرکز بر روت دیجیتال (لینکدین و وب‌سایت) جهت تسهیل ارتباط تیم، با دسترسی به متادیتای ثبتی و تلفن از طریق دکمه اطلاعات</p>
       </div>
       <div class="flex items-center gap-2.5 flex-wrap">
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
@@ -311,147 +279,115 @@ def generate():
         <a href="/meeting-nov2.html" class="px-3.5 py-2 bg-[#B39A77] hover:bg-[#9E8664] text-[#202725] rounded-xl text-xs font-bold transition flex items-center gap-1.5">
           <span>📋 صورتجلسه ۱۱ آبان</span>
         </a>
-        <a href="/docs/قرارداد.docx" download class="px-3 py-2 bg-[#343C38] hover:bg-[#3D4742] text-[#F0EEE7] border border-[#46504B] rounded-xl text-xs font-semibold transition">
-          <span>📑 پیش‌نویس قرارداد</span>
-        </a>
-        <a href="/pfg_b2b_tracker.xlsx" download class="px-3 py-2 bg-[#343C38] hover:bg-[#3D4742] text-[#F0EEE7] border border-[#46504B] rounded-xl text-xs font-semibold transition">
-          <span>📥 دانلود اکسل</span>
-        </a>
       </div>
     </header>
 
-    <!-- Phase Switcher Tab Bar -->
-    <div class="flex items-center gap-2.5 p-2 bg-[#252C29] border border-[#46504B] rounded-2xl overflow-x-auto shadow-lg">
-      <button onclick="switchPhase('all')" id="tab-all" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-[#46504B] transition flex items-center gap-2 whitespace-nowrap">
-        <span>همه حسابها (۲۰)</span>
+    <!-- Phase Switcher Tabs -->
+    <div class="flex items-center gap-3 bg-[#292F2D] border border-[#46504B] p-2 rounded-2xl">
+      <button onclick="switchPhase('all')" id="tab-all" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center gap-2 whitespace-nowrap">
+        <span>همه حساب‌ها (۲۰)</span>
         <span class="px-2 py-0.5 rounded-full bg-white/10 text-slate-300 text-[10px] font-mono">۲۰</span>
       </button>
       <button onclick="switchPhase('phase1')" id="tab-phase1" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap">
         <span>🌿 فاز ۱: ۱۰ حساب سازمانی (پیگیری ثانویه)</span>
         <span class="px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 text-[10px] font-mono font-bold">۱۰</span>
       </button>
-      <button onclick="switchPhase('phase2')" id="tab-phase2" class="px-4 py-2 rounded-xl text-xs font-semibold text-cyan-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap">
+      <button onclick="switchPhase('phase2')" id="tab-phase2" class="px-4 py-2 rounded-xl text-xs font-bold text-cyan-300 hover:text-white hover:bg-cyan-950/40 border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap">
         <span>⚡ فاز ۲: ۱۰ حساب بکر V2 (استراتژی ملایم Hot Failover)</span>
-        <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-mono font-bold">۱۰</span>
+        <span class="px-2 py-0.5 rounded-full bg-cyan-500/25 text-cyan-300 text-[10px] font-mono font-bold">۱۰</span>
       </button>
     </div>
 
-    <!-- Table of Accounts & C-Levels -->
+    <!-- Table Container -->
     <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl shadow-2xl overflow-hidden">
-      <!-- Section Header Banner -->
-      <div id="sectionHeaderBanner" class="p-4 bg-[#252C29] border-b border-[#46504B] flex items-center justify-between">
+      <div class="p-4 border-b border-[#46504B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#232927]">
         <div class="flex items-center gap-2">
-          <span id="sectionBannerDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-          <h2 id="sectionBannerTitle" class="font-bold text-sm text-white">فاز اول: ۱۰ حساب فعال با پیگیری نامه‌های فیزیکی ارسالی</h2>
+          <span class="w-2.5 h-2.5 rounded-full bg-[#8FB4AA]"></span>
+          <span class="font-bold text-xs text-[#F0EEE7]">ماتریس روت دیجیتال، تصمیم‌گیرندگان و متادیتای حقوقی</span>
         </div>
-        <span id="sectionBannerBadge" class="text-xs font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded border border-emerald-500/30 font-bold">۱۰ حساب فاز ۱</span>
+        <div class="text-xs text-slate-400">
+          نمایش تفکیک‌شده: <span id="currentPhaseLabel" class="text-emerald-300 font-semibold">فاز ۱ (۱۰ حساب سازمانی)</span>
+        </div>
       </div>
 
       <div class="overflow-x-auto">
-        <table class="w-full text-right text-xs min-w-[1450px]">
-          <thead class="bg-[#343C38] text-[#B5BDB6] border-b border-[#46504B]">
+        <table class="w-full text-right text-xs">
+          <thead class="bg-[#1E2422] text-[#B5BDB6] border-b border-[#46504B]">
             <tr>
-              <th class="whitespace-nowrap py-4 px-4 font-bold text-xs text-center font-mono w-12">#</th>
-              <th class="whitespace-nowrap py-4 px-4 font-bold text-xs min-w-[230px]">شرکت و مشخصات ثبتی (رسمیو)</th>
-              <th class="whitespace-nowrap py-4 px-4 font-bold text-xs min-w-[130px]">حوزه فعالیت</th>
-              <th class="whitespace-nowrap py-4 px-4 font-bold text-xs min-w-[160px]">تلفن دفتر مرکزی و وب‌سایت</th>
-              <th class="whitespace-nowrap py-4 px-4 font-bold text-xs min-w-[230px]">
-                <span>مدیر ارشد / تصمیم‌گیرنده</span>
-                <span class="whitespace-nowrap font-mono inline-block" dir="ltr">(C-Level)</span>
-              </th>
-              <th class="whitespace-nowrap py-4 px-4 font-bold text-xs min-w-[280px] bg-black/10">
-                <div class="flex items-center gap-1.5 text-emerald-400">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                  <span>رابطین لایه دوم و خط مستقیم</span>
-                </div>
-              </th>
-              <th class="whitespace-nowrap py-4 px-4 font-bold text-xs min-w-[240px]">وضعیت نامه و اقدام عملیاتی</th>
-              <th class="whitespace-nowrap py-4 px-4 font-bold text-xs text-center w-32">اولویت شورا</th>
+              <th class="py-4 px-4 text-center font-bold text-xs w-12 whitespace-nowrap">#</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[230px] whitespace-nowrap">شرکت و متادیتا</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[130px] whitespace-nowrap">حوزه فعالیت</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[160px] whitespace-nowrap">کانال‌های دیجیتال</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[230px] whitespace-nowrap">مدیر ارشد (C-Level)</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[280px] whitespace-nowrap">رابطین لایه دوم (فنی و محصول)</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[240px] whitespace-nowrap">وضعیت اقدام و روت</th>
+              <th class="py-4 px-4 font-bold text-xs text-center w-32 whitespace-nowrap">اولویت</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-[#36403C]">
+          <tbody class="divide-y divide-[#46504B]/60" id="cLevelsTableBody">
 {tbody_content}
           </tbody>
         </table>
       </div>
-
     </div>
   </div>
 
   <script>
+    let activePhase = 'phase1';
+
     function switchPhase(phase) {{
-      const rows = document.querySelectorAll('tr[data-phase]');
-      rows.forEach(r => {{
-        if (phase === 'all' || r.getAttribute('data-phase') === phase) {{
-          r.classList.remove('hidden');
-          r.style.opacity = '0';
-          r.style.transition = 'opacity 0.25s ease-in-out';
-          requestAnimationFrame(() => {{
-            r.style.opacity = '1';
-          }});
-        }} else {{
-          r.classList.add('hidden');
-        }}
-      }});
+      activePhase = phase;
+      const rows = document.querySelectorAll('.phase-row');
+      const label = document.getElementById('currentPhaseLabel');
 
-      // Tab button active styling
-      const tabs = [
-        {{ id: 'tab-all', phase: 'all', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-white/20 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-[#46504B] transition flex items-center gap-2 whitespace-nowrap' }},
-        {{ id: 'tab-phase1', phase: 'phase1', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-emerald-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-emerald-500/30 transition flex items-center gap-2 whitespace-nowrap' }},
-        {{ id: 'tab-phase2', phase: 'phase2', activeCls: 'px-4 py-2 rounded-xl text-xs font-bold text-white bg-cyan-700 shadow-md border border-cyan-400 transition flex items-center gap-2 whitespace-nowrap', inactiveCls: 'px-4 py-2 rounded-xl text-xs font-semibold text-cyan-300 hover:text-white bg-[#292F2D] hover:bg-[#343C38] border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap' }}
-      ];
-
-      tabs.forEach(t => {{
-        const btn = document.getElementById(t.id);
+      // Update Tab Styles
+      ['all', 'phase1', 'phase2'].forEach(p => {{
+        const btn = document.getElementById('tab-' + p);
         if (!btn) return;
-        if (t.phase === phase) {{
-          btn.className = t.activeCls;
+        if (p === phase) {{
+          if (p === 'phase2') {{
+            btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-white bg-cyan-700 shadow-md border border-cyan-400/40 transition flex items-center gap-2 whitespace-nowrap";
+          }} else {{
+            btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap";
+          }}
         }} else {{
-          btn.className = t.inactiveCls;
+          if (p === 'phase2') {{
+            btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-cyan-300 hover:text-white hover:bg-cyan-950/40 border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap";
+          }} else {{
+            btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center gap-2 whitespace-nowrap";
+          }}
         }}
       }});
 
-      // Update banner text
-      const bannerTitle = document.getElementById('sectionBannerTitle');
-      const bannerBadge = document.getElementById('sectionBannerBadge');
-      const bannerDot = document.getElementById('sectionBannerDot');
-      if (phase === 'phase1') {{
-        if (bannerTitle) bannerTitle.innerText = "فاز اول: ۱۰ حساب فعال با پیگیری نامه‌های فیزیکی ارسالی";
-        if (bannerBadge) {{
-          bannerBadge.innerText = "۱۰ حساب فاز ۱";
-          bannerBadge.className = "text-xs font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded border border-emerald-500/30 font-bold";
+      // Filter Rows
+      rows.forEach(row => {{
+        const rowPhase = row.getAttribute('data-phase');
+        if (phase === 'all' || rowPhase === phase) {{
+          row.style.display = '';
+        }} else {{
+          row.style.display = 'none';
         }}
-        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
-      }} else if (phase === 'phase2') {{
-        if (bannerTitle) bannerTitle.innerText = "فاز دوم: ۱۰ حساب بکر V2 با استراتژی ملایم Hot Failover (تست ۵۰k رایگان)";
-        if (bannerBadge) {{
-          bannerBadge.innerText = "۱۰ حساب فاز ۲";
-          bannerBadge.className = "text-xs font-mono text-cyan-300 bg-cyan-500/15 px-2.5 py-0.5 rounded border border-cyan-500/30 font-bold";
-        }}
-        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse";
-      }} else {{
-        if (bannerTitle) bannerTitle.innerText = "نمایش جامع: ۲۰ حساب کلیدی هدف (فاز اول و فاز دوم)";
-        if (bannerBadge) {{
-          bannerBadge.innerText = "۲۰ حساب فعال";
-          bannerBadge.className = "text-xs font-mono text-[#8FB4AA] bg-[#527C78]/20 px-2.5 py-0.5 rounded border border-[#527C78]/40 font-bold";
-        }}
-        if (bannerDot) bannerDot.className = "w-2.5 h-2.5 rounded-full bg-[#8FB4AA]";
+      }});
+
+      if (label) {{
+        if (phase === 'all') label.innerHTML = '<span class="text-slate-200">همه ۲۰ حساب</span>';
+        if (phase === 'phase1') label.innerHTML = '<span class="text-emerald-300">فاز ۱ (۱۰ حساب سازمانی)</span>';
+        if (phase === 'phase2') label.innerHTML = '<span class="text-cyan-300">فاز ۲ (۱۰ حساب بکر V2)</span>';
       }}
     }}
 
-    // Default to phase1 view on load
-    document.addEventListener("DOMContentLoaded", () => {{
+    // Init with Phase 1 by default
+    document.addEventListener('DOMContentLoaded', () => {{
       switchPhase('phase1');
     }});
   </script>
 </body>
-</html>
-'''
+</html>'''
 
     with open('/home/aria/projects/portfolio/public/warroom/c-levels.html', 'w', encoding='utf-8') as f:
         f.write(html_template)
 
-    print('Successfully generated /home/aria/projects/portfolio/public/warroom/c-levels.html')
+    print("Successfully generated clean digital-first /home/aria/projects/portfolio/public/warroom/c-levels.html")
 
 if __name__ == '__main__':
     generate()

@@ -31,88 +31,86 @@ def generate_list2():
         dm_li_html = ''
         if dm_handle and 'in/' in dm_handle:
             clean_handle = dm_handle.replace('in/', '').strip('/')
-            dm_li_html = f'''<div class="mt-1">
-              <a href="https://www.linkedin.com/in/{clean_handle}/" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-mono inline-flex items-center gap-1" dir="ltr">
+            dm_li_html = f'''<div class="mt-1.5">
+              <a href="https://www.linkedin.com/in/{clean_handle}/" target="_blank" class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 hover:text-white border border-cyan-500/30 transition font-mono font-medium" dir="ltr">
                 <span>in/{clean_handle}</span> <span class="text-xs">↗</span>
               </a>
             </div>'''
         else:
             dm_li_html = '''<div class="text-[10px] text-cyan-300/80 mt-1 flex items-center gap-1 font-medium">
-              <span>🏛 استعلام ثبتی رسمی (رسمیو)</span>
+              <span>عضو ارشد کمیته تصمیم‌گیری</span>
             </div>'''
 
-        # Layer 2 cards
+        # Layer 2 cards (Clean Digital Focus)
         l2_list = acc.get('layer2Contacts', [])
         l2_cards = []
         for c in l2_list:
             c_name = c.get('name', '')
             c_role = c.get('role', '')
             c_li = c.get('linkedin', '')
-            c_phone = c.get('phone', phone)
-            c_channel = c.get('channel', f"دفتر مرکزی ({phone})")
 
             li_link_html = ''
             if c_li and c_li.strip() and 'linkedin.com/search' not in c_li:
-                li_link_html = f'''<div class="pt-0.5">
-                  <a href="{c_li}" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1">
+                li_link_html = f'''<div class="pt-1">
+                  <a href="{c_li}" target="_blank" class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 hover:text-white border border-cyan-500/30 transition font-medium">
                     <span>مشاهده در لینکدین</span> <span class="text-xs">↗</span>
                   </a>
                 </div>'''
 
-            phone_html = ''
-            if c_phone:
-                phone_html = f'''<div class="flex items-center justify-between text-[10px] pt-0.5">
-                  <a href="tel:{c_phone}" class="text-cyan-300 hover:text-cyan-100 hover:underline font-mono font-semibold inline-flex items-center gap-1" dir="ltr">
-                    <span>📞</span> <span>{c_phone}</span>
-                  </a>
-                  <span class="text-slate-400 text-[9px] truncate max-w-[130px]">{c_channel}</span>
-                </div>'''
-
-            card_html = f'''            <div class="p-2.5 rounded-xl bg-[#101A1D] hover:bg-[#162327] border border-cyan-500/25 transition space-y-1.5">
+            card_html = f'''            <div class="p-2.5 rounded-xl bg-[#101A1D] hover:bg-[#162327] border border-cyan-500/25 transition space-y-1">
               <div class="flex items-center justify-between">
                 <span class="font-bold text-white text-[11.5px]">{c_name}</span>
-                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">رابط لایه ۲</span>
               </div>
               <div class="text-[10px] text-slate-300 leading-tight">{c_role}</div>
-              {phone_html}
               {li_link_html}
             </div>'''
             l2_cards.append(card_html)
         l2_cards_html = '\n'.join(l2_cards)
 
-        li_company_html = ''
-        if linkedin and 'linkedin.com' in linkedin:
-            li_company_html = f'''<div>
-              <a href="{linkedin}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-cyan-400 hover:text-cyan-200 hover:underline font-medium">
-                <span>صفحه شرکت در لینکدین</span> <span class="text-xs">↗</span>
-              </a>
-            </div>'''
+        # Metadata popover details (Discreet collapsible button for legal & landline metadata)
+        metadata_details_html = f'''<details class="group mt-2 relative">
+            <summary class="cursor-pointer inline-flex items-center gap-1 px-2 py-0.5 rounded text-[9.5px] bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 border border-white/10 transition select-none">
+              <span>🏛️ متادیتا و تلفن ثبتی</span>
+              <span class="text-[8px] transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <div class="mt-1.5 p-2.5 rounded-xl bg-[#141B1E] border border-cyan-500/30 text-[10.5px] space-y-1.5 text-slate-300 shadow-2xl">
+              <div><span class="text-slate-500">نام ثبتی:</span> <span class="font-medium text-slate-200">{reg_name}</span></div>
+              {f'<div><span class="text-slate-500 font-mono">شناسه ملی:</span> <span class="font-mono text-cyan-300 font-bold">{nat_id}</span></div>' if nat_id else ''}
+              {f'<div><span class="text-slate-500 font-mono">شماره ثبت:</span> <span class="font-mono text-slate-300">{reg_num}</span></div>' if reg_num else ''}
+              {f'<div><span class="text-slate-500">تلفن دفتر:</span> <a href="tel:{phone}" class="font-mono text-emerald-400 hover:underline font-bold" dir="ltr">{phone}</a></div>' if phone else ''}
+              {f'<div><span class="text-slate-500">نشانی دفتر:</span> <span class="text-slate-300 text-[10px]">{address}</span></div>' if address else ''}
+            </div>
+          </details>'''
+
+        # Digital Channels Column (Website & Company LinkedIn)
+        li_company_html = f'''<div>
+            <a href="{linkedin}" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#0A66C2]/15 hover:bg-[#0A66C2]/25 border border-[#0A66C2]/30 text-sky-300 hover:text-white transition">
+              <span>💼</span> <span>لینکدین شرکت</span> <span class="text-[10px]">↗</span>
+            </a>
+          </div>''' if linkedin and 'linkedin.com' in linkedin else ''
+
+        contact_col = f'''<div class="space-y-1.5">
+          <div>
+            <a href="{website}" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/5 hover:bg-white/10 border border-white/10 text-cyan-300 hover:text-cyan-200 transition" dir="ltr">
+              <span>🌐</span> <span>{clean_web}</span> <span class="text-[10px]">↗</span>
+            </a>
+          </div>
+          {li_company_html}
+        </div>'''
 
         row_html = f'''      <tr class="hover:bg-cyan-950/30 transition">
         <td class="py-4 px-4 text-center font-mono text-cyan-400 font-bold w-12">{num}</td>
         <td class="py-4 px-4 min-w-[220px]">
           <div class="font-bold text-white text-sm">{name}</div>
-          <div class="text-[10.5px] text-cyan-300/90 font-medium mt-1">🏛 {reg_name}</div>
-          <div class="text-[10px] text-slate-400 font-mono mt-0.5 flex items-center gap-2">
-            <span>شناسه ملی: <span class="text-slate-200 font-bold">{nat_id}</span></span>
-            {f'<span>ثبت: <span class="text-slate-200">{reg_num}</span></span>' if reg_num else ''}
-          </div>
           <div class="flex items-center gap-2 mt-1.5">
             <span class="inline-flex items-center gap-1 text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 font-medium"><span>⚡ پایلوت V2</span></span>
           </div>
+          {metadata_details_html}
         </td>
         <td class="py-4 px-4 text-slate-300 min-w-[140px] leading-relaxed">{vertical}</td>
         <td class="py-4 px-4 min-w-[160px]">
-          <div class="space-y-1.5">
-            {f'<a href="tel:{phone}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25 transition" dir="ltr"><span>📞</span> <span>{phone}</span></a>' if phone else ''}
-            <div>
-              <a href="{website}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-cyan-400 hover:text-cyan-200 hover:underline font-mono" dir="ltr">
-                <span>{clean_web}</span> <span class="text-xs">↗</span>
-              </a>
-            </div>
-            {li_company_html}
-            {f'<div class="text-[9.5px] text-slate-400 truncate max-w-[160px]" title="{address}">{address}</div>' if address else ''}
-          </div>
+          {contact_col}
         </td>
         <td class="py-4 px-4 min-w-[230px]">
           <div class="font-bold text-white text-xs leading-snug">{dm_title}</div>
@@ -163,6 +161,7 @@ def generate_list2():
       color: #F0EEE7;
     }}
     .font-mono {{ font-family: 'IBM Plex Mono', monospace; }}
+    details > summary::-webkit-details-marker {{ display: none; }}
   </style>
 </head>
 <body class="min-h-screen py-6">
@@ -175,10 +174,10 @@ def generate_list2():
           <span>B2B LOW-INCUMBENT ENTRENCHMENT PIPELINE — PHASE 2 DIRECTORY (10 ACCOUNTS)</span>
         </div>
         <h1 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-          <span>فهرست ۱۰ حساب بکر فاز دوم (همراه با پروفایل‌های لینکدین و استعلام ثبتی)</span>
+          <span>فهرست ۱۰ حساب بکر فاز دوم (روت دیجیتال و تصمیم‌گیرندگان)</span>
           <span class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">استراتژی ملایم Hot Failover</span>
         </h1>
-        <p class="text-xs text-slate-300 mt-1.5">حساب‌های چابک زیر رادار با شاخص نفوذ رقبا (IEI) پایین، همراه با پروفایل‌های لینکدین مدیران، شماره‌های مستقیم دفتر مرکزی و آفر تست ۵۰k</p>
+        <p class="text-xs text-slate-300 mt-1.5">حساب‌های چابک زیر رادار با شاخص نفوذ رقبا (IEI) پایین، تمرکز کامل بر کانال‌های دیجیتال لینکدین، و دسترسی به متادیتای ثبتی با دکمه اطلاعات</p>
       </div>
       <div class="flex items-center gap-2.5 flex-wrap">
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
@@ -222,9 +221,9 @@ def generate_list2():
           <thead class="bg-[#1B2B30] text-slate-300 border-b border-cyan-500/30">
             <tr>
               <th class="py-4 px-4 text-center font-bold text-xs w-12 whitespace-nowrap">#</th>
-              <th class="py-4 px-4 font-bold text-xs min-w-[220px] whitespace-nowrap">نام شرکت و هویت ثبتی</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[220px] whitespace-nowrap">نام شرکت و متادیتا</th>
               <th class="py-4 px-4 font-bold text-xs min-w-[140px] whitespace-nowrap">حوزه تخصصی</th>
-              <th class="py-4 px-4 font-bold text-xs min-w-[160px] whitespace-nowrap">ارتباط و لینکدین شرکت</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[160px] whitespace-nowrap">کانال‌های دیجیتال</th>
               <th class="py-4 px-4 font-bold text-xs min-w-[230px] whitespace-nowrap">مدیر ارشد (C-Level)</th>
               <th class="py-4 px-4 font-bold text-xs min-w-[300px] whitespace-nowrap">رابطین لایه دوم (فنی و محصول)</th>
               <th class="py-4 px-4 font-bold text-xs min-w-[260px] whitespace-nowrap">اسب تروجان و استراتژی ورود</th>
@@ -244,7 +243,7 @@ def generate_list2():
     with open('/home/aria/projects/portfolio/public/warroom/list2.html', 'w', encoding='utf-8') as f:
         f.write(html)
 
-    print('Successfully generated /home/aria/projects/portfolio/public/warroom/list2.html')
+    print('Successfully generated clean digital-first /home/aria/projects/portfolio/public/warroom/list2.html')
 
 if __name__ == '__main__':
     generate_list2()
