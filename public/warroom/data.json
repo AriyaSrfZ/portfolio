@@ -271,15 +271,15 @@
     "layer2Contacts": [
       {
         "name": "سید علی دلبر واقف",
-        "role": "مدیر ارشد محصول زرپی۲۴ / مدیر محصول سابق آبان‌وام",
+        "role": "مدیر ارشد تیم محصول زرپی۲۴ / مدیر محصول سابق آبان‌وام",
         "linkedin": "https://www.linkedin.com/in/ali-delbar-b2a780214/",
         "phone": "021-91093702",
         "channel": "دفتر مرکزی (021-91093702)"
       },
       {
-        "name": "نازنین مطلبی",
-        "role": "مدیرعامل و راهبر فنی و عملیاتی نیک زرپی",
-        "linkedin": "https://www.linkedin.com/in/nazanin-motallebi",
+        "name": "محمدحسن زاهد تهرانی",
+        "role": "طراح ارشد محصول و رابط کاربری زرپی۲۴",
+        "linkedin": "https://www.linkedin.com/in/mohammad-hasan-zahed-tehrani-3b316b26a/",
         "phone": "021-91093702",
         "channel": "دفتر مرکزی (021-91093702)"
       }
@@ -454,9 +454,9 @@
         "channel": "دفتر مرکزی (021-43358)"
       },
       {
-        "name": "محمد ظاهری",
-        "role": "مدیرعامل و طراح ارشد سیستم‌های فرایندی S-ERP سندپرداز",
-        "linkedin": "https://www.linkedin.com/in/mohammad-zaheri-9296b6b6/",
+        "name": "علی ظاهری",
+        "role": "نایب‌رئیس هیئت‌مدیره و سرپرست استقرار سیستم‌های سازمانی سندپرداز",
+        "linkedin": "https://www.linkedin.com/company/sanadpardaz-erp/",
         "phone": "021-43358",
         "channel": "دفتر مرکزی (021-43358)"
       }
@@ -521,9 +521,9 @@
         "channel": "دفتر مرکزی (021-84202)"
       },
       {
-        "name": "کامران ناطقیان",
-        "role": "سرپرست تیم فنی و مهندسی نرم‌افزار دیدگاه چارگون",
-        "profile": "https://theorg.com/org/chargoon/person/kamran-nateghian",
+        "name": "شاهین طبری",
+        "role": "هم‌بنیان‌گذار و رئیس هیئت‌مدیره چارگون / راهبر نوآوری دیدگاه",
+        "linkedin": "https://www.linkedin.com/in/shahintabary/",
         "phone": "021-84202",
         "channel": "دفتر مرکزی (021-84202)"
       }
@@ -616,16 +616,17 @@
     "layer2Contacts": [
       {
         "name": "علیرضا عیوضی ولازجردی",
-        "role": "مدیرعامل و هم‌بنیان‌گذار (راهبر فنی گنجینه زرین شریف)",
+        "role": "مدیرعامل و هم‌بنیان‌گذار (معمار فنی سیستم گنجینه زرین شریف)",
         "linkedin": "https://www.linkedin.com/in/alireza-eyvazi/",
         "phone": "021-57268000",
         "channel": "دفتر مرکزی (021-57268000)"
       },
       {
-        "name": "علی نظری‌ها",
-        "role": "نایب‌رئیس هیئت‌مدیره و سرپرست زنجیره تامین و عملیات طلا",
-        "channel": "دفتر مرکزی (021-57268000)",
-        "phone": "021-57268000"
+        "name": "محمدرضا آشتیانی",
+        "role": "رئیس هیئت‌مدیره گلدیکا (گنجینه زرین شریف) / هم‌بنیان‌گذار قسطا",
+        "linkedin": "https://www.linkedin.com/in/ashtianimr/",
+        "phone": "021-57268000",
+        "channel": "دفتر مرکزی (021-57268000)"
       }
     ],
     "phase": "phase1",
@@ -722,9 +723,9 @@
         "channel": "دفتر مرکزی (021-47386000)"
       },
       {
-        "name": "محمدرضا آشتیانی",
-        "role": "مدیرعامل و هم‌بنیان‌گذار قسطا (اعتبار آفرین شریف)",
-        "linkedin": "https://www.linkedin.com/in/ashtianimr/",
+        "name": "علیرضا عیوضی ولازجردی",
+        "role": "عضو هیئت‌مدیره و شریک راهبردی فناوری شریف (گلدیکا / قسطا)",
+        "linkedin": "https://www.linkedin.com/in/alireza-eyvazi/",
         "phone": "021-47386000",
         "channel": "دفتر مرکزی (021-47386000)"
       }
@@ -782,16 +783,16 @@
     ],
     "layer2Contacts": [
       {
-        "name": "مسعود باقری",
-        "role": "معاون فنی و محصول والکس و وال‌گلد / مدیر ارشد اجرایی",
-        "profile": "https://virgool.io/@masoud.bagheri79",
+        "name": "مجید علیئی‌نیا",
+        "role": "سرپرست تیم فنی و مهندسی وال‌گلد (Technical Lead)",
+        "linkedin": "https://www.linkedin.com/in/majidalaeinia/",
         "phone": "021-91008336",
         "channel": "دفتر مرکزی (021-91008336)"
       },
       {
-        "name": "بردیا احمدنیا",
-        "role": "هم‌بنیان‌گذار و مدیر توسعه کسب‌وکار والکس و وال‌گلد",
-        "linkedin": "https://www.linkedin.com/in/bardia-ahmadnia/",
+        "name": "پرستو جباری",
+        "role": "مدیر ارشد محصول وال‌گلد (Product Lead)",
+        "linkedin": "https://www.linkedin.com/in/parastoo-jbr-55958a246/",
         "phone": "021-91008336",
         "channel": "دفتر مرکزی (021-91008336)"
       }
@@ -865,9 +866,9 @@
         "channel": "دفتر مرکزی (021-91300250)"
       },
       {
-        "name": "بابک عقیلی‌نسب",
-        "role": "مدیرعامل و هم‌بنیان‌گذار گروه پستکس و هاب پستی",
-        "linkedin": "https://www.linkedin.com/in/babak-aghilinasab-74274489/",
+        "name": "علی عرفانی",
+        "role": "توسعه‌دهنده ارشد بک‌اند و وب‌سرویس‌های لجستیک پستکس / پست‌بار",
+        "linkedin": "https://www.linkedin.com/in/grayhatali/",
         "phone": "021-91300250",
         "channel": "دفتر مرکزی (021-91300250)"
       }
