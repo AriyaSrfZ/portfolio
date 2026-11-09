@@ -120,13 +120,14 @@ def generate():
           <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
         </div>'''
         else:
-            shortcode = ''
-            for com in acc.get('comments', []):
-                t = com.get('text', '')
-                if 'سرشماره' in t:
-                    parts = t.split()
-                    if len(parts) > 1:
-                        shortcode = parts[1]
+            shortcode = acc.get('shortcode', '')
+            if not shortcode:
+                for com in acc.get('comments', []):
+                    t = com.get('text', '')
+                    if 'سرشماره' in t:
+                        parts = t.split()
+                        if len(parts) > 1:
+                            shortcode = parts[1]
 
             if stage == 'outreach':
                 shortcode_html = ''

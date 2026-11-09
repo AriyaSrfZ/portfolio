@@ -25,11 +25,12 @@ DB_FILE = os.path.join(BASE_DIR, "data.json")
 BACKUP_DIR = os.path.join(BASE_DIR, "backups")
 AUDIT_LOG_FILE = os.path.join(BASE_DIR, "audit_log.json")
 
-TG_TOKEN = "9270066597:AAHXPnNo7fUwFQOUadGcqJlorp4JSDyyNUw"
-TG_CHAT_ID = -1004300319228
-TG_THREAD_LIST2 = 6
-TG_THREAD_EXEC = 5
-TG_PROXY = "http://192.168.3.70:19809"
+TG_GATEWAY_URL = os.getenv("TG_GATEWAY_URL", "http://127.0.0.1:8088/send")
+TG_TOKEN = os.getenv("TG_TOKEN", "")
+TG_CHAT_ID = int(os.getenv("TG_CHAT_ID", "-1004300319228"))
+TG_THREAD_LIST2 = int(os.getenv("TG_THREAD_LIST2", "6"))
+TG_THREAD_EXEC = int(os.getenv("TG_THREAD_EXEC", "5"))
+TG_PROXY = os.getenv("TG_PROXY", "http://192.168.3.70:19809")
 
 os.makedirs(BACKUP_DIR, exist_ok=True)
 
@@ -169,9 +170,38 @@ class OperationsBehavioralGraph:
             self.log("TELEGRAM", "BLOCKED: Dispatch refused without ALLOW_TELEGRAM_DISPATCH='YES_CONFIRMED'", "WARN")
             return False
 
-        # Execute Telegram dispatch via proxy
+        # Execute Telegram dispatch
         try:
-            proxy_handler = urllib.request.ProxyHandler({"http": TG_PROXY, "https": TG_PROXY})
+            # 1. Dispatch via local Bot Gateway (zero-token pattern)
+            try:
+                no_proxy_opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+                gw_req = urllib.request.Request(
+                    TG_GATEWAY_URL,
+                    data=json.dumps({
+                        "bot": "warroom",
+                        "chat_id": TG_CHAT_ID,
+                        "message_thread_id": TG_THREAD_LIST2,
+                        "text": text,
+                        "parse_mode": "Markdown",
+                        "disable_web_page_preview": True
+                    }).encode("utf-8"),
+                    headers={"Content-Type": "application/json"}
+                )
+                gw_resp = no_proxy_opener.open(gw_req, timeout=10)
+                res = json.loads(gw_resp.read().decode())
+                if res.get("ok"):
+                    mid = res.get("result", {}).get("message_id")
+                    self.log("TELEGRAM", f"Dispatched via Bot Gateway to Thread 6 (Message ID: {mid})")
+                    return True
+            except Exception as gw_err:
+                self.log("TELEGRAM", f"Bot Gateway dispatch attempt note: {gw_err}", "DEBUG")
+
+            # 2. Fallback to direct telegram API if TG_TOKEN is provided in environment
+            if not TG_TOKEN:
+                self.log("TELEGRAM", "No TG_TOKEN configured and gateway dispatch did not succeed", "WARN")
+                return False
+
+            proxy_handler = urllib.request.ProxyHandler({"http": TG_PROXY, "https": TG_PROXY}) if TG_PROXY else urllib.request.ProxyHandler({})
             opener = urllib.request.build_opener(proxy_handler)
             payload = {
                 "chat_id": TG_CHAT_ID,
