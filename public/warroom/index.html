@@ -2493,7 +2493,7 @@
 
 
     // LocalStorage State Management with Anti-Stale Migration
-    const CURRENT_DATA_VERSION = "2026-11-09-p2-linkedin-restored-v3";
+    const CURRENT_DATA_VERSION = "2026-11-09-live-sync-v4";
     const storedVersion = localStorage.getItem("pfg_data_version");
     if (storedVersion !== CURRENT_DATA_VERSION) {
       console.log("War Room: Detected older data version, purging stale cache to apply authoritative server state.");
@@ -3072,7 +3072,74 @@
       event.target.value = "";
     }
 
-    function saveState() {
+    
+    function smartMergeAccounts(remoteList, localList) {
+      if (!Array.isArray(remoteList) || remoteList.length === 0) return localList || [];
+      if (!Array.isArray(localList) || localList.length === 0) return remoteList;
+
+      const localMap = new Map(localList.map(a => [a.id, a]));
+
+      return remoteList.map(remoteAcc => {
+        const localAcc = localMap.get(remoteAcc.id);
+        if (!localAcc) return remoteAcc;
+
+        const merged = { ...remoteAcc };
+
+        // 1. Preserve local stage if user modified it
+        if (localAcc.stage) {
+          merged.stage = localAcc.stage;
+        }
+
+        // 2. Preserve assignees if assigned locally
+        if (localAcc.assigneeResearcher) merged.assigneeResearcher = localAcc.assigneeResearcher;
+        if (localAcc.assigneeDrafter) merged.assigneeDrafter = localAcc.assigneeDrafter;
+        if (localAcc.assigneeApprover) merged.assigneeApprover = localAcc.assigneeApprover;
+
+        // 3. Preserve shortcode if entered locally and remote is empty
+        if (localAcc.shortcode && !merged.shortcode) {
+          merged.shortcode = localAcc.shortcode;
+        }
+
+        // 4. Merge Action Logs (Union by id / timestamp / text)
+        const actionKeys = new Set((merged.actions || []).map(a => a.id || a.timestamp || a.text));
+        (localAcc.actions || []).forEach(act => {
+          const key = act.id || act.timestamp || act.text;
+          if (!actionKeys.has(key)) {
+            merged.actions = merged.actions || [];
+            merged.actions.push(act);
+            actionKeys.add(key);
+          }
+        });
+
+        // 5. Merge Comments (Union by id / timestamp / text)
+        const commentKeys = new Set((merged.comments || []).map(c => c.id || c.timestamp || c.text));
+        (localAcc.comments || []).forEach(comm => {
+          const key = comm.id || comm.timestamp || comm.text;
+          if (!commentKeys.has(key)) {
+            merged.comments = merged.comments || [];
+            merged.comments.push(comm);
+            commentKeys.add(key);
+          }
+        });
+
+        // 6. Ensure Layer 2 contacts have remote LinkedIn URLs merged into local contacts
+        if (remoteAcc.layer2Contacts && remoteAcc.layer2Contacts.length > 0) {
+          merged.layer2Contacts = remoteAcc.layer2Contacts.map((rc, idx) => {
+            const lc = (localAcc.layer2Contacts || [])[idx] || {};
+            return {
+              ...rc,
+              phone: lc.phone || rc.phone || merged.phone,
+              channel: lc.channel || rc.channel,
+              linkedin: rc.linkedin || lc.linkedin
+            };
+          });
+        }
+
+        return merged;
+      });
+    }
+
+function saveState() {
       makeLocalSafetyBackup("تغییرات بورد");
       localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
       updateAnalytics();
@@ -4337,23 +4404,28 @@
     autoInitSync();
     checkDirectMigrationOnLoad();
 
-    // ⚡ REAL-TIME BACKGROUND SYNC (Every 7 seconds)
+    // ⚡ REAL-TIME BACKGROUND SYNC (Every 4 seconds with Non-Destructive Live Merge)
     setInterval(async () => {
       try {
         const res = await fetch("./data.json?t=" + Date.now(), { cache: "no-store" });
         if (res.ok) {
           const remoteData = await res.json();
           if (Array.isArray(remoteData) && remoteData.length > 0) {
-            const remoteStr = JSON.stringify(remoteData);
+            const merged = smartMergeAccounts(remoteData, accounts);
+            const mergedStr = JSON.stringify(merged);
             const localStr = JSON.stringify(accounts);
-            if (remoteStr !== localStr) {
+            
+            if (mergedStr !== localStr) {
               const activeDrawerId = (selectedAccount && !document.getElementById("detailDrawer").classList.contains("hidden")) ? selectedAccount.id : null;
-              accounts = remoteData;
-              localStorage.setItem("pfg_accounts_data_v3", remoteStr);
+              const activeElId = document.activeElement ? document.activeElement.id : null;
+              
+              accounts = merged;
+              localStorage.setItem("pfg_accounts_data_v3", mergedStr);
               renderBoard();
               renderList();
               updateAnalytics();
               updateSyncUI("synced", "همگام شد با سرور (لحظه‌ای)");
+              
               if (activeDrawerId) {
                 const refreshedAcc = accounts.find(a => a.id === activeDrawerId);
                 if (refreshedAcc) {
@@ -4363,13 +4435,25 @@
                   renderCommentsList();
                   renderLayer2Contacts(refreshedAcc.layer2Contacts || []);
                   updateDrawerBadges();
+                  
+                  // Non-destructively refresh drawer links and metadata if user is not typing in that specific input
+                  if (activeElId !== "dEditLinkedin") {
+                    document.getElementById("dEditLinkedin").value = refreshedAcc.linkedin || "";
+                    document.getElementById("dLiLinkPreview").href = refreshedAcc.linkedin || "#";
+                  }
+                  if (activeElId !== "dEditDecisionMaker") {
+                    document.getElementById("dEditDecisionMaker").value = refreshedAcc.decisionMaker || "";
+                  }
+                  if (activeElId !== "dEditTechLead") {
+                    document.getElementById("dEditTechLead").value = refreshedAcc.techLead || "";
+                  }
                 }
               }
             }
           }
         }
       } catch(e) {}
-    }, 7000);
+    }, 4000);
   </script>
   <!-- SHEETS GUIDE MODAL -->
   <div id="sheetsGuideModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
