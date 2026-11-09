@@ -18,11 +18,28 @@ def generate_list2():
         vertical = acc.get('vertical', '')
         website = acc.get('website', '')
         clean_web = website.replace('https://', '').replace('http://', '').strip('/')
+        linkedin = acc.get('linkedin', '')
         score = acc.get('score', '')
         tier = acc.get('tier', 'Tier A')
         dm = acc.get('decisionMaker', '')
         pain = acc.get('pain', '')
-        hook_ceo = acc.get('hookCeo', '')
+
+        # Decision maker handle parsing
+        dm_parts = dm.split(' — ')
+        dm_title = dm_parts[0].strip() if dm_parts else ''
+        dm_handle = dm_parts[1].strip() if len(dm_parts) > 1 else ''
+        dm_li_html = ''
+        if dm_handle and 'in/' in dm_handle:
+            clean_handle = dm_handle.replace('in/', '').strip('/')
+            dm_li_html = f'''<div class="mt-1">
+              <a href="https://www.linkedin.com/in/{clean_handle}/" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-mono inline-flex items-center gap-1" dir="ltr">
+                <span>in/{clean_handle}</span> <span class="text-xs">↗</span>
+              </a>
+            </div>'''
+        else:
+            dm_li_html = '''<div class="text-[10px] text-cyan-300/80 mt-1 flex items-center gap-1 font-medium">
+              <span>🏛 استعلام ثبتی رسمی (رسمیو)</span>
+            </div>'''
 
         # Layer 2 cards
         l2_list = acc.get('layer2Contacts', [])
@@ -30,24 +47,46 @@ def generate_list2():
         for c in l2_list:
             c_name = c.get('name', '')
             c_role = c.get('role', '')
+            c_li = c.get('linkedin', '')
             c_phone = c.get('phone', phone)
             c_channel = c.get('channel', f"دفتر مرکزی ({phone})")
+
+            li_link_html = ''
+            if c_li and c_li.strip() and 'linkedin.com/search' not in c_li:
+                li_link_html = f'''<div class="pt-0.5">
+                  <a href="{c_li}" target="_blank" class="text-[10px] text-cyan-300 hover:text-cyan-100 hover:underline font-medium inline-flex items-center gap-1">
+                    <span>مشاهده در لینکدین</span> <span class="text-xs">↗</span>
+                  </a>
+                </div>'''
+
+            phone_html = ''
+            if c_phone:
+                phone_html = f'''<div class="flex items-center justify-between text-[10px] pt-0.5">
+                  <a href="tel:{c_phone}" class="text-cyan-300 hover:text-cyan-100 hover:underline font-mono font-semibold inline-flex items-center gap-1" dir="ltr">
+                    <span>📞</span> <span>{c_phone}</span>
+                  </a>
+                  <span class="text-slate-400 text-[9px] truncate max-w-[130px]">{c_channel}</span>
+                </div>'''
 
             card_html = f'''            <div class="p-2.5 rounded-xl bg-[#101A1D] hover:bg-[#162327] border border-cyan-500/25 transition space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="font-bold text-white text-[11.5px]">{c_name}</span>
-                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">احراز شده</span>
+                <span class="text-[9px] text-cyan-300 bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30 font-medium">آماده ارتباط</span>
               </div>
               <div class="text-[10px] text-slate-300 leading-tight">{c_role}</div>
-              <div class="flex items-center justify-between text-[10px] pt-0.5">
-                <a href="tel:{c_phone}" class="text-cyan-300 hover:text-cyan-100 hover:underline font-mono font-semibold inline-flex items-center gap-1" dir="ltr">
-                  <span>📞</span> <span>{c_phone}</span>
-                </a>
-                <span class="text-slate-400 text-[9px] truncate max-w-[130px]">{c_channel}</span>
-              </div>
+              {phone_html}
+              {li_link_html}
             </div>'''
             l2_cards.append(card_html)
         l2_cards_html = '\n'.join(l2_cards)
+
+        li_company_html = ''
+        if linkedin and 'linkedin.com' in linkedin:
+            li_company_html = f'''<div>
+              <a href="{linkedin}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-cyan-400 hover:text-cyan-200 hover:underline font-medium">
+                <span>صفحه شرکت در لینکدین</span> <span class="text-xs">↗</span>
+              </a>
+            </div>'''
 
         row_html = f'''      <tr class="hover:bg-cyan-950/30 transition">
         <td class="py-4 px-4 text-center font-mono text-cyan-400 font-bold w-12">{num}</td>
@@ -65,22 +104,19 @@ def generate_list2():
         <td class="py-4 px-4 text-slate-300 min-w-[140px] leading-relaxed">{vertical}</td>
         <td class="py-4 px-4 min-w-[160px]">
           <div class="space-y-1.5">
-            <a href="tel:{phone}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25 transition" dir="ltr">
-              <span>📞</span> <span>{phone}</span>
-            </a>
+            {f'<a href="tel:{phone}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25 transition" dir="ltr"><span>📞</span> <span>{phone}</span></a>' if phone else ''}
             <div>
               <a href="{website}" target="_blank" class="inline-flex items-center gap-1 text-[11px] text-cyan-400 hover:text-cyan-200 hover:underline font-mono" dir="ltr">
                 <span>{clean_web}</span> <span class="text-xs">↗</span>
               </a>
             </div>
-            <div class="text-[9.5px] text-slate-400 truncate max-w-[160px]" title="{address}">{address}</div>
+            {li_company_html}
+            {f'<div class="text-[9.5px] text-slate-400 truncate max-w-[160px]" title="{address}">{address}</div>' if address else ''}
           </div>
         </td>
         <td class="py-4 px-4 min-w-[230px]">
-          <div class="font-bold text-white text-xs leading-snug">{dm}</div>
-          <div class="text-[10px] text-cyan-300/80 mt-1 flex items-center gap-1 font-medium">
-            <span>🏛 استعلام ثبتی رسمی (رسمیو)</span>
-          </div>
+          <div class="font-bold text-white text-xs leading-snug">{dm_title}</div>
+          {dm_li_html}
         </td>
         <td class="py-4 px-4 min-w-[300px] bg-cyan-950/20">
           <div class="space-y-2">
@@ -139,10 +175,10 @@ def generate_list2():
           <span>B2B LOW-INCUMBENT ENTRENCHMENT PIPELINE — PHASE 2 DIRECTORY (10 ACCOUNTS)</span>
         </div>
         <h1 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-          <span>فهرست ۱۰ حساب بکر فاز دوم (استعلام رسمی رسمیو و ثبت شرکت‌ها)</span>
+          <span>فهرست ۱۰ حساب بکر فاز دوم (همراه با پروفایل‌های لینکدین و استعلام ثبتی)</span>
           <span class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">استراتژی ملایم Hot Failover</span>
         </h1>
-        <p class="text-xs text-slate-300 mt-1.5">اطلاعات حقوقی ثبتی، شماره‌های مستقیم دفتر مرکزی و دبیرخانه‌ها، و تصمیم‌گیرندگان تاییدشده با شاخص نفوذ رقبا (IEI) پایین</p>
+        <p class="text-xs text-slate-300 mt-1.5">حساب‌های چابک زیر رادار با شاخص نفوذ رقبا (IEI) پایین، همراه با پروفایل‌های لینکدین مدیران، شماره‌های مستقیم دفتر مرکزی و آفر تست ۵۰k</p>
       </div>
       <div class="flex items-center gap-2.5 flex-wrap">
         <a href="/index.html" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition flex items-center gap-1.5">
@@ -157,6 +193,28 @@ def generate_list2():
       </div>
     </header>
 
+    <!-- Strategy Highlights Banner -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-[#162226] border border-cyan-500/20 rounded-xl p-4 space-y-1">
+        <div class="text-xs font-bold text-cyan-400 flex items-center gap-1.5">
+          <span>🛡️ ورود به عنوان بیمه‌نامه اضطراری</span>
+        </div>
+        <p class="text-[11px] text-slate-300 leading-relaxed">بدون ادعای وجود اختلال در روت فعلی شرکت؛ صرفاً به عنوان خط نجات موازی (Hot Failover) در ساعات پیک بازار.</p>
+      </div>
+      <div class="bg-[#162226] border border-cyan-500/20 rounded-xl p-4 space-y-1">
+        <div class="text-xs font-bold text-teal-400 flex items-center gap-1.5">
+          <span>🎁 ۵۰k پیامک تست رایگان</span>
+        </div>
+        <p class="text-[11px] text-slate-300 leading-relaxed">ارائه فوری API Key بدون امضای قرارداد اولیه، بدون تعویض خط و با امکان تست بلادرنگ تیم توسعه.</p>
+      </div>
+      <div class="bg-[#162226] border border-cyan-500/20 rounded-xl p-4 space-y-1">
+        <div class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+          <span>⚡ مستندات سبک دو صفحه‌ای</span>
+        </div>
+        <p class="text-[11px] text-slate-300 leading-relaxed">نمونه کدهای آماده پایتون، نود و PHP جهت اتصال سریع ظرف ۱۰ دقیقه با وب‌هوک مستقیم تایید دریافت گوشی.</p>
+      </div>
+    </div>
+
     <!-- Table Container -->
     <div class="bg-[#142024] border border-cyan-500/30 rounded-2xl shadow-2xl overflow-hidden">
       <div class="overflow-x-auto">
@@ -164,11 +222,11 @@ def generate_list2():
           <thead class="bg-[#1B2B30] text-slate-300 border-b border-cyan-500/30">
             <tr>
               <th class="py-4 px-4 text-center font-bold text-xs w-12 whitespace-nowrap">#</th>
-              <th class="py-4 px-4 font-bold text-xs min-w-[220px] whitespace-nowrap">شرکت و مشخصات ثبتی (رسمیو)</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[220px] whitespace-nowrap">نام شرکت و هویت ثبتی</th>
               <th class="py-4 px-4 font-bold text-xs min-w-[140px] whitespace-nowrap">حوزه تخصصی</th>
-              <th class="py-4 px-4 font-bold text-xs min-w-[160px] whitespace-nowrap">تلفن دفتر مرکزی و وب‌سایت</th>
-              <th class="py-4 px-4 font-bold text-xs min-w-[230px] whitespace-nowrap">مدیر ارشد واقعی (C-Level / بنیان‌گذار)</th>
-              <th class="py-4 px-4 font-bold text-xs min-w-[300px] whitespace-nowrap">رابطین لایه دوم و خط مستقیم</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[160px] whitespace-nowrap">ارتباط و لینکدین شرکت</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[230px] whitespace-nowrap">مدیر ارشد (C-Level)</th>
+              <th class="py-4 px-4 font-bold text-xs min-w-[300px] whitespace-nowrap">رابطین لایه دوم (فنی و محصول)</th>
               <th class="py-4 px-4 font-bold text-xs min-w-[260px] whitespace-nowrap">اسب تروجان و استراتژی ورود</th>
               <th class="py-4 px-4 font-bold text-xs text-center w-36 whitespace-nowrap">شاخص نفوذ (IEI)</th>
             </tr>
@@ -181,8 +239,7 @@ def generate_list2():
     </div>
   </div>
 </body>
-</html>
-'''
+</html>'''
 
     with open('/home/aria/projects/portfolio/public/warroom/list2.html', 'w', encoding='utf-8') as f:
         f.write(html)

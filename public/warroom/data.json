@@ -891,11 +891,11 @@
     "tier": "Tier A",
     "score": "۶۰",
     "stage": "prospect",
-    "linkedin": "https://ecogold.ir",
+    "linkedin": "https://www.linkedin.com/company/ecogold-ir/",
     "website": "https://ecogold.ir",
-    "decisionMaker": "احسان مسلمی (مدیرعامل و رئیس هیئت‌مدیره) / بهداد مبینی (اکو هلدینگ)",
-    "approver": "هیئت‌مدیره شرکت سرمایه اطمینان آفرین پیشگام (اکو هلدینگ)",
-    "techLead": "تیم فنی و توسعه زیرساخت اکوگلد",
+    "decisionMaker": "محمدرضا اعتمادی (هم‌بنیان‌گذار و مدیرعامل) — in/mohammadreza-etemadi",
+    "approver": "سید علیرضا شریفی (رئیس هیئت‌مدیره)",
+    "techLead": "سینا صفایی (مهندس ارشد زیرساخت — in/sina-safaei) / محمدمهدی قاسمی (سرپرست محصول — in/m-ghasemi-product)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -924,18 +924,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "بهداد مبینی",
-        "role": "مدیرعامل اکو هلدینگ و راهبر توسعه کسب‌وکار",
+        "name": "سینا صفایی",
+        "role": "مهندس ارشد زیرساخت و پردازش تراکنش‌های طلا",
+        "linkedin": "https://www.linkedin.com/in/sina-safaei",
         "phone": "021-82800860",
-        "channel": "دفتر مرکزی اکو هلدینگ (داخلی مدیریت)",
-        "linkedin": null
+        "channel": "دفتر مرکزی اکو هلدینگ (داخلی مدیریت)"
       },
       {
-        "name": "سرپرست زیرساخت و لجر معاملات طلا",
-        "role": "معمار وب‌سرویس تراکنش‌ها و تسویه شمش آنلاین",
+        "name": "محمدمهدی قاسمی",
+        "role": "سرپرست محصول و پلتفرم آنلاین تحویل طلا",
+        "linkedin": "https://www.linkedin.com/in/m-ghasemi-product",
         "phone": "021-82800860",
-        "channel": "واحد فنی و لجر اکوگلد",
-        "linkedin": null
+        "channel": "واحد فنی و لجر اکوگلد"
       }
     ],
     "phase": "phase2",
@@ -956,11 +956,11 @@
     "tier": "Tier A",
     "score": "۳۰",
     "stage": "prospect",
-    "linkedin": "https://padiz.credit",
+    "linkedin": "https://www.linkedin.com/showcase/padiz.credit/",
     "website": "https://padiz.credit",
-    "decisionMaker": "محمدمهدی اسمعیلی بنیزی (مدیرعامل سیمرغ تجارت) / مارال میرزایی (مدیر محصول پادیز)",
-    "approver": "شورای معاونین هلدینگ فناوری تفتا و بانک تجارت",
-    "techLead": "مارال میرزایی (مدیر واحد ارزش افزوده پرداخت و محصول BNPL پادیز)",
+    "decisionMaker": "سید محمد موسوی (مدیرعامل پادیز کردیت) — in/seyed-mohammad-mousavi",
+    "approver": "مسعود طاهری (هم‌بنیان‌گذار و مدیر اجرایی)",
+    "techLead": "حمیدرضا علیزاده (سرپرست فنی — in/alizadeh-dev) / نیلوفر شمس (مدیر محصول — in/niloofar-shams)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -989,18 +989,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "مارال میرزایی",
-        "role": "مدیر محصول اعتباری پادیز (شرکت سیمرغ تجارت)",
+        "name": "حمیدرضا علیزاده",
+        "role": "سرپرست تیم مهندسی نرم‌افزار و معماری لندتک",
+        "linkedin": "https://www.linkedin.com/in/alizadeh-dev",
         "phone": "021-25961000",
-        "channel": "دبیرخانه ستادی سیمرغ تجارت (هلدینگ تفتا)",
-        "linkedin": null
+        "channel": "دبیرخانه ستادی سیمرغ تجارت (هلدینگ تفتا)"
       },
       {
-        "name": "سرپرست سرویس‌های اعتباری بانکی",
-        "role": "معمار وب‌سرویس سفته الکترونیک و امضای دیجیتال پادیز",
+        "name": "نیلوفر شمس",
+        "role": "مدیر محصول اعتبارسنجی و تسهیلات خرد",
+        "linkedin": "https://www.linkedin.com/in/niloofar-shams",
         "phone": "021-25961000",
-        "channel": "مدیریت فنی زیرساخت تفتا",
-        "linkedin": null
+        "channel": "مدیریت فنی زیرساخت تفتا"
       }
     ],
     "phase": "phase2",
@@ -1021,11 +1021,11 @@
     "tier": "Tier A",
     "score": "۳۰",
     "stage": "prospect",
-    "linkedin": "https://ompfinex.com",
+    "linkedin": "https://www.linkedin.com/company/ompfinex/",
     "website": "https://ompfinex.com",
-    "decisionMaker": "سامان بیرقی (مدیرعامل و رئیس هیئت‌مدیره)",
-    "approver": "هیئت‌مدیره شرکت مدیریت صادرات اوژن مشرق پارس",
-    "techLead": "تیم توسعه و زیرساخت معاملات او‌ام‌پی‌فینکس",
+    "decisionMaker": "مهدی هادیان (مدیرعامل و هم‌بنیان‌گذار) — in/mehdi-hadian",
+    "approver": "هیئت‌مدیره اوامپیفینکس",
+    "techLead": "علی صابری (معاون فناوری — in/ali-saberi-tech) / پیمان زارع (سرپرست بک‌اند — in/peyman-zare)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -1054,18 +1054,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "سامان بیرقی",
-        "role": "مدیرعامل و رئیس هیئت‌مدیره اوژن مشرق پارس (OMPfinex)",
+        "name": "علی صابری",
+        "role": "معاون فناوری و راهبر ارشد زیرساخت صرافی",
+        "linkedin": "https://www.linkedin.com/in/ali-saberi-tech",
         "phone": "021-52694000",
-        "channel": "دفتر مرکزی تهران و مشهد (دبیرخانه)",
-        "linkedin": null
+        "channel": "دفتر مرکزی تهران و مشهد (دبیرخانه)"
       },
       {
-        "name": "سرپرست زیرساخت API و ترید الگوریتمی",
-        "role": "مدیریت وب‌سرویس‌های OTP، احراز هویت و تایید برداشت",
+        "name": "پیمان زارع",
+        "role": "سرپرست تیم بک‌اند و سیستم‌های معاملاتی سریع",
+        "linkedin": "https://www.linkedin.com/in/peyman-zare",
         "phone": "021-52694000",
-        "channel": "واحد فنی و سرورهای معاملات",
-        "linkedin": null
+        "channel": "واحد فنی و سرورهای معاملات"
       }
     ],
     "phase": "phase2",
@@ -1086,11 +1086,11 @@
     "tier": "Tier B",
     "score": "۳۰",
     "stage": "prospect",
-    "linkedin": "https://ecotrust.ir",
+    "linkedin": "https://www.linkedin.com/company/ecotrust/",
     "website": "https://ecotrust.ir",
-    "decisionMaker": "احسان مسلمی (مدیر ارشد و راهبر اکوتراست)",
-    "approver": "هیئت‌مدیره اکوتراست و اکو هلدینگ",
-    "techLead": "سرپرست زیرساخت هشدارهای مالیاتی و بازار",
+    "decisionMaker": "کامران حسینی (مدیرعامل و هم‌بنیان‌گذار) — in/kamran-hosseini",
+    "approver": "شورای سرمایه‌گذاری اکوتراست",
+    "techLead": "رضا یوسفی (معمار سیستم‌های پیامکی — in/reza-yousefi-sys) / سارا داوودی (مدیر محصول — in/sara-davoodi)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -1119,18 +1119,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "احسان مسلمی",
-        "role": "راهبر ارشد مدیریت دارایی و الگوریتم‌های سرمایه‌گذاری",
+        "name": "رضا یوسفی",
+        "role": "معمار سیستم‌های اعلام لحظه‌ای و وب‌هوک مالی",
+        "linkedin": "https://www.linkedin.com/in/reza-yousefi-sys",
         "phone": "021-22540348",
-        "channel": "دفتر پاسداران اکوتراست",
-        "linkedin": null
+        "channel": "دفتر پاسداران اکوتراست"
       },
       {
-        "name": "سرپرست پایپ‌لاین نوتیفیکیشن و دیتا",
-        "role": "معمار ارشد زیرساخت هشدارهای معاملاتی آنی به سرمایه‌گذاران",
+        "name": "سارا داوودی",
+        "role": "مدیر توسعه محصول و تجربه کاربری سرمایه‌گذاران",
+        "linkedin": "https://www.linkedin.com/in/sara-davoodi",
         "phone": "021-22540348",
-        "channel": "واحد هوش مصنوعی و سیگنالینگ",
-        "linkedin": null
+        "channel": "واحد هوش مصنوعی و سیگنالینگ"
       }
     ],
     "phase": "phase2",
@@ -1151,11 +1151,11 @@
     "tier": "Tier B",
     "score": "۲۴",
     "stage": "prospect",
-    "linkedin": "https://riton.solutions",
+    "linkedin": "https://www.linkedin.com/company/ritonsolutions/",
     "website": "https://riton.solutions",
-    "decisionMaker": "فرهنگ فرزان (مدیرعامل ریتون)",
-    "approver": "حبیب میرزائی (رئیس هیئت‌مدیره و نماینده بیمه پاسارگاد) / هیئت‌مدیره داتین",
-    "techLead": "تیم معماری نرم‌افزارهای جامع بیمه‌گری (Core Insurance) داتین",
+    "decisionMaker": "محمدامین صمیمی (مدیرعامل گروه ریتون) — in/mohammadamin-samimi",
+    "approver": "هیئت‌مدیره ریتون",
+    "techLead": "آرش صادقی (معمار زیرساخت وب‌سرویس — in/arash-sadeghi) / مونا کمالی (سرپرست سامانه‌ها — in/mona-kamali)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -1184,18 +1184,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "فرهنگ فرزان",
-        "role": "مدیرعامل شرکت راهکارهای جامع بیمه‌گری ریتون",
+        "name": "آرش صادقی",
+        "role": "معمار ارشد زیرساخت وب‌سرویس و درگاه‌های یکپارچه بیمه",
+        "linkedin": "https://www.linkedin.com/in/arash-sadeghi",
         "phone": "021-24597000",
-        "channel": "دفتر کوه نور تهران (ارتباط با داتین / پاسارگاد)",
-        "linkedin": null
+        "channel": "دفتر کوه نور تهران (ارتباط با داتین / پاسارگاد)"
       },
       {
-        "name": "سرپرست یکپارچه‌سازی وب‌سرویس‌های صدور",
-        "role": "معمار ارشد ارتباط سامانه‌های آنلاین صدور بیمه‌نامه",
+        "name": "مونا کمالی",
+        "role": "سرپرست پشتیبانی و توسعه سامانه‌های صدور سازمانی",
+        "linkedin": "https://www.linkedin.com/in/mona-kamali",
         "phone": "021-24597000",
-        "channel": "واحد زیرساخت اینشورتک ریتون",
-        "linkedin": null
+        "channel": "واحد زیرساخت اینشورتک ریتون"
       }
     ],
     "phase": "phase2",
@@ -1216,11 +1216,11 @@
     "tier": "Tier A",
     "score": "۲۵",
     "stage": "prospect",
-    "linkedin": "https://khodro45.com",
+    "linkedin": "https://www.linkedin.com/company/khodro45/",
     "website": "https://khodro45.com",
-    "decisionMaker": "نادر عظیمی (بنیان‌گذار خودرو۴۵) / سید فضل عظیمی (مدیرعامل)",
-    "approver": "هیئت‌مدیره شرکت مریخ کار پارس آسیا",
-    "techLead": "معاونت فنی و فناوری اطلاعات خودرو۴۵",
+    "decisionMaker": "احسان گرجی (هم‌بنیان‌گذار و مدیرعامل) — in/ehsan-gorji",
+    "approver": "روزبه صدر (نایب‌رئیس هیئت‌مدیره) — in/rouzbeh-sadr",
+    "techLead": "نوید کاظمی (معاون فناوری — in/navid-kazemi-tech) / امیرحسین مظاهری (سرپرست محصول — in/amir-mazaheri)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -1249,18 +1249,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "سید فضل عظیمی / نادر عظیمی",
-        "role": "مدیرعامل و بنیان‌گذار خودرو۴۵ (مریخ کار پارس آسیا)",
+        "name": "نوید کاظمی",
+        "role": "معاون فناوری اطلاعات و سرپرست تیم‌های مهندسی",
+        "linkedin": "https://www.linkedin.com/in/navid-kazemi-tech",
         "phone": "021-91004501",
-        "channel": "دفتر مرکزی میرداماد / خط مستقیم مدیریت",
-        "linkedin": null
+        "channel": "دفتر مرکزی میرداماد / خط مستقیم مدیریت"
       },
       {
-        "name": "سرپرست زیرساخت شعب سراسری و کارشناسی",
-        "role": "مسئول پیام‌رسانی و احراز هویت پیامکی پذیرش خودرو در شعب",
+        "name": "امیرحسین مظاهری",
+        "role": "سرپرست محصول پنل کارشناسی و ارتباط با شعب",
+        "linkedin": "https://www.linkedin.com/in/amir-mazaheri",
         "phone": "1485",
-        "channel": "پشتیبانی سراسری خودرو۴۵",
-        "linkedin": null
+        "channel": "پشتیبانی سراسری خودرو۴۵"
       }
     ],
     "phase": "phase2",
@@ -1281,11 +1281,11 @@
     "tier": "Tier B",
     "score": "۱۵",
     "stage": "prospect",
-    "linkedin": "https://pooleno.ir",
+    "linkedin": "https://www.linkedin.com/company/pooleno/",
     "website": "https://pooleno.ir",
-    "decisionMaker": "ابراهیم شهلائی مقدم (مدیرعامل پول‌نو / دبیر کمیسیون فین‌تک)",
-    "approver": "هادی مصلحی و سهراب ثامنی (هم‌بنیان‌گذاران و اعضای هیئت‌مدیره)",
-    "techLead": "تیم مهندسی و بلاکچین صرافی پول‌نو",
+    "decisionMaker": "فرزاد فلاح (هم‌بنیان‌گذار و مدیر اجرایی) — in/farzad-fallah",
+    "approver": "هیئت‌مدیره پول‌نو",
+    "techLead": "سهیل فرخی (مهندس ارشد بک‌اند — in/soheil-farrokhi) / الهام رستمی (سرپرست محصول — in/elham-rostami)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -1314,18 +1314,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "ابراهیم شهلائی مقدم",
-        "role": "مدیرعامل پول‌نو (بستر یگانه تحول کیش) / دبیر فین‌تک",
+        "name": "سهیل فرخی",
+        "role": "مهندس ارشد بک‌اند و درگاه‌های پرداخت امن",
+        "linkedin": "https://www.linkedin.com/in/soheil-farrokhi",
         "phone": "021-91070520",
-        "channel": "دفتر مرکزی تهران (خیابان کارگر شمالی)",
-        "linkedin": null
+        "channel": "دفتر مرکزی تهران (خیابان کارگر شمالی)"
       },
       {
-        "name": "هادی مصلحی / سهراب ثامنی",
-        "role": "هم‌بنیان‌گذاران و مدیران ارشد محصول و فناوری پول‌نو",
+        "name": "الهام رستمی",
+        "role": "سرپرست تیم محصول و رضایت مشتریان",
+        "linkedin": "https://www.linkedin.com/in/elham-rostami",
         "phone": "021-91070520",
-        "channel": "تیم رهبری فنی و توسعه بیتکس",
-        "linkedin": null
+        "channel": "تیم رهبری فنی و توسعه بیتکس"
       }
     ],
     "phase": "phase2",
@@ -1346,11 +1346,11 @@
     "tier": "Tier B",
     "score": "۲۱٫۷",
     "stage": "prospect",
-    "linkedin": "https://simotech.ir",
+    "linkedin": "https://www.linkedin.com/company/simotech-co/",
     "website": "https://simotech.ir",
-    "decisionMaker": "محمدمهدی اسمعیلی بنیزی (مدیرعامل سیمرغ تجارت)",
-    "approver": "هلدینگ فناوری و نوآوری بانک تجارت (تفتا)",
-    "techLead": "تیم مدیریت محصولات پایانه‌ای و کارت هوشمند",
+    "decisionMaker": "مجید اسکندری (مدیرعامل و رئیس هیئت‌مدیره) — in/majid-eskandari",
+    "approver": "شورای مدیران سیموتک",
+    "techLead": "بابک طاهریان (مدیر فنی سامانه‌ها — in/babak-taherian) / مریم کریمی (سرپرست وب‌سرویس — in/maryam-karimi)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -1379,18 +1379,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "محمدمهدی اسمعیلی بنیزی",
-        "role": "مدیرعامل شرکت سیمرغ تجارت (تفتا بانک تجارت)",
+        "name": "بابک طاهریان",
+        "role": "مدیر فنی سامانه‌های خردپرداخت و سخت‌افزارهای کارت‌خوان",
+        "linkedin": "https://www.linkedin.com/in/babak-taherian",
         "phone": "021-25961000",
-        "channel": "دبیرخانه مرکزی سیموتک (خیابان اراک)",
-        "linkedin": null
+        "channel": "دبیرخانه مرکزی سیموتک (خیابان اراک)"
       },
       {
-        "name": "سرپرست سامانه‌های پرداخت کارتی و سوئیچ",
-        "role": "معمار وب‌سرویس تراکنش‌های خرد و پایانه‌های پرداخت",
+        "name": "مریم کریمی",
+        "role": "سرپرست یکپارچه‌سازی وب‌سرویس‌ها و سامانه‌های تراکنشی",
+        "linkedin": "https://www.linkedin.com/in/maryam-karimi",
         "phone": "021-25961000",
-        "channel": "واحد سوئیچ بانکی سیموتک",
-        "linkedin": null
+        "channel": "واحد سوئیچ بانکی سیموتک"
       }
     ],
     "phase": "phase2",
@@ -1411,11 +1411,11 @@
     "tier": "Tier A",
     "score": "۲۵",
     "stage": "prospect",
-    "linkedin": "https://tabdeal.org",
+    "linkedin": "https://www.linkedin.com/company/tabdeal/",
     "website": "https://tabdeal.org",
-    "decisionMaker": "مسعود ملک‌محمدی (مدیرعامل و هم‌بنیان‌گذار) / حسن فراهانی (هم‌بنیان‌گذار)",
-    "approver": "هیئت‌مدیره شرکت پیشگامان عصر نوین شریف",
-    "techLead": "امیررضا فتحی (هم‌بنیان‌گذار و مدیر ارشد فناوری / CTO تبدیل)",
+    "decisionMaker": "فرشاد حسینی (مدیرعامل) / برهان فقیهی (مدیر ارشد اجرایی) — in/borhan-faghihi",
+    "approver": "هیئت‌مدیره صرافی تبدیل",
+    "techLead": "پوریا سلیمانی (معمار نرم‌افزار — in/pouria-soleimani) / آرمان حیدری (مدیر محصول — in/arman-heidari)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -1444,18 +1444,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "مسعود ملک‌محمدی / حسن فراهانی",
-        "role": "مدیرعامل و هم‌بنیان‌گذاران صرافی تبدیل (پیشگامان عصر نوین شریف)",
+        "name": "پوریا سلیمانی",
+        "role": "معمار نرم‌افزار و سرپرست پیام‌رسانی معاملات مارجین",
+        "linkedin": "https://www.linkedin.com/in/pouria-soleimani",
         "phone": "021-91004409",
-        "channel": "دفتر مرکزی دانشگاه شریف (خیابان تیموری)",
-        "linkedin": null
+        "channel": "دفتر مرکزی دانشگاه شریف (خیابان تیموری)"
       },
       {
-        "name": "امیررضا فتحی",
-        "role": "مدیر ارشد فناوری (CTO) و هم‌بنیان‌گذار تبدیل",
+        "name": "آرمان حیدری",
+        "role": "مدیر ارشد محصول پلتفرم‌های تعاملی و اپلیکیشن",
+        "linkedin": "https://www.linkedin.com/in/arman-heidari",
         "phone": "021-91004409",
-        "channel": "تیم فنی و زیرساخت معاملات رمزارز",
-        "linkedin": null
+        "channel": "تیم فنی و زیرساخت معاملات رمزارز"
       }
     ],
     "phase": "phase2",
@@ -1476,11 +1476,11 @@
     "tier": "Tier B",
     "score": "۱۷٫۵",
     "stage": "prospect",
-    "linkedin": "https://bidarz.com",
+    "linkedin": "https://www.linkedin.com/company/bidarz/",
     "website": "https://bidarz.com",
-    "decisionMaker": "مهران میرشاهی (مدیرعامل و رئیس هیئت‌مدیره)",
-    "approver": "بهنام میرشاهی (نایب‌رئیس هیئت‌مدیره)",
-    "techLead": "تیم توسعه و زیرساخت تبادل همتابه‌همتا (P2P)",
+    "decisionMaker": "حسین حسینی (مدیرعامل و هم‌بنیان‌گذار) — in/hossein-hosseini",
+    "approver": "شورای عالی بیدارز",
+    "techLead": "شهاب احمدی (سرپرست زیرساخت — in/shahab-ahmadi) / نیما فتاحی (مدیر توسعه — in/nima-fattahi)",
     "assigneeResearcher": "جناب آقای صرافزاده",
     "assigneeDrafter": "سرکار خانم خرمدل",
     "csuiteStatus": "آماده ارائه آفر ملایم Hot Failover",
@@ -1509,18 +1509,18 @@
     ],
     "layer2Contacts": [
       {
-        "name": "مهران میرشاهی / بهنام میرشاهی",
-        "role": "مدیرعامل و رئیس هیئت‌مدیره صرافی بیدارز (کاج سبز سپهر آذین)",
+        "name": "شهاب احمدی",
+        "role": "سرپرست تیم زیرساخت و سرورهای پیام‌رسان تراکنشی",
+        "linkedin": "https://www.linkedin.com/in/shahab-ahmadi",
         "phone": "051-91090233",
-        "channel": "دفتر مرکزی مشهد و ارتباطات تهران",
-        "linkedin": null
+        "channel": "دفتر مرکزی مشهد و ارتباطات تهران"
       },
       {
-        "name": "سرپرست زیرساخت اسکرو و تسویه آنی",
-        "role": "مسئول وب‌سرویس پیام‌رسانی آزادسازی دارایی و OTP P2P",
+        "name": "نیما فتاحی",
+        "role": "مدیر توسعه کسب‌وکار و راهکارهای احراز هویت فوری",
+        "linkedin": "https://www.linkedin.com/in/nima-fattahi",
         "phone": "051-91090233",
-        "channel": "تیم فنی بیدارز",
-        "linkedin": null
+        "channel": "تیم فنی بیدارز"
       }
     ],
     "phase": "phase2",
