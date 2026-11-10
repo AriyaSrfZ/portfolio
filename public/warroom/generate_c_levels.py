@@ -78,12 +78,22 @@ def generate():
             c_li = c.get('linkedin', '')
 
             li_link_html = ''
-            if c_li and c_li.strip() and 'linkedin.com/search' not in c_li:
+            if c_li and c_li.strip() and 'linkedin.com/search' not in c_li and c_li != '#':
                 accent_btn = 'bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border-cyan-500/30' if is_phase2 else 'bg-[#0A66C2]/15 hover:bg-[#0A66C2]/25 text-sky-300 border-[#0A66C2]/30'
                 li_link_html = f'''<div class="pt-1">
                   <a href="{c_li}" target="_blank" class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] {accent_btn} hover:text-white border transition font-medium">
                     <span>مشاهده در لینکدین</span> <span class="text-xs">↗</span>
                   </a>
+                </div>'''
+            else:
+                c_phone = c.get('phone', phone)
+                c_channel = c.get('channel', 'دفتر مرکزی')
+                call_badge = 'bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border-cyan-500/25' if is_phase2 else 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border-emerald-500/20'
+                li_link_html = f'''<div class="pt-1 flex items-center justify-between text-[10px]">
+                  <a href="tel:{c_phone}" class="inline-flex items-center gap-1 px-2 py-0.5 rounded {call_badge} transition font-mono font-medium" dir="ltr">
+                    <span>📞</span> <span>{c_phone}</span>
+                  </a>
+                  <span class="text-[9.5px] text-slate-400 truncate max-w-[120px]">{c_channel}</span>
                 </div>'''
 
             if is_phase2:
