@@ -63,12 +63,33 @@ class WarroomHandler(BaseHTTPRequestHandler):
         if clean_path in ["", "/"]:
             clean_path = "/index.html"
         target = os.path.normpath(os.path.join(WEB_DIR, clean_path.lstrip("/")))
-        if os.path.isdir(target):
-            target = os.path.join(target, "index.html")
+        if not target.startswith(os.path.normpath(WEB_DIR)):
+            self.send_response(403)
+            self._send_common_headers("application/json; charset=utf-8")
+            self.end_headers()
+            return
+
+        if not os.path.exists(target) or os.path.isdir(target):
+            if os.path.isdir(target) and os.path.exists(os.path.join(target, "index.html")):
+                target = os.path.join(target, "index.html")
+            elif os.path.exists(target + ".html"):
+                target = target + ".html"
+            else:
+                self.send_response(404)
+                self._send_common_headers("application/json; charset=utf-8")
+                self.end_headers()
+                return
+
+        real_target = os.path.realpath(target)
         ctype, _ = mimetypes.guess_type(target)
         if not ctype:
-            ctype = "text/html; charset=utf-8" if target.endswith(".html") else "application/octet-stream"
-        elif ("text" in ctype or "javascript" in ctype or "json" in ctype) and "charset" not in ctype:
+            ctype, _ = mimetypes.guess_type(real_target)
+        if not ctype:
+            if target.endswith(".html") or real_target.endswith(".html"):
+                ctype = "text/html; charset=utf-8"
+            else:
+                ctype = "application/octet-stream"
+        if ("text" in ctype or "javascript" in ctype or "json" in ctype) and "charset" not in ctype:
             ctype += "; charset=utf-8"
         self.send_response(200)
         self._send_common_headers(ctype)
@@ -109,13 +130,21 @@ class WarroomHandler(BaseHTTPRequestHandler):
             # Try index.html inside directory if directory
             if os.path.isdir(target) and os.path.exists(os.path.join(target, "index.html")):
                 target = os.path.join(target, "index.html")
+            elif os.path.exists(target + ".html"):
+                target = target + ".html"
             else:
                 self.send_json(404, b'{"error":"Static file not found"}')
                 return
 
+        real_target = os.path.realpath(target)
         ctype, _ = mimetypes.guess_type(target)
         if not ctype:
-            ctype = "application/octet-stream"
+            ctype, _ = mimetypes.guess_type(real_target)
+        if not ctype:
+            if target.endswith(".html") or real_target.endswith(".html"):
+                ctype = "text/html; charset=utf-8"
+            else:
+                ctype = "application/octet-stream"
         if ("text" in ctype or "javascript" in ctype or "json" in ctype) and "charset" not in ctype:
             ctype += "; charset=utf-8"
 
