@@ -824,40 +824,89 @@
 
           <!-- Company Official Links -->
           <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
-            <span class="text-xs font-bold text-slate-200 block border-b border-[#46504B] pb-2">پیوندهای رسمی:</span>
-            <div>
-              <div class="flex items-center justify-between mb-1">
-                <label class="text-[11px] text-[#8FB4AA]">لینکدین شرکت:</label>
-                <a id="dLiLinkPreview" href="#" target="_blank" class="text-[10px] text-[#8FB4AA] hover:underline">مشاهده در لینکدین ↗</a>
-              </div>
-              <input type="text" id="dEditLinkedin" class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2 font-mono dir-ltr text-left">
+            <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
+              <span class="text-xs font-bold text-slate-200">پیوندهای رسمی و سازمانی:</span>
+              <span class="text-[10px] text-[#8FB4AA] bg-[#527C78]/20 px-2 py-0.5 rounded font-mono">Company Web & Social</span>
             </div>
-            <div>
-              <div class="flex items-center justify-between mb-1">
-                <label class="text-[11px] text-slate-300">وب‌سایت رسمی:</label>
-                <a id="dWebLinkPreview" href="#" target="_blank" class="text-[10px] text-slate-400 hover:underline">باز کردن سایت ↗</a>
-              </div>
-              <input type="text" id="dEditWebsite" class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2 font-mono dir-ltr text-left">
+            
+            <div class="grid grid-cols-1 gap-2">
+              <!-- LinkedIn Action Button -->
+              <a id="dLiLinkPreview" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#0A66C2]/15 hover:bg-[#0A66C2]/25 border border-[#0A66C2]/40 text-[#70B5F9] hover:text-white transition group shadow-sm">
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                  <span class="text-xs font-bold">صفحه رسمی در لینکدین</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-xs">
+                  <span class="text-[11px] opacity-80 group-hover:opacity-100 font-mono" dir="ltr" id="dLiHandleText">linkedin.com/company</span>
+                  <span class="group-hover:translate-x-[-2px] transition">↗</span>
+                </div>
+              </a>
+
+              <!-- Website Action Button -->
+              <a id="dWebLinkPreview" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 hover:text-white transition group shadow-sm">
+                <div class="flex items-center gap-2">
+                  <span class="text-base leading-none">🌐</span>
+                  <span class="text-xs font-bold">وب‌سایت رسمی شرکت</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-xs">
+                  <span class="text-[11px] opacity-80 group-hover:opacity-100 font-mono" dir="ltr" id="dWebDomainText">domain.ir</span>
+                  <span class="group-hover:translate-x-[-2px] transition">↗</span>
+                </div>
+              </a>
             </div>
+
+            <!-- Collapsible Edit Fields -->
+            <details class="group mt-2 text-[11px] text-slate-400">
+              <summary class="cursor-pointer hover:text-slate-200 transition flex items-center justify-between py-1 border-t border-[#46504B]/50 select-none">
+                <span class="text-[11px] text-[#8FB4AA]">⚙️ ویرایش آدرس‌های اینترنتی</span>
+                <span class="text-[10px] text-slate-400 group-open:rotate-180 transition">▼</span>
+              </summary>
+              <div class="space-y-2 pt-2">
+                <div>
+                  <label class="block text-[10px] text-slate-400 mb-0.5">آدرس لینکدین:</label>
+                  <input type="text" id="dEditLinkedin" class="w-full bg-[#1F2523] text-slate-200 border border-[#46504B] focus:border-[#8FB4AA] text-[11px] rounded px-2.5 py-1.5 font-mono text-left" dir="ltr">
+                </div>
+                <div>
+                  <label class="block text-[10px] text-slate-400 mb-0.5">آدرس وب‌سایت:</label>
+                  <input type="text" id="dEditWebsite" class="w-full bg-[#1F2523] text-slate-200 border border-[#46504B] focus:border-[#8FB4AA] text-[11px] rounded px-2.5 py-1.5 font-mono text-left" dir="ltr">
+                </div>
+              </div>
+            </details>
           </div>
 
           <!-- Buying Committee -->
           <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
-            <span class="text-xs font-bold text-slate-200 block border-b border-[#46504B] pb-2">درخت تصمیم‌گیرندگان (Buying Committee):</span>
-            <div class="space-y-2.5">
-              <div>
-                <span class="text-[10px] text-blue-300 bg-[#527C78]/15 px-2 py-0.5 rounded font-medium">Economic Buyer (تصمیم‌گیرنده بودجه)</span>
-                <input type="text" id="dEditDecisionMaker" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
-              </div>
-              <div>
-                <span class="text-[10px] text-sky-300 bg-sky-500/10 px-2 py-0.5 rounded font-medium">Approver (هیئت‌مدیره / مصوب)</span>
-                <input type="text" id="dEditApprover" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
-              </div>
-              <div>
-                <span class="text-[10px] text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded font-medium">Tech Champion (ارزیاب فنی / CTO)</span>
-                <input type="text" id="dEditTechLead" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
-              </div>
+            <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
+              <span class="text-xs font-bold text-slate-200">درخت تصمیم‌گیرندگان (Buying Committee):</span>
+              <span class="text-[10px] text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded font-mono">C-Level Decision Tree</span>
             </div>
+            
+            <!-- Dynamic Interactive Cards with Real LinkedIn Buttons -->
+            <div id="dBuyingCommitteeCards" class="space-y-2.5">
+              <!-- Dynamically Populated with Real Clickable Buttons -->
+            </div>
+
+            <!-- Collapsible Edit Fields (for manual edit and backward compatibility) -->
+            <details class="group mt-2 text-[11px] text-slate-400">
+              <summary class="cursor-pointer hover:text-slate-200 transition flex items-center justify-between py-1 border-t border-[#46504B]/50 select-none">
+                <span class="text-[11px] text-[#8FB4AA]">⚙️ ویرایش دستی نام‌ها و عناوین</span>
+                <span class="text-[10px] text-slate-400 group-open:rotate-180 transition">▼</span>
+              </summary>
+              <div class="space-y-2 pt-2">
+                <div>
+                  <span class="text-[10px] text-blue-300 block mb-0.5">Economic Buyer (تصمیم‌گیرنده بودجه):</span>
+                  <input type="text" id="dEditDecisionMaker" class="w-full bg-[#1F2523] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded px-2.5 py-1.5 text-xs">
+                </div>
+                <div>
+                  <span class="text-[10px] text-sky-300 block mb-0.5">Approver (هیئت‌مدیره / مصوب):</span>
+                  <input type="text" id="dEditApprover" class="w-full bg-[#1F2523] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded px-2.5 py-1.5 text-xs">
+                </div>
+                <div>
+                  <span class="text-[10px] text-emerald-300 block mb-0.5">Tech Champion (ارزیاب فنی / CTO):</span>
+                  <input type="text" id="dEditTechLead" class="w-full bg-[#1F2523] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded px-2.5 py-1.5 text-xs">
+                </div>
+              </div>
+            </details>
           </div>
 
           <!-- Layer-2 Technical, Product & Operations Contacts -->
@@ -2553,7 +2602,7 @@
 
 
     // LocalStorage State Management with Anti-Stale Migration
-    const CURRENT_DATA_VERSION = "2026-11-10-board-restore-v10";
+    const CURRENT_DATA_VERSION = "2026-11-10-drawer-links-v11";
     const storedVersion = localStorage.getItem("pfg_data_version");
     if (storedVersion !== CURRENT_DATA_VERSION) {
       console.log("War Room: Detected older data version, purging stale cache to apply authoritative server state.");
@@ -2880,37 +2929,145 @@
       }
     }
 
-        function renderLayer2Contacts(contacts) {
+    function parseCommitteeEntry(rawStr) {
+      if (!rawStr || !rawStr.trim()) return [];
+      const segments = rawStr.split(/\s+\/\s+/);
+      return segments.map(seg => {
+        let liUrl = null;
+        let handle = "";
+        const match = seg.match(/(?:https?:\/\/(?:www\.)?linkedin\.com\/in\/([a-zA-Z0-9_\-%]+)|in\/([a-zA-Z0-9_\-%]+))/i);
+        if (match) {
+          handle = match[1] || match[2];
+          liUrl = `https://www.linkedin.com/in/${handle}/`;
+        }
+        let cleanText = seg.replace(/—\s*(?:https?:\/\/(?:www\.)?linkedin\.com\/in\/[a-zA-Z0-9_\-%]+\/?|in\/[a-zA-Z0-9_\-%]+\/?)/gi, "").trim();
+        cleanText = cleanText.replace(/—\s*in\/[a-zA-Z0-9_\-%]+/gi, "").trim();
+        cleanText = cleanText.replace(/[—–-]\s*$/, "").trim();
+        cleanText = cleanText.replace(/\s+\)/g, ")");
+        return { text: cleanText, liUrl, handle };
+      });
+    }
+
+    function renderBuyingCommittee(acc) {
+      const container = document.getElementById("dBuyingCommitteeCards");
+      if (!container) return;
+      container.innerHTML = "";
+
+      const roles = [
+        {
+          key: "decisionMaker",
+          label: "Economic Buyer",
+          subLabel: "تصمیم‌گیرنده بودجه / مدیرعامل",
+          badgeColor: "text-blue-300 bg-blue-500/15 border-blue-500/30",
+          accentBorder: "border-blue-500/35"
+        },
+        {
+          key: "approver",
+          label: "Approver",
+          subLabel: "هیئت‌مدیره / مصوب نهایی",
+          badgeColor: "text-sky-300 bg-sky-500/15 border-sky-500/30",
+          accentBorder: "border-sky-500/35"
+        },
+        {
+          key: "techLead",
+          label: "Tech Champion",
+          subLabel: "ارزیاب فنی / CTO / سرپرست زیرساخت",
+          badgeColor: "text-emerald-300 bg-emerald-500/15 border-emerald-500/30",
+          accentBorder: "border-emerald-500/35"
+        }
+      ];
+
+      roles.forEach(r => {
+        const rawVal = acc[r.key];
+        const people = parseCommitteeEntry(rawVal);
+        
+        const block = document.createElement("div");
+        block.className = `p-2.5 rounded-xl bg-[#222826] border ${r.accentBorder} space-y-2`;
+        
+        let html = `
+          <div class="flex items-center justify-between">
+            <span class="text-[10.5px] font-bold px-2 py-0.5 rounded border ${r.badgeColor}">
+              ${r.label}
+            </span>
+            <span class="text-[10px] text-slate-400 font-medium">${r.subLabel}</span>
+          </div>
+        `;
+
+        if (people.length === 0 || !people[0].text) {
+          html += `<div class="text-[11px] text-slate-500 italic py-1 px-1">ثبت نشده یا نامشخص</div>`;
+        } else {
+          people.forEach(p => {
+            html += `
+              <div class="p-2.5 rounded-lg bg-[#2E3633] border border-[#46504B]/70 flex flex-col gap-2">
+                <div class="text-xs font-bold text-white leading-relaxed">
+                  ${p.text}
+                </div>
+                ${p.liUrl ? `
+                  <a href="${p.liUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between w-full py-1.5 px-3 rounded-lg bg-[#0A66C2]/20 hover:bg-[#0A66C2]/35 border border-[#0A66C2]/50 text-sky-200 hover:text-white text-xs font-semibold transition group shadow-sm">
+                    <div class="flex items-center gap-1.5">
+                      <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                      <span>مشاهده در لینکدین</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <span class="text-[10px] font-mono text-sky-300/80" dir="ltr">in/${p.handle}</span>
+                      <span class="group-hover:translate-x-[-2px] transition">↗</span>
+                    </div>
+                  </a>
+                ` : `
+                  <div class="text-[10px] text-slate-400 flex items-center gap-1.5 py-0.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                    <span>کانال ارتباطی: دفتر مرکزی / دبیرخانه</span>
+                  </div>
+                `}
+              </div>
+            `;
+          });
+        }
+
+        block.innerHTML = html;
+        container.appendChild(block);
+      });
+    }
+
+    function renderLayer2Contacts(contacts) {
       const container = document.getElementById("dLayer2ContactsContainer");
       if (!container) return;
       container.innerHTML = "";
       if (!contacts || contacts.length === 0) {
-        container.innerHTML = `<div class="text-[11px] text-slate-500 p-2 text-center">رابط لایه دوم ثبت نشده است.</div>`;
+        container.innerHTML = `<div class="text-[11px] text-slate-500 p-3 text-center bg-[#202725] rounded-lg">رابط لایه دوم ثبت نشده است.</div>`;
         return;
       }
       contacts.forEach(c => {
         const item = document.createElement("div");
-        item.className = "p-2.5 rounded-lg bg-[#343C38] border border-[#46504B] text-xs space-y-1 hover:border-[#8FB4AA] transition";
-        const shortLi = c.linkedin ? c.linkedin.replace("https://www.linkedin.com/", "").replace("http://www.linkedin.com/", "") : "";
-        const hasRealLi = c.linkedin && !c.linkedin.includes('linkedin.com/search') && !c.linkedin.includes('keywords=');
+        item.className = "p-3 rounded-xl bg-[#222826] border border-[#46504B] hover:border-[#8FB4AA] text-xs space-y-2 transition shadow-sm";
+        const shortLi = c.linkedin ? c.linkedin.replace(/https?:\/\/(www\.)?linkedin\.com\/in\//i, "").replace(/\/$/, "") : "";
+        const hasRealLi = c.linkedin && !c.linkedin.includes('linkedin.com/search') && !c.linkedin.includes('keywords=') && c.linkedin !== "#";
+
         item.innerHTML = `
           <div class="flex items-center justify-between">
-            <span class="font-bold text-white text-[11px]">${c.name || ""}</span>
-            <span class="text-[10px] text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-500/20">${c.role || ""}</span>
+            <span class="font-bold text-white text-xs">${c.name || "نامشخص"}</span>
+            <span class="text-[10px] text-sky-300 bg-sky-500/15 border border-sky-500/30 px-2 py-0.5 rounded font-semibold">${c.role || "رابط فنی/محصول"}</span>
           </div>
-          ${c.title ? `<div class="text-[10px] text-slate-300 leading-tight">${c.title}</div>` : ""}
+          ${c.title ? `<div class="text-[11px] text-slate-300 leading-snug">${c.title}</div>` : ""}
           ${c.phone ? `
-            <div class="pt-1 flex items-center justify-between text-[10px]">
-              <a href="tel:${c.phone}" class="text-emerald-400 hover:text-emerald-300 hover:underline font-mono font-bold inline-flex items-center gap-1" dir="ltr">
+            <div class="pt-1 flex items-center justify-between text-xs border-t border-[#46504B]/40">
+              <a href="tel:${c.phone}" class="text-emerald-400 hover:text-emerald-300 font-mono font-bold inline-flex items-center gap-1.5 py-1 px-2 rounded bg-emerald-500/10 border border-emerald-500/20" dir="ltr">
                 <span>📞</span> <span>${c.phone}</span>
               </a>
-              <span class="text-slate-400 text-[9.5px] truncate max-w-[140px]">${c.channel || 'دفتر مرکزی'}</span>
+              <span class="text-slate-400 text-[10px] truncate max-w-[150px]">${c.channel || 'دفتر مرکزی'}</span>
             </div>
           ` : ""}
           ${hasRealLi ? `
-            <div class="pt-0.5">
-              <a href="${c.linkedin}" target="_blank" class="text-[10px] text-[#8FB4AA] hover:underline font-mono inline-flex items-center gap-1">
-                <span>${shortLi}</span> ↗
+            <div class="pt-1">
+              <a href="${c.linkedin}" target="_blank" rel="noopener noreferrer" class="w-full py-1.5 px-3 rounded-lg bg-[#0A66C2]/20 hover:bg-[#0A66C2]/35 text-sky-200 hover:text-white border border-[#0A66C2]/45 text-xs font-semibold flex items-center justify-between transition group shadow-sm">
+                <div class="flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                  <span>مشاهده پروفایل در لینکدین</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="text-[10px] font-mono text-sky-300/80" dir="ltr">in/${shortLi}</span>
+                  <span class="group-hover:translate-x-[-2px] transition">↗</span>
+                </div>
               </a>
             </div>
           ` : ""}
@@ -3550,7 +3707,7 @@ function saveState() {
             </div>
             <div class="flex items-center gap-2 mt-1">
               <span class="px-2 py-0.5 rounded text-[10px] font-mono ${acc.tier === 'Tier A' ? (isPhase2 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-emerald-500/20 text-emerald-300') : 'bg-white/10 text-slate-200'}">${acc.tier} (${acc.score})</span>
-              <a href="${acc.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-[#8FB4AA] hover:underline text-[11px]">لینکدین</a>
+              ${acc.linkedin ? `<a href="${acc.linkedin}" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#0A66C2]/15 hover:bg-[#0A66C2]/30 text-sky-200 hover:text-white border border-[#0A66C2]/30 text-[10.5px] font-medium transition"><span>لینکدین</span> <span>↗</span></a>` : ""}
             </div>
           </td>
           <td class="p-3.5 text-slate-300">${acc.vertical}</td>
@@ -3560,12 +3717,18 @@ function saveState() {
           </td>
           <td class="p-3.5">
             ${(acc.layer2Contacts && acc.layer2Contacts.length > 0) ? `
-              <div class="space-y-1">
+              <div class="space-y-1.5">
                 ${acc.layer2Contacts.map(c => `
-                  <div class="text-[11px] flex items-center gap-1">
-                    <span class="text-sky-300 font-medium">${c.name}</span>
-                    <span class="text-slate-400 text-[10px]">(${c.role || ""})</span>
-                    ${c.linkedin ? `<a href="${c.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-[#8FB4AA] hover:underline text-[10px]">↗</a>` : ""}
+                  <div class="p-1.5 rounded-lg bg-[#222826] border border-[#46504B]/60 flex items-center justify-between gap-2 text-xs">
+                    <div class="truncate max-w-[140px]">
+                      <span class="text-white font-bold text-[11px]">${c.name}</span>
+                      <span class="text-slate-400 text-[10px] block leading-tight truncate">${c.role || c.title || ""}</span>
+                    </div>
+                    ${c.linkedin ? `
+                      <a href="${c.linkedin}" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#0A66C2]/20 hover:bg-[#0A66C2]/35 text-sky-200 hover:text-white border border-[#0A66C2]/40 text-[10px] font-semibold whitespace-nowrap transition">
+                        <span>لینکدین</span> <span>↗</span>
+                      </a>
+                    ` : ""}
                   </div>
                 `).join("")}
               </div>
@@ -3934,11 +4097,40 @@ function saveState() {
       document.getElementById("dEditTier").value = acc.tier || "Tier A";
       document.getElementById("dEditVertical").value = acc.vertical || "";
       
+      // Official Links & Actions
       document.getElementById("dEditLinkedin").value = acc.linkedin || "";
-      document.getElementById("dLiLinkPreview").href = acc.linkedin || "#";
-      
       document.getElementById("dEditWebsite").value = acc.website || "";
-      document.getElementById("dWebLinkPreview").href = acc.website || "#";
+
+      const liBtn = document.getElementById("dLiLinkPreview");
+      const webBtn = document.getElementById("dWebLinkPreview");
+      const liText = document.getElementById("dLiHandleText");
+      const webText = document.getElementById("dWebDomainText");
+
+      if (acc.linkedin && acc.linkedin !== "#" && !acc.linkedin.startsWith("javascript")) {
+        liBtn.href = acc.linkedin;
+        liBtn.classList.remove("opacity-40", "pointer-events-none");
+        if (liText) {
+          const handle = acc.linkedin.replace(/https?:\/\/(www\.)?linkedin\.com\/(company\/)?/i, "").replace(/\/$/, "");
+          liText.innerText = handle ? `company/${handle}` : "linkedin.com/company";
+        }
+      } else {
+        liBtn.href = "#";
+        liBtn.classList.add("opacity-40", "pointer-events-none");
+        if (liText) liText.innerText = "ثبت نشده";
+      }
+
+      if (acc.website && acc.website !== "#" && !acc.website.startsWith("javascript")) {
+        webBtn.href = acc.website;
+        webBtn.classList.remove("opacity-40", "pointer-events-none");
+        if (webText) {
+          const domain = acc.website.replace(/https?:\/\/(www\.)?/i, "").replace(/\/$/, "");
+          webText.innerText = domain || "وب‌سایت";
+        }
+      } else {
+        webBtn.href = "#";
+        webBtn.classList.add("opacity-40", "pointer-events-none");
+        if (webText) webText.innerText = "ثبت نشده";
+      }
 
       document.getElementById("dEditRegisteredName").value = acc.registeredName || "";
       document.getElementById("dEditNationalId").value = acc.nationalId || "";
@@ -3963,6 +4155,7 @@ function saveState() {
       renderDocsList();
       renderActionsFeed();
       renderCommentsList();
+      renderBuyingCommittee(acc);
       renderLayer2Contacts(acc.layer2Contacts || []);
       updateDrawerBadges();
       switchDrawerTab('hooks');
@@ -4008,6 +4201,9 @@ function saveState() {
       selectedAccount.assigneeResearcher = newResearcher;
       selectedAccount.assigneeDrafter = document.getElementById("dEditAssigneeDrafter").value;
       selectedAccount.assigneeApprover = document.getElementById("dEditAssigneeApprover").value;
+
+      renderBuyingCommittee(selectedAccount);
+      renderLayer2Contacts(selectedAccount.layer2Contacts || []);
 
       saveState();
       renderBoard();
