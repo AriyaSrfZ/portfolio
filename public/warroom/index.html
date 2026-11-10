@@ -2549,11 +2549,11 @@
     "officialSource": "سامانه رسمیو و روزنامه رسمی کشور",
     "shortcode": ""
   }
-]];
+];
 
 
     // LocalStorage State Management with Anti-Stale Migration
-    const CURRENT_DATA_VERSION = "2026-11-09-p1-layer2-linkedin-v9";
+    const CURRENT_DATA_VERSION = "2026-11-10-board-restore-v10";
     const storedVersion = localStorage.getItem("pfg_data_version");
     if (storedVersion !== CURRENT_DATA_VERSION) {
       console.log("War Room: Detected older data version, purging stale cache to apply authoritative server state.");
