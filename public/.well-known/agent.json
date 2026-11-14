@@ -2,24 +2,24 @@
   "name": "Ariya Sarrafzadeh Systems Architecture",
   "version": "1.0.0",
   "description": "Production systems architecture, high-throughput payment switching, and fintech intelligence.",
-  "url": "https://ariya-sarrafzadeh.xyz",
+  "url": "https://ariya-sarrafzadeh.ir",
   "author": {
     "name": "Ariya Sarrafzadeh",
     "email": "ariasg2002@gmail.com",
-    "url": "https://ariya-sarrafzadeh.xyz/about"
+    "url": "https://ariya-sarrafzadeh.ir/about"
   },
   "endpoints": {
-    "openapi": "https://ariya-sarrafzadeh.xyz/openapi.json",
-    "openapi_yaml": "https://ariya-sarrafzadeh.xyz/api/openapi.yaml",
-    "docs": "https://ariya-sarrafzadeh.xyz/docs",
-    "llms_txt": "https://ariya-sarrafzadeh.xyz/llms.txt",
-    "tools": "https://ariya-sarrafzadeh.xyz/api/tools.json",
-    "health": "https://ariya-sarrafzadeh.xyz/api/v1/health.json",
-    "profile": "https://ariya-sarrafzadeh.xyz/api/v1/profile.json",
-    "dossiers": "https://ariya-sarrafzadeh.xyz/api/v1/dossiers.json",
-    "dictionary": "https://ariya-sarrafzadeh.xyz/api/v1/dictionary.json",
-    "specs": "https://ariya-sarrafzadeh.xyz/api/v1/specs.json",
-    "intake": "https://ariya-sarrafzadeh.xyz/api/v1/intake"
+    "openapi": "https://ariya-sarrafzadeh.ir/openapi.json",
+    "openapi_yaml": "https://ariya-sarrafzadeh.ir/api/openapi.yaml",
+    "docs": "https://ariya-sarrafzadeh.ir/docs",
+    "llms_txt": "https://ariya-sarrafzadeh.ir/llms.txt",
+    "tools": "https://ariya-sarrafzadeh.ir/api/tools.json",
+    "health": "https://ariya-sarrafzadeh.ir/api/v1/health.json",
+    "profile": "https://ariya-sarrafzadeh.ir/api/v1/profile.json",
+    "dossiers": "https://ariya-sarrafzadeh.ir/api/v1/dossiers.json",
+    "dictionary": "https://ariya-sarrafzadeh.ir/api/v1/dictionary.json",
+    "specs": "https://ariya-sarrafzadeh.ir/api/v1/specs.json",
+    "intake": "https://ariya-sarrafzadeh.ir/api/v1/intake"
   },
   "capabilities": [
     "fintech_dictionary_search",

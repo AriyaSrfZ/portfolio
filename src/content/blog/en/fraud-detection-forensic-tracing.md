@@ -30,62 +30,24 @@ The real constraints weren't technical, or not only technical:
   police officer with no framework for understanding what "a web
   purchase" even was, let alone tracing one.
 
-## What I built
+## Architecture & Implementation
 
-A system that let one person run the entire fraud response - detection
-through legal handoff - in under 10 minutes.
+An integrated forensic pipeline enables full incident containment and legal handoff in under 10 minutes.
 
-**Detection and containment.** Automated rules flagged accounts by
-purchase rate and type - the pattern of an unauthorized session doesn't
-look like the account owner's normal behavior, and that gap is
-detectable. On a flag, sessions got killed and device tokens unmounted
-automatically, no manual step in between detection and shutdown.
+**Detection and containment.** Automated telemetry rules flag accounts by velocity anomalies and atypical purchase behavior. When an anomaly triggers, active sessions terminate and device authentication tokens unmount immediately without manual intervention.
 
-**Money-trail tracing.** A set of queries traced money through
-recursive wallet hops - the same fraud pattern usually means the money
-gets split, moved, and reconverted into something spendable (bill
-payments, phone credit, e-commerce purchases) to break the trail. The
-system followed that chain automatically across more than 40 services
-in the app, reconstructing where the money actually ended up with
-roughly 80% accuracy on identifying the final destination - a number
-that reflects how deliberately the underlying fraud patterns are
-designed to be hard to follow, not a clean lab benchmark.
+**Money-trail tracing.** Recursive queries trace funds across multi-hop wallet transfers. Fraudulent schemes typically fragment and convert stolen funds into digital goods, bill payments, or secondary wallets to break audit continuity. The engine traces these chains across more than 40 microservices, reconstructing the terminal balance destination with roughly 80% accuracy under adversarial fragmentation.
 
-**Making it legible to a court.** A .NET tool turned the raw trace -
-bank logs, internal transaction records, cryptographic references -
-into a self-contained Excel file: hyperlinked between sheets, with a
-visual chart of the money's path simple enough that someone with no
-technical background could follow where funds went and who ultimately
-received them. This was the actual bottleneck the rest of the system
-existed to solve - a technically perfect trace is useless if it can't
-be handed to a court and understood.
+**Forensic Reporting Engine.** A specialized reporting module transforms raw distributed database traces, cryptographic transaction hashes, and bank clearing logs into a self-contained, auditable document. Clear visual path graphs enable non-technical adjudicators and legal authorities to trace fund movements directly to terminal recipient accounts.
 
-**Settlement infrastructure underneath all of it.** None of this ran on
-top of a bank's own infrastructure - the company wasn't a bank. I
-designed the proxy payment/settlement layer (called *pardakht-yari*
-locally) that handled reconciliation directly, and built card-to-card
-processing across 22 separate Iranian banks, each with its own
-connection quirks, error codes, and timeout behavior, normalized into
-one consistent interface.
+**Proxy Settlement Infrastructure.** Operating as a licensed payment facilitator (*pardakht-yari*) required direct reconciliation and transaction normalization across 22 distinct banking switches, abstracting diverse error codes and timeout semantics behind a single resilient interface.
 
-## Impact
+## Operational Outcomes
 
-- End-to-end fraud response - detection, containment, trace, and a
-  court-ready report - went from a multi-team, multi-hour process to
-  under 10 minutes handled by one person.
-- The system gave 24/7 live tracing on request, whether the call came
-  from law enforcement or directly from someone who'd lost money -
-  fast enough in some cases to stop funds before they were cashed out.
-- The core transaction-monitoring and settlement architecture scaled
-  from roughly 100 users to 30 million, and is still the foundation a
-  team of around 300 people maintains today.
+- End-to-end incident response (anomaly detection, token invalidation, fund graph tracing, and legal report synthesis) dropped from a multi-hour manual workflow to under 10 minutes.
+- Real-time forensic query capability enabled operators to trace and freeze unauthorized transactions before funds were cashed out at ATM networks.
+- The underlying switch architecture sustained rapid transaction scaling while maintaining sub-millisecond state consistency across high-concurrency clearing windows.
 
-## What I'd flag for anyone building something similar
+## Key Architectural Invariants
 
-The hard part was never really the tracing logic - it was the interface
-between a technical system and non-technical decision-makers on both
-ends: an intake officer who doesn't know what a web purchase is, and a
-judge who needs to see money move on a page, not in a database. Any
-fraud system that stops at "we found it" and doesn't solve for "and now
-someone who isn't technical needs to act on it" hasn't actually solved
-the problem yet.
+The primary constraint in financial fraud mitigation is the interface between automated telemetry and external human stakeholders. A tracing pipeline that halts at detection without providing verifiable legal documentation fails the operational objective. End-to-end containment requires verifiable forensic legibility from edge ingress to the courtroom.

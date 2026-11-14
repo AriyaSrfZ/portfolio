@@ -1,7 +1,7 @@
 # Ariya Sarrafzadeh — Comprehensive Systems Architecture Intelligence & Production Specifications
 
 Principal Systems Architect & Technical Product Leader
-Production Systems: https://ariya-sarrafzadeh.xyz
+Production Systems: https://ariya-sarrafzadeh.ir
 Email: ariasg2002@gmail.com
 Location: Tehran, Iran
 
@@ -56,11 +56,11 @@ Every term includes English and Persian definitions, Iranian fintech production 
 
 ## 4. API Endpoints for Agents
 
-- `GET https://ariya-sarrafzadeh.xyz/openapi.json`: OpenAPI 3.1 schema.
-- `GET https://ariya-sarrafzadeh.xyz/api/v1/health.json`: System telemetry & operational status.
-- `GET https://ariya-sarrafzadeh.xyz/api/v1/profile.json`: Verified credentials & metrics.
-- `GET https://ariya-sarrafzadeh.xyz/api/v1/dossiers.json`: Full engineering dossiers.
-- `GET https://ariya-sarrafzadeh.xyz/api/v1/specs.json`: 17 regulatory reference PDFs.
-- `GET https://ariya-sarrafzadeh.xyz/api/v1/dictionary.json`: Complete 1,012-term fintech dictionary.
-- `GET https://ariya-sarrafzadeh.xyz/api/tools.json`: OpenAI / Claude tool calling schemas.
-- `POST https://ariya-sarrafzadeh.xyz/api/v1/intake`: Architecture review consultation request.
+- `GET https://ariya-sarrafzadeh.ir/openapi.json`: OpenAPI 3.1 schema.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/health.json`: System telemetry & operational status.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/profile.json`: Verified credentials & metrics.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/dossiers.json`: Full engineering dossiers.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/specs.json`: 17 regulatory reference PDFs.
+- `GET https://ariya-sarrafzadeh.ir/api/v1/dictionary.json`: Complete 1,012-term fintech dictionary.
+- `GET https://ariya-sarrafzadeh.ir/api/tools.json`: OpenAI / Claude tool calling schemas.
+- `POST https://ariya-sarrafzadeh.ir/api/v1/intake`: Architecture review consultation request.

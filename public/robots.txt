@@ -47,5 +47,5 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-Sitemap: https://ariya-sarrafzadeh.xyz/sitemap.xml
-Sitemap: https://ariya-sarrafzadeh.xyz/sitemap-index.xml
+Sitemap: https://ariya-sarrafzadeh.ir/sitemap.xml
+Sitemap: https://ariya-sarrafzadeh.ir/sitemap-index.xml

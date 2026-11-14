@@ -1,7 +1,7 @@
 # High-Scale Iranian Fintech Microservices Architecture: The Production Blueprint
 
 **Author:** Ariya Sarrafzadeh  
-**Website:** [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz)  
+**Website:** [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir)  
 **Target Audience:** Distributed Systems Architects, Lead Backend Engineers, and Technical Product Managers  
 **Core Technologies:** Java (Spring Boot, Spring WebFlux), RabbitMQ, Redis, MongoDB, MySQL, MinIO, PCI Demilitarized Zones  
 **Domain Scope:** Iranian Payment Rails, Shaparak, Double-Entry Ledger, Smart PSP Switching, BNPL & Revolving Limits, Sovereign eKYC, Automated Merchant Early Settlement  
@@ -502,4 +502,4 @@ Key performance indicators and automated circuit breakers for platform product m
 | **eKYC Services** | Shahkar Verification Latency | $< 1200\text{ ms}$ | Fallback to secondary KYC aggregator; display retry screen. |
 
 ---
-*Published as an architectural reference for fintech engineers and systems builders at [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz).*
+*Published as an architectural reference for fintech engineers and systems builders at [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir).*

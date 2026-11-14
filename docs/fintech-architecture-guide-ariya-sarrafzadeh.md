@@ -1,7 +1,7 @@
 # Architecture Blueprint: High-Scale Iranian Fintech Microservices System Design
 ## راهنمای جامع معماری سیستم و مایکروسرویس‌های فین‌تک مقیاس‌بالا
 
-**Target Publication**: [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz)  
+**Target Publication**: [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir)  
 **Author**: Ariya Sarrafzadeh  
 **Language**: English & Farsi (فارسی و انگلیسی)  
 **Topics**: Fintech Architecture, Microservices, Event-Driven Systems, Payment Gateways, Wallet Ledgers, BNPL, eKYC, Iranian Financial Infrastructure  
@@ -295,4 +295,4 @@ In a distributed microservices environment, immediate consistency across all rea
 - [x] **Decouple audit and analytics** via asynchronous event streams (RabbitMQ) to maximize transactional throughput.
 
 ---
-*Published as an open technical resource for the Iranian Fintech & Software Engineering Community at [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz).*
+*Published as an open technical resource for the Iranian Fintech & Software Engineering Community at [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir).*

@@ -16,7 +16,7 @@ In high-concurrency payment platforms, synchronous monolithic execution creates 
 
 ## The approach
 
-To eliminate cascading failures and maintain absolute financial integrity across banking rails, we decoupled execution using the **Transactional Outbox Pattern** paired with a **Two-Phase Balance Reservation Engine**:
+To eliminate cascading failures and maintain absolute financial integrity across banking rails, execution is decoupled using the **Transactional Outbox Pattern** paired with a **Two-Phase Balance Reservation Engine**:
 
 ### 1. Two-Phase Balance Reservation Machine
 Instead of mutable balance adjustments, financial accounting enforces an append-only Double-Entry Ledger combined with a formal state machine:

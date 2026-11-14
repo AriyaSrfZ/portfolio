@@ -1,7 +1,7 @@
 # The Physics of Money Movement: Remittance Systems, Distributed Ledgers & Payment Card Security
 
 **Author:** Ariya Sarrafzadeh  
-**Website:** [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz)  
+**Website:** [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir)  
 **Target Audience:** Distributed Systems Engineers, Lead Architects, and Fintech Product Managers  
 **Topics:** Remittance Pipelines, Double-Entry Invariants, Distributed Idempotency, Card Security (CVV2/CVC2/CID), PCI-DSS Requirement 3.2, Ephemeral Token Vaults  
 
@@ -279,4 +279,4 @@ Before shipping code in a financial transaction environment, verify these six co
 - [ ] **Timeout Auto-Polling:** When external bank calls experience network timeouts, transition the transaction into an isolated polling queue rather than blindly retrying or failing.
 
 ---
-*Published as an open technical resource for payment engineers and systems architects at [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz).*
+*Published as an open technical resource for payment engineers and systems architects at [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir).*

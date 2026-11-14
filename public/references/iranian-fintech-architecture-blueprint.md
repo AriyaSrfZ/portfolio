@@ -2,7 +2,7 @@
 ## راهنمای جامع و مرجع معماری میکروسرویس‌های فین‌تک در مقیاس سازمانی
 
 **Author:** Ariya Sarrafzadeh  
-**Domain:** [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz)  
+**Domain:** [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir)  
 **Target Audience:** Fintech Product Managers, Software Architects, Lead Backend Engineers, and FinTech Builders  
 **Topics:** Iranian Payment Rails, Shaparak, Double-Entry Wallet Ledger, BNPL & Credit Engine, Smart PSP Switch, eKYC, Automated Merchant Early Settlement  
 **Languages:** English & Persian (فارسی و انگلیسی)  
@@ -625,5 +625,5 @@ To successfully manage a high-scale financial platform in Iran, a Product Manage
 
 **Ariya Sarrafzadeh** is a Senior Product Leader and Distributed Systems Architect specializing in FinTech, Payment Switch Infrastructure, and Large-Scale Financial Platforms.
 
-- **Website / Portfolio:** [ariya-sarrafzadeh.xyz](https://ariya-sarrafzadeh.xyz)
+- **Website / Portfolio:** [ariya-sarrafzadeh.ir](https://ariya-sarrafzadeh.ir)
 - **Specializations:** High-Throughput Event-Driven Microservices, Payment Rails, BNPL, Idempotent Financial Ledgers, and Regulatory Integrations.

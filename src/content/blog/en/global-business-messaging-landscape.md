@@ -159,7 +159,7 @@ The single greatest financial threat to enterprise SMS budgets today is **Artifi
 
 - **Client Fingerprinting & Behavioral Gating:** Enforce invisible CAPTCHA, browser biometric analysis, and progressive rate limiting on all public endpoints that trigger SMS dispatches.
 - **Velocity Throttling by Destination Prefix:** Implement distributed sliding-window counters in Redis to limit concurrent OTP generation to specific country codes or mobile carrier prefixes.
-- **Provider Risk Scoring:** Leverage CPaaS real-time fraud mitigation APIs (e.g., Twilio Lookup Fraud Score, Sinch Verification) before generating SMS PDUs.
+- **Provider Risk Scoring:** Utilize CPaaS real-time fraud mitigation APIs (e.g., Twilio Lookup Fraud Score, Sinch Verification) before generating SMS PDUs.
 
 ---
 

@@ -4,7 +4,6 @@ import FloatingNavbar from '../components/react/FloatingNavbar';
 import BackgroundController from '../components/react/BackgroundController';
 import Velaris from '../components/ui/velaris';
 import Analytics from '../components/Analytics.astro';
-import ImageLightbox from '../components/ImageLightbox.astro';
 import { BRAND_NAME, BRAND_NAME_FA, PRIMARY_TAGLINE, PRIMARY_TAGLINE_FA, SUPPORTING_STATEMENT, SUPPORTING_STATEMENT_FA } from '../consts';
 
 interface Props {
@@ -26,7 +25,7 @@ const {
 } = Astro.props;
 
 const isFa = lang === 'fa';
-const siteUrl = 'https://ariya-sarrafzadeh.xyz';
+const siteUrl = 'https://ariya-sarrafzadeh.ir';
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(image, siteUrl).href;
 
@@ -35,12 +34,12 @@ const jsonLdPerson = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://ariya-sarrafzadeh.xyz/#person",
+      "@id": "https://ariya-sarrafzadeh.ir/#person",
       "name": "Ariya Sarrafzadeh",
       "alternateName": "آریا صراف‌زاده",
       "jobTitle": "Principal Systems Architect & Technical Product Leader",
       "description": SUPPORTING_STATEMENT,
-      "url": "https://ariya-sarrafzadeh.xyz",
+      "url": "https://ariya-sarrafzadeh.ir",
       "email": "ariasg2002@gmail.com",
       "sameAs": [
         "https://github.com/AriyaSrfZ",
@@ -67,10 +66,10 @@ const jsonLdPerson = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://ariya-sarrafzadeh.xyz/#website",
-      "url": "https://ariya-sarrafzadeh.xyz",
+      "@id": "https://ariya-sarrafzadeh.ir/#website",
+      "url": "https://ariya-sarrafzadeh.ir",
       "name": "Ariya Sarrafzadeh — Systems Architecture & Engineering Portfolio",
-      "publisher": { "@id": "https://ariya-sarrafzadeh.xyz/#person" },
+      "publisher": { "@id": "https://ariya-sarrafzadeh.ir/#person" },
       "inLanguage": ["en", "fa"]
     },
     {
@@ -79,16 +78,16 @@ const jsonLdPerson = {
       "url": canonicalUrl,
       "name": title,
       "description": description,
-      "isPartOf": { "@id": "https://ariya-sarrafzadeh.xyz/#website" },
-      "about": { "@id": "https://ariya-sarrafzadeh.xyz/#person" },
+      "isPartOf": { "@id": "https://ariya-sarrafzadeh.ir/#website" },
+      "about": { "@id": "https://ariya-sarrafzadeh.ir/#person" },
       "inLanguage": lang
     },
     {
       "@type": "Organization",
-      "@id": "https://ariya-sarrafzadeh.xyz/#organization",
+      "@id": "https://ariya-sarrafzadeh.ir/#organization",
       "name": "Ariya Sarrafzadeh Systems Engineering",
-      "url": "https://ariya-sarrafzadeh.xyz",
-      "logo": "https://ariya-sarrafzadeh.xyz/brand/as-lockup-dark.svg",
+      "url": "https://ariya-sarrafzadeh.ir",
+      "logo": "https://ariya-sarrafzadeh.ir/brand/as-lockup-dark.svg",
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -259,6 +258,5 @@ const jsonLdPerson = {
 
     requestAnimationFrame(raf);
   </script>
-  <ImageLightbox />
 </body>
 </html>

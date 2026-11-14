@@ -8,7 +8,7 @@ technologies: ["ETL", "Elasticsearch", "PostgreSQL", "Redis", "Python", "Apache 
 
 ## 01. The Problem: Data Fragmentation at Scale
 
-High-velocity fintech and telecom super-apps inevitably inherit millions of fragmented customer identities across disparate legacy silos: SIM card registration archives, billing ledgers, wallet profiles, and merchant records. In our production environment, the platform handled a core dataset of **94.7 million records** characterized by severe data decay:
+High-velocity fintech and telecom super-apps inevitably inherit millions of fragmented customer identities across disparate legacy silos: SIM card registration archives, billing ledgers, wallet profiles, and merchant records. Across high-volume consumer platforms, datasets frequently exceed **90+ million records** characterized by severe data decay:
 
 - **Unstandardized Schemas:** Missing national ID codes, varied date-of-birth formats (Gregorian vs. Solar Hijri), and inconsistent Persian orthography (Arabic vs. Persian `ی` and `ک`).
 - **Concurrency Bottlenecks:** Real-time checkout queries executing full-table scans against unindexed relational databases triggered table-level locking cascades and database deadlocks during promotional flash sales.
@@ -18,7 +18,7 @@ High-velocity fintech and telecom super-apps inevitably inherit millions of frag
 
 ## 02. Architectural Solution: Multi-Pass Deterministic Pipeline
 
-To clean, deduplicate, and enrich 94.7M customer profiles without degrading core payment switch latency, we architected a two-tier hybrid data pipeline: an asynchronous batch ETL engine paired with an in-memory low-latency serving cache.
+To clean, deduplicate, and enrich large-scale customer profiles without degrading core payment switch latency, the architecture deploys a two-tier hybrid data pipeline: an asynchronous batch ETL engine paired with an in-memory low-latency serving cache.
 
 ### 1. Orthographic Normalization & Phonetic Blocking
 Every raw name and address string undergoes deterministic sanitization prior to ingestion:

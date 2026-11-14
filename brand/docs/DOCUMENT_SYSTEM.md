@@ -58,4 +58,4 @@ Diagrams must maintain strict semantic clarity over decorative styling:
 Each document page should include:
 - **Header:** Document Title left-aligned; Monogram stamp right-aligned (`public/brand/as-signature.svg`).
 - **Footer:** Confidentiality / Publication tier; ISO date (`YYYY-MM-DD`); Page number in format `Page X of Y`.
-- **Author Stamp:** `Ariya Sarrafzadeh · Systems Architect · https://ariya-sarrafzadeh.xyz`
+- **Author Stamp:** `Ariya Sarrafzadeh · Systems Architect · https://ariya-sarrafzadeh.ir`

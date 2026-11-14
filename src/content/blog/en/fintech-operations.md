@@ -19,10 +19,10 @@ Under these conditions, treating production incidents with manual intervention d
 
 ## The approach
 
-To safeguard 24/7 financial reliability without an army of operators, I established a **Telemetry-First Automated Operations Engine**:
+To safeguard 24/7 financial reliability without relying on manual intervention, systems enforce a **Telemetry-First Automated Operations Engine**:
 
 ### 1. Circuit Breakers & Dynamic Routing
-- **Payment Success Rate (PSR) Triggers:** Implemented automated health probes monitoring rolling 60-second success rates across payment service providers (PSPs). If a PSP dropped below $88\%$ PSR, the routing weight dropped dynamically to $0\%$, routing transaction volume to standby clearing rails without manual on-call paging.
+- **Payment Success Rate (PSR) Triggers:** Automated health probes monitor rolling 60-second success rates across payment service providers (PSPs). If a PSP drops below $88\%$ PSR, the routing weight drops dynamically to $0\%$, routing transaction volume to standby clearing rails without manual on-call paging.
 - **Fail-Fast Ingress Shedding:** Edge API Gateway integrated Redis token buckets to shed low-priority non-financial queries during upstream bank stress, reserving connection threads exclusively for active ledger state commits.
 
 ### 2. Closed-Loop Telemetry & Golden Signals
