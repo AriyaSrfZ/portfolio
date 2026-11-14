@@ -43,7 +43,7 @@ Never use generic Tailwind purple/blue gradients. All UI strictly adheres to:
 ---
 
 ## 04.1 / CAREER CONTEXT
-For any resume, cover letter, or job-application work, read `docs/career/CAREER_CONTEXT.md` first.
+For any resume, cover letter, or job-application work, read `docs/career/CAREER_CONTEXT.md` first. Then follow `career/README.md` and use its templates and `career/build.py`.
 
 ---
 

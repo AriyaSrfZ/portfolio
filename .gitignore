@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # archived local agent skills
 .agents/skills_archive/
+
+# Career kit build output (contains phone number)
+career/out/
