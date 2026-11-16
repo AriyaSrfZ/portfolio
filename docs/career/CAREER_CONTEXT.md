@@ -33,6 +33,7 @@ Facts below come from Ariya directly (Nov 2026). Do not invent beyond them.
 - In the early Digipay years the team was small and Ariya was the backup and point person on every front. He has taken part in every kind of fintech task there, including merchant onboarding, merchant settlement, payment gateway operations and configuration, partner and service provider support, and customer journeys.
 - When a posting asks for a fintech or payment-platform task, add it to the CV as hands-on Digipay experience, worded as "worked on" or "backup and point person for". Do not list it as a gap and do not ask him to confirm it again.
 - The CV is short on purpose. He starts the history at 2016 and keeps titles small so the CV does not show his age or read like a life journal. Never suggest adding the full history.
+- Telecom depth held in reserve: expert in ONC configuration (ONC is a switch used by country-scale telecom providers). Left off the CV to avoid crowding it. Add it only when a posting asks for carrier or telecom switching experience.
 - Still never invent employers, titles, dates or numbers.
 
 ## Industries
