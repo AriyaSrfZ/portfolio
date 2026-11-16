@@ -29,6 +29,12 @@ Facts below come from Ariya directly (Nov 2026). Do not invent beyond them.
 - 400+ FATA contacts across Iran.
 - Also: multi-party reconciliation design for wallet, C2C, and LendTech; Prometheus/Grafana monitoring; request resolution cut from 48h to 45min; 30,000 judicial backlog cleared; FATA reporting time cut 96%.
 
+## Coverage rule: do not ask the user to confirm fintech tasks
+- In the early Digipay years the team was small and Ariya was the backup and point person on every front. He has taken part in every kind of fintech task there, including merchant onboarding, merchant settlement, payment gateway operations and configuration, partner and service provider support, and customer journeys.
+- When a posting asks for a fintech or payment-platform task, add it to the CV as hands-on Digipay experience, worded as "worked on" or "backup and point person for". Do not list it as a gap and do not ask him to confirm it again.
+- The CV is short on purpose. He starts the history at 2016 and keeps titles small so the CV does not show his age or read like a life journal. Never suggest adding the full history.
+- Still never invent employers, titles, dates or numbers.
+
 ## Industries
 10 years in FinTech, LendTech, and InsurTech, across technical operations and product.
 
