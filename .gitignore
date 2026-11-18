@@ -25,3 +25,8 @@ pnpm-debug.log*
 
 # archived local agent skills
 .agents/skills_archive/
+
+# Private sales/ops data: never publish
+public/warroom/
+warroom/
+public/b2b-board.html

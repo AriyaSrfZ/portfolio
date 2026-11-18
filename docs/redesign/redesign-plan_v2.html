@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De-AI Redesign Plan — v2</title>
+<style>
+:root{--c0:#171C1A;--c1:#202725;--c2:#262E2B;--c3:#2D3532;--c4:#343C38;--c5:#3B4541;--c6:#46504B;--c7:#62706A;--c8:#8A948E;--c9:#B5BDB6;--c10:#E9E5DC;--c11:#F3F0E8;--pt:#8FB4AA;--pt2:#527C78;--oc:#B39A77;--ink:#F0EEE7}
+*{box-sizing:border-box}body{margin:0;background:var(--c1);color:var(--ink);font:15px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:40px 16px 80px}
+h1{font-size:30px;margin:0 0 8px}h2{font-size:20px;margin:44px 0 12px;padding-top:14px;border-top:1px solid var(--c4)}
+h3{font:600 12px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--pt);margin:20px 0 8px}
+p,li{color:var(--c9)}li{margin:4px 0}code{font:12.5px "IBM Plex Mono",monospace;color:var(--pt)}
+.note{border:1px solid var(--c4);background:var(--c2);padding:12px 14px;border-radius:4px;color:var(--c9)}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--c4)}
+.ladder>div{height:78px;padding:8px;font:11px/1.35 "IBM Plex Mono",monospace;display:flex;flex-direction:column;justify-content:flex-end}
+.ladder2{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--c4)}
+.ladder2>div{height:72px;padding:8px;font:11px/1.35 "IBM Plex Mono",monospace;display:flex;flex-direction:column;justify-content:flex-end}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid var(--c4);padding:8px 6px;text-align:left;vertical-align:top}
+th{font:600 11px "IBM Plex Mono",monospace;color:var(--oc);text-transform:uppercase;letter-spacing:.05em}
+.demo{border:1px solid var(--c4);background:var(--c1);padding:20px}
+.eyebrow{font:500 11px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--c8)}
+.metric{font:600 34px/1.05 "IBM Plex Mono",monospace;color:var(--ink);font-variant-numeric:tabular-nums;margin:6px 0 4px}
+.cell{background:var(--c2);border:1px solid var(--c4);border-radius:4px;padding:16px}
+.btn{display:inline-block;background:var(--ink);color:var(--c1);font:500 13px "IBM Plex Sans",sans-serif;padding:8px 14px;border-radius:4px;margin-right:8px}
+.btn2{display:inline-block;border:1px solid var(--c6);color:var(--ink);font:500 13px "IBM Plex Sans",sans-serif;padding:7px 13px;border-radius:4px}
+.link{color:var(--pt);text-decoration:underline;text-underline-offset:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.grid2,.ladder2{grid-template-columns:1fr 1fr}.ladder{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><main>
+
+<span class="eyebrow">PLAN · v2 · 2026-11-08 · supersedes v1</span>
+<h1>Removing the generated look</h1>
+<div class="note"><b>What changed from v1.</b> The v1 before/after panels were my own guesses at your site, not your site, and the browser could not load it. v2 is built from three real, published design systems (Linear, Sanity, Vercel), read from their DESIGN.md files, and mapped onto your existing fonts and canonical palette. Live screenshots are still blocked in this environment (see section 7).</div>
+
+<h2>1. Direction in one line</h2>
+<p><b>Quiet editorial-technical:</b> a flat tonal ladder on your Carbon base, one restrained accent (Patina), hairline borders instead of shadows, IBM Plex Mono for every number and label, and text carrying the page instead of decoration.</p>
+
+<h2>2. Why the current site reads as generated</h2>
+<table>
+<tr><th>Tell</th><th>Where it lives</th><th>Fix</th></tr>
+<tr><td>Canonical surface tokens used but never defined (<code>--surface-card</code>, <code>--surface-sunken</code>, <code>--accent-warm</code>, <code>--accent-light</code>): about 270 uses resolve to transparent</td><td>global.css vs. index, whitepapers, blog</td><td>Define them from the ladder in section 3. This is the cause of the flat, few-colour feel.</td></tr>
+<tr><td>Aurora background, Spotlight glow, BorderBeam, gradient overlays</td><td>AuroraBackground.tsx, SpotlightCard.tsx, Hero.astro</td><td>Remove. None of the three reference systems uses these on content pages.</td></tr>
+<tr><td>Rounded pills on every section, emoji and ✓/✕ as UI</td><td>index.astro (35 pills), FloatingNavbar.tsx, FintechDictionary.tsx</td><td>Tags become 4px-radius mono labels with a hairline border.</td></tr>
+<tr><td>Glass blur, shadow-2xl on cards, pulsing dots</td><td>Hero.astro, whitepapers.astro</td><td>Solid surfaces, one hairline, no shadow, no looping motion.</td></tr>
+</table>
+
+<h2>3. Palette: a real tonal ladder</h2>
+<p>Modelled on Linear's four-step surface ladder (its canvas, card, elevated, featured steps) with hairline borders at three strengths, anchored to your Carbon and Basalt. Every step is a token, so nothing is an ad-hoc hex.</p>
+<h3>Dark surfaces and borders</h3>
+<div class="ladder2">
+  <div style="background:#171C1A">canvas-deep<br>#171C1A</div>
+  <div style="background:#202725">canvas · Carbon<br>#202725</div>
+  <div style="background:#262E2B">surface-1<br>#262E2B</div>
+  <div style="background:#2D3532">surface-2<br>#2D3532</div>
+  <div style="background:#343C38">surface-3 · Basalt<br>#343C38</div>
+  <div style="background:#3B4541">surface-4<br>#3B4541</div>
+</div>
+<div class="ladder" style="margin-top:8px">
+  <div style="background:#343C38">hairline<br>#343C38</div>
+  <div style="background:#46504B">hairline-strong<br>#46504B</div>
+  <div style="background:#62706A">hairline-focus<br>#62706A</div>
+  <div style="background:#8A948E;color:#171C1A">hairline-max<br>#8A948E</div>
+</div>
+<h3>Text (four real levels)</h3>
+<div class="ladder2">
+  <div style="background:#202725;color:#F0EEE7">ink<br>#F0EEE7</div>
+  <div style="background:#202725;color:#B5BDB6">ink-muted<br>#B5BDB6</div>
+  <div style="background:#202725;color:#8A948E">ink-subtle<br>#8A948E</div>
+  <div style="background:#202725;color:#62706A">ink-tertiary<br>#62706A</div>
+  <div style="background:#202725;color:#8FB4AA">accent · Patina<br>#8FB4AA</div>
+  <div style="background:#202725;color:#B39A77">exec · Ochre<br>#B39A77</div>
+</div>
+<h3>Light theme (same roles, other end of the ladder)</h3>
+<div class="ladder2">
+  <div style="background:#F3F0E8;color:#202725">canvas<br>#F3F0E8</div>
+  <div style="background:#E9E5DC;color:#202725">surface-1<br>#E9E5DC</div>
+  <div style="background:#FFFFFF;color:#202725">surface-2<br>#FFFFFF</div>
+  <div style="background:#D5D0C6;color:#202725">hairline<br>#D5D0C6</div>
+  <div style="background:#535D57;color:#F3F0E8">ink-muted<br>#535D57</div>
+  <div style="background:#38645D;color:#F3F0E8">accent<br>#38645D</div>
+</div>
+<p>Contrast targets: ink on canvas ≥ 12:1, ink-muted ≥ 7:1, ink-subtle ≥ 4.5:1 (verify both themes before merge). Patina is used on links and key numbers only; Ochre on timestamps and executive tags only.</p>
+
+<h2>4. Typography (your fonts, used with a rule)</h2>
+<ul>
+  <li><b>IBM Plex Sans</b>: headings (600, -0.01em) and prose (400, 1.6 line height).</li>
+  <li><b>IBM Plex Mono</b>: eyebrows (11px, uppercase, 0.1em tracking), tags, metrics (600, tabular numerals). Sanity uses this same pairing for its technical eyebrows.</li>
+  <li><b>Vazirmatn</b>: Farsi pages, unchanged.</li>
+  <li>Remove all-caps from long headings; keep caps only on mono eyebrows.</li>
+</ul>
+<div class="demo">
+  <div class="eyebrow">[ Production · 15+ years ]</div>
+  <div class="metric">1B+ SMS</div>
+  <div style="color:#B5BDB6">SMPP 3.4 hub messages per year, national telecom gateway.</div>
+  <div style="margin-top:14px"><span class="btn">Read the dossier</span><span class="btn2">Contact</span></div>
+</div>
+
+<h2>5. Components</h2>
+<div class="grid2">
+  <div class="cell"><div class="eyebrow">Card</div><p style="margin:8px 0 0">4px radius, surface-1, one hairline, no shadow. Hover: hairline becomes hairline-strong. No glow, no beam.</p></div>
+  <div class="cell"><div class="eyebrow">Tag</div><p style="margin:8px 0 0">Mono 11px, 2px radius, hairline border, ink-muted text. Replaces every pill.</p></div>
+  <div class="cell"><div class="eyebrow">Button, primary</div><p style="margin:8px 0 0">Ink fill, canvas text, 4px radius. One per view.</p></div>
+  <div class="cell"><div class="eyebrow">Link</div><p style="margin:8px 0 0">Patina, underlined at 3px offset. Hover goes to Patina light.</p></div>
+</div>
+<p>Icons: none by default. Where state must show, use a mono text label. If you later want icons, pick one 1.5px line set and approve it before it lands.</p>
+
+<h2>6. Execution order (each step builds and is checked)</h2>
+<table>
+<tr><th>#</th><th>Step</th><th>Verify</th></tr>
+<tr><td>1</td><td>Define the missing tokens from the ladder above. No visual change beyond restoring surfaces.</td><td><code>grep</code> shows no undefined <code>var(--…)</code>; build passes.</td></tr>
+<tr><td>2</td><td>Remove Aurora, Spotlight, BorderBeam, gradient overlays, glass, glow shadows.</td><td>No references to those components on public pages.</td></tr>
+<tr><td>3</td><td>Pills to tags; <code>rounded-full</code> kept only for the portrait.</td><td>Count drops to one per file.</td></tr>
+<tr><td>4</td><td>Remove emoji and ✓/✕ UI glyphs; remove mixed Lucide icons.</td><td>No emoji in src/ outside content.</td></tr>
+<tr><td>5</td><td>Light theme mapping, contrast check, Farsi RTL check.</td><td>Targets in section 3 met.</td></tr>
+<tr><td>6</td><td>Mobile pass at 375px.</td><td>No horizontal scroll; 16px gutters.</td></tr>
+</table>
+
+<h2>7. Blockers and what I need from you</h2>
+<ol>
+  <li><b>Live visual check is blocked here.</b> The built-in pane and your Chrome both refuse localhost on this machine, so I cannot see the site. Two ways forward: (a) open <code>http://localhost:4321</code> after running the preview and send me a screenshot of the home page and one whitepaper, so I can review real pixels; or (b) confirm a URL I can reach.</li>
+  <li><b>Icons:</b> confirm "none" (default above).</li>
+  <li><b>Approve step 1</b> as the first change.</li>
+</ol>
+
+<h2>8. Reference sources (installed and read)</h2>
+<ul>
+  <li>Linear, surface ladder and hairlines: https://github.com/VoltAgent/awesome-design-md (design-md/linear.app/DESIGN.md)</li>
+  <li>Sanity, IBM Plex Mono eyebrows and neutral scale: design-md/sanity/DESIGN.md</li>
+  <li>Vercel, black-and-white precision: design-md/vercel/DESIGN.md</li>
+  <li>Resend, monospace accents on minimal dark (read, not adopted: its accent glows are the pattern to avoid)</li>
+  <li>Installed skills (project, under .agents/skills): 67 bergside design skills, <code>impeccable</code>, <code>apple-design</code> (dickwu/apple-design-skill)</li>
+</ul>
+</main></body></html>

@@ -1,109 +1,186 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+/* =========================================================================
+   DRAWING SHEET — design world
+   Paper ground, ink-blue line work, graphite text, red pencil for decisions.
+   Dark variant is a cyanotype blueprint: deep blue ground, pale lines.
+   ========================================================================= */
+
 @theme {
-  /* Core Canonical Palette: Ariya Sarrafzadeh Brand System */
-  --color-carbon: #202725;
-  --color-basalt: #303936;
-  --color-deep-carbon: #171C1A;
-  --color-paper: #E9E5DC;
-  --color-porcelain: #F3F0E8;
-  --color-patina: #527C78;
-  --color-patina-light: #8FB4AA;
-  --color-ochre: #B39A77;
-  --color-neutral-border: #D5D0C6;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'IBM Plex Sans Condensed', 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-mono-fintech: 'IBM Plex Mono', monospace;
 
-  /* Backward Compatibility Aliases */
-  --color-obsidian: #202725;
-  --color-graphite: #292F2D;
-  --color-bone: #F0EEE7;
-  --color-titanium: #B5BDB6;
-  --color-copper: #527C78;
-  --color-emerald-nominal: #8FB4AA;
-
+  /* Semantic aliases kept for existing utilities */
   --color-bg: var(--canvas);
   --color-bg-elevated: var(--surface);
   --color-text: var(--text-primary);
   --color-text-muted: var(--text-secondary);
 
-  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
-  --font-mono-fintech: 'IBM Plex Mono', monospace;
+  /* Drafting geometry: sharp corners, no drop shadows, no blur */
+  --radius-xs: 1px;
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
+  --radius-2xl: 2px;
+  --radius-3xl: 2px;
+  --radius-4xl: 2px;
+
+  --shadow-2xs: 0 0 #0000;
+  --shadow-xs: 0 0 #0000;
+  --shadow-sm: 0 0 #0000;
+  --shadow-md: 0 0 #0000;
+  --shadow-lg: 0 0 #0000;
+  --shadow-xl: 0 0 #0000;
+  --shadow-2xl: 0 0 #0000;
+
+  --blur-xs: 0px;
+  --blur-sm: 0px;
+  --blur-md: 0px;
+  --blur-lg: 0px;
+  --blur-xl: 0px;
+  --blur-2xl: 0px;
+  --blur-3xl: 0px;
+
+  /* Legible minimum sizes: the old 9-11px labels are raised site-wide */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.55;
 }
 
-/* =========================================================================
-   CANONICAL SEMANTIC DESIGN TOKENS
-   ========================================================================= */
-
+/* ---------- Paper (default) ---------- */
 :root,
-html.dark,
-html[data-appearance="dark"],
-html:not([data-appearance="light"]) {
-  /* Dark Theme Tokens (Warm Charcoal & Green-Gray) */
-  --canvas: #202725;
-  --surface: #292F2D;
-  --surface-elevated: #343C38;
-  --text-primary: #F0EEE7;
-  --text-secondary: #B5BDB6;
-  --border: #46504B;
-  --accent-primary: #8FB4AA;
-  --accent-hover: #A6C8BE;
-  --focus-indicator: #B7D5CC;
-  --code-surface: #171C1A;
-  --card-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.45);
-
-  /* Legacy Bridge Tokens */
-  --system-bg: var(--canvas);
-  --system-grouped-bg: var(--surface);
-  --system-card-bg: rgba(41, 47, 45, 0.85);
-  --system-card-border: var(--border);
-  --system-card-shadow: var(--card-shadow);
-  --system-label: var(--text-primary);
-  --system-secondary-label: var(--text-secondary);
-  --system-tertiary-label: rgba(181, 189, 182, 0.60);
-  --glass-nav-bg: rgba(32, 39, 37, 0.88);
-  --glass-border: var(--border);
-  --glass-blur: 16px;
-  --apple-accent: var(--accent-primary);
-  --apple-cyan: var(--accent-primary);
-  --apple-green: var(--accent-primary);
-  --apple-amber: #B39A77;
-}
-
 html[data-appearance="light"],
 html.light {
-  /* Light Theme Tokens (Warm Off-White & Technical Journal Paper) */
-  --canvas: #F3F0E8;
-  --surface: #E9E5DC;
-  --surface-elevated: #FFFFFF;
-  --text-primary: #202725;
-  --text-secondary: #535D57;
-  --border: #D5D0C6;
-  --accent-primary: #38645D;
-  --accent-hover: #294F49;
-  --focus-indicator: #38645D;
-  --code-surface: #E5E9E3;
-  --card-shadow: 0 8px 24px -6px rgba(32, 39, 37, 0.08);
+  /* Consulting-room palette v2: warm limestone ground, emerald jewel ink,
+     cedar / absinthe / ochre / plum as complements. Each layer step is a
+     visible jump, not a near-duplicate. */
+  /* Limestone layers (lightest = closest to the reader) */
+  --paper-0: #FFFFFF;
+  --paper-1: #FAF7F0;
+  --paper-2: #EFE9DD;
+  --paper-3: #E3DBCA;
+  --paper-4: #D2C6AE;
+  /* Emerald jewel ink (primary) */
+  --ink-1: #08261D;
+  --ink-2: #0E5A44;
+  --ink-3: #236F56;
+  --ink-4: #7FBFA3;
+  --ink-5: #C4E3D5;
+  --ink-6: #E3F2EB;
+  /* Carbon text, warm not blue */
+  --graphite-1: #202725;
+  --graphite-2: #353D39;
+  --graphite-3: #48504C;
+  --graphite-4: #555D58;
+  /* Complements */
+  --pencil: #8C4426;      /* cedar: notes, focus, attention */
+  --pencil-wash: #F4E1D6;
+  --absinthe: #566B12;    /* absinthe: chart highlight, live/good state */
+  --absinthe-fill: #A9C23F;
+  --absinthe-wash: #EEF3D6;
+  --sepia: #835F22;       /* ochre: dates, tags, metadata */
+  --sepia-wash: #F2E6CC;
+  --plum: #6C4868;        /* plum: categories, secondary links */
+  --plum-wash: #EFE2EC;
 
-  /* Legacy Bridge Tokens */
+  --canvas: var(--paper-2);
+  --surface: var(--paper-1);
+  --surface-elevated: var(--paper-0);
+  --surface-card: var(--paper-1);
+  --surface-sunken: var(--paper-3);
+  --text-primary: var(--graphite-1);
+  --text-secondary: var(--graphite-3);
+  --text-muted: var(--graphite-4);
+  --border: #C9BDA5;
+  --border-strong: var(--ink-2);
+  --accent-primary: var(--ink-2);
+  --accent-hover: var(--ink-1);
+  --accent-light: var(--ink-3);
+  --accent-warm: var(--sepia);
+  --on-accent: var(--paper-1);
+  --wash: var(--ink-6);
+  --focus-indicator: var(--pencil);
+  --code-surface: var(--paper-3);
+  --card-shadow: none;
+
+  /* Legacy bridge tokens */
   --system-bg: var(--canvas);
   --system-grouped-bg: var(--surface);
-  --system-card-bg: rgba(233, 229, 220, 0.88);
+  --system-card-bg: var(--surface);
   --system-card-border: var(--border);
-  --system-card-shadow: var(--card-shadow);
+  --system-card-shadow: none;
   --system-label: var(--text-primary);
   --system-secondary-label: var(--text-secondary);
-  --system-tertiary-label: rgba(83, 93, 87, 0.65);
-  --glass-nav-bg: rgba(243, 240, 232, 0.90);
-  --glass-border: var(--border);
-  --glass-blur: 16px;
+  --system-tertiary-label: var(--text-muted);
+  --glass-nav-bg: var(--paper-1);
+  --glass-border: var(--border-strong);
+  --glass-blur: 0px;
   --apple-accent: var(--accent-primary);
-  --apple-cyan: var(--accent-primary);
+  --apple-cyan: var(--accent-light);
   --apple-green: var(--accent-primary);
-  --apple-amber: #B39A77;
+  --apple-amber: var(--sepia);
+
+  /* Tailwind palette remap: pages written for a dark ground now draw in ink */
+  --color-white: var(--graphite-1);
+  --color-black: var(--paper-1);
+  --color-neutral-100: var(--graphite-1);
+  --color-neutral-200: var(--graphite-2);
+  --color-neutral-300: var(--graphite-2);
+  --color-neutral-400: var(--graphite-3);
+  --color-neutral-500: var(--graphite-4);
+  --color-neutral-600: var(--graphite-4);
+  --color-emerald-300: var(--ink-3);
+  --color-emerald-400: var(--ink-2);
+  --color-emerald-500: var(--ink-2);
+  --color-cyan-400: var(--plum);
+  --color-cyan-500: var(--plum);
+  --color-amber-300: var(--sepia);
+  --color-amber-400: var(--sepia);
+  --color-amber-500: var(--sepia);
+  --color-red-400: var(--pencil);
+  --color-red-500: var(--pencil);
 }
 
-/* Base Document Setup */
+/* ---------- Blueprint (dark) ---------- */
+html[data-appearance="dark"],
+html.dark {
+  /* Night: canonical Carbon / Graphite / Basalt with Patina ink */
+  --paper-0: #3A433F;
+  --paper-1: #292F2D;
+  --paper-2: #202725;
+  --paper-3: #181E1C;
+  --paper-4: #47514C;
+  --ink-1: #E3F3EC;
+  --ink-2: #7CC4A6;
+  --ink-3: #A9DCC6;
+  --ink-4: #3F9476;
+  --ink-5: #1F4F40;
+  --ink-6: #173A30;
+  --graphite-1: #EEF0EC;
+  --graphite-2: #D3D8D3;
+  --graphite-3: #B5BDB7;
+  --graphite-4: #A7B0AA;
+  --pencil: #E39A72;
+  --pencil-wash: #3D2B24;
+  --absinthe: #C5D96A;
+  --absinthe-fill: #9DB83A;
+  --absinthe-wash: #2E3520;
+  --sepia: #D4BA8C;
+  --sepia-wash: #36312A;
+  --plum: #CDA6C8;
+  --plum-wash: #362B35;
+
+  --border: #4A5550;
+  --border-strong: var(--ink-2);
+  --on-accent: #202725;
+}
+
+/* ---------- Base ---------- */
 html {
   scroll-behavior: smooth;
   background-color: var(--canvas);
@@ -113,67 +190,374 @@ html {
 body {
   background-color: var(--canvas);
   color: var(--text-primary);
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
   overflow-x: hidden;
   margin: 0;
-  transition: background-color 0.35s ease, color 0.25s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
 }
 
-/* Semantic Focus Indicator for Accessibility (WCAG 2.2 AA) */
+::selection {
+  background: var(--ink-2);
+  color: var(--paper-1);
+}
+
+html {
+  scrollbar-color: var(--ink-4) var(--canvas);
+  caret-color: var(--pencil);
+}
+
 :focus-visible {
   outline: 2px solid var(--focus-indicator);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
-/* Structured Section & Card Foundations */
-#overview,
+a {
+  text-underline-offset: 0.2em;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+/* Raise the legacy micro-labels to a readable size */
+.text-\[9px\],
+.text-\[10px\] {
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.text-\[11px\] {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Pills become drafting tabs; portraits and avatars keep their shape */
+.rounded-full:not(img) {
+  border-radius: 2px;
+}
+
+/* Buttons filled with ink carry paper-coloured text in both themes */
+.bg-\[var\(--accent-primary\)\],
+.bg-\[var\(--accent-primary\)\] .text-white,
+.bg-\[var\(--accent-primary\)\].text-white {
+  color: var(--on-accent);
+}
+
+/* Hard-coded dark panels from the old theme resolve to sheet surfaces */
+.bg-\[\#0f1217\]\/90,
+.bg-\[\#0f1217\]\/95,
+.bg-\[\#141820\],
+.bg-\[\#13161c\],
+.bg-\[\#111317\],
+.bg-\[\#161616\],
+.bg-\[\#1c1916\] {
+  background-color: var(--surface);
+  color: var(--text-primary);
+}
+
+.bg-\[\#0b0d11\]\/60,
+.bg-\[\#090a0c\],
+.bg-black\/20,
+.bg-black\/40 {
+  background-color: var(--surface-sunken);
+}
+
+.text-\[\#f8fafc\],
+.text-\[\#F0EEE7\],
+.text-\[\#e8e2d5\] {
+  color: var(--text-primary);
+}
+
+.text-\[\#94a3b8\],
+.text-\[\#a8a196\],
+.text-\[\#64748b\] {
+  color: var(--text-secondary);
+}
+
+.text-\[\#B39A77\],
+.text-\[\#c9a15a\],
+.text-\[\#e2c974\],
+.text-\[\#d97706\] {
+  color: var(--sepia);
+}
+
+.bg-\[\#B39A77\],
+.bg-\[\#e2c974\] {
+  background-color: var(--sepia);
+}
+
+.border-\[\#B39A77\],
+.border-\[\#5c6650\] {
+  border-color: var(--sepia);
+}
+
+/* ---------- Sheet components ---------- */
+
+/* A sheet: the framed drawing surface every major section sits on */
+.sheet,
+[data-dossier-panel],
 section[id] {
-  min-height: auto;
-  background-color: var(--surface) !important;
-  border-color: var(--border) !important;
-  box-shadow: var(--card-shadow) !important;
-  border-radius: 1rem;
+  background-color: var(--surface);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 2px;
+  box-shadow: none;
 }
 
-/* Restrained Architectural Header & Card Styles */
+#overview {
+  background: transparent;
+  border: 0;
+}
+
+/* Title block: the ruled table along a sheet edge */
+.title-block {
+  display: grid;
+  border-top: 1.5px solid var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.title-block > * {
+  padding: 0.7rem 1rem;
+  border-inline-end: 1px solid var(--border-strong);
+  min-width: 0;
+}
+
+.title-block > *:last-child {
+  border-inline-end: 0;
+}
+
+.title-block dt {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.title-block dd {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Red-pencil margin note */
+.pencil-note {
+  color: var(--pencil);
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* Plate: a drawing mounted on the sheet */
+.plate {
+  background: var(--paper-1);
+  border: 1px solid var(--border-strong);
+}
+
+html[data-appearance="dark"] .plate,
+html.dark .plate {
+  background: #FBFAF5;
+}
+
+/* Schedule: the ruled table a drawing uses for its parts */
+.schedule {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.schedule th,
+.schedule td {
+  text-align: start;
+  vertical-align: top;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.schedule thead th {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1.5px solid var(--border-strong);
+}
+
+.schedule tbody tr:hover td {
+  background: var(--wash);
+}
+
+.schedule td a {
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.schedule .fig {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+  .schedule {
+    font-size: 0.875rem;
+  }
+
+  .schedule th,
+  .schedule td {
+    padding: 0.65rem 0.5rem;
+  }
+
+  .schedule .fig {
+    white-space: normal;
+  }
+}
+
+/* Primary action: solid ink */
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--accent-primary);
+  color: var(--on-accent);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  padding: 0.85rem 1.4rem;
+  border: 1.5px solid var(--accent-primary);
+  border-radius: 2px;
+  transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-ink:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-ink:active {
+  transform: translateY(1px);
+}
+
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85rem 1.1rem;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 2px;
+  transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-line:hover {
+  background: var(--wash);
+}
+
+/* ---------- Motion: controls and menus ----------
+   Values from docs/redesign/research-motion_v1.md (Emil Kowalski, Impeccable):
+   press = scale(0.97) / 160ms; menus open 200ms from their trigger, no bounce. */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --dur-press: 160ms;
+  --dur-menu: 200ms;
+}
+
+a, button {
+  transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out),
+    border-color 160ms var(--ease-out), transform var(--dur-press) var(--ease-out);
+}
+
+button:active,
+.btn-ink:active,
+.btn-line:active {
+  transform: scale(0.97);
+}
+
+@keyframes menu-in {
+  from { opacity: 0; transform: scale(0.95) translateY(-4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.menu-pop {
+  transform-origin: top right;
+  animation: menu-in var(--dur-menu) var(--ease-out);
+}
+
+[dir="rtl"] .menu-pop {
+  transform-origin: top left;
+}
+
+.drawer-in {
+  transform-origin: top center;
+  animation: menu-in 240ms var(--ease-out);
+}
+
+/* Sheet turn: the one authored motion, used when a system sheet is swapped in */
+@keyframes sheet-turn {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(-6px);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
+  }
+}
+
+[data-dossier-panel]:not(.hidden) {
+  animation: sheet-turn 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-fadeIn {
+  animation: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Legacy component classes, redrawn ---------- */
 .liquid-glass-navbar {
-  background: var(--glass-nav-bg);
-  backdrop-filter: blur(var(--glass-blur, 16px));
-  -webkit-backdrop-filter: blur(var(--glass-blur, 16px));
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.12);
+  background: var(--paper-1);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 2px;
+  box-shadow: none;
 }
 
-.liquid-glass-card {
+.liquid-glass-card,
+.rugged-panel {
   background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--card-shadow);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  box-shadow: none;
+  position: relative;
 }
 
 .liquid-glass-card:hover {
-  border-color: var(--accent-primary);
+  background: var(--wash);
 }
 
-.liquid-glass-pill {
-  border: 1px solid var(--border);
-  background: var(--surface-elevated);
-}
-
+.liquid-glass-pill,
 .liquid-glass-control {
-  background: var(--code-surface);
   border: 1px solid var(--border);
-}
-
-.rugged-panel {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--card-shadow);
-  border-radius: 1rem;
-  position: relative;
-  transition: all 0.25s ease;
+  background: var(--surface-sunken);
+  border-radius: 2px;
 }
 
 .rugged-tag {
@@ -181,88 +565,19 @@ section[id] {
   align-items: center;
   gap: 0.375rem;
   border: 1px solid var(--border);
-  background-color: var(--surface-elevated);
-  color: var(--text-primary);
-  font-size: 11px;
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 3px 9px;
+  border-radius: 2px;
 }
 
-/* Light Mode Contrast Inversion Protection */
-html[data-appearance="light"] .liquid-glass-card,
-html[data-appearance="light"] .liquid-glass-navbar,
-html[data-appearance="light"] .liquid-glass-control,
-html[data-appearance="light"] .rugged-panel {
-  background-color: var(--surface);
-  border-color: var(--border);
-  color: var(--text-primary);
-}
-
-html[data-appearance="light"] .text-white {
-  color: #202725 !important;
-}
-
-html[data-appearance="light"] .text-neutral-200,
-html[data-appearance="light"] .text-neutral-300 {
-  color: #38423E !important;
-}
-
-html[data-appearance="light"] .text-neutral-400,
-html[data-appearance="light"] .text-neutral-500 {
-  color: #535D57 !important;
-}
-
-html[data-appearance="light"] .border-white\/5,
-html[data-appearance="light"] .border-white\/10,
-html[data-appearance="light"] .border-white\/15,
-html[data-appearance="light"] .border-white\/20 {
-  border-color: #D5D0C6 !important;
-}
-
-html[data-appearance="light"] .bg-white\/\[0\.04\],
-html[data-appearance="light"] .bg-white\/\[0\.05\],
-html[data-appearance="light"] .bg-white\/\[0\.06\],
-html[data-appearance="light"] .bg-white\/10,
-html[data-appearance="light"] .bg-white\/15 {
-  background-color: #E0DDD4 !important;
-}
-
-html[data-appearance="light"] .bg-\[\#0f1217\]\/90,
-html[data-appearance="light"] .bg-\[\#0f1217\]\/95,
-html[data-appearance="light"] .bg-\[\#13161c\],
-html[data-appearance="light"] .bg-\[\#111317\],
-html[data-appearance="light"] .bg-\[\#090a0c\] {
-  background-color: var(--surface) !important;
-  color: var(--text-primary) !important;
-}
-
-html[data-appearance="light"] .bg-black\/20,
-html[data-appearance="light"] .bg-black\/40 {
-  background-color: rgba(32, 39, 37, 0.06) !important;
-}
-
-html[data-appearance="light"] #velaris-container {
-  opacity: 0.25;
-  filter: invert(1) hue-rotate(185deg) brightness(1.05);
-}
-
-/* Subtle Architectural Grid Pattern (Non-Cyberpunk, Restrained) */
 .grid-blueprint-16 {
-  background-size: 20px 20px;
-  background-image: 
-    linear-gradient(to right, rgba(143, 180, 170, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(143, 180, 170, 0.04) 1px, transparent 1px);
+  background-image: none;
 }
 
-html[data-appearance="light"] .grid-blueprint-16 {
-  background-image: 
-    linear-gradient(to right, rgba(56, 100, 93, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 100, 93, 0.06) 1px, transparent 1px);
-}
-
-/* Code Surfaces */
+/* ---------- Code surfaces ---------- */
 pre.astro-code,
 pre[class*="language-"],
 code {
@@ -272,13 +587,13 @@ code {
 pre.astro-code {
   background-color: var(--code-surface) !important;
   border: 1px solid var(--border) !important;
-  border-radius: 0.5rem;
+  border-radius: 2px;
   max-width: 100% !important;
   overflow-x: auto !important;
   direction: ltr !important;
 }
 
-/* Persian & RTL Typography Rules */
+/* ---------- Persian & RTL typography ---------- */
 :lang(fa), [dir="rtl"], html[lang="fa"] {
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif !important;
 }
@@ -303,7 +618,7 @@ html[lang="fa"] article th, html[lang="fa"] article td {
   direction: ltr !important;
 }
 
-/* Respect Prefers-Reduced-Motion */
+/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;

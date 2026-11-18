@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { stats } from '../../data/stats';
 
 interface LandingStageProps {
@@ -7,27 +7,10 @@ interface LandingStageProps {
 
 export default function LandingStage({ locale = 'en' }: LandingStageProps) {
   const isFa = locale === 'fa';
-  const [activeTab, setActiveTab] = useState<'pillars' | 'stack' | 'directives' | 'benchmarks'>('pillars');
 
   const baseUrl = (typeof window !== 'undefined' && (window as any).__BASE_URL__) 
     ? (window as any).__BASE_URL__ 
     : '/';
-
-  const proofMatrix = isFa
-    ? [
-        { val: stats.experienceYears.fa, label: "معماری سامانه‌های توزیع‌شده", tag: "زیرساخت حیاتی", href: "#payment-settlement" },
-        { val: stats.telecomHubAnnualVolume.fa, label: "هاب ملی مخابرات و SMPP 3.4", tag: "کنترل جریان", href: "#payment-switch" },
-        { val: stats.ledgerPeakTps.shortFa, label: "ظرفیت اوج پردازش هم‌روند", tag: "سوییچ شتاب", href: "#payment-switch" },
-        { val: stats.fraudRiskLoopSla.shortFa, label: "مهلت حلقه ارزیابی ریسک", tag: "گارد تقلب", href: "#fraud-forensics" },
-        { val: stats.financialDriftPercent.shortFa, label: "انحراف مالی در تسویه روزانه", tag: "تراز ریاضی", href: "#reconciliation-engine" },
-      ]
-    : [
-        { val: stats.experienceYears.en, label: "Production Infrastructure", tag: "CRITICAL CORE", href: "#payment-settlement" },
-        { val: stats.telecomHubAnnualVolume.en, label: "SMPP 3.4 Hub Messages / Year", tag: "FLOW CONTROL", href: "#payment-switch" },
-        { val: stats.ledgerPeakTps.shortEn, label: "Peak Concurrent Throughput", tag: "H2H SWITCH", href: "#payment-switch" },
-        { val: stats.fraudRiskLoopSla.shortEn, label: "Real-Time Fraud Risk Loop", tag: "GRAPH FORENSICS", href: "#fraud-forensics" },
-        { val: stats.financialDriftPercent.shortEn, label: stats.clearingBatchesDaily.heroEn, tag: "ACID BALANCED", href: "#reconciliation-engine" },
-      ];
 
   const pillars = isFa
     ? [
@@ -143,315 +126,250 @@ export default function LandingStage({ locale = 'en' }: LandingStageProps) {
         { title: "Telecom Peak Resilience", metric: stats.telecomHubAnnualVolume.textEn, detail: "National carrier high-traffic resilience with zero queue loss during peak shopping events" }
       ];
 
-  const handleScrollToDossier = (e: React.MouseEvent, href: string) => {
+  const t = isFa
+    ? {
+        statement: 'سیستم‌های پرداخت، دفتر کل و مخابرات طراحی می‌کنم که زیر بار درست می‌مانند.',
+        lead: 'معمار سیستم و مدیر محصول فنی. هم معماری را طراحی می‌کنم و هم تصمیم محصولی پشت آن را، و هر دو را مستند می‌کنم: بده‌بستان‌ها، حالت‌های خرابی و نتیجه.',
+        book: 'رزرو جلسه',
+        email: 'ایمیل',
+        available: 'برای پروژه‌های طراحی سیستم و بازبینی معماری در دسترس هستم. برای گفت‌وگو درباره نقش‌های ارشد هم آماده‌ام.',
+        plateCaption: 'برگه ۱ · دفتر کل دوطرفه و رزرو دومرحله‌ای موجودی',
+        openSheet: 'باز کردن این برگه',
+        note1: 'اول رزرو، بعد پرداخت: هیچ موجودی بدون بدهکار و بستانکار متناظر جابه‌جا نمی‌شود.',
+        note2: 'به‌جای پرداخت سریع‌تر بدون رزرو انتخاب شد؛ جلوگیری از برداشت بدون پشتوانه مهم‌تر بود.',
+        tbName: 'نام', tbRole: 'نقش', tbBase: 'محل', tbScope: 'حوزه', tbSheet: 'برگه',
+        role: 'معمار سیستم و مدیر محصول فنی',
+        base: 'تهران، ایران',
+        scope: 'پرداخت · دفتر کل · مخابرات',
+        sheetOf: '۱ از ۹',
+        scheduleTitle: 'سیستم‌های مستندشده',
+        scheduleIntro: 'هر ردیف یک برگه است: شماتیک، قواعد، حالت‌های خرابی و تصمیم محصولی.',
+        colSheet: 'برگه', colSystem: 'سیستم', colWhat: 'چه می‌کند', colFig: 'اندازه‌گیری‌شده',
+        notesTitle: 'یادداشت‌های عمومی',
+        notesIntro: 'چهار قاعده‌ای که در همه این سیستم‌ها ثابت است.',
+        materialsTitle: 'پروتکل‌ها و ابزارها',
+        scaleTitle: 'در محیط عملیاتی',
+        portraitAlt: 'آریا صراف‌زاده',
+      }
+    : {
+        statement: 'I design payment, ledger and telecom systems that stay correct under load.',
+        lead: 'Systems architect and technical product leader. I work out the architecture and the product decision behind it, then document both: the trade-offs, the failure modes and the result.',
+        book: 'Book a call',
+        email: 'Email me',
+        available: 'Available for system-design projects and architecture reviews. Open to conversations about senior roles.',
+        plateCaption: 'Sheet 1 · Double-entry ledger and two-phase balance reservation',
+        openSheet: 'Open this sheet',
+        note1: 'Reserve first, pay second: no balance moves without a matching debit and credit.',
+        note2: 'Chosen over faster unreserved checkout. Preventing unbacked overdraws mattered more.',
+        tbName: 'Drawn by', tbRole: 'Role', tbBase: 'Based in', tbScope: 'Discipline', tbSheet: 'Sheet',
+        role: 'Systems Architect & Technical Product Leader',
+        base: 'Tehran, Iran',
+        scope: 'Payments · Ledgers · Telecom',
+        sheetOf: '1 of 9',
+        scheduleTitle: 'Systems on file',
+        scheduleIntro: 'Each row is a sheet: the schematic, its rules, its failure modes and the product decision.',
+        colSheet: 'Sheet', colSystem: 'System', colWhat: 'What it does', colFig: 'Measured',
+        notesTitle: 'General notes',
+        notesIntro: 'Four rules that hold across every system here.',
+        materialsTitle: 'Protocols and tools',
+        scaleTitle: 'In production',
+        portraitAlt: 'Ariya Sarrafzadeh',
+      };
+
+  const moreSheets = [
+    { id: 'payment-switch', file: 'payment-switch-iso8583-pipeline.svg', label: isFa ? 'برگه ۲ · سوییچ پرداخت' : 'Sheet 2 · Payment switch' },
+    { id: 'fraud-forensics', file: 'fraud-tracing-architecture.svg', label: isFa ? 'برگه ۳ · ردیابی تقلب' : 'Sheet 3 · Fraud tracing' },
+    { id: 'reconciliation-engine', file: 'multi-bank-reconciliation.svg', label: isFa ? 'برگه ۴ · مغایرت‌گیری' : 'Sheet 4 · Reconciliation' },
+  ];
+
+  const display = isFa ? undefined : { fontFamily: 'var(--font-display)' };
+
+  const openSheet = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.dispatchEvent(new CustomEvent('dossier-select', { detail: { id } }));
   };
 
   return (
-    <div id="overview" className="scroll-mt-20 w-full min-h-[calc(100vh-5.5rem)] flex flex-col justify-start gap-4 xl:gap-5 pb-4 font-sans" dir={isFa ? 'rtl' : 'ltr'}>
-      
-      {/* =========================================================================
-          ZONE A: EXECUTIVE POSITIONING CONSOLE
-          ========================================================================= */}
-      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-5 sm:p-7 relative overflow-hidden shadow-sm">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
-          
-          {/* Portrait Column: Architectural, disciplined, grounded */}
-          <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-center lg:items-start gap-2.5">
-            <div className="relative w-full max-w-[340px] sm:max-w-[360px] lg:max-w-[380px] xl:max-w-[420px] aspect-[4/5] rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--surface-elevated)] shadow-lg group">
-              <img
-                src={`${baseUrl}photos/ariya.jpg`}
-                alt="Ariya Sarrafzadeh"
-                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#171C1A]/90 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono bg-[#202725]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[var(--border)]">
-                <span className="text-[#F0EEE7] font-semibold">{isFa ? 'تهران · شاپرک' : 'TEHRAN, IR'}</span>
-                <span className="text-[var(--accent-primary)] flex items-center gap-1.5 font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] animate-pulse" />
-                  NOMINAL · {stats.fraudRiskLoopSla.shortEn.toUpperCase()}
-                </span>
-              </div>
-            </div>
+    <div id="overview" className="scroll-mt-24 w-full flex flex-col gap-14 lg:gap-20 pb-6 font-sans" dir={isFa ? 'rtl' : 'ltr'}>
 
-            <div className="text-[11px] font-mono text-[var(--text-secondary)] text-center lg:text-start flex items-center gap-2 pt-0.5">
-              <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] shrink-0" />
-              <span className="truncate">{isFa ? 'آماده مشاوره و ممیزی سیستم‌های مقیاس‌پذیر' : 'Available for Architecture Advisory & Audits'}</span>
-            </div>
-          </div>
+      {/* SHEET 1: statement, action, plate, title block */}
+      <div className="sheet">
+        <div className="grid grid-cols-1 lg:grid-cols-12">
 
-          {/* Narrative Column: Clear positioning, core promise, systems thinker archetype */}
-          <div className="lg:col-span-7 xl:col-span-8 space-y-3.5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] text-[10px] sm:text-[11px] font-sans font-medium text-[var(--text-secondary)] tracking-wider uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#B39A77]" />
-              <span className="text-[var(--text-primary)] font-semibold">{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</span>
-              <span className="text-[var(--border)]">·</span>
-              <span>{isFa ? 'معمار ارشد سیستم و مدیر ارشد محصول فنی' : 'Systems Architect & Technical Product Leader'}</span>
-            </div>
-
-            {/* Canonical Tagline & Primary Headline */}
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--text-primary)] leading-tight font-sans">
-              {isFa 
-                ? 'سامانه‌هایی که زیر فشار تاب می‌آورند.' 
-                : 'Systems that hold under pressure.'}
+          <div className="lg:col-span-5 p-6 sm:p-9 lg:p-12 flex flex-col">
+            <h1
+              className="font-semibold text-[var(--text-primary)] leading-[1.0] tracking-[-0.015em] text-[clamp(2.5rem,4.1vw,4.25rem)]"
+              style={display}
+            >
+              {t.statement}
             </h1>
 
-            {/* Canonical Core Positioning Statement */}
-            <p className="text-sm sm:text-base text-[var(--accent-primary)] font-medium leading-relaxed max-w-3xl font-sans">
-              {isFa
-                ? 'من در تقاطع معماری سیستم‌ها، مهندسی زیرساخت و تفکر محصول فعالیت می‌کنم؛ طراحی فناوری اتکاپذیر برای محیط‌های پیچیده و حیاتی.'
-                : 'I work at the intersection of systems architecture, engineering, and product thinking—designing dependable technology for complex, high-stakes environments.'}
+            <p className="mt-6 text-lg leading-relaxed text-[var(--text-secondary)] max-w-[46ch]">
+              {t.lead}
             </p>
 
-            {/* Substantive Technical Scope */}
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed max-w-3xl font-sans">
-              {isFa
-                ? `${stats.experienceYears.textFa} تجربه عملیاتی در زیرساخت‌های بانکی شاپرک، سوییچ‌های پرداخت ISO 8583 با تاخیر ${stats.switchFailoverSla.textFa}، ماشین حالت تخصیص دومرحله‌ای موجودی با تضمین انحراف مالی صفر، و هاب‌های مخابراتی SMPP با ظرفیت ${stats.ledgerPeakTps.textFa}.`
-                : `${stats.experienceYears.textEn} engineering high-availability banking switches, ${stats.switchFailoverSla.textEn} ISO 8583 multi-PSP routing, two-phase balance reservation machines with zero financial drift, and national SMPP 3.4 telecom gateways handling ${stats.ledgerPeakTps.en} burst capacity.`}
-            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href="#book" onClick={(e) => openSheet(e, 'book')} className="btn-ink">
+                {t.book}
+              </a>
+              <a href="mailto:ariasg2002@gmail.com?subject=Project%20inquiry" className="btn-line">
+                {t.email}
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ariya-sarrafzadeh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-3 font-semibold text-[var(--accent-primary)] underline decoration-1 hover:text-[var(--accent-hover)]"
+              >
+                LinkedIn
+              </a>
+            </div>
 
-            {/* Domain Capability Chips */}
-            <div className="flex flex-wrap gap-1.5 pt-0.5" dir="ltr">
-              {["ISO 8583", "2PC MUTEX", "ACID LEDGERS", "SMPP 3.4", "SCYLLADB", "RABBITMQ CDC", "NEO4J", "REDIS SETNX"].map((chip) => (
-                <span key={chip} className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-[var(--surface-elevated)] border border-[var(--border)] text-[var(--text-secondary)]">
-                  [{chip}]
-                </span>
+            <div className="mt-10 lg:mt-auto pt-8 flex items-end gap-5">
+              <div dir="ltr" className="w-[112px] sm:w-[140px] aspect-[4/5] overflow-hidden border border-[var(--border-strong)] shrink-0 bg-[var(--paper-3)]">
+                <img
+                  src={`${baseUrl}photos/ariya.jpg`}
+                  alt={t.portraitAlt}
+                  width={952}
+                  height={1275}
+                  className="block max-w-none w-[235%] -translate-x-[2%] -translate-y-[7%]"
+                  loading="eager"
+                />
+              </div>
+              <p className="text-[0.9375rem] leading-relaxed text-[var(--text-secondary)] max-w-[34ch] pb-1">
+                {t.available}
+              </p>
+            </div>
+          </div>
+
+          <figure className="lg:col-span-7 m-0 border-t-[1.5px] lg:border-t-0 lg:border-s-[1.5px] border-[var(--border-strong)] bg-[var(--wash)] p-5 sm:p-8 lg:p-10 flex flex-col gap-5">
+            <a href="#payment-settlement" onClick={(e) => openSheet(e, 'payment-settlement')} className="plate block">
+              <img
+                src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=sheet-1`}
+                alt={isFa ? 'شماتیک دفتر کل دوطرفه و رزرو دومرحله‌ای' : 'Schematic of the double-entry ledger and two-phase balance reservation engine'}
+                className="w-full h-auto block"
+                loading="eager"
+              />
+            </a>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+              <p className="pencil-note text-[1.0625rem]">{t.note1}</p>
+              <p className="pencil-note text-[1.0625rem]">{t.note2}</p>
+            </div>
+            <ul className="mt-4 grid grid-cols-3 gap-3 sm:gap-5 list-none p-0">
+              {moreSheets.map((sh) => (
+                <li key={sh.id}>
+                  <a href={`#${sh.id}`} onClick={(e) => openSheet(e, sh.id)} className="group block">
+                    <span className="plate block overflow-hidden">
+                      <img
+                        src={`${baseUrl}diagrams/${sh.file}?v=sheet-1`}
+                        alt=""
+                        className="w-full aspect-[16/10] object-cover object-left-top block transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+                        loading="lazy"
+                      />
+                    </span>
+                    <span className="mt-2 block text-[0.875rem] font-medium text-[var(--accent-primary)] group-hover:underline">
+                      {sh.label}
+                    </span>
+                  </a>
+                </li>
               ))}
-            </div>
-
-            {/* Strategic Focus Grid: Core System Capabilities */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 font-sans text-[11px]">
-              <div className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-lg p-2.5 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] shrink-0" />
-                <span className="text-[var(--text-secondary)] truncate font-medium">
-                  {isFa ? `سوییچ پرداخت بانکی: تاخیر ${stats.switchFailoverSla.shortFa} و بازگشت خودکار ۰۴۰۰` : `Interbank Switch: ${stats.switchFailoverSla.shortEn} failover & auto-0400`}
-                </span>
-              </div>
-              <div className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-lg p-2.5 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] shrink-0" />
-                <span className="text-[var(--text-secondary)] truncate font-medium">
-                  {isFa ? `دفتر کل توزیع‌شده: قفل SETNX با انحراف مالی ${stats.financialDriftPercent.shortFa}` : 'Ledger Mutex: Zero drift via SETNX & CDC outbox'}
-                </span>
-              </div>
-            </div>
-
-            {/* Action Row */}
-            <div className="pt-2 flex flex-wrap gap-3 items-center text-xs font-sans">
-              <a
-                href="#payment-settlement"
-                onClick={(e) => handleScrollToDossier(e, '#payment-settlement')}
-                className="px-4 py-2 rounded-lg bg-[var(--accent-primary)] text-white font-semibold uppercase tracking-wider hover:opacity-90 transition-all shadow-sm text-xs flex items-center gap-1.5 active:scale-95"
-              >
-                <span>{isFa ? 'بررسی پرونده‌های مهندسی' : 'Inspect Architecture'}</span>
-                <span>↓</span>
+            </ul>
+            <figcaption className="mt-auto pt-4 border-t border-[var(--border)] flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-[0.9375rem] text-[var(--text-secondary)]">
+              <span>{t.plateCaption}</span>
+              <a href="#payment-settlement" onClick={(e) => openSheet(e, 'payment-settlement')} className="font-semibold text-[var(--accent-primary)] underline decoration-1">
+                {t.openSheet}
               </a>
-              <a
-                href="#book"
-                onClick={(e) => handleScrollToDossier(e, '#book')}
-                className="px-3.5 py-2 rounded-lg bg-[var(--surface-elevated)] border border-[var(--border)] text-[var(--text-primary)] font-medium hover:bg-[var(--surface)] transition-all text-xs flex items-center gap-1.5"
-              >
-                <span>{isFa ? 'رزرو جلسه بررسی معماری' : 'Schedule Review'}</span>
-                <span>→</span>
-              </a>
-              <div className="flex items-center gap-3 text-[var(--text-secondary)] font-sans text-xs">
-                <a
-                  href="mailto:ariasg2002@gmail.com?subject=Architecture%20Inquiry"
-                  className="hover:text-[var(--accent-primary)] transition-colors"
-                >
-                  ariasg2002@gmail.com
-                </a>
-                <span className="text-[var(--border)]">/</span>
-                <a
-                  href="https://www.linkedin.com/in/ariya-sarrafzadeh/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[var(--accent-primary)] transition-colors"
-                >
-                  LinkedIn ↗
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* =========================================================================
-          ZONE B: VERIFIED SLA & SCALE VITALS RIBBON
-          ========================================================================= */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 w-full">
-        {proofMatrix.map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            onClick={(e) => handleScrollToDossier(e, item.href)}
-            className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-3.5 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all group block shadow-sm active:scale-[0.98]"
-          >
-            <div>
-              <div className="text-[9px] font-sans uppercase tracking-wider text-[var(--text-secondary)] mb-1 flex items-center justify-between font-semibold">
-                <span>{item.tag}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] group-hover:scale-125 transition-transform" />
-              </div>
-              <div className="text-xl sm:text-2xl font-sans font-bold text-[var(--text-primary)] tracking-tight group-hover:text-[var(--accent-primary)] transition-colors">
-                {item.val}
-              </div>
-            </div>
-            <div className="text-[11px] text-[var(--text-secondary)] font-sans font-medium tracking-normal mt-2 leading-snug">
-              {item.label}
-            </div>
-          </a>
-        ))}
-      </div>
-
-      {/* =========================================================================
-          ZONE C: INTERACTIVE ARCHITECTURAL OPERATIONS WORKBENCH
-          ========================================================================= */}
-      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-5 space-y-4 shadow-sm">
-        
-        {/* Tab Headers */}
-        <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar font-sans text-xs bg-[var(--surface-elevated)] p-1 rounded-full border border-[var(--border)]">
-            <button
-              onClick={() => setActiveTab('pillars')}
-              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
-                activeTab === 'pillars'
-                  ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-white" />
-              <span>{isFa ? 'ارکان ۴ گانه معماری' : 'Core Architecture'}</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('stack')}
-              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
-                activeTab === 'stack'
-                  ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-white" />
-              <span>{isFa ? 'پشته پروتکل و داده' : 'Protocol Stack'}</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('directives')}
-              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
-                activeTab === 'directives'
-                  ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-white" />
-              <span>{isFa ? 'اصول حاکمیت فنی' : 'Directives'}</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('benchmarks')}
-              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 font-medium active:scale-95 ${
-                activeTab === 'benchmarks'
-                  ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-white" />
-              <span>{isFa ? 'تاییدیه‌های پروداکشن' : 'Scale Proofs'}</span>
-            </button>
-          </div>
-
-          <div className="hidden sm:flex items-center gap-2 font-sans text-[10px] text-[var(--text-secondary)] uppercase font-semibold">
-            <span>INVARIANTS ACTIVE</span>
-            <span className="w-1 h-1 rounded-full bg-[var(--border)]" />
-            <span className="text-[var(--accent-primary)]">REPLAY-SAFE</span>
-          </div>
+            </figcaption>
+          </figure>
         </div>
 
-        {/* Tab Content Panel */}
-        <div className="min-h-[180px] flex flex-col justify-center">
-          
-          {/* TAB 1: PILLARS */}
-          {activeTab === 'pillars' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full animate-fadeIn">
+        <dl className="title-block grid-cols-2 lg:grid-cols-[1.1fr_1.7fr_1fr_1.4fr_0.6fr] m-0 max-lg:[&>*:nth-child(2n)]:border-e-0 max-lg:[&>*]:border-b max-lg:[&>*]:border-b-[var(--border)] max-lg:[&>*:last-child]:col-span-2 max-lg:[&>*:last-child]:border-b-0">
+          <div><dt>{t.tbName}</dt><dd>{isFa ? 'آریا صراف‌زاده' : 'Ariya Sarrafzadeh'}</dd></div>
+          <div><dt>{t.tbRole}</dt><dd>{t.role}</dd></div>
+          <div><dt>{t.tbBase}</dt><dd>{t.base}</dd></div>
+          <div><dt>{t.tbScope}</dt><dd>{t.scope}</dd></div>
+          <div><dt>{t.tbSheet}</dt><dd>{t.sheetOf}</dd></div>
+        </dl>
+      </div>
+
+      {/* SCHEDULE: the systems, as a drawing schedule */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-6">
+        <div className="lg:col-span-4">
+          <h2 className="font-semibold leading-[1.02] tracking-[-0.01em] text-[clamp(2rem,3.4vw,3.25rem)] text-[var(--text-primary)]" style={display}>
+            {t.scheduleTitle}
+          </h2>
+          <p className="mt-4 text-lg text-[var(--text-secondary)] max-w-[36ch]">{t.scheduleIntro}</p>
+        </div>
+        <div className="lg:col-span-8">
+          <table className="schedule">
+            <thead>
+              <tr>
+                <th scope="col">{t.colSheet}</th>
+                <th scope="col">{t.colSystem}</th>
+                <th scope="col" className="max-sm:hidden">{t.colWhat}</th>
+                <th scope="col">{t.colFig}</th>
+              </tr>
+            </thead>
+            <tbody>
               {pillars.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleScrollToDossier(e, item.href)}
-                  className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3.5 flex flex-col justify-between hover:border-[var(--accent-primary)] transition-all group block shadow-sm"
-                >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between font-mono text-[10px] text-[var(--text-secondary)] border-b border-[var(--border)] pb-2">
-                      <span className="font-semibold text-[var(--text-primary)]">{item.num}</span>
-                      <span className="text-[var(--accent-primary)]">{item.tag}</span>
-                    </div>
-                    <div className="font-sans font-bold text-xs text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors">
-                      {item.title}
-                    </div>
-                    <div className="text-[11px] text-[var(--text-secondary)] leading-relaxed">
-                      {item.desc}
-                    </div>
-                  </div>
-                  <div className="mt-3 pt-2 border-t border-[var(--border)] flex items-center justify-between text-[10px] font-mono text-[var(--accent-primary)]">
-                    <span>{item.metrics}</span>
-                    <span>→</span>
-                  </div>
-                </a>
+                <tr key={item.href}>
+                  <td className="fig">{item.num}</td>
+                  <td>
+                    <a href={item.href} onClick={(e) => openSheet(e, item.href.replace('#', ''))}>{item.title}</a>
+                  </td>
+                  <td className="text-[var(--text-secondary)] max-sm:hidden">{item.desc}</td>
+                  <td className="fig max-sm:whitespace-normal" dir="ltr">{item.metrics}</td>
+                </tr>
               ))}
-            </div>
-          )}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-          {/* TAB 2: PROTOCOL STACK */}
-          {activeTab === 'stack' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full animate-fadeIn">
-              {techStack.map((tech) => (
-                <div key={tech.name} className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3.5 space-y-1.5 shadow-sm">
-                  <div className="flex items-center justify-between text-[10px] font-mono">
-                    <span className="font-semibold text-[var(--accent-primary)]">[{tech.badge}]</span>
-                  </div>
-                  <div className="font-sans font-bold text-xs text-[var(--text-primary)]">{tech.name}</div>
-                  <div className="text-[11px] text-[var(--text-secondary)] leading-snug">{tech.role}</div>
+      {/* GENERAL NOTES + MATERIALS */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12">
+        <div className="lg:col-span-7">
+          <h2 className="font-semibold leading-[1.02] tracking-[-0.01em] text-[clamp(2rem,3.4vw,3.25rem)] text-[var(--text-primary)]" style={display}>
+            {t.notesTitle}
+          </h2>
+          <p className="mt-4 text-lg text-[var(--text-secondary)]">{t.notesIntro}</p>
+          <ol className="mt-8 border-t-[1.5px] border-[var(--border-strong)]">
+            {directives.map((dir, i) => (
+              <li key={i} className="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5 border-b border-[var(--border)]">
+                <span className="font-mono text-[var(--pencil)] font-medium pt-0.5">{isFa ? ['۱', '۲', '۳', '۴'][i] : i + 1}</span>
+                <div>
+                  <h3 className="font-semibold text-[1.0625rem] text-[var(--text-primary)]">{dir.label.replace(/^(Rule \d+|اصل \S+):\s*/, '')}</h3>
+                  <p className="mt-1 text-[var(--text-secondary)] max-w-[62ch]">{dir.text}</p>
                 </div>
-              ))}
-            </div>
-          )}
-
-          {/* TAB 3: DIRECTIVES */}
-          {activeTab === 'directives' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full animate-fadeIn">
-              {directives.map((dir, i) => (
-                <div key={i} className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-3.5 space-y-1.5 shadow-sm">
-                  <div className="flex items-center justify-between text-[10px] font-mono">
-                    <span className="text-[var(--accent-primary)] font-semibold">{dir.tag}</span>
-                  </div>
-                  <div className="font-sans font-bold text-xs text-[var(--text-primary)]">{dir.label}</div>
-                  <div className="text-[11px] text-[var(--text-secondary)] leading-relaxed">{dir.text}</div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* TAB 4: BENCHMARKS */}
-          {activeTab === 'benchmarks' && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full animate-fadeIn">
-              {benchmarks.map((bench, i) => (
-                <div key={i} className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-xl p-4 space-y-2 shadow-sm text-center">
-                  <div className="text-[10px] font-mono text-[var(--accent-primary)] uppercase tracking-wider">{bench.title}</div>
-                  <div className="text-2xl font-bold font-sans text-[var(--text-primary)]">{bench.metric}</div>
-                  <div className="text-[11px] text-[var(--text-secondary)] leading-tight">{bench.detail}</div>
-                </div>
-              ))}
-            </div>
-          )}
-
+              </li>
+            ))}
+          </ol>
         </div>
 
+        <div className="lg:col-span-5 lg:ps-10 lg:border-s lg:border-[var(--border)]">
+          <h2 className="font-semibold text-xl text-[var(--text-primary)]">{t.materialsTitle}</h2>
+          <dl className="mt-5">
+            {techStack.map((tech) => (
+              <div key={tech.name} className="py-3 border-b border-[var(--border)] first:border-t first:border-t-[var(--border-strong)]">
+                <dt className="font-mono font-medium text-[var(--accent-primary)]" dir="ltr">{tech.name}</dt>
+                <dd className="mt-0.5 text-[0.9375rem] text-[var(--text-secondary)]">{tech.role}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <h2 className="mt-12 font-semibold text-xl text-[var(--text-primary)]">{t.scaleTitle}</h2>
+          <dl className="mt-5">
+            {benchmarks.map((bench, i) => (
+              <div key={i} className="py-3 border-b border-[var(--border)] first:border-t first:border-t-[var(--border-strong)]">
+                <dt className="flex flex-wrap items-baseline justify-between gap-x-4">
+                  <span className="font-semibold text-[var(--text-primary)]">{bench.title}</span>
+                  <span className="font-mono font-medium text-[var(--text-primary)]" dir="ltr">{bench.metric}</span>
+                </dt>
+                <dd className="mt-0.5 text-[0.9375rem] text-[var(--text-secondary)]">{bench.detail}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
 
     </div>

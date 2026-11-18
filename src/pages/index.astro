@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import LandingStage from '../components/react/LandingStage';
+import CommandBoard from '../components/CommandBoard.astro';
 import ArchitectureSidebar from '../components/react/ArchitectureSidebar';
 import BookingSection from '../components/BookingSection.astro';
 import AIWorkforceHub from '../components/react/AIWorkforceHub';
@@ -15,12 +15,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   title="Ariya Sarrafzadeh — Systems Architect & Technical Product Leader"
   description="Systems that hold under pressure. Systems architecture, engineering, and product thinking for systems where correctness, resilience, and real-world outcomes matter."
 >
-  <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-white/50 to-transparent z-50 transition-all duration-100"></div>
 
-  <main class="w-full max-w-[1920px] 2xl:max-w-[2160px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 pb-16 font-sans" id="blueprints">
+  <main class="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 pt-6 sm:pt-8 pb-16 font-sans" id="blueprints">
     <!-- HERO STAGE (DOM order verified: renders prior to sidebar index) -->
-    <div class="w-full mb-6">
-      <LandingStage client:load locale="en" />
+    <div id="overview" class="w-full scroll-mt-24">
+      <CommandBoard />
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -29,36 +28,6 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       <!-- Main Stage Sections -->
       <div class="lg:col-span-9 space-y-6" id="segmented-dossier-stage">
-        <!-- SEGMENTED CHAPTER TABS (Human-scale chapter navigation) -->
-        <div class="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-2 shadow-sm font-sans" id="segmented-dossier-nav">
-          <div class="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5 text-xs">
-            <button data-dossier-tab="payment-settlement" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all bg-[var(--accent-primary)] text-white shadow-sm font-semibold">
-              01 · Settlements &amp; Ledgers
-            </button>
-            <button data-dossier-tab="payment-switch" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
-              02 · Payment Switch
-            </button>
-            <button data-dossier-tab="fraud-forensics" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
-              03 · Fraud Risk &amp; eKYC
-            </button>
-            <button data-dossier-tab="reconciliation-engine" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
-              04 · Reconciliation &amp; Payouts
-            </button>
-            <button data-dossier-tab="incident-dossiers" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
-              05 · Incident Archive
-            </button>
-            <button data-dossier-tab="lifecycle" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
-              06 · Product Lifecycle
-            </button>
-            <button data-dossier-tab="ai-workforce" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
-              07 · Autonomous AI
-            </button>
-            <button data-dossier-tab="book" class="px-3 py-1.5 rounded-xl font-medium whitespace-nowrap transition-all text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-elevated)]">
-              08 · Architecture Intake
-            </button>
-          </div>
-        </div>
-
         <!-- SECTION 01: Double-Entry Ledger & Two-Phase Balance Engine -->
         <section id="payment-settlement" data-dossier-panel class="scroll-mt-20 bg-[#0f1217]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5 space-y-6 hover:border-white/20 transition-all block">
       <!-- Header -->
@@ -1232,7 +1201,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       }
 
       // Update URL hash without causing instant jumps
-      if (window.location.hash !== '#' + id) {
+      if (shouldScroll && window.location.hash !== '#' + id) {
         history.replaceState(null, '', '#' + id);
       }
     }

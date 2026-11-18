@@ -77,17 +77,11 @@ const toPersianNum = (n: number | string) => {
   <main class="max-w-[1400px] mx-auto px-6 pt-24 pb-20 font-['Vazirmatn',sans-serif]" dir="rtl">
     
     <!-- Header -->
-    <div class="bg-[var(--surface-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
-      <div class="flex items-center gap-2 mb-2 font-mono text-[11px] text-[var(--text-secondary)] uppercase tracking-wider">
-        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-warm)]"></span>
-        <span>مستندات معماری تولیدی · مشخصات فنی</span>
-        <div class="h-px flex-1 bg-[var(--border)]"></div>
-        <span class="text-[10px] text-[var(--text-muted)] font-mono">{toPersianNum(whitepapers.length)} پرونده فنی</span>
-      </div>
-      <h1 class="text-2xl sm:text-4xl font-bold uppercase text-[var(--text-primary)] mb-3 tracking-tight">
+    <div class="bg-[var(--surface-card)] backdrop-blur-xl border border-[var(--border)] p-6 sm:p-10 mb-10">
+            <h1 class="text-[clamp(2.25rem,4.4vw,4rem)] leading-[1.02] font-semibold text-[var(--text-primary)] mb-4 tracking-[-0.01em]">
         مجموعه مقالات و مستندات مهندسی
       </h1>
-      <p class="text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed max-w-3xl">
+      <p class="text-[var(--text-secondary)] text-lg leading-relaxed max-w-[62ch]">
         تحلیل عمیق معماری سوییچ‌های پرداخت شاپرکی، سوییچینگ مخابراتی، ایزوله‌سازی ریسک و مدیریت دفاتر کل مالی در زیرساخت‌های پرترافیک.
       </p>
     </div>
@@ -132,7 +126,7 @@ const toPersianNum = (n: number | string) => {
             </div>
 
             <div class="pt-3 border-t border-[var(--border)] flex justify-between items-center text-xs font-mono">
-              <span class="text-[10px] text-[var(--text-muted)] uppercase" dir="ltr">ACID VERIFIED</span>
+              <span class="text-[var(--text-muted)]">{item.tag}</span>
               <a
                 href={`${baseUrl}fa/blog/${item.slug}/`}
                 class="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-primary)] flex items-center gap-1 group-hover:-translate-x-0.5 transition-all"

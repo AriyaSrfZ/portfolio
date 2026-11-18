@@ -43,7 +43,7 @@ const specNum = slug && specNumberMap[slug] ? specNumberMap[slug] : null;
       </div>
     )}
 
-    <h1 class={`text-2xl sm:text-3xl font-bold ${specNum ? 'mt-1' : 'mt-5'} mb-2 text-[var(--text-primary)] tracking-normal`}>{title}</h1>
+    <h1 class={`text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.25] font-bold ${specNum ? 'mt-1' : 'mt-5'} mb-3 text-[var(--text-primary)] tracking-normal`}>{title}</h1>
     <p class="text-xs text-[var(--text-secondary)] mb-4 tracking-normal font-mono">
       {date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' })}
     </p>
