@@ -46,3 +46,12 @@ Never use generic Tailwind purple/blue gradients. All UI strictly adheres to:
 1. **Build Verification**: Always run `npm run build` after editing and verify zero compilation errors before reporting.
 2. **Strict ADHD Versioning**: Create `src/pages/index_v2.astro` when testing major layout variations. Maintain `VERSIONS.md`.
 3. **Minimal Code Discipline (YAGNI)**: Shortest correct diff. No unrequested frontend dependencies.
+
+---
+
+## 06 / HIVE FLEET PROTOCOL
+Hive MCP (`.mcp.json` → `hive`) links this repo's sessions to the fleet brain.
+1. **Session start**: `hive_pulse` with `node_id: claude-code-cloud`, `machine: claude-cloud-container`, current task, `status: active`.
+2. **Before work**: `hive_claim_task` on the task ID (e.g. `TASK-02`) to lock it fleet-wide.
+3. **After work**: `hive_complete_task` with the outcome, then `report_to_ariya` with files changed and next step.
+4. **Lane**: this repo only. No SSH or tailnet from cloud sessions; VPS and laptop work belongs to Antigravity nodes.
