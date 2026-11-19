@@ -127,7 +127,7 @@ export default function FintechDictionary({ locale = 'en' }: FintechDictionaryPr
   }, []);
 
   return (
-    <div className={`w-full max-w-7xl mx-auto ${isFa ? 'font-[\'Vazirmatn\',sans-serif]' : 'font-sans'}`} dir={isFa ? 'rtl' : 'ltr'}>
+    <div className={`w-full max-w-7xl mx-auto ${isFa ? 'font-[family-name:var(--font-vazirmatn)]' : 'font-sans'}`} dir={isFa ? 'rtl' : 'ltr'}>
       
       {/* Top Header & Metrics Banner */}
       <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
