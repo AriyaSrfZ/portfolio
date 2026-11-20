@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "ariya-skills": {
+      "source": { "source": "github", "repo": "AriyaSrfZ/portfolio" }
+    }
+  },
+  "enabledPlugins": {
+    "charles-design@ariya-skills": true,
+    "charles-editing@ariya-skills": true,
+    "charles-drops@ariya-skills": true,
+    "charles-qol@ariya-skills": true
+  }
+}
