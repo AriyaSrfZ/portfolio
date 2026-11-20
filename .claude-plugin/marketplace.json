@@ -1,0 +1,152 @@
+{
+  "name": "ariya-skills",
+  "owner": {
+    "name": "Ariya Sarrafzadeh"
+  },
+  "metadata": {
+    "description": "Third-party skill packs grouped one plugin per family, so each family nests under one name in the command list."
+  },
+  "plugins": [
+    {
+      "name": "charles-design",
+      "description": "Make UI look designed and feel finished: unslop, polish, award-level craft, colour critique and App Store screenshots (Charles Liu, MIT)",
+      "source": {
+        "source": "github",
+        "repo": "LemonFace0309/charles-skills"
+      },
+      "strict": false,
+      "skills": [
+        "./skills/design/charles-unslop",
+        "./skills/design/charles-polish",
+        "./skills/design/charles-unreasonable-craft",
+        "./skills/design/charles-store-screenshots",
+        "./skills/design/charles-color-analysis"
+      ]
+    },
+    {
+      "name": "charles-editing",
+      "description": "Charles' reel pipeline: plan, script and edit talking-head reels, with explainer, pixel-art and 3D visuals timed to the words (Charles Liu, MIT)",
+      "source": {
+        "source": "github",
+        "repo": "LemonFace0309/charles-skills"
+      },
+      "strict": false,
+      "skills": [
+        "./skills/editing/charles-claude-editing",
+        "./skills/editing/charles-reel-plans",
+        "./skills/editing/charles-scripting-voice",
+        "./skills/editing/charles-explainers-assets",
+        "./skills/editing/charles-3d-explainers",
+        "./skills/editing/charles-arcade-assets"
+      ]
+    },
+    {
+      "name": "charles-qol",
+      "description": "Quality of life: explain anything like you're 14, turn any topic into a narrated interactive lesson, and find what's filling your Mac (Charles Liu, MIT)",
+      "source": {
+        "source": "github",
+        "repo": "LemonFace0309/charles-skills"
+      },
+      "strict": false,
+      "skills": [
+        "./skills/qol/charles-storage-cleanup",
+        "./skills/qol/charles-eli14",
+        "./skills/qol/charles-learn-anything"
+      ]
+    },
+    {
+      "name": "charles-drops",
+      "description": "Specialist skills that go deep on one craft: interface motion done right, poster-like landing-page heroes, and posters for company moments in the Quartr style (Charles Liu, MIT)",
+      "source": {
+        "source": "github",
+        "repo": "LemonFace0309/charles-skills"
+      },
+      "strict": false,
+      "skills": [
+        "./skills/drops/charles-ux-animation",
+        "./skills/drops/charles-hero-mockups",
+        "./skills/drops/charles-design-tips",
+        "./skills/drops/charles-design-laws",
+        "./skills/drops/charles-create-posters"
+      ]
+    },
+    {
+      "name": "design-styles",
+      "description": "67 visual style guides (brutalism, glassmorphism, editorial, retro...) from bergside/awesome-design-skills (MIT), nested under one name.",
+      "source": {
+        "source": "github",
+        "repo": "bergside/awesome-design-skills"
+      },
+      "strict": false,
+      "skills": [
+        "./skills/agentic",
+        "./skills/ant",
+        "./skills/artistic",
+        "./skills/basic",
+        "./skills/bento",
+        "./skills/bold",
+        "./skills/brutalism",
+        "./skills/cafe",
+        "./skills/claude",
+        "./skills/claymorphism",
+        "./skills/clean",
+        "./skills/codex",
+        "./skills/colorful",
+        "./skills/contemporary",
+        "./skills/corporate",
+        "./skills/cosmic",
+        "./skills/creative",
+        "./skills/dithered",
+        "./skills/doodle",
+        "./skills/dramatic",
+        "./skills/editorial",
+        "./skills/enterprise",
+        "./skills/expressive",
+        "./skills/fantasy",
+        "./skills/fiction",
+        "./skills/flat",
+        "./skills/friendly",
+        "./skills/futuristic",
+        "./skills/geometric",
+        "./skills/glassmorphism",
+        "./skills/gradient",
+        "./skills/immersive",
+        "./skills/impeccable",
+        "./skills/levels",
+        "./skills/lingo",
+        "./skills/material",
+        "./skills/matrix",
+        "./skills/minimal",
+        "./skills/modern",
+        "./skills/mono",
+        "./skills/neobrutalism",
+        "./skills/neon",
+        "./skills/neumorphism",
+        "./skills/pacman",
+        "./skills/paper",
+        "./skills/perspective",
+        "./skills/power",
+        "./skills/premium",
+        "./skills/professional",
+        "./skills/pulse",
+        "./skills/refined",
+        "./skills/retro",
+        "./skills/riso",
+        "./skills/roku",
+        "./skills/sega",
+        "./skills/shadcn",
+        "./skills/sketch",
+        "./skills/skeumorphism",
+        "./skills/sleek",
+        "./skills/spacious",
+        "./skills/square",
+        "./skills/stitch",
+        "./skills/storytelling",
+        "./skills/terracotta",
+        "./skills/tetris",
+        "./skills/vibrant",
+        "./skills/vintage"
+      ]
+    }
+  ]
+}

@@ -634,3 +634,55 @@ body > footer {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+
+/* ---------- Colour-book sections and gridlines ---------- */
+/* Graph-paper ground: minor 24px lines, major 120px lines, in both themes */
+html, body {
+  --grid-minor: color-mix(in srgb, var(--border) 45%, transparent);
+  --grid-major: color-mix(in srgb, var(--border) 90%, transparent);
+  background-image:
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-minor) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+
+/* Each dossier section gets its own wash and a matching 6px spine */
+#segmented-dossier-stage > section {
+  --sec-wash: var(--ink-6);
+  --sec-ink: var(--ink-2);
+  background-color: var(--sec-wash);
+  border: 1.5px solid var(--sec-ink);
+  border-inline-start-width: 6px;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--sec-ink) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--sec-ink) 10%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+#segmented-dossier-stage > section:nth-of-type(5n+2) { --sec-wash: var(--sepia-wash); --sec-ink: var(--sepia); }
+#segmented-dossier-stage > section:nth-of-type(5n+3) { --sec-wash: var(--plum-wash); --sec-ink: var(--plum); }
+#segmented-dossier-stage > section:nth-of-type(5n+4) { --sec-wash: var(--absinthe-wash); --sec-ink: var(--absinthe); }
+#segmented-dossier-stage > section:nth-of-type(5n+5) { --sec-wash: var(--pencil-wash); --sec-ink: var(--pencil); }
+
+/* Cards inside a section sit on solid paper with a ruled border */
+#segmented-dossier-stage > section .bg-\[var\(--surface-card\)\] {
+  background-color: var(--surface-elevated);
+  border: 1px solid color-mix(in srgb, var(--sec-ink) 55%, transparent);
+}
+/* Section header rule in the section's own colour */
+#segmented-dossier-stage > section .border-b {
+  border-bottom: 1.5px solid var(--sec-ink);
+}
+
+/* Command board tiles: one wash per tile type, coloured top rule */
+[data-board] .tile.tile { border-top: 4px solid var(--tile-ink, var(--border-strong)); }
+[data-board] .tile-kpi:nth-of-type(3n+2) { background: var(--ink-6); --tile-ink: var(--ink-2); }
+[data-board] .tile-kpi:nth-of-type(3n+3) { background: var(--sepia-wash); --tile-ink: var(--sepia); }
+[data-board] .tile-kpi:nth-of-type(3n+1) { background: var(--pencil-wash); --tile-ink: var(--pencil); }
+[data-board] .tile.tile-library  { background: var(--plum-wash); --tile-ink: var(--plum); }
+[data-board] .tile.tile-skills   { background: var(--absinthe-wash); --tile-ink: var(--absinthe); }
+[data-board] .tile.tile-timeline { background: var(--sepia-wash); --tile-ink: var(--sepia); }
+[data-board] .tile.tile-catalogue{ background: var(--ink-6); --tile-ink: var(--ink-2); }
+[data-board] .tile.tile-roadmap  { background: var(--pencil-wash); --tile-ink: var(--pencil); }
+[data-board] .tile.tile-hero     { --tile-ink: var(--ink-2); }
