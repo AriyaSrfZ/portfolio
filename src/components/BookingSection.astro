@@ -64,6 +64,16 @@ const CAL_LINK = 'ariya-sarrafzadeh/15min';
 </div>
 
 <script define:vars={{ CAL_LINK }}>
+  // Embed loads only when the booking slot is about to be seen.
+  const slot = document.getElementById("cal-inline");
+  const io = slot && new IntersectionObserver((entries) => {
+    if (!entries.some((e) => e.isIntersecting)) return;
+    io.disconnect();
+    initCal();
+  }, { rootMargin: "400px" });
+  if (io) io.observe(slot);
+
+  function initCal() {
   (function (C, A, L) {
     let p = function (a, ar) { a.q.push(ar); };
     let d = C.document;
@@ -107,4 +117,5 @@ const CAL_LINK = 'ariya-sarrafzadeh/15min';
     hideEventTypeDetails: false,
     layout: "month_view"
   });
+  }
 </script>

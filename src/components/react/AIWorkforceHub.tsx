@@ -45,7 +45,7 @@ export default function AIWorkforceHub({ locale = 'en' }: AIWorkforceHubProps) {
       ];
 
   return (
-    <div className={`w-full bg-[#0c0e12] border border-white/10 rounded-2xl p-4 sm:p-6 shadow-2xl ${isFa ? "font-['Vazirmatn',sans-serif]" : "font-sans"}`} dir={isFa ? 'rtl' : 'ltr'}>
+    <div className={`w-full bg-[#0c0e12] border border-white/10 rounded-2xl p-4 sm:p-6 shadow-2xl ${isFa ? "font-[family-name:var(--font-vazirmatn)]" : "font-sans"}`} dir={isFa ? 'rtl' : 'ltr'}>
       {/* Top Console Status Bar */}
       <div className="flex flex-wrap items-center justify-between border-b border-white/10 pb-4 mb-6 gap-3">
         <div className="flex items-center gap-3">

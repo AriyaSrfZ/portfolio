@@ -24,7 +24,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Sticky Sidebar Index & Minimized Bio (appears for dossiers) -->
-      <ArchitectureSidebar client:load locale="en" />
+      <ArchitectureSidebar client:visible locale="en" />
 
       <!-- Main Stage Sections -->
       <div class="lg:col-span-9 space-y-6" id="segmented-dossier-stage">
@@ -68,7 +68,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           src={`${baseUrl}diagrams/double-entry-ledger-schematic.svg?v=fintech-v3`} 
           alt="Double-Entry Ledger and Two-Phase Reservation Topology Schematic"
           class="w-full h-auto block rounded"
-          loading="eager"
+          loading="lazy"
         />
       </div>
 
@@ -202,7 +202,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           src={`${baseUrl}diagrams/payment-switch-iso8583-pipeline.svg?v=fintech-v3`} 
           alt="Smart PSP Switch and ISO 8583 Pipeline Topology Schematic"
           class="w-full h-auto block rounded"
-          loading="eager"
+          loading="lazy"
         />
       </div>
 
@@ -333,7 +333,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           src={`${baseUrl}diagrams/fraud-tracing-architecture.svg?v=fintech-v3`} 
           alt="eKYC, Harim Dynamic OTP and Forensic Graph Tracing Schematic"
           class="w-full h-auto block rounded"
-          loading="eager"
+          loading="lazy"
         />
       </div>
 
@@ -481,7 +481,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           src={`${baseUrl}diagrams/multi-bank-reconciliation.svg?v=fintech-v3`} 
           alt="Multi-Bank Multi-Pass Reconciliation and Settlement Pipeline Schematic"
           class="w-full h-auto block rounded"
-          loading="eager"
+          loading="lazy"
         />
       </div>
 
@@ -1114,7 +1114,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </div>
 
       <!-- Live Interactive AI Workforce Component -->
-      <AIWorkforceHub client:load locale="en" />
+      <AIWorkforceHub client:visible locale="en" />
 
       <!-- Stepper Nav -->
       <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">

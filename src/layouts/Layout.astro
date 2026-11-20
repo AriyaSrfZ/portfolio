@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { Font } from 'astro:assets';
 import FloatingNavbar from '../components/react/FloatingNavbar';
 import Analytics from '../components/Analytics.astro';
 import ImageLightbox from '../components/ImageLightbox.astro';
@@ -115,6 +116,10 @@ const jsonLdPerson = {
   <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
+  <Font cssVariable="--font-plex-sans" preload={isFa ? false : [{ weight: 400, style: 'normal' }]} />
+  <Font cssVariable="--font-plex-condensed" preload={isFa ? false : [{ weight: 600 }]} />
+  <Font cssVariable="--font-plex-mono" />
+  <Font cssVariable="--font-vazirmatn" preload={isFa ? [{ weight: 400 }] : false} />
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website" />
@@ -169,7 +174,7 @@ const jsonLdPerson = {
   <Analytics />
 </head>
 <body class="min-h-screen text-[var(--text-primary)] font-sans antialiased overflow-x-hidden pt-16 sm:pt-20">
-  <FloatingNavbar client:load locale={isFa ? 'fa' : 'en'} />
+  <FloatingNavbar client:idle locale={isFa ? 'fa' : 'en'} />
 
   <div class="relative z-10">
     <slot />
@@ -231,23 +236,27 @@ const jsonLdPerson = {
   </footer>
 
   <script>
-    import Lenis from 'lenis';
-
-    const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
+    // Smooth scroll starts on first input, so the loader and its rAF loop
+    // stay off the main thread during page load.
+    const events = ['wheel', 'touchstart', 'keydown', 'pointerdown'] as const;
+    const start = async () => {
+      events.forEach((e) => removeEventListener(e, start));
+      const { default: Lenis } = await import('lenis');
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+      });
+      const raf = (time: number) => {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      };
       requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
+    };
+    events.forEach((e) => addEventListener(e, start, { once: true, passive: true }));
   </script>
 </body>
 </html>
