@@ -1,0 +1,2787 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اتاق جنگ و عملیات توسعه بازار پیامک B2B — نسخه اختصاصی فِرِستا (پرشیا فاوا)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Vazirmatn', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              canvas: '#202725',
+              nav: '#171C1A',
+              column: '#252C29',
+              card: '#292F2D',
+              cardHover: '#343C38',
+              border: '#46504B',
+              borderSubtle: '#36403C',
+              patina: '#8FB4AA',
+              patinaDeep: '#527C78',
+              ochre: '#B39A77',
+              text: '#F0EEE7',
+              textMuted: '#B5BDB6',
+              blue: '#527C78',
+              blueHover: '#436763',
+              green: '#8FB4AA',
+              amber: '#B39A77',
+              red: '#D97768'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --canvas: #202725;
+      --surface: #292F2D;
+      --surface-elevated: #343C38;
+      --surface-grouped: #252C29;
+      --code-surface: #171C1A;
+      --border: #46504B;
+      --border-subtle: #36403C;
+      --text-primary: #F0EEE7;
+      --text-secondary: #B5BDB6;
+      --accent-primary: #8FB4AA;
+      --accent-deep: #527C78;
+      --ochre: #B39A77;
+    }
+    body {
+      font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #202725;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(143, 180, 170, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(179, 154, 119, 0.06) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: #F0EEE7;
+    }
+    .modern-nav, .ios-nav {
+      background: rgba(23, 28, 26, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #46504B;
+    }
+    .modern-column, .ios-column {
+      background: #252C29;
+      border: 1px solid #46504B;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    }
+    .modern-card, .ios-card {
+      background: #292F2D;
+      border: 1px solid #36403C;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modern-card:hover, .ios-card:hover {
+      background: #343C38;
+      border-color: #8FB4AA;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+    .glass, .glass-card {
+      background: rgba(41, 47, 45, 0.88);
+      backdrop-filter: blur(20px);
+      border: 1px solid #46504B;
+    }
+    .kanban-col {
+      min-height: calc(100vh - 220px);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #46504B;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8FB4AA;
+    }
+  </style>
+</head>
+<body class="text-white min-h-screen antialiased flex flex-col selection:bg-[#527C78]/40 selection:text-white">
+
+  <!-- IRAN UNFILTERED DOMESTIC ROUTE BANNER (Only on ariya-sarrafzadeh.ir) -->
+  <div id="iranDpiBanner" class="hidden bg-[#2D241E] border-b border-[#B39A77]/40 text-[#F0EEE7] px-4 py-2.5 text-xs flex flex-wrap items-center justify-between gap-3 shadow-md z-50">
+    <div class="flex items-center gap-2">
+      <span class="text-base">⚡</span>
+      <span><strong>سرور مستقیم و بدون فیلتر:</strong> جهت ذخیره آنی و بدون قطعی بورد در اینترنت ایران، به سرور مستقیم متصل شوید:</span>
+    </div>
+    <button onclick="migrateToDirectServer()" class="px-3.5 py-1.5 bg-[#B39A77] hover:bg-[#968060] text-[#171C1A] rounded-xl font-bold transition flex items-center gap-1.5 shadow-sm">
+      <span>انتقال آنی به نسخه مستقیم (بدون فیلتر) 🚀</span>
+    </button>
+  </div>
+
+  <!-- Top Glass Navigation Bar (Apple Style) -->
+    <!-- Top Navigation Bar (ClickUp Style) -->
+    <!-- Top Navigation Bar (iPhone iOS Style) -->
+    <!-- Top Navigation Bar (Modern High-Contrast) -->
+  <header class="sticky top-0 z-40 modern-nav px-4 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+    <!-- Brand & Workspace Identity -->
+    <div class="flex items-center gap-3.5">
+      <div class="w-9 h-9 rounded-xl bg-[#527C78] flex items-center justify-center shadow-lg shadow-[#527C78]/25 border border-white/20">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-bold tracking-tight text-white">اتاق جنگ و عملیات فِرِستا (War Room)</span>
+          <span class="px-2.5 py-0.5 text-[10px] rounded-full bg-[#527C78]/20 text-[#8FB4AA] border border-[#527C78]/40 font-semibold">توسعه بازار پیامک B2B</span>
+        </div>
+        <p class="text-[11px] text-[#B5BDB6]">شرکت پرشیا فاوا گسترش — رصدخانه و سامانه عملیات جذب حساب‌های استراتژیک</p>
+      </div>
+    </div>
+
+    <!-- Segmented View Switcher -->
+    <div class="flex items-center bg-[#252C29] p-1 rounded-xl border border-[#46504B]">
+      <button onclick="switchView('board')" id="btnViewBoard" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#343C38] text-white shadow-sm transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+        تخته کانبان (Board)
+      </button>
+      <button onclick="switchView('list')" id="btnViewList" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+        نمای پایپ‌لاین (List)
+      </button>
+      <button onclick="switchView('analytics')" id="btnViewAnalytics" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        آمار و متریک‌ها
+      </button>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="flex items-center gap-2">
+      <button onclick="openNewAccountModal()" class="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-semibold shadow-md shadow-[#527C78]/25 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 4v16m8-8H4"/></svg>
+        + حساب هدف جدید
+      </button>
+      <a href="/pfg_b2b_tracker.xlsx" download="کاربرگ_جامع_توسعه_بازار_پیامک_پرشیا_فاوا.xlsx" class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold shadow-sm transition" title="دانلود مستقیم فایل اکسل">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span>دانلود اکسل (XLSX)</span>
+      </a>
+      <a href="/warroom/c-levels.html" target="_blank" class="flex items-center gap-1.5 px-3 py-1.5 bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 border border-sky-500/30 rounded-xl text-xs font-semibold shadow-sm transition" title="فهرست مدیران ارشد و لینکدین‌ها">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <span>مدیران و لینکدین‌ها (C-Level)</span>
+      </a>
+      <a href="/warroom/linkedin-showcases.html" target="_blank" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#527C78]/25 hover:bg-[#527C78]/40 text-[#8FB4AA] border border-[#527C78]/40 rounded-xl text-xs font-semibold shadow-sm transition" title="طراحی و مدیریت صفحات ویترین ۳ دپارتمان">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        <span>ویترین ۳ دپارتمان</span>
+      </a>
+      <button onclick="openSheetsGuideModal()" title="راهنمای باز کردن کاربرگ در Google Sheets" class="p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition text-xs font-bold">
+        ❓
+      </button>
+      <!-- Active User & IP Badge -->
+      <button onclick="promptUserIdentity(true)" id="userBadgeBtn" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#292F2D] hover:bg-[#343C38] text-slate-300 border border-[#46504B] rounded-xl text-xs transition" title="کلیک برای تغییر نام یا هویت کاربر">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span id="userBadgeName">کاربر: شناسایی نشده</span>
+        <span id="userBadgeIP" class="text-[10px] text-slate-500 font-mono hidden sm:inline"></span>
+      </button>
+
+      <!-- Firebase Cloud Sync Controls -->
+      <button onclick="forcePushToCloud()" id="btnPushCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#527C78] hover:bg-[#436763] text-white font-bold rounded-xl text-xs shadow-md shadow-[#527C78]/25 transition" title="ارسال اطلاعات و تغییرات این کامپیوتر به پایگاه داده ابری">
+        <span>☁️ ارسال به ابر (Push)</span>
+      </button>
+
+      <button onclick="forcePullFromCloud()" id="btnPullCloud" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#292F2D] hover:bg-[#343C38] text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold transition" title="دریافت آخرین تغییرات از پایگاه داده ابری">
+        <span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="cloudSyncText">دریافت از ابر (Pull)</span>
+      </button>
+
+      <button onclick="openBackupsModal()" id="btnBackups" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#343C38] hover:bg-[#3D4742] text-[#8FB4AA] border border-[#527C78]/40 rounded-xl text-xs font-semibold shadow-sm transition" title="تاریخچه پشتیبان‌های مرورگر و بازگردانی نسخه‌های قبلی">
+        <span>🕒 تاریخچه پشتیبان‌ها</span>
+      </button>
+
+      <!-- Import/Export JSON Dropdown or Buttons -->
+      <label class="cursor-pointer p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition flex items-center" title="بارگذاری فایل پشتیبان JSON">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+        <input type="file" id="jsonFileInput" accept=".json" onchange="importDataJSON(event)" class="hidden">
+      </label>
+
+      <button onclick="exportDataJSON()" title="دانلود فایل پشتیبان JSON" class="p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+      </button>
+
+      <button onclick="copyDataClipboard()" title="کپی سریع تمام داده‌ها در کلیپ‌بورد" class="p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition">
+        📋
+      </button>
+
+      <button onclick="pasteDataClipboard()" title="جایگذاری سریع داده‌ها از کلیپ‌بورد" class="p-2 bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white rounded-xl border border-[#46504B] transition">
+        📥
+      </button>
+    </div>
+  </header>
+  <!-- Standup Action Banner -->
+  <div class="bg-[#252C29] border-b border-[#46504B] px-4 lg:px-8 py-2.5 flex items-center justify-between gap-3 text-xs">
+    <div class="flex items-center gap-2.5 text-slate-200 overflow-hidden">
+      <span class="flex h-2.5 w-2.5 relative flex-shrink-0">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-400"></span>
+      </span>
+      <span class="font-bold text-white whitespace-nowrap">⚡ میز کار استندآپ و سینک روزانه:</span>
+      <span class="text-slate-400 truncate text-[11px]">ثبت تعهدات امروز، موانع اجرایی و بازبینی تصمیمات تیم</span>
+    </div>
+    <div class="flex items-center gap-2 flex-shrink-0">
+      <button onclick="openStandupModal()" class="px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white font-semibold rounded-lg text-[11px] shadow-sm flex items-center gap-1.5 transition whitespace-nowrap">
+        <span>📋 میز کار و یادداشت‌های استندآپ</span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Filter & Role Toolbar -->
+  <div class="px-4 lg:px-8 py-3.5 bg-[#171C1A] border-b border-[#46504B] flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
+      <span class="text-slate-400 font-medium ml-1">مسئولین:</span>
+      <button onclick="filterByRole('all')" id="rf-all" class="px-3 py-1 rounded-lg bg-[#527C78] text-white font-semibold shadow-sm transition">همه</button>
+      <button onclick="filterByRole('unassigned')" id="rf-unassigned" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-amber-300 hover:text-white border border-amber-500/20 transition whitespace-nowrap">⏳ بدون مسئول (آماده پذیرش)</button>
+      <button onclick="filterByRole('shahroozi')" id="rf-shahroozi" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم شهروزی</button>
+      <button onclick="filterByRole('moosapour')" id="rf-moosapour" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم موسی‌پور</button>
+      <button onclick="filterByRole('khordamdel')" id="rf-khordamdel" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم خرم‌دل</button>
+      <button onclick="filterByRole('faeze')" id="rf-faeze" class="px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap">خانم فائزه</button>
+      <button onclick="resetAllToStartPoint()" class="px-3 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/25 font-medium transition flex items-center gap-1 ml-2 whitespace-nowrap" title="قرار دادن همه ۱۰ حساب در مرحله ۱ (نقطه شروع)">
+        <span>🔄 بازنشانی به نقطه شروع</span>
+      </button>
+    </div>
+
+    <!-- Search Input -->
+    <div class="relative w-full sm:w-80">
+      <input type="text" id="liveSearch" oninput="handleSearch()" placeholder="جستجو در نام شرکت، مدیرعامل یا پاشنه آشیل..." class="w-full bg-[#292F2D] border border-[#46504B] rounded-xl px-3.5 py-1.5 pr-8 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#8FB4AA] transition">
+      <svg class="w-3.5 h-3.5 text-slate-500 absolute right-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </div>
+  </div>
+
+  <!-- VIEW 1: KANBAN BOARD -->
+  <div id="viewBoard" class="flex-1 p-4 lg:p-8 overflow-x-auto">
+    <div class="flex gap-4 min-w-[1550px] items-start pb-6">
+
+      <!-- Column 1: Backlog / Prospect -->
+      <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'prospect')">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+            <div>
+              <span class="text-xs font-bold text-slate-200">۱. کشف و ارزیابی لید</span>
+              <p class="text-[10px] text-slate-500 mt-0.5">ثبت مشخصات و تخمین ترافیک پیامک</p>
+            </div>
+          </div>
+          <span id="badge-prospect" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#343C38] text-slate-300 font-semibold border border-[#46504B]">0</span>
+        </div>
+        <div id="col-prospect" class="space-y-2.5 flex-1 overflow-y-auto"></div>
+      </div>
+
+      <!-- Column 2: LinkedIn Research -->
+      <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'linkedin')">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+            <div>
+              <span class="text-xs font-bold text-[#8FB4AA]">۲. ممیزی لینکدین</span>
+              <p class="text-[10px] text-slate-500 mt-0.5">شناسایی تصمیم‌گیرندگان، ساختار و پاشنه آشیل</p>
+            </div>
+          </div>
+          <span id="badge-linkedin" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#527C78]/15 text-[#8FB4AA] font-semibold border border-[#527C78]/30">0</span>
+        </div>
+        <div id="col-linkedin" class="space-y-2.5 flex-1 overflow-y-auto"></div>
+      </div>
+
+      <!-- Column 3: Letter Drafting -->
+      <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'drafting')">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            <div>
+              <span class="text-xs font-bold text-amber-400">۳. تدوین نامه و روت</span>
+              <p class="text-[10px] text-slate-500 mt-0.5">نگارش نامه رسمی اداری و InMail با قلاب‌های فنی</p>
+            </div>
+          </div>
+          <span id="badge-drafting" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 font-semibold border border-amber-500/20">0</span>
+        </div>
+        <div id="col-drafting" class="space-y-2.5 flex-1 overflow-y-auto"></div>
+      </div>
+
+      <!-- Column 4: CEO / COO Review -->
+      <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'csuite')">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+            <div>
+              <span class="text-xs font-bold text-sky-300">۴. تایید مدیریت ارشد</span>
+              <p class="text-[10px] text-slate-500 mt-0.5">بررسی محتوا و مدل تسهیم ترافیک تا ساعت ۱۶</p>
+            </div>
+          </div>
+          <span id="badge-csuite" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-300 font-semibold border border-sky-500/20">0</span>
+        </div>
+        <div id="col-csuite" class="space-y-2.5 flex-1 overflow-y-auto"></div>
+      </div>
+
+      <!-- Column 5: Active Outreach -->
+      <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'outreach')">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+            <div>
+              <span class="text-xs font-bold text-sky-400">۵. مذاکره و ارسال</span>
+              <p class="text-[10px] text-slate-500 mt-0.5">ارسال نامه، پیگیری تماس و بسته ۵۰k</p>
+            </div>
+          </div>
+          <span id="badge-outreach" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-400 font-semibold border border-sky-500/20">0</span>
+        </div>
+        <div id="col-outreach" class="space-y-2.5 flex-1 overflow-y-auto"></div>
+      </div>
+
+      <!-- Column 6: Pilot / Won -->
+      <div class="w-72 flex-shrink-0 modern-column rounded-2xl p-3 kanban-col flex flex-col" ondragover="allowDrop(event)" ondrop="drop(event, 'won')">
+        <div class="flex items-center justify-between pb-3 mb-2 border-b border-[#46504B]">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <div>
+              <span class="text-xs font-bold text-emerald-400">۶. پایلوت و بسته‌شده</span>
+              <p class="text-[10px] text-slate-500 mt-0.5">پایلوت فعال فنی و بستن قرارداد</p>
+            </div>
+          </div>
+          <span id="badge-won" class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20">0</span>
+        </div>
+        <div id="col-won" class="space-y-2.5 flex-1 overflow-y-auto"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VIEW 2: PIPELINE LIST (TABLE) -->
+  <div id="viewList" class="hidden flex-1 p-4 lg:p-8">
+    <div class="ios-column rounded-2xl overflow-hidden shadow-2xl">
+      <table class="w-full text-right text-xs">
+        <thead class="bg-black/40 text-slate-400 border-b border-white/10">
+          <tr>
+            <th class="p-3.5">نام شرکت و اولویت</th>
+            <th class="p-3.5">حوزه فعالیت</th>
+            <th class="p-3.5">تصمیم‌گیرندگان</th>
+            <th class="p-3.5 text-center">مرحله (Stage)</th>
+            <th class="p-3.5 text-center">پیوست‌ها</th>
+            <th class="p-3.5 text-center">مسئولین</th>
+            <th class="p-3.5 text-center">عملیات</th>
+          </tr>
+        </thead>
+        <tbody id="listTableBody" class="divide-y divide-white/5"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VIEW 3: EXECUTIVE ANALYTICS -->
+  <div id="viewAnalytics" class="hidden flex-1 p-4 lg:p-8 space-y-6 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="ios-column p-5 rounded-2xl">
+        <span class="text-xs text-slate-400">کل حساب‌های تحت رصد</span>
+        <div class="text-3xl font-extrabold text-white mt-1" id="statTotal">۱۰</div>
+        <span class="text-[11px] text-[#8FB4AA] mt-2 block">۱۰۰٪ تاییدیه شورا</span>
+      </div>
+      <div class="ios-column p-5 rounded-2xl">
+        <span class="text-xs text-slate-400">حساب‌های ردیف ۱ (Tier A)</span>
+        <div class="text-3xl font-extrabold text-emerald-400 mt-1" id="statTierA">۴</div>
+        <span class="text-[11px] text-emerald-300 mt-2 block">طلاین، ترابرنت، زرپی، اوبار</span>
+      </div>
+      <div class="ios-column p-5 rounded-2xl">
+        <span class="text-xs text-slate-400">مجموع اسناد متصل‌شده</span>
+        <div class="text-3xl font-extrabold text-[#8FB4AA] mt-1" id="statDocs">۳ فایل</div>
+        <span class="text-[11px] text-blue-300 mt-2 block">Word, Excel, PDF رسمی</span>
+      </div>
+      <div class="ios-column p-5 rounded-2xl">
+        <span class="text-xs text-slate-400">نرخ پوشش لینکدین</span>
+        <div class="text-3xl font-extrabold text-teal-400 mt-1">۱۰۰٪</div>
+        <span class="text-[11px] text-teal-300 mt-2 block">تمام شرکت‌ها دارای آدرس مستقیم</span>
+      </div>
+    </div>
+
+    <!-- Pipeline Distribution Bars -->
+    <div class="ios-column p-6 rounded-2xl space-y-4">
+      <h3 class="font-bold text-sm text-white">توزیع حساب‌ها در مراحل ۶ گانه پایپ‌لاین فروش:</h3>
+      <div id="pipelineBars" class="space-y-3"></div>
+    </div>
+  </div>
+
+  <!-- CENTERED JIRA/LINEAR STYLE DETAIL MODAL -->
+  <div id="detailDrawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 lg:p-8 overflow-y-auto">
+    <div class="w-full max-w-5xl bg-[#171C1A] text-slate-100 border border-[#46504B] rounded-2xl shadow-2xl flex flex-col max-h-[92vh] my-auto overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Modal Header (Spacious Bar) -->
+      <div class="flex items-center justify-between px-6 py-4 border-b border-[#46504B] bg-[#252C29]">
+        <div class="flex-1 mr-2 flex items-center gap-3">
+          <span id="dBadgeTier" class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">Tier A</span>
+          <span id="dBadgeStage" class="px-2.5 py-1 rounded-lg text-xs bg-[#343C38] text-slate-300 border border-[#46504B]">مرحله</span>
+          <div class="flex-1 max-w-md">
+            <input type="text" id="dEditName" class="w-full text-base font-bold text-white bg-[#292F2D] border border-[#46504B] rounded-lg px-3 py-1.5 focus:outline-none focus:border-[#8FB4AA]">
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="saveDrawerEdits()" class="px-4 py-1.5 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-md shadow-[#527C78]/25 transition flex items-center gap-1.5">
+            <span>💾 ذخیره تغییرات</span>
+          </button>
+          <button type="button" onclick="closeDetailDrawer()" class="p-2 rounded-xl bg-[#292F2D] hover:bg-[#343C38] text-slate-400 hover:text-white border border-[#46504B] transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Two Spacious Columns) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 overflow-y-auto">
+        
+        <!-- Main Content Area (7 Columns on Desktop with Clean Tabs) -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- Sub-Tabs Navigation -->
+          <div class="flex items-center gap-2 border-b border-[#46504B] pb-2 text-xs">
+            <button type="button" onclick="switchDrawerTab('hooks')" id="dTabBtn-hooks" class="px-3 py-1.5 rounded-lg font-bold bg-sky-600 text-white transition flex items-center gap-1.5">
+              <span>🎯 قلاب‌ها و اطلاعات</span>
+            </button>
+            <button type="button" onclick="switchDrawerTab('actions')" id="dTabBtn-actions" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#343C38] transition flex items-center gap-1.5">
+              <span>⚡ لاگر اقدامات</span>
+              <span id="dTabBadge-actions" class="px-1.5 py-0.2 rounded-full bg-sky-500/20 text-sky-400 text-[10px] font-mono">0</span>
+            </button>
+            <button type="button" onclick="switchDrawerTab('comments')" id="dTabBtn-comments" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#343C38] transition flex items-center gap-1.5">
+              <span>💬 نظرات و کامنت‌ها</span>
+              <span id="dTabBadge-comments" class="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono">0</span>
+            </button>
+            <button type="button" onclick="switchDrawerTab('vault')" id="dTabBtn-vault" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#343C38] transition flex items-center gap-1.5">
+              <span>📎 اسناد</span>
+              <span id="dTabBadge-vault" class="px-1.5 py-0.2 rounded-full bg-slate-500/20 text-slate-400 text-[10px] font-mono">0</span>
+            </button>
+          </div>
+
+          <!-- TAB PANE 1: HOOKS & STRATEGY -->
+          <div id="dTabPane-hooks" class="space-y-4">
+            <!-- Operational Pain Point (Trojan Horse) -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+                  <span>🎯 پاشنه آشیل عملیاتی و درد پیامک (Pain Point):</span>
+                </label>
+                <span class="text-[11px] text-slate-400">گلوگاه رقیب فعلی</span>
+              </div>
+              <textarea id="dEditPain" rows="3" class="w-full bg-[#292F2D] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
+            </div>
+
+            <!-- C-Suite Hook -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                  <span>قلاب اختصاصی مدیرعامل / بنیان‌گذار (C-Suite Hook):</span>
+                </label>
+                <button type="button" onclick="copyTextFromInput('dEditHookCeo')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#36403C] text-slate-300 rounded-lg border border-[#46504B] transition">کپی متن</button>
+              </div>
+              <textarea id="dEditHookCeo" rows="4" class="w-full bg-[#292F2D] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
+            </div>
+
+            <!-- Tech Lead Hook -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                  <span>قلاب اختصاصی CTO / مدیر فنی (Tech Lead Hook):</span>
+                </label>
+                <button type="button" onclick="copyTextFromInput('dEditHookTech')" class="px-2.5 py-1 text-[11px] bg-[#1E2027] hover:bg-[#36403C] text-slate-300 rounded-lg border border-[#46504B] transition">کپی متن</button>
+              </div>
+              <textarea id="dEditHookTech" rows="4" class="w-full bg-[#292F2D] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-xl p-3.5 text-xs leading-relaxed focus:outline-none"></textarea>
+            </div>
+
+            <!-- GapGPT AI Drafter -->
+            <div class="bg-[#292F2D] p-4 rounded-xl border border-sky-500/25 space-y-3">
+              <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
+                <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                  دستیار هوش مصنوعی GapGPT (تولید زنده متن و نامه)
+                </span>
+                <button type="button" onclick="toggleGapGptConfig()" class="text-[10px] text-slate-400 hover:text-white flex items-center gap-1 bg-[#343C38] px-2 py-0.5 rounded border border-[#46504B]">
+                  ⚙️ تنظیم کلید API
+                </button>
+              </div>
+
+              <!-- GapGPT API Key Drawer (collapsible) -->
+              <div id="gapGptConfigPanel" class="hidden p-2.5 rounded-lg bg-[#1E2027] border border-[#46504B] space-y-2 text-xs">
+                <div class="flex items-center justify-between">
+                  <label class="text-[11px] text-slate-300 font-medium">کلید API گپ جی‌پی‌تی (GapGPT Key):</label>
+                  <span class="text-[10px] text-emerald-400 font-mono">بدون نیاز به فیلترشکن</span>
+                </div>
+                <div class="flex gap-2">
+                  <input type="password" id="gapGptApiKeyInput" class="flex-1 bg-[#292F2D] text-slate-200 border border-[#46504B] rounded-lg px-2.5 py-1 text-xs font-mono" placeholder="sk-...">
+                  <button type="button" onclick="saveGapGptKey()" class="px-3 py-1 bg-[#527C78] hover:bg-[#436763] text-white rounded-lg text-xs font-bold">ذخیره</button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 text-[11px]">
+                <button type="button" onclick="callGapGptDrafter('proposal')" class="p-2.5 rounded-lg bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] text-right font-medium transition flex items-center gap-1.5">
+                  <span>📄 نامه رسمی اداری</span>
+                </button>
+                <button type="button" onclick="callGapGptDrafter('inmail')" class="p-2.5 rounded-lg bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] text-right font-medium transition flex items-center gap-1.5">
+                  <span>💬 پیام InMail لینکدین</span>
+                </button>
+                <button type="button" onclick="callGapGptDrafter('objection')" class="p-2.5 rounded-lg bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] text-right font-medium transition flex items-center gap-1.5">
+                  <span>🛡️ شکستن بهانه رقبا</span>
+                </button>
+                <button type="button" onclick="callGapGptDrafter('pilot')" class="p-2.5 rounded-lg bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] text-right font-medium transition flex items-center gap-1.5">
+                  <span>⚡ پیش‌نویس پایلوت</span>
+                </button>
+              </div>
+
+              <!-- Output Container -->
+              <div id="gapGptOutputBox" class="hidden space-y-2 pt-2 border-t border-[#46504B]">
+                <div class="flex items-center justify-between">
+                  <span id="gapGptDraftStatus" class="text-[11px] font-bold text-sky-300">متن تولیدشده توسط هوش مصنوعی:</span>
+                  <span class="text-[10px] text-slate-400">قابلیت ویرایش مستقیم متن در کادر زیر</span>
+                </div>
+                <textarea id="gapGptDraftResult" rows="5" class="w-full bg-[#1E2027] text-slate-100 border border-sky-500/30 focus:border-sky-400 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+                <div class="flex flex-wrap items-center gap-2 pt-1">
+                  <button type="button" onclick="copyGapGptDraft()" class="px-3 py-1 bg-[#343C38] hover:bg-[#46504B] text-slate-200 rounded-lg text-[11px] font-medium border border-[#46504B] transition flex items-center gap-1">
+                    📋 کپی متن
+                  </button>
+                  <button type="button" onclick="applyGapGptToHook('ceo')" class="px-3 py-1 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg text-[11px] font-medium transition flex items-center gap-1">
+                    📥 الصاق به قلاب مدیرعامل
+                  </button>
+                  <button type="button" onclick="applyGapGptToHook('tech')" class="px-3 py-1 bg-sky-600/30 hover:bg-sky-600 text-sky-300 hover:text-white rounded-lg text-[11px] font-medium transition flex items-center gap-1">
+                    📥 الصاق به قلاب مدیر فنی
+                  </button>
+                  <button type="button" onclick="applyGapGptToAction()" class="px-3 py-1 bg-amber-600/30 hover:bg-amber-600 text-amber-300 hover:text-white rounded-lg text-[11px] font-medium transition flex items-center gap-1">
+                    ⚡ ثبت به عنوان اقدام
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB PANE 2: ACTIONS LOGGER -->
+          <div id="dTabPane-actions" class="space-y-4 hidden">
+            <!-- Add Action Box -->
+            <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+              <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
+                <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+                  <span>⚡ ثبت اقدام جدید برای این حساب:</span>
+                </span>
+                <span class="text-[10px] text-slate-400">ثبت وقایع، تماس‌ها و جلسات</span>
+              </div>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div>
+                  <label class="block text-[11px] text-slate-400 mb-1">نوع اقدام:</label>
+                  <select id="newActionType" class="w-full bg-[#343C38] text-white border border-[#46504B] rounded-lg px-2.5 py-1.5 text-xs">
+                    <option value="call">📞 تماس تلفنی</option>
+                    <option value="email">✉️ ارسال نامه / ایمیل</option>
+                    <option value="meeting">🤝 جلسه حضوری / آنلاین</option>
+                    <option value="linkedin">🌐 ارتباط لینکدین</option>
+                    <option value="note">📌 یادداشت پیگیری</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[11px] text-slate-400 mb-1">انجام‌دهنده اقدام:</label>
+                  <select id="newActionPerformer" class="w-full bg-[#343C38] text-white border border-[#46504B] rounded-lg px-2.5 py-1.5 text-xs">
+                    <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                    <option value="خانم فائزه">خانم فائزه</option>
+                    <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                    <option value="خانم شهروزی">خانم شهروزی</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">شرح و نتیجه اقدام:</label>
+                <textarea id="newActionText" rows="2" placeholder="مثلاً: هماهنگی تست خط خدماتی با مدیر محصول طلاین؛ ارسال نمونه گزارش تحویل..." class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-lg p-2.5 text-xs leading-relaxed"></textarea>
+              </div>
+
+              <div class="flex justify-end">
+                <button type="button" onclick="submitNewAction()" class="px-4 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                  <span>+ ثبت در تاریخچه وقایع</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Action History Feed -->
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-slate-300 block">📜 تاریخچه و لاگ اقدامات پیگیری:</span>
+              <div id="dActionsFeed" class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
+                <!-- Dynamically Rendered -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB PANE 3: COMMENTS & TEAM DISCUSSION -->
+          <div id="dTabPane-comments" class="space-y-4 hidden">
+            <!-- Add Comment Box -->
+            <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+              <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
+                <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                  <span>💬 ثبت نظر یا نکته تیمی:</span>
+                </span>
+                <span class="text-[10px] text-slate-400">گفتگو پیرامون این لید</span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label class="text-[11px] text-slate-400 whitespace-nowrap">نویسنده:</label>
+                <select id="newCommentAuthor" class="bg-[#343C38] text-white border border-[#46504B] rounded-lg px-2.5 py-1 text-xs">
+                  <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                  <option value="خانم فائزه">خانم فائزه</option>
+                  <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                  <option value="خانم شهروزی">خانم شهروزی</option>
+                </select>
+              </div>
+
+              <textarea id="newCommentText" rows="3" placeholder="نکته، استراتژی یا بازخورد خود درباره این حساب را بنویسید..." class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-emerald-500 rounded-lg p-2.5 text-xs leading-relaxed"></textarea>
+
+              <div class="flex justify-end">
+                <button type="button" onclick="submitNewComment()" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                  <span>ارسال دیدگاه</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Comments List -->
+            <div class="space-y-2">
+              <span class="text-xs font-bold text-slate-300 block">نظرات و گفتگوهای تیم:</span>
+              <div id="dCommentsList" class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
+                <!-- Dynamically Rendered -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB PANE 4: DOCUMENT VAULT -->
+          <div id="dTabPane-vault" class="space-y-4 hidden">
+            <div class="space-y-3 bg-[#292F2D] p-4 rounded-xl border border-[#46504B]">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+                  اسناد متصل به این حساب (Document Vault)
+                </span>
+                <label class="cursor-pointer px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-[11px] font-semibold transition">
+                  + پیوست سند جدید
+                  <input type="file" id="fileUploadInput" onchange="handleFileUpload(event)" class="hidden">
+                </label>
+              </div>
+              <div id="dDocsList" class="space-y-2"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar / Metadata Panel (5 Columns on Desktop) -->
+        <div class="lg:col-span-5 space-y-4">
+          <!-- Stage & Priority -->
+          <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+            <span class="text-xs font-bold text-slate-200 block border-b border-[#46504B] pb-2">وضعیت و اولویت حساب:</span>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">مرحله در پایپ‌لاین (Stage):</label>
+              <select id="dStageSelect" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2">
+                <option value="prospect">۱. کشف و ارزیابی لید (شروع)</option>
+                <option value="linkedin">۲. ممیزی لینکدین</option>
+                <option value="drafting">۳. تدوین نامه و روت</option>
+                <option value="csuite">۴. تایید مدیریت ارشد</option>
+                <option value="outreach">۵. در حال مذاکره فعال</option>
+                <option value="won">۶. پایلوت و بسته‌شده</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">اولویت هدف (Tier):</label>
+              <select id="dEditTier" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2">
+                <option value="Tier A">Tier A (فوری - امتیاز بالا)</option>
+                <option value="Strategic">Strategic (همکاری استراتژیک)</option>
+                <option value="Tier B">Tier B (ردیف دوم)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">حوزه تخصصی:</label>
+              <input type="text" id="dEditVertical" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2">
+            </div>
+          </div>
+
+          <!-- Company Official Links -->
+          <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+            <span class="text-xs font-bold text-slate-200 block border-b border-[#46504B] pb-2">پیوندهای رسمی:</span>
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="text-[11px] text-[#8FB4AA]">لینکدین شرکت:</label>
+                <a id="dLiLinkPreview" href="#" target="_blank" class="text-[10px] text-[#8FB4AA] hover:underline">مشاهده در لینکدین ↗</a>
+              </div>
+              <input type="text" id="dEditLinkedin" class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2 font-mono dir-ltr text-left">
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="text-[11px] text-slate-300">وب‌سایت رسمی:</label>
+                <a id="dWebLinkPreview" href="#" target="_blank" class="text-[10px] text-slate-400 hover:underline">باز کردن سایت ↗</a>
+              </div>
+              <input type="text" id="dEditWebsite" class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-[#8FB4AA] text-xs rounded-lg px-3 py-2 font-mono dir-ltr text-left">
+            </div>
+          </div>
+
+          <!-- Buying Committee -->
+          <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] space-y-3">
+            <span class="text-xs font-bold text-slate-200 block border-b border-[#46504B] pb-2">درخت تصمیم‌گیرندگان (Buying Committee):</span>
+            <div class="space-y-2.5">
+              <div>
+                <span class="text-[10px] text-blue-300 bg-[#527C78]/15 px-2 py-0.5 rounded font-medium">Economic Buyer (تصمیم‌گیرنده بودجه)</span>
+                <input type="text" id="dEditDecisionMaker" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
+              </div>
+              <div>
+                <span class="text-[10px] text-sky-300 bg-sky-500/10 px-2 py-0.5 rounded font-medium">Approver (هیئت‌مدیره / مصوب)</span>
+                <input type="text" id="dEditApprover" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
+              </div>
+              <div>
+                <span class="text-[10px] text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded font-medium">Tech Champion (ارزیاب فنی / CTO)</span>
+                <input type="text" id="dEditTechLead" class="w-full mt-1 bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-3 py-1.5 text-xs">
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Assignment Card (Interactive Role Taking) -->
+          <div class="bg-[#292F2D] p-4 rounded-xl border border-[#46504B] text-xs space-y-3">
+            <div class="flex items-center justify-between border-b border-[#46504B] pb-2">
+              <span class="text-xs font-bold text-slate-200">تخصیص و پذیرش مسئولیت حساب:</span>
+              <span class="text-[10px] text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded">نقش‌های آزاد</span>
+            </div>
+            
+            <div class="space-y-1">
+              <label class="text-[11px] text-slate-400 block">ممیز و سرپرست حساب:</label>
+              <select id="dEditAssigneeResearcher" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-2.5 py-1.5 text-xs">
+                <option value="">(تعیین نشده — آماده پذیرش)</option>
+                <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                <option value="خانم فائزه">خانم فائزه</option>
+                <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                <option value="خانم شهروزی">خانم شهروزی</option>
+              </select>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-[11px] text-slate-400 block">تدوین‌کننده نامه و پیش‌نویس:</label>
+              <select id="dEditAssigneeDrafter" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-2.5 py-1.5 text-xs">
+                <option value="">(تعیین نشده — آماده پذیرش)</option>
+                <option value="خانم فائزه">خانم فائزه</option>
+                <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                <option value="خانم شهروزی">خانم شهروزی</option>
+              </select>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-[11px] text-slate-400 block">تاییدکننده و ناظر نهایی:</label>
+              <select id="dEditAssigneeApprover" class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-[#8FB4AA] rounded-lg px-2.5 py-1.5 text-xs">
+                <option value="">(تعیین نشده — آماده پذیرش)</option>
+                <option value="خانم موسی‌پور">خانم موسی‌پور</option>
+                <option value="خانم شهروزی">خانم شهروزی</option>
+                <option value="خانم خرم‌دل">خانم خرم‌دل</option>
+                <option value="خانم فائزه">خانم فائزه</option>
+              </select>
+            </div>
+
+            <div class="pt-1 flex gap-2">
+              <button type="button" onclick="quickTakeRole('researcher')" class="flex-1 py-1 px-2 rounded-lg bg-[#343C38] hover:bg-[#46504B] text-slate-300 text-[10px] border border-[#46504B] transition text-center">
+                🙋‍♀️ پذیرش ممیزی
+              </button>
+              <button type="button" onclick="quickTakeRole('drafter')" class="flex-1 py-1 px-2 rounded-lg bg-[#343C38] hover:bg-[#46504B] text-slate-300 text-[10px] border border-[#46504B] transition text-center">
+                ✍️ پذیرش نامه‌نگاری
+              </button>
+            </div>
+          </div>
+
+          <!-- Primary Save Button -->
+          <button type="button" onclick="saveDrawerEdits()" class="w-full py-3 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-bold shadow-lg shadow-[#527C78]/25 transition">
+            💾 ذخیره و به‌روزرسانی نهایی
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NEW ACCOUNT MODAL -->
+  <div id="newAccountModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#343C38] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <h3 class="font-bold text-white text-base">ایجاد حساب هدف جدید</h3>
+        <button onclick="closeNewAccountModal()" class="text-slate-400 hover:text-white">&times;</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">نام شرکت یا برند:</label>
+          <input type="text" id="mName" placeholder="مثلاً: صرافی نوبیتکس" class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">حوزه تخصصی:</label>
+            <input type="text" id="mVertical" placeholder="مثلاً: صرافی رمزارز" class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">اولویت شورا:</label>
+            <select id="mTier" class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
+              <option value="Tier A">Tier A (فوری - پربسامد)</option>
+              <option value="Tier B">Tier B (اولویت بالا)</option>
+              <option value="Strategic">Strategic (کانالی / ISV)</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">آدرس لینکدین شرکت:</label>
+            <input type="text" id="mLinkedin" placeholder="https://linkedin.com/company/..." class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">وب‌سایت رسمی:</label>
+            <input type="text" id="mWebsite" placeholder="https://..." class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]">
+          </div>
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">پاشنه آشیل و درد پیامکی:</label>
+          <textarea id="mPain" rows="2" placeholder="تاخیر کدهای OTP در ساعات شلوغی..." class="w-full bg-[#292F2D] text-white border border-white/10 border border-white/10 rounded-lg p-2 text-white focus:border-[#8FB4AA]"></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2 border-t border-white/10">
+        <button onclick="closeNewAccountModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-medium">انصراف</button>
+        <button onclick="saveNewAccount()" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-semibold shadow-lg shadow-[#527C78]/25">ذخیره حساب</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initial Master Accounts Data
+    const defaultAccounts = [
+      {
+        id: "acc-1",
+        num: "۱",
+        name: "طلاین (Tlyn / Taline)",
+        vertical: "معاملات طلای آبشده",
+        tier: "Tier A",
+        score: "۱۰۰",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/taline/",
+        website: "https://taline.ir",
+        decisionMaker: "محسن ابوالفتحی (مدیرعامل و هم‌بنیان‌گذار) — in/mohsen-abolfathi-489a27b8",
+        approver: "سید مصطفی افزونی (رئیس هیئت‌مدیره) — in/afzouni",
+        techLead: "سرپرست مهندسی بک‌اند و زیرساخت API",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "در انتظار بررسی",
+        pain: "افت کیفیت OTP در زمان جهش ناگهانی قیمت طلا و هدایت اجباری به تماس صوتی پرهزینه که باعث ریزش کاربر در لحظه ثبت سفارش می‌شود.",
+        hookCeo: "جناب آقای ابوالفتحی عزیز، سلام. رشد چشمگیر طلاین در بازار آنلاین طلا را صمیمانه تبریک می‌گویم. در روزهای پرترافیک و نوسان شدید بازار طلا، گزارش‌های تاخیر پیامک OTP و شیفت ناخواسته به تماس صوتی علاوه بر هزینه سربار، اصطکاک بالایی برای کاربر در لحظه ثبت سفارش ایجاد می‌کند. ما در پرشیا فاوا با اتصال مستقیم اپراتوری و تضمین تاخیر زیر ۲ ثانیه، روت دوم موازی بدون اختلال را برای طلاین فراهم کرده‌ایم تا حتی در پرنوسان‌ترین ثانیه‌ها هیچ معامله‌ای به دلیل کندی پیامک از دست نرود. خوشحال می‌شوم در گفتگویی کوتاه، مدل تست پایلوت را خدمتتان تشریح کنیم.",
+        hookTech: "درود و احترام. مانیتورینگ ترافیک در ساعات جهش طلا نشان می‌دهد گلوگاه اصلی پلتفرم‌های طلا، صف‌بندی پیامک در تجمیع‌کنندگان واسط است. پرشیا فاوا پایپ مستقل اپراتوری و وب‌هوک وضعیت لحظه‌ای تا سطح گوشی کاربر (Handset Delivery Webhook) را با SLA زیر ۲ ثانیه در اختیارتان می‌گذارد. آماده‌ایم بدون نیاز به تغییر در روت اصلی‌تان، روت دوم تستی را ظرف ۲۴ ساعت برای آزمون پایداری فعال کنیم.",
+        docs: [
+          { name: "شناسنامه_جامع_و_درخت_ارتباطی_۱۰_کاندیدا.docx", size: "38 KB", date: "امروز", type: "docx" },
+          { name: "کاربرگ_جامع_توسعه_بازار_پیامک.xlsx", size: "15 KB", date: "امروز", type: "xlsx" }
+        ]
+      },
+      {
+        id: "acc-2",
+        num: "۲",
+        name: "ترابرنت (Tarabarnet)",
+        vertical: "لجستیک و باربری سنگین",
+        tier: "Tier A",
+        score: "۱۰۰",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/hasin-technology/",
+        website: "https://tarabarnet.com",
+        decisionMaker: "کیوان جعفری (هم‌بنیان‌گذار) / مسعود آراسته (مدیرعامل هلدینگ حصین) — in/masoudarasteh",
+        approver: "سید حسین غفوری (مدیر سرمایه‌گذاری حصین) — in/seyyed-hossein-ghafoori-02848b3b",
+        techLead: "میثم رجبی (مدیر توسعه بازار حصین) — in/meisam-rajabi-8242ba53 / سارا افتخار (QA) — in/sara-eftekhar",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "ورود مستقیم مدیرعامل",
+        pain: "تاخیر در دریافت پیامک‌های اعلام بار توسط رانندگان کامیون در جاده‌ها با آنتن‌دهی ضعیف، که موجب اعتراض رانندگان و از دست رفتن ظرفیت بار ناوگان می‌شود.",
+        hookCeo: "جناب آقای مهندس جعفری گرامی، وقت بخیر. پیشگامی ترابرنت در هوشمندسازی لجستیک سنگین کشور همواره الگوی اکوسیستم بوده است. در شبکه رانندگان جاده‌ای که هر ثانیه تاخیر پیامک اعلام بار منجر به سوختن نوبت بار و نارضایتی ناوگان می‌شود، زیرساخت پیامک مستقیم و خطوط خدماتی بدون فیلتر نقشی حیاتی در حفظ وفاداری رانندگان ایفا می‌کند. پرشیا فاوا با مالکیت خطوط پایدار مخابراتی، مسیر اختصاصی با پوشش حداکثری اپراتوری را ویژه ترابرنت طراحی کرده است. افتخار داریم در جلسه‌ای مشترک با حضور مدیران ارشد، راهکار کاهش تاخیر جاده‌ای را نهایی نماییم.",
+        hookTech: "سلام و احترام. رانندگان کامیون به دلیل تردد بین‌شهری بیشترین نرخ ریزش پیامک روی آنتن‌های غیرشهری را تجربه می‌کنند. زیرساخت پرشیا فاوا با روتینگ مستقیم SMPP و قابلیت Retry هوشمند روی خطوط پایدار اپراتورها، تاخیر تحویل اعلان بار را به حداقل رسانده است. مشتاقیم امکان بررسی فنی و پایلوت تستی در یک مسیر پرتردد را برای تیم فنی شما فراهم آوریم.",
+        docs: [
+          { name: "گزارش_جامع_توسعه_بازار_پیامک_پرشیا_فاوا.pdf", size: "374 KB", date: "امروز", type: "pdf" }
+        ]
+      },
+      {
+        id: "acc-3",
+        num: "۳",
+        name: "زرپی۲۴ (Zarpay24)",
+        vertical: "معاملات برخط طلا و مس",
+        tier: "Tier A",
+        score: "۸۰",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/zarpay24/",
+        website: "https://zarpay24.com",
+        decisionMaker: "نازنین مطلبی (بنیان‌گذار و مدیرعامل) — in/nazanin-motallebi",
+        approver: "علی دلبر (مدیر ارشد محصول) — in/alidelbar",
+        techLead: "امیر ثابت (توسعه نرم‌افزار) — in/hamirsa / نیک‌ناز حجت (HRBP) — in/niknaz-hojat",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "در انتظار بررسی",
+        pain: "فعالیت شبانه‌روزی بدون پشتیبانی فعال از سوی پرووایدرهای سنتی در شیفت‌های شب و تاخیر فاکتورهای آنی خرید فلزات گرانبها.",
+        hookCeo: "مدیریت محترم زرپی۲۴، با سلام. فعالیت پیوسته و ۲۴ ساعته پلتفرم زرپی۲۴ در بازار فلزات گرانبها، نیازمند پشتیبانی شبانه‌روزی زیرساخت پیامک است؛ نقطه‌ای که معمولاً در شیفت‌های شب ارائه‌دهندگان سنتی رها می‌شود. پرشیا فاوا علاوه بر تضمین ارسال زیر ۲ ثانیه، پشتیبانی لایه دو و خطوط پایدار اختصاصی خدماتی را به شما ارائه می‌دهد تا امنیت و آرامش تراکنش‌های شبانه تضمین شود.",
+        hookTech: "درود فراوان. جهت اتصال سامانه‌های معاملات ۲۴ساعته زرپی۲۴ به زیرساخت پیامک مستقیم بانکی/تلکام، API فوق‌العاده ساده همراه با وب‌هوک وضعیت لحظه‌ای و اسناد فنی آماده شده است که در کمتر از ۲ ساعت روی کدبیس شما قرار می‌گیرد و بدون ریسک سوئیچ، تست پایداری را تجربه خواهید کرد.",
+        docs: []
+      },
+      {
+        id: "acc-4",
+        num: "۴",
+        name: "اوبار (Ubar)",
+        vertical: "سامانه باربری هوشمند آنلاین",
+        tier: "Tier A",
+        score: "۷۵",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/ubaar/",
+        website: "https://ubaar.ir",
+        decisionMaker: "حامد تاج‌الدین (مدیرعامل و هم‌بنیان‌گذار) — in/hamed-tajedin-99ab4149",
+        approver: "مهدی نایبی (هم‌بنیان‌گذار هلدینگ) — in/mehdi-nayebi-68a4731",
+        techLead: "مدیر ارشد فناوری (CTO) و زیرساخت همزمانی اوبار",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "ورود مستقیم مدیرعامل",
+        pain: "ترافیک سنگین رویدادمحور و تاخیر تایید بارنامه آنلاین؛ وجود رقابت سنتی در تامین خطوط و نیاز به بهینه‌سازی تعرفه و پایداری تحویل.",
+        hookCeo: "جناب آقای دکتر تاج‌الدین عزیز، سلام. تحول دیجیتال صنعت حمل بار توسط اوبار دستاوردی ماندگار در زیست‌بوم نوآوری کشور است. با توجه به حجم بالای اعلان‌های تراکنشی رانندگان و حساسیت زمانی تایید بار، پرشیا فاوا آماده است به عنوان زیرساخت مطمئن روت دوم بدون وابستگی به واسطه‌ها، با تعرفه اقتصادی پلکانی و پوشش صددرصدی خطوط خدماتی، در کنار تیم توسعه اوبار قرار گیرد.",
+        hookTech: "درود و عرض ادب. ما در پرشیا فاوا معماری اختصاصی برای ترافیک‌های شدیداً هم‌زمان (High Concurrency) باربری طراحی کرده‌ایم که با اتصال مستقیم SMPP و مانیتورینگ خودکار اپراتورها، صف‌های پیامک بارنامه را به صفر می‌رساند. پیشنهاد ما راه‌اندازی روت پشتیبان در یک پایلوت استانی برای مقایسه مستقیم نرخ موفقیت تحویل است.",
+        docs: []
+      },
+      {
+        id: "acc-5",
+        num: "۵",
+        name: "سندپرداز (SanadPardaz ERP)",
+        vertical: "ERP کارخانجات صنعتی",
+        tier: "Strategic",
+        score: "۶۵",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/sanadpardaz-erp/",
+        website: "https://sanadpardaz.com",
+        decisionMaker: "حمیدرضا متقی (بنیان‌گذار و مدیر ارشد) — in/hrmottaghi",
+        approver: "هیئت‌مدیره گروه سندپرداز",
+        techLead: "مدیر توسعه محصول ERP صنعتی و بازاریابی کارخانجات",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "تایید شد",
+        pain: "فقدان درگاه پیش‌فرض پیامک تعبیه‌شده در نرم‌افزار ERP کارخانه‌ها و از دست رفتن جریان درآمد پایدار ری‌شیرینگ پیامک مشتریان.",
+        hookCeo: "جناب آقای متقی بزرگوار، سلام. جایگاه سندپرداز در اتوماسیون مالی و صنعتی کشور فرصتی کم‌نظیر برای خلق درآمدهای پایدار فراهم کرده است. با ادغام درگاه پیامک سازمانی پرشیا فاوا در بسته پایه سندپرداز، صدها کارخانه مشتری شما بدون نیاز به ثبت‌نام‌های پیچیده بیرونی، ترافیک میلیونی اسناد و چک‌های خود را از داخل سیستم شما ارسال می‌کنند و درآمد ترافیک حاصله به صورت ماهانه در قالب مدل Revenue Share پایدار بین دو مجموعه تقسیم خواهد شد.",
+        hookTech: "سلام و درود. ما ماژول آماده و مستندات کامل SDK سازگار با معماری کلاینت/سرور و وب سندپرداز را آماده کرده‌ایم. با این افزونه، کدهای پیگیری یکتای اسناد مالیاتی، تایید فاکتور انبار و سررسید چک‌ها بدون تاخیر از طریق شبکه امن اینترانت ملی ارسال می‌گردد.",
+        docs: []
+      },
+      {
+        id: "acc-6",
+        num: "۶",
+        name: "دیدگاه / چارگون (Chargoon)",
+        vertical: "اتوماسیون ۱۴۰۰ سازمان",
+        tier: "Strategic",
+        score: "۶۵",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/chargoon/",
+        website: "https://chargoon.com",
+        decisionMaker: "فرزاد رحمانی (مدیرعامل چارگون) — in/farzad-rahmani-5b521079",
+        approver: "شاهین طبری (رئیس هیئت‌مدیره و بنیان‌گذار) — in/shahintabary",
+        techLead: "مهین محمدی (مدیرعامل آوات و هم‌بنیان‌گذار چارگون) — in/mahin-mohammadi-4740283b",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "ورود مستقیم مدیرعامل",
+        pain: "سازمان‌های دیدگاه با تجمیع‌کنندگان متفرقه طرف هستند و چارگون سهمی از درآمد ترافیک ده میلیونی پیامک‌های مشتریان خود ندارد.",
+        hookCeo: "جناب آقای مهندس رحمانی گرامی، درود و احترام. اکوسیستم دیدگاه ستون فقرات اتوماسیون سازمانی بیش از ۱۴۰۰ نهاد شاخص کشور است. پرشیا فاوا با زیرساخت تلکام رده‌بالا، پیشنهاد دارد درگاه رسمی پیامک سازمانی پرشیا فاوا به عنوان افزونه پیش‌فرض ماژول ارتباطی دیدگاه تعبیه شود تا با تکیه بر استانداردهای بالای امنیت داده و عدم خروج اطلاعات سازمانی، مدل انتفاع مالی مستمر برای چارگون و مشتریان محترمتان محقق گردد.",
+        hookTech: "عرض سلام و ادب. با توجه به حساسیّت دسترسی‌های مکاتبات اداری در دیدگاه، ما روت ارتباطی ایزوله با کدگذاری کامل و سازگاری بومی با معماری سرویس‌های دیدگاه تدارک دیده‌ایم تا ترافیک هویتی و مکاتباتی سازمان‌ها با حداکثر امنیت و سرعت تبادل شود.",
+        docs: []
+      },
+      {
+        id: "acc-7",
+        num: "۷",
+        name: "گلدیکا (Goldika)",
+        vertical: "سرمایه‌گذاری خرد طلا",
+        tier: "Tier B",
+        score: "۶۴",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/goldika/",
+        website: "https://goldika.ir",
+        decisionMaker: "علیرضا عیوضی (مدیرعامل و هم‌بنیان‌گذار) — in/alireza-eyvazi",
+        approver: "هم‌بنیان‌گذاران شریف",
+        techLead: "سرپرست تیم مهندسی نرم‌افزار و پایداری وب‌سرویس",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "در انتظار بررسی",
+        pain: "گلوگاه ارسال کدهای احراز هویت و فاکتور لحظه‌ای در زمان نوسانات بازار و وابستگی به وب‌سرویس عمومی رقبا.",
+        hookCeo: "جناب آقای عیوضی عزیز، سلام و درود. دستاورد گلدیکا در ایجاد بستری مطمئن و نوآورانه برای خرید طلای خرد مایه مباهات است. در صنعتی که مشتریان بر پایه ثانیه‌ها و نوسان قیمت تصمیم می‌گیرند، حتی ۱۰ ثانیه تاخیر پیامک ثبت سفارش یا کد تایید می‌تواند به معنای عدم انجام خرید و نارضایتی سرمایه‌گذار باشد. ما در پرشیا فاوا خط خدماتی اختصاصی با تاخیر زیر ۲ ثانیه را برای گلدیکا کنار گذاشته‌ایم تا دغدغه فنی کدهای تراکنشی را برای همیشه مرتفع سازیم.",
+        hookTech: "سلام و احترام به همکاران عزیز در گلدیکا. گزارش‌های دریافتی از چالش‌های پیامکی پلتفرم‌های سرمایه‌گذاری نشان می‌دهد استفاده از خطوط اشتراکی عمومی ریشه‌دارترین عامل تاخیر است. پرشیا فاوا با تخصیص پورت مستقیم اپراتوری و وب‌هوک تایید دریافت، پایداری ۹۹٫۹٪ را تضمین می‌کند. خوشحال می‌شویم یک بسته تست رایگان در اختیارتان قرار دهیم.",
+        docs: []
+      },
+      {
+        id: "acc-8",
+        num: "۸",
+        name: "قسطا (Qesta / Ghesta)",
+        vertical: "لندتک و خرید اقساطی",
+        tier: "Tier B",
+        score: "۶۰",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/ghesta/",
+        website: "https://qesta.ir",
+        decisionMaker: "محمدرضا آشتیانی (مدیرعامل و بنیان‌گذار) — in/ashtianimr",
+        approver: "هیئت‌مدیره اعتبار آفرین شریف",
+        techLead: "مدیر محصول قسطاکارت و اعتبارسنجی تسهیلات",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "در انتظار بررسی",
+        pain: "تاخیر در پیامک‌های یادآوری اقساط و OTP امضای قرارداد الکترونیک که باعث مسدود ماندن فرایند تخصیص اعتبار می‌شود.",
+        hookCeo: "جناب آقای دکتر آشتیانی ارجمند، سلام و احترام. نقش ارزنده قسطا در توسعه شمول مالی و تسهیل خرید اقساطی خانواده‌ها ستودنی است. در اکوسیستم لندتک، پیامک‌های سررسید اقساط و کدهای امضای تسهیلات، جریان مالی و نرخ نکول را مستقیماً تحت تاثیر قرار می‌دهند. زیرساخت پرشیا فاوا با نرخ تحویل موفق بالای ۹۸٪ و وب‌هوک وضعیت قطعی، ریسک عدم دریافت پیامک‌های مالی را به صفر می‌رساند. مشتاقیم امکان ارائه این خدمت متمایز را بررسی نماییم.",
+        hookTech: "درود. در فرآیندهای امضای قرارداد الکترونیک و تخصیص اعتبار قسطا، تاخیر دریافت OTP ریسک رها کردن سبد خرید را بالا می‌برد. وب‌سرویس پرشیا فاوا با اتصال مستقیم به سرورهای اپراتوری، ترافیک اعتبارسنجی و یادآوری اقساط را با اولویت درجه ۱ مخابراتی منتقل می‌کند.",
+        docs: []
+      },
+      {
+        id: "acc-9",
+        num: "۹",
+        name: "وال‌گلد (WallGold)",
+        vertical: "تسهیلات و وام طلا",
+        tier: "Tier B",
+        score: "۵۵",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/wallgold/",
+        website: "https://wallgold.ir",
+        decisionMaker: "بردیا احمدنیا (هم‌بنیان‌گذار و بیزینس والکس) — in/bardia-ahmadnia",
+        approver: "پرستو جباری (مدیر محصول وال‌گلد) — in/parastoo-jbr-55958a246",
+        techLead: "مجید علایی‌نیا (سرپرست ارشد فنی) — in/majidalaeinia / امیرحسین حصارکی (فرانت‌اند) — in/amirhoseinhesaraki",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "در انتظار بررسی",
+        pain: "نیاز مبرم به وب‌هوک وضعیت زنده و تایید فاکتورهای رسمی برای مراجع نظارتی و بانکی.",
+        hookCeo: "مدیریت محترم وال‌گلد، سلام و احترام. در بازار رو به رشد تسهیلات مبتنی بر طلا، ارائه گزارش‌های تحویل پیامک با قابلیت استناد رسمی و وب‌هوک زنده تا گوشی کاربر، ابزار اصلی مدیریت ریسک حقوقی است. پرشیا فاوا با افتخار آماده ارائه خطوط با کیفیت بالا و گزارش‌های شفاف تحویل به عنوان روت اختصاصی وال‌گلد است.",
+        hookTech: "سلام و درود. ما در پرشیا فاوا گزارش‌های تحویل در سطح دلیوری گوشی (Handset Delivery Report) را به صورت رویدادی (Event-driven) روی وب‌هوک سرورهای شما پوش می‌کنیم؛ قابلیتی که شفافیت کامل و بی‌نقصی برای معاملات و تسهیلات وال‌گلد به ارمغان می‌آورد.",
+        docs: []
+      },
+      {
+        id: "acc-10",
+        num: "۱۰",
+        name: "پست‌بار / پستکس (Postbar)",
+        vertical: "هاب خدمات پستی",
+        tier: "Tier B",
+        score: "۵۲",
+        stage: "prospect",
+        linkedin: "https://www.linkedin.com/company/postbar/",
+        website: "https://postbar.ir",
+        decisionMaker: "بابک عقیلی‌نسب (هم‌بنیان‌گذار و مدیرعامل) — in/babak-aghilinasab-74274489",
+        approver: "هیئت‌مدیره پستکس",
+        techLead: "مصطفی گل‌قندی (متخصص فروش و لجستیک سازمانی) — in/mostafa-golandi",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "در انتظار بررسی",
+        pain: "حجم میلیونی پیامک‌های رهگیری مرسولات و تاخیر پیامک کد تحویل به گیرنده نهایی در سراسر کشور.",
+        hookCeo: "جناب آقای عقیلی‌نسب عزیز، با سلام و وقت‌بخیر. تحول ارزشمند پستکس در تسهیل ارسال بسته‌های پستی برای هزاران فروشگاه اینترنتی جای قدردانی دارد. پیامک کد تحویل مرسوله و لینک رهگیری بسته، مستقیم‌ترین نقطه تماس با مشتری است و کوچک‌ترین تاخیر آن، فرآیند تحویل راننده توزیع را مختل می‌کند. پرشیا فاوا با ظرفیت ترافیکی بالا و تخفیف‌های ویژه بر اساس تیراژ میلیونی، آماده است سرویس پیامک پستکس را با بالاترین استانداردهای تحویل و نازل‌ترین بهای تمام‌شده بیمه کند.",
+        hookTech: "درود فراوان. با توجه به میلیون‌ها بارکد رهگیری روزانه در هاب پستکس، سیستم روتینگ هوشمند پرشیا فاوا به صورت خودکار پیامک‌های کد تحویل را از صف‌های عمومی جدا کرده و با اولویت فوری ارسال می‌نماید تا توزیع‌کنندگان با معطلی مواجه نشوند.",
+        docs: []
+      }
+    ];
+
+    // LocalStorage State Management
+    let accounts = [];
+    let hasLocalUserEdits = false;
+    try {
+      const saved = localStorage.getItem("pfg_accounts_data_v3");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          accounts = parsed;
+          hasLocalUserEdits = true;
+        } else {
+          accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
+        }
+      } else {
+        // Fallback default until autoInitSync pulls live database from cloud
+        accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
+      }
+    } catch(e) {
+      accounts = defaultAccounts.map(a => ({ ...a, stage: "prospect" }));
+    }
+
+    
+    // --- USER IDENTITY & IP AUDIT TRACKING ---
+    let currentUserName = localStorage.getItem("pfg_user_name") || "";
+    let currentClientIP = "در حال دریافت...";
+
+    // --- MULTI-TIER RESILIENT SYNC ENGINE (IRAN-SAFE & PERMANENT HTTPS) ---
+    const isDirectVps = window.location.hostname === "109.120.131.224";
+    const isLocalOrigin = isDirectVps || window.location.hostname === "warroom.aria-haross.ir";
+    // Tier 1 (local/VPS): Same-origin API
+    const PRIMARY_API_ENDPOINT = isLocalOrigin ? "/api/warroom/accounts" : null;
+    const PRIMARY_IP_ENDPOINT = isLocalOrigin ? "/api/warroom/ip" : "https://warroom.aria-haross.ir/api/warroom/ip";
+    // Tier 2: Firebase RTDB — confirmed reachable from domestic Iran over HTTPS
+    const FIREBASE_ENDPOINT = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/accounts.json";
+    // Tier 3: Direct VPS HTTP (only when page is loaded over http://)
+    const DIRECT_VPS_ENDPOINT = isDirectVps ? "/api/warroom/accounts" : (window.location.protocol === "http:" ? "http://109.120.131.224/api/warroom/accounts" : "");
+    // Tier 4: Same-Origin Static Snapshot fallback
+    const STATIC_FALLBACK_ENDPOINT = "./data.json";
+
+    // Helper: push array to Firebase (PUT), returns true on success
+    async function firebasePush(arr) {
+      const res = await fetchWithTimeout(FIREBASE_ENDPOINT, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(arr)
+      }, 6000);
+      return res.ok;
+    }
+    // Helper: pull array from Firebase (GET), returns array or null
+    async function firebasePull() {
+      const res = await fetchWithTimeout(FIREBASE_ENDPOINT + "?t=" + Date.now(), {}, 6000);
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) return data;
+      return null;
+    }
+
+    async function detectClientIP() {
+      // 1. Try Primary IP endpoint
+      try {
+        const res = await fetch(PRIMARY_IP_ENDPOINT, { signal: AbortSignal.timeout(3000) });
+        if (res.ok) {
+          const d = await res.json();
+          if (d.ip) {
+            currentClientIP = d.ip;
+            updateUserBadgeUI();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      // 2. Try Cloudflare cdn-cgi/trace
+      try {
+        const res2 = await fetch("/cdn-cgi/trace", { signal: AbortSignal.timeout(2000) });
+        if (res2.ok) {
+          const text = await res2.text();
+          const match = text.match(/ip=([^\s]+)/);
+          if (match) {
+            currentClientIP = match[1];
+            updateUserBadgeUI();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      currentClientIP = "IP ناشناس";
+      updateUserBadgeUI();
+    }
+
+    function updateUserBadgeUI() {
+      const nameEl = document.getElementById("userBadgeName");
+      const ipEl = document.getElementById("userBadgeIP");
+      if (nameEl) nameEl.innerText = currentUserName ? `👤 ${currentUserName}` : "👤 تعیین هویت";
+      if (ipEl) ipEl.innerText = `(${currentClientIP})`;
+    }
+
+    function promptUserIdentity(force = false) {
+      if (!currentUserName || force) {
+        document.getElementById("userIdentityModal").classList.remove("hidden");
+      }
+    }
+
+    function selectUserPreset(name) {
+      currentUserName = name;
+      localStorage.setItem("pfg_user_name", name);
+      document.getElementById("userIdentityModal").classList.add("hidden");
+      updateUserBadgeUI();
+      // Also update default dropdown authors if drawer is open
+      const comAuth = document.getElementById("newCommentAuthor");
+      const actPerf = document.getElementById("newActionPerformer");
+      if (comAuth) comAuth.value = name;
+      if (actPerf) actPerf.value = name;
+    }
+
+    function saveCustomUserName() {
+      const val = document.getElementById("customUserNameInput").value.trim();
+      if (!val) {
+        alert("لطفاً نام خود را وارد کنید.");
+        return;
+      }
+      selectUserPreset(val);
+    }
+
+    let isCloudSyncing = false;
+    let syncDebounceTimer = null;
+
+    function updateSyncUI(status, text) {
+      const dot = document.getElementById("cloudSyncDot");
+      const label = document.getElementById("cloudSyncText");
+      if (!dot || !label) return;
+
+      if (status === 'syncing') {
+        dot.className = "w-2 h-2 rounded-full bg-[#B39A77] animate-ping";
+        label.className = "text-[#B39A77] font-medium";
+        label.innerText = text || "در حال ذخیره...";
+      } else if (status === 'synced') {
+        dot.className = "w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse";
+        label.className = "text-[#8FB4AA] font-semibold";
+        label.innerText = text || (isDirectVps ? "متصل به سرور استکهلم" : "متصل به ابر");
+      } else if (status === 'error') {
+        dot.className = "w-2 h-2 rounded-full bg-rose-500";
+        label.className = "text-rose-400 font-medium";
+        label.innerText = text || "خطا در اتصال به ابر";
+      }
+    }
+
+    const fetchWithTimeout = (url, options = {}, timeout = 6000) => {
+      return Promise.race([
+        fetch(url, options),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout))
+      ]);
+    };
+
+    // --- LOCAL ROLLING SAFETY BACKUP ENGINE ---
+    function makeLocalSafetyBackup(reason = "تغییرات کاربر") {
+      try {
+        if (!accounts || accounts.length === 0) return;
+        const raw = localStorage.getItem("pfg_accounts_backups_v1");
+        const list = raw ? JSON.parse(raw) : [];
+        list.unshift({
+          id: "bk_" + Date.now(),
+          timestamp: new Date().toISOString(),
+          label: new Date().toLocaleTimeString('fa-IR') + " — " + new Date().toLocaleDateString('fa-IR'),
+          reason: reason,
+          count: accounts.length,
+          data: JSON.parse(JSON.stringify(accounts))
+        });
+        localStorage.setItem("pfg_accounts_backups_v1", JSON.stringify(list.slice(0, 20)));
+      } catch(e) {
+        console.warn("Safety backup err:", e);
+      }
+    }
+
+    function openBackupsModal() {
+      renderBackupsList();
+      document.getElementById("backupsModal").classList.remove("hidden");
+    }
+
+    function closeBackupsModal() {
+      document.getElementById("backupsModal").classList.add("hidden");
+    }
+
+    function renderBackupsList() {
+      const container = document.getElementById("backupsListContainer");
+      if (!container) return;
+      try {
+        const raw = localStorage.getItem("pfg_accounts_backups_v1");
+        const list = raw ? JSON.parse(raw) : [];
+        if (list.length === 0) {
+          container.innerHTML = `<div class="p-6 text-center text-xs text-[#B5BDB6]">هنوز هیچ نسخه پشتیبانی در مرورگر ثبت نشده است.</div>`;
+          return;
+        }
+        container.innerHTML = list.map((b, idx) => `
+          <div class="p-3 bg-[#202725] border border-[#46504B] rounded-xl flex items-center justify-between gap-3 hover:border-[#8FB4AA] transition">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-[#F0EEE7]">${b.label}</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#527C78]/25 text-[#8FB4AA] border border-[#527C78]/40">${b.count} حساب</span>
+              </div>
+              <div class="text-[11px] text-[#B5BDB6] mt-0.5">علت ذخیره: ${b.reason}</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="restoreLocalBackup('${b.id}')" class="px-3 py-1.5 bg-[#527C78] hover:bg-[#436763] text-[#F0EEE7] rounded-lg text-xs font-bold transition shadow-sm">
+                بازگردانی 🔄
+              </button>
+            </div>
+          </div>
+        `).join('');
+      } catch(e) {
+        container.innerHTML = `<div class="p-4 text-xs text-rose-400">خطا در بارگذاری تاریخچه: ${e.message}</div>`;
+      }
+    }
+
+    function restoreLocalBackup(backupId) {
+      try {
+        const raw = localStorage.getItem("pfg_accounts_backups_v1");
+        const list = raw ? JSON.parse(raw) : [];
+        const found = list.find(b => b.id === backupId);
+        if (!found) {
+          alert("نسخه مورد نظر پیدا نشد.");
+          return;
+        }
+        if (!confirm(`آیا از بازگردانی نسخه «${found.label}» (${found.count} حساب) اطمینان دارید؟`)) {
+          return;
+        }
+        makeLocalSafetyBackup("پیش از بازگردانی از تاریخچه");
+        accounts = JSON.parse(JSON.stringify(found.data));
+        localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+        renderBoard();
+        renderList();
+        updateAnalytics();
+        closeBackupsModal();
+        alert("✅ اطلاعات با موفقیت از تاریخچه مرورگر بازگردانی شد!");
+      } catch(e) {
+        alert("خطا در بازگردانی: " + e.message);
+      }
+    }
+
+    function migrateToDirectServer() {
+      makeLocalSafetyBackup("پیش از انتقال به سرور مستقیم");
+      const payload = encodeURIComponent(JSON.stringify(accounts));
+      const user = encodeURIComponent(currentUserName || "");
+      window.location.href = `http://109.120.131.224/warroom/#import=${payload}&user=${user}`;
+    }
+
+    function checkDirectMigrationOnLoad() {
+      // 1. Show migration banner on ariya-sarrafzadeh.ir
+      if (window.location.hostname === "ariya-sarrafzadeh.ir") {
+        const banner = document.getElementById("iranDpiBanner");
+        if (banner) banner.classList.remove("hidden");
+      }
+
+      // 2. Consume migration hash if redirected to direct VPS
+      if (window.location.hash && window.location.hash.includes("import=")) {
+        try {
+          const hashStr = window.location.hash.substring(1);
+          const params = new URLSearchParams(hashStr);
+          const rawAccounts = params.get("import");
+          const rawUser = params.get("user");
+          if (rawAccounts) {
+            const imported = JSON.parse(rawAccounts);
+            if (Array.isArray(imported) && imported.length > 0) {
+              accounts = imported;
+              localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+              if (rawUser) {
+                currentUserName = rawUser;
+                localStorage.setItem("pfg_user_name", rawUser);
+                updateUserBadgeUI();
+              }
+              window.history.replaceState(null, null, window.location.pathname);
+              saveState();
+              renderBoard();
+              renderList();
+              updateAnalytics();
+              alert(`✅ کلیه اطلاعات (${imported.length} حساب) با موفقیت به سرور مستقیم و بدون فیلتر استکهلم منتقل و ذخیره شد!`);
+            }
+          }
+        } catch(e) {
+          console.warn("Migration import err:", e);
+        }
+      }
+    }
+
+    async function forcePushToCloud() {
+      const btn = document.getElementById("btnPushCloud");
+      if (btn) btn.innerText = "⏳ در حال ارسال...";
+      updateSyncUI('syncing', 'در حال ارسال...');
+
+      // 1. Mandatory local safety backup before ANY network call
+      makeLocalSafetyBackup("پیش از ارسال به سرور (Push)");
+      localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+
+      // 2. PRIORITY 1: Same-origin API (local/VPS)
+      if (PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-User-Name": currentUserName || "کاربر" },
+            body: JSON.stringify(accounts)
+          }, 5000);
+          if (res.ok) {
+            updateSyncUI('synced', 'ذخیره شد روی سرور ابری');
+            if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+            alert(`✅ اطلاعات با موفقیت روی سرور ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'} (حساب‌ها: ${accounts.length})`);
+            return;
+          }
+        } catch(err) {
+          console.warn("Primary push err:", err);
+        }
+      }
+
+      // 3. PRIORITY 2: Firebase RTDB (works from domestic Iran over HTTPS)
+      try {
+        const ok = await firebasePush(accounts);
+        if (ok) {
+          updateSyncUI('synced', 'ذخیره شد روی Firebase');
+          if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+          alert(`✅ اطلاعات با موفقیت روی Firebase ذخیره شد! (${accounts.length} حساب)`);
+          return;
+        }
+      } catch(err) {
+        console.warn("Firebase push err:", err);
+      }
+
+      // 4. PRIORITY 3: Direct VPS HTTP fallback (if protocol is http)
+      if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-User-Name": currentUserName || "کاربر" },
+            body: JSON.stringify(accounts)
+          }, 3500);
+          if (res.ok) {
+            updateSyncUI('synced', 'ذخیره شد روی سرور');
+            if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+            alert(`✅ اطلاعات با موفقیت روی سرور استکهلم ذخیره شد!\nتوسط: ${currentUserName || 'کاربر'}`);
+            return;
+          }
+        } catch(err) {}
+      }
+
+      updateSyncUI('error', 'خطا در ارسال به سرور');
+      if (btn) btn.innerText = "☁️ ارسال به ابر (Push)";
+      if (window.location.hostname === "ariya-sarrafzadeh.ir") {
+        if (confirm("⚠️ ارتباط با سرور ابری به دلیل فیلترینگ اینترنت ایران مسدود شد.\nآیا مایلید با ۱ کلیک اطلاعات خود را به سرور مستقیم استکهلم (کاملاً بدون فیلتر و با ذخیره ۱۰۰٪ پایدار) منتقل فرمایید؟")) {
+          migrateToDirectServer();
+          return;
+        }
+      }
+      alert("⚠️ ارسال به سرور با تاخیر مواجه شد، اما نگران نباشید: تمام تغییرات شما در حافظه مرورگر و تاریخچه پشتیبان‌ها (دکمه 🕒) ذخیره شده و هیچ اطلاعاتی از دست نرفته است.\n\nهمچنین می‌توانید با کلیک روی آیکون «📤 خروجی»، فایل پشتیبان JSON را دانلود فرمایید.");
+    }
+
+    async function forcePullFromCloud() {
+      // 1. Mandatory prompt and safety backup
+      makeLocalSafetyBackup("پیش از دریافت از سرور (Pull)");
+      if (!confirm("⚠️ توجه: با دریافت اطلاعات از سرور، اطلاعات روی این صفحه با آخرین نسخه سرور همگام می‌شود.\nیک نسخه پشتیبان از وضعیت فعلی شما در تاریخچه مرورگر ذخیره شده است.\n\nآیا ادامه می‌دهید؟")) {
+        return;
+      }
+
+      updateSyncUI('syncing', 'در حال دریافت...');
+      const btn = document.getElementById("btnPullCloud");
+      if (btn) btn.innerText = "⏳ در حال دریافت...";
+
+      const applyData = (data, source) => {
+        accounts = data;
+        localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+        renderBoard(); renderList(); updateAnalytics();
+        updateSyncUI('synced', `متصل به ${source}`);
+        if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-[#8FB4AA] animate-pulse"></span><span id="cloudSyncText">دریافت از ابر (Pull)</span>`;
+        alert(`✅ آخرین تغییرات تیم از ${source} دریافت شد! (${data.length} حساب)`);
+      };
+
+      // 1. Try Same-origin VPS API
+      if (PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 5000);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) { applyData(data, 'سرور استکهلم'); return; }
+          }
+        } catch(e) {}
+      }
+
+      // 2. Try Firebase RTDB
+      try {
+        const data = await firebasePull();
+        if (data) { applyData(data, 'Firebase'); return; }
+      } catch(e) {}
+
+      // 3. Try Direct VPS HTTP fallback
+      if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT + "?t=" + Date.now(), {}, 3500);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) { applyData(data, 'سرور استکهلم (HTTP)'); return; }
+          }
+        } catch(e) {}
+      }
+
+      updateSyncUI('error', 'خطا در دریافت');
+      if (btn) btn.innerHTML = `<span id="cloudSyncDot" class="w-2 h-2 rounded-full bg-rose-500"></span><span id="cloudSyncText">خطا در دریافت</span>`;
+      alert("⚠️ سرور ابری در دسترس نبود. اطلاعات محلی شما بدون هیچ تغییری حفظ شده است.");
+    }
+
+    async function autoInitSync() {
+      const applyInit = (data, src) => {
+        accounts = data;
+        localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+        renderBoard(); renderList(); updateAnalytics();
+        updateSyncUI('synced', src);
+      };
+
+      // 1. Same-origin API (local/VPS)
+      if (PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT + "?t=" + Date.now(), {}, 4000);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) {
+              applyInit(data, 'متصل به سرور استکهلم');
+              return;
+            }
+          }
+        } catch(e) {}
+      }
+
+      // 2. Firebase RTDB (primary for GitHub Pages / ariya-sarrafzadeh.ir)
+      try {
+        const data = await firebasePull();
+        if (data && data.length > 0) {
+          applyInit(data, 'متصل به Firebase');
+          return;
+        }
+      } catch(e) {}
+
+      // 3. Direct VPS HTTP fallback
+      if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
+        try {
+          const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT + "?t=" + Date.now(), {}, 3500);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) {
+              applyInit(data, 'متصل به سرور استکهلم (HTTP)');
+              return;
+            }
+          }
+        } catch(e) {}
+      }
+
+      // 4. Static fallback
+      if (!hasLocalUserEdits) {
+        try {
+          const res = await fetchWithTimeout(STATIC_FALLBACK_ENDPOINT + "?t=" + Date.now(), {}, 2500);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) { applyInit(data, 'پشتیبان اولیه'); }
+          }
+        } catch(e) {}
+      }
+    }
+
+    function importDataJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            accounts = imported;
+            saveState();
+            forcePushToCloud();
+            renderBoard();
+            renderList();
+            updateAnalytics();
+            alert(`✅ فایل پشتیبان شامل ${imported.length} حساب با موفقیت بارگذاری و در دیتابیس ابری ذخیره شد!`);
+          } else {
+            alert("ساختار فایل نامعتبر است (باید آرایه‌ای از حساب‌ها باشد).");
+          }
+        } catch(err) {
+          alert("خطا در خواندن فایل JSON: " + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = "";
+    }
+
+    function saveState() {
+      makeLocalSafetyBackup("تغییرات بورد");
+      localStorage.setItem("pfg_accounts_data_v3", JSON.stringify(accounts));
+      updateAnalytics();
+
+      clearTimeout(syncDebounceTimer);
+      syncDebounceTimer = setTimeout(async () => {
+        updateSyncUI('syncing', 'در حال ذخیره روی سرور...');
+
+        // 1. Same-origin API (local/VPS)
+        if (PRIMARY_API_ENDPOINT) {
+          try {
+            const res = await fetchWithTimeout(PRIMARY_API_ENDPOINT, {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "X-User-Name": currentUserName || "کاربر" },
+              body: JSON.stringify(accounts)
+            }, 4000);
+            if (res.ok) { updateSyncUI('synced', 'ذخیره شد روی سرور استکهلم'); return; }
+          } catch(e) {
+            console.warn("Primary save err:", e);
+          }
+        }
+
+        // 2. Firebase RTDB (primary for GitHub Pages / ariya-sarrafzadeh.ir)
+        try {
+          const ok = await firebasePush(accounts);
+          if (ok) { updateSyncUI('synced', 'ذخیره شد روی Firebase'); return; }
+        } catch(e) {}
+
+        // 3. Direct VPS HTTP fallback (if protocol is http)
+        if (DIRECT_VPS_ENDPOINT && DIRECT_VPS_ENDPOINT !== PRIMARY_API_ENDPOINT) {
+          try {
+            const res = await fetchWithTimeout(DIRECT_VPS_ENDPOINT, {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "X-User-Name": currentUserName || "کاربر" },
+              body: JSON.stringify(accounts)
+            }, 3000);
+            if (res.ok) { updateSyncUI('synced', 'ذخیره شد روی سرور استکهلم'); return; }
+          } catch(e) {}
+        }
+
+        updateSyncUI('synced', 'ذخیره در مرورگر');
+      }, 300);
+    }
+
+    let activeFilterRole = "all";
+    let activeSearch = "";
+    let selectedAccount = accounts[0];
+
+    const stages = [
+      { id: "prospect", title: "۱. کشف و ارزیابی لید", color: "bg-slate-500" },
+      { id: "linkedin", title: "۲. ممیزی لینکدین", color: "bg-[#8FB4AA]" },
+      { id: "drafting", title: "۳. تدوین نامه و روت", color: "bg-[#FF9F0A]" },
+      { id: "csuite", title: "۴. تایید مدیریت ارشد", color: "bg-[#64D2FF]" },
+      { id: "outreach", title: "۵. در حال مذاکره فعال", color: "bg-[#007AFF]" },
+      { id: "won", title: "۶. پایلوت و بسته‌شده", color: "bg-[#30D158]" }
+    ];
+
+    // RENDER KANBAN BOARD
+    function renderBoard() {
+      stages.forEach(st => {
+        const colEl = document.getElementById(`col-${st.id}`);
+        colEl.innerHTML = "";
+      });
+
+      const filtered = getFilteredAccounts();
+
+      stages.forEach(st => {
+        const inStage = filtered.filter(a => a.stage === st.id);
+        document.getElementById(`badge-${st.id}`).innerText = inStage.length;
+
+        const colEl = document.getElementById(`col-${st.id}`);
+        inStage.forEach(acc => {
+          const card = document.createElement("div");
+          card.className = "modern-card p-3.5 rounded-xl cursor-pointer relative group";
+          card.draggable = true;
+          card.ondragstart = (e) => drag(e, acc.id);
+          card.onclick = () => openDetailDrawer(acc.id);
+
+          const docsCount = acc.docs ? acc.docs.length : 0;
+          let tierBadgeClass = "bg-[#36403C] text-slate-300 border border-[#46504B]";
+          if (acc.tier === 'Tier A') {
+            tierBadgeClass = "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-bold";
+          } else if (acc.tier === 'Strategic') {
+            tierBadgeClass = "bg-[#527C78]/20 text-[#8FB4AA] border border-[#527C78]/40 font-bold";
+          } else if (acc.tier === 'Tier B') {
+            tierBadgeClass = "bg-slate-500/15 text-slate-300 border border-slate-500/20 font-medium";
+          }
+
+          card.innerHTML = `
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono ${tierBadgeClass}">${acc.tier}</span>
+              <span class="text-[10px] text-slate-500 font-mono">#${acc.num}</span>
+            </div>
+            <h4 class="font-bold text-white text-xs leading-snug group-hover:text-[#8FB4AA] transition">${acc.name}</h4>
+            <p class="text-[11px] text-slate-400 mt-1 line-clamp-1">${acc.vertical}</p>
+
+            <div class="mt-3 pt-2 border-t border-[#46504B] flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-1.5 truncate">
+                ${(acc.assigneeResearcher || acc.assigneeDrafter) ? `
+                  <span class="px-2 py-0.5 rounded-md bg-[#343C38] text-sky-300 border border-[#46504B] font-medium truncate max-w-[130px]">
+                    👤 ${acc.assigneeResearcher || acc.assigneeDrafter}
+                  </span>
+                ` : `
+                  <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">
+                    ⏳ بدون مسئول
+                  </span>
+                `}
+              </div>
+              <div class="flex items-center gap-1.5">
+                ${(acc.comments && acc.comments.length > 0) ? `
+                  <span class="flex items-center gap-0.5 text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 font-mono" title="${acc.comments.length} کامنت">
+                    💬 ${acc.comments.length}
+                  </span>
+                ` : ''}
+                ${(acc.actions && acc.actions.length > 0) ? `
+                  <span class="flex items-center gap-0.5 text-sky-400 bg-sky-500/10 px-1.5 py-0.5 rounded border border-sky-500/20 font-mono" title="${acc.actions.length} اقدام ثبت‌شده">
+                    ⚡ ${acc.actions.length}
+                  </span>
+                ` : ''}
+                ${docsCount > 0 ? `
+                  <span class="flex items-center gap-1 text-slate-300 bg-white/5 px-1.5 py-0.5 rounded border border-white/10">
+                    📎 ${docsCount}
+                  </span>
+                ` : ''}
+              </div>
+            </div>
+          `;
+          colEl.appendChild(card);
+        });
+      });
+    }
+
+    // RENDER LIST (TABLE)
+    function renderList() {
+      const tbody = document.getElementById("listTableBody");
+      tbody.innerHTML = "";
+      const filtered = getFilteredAccounts();
+
+      filtered.forEach(acc => {
+        const stageObj = stages.find(s => s.id === acc.stage) || stages[0];
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-white/5 transition cursor-pointer";
+        tr.onclick = () => openDetailDrawer(acc.id);
+
+        tr.innerHTML = `
+          <td class="p-3.5">
+            <div class="font-bold text-white">${acc.name}</div>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono ${acc.tier === 'Tier A' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-white/10 text-slate-200'}">${acc.tier} (${acc.score})</span>
+              <a href="${acc.linkedin}" target="_blank" onclick="event.stopPropagation()" class="text-[#8FB4AA] hover:underline text-[11px]">لینکدین</a>
+            </div>
+          </td>
+          <td class="p-3.5 text-slate-300">${acc.vertical}</td>
+          <td class="p-3.5">
+            <div class="text-slate-200 font-medium">${acc.decisionMaker}</div>
+            <div class="text-slate-400 text-[11px] mt-0.5">${acc.techLead}</div>
+          </td>
+          <td class="p-3.5 text-center">
+            <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/10 text-slate-200">${stageObj.title}</span>
+          </td>
+          <td class="p-3.5 text-center text-[#8FB4AA] font-medium">
+            ${(acc.docs || []).length} سند
+          </td>
+          <td class="p-3.5 text-center text-slate-300 text-[11px]">
+            ${acc.assigneeResearcher || acc.assigneeDrafter ? `
+              <div class="text-sky-300 font-medium">${acc.assigneeResearcher || '-'}</div>
+              <div class="text-slate-400 text-[10px]">${acc.assigneeDrafter || '-'}</div>
+            ` : `
+              <span class="text-amber-400/80 bg-amber-500/10 px-2 py-0.5 rounded text-[10px]">بدون مسئول</span>
+            `}
+          </td>
+          <td class="p-3.5 text-center">
+            <button onclick="event.stopPropagation(); openDetailDrawer('${acc.id}');" class="px-3 py-1 bg-white/10 hover:bg-[#527C78] text-white rounded-lg text-[11px] transition">جزئیات</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function getFilteredAccounts() {
+      const q = activeSearch.toLowerCase();
+      return accounts.filter(acc => {
+        const matchesSearch = acc.name.toLowerCase().includes(q) ||
+                              acc.vertical.toLowerCase().includes(q) ||
+                              acc.decisionMaker.toLowerCase().includes(q) ||
+                              acc.techLead.toLowerCase().includes(q) ||
+                              acc.pain.toLowerCase().includes(q);
+        if (!matchesSearch) return false;
+
+        if (activeFilterRole === "unassigned") {
+          return !acc.assigneeResearcher && !acc.assigneeDrafter && !acc.assigneeApprover;
+        }
+        if (activeFilterRole === "shahroozi") {
+          return (acc.assigneeResearcher || '').includes('شهروزی') || (acc.assigneeDrafter || '').includes('شهروزی') || (acc.assigneeApprover || '').includes('شهروزی');
+        }
+        if (activeFilterRole === "moosapour") {
+          return (acc.assigneeResearcher || '').includes('موسی‌پور') || (acc.assigneeDrafter || '').includes('موسی‌پور') || (acc.assigneeApprover || '').includes('موسی‌پور');
+        }
+        if (activeFilterRole === "khordamdel") {
+          return (acc.assigneeResearcher || '').includes('خرم‌دل') || (acc.assigneeDrafter || '').includes('خرم‌دل') || (acc.assigneeApprover || '').includes('خرم‌دل');
+        }
+        if (activeFilterRole === "faeze") {
+          return (acc.assigneeResearcher || '').includes('فائزه') || (acc.assigneeDrafter || '').includes('فائزه') || (acc.assigneeApprover || '').includes('فائزه');
+        }
+        return true;
+      });
+    }
+
+    // Drag & Drop
+    function allowDrop(e) { e.preventDefault(); }
+    function drag(e, accId) { e.dataTransfer.setData("text/plain", accId); }
+    function drop(e, stageId) {
+      e.preventDefault();
+      const accId = e.dataTransfer.getData("text/plain");
+      const found = accounts.find(a => a.id === accId);
+      if (found && found.stage !== stageId) {
+        const fromTitle = stages.find(s => s.id === found.stage)?.title || found.stage;
+        const toTitle = stages.find(s => s.id === stageId)?.title || stageId;
+        found.stage = stageId;
+        logActionToAccount(found, 'stage', 'تیم توسعه بازار', `تغییر مرحله کارت با درگ‌وان‌دراپ به «${toTitle}»`);
+        saveState();
+        renderBoard();
+        renderList();
+      }
+    }
+
+    
+    // --- DRAWER TABS & SUB-VIEWS ---
+    let currentDrawerTab = 'hooks';
+    function switchDrawerTab(tabName) {
+      currentDrawerTab = tabName;
+      ['hooks', 'actions', 'comments', 'vault'].forEach(t => {
+        const btn = document.getElementById(`dTabBtn-${t}`);
+        const pane = document.getElementById(`dTabPane-${t}`);
+        if (!btn || !pane) return;
+        if (t === tabName) {
+          btn.className = "px-3 py-1.5 rounded-lg font-bold bg-sky-600 text-white transition flex items-center gap-1.5";
+          pane.classList.remove("hidden");
+        } else {
+          btn.className = "px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-[#343C38] transition flex items-center gap-1.5";
+          pane.classList.add("hidden");
+        }
+      });
+    }
+
+    // --- ACTIONS LOGGER ---
+    function logActionToAccount(acc, type, performer, text) {
+      if (!acc) return;
+      if (!acc.actions) acc.actions = [];
+      const now = new Date();
+      const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')} — ${now.toLocaleDateString('fa-IR')}`;
+      const actualPerformer = performer || currentUserName || "سیستم";
+      acc.actions.unshift({
+        id: `act-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+        type: type,
+        performer: actualPerformer,
+        ip: currentClientIP,
+        text: text,
+        time: timeStr,
+        timestamp: Date.now()
+      });
+      saveState();
+      renderBoard();
+      renderList();
+    }
+
+    function submitNewAction() {
+      if (!selectedAccount) return;
+      const type = document.getElementById("newActionType").value;
+      const performer = document.getElementById("newActionPerformer").value;
+      const text = document.getElementById("newActionText").value.trim();
+      if (!text) {
+        alert("لطفاً شرح اقدام انجام‌شده را وارد کنید.");
+        return;
+      }
+      logActionToAccount(selectedAccount, type, performer, text);
+      document.getElementById("newActionText").value = "";
+      renderActionsFeed();
+      updateDrawerBadges();
+      alert("اقدام با موفقیت در تاریخچه حساب ثبت شد.");
+    }
+
+    function renderActionsFeed() {
+      const container = document.getElementById("dActionsFeed");
+      if (!container || !selectedAccount) return;
+      container.innerHTML = "";
+      const actions = selectedAccount.actions || [];
+      if (actions.length === 0) {
+        container.innerHTML = `<div class="p-4 rounded-xl bg-[#292F2D] border border-[#46504B] text-slate-500 text-center text-xs">هنوز اقدامی برای این حساب ثبت نشده است. از فرم بالا اولین اقدام (تماس، جلسه یا پیگیری) را ثبت کنید.</div>`;
+        return;
+      }
+      actions.forEach(act => {
+        let icon = "📌";
+        let badgeColor = "bg-slate-500/10 text-slate-300 border-slate-500/20";
+        if (act.type === 'call') { icon = "📞 تماس"; badgeColor = "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"; }
+        else if (act.type === 'email') { icon = "✉️ نامه / ایمیل"; badgeColor = "bg-sky-500/10 text-sky-300 border-sky-500/20"; }
+        else if (act.type === 'meeting') { icon = "🤝 جلسه"; badgeColor = "bg-amber-500/10 text-amber-300 border-amber-500/20"; }
+        else if (act.type === 'linkedin') { icon = "🌐 لینکدین"; badgeColor = "bg-[#527C78]/15 text-blue-300 border-[#527C78]/30"; }
+        else if (act.type === 'stage') { icon = "🔄 تغییر مرحله"; badgeColor = "bg-cyan-500/10 text-cyan-300 border-cyan-500/20"; }
+        else if (act.type === 'role') { icon = "👤 مسئولیت"; badgeColor = "bg-teal-500/10 text-teal-300 border-teal-500/20"; }
+
+        const div = document.createElement("div");
+        div.className = "p-3 rounded-xl bg-[#343C38] border border-[#46504B] text-xs space-y-1.5 group hover:border-[#8FB4AA] transition";
+        div.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-medium border ${badgeColor}">${icon}</span>
+              <span class="text-white font-bold text-[11px]">${act.performer}</span>
+              ${act.ip ? `<span class="text-[9px] font-mono text-slate-500 bg-black/30 px-1 rounded">${act.ip}</span>` : ''}
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-400 text-[10px] font-mono">${act.time}</span>
+              <button type="button" onclick="editAction('${act.id}')" class="text-slate-400 hover:text-sky-300 text-xs px-1" title="ویرایش این اقدام">✏️</button>
+              <button type="button" onclick="deleteAction('${act.id}')" class="text-slate-500 hover:text-rose-400 text-xs px-1" title="حذف این اقدام">&times;</button>
+            </div>
+          </div>
+          <p class="text-slate-200 leading-relaxed text-[11px] pr-1 whitespace-pre-wrap">${act.text}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function editAction(actionId) {
+      if (!selectedAccount || !selectedAccount.actions) return;
+      const act = selectedAccount.actions.find(a => a.id === actionId);
+      if (!act) return;
+      const newText = prompt("ویرایش شرح اقدام:", act.text);
+      if (newText !== null && newText.trim() !== "") {
+        act.text = newText.trim();
+        saveState();
+        renderActionsFeed();
+        renderBoard();
+        renderList();
+        alert("اقدام با موفقیت ویرایش شد.");
+      }
+    }
+
+    function deleteAction(actionId) {
+      if (!selectedAccount || !selectedAccount.actions) return;
+      if (confirm("آیا مایل به حذف این اقدام از تاریخچه حساب هستید؟")) {
+        selectedAccount.actions = selectedAccount.actions.filter(a => a.id !== actionId);
+        saveState();
+        renderActionsFeed();
+        renderBoard();
+        renderList();
+        updateDrawerBadges();
+      }
+    }
+
+    // --- COMMENTS SYSTEM ---
+    function submitNewComment() {
+      if (!selectedAccount) return;
+      const author = document.getElementById("newCommentAuthor").value;
+      const text = document.getElementById("newCommentText").value.trim();
+      if (!text) {
+        alert("لطفاً متن نظر خود را بنویسید.");
+        return;
+      }
+      if (!selectedAccount.comments) selectedAccount.comments = [];
+      const now = new Date();
+      const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')} — ${now.toLocaleDateString('fa-IR')}`;
+      selectedAccount.comments.unshift({
+        id: `com-${Date.now()}`,
+        author: author,
+        text: text,
+        time: timeStr
+      });
+      document.getElementById("newCommentText").value = "";
+      saveState();
+      renderBoard();
+      renderList();
+      renderCommentsList();
+      updateDrawerBadges();
+      alert("دیدگاه شما با موفقیت ثبت شد.");
+    }
+
+    function editComment(commentId) {
+      if (!selectedAccount || !selectedAccount.comments) return;
+      const com = selectedAccount.comments.find(c => c.id === commentId);
+      if (!com) return;
+      const newText = prompt("ویرایش دیدگاه / نظر:", com.text);
+      if (newText !== null && newText.trim() !== "") {
+        com.text = newText.trim();
+        saveState();
+        renderCommentsList();
+        renderBoard();
+        renderList();
+        alert("دیدگاه با موفقیت به‌روزرسانی شد.");
+      }
+    }
+
+    function deleteComment(commentId) {
+      if (!selectedAccount || !selectedAccount.comments) return;
+      if (confirm("آیا مایل به حذف این نظر هستید؟")) {
+        selectedAccount.comments = selectedAccount.comments.filter(c => c.id !== commentId);
+        saveState();
+        renderBoard();
+        renderList();
+        renderCommentsList();
+        updateDrawerBadges();
+      }
+    }
+
+    function renderCommentsList() {
+      const container = document.getElementById("dCommentsList");
+      if (!container || !selectedAccount) return;
+      container.innerHTML = "";
+      const comments = selectedAccount.comments || [];
+      if (comments.length === 0) {
+        container.innerHTML = `<div class="p-4 rounded-xl bg-[#292F2D] border border-[#46504B] text-slate-500 text-center text-xs">هنوز کامنتی برای این حساب درج نشده است. اولین نکته تیمی را بنویسید.</div>`;
+        return;
+      }
+      comments.forEach(com => {
+        const div = document.createElement("div");
+        div.className = "p-3 rounded-xl bg-[#343C38] border border-[#46504B] text-xs space-y-1.5 group hover:border-[#8FB4AA] transition";
+        div.innerHTML = `
+          <div class="flex items-center justify-between border-b border-[#46504B] pb-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">
+                ${com.author.slice(0, 2)}
+              </span>
+              <span class="text-white font-bold text-[11px]">${com.author}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-400 text-[10px] font-mono">${com.time}</span>
+              <button type="button" onclick="editComment('${com.id}')" class="text-slate-400 hover:text-emerald-300 text-xs px-1" title="ویرایش این نظر">✏️</button>
+              <button type="button" onclick="deleteComment('${com.id}')" class="text-slate-500 hover:text-rose-400 transition" title="حذف نظر">&times;</button>
+            </div>
+          </div>
+          <p class="text-slate-200 leading-relaxed text-[11px] whitespace-pre-wrap">${com.text}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function updateDrawerBadges() {
+      if (!selectedAccount) return;
+      const actsCount = selectedAccount.actions ? selectedAccount.actions.length : 0;
+      const commsCount = selectedAccount.comments ? selectedAccount.comments.length : 0;
+      const docsCount = selectedAccount.docs ? selectedAccount.docs.length : 0;
+
+      const badgeAct = document.getElementById("dTabBadge-actions");
+      const badgeCom = document.getElementById("dTabBadge-comments");
+      const badgeDoc = document.getElementById("dTabBadge-vault");
+
+      if (badgeAct) badgeAct.innerText = actsCount;
+      if (badgeCom) badgeCom.innerText = commsCount;
+      if (badgeDoc) badgeDoc.innerText = docsCount;
+    }
+
+    // --- REVISITABLE STANDUP WORKSPACE ---
+    function openStandupModal() {
+      // Load saved notes from localStorage
+      try {
+        const saved = JSON.parse(localStorage.getItem("pfg_standup_workspace") || "{}");
+        document.getElementById("suCommitments").value = saved.commitments || "";
+        document.getElementById("suBlockers").value = saved.blockers || "";
+        document.getElementById("suNotes").value = saved.notes || "";
+      } catch(e) {}
+      
+      const today = new Date().toLocaleDateString('fa-IR', { weekday: 'long', day: 'numeric', month: 'long' });
+      const dtEl = document.getElementById("standupCurrentDate");
+      if (dtEl) dtEl.innerText = today;
+
+      const actEl = document.getElementById("standupActiveCount");
+      if (actEl) actEl.innerText = `${accounts.length} حساب در بورد`;
+
+      document.getElementById("standupModal").classList.remove("hidden");
+    }
+
+    function closeStandupModal() {
+      document.getElementById("standupModal").classList.add("hidden");
+    }
+
+    function saveStandupWorkspace() {
+      const data = {
+        commitments: document.getElementById("suCommitments").value.trim(),
+        blockers: document.getElementById("suBlockers").value.trim(),
+        notes: document.getElementById("suNotes").value.trim(),
+        lastUpdated: new Date().toISOString()
+      };
+      localStorage.setItem("pfg_standup_workspace", JSON.stringify(data));
+      
+      // Sync standup to Firebase
+      fetch(`${FIREBASE_DB_BASE}/standup.json`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).catch(e => console.warn("Standup cloud sync err:", e));
+
+      alert("یادداشت‌ها و تعهدات استندآپ با موفقیت ذخیره شدند و روی سرور ابری همگام‌سازی گردیدند.");
+      closeStandupModal();
+    }
+
+    function clearStandupWorkspace() {
+      if (confirm("آیا مایل به پاکسازی یادداشت‌های استندآپ برای شروع روز جدید هستید؟")) {
+        document.getElementById("suCommitments").value = "";
+        document.getElementById("suBlockers").value = "";
+        document.getElementById("suNotes").value = "";
+        localStorage.removeItem("pfg_standup_workspace");
+        alert("میز کار استندآپ ریست شد.");
+      }
+    }
+
+    // Detail Drawer
+    function openDetailDrawer(accId) {
+      const acc = accounts.find(a => a.id === accId);
+      if (!acc) return;
+      selectedAccount = acc;
+
+      document.getElementById("dEditName").value = acc.name || "";
+      document.getElementById("dBadgeTier").innerText = `${acc.tier} (امتیاز ${acc.score})`;
+      document.getElementById("dBadgeStage").innerText = stages.find(s => s.id === acc.stage)?.title || "";
+      document.getElementById("dStageSelect").value = acc.stage || "prospect";
+      document.getElementById("dEditTier").value = acc.tier || "Tier A";
+      document.getElementById("dEditVertical").value = acc.vertical || "";
+      
+      document.getElementById("dEditLinkedin").value = acc.linkedin || "";
+      document.getElementById("dLiLinkPreview").href = acc.linkedin || "#";
+      
+      document.getElementById("dEditWebsite").value = acc.website || "";
+      document.getElementById("dWebLinkPreview").href = acc.website || "#";
+
+      document.getElementById("dEditDecisionMaker").value = acc.decisionMaker || "";
+      document.getElementById("dEditApprover").value = acc.approver || "";
+      document.getElementById("dEditTechLead").value = acc.techLead || "";
+      
+      document.getElementById("dEditPain").value = acc.pain || "";
+      document.getElementById("dEditHookCeo").value = acc.hookCeo || "";
+      document.getElementById("dEditHookTech").value = acc.hookTech || "";
+
+      // Populate assignees
+      document.getElementById("dEditAssigneeResearcher").value = acc.assigneeResearcher || "";
+      document.getElementById("dEditAssigneeDrafter").value = acc.assigneeDrafter || "";
+      document.getElementById("dEditAssigneeApprover").value = acc.assigneeApprover || "";
+
+      renderDocsList();
+      renderActionsFeed();
+      renderCommentsList();
+      updateDrawerBadges();
+      switchDrawerTab('hooks');
+      document.getElementById("detailDrawer").classList.remove("hidden");
+    }
+
+    function saveDrawerEdits() {
+      if (!selectedAccount) return;
+      selectedAccount.name = document.getElementById("dEditName").value.trim();
+      selectedAccount.vertical = document.getElementById("dEditVertical").value.trim();
+      selectedAccount.tier = document.getElementById("dEditTier").value;
+      selectedAccount.stage = document.getElementById("dStageSelect").value;
+      selectedAccount.linkedin = document.getElementById("dEditLinkedin").value.trim();
+      selectedAccount.website = document.getElementById("dEditWebsite").value.trim();
+      selectedAccount.decisionMaker = document.getElementById("dEditDecisionMaker").value.trim();
+      selectedAccount.approver = document.getElementById("dEditApprover").value.trim();
+      selectedAccount.techLead = document.getElementById("dEditTechLead").value.trim();
+      selectedAccount.pain = document.getElementById("dEditPain").value.trim();
+      selectedAccount.hookCeo = document.getElementById("dEditHookCeo").value.trim();
+      selectedAccount.hookTech = document.getElementById("dEditHookTech").value.trim();
+
+      const oldStage = selectedAccount.stage;
+      const newStage = document.getElementById("dStageSelect").value;
+      const oldResearcher = selectedAccount.assigneeResearcher;
+      const newResearcher = document.getElementById("dEditAssigneeResearcher").value;
+
+      if (oldStage !== newStage) {
+        const fromTitle = stages.find(s => s.id === oldStage)?.title || oldStage;
+        const toTitle = stages.find(s => s.id === newStage)?.title || newStage;
+        logActionToAccount(selectedAccount, 'stage', 'سیستم', `تغییر مرحله از «${fromTitle}» به «${toTitle}»`);
+      }
+
+      if (oldResearcher !== newResearcher && newResearcher) {
+        logActionToAccount(selectedAccount, 'role', newResearcher, `پذیرش مسئولیت ممیزی و سرپرستی حساب`);
+      }
+
+      // Save assignees
+      selectedAccount.assigneeResearcher = newResearcher;
+      selectedAccount.assigneeDrafter = document.getElementById("dEditAssigneeDrafter").value;
+      selectedAccount.assigneeApprover = document.getElementById("dEditAssigneeApprover").value;
+
+      saveState();
+      renderBoard();
+      renderList();
+      updateAnalytics();
+      alert(`تغییرات حساب "${selectedAccount.name}" با موفقیت ذخیره شد!`);
+    }
+
+    function copyTextFromInput(id) {
+      const val = document.getElementById(id).value;
+      navigator.clipboard.writeText(val);
+      alert("متن در کلیپ‌بورد کپی شد!");
+    }
+
+    function resetAllToStartPoint() {
+      if (confirm("آیا مایلید تمام ۱۰ حساب به مرحله ۱ (نقطه شروع: کشف و ارزیابی لید) بازگردانده شوند؟")) {
+        accounts.forEach(a => a.stage = "prospect");
+        saveState();
+        renderBoard();
+        renderList();
+        updateAnalytics();
+        alert("تمام حساب‌ها با موفقیت به نقطه شروع بازگردانده شدند و آماده ویرایش تیم هستند.");
+      }
+    }
+
+    function closeDetailDrawer() {
+      document.getElementById("detailDrawer").classList.add("hidden");
+    }
+
+    function updateAccountStage(newStage) {
+      if (selectedAccount) {
+        selectedAccount.stage = newStage;
+        saveState();
+        renderBoard();
+        renderList();
+        document.getElementById("dBadgeStage").innerText = stages.find(s => s.id === newStage)?.title || "";
+      }
+    }
+
+    // Document Management
+    function renderDocsList() {
+      const container = document.getElementById("dDocsList");
+      if (!container) return;
+      container.innerHTML = "";
+      const docs = selectedAccount ? (selectedAccount.docs || []) : [];
+
+      if (docs.length === 0) {
+        container.innerHTML = `<div class="text-center py-3 text-slate-500 text-[11px]">هنوز سندی به این حساب پیوست نشده است. از دکمه بالا فایل جدید را بارگذاری فرمایید.</div>`;
+        return;
+      }
+
+      docs.forEach((doc, idx) => {
+        const item = document.createElement("div");
+        item.className = "flex items-center justify-between p-2.5 rounded-lg bg-[#343C38] border border-[#46504B] text-xs hover:border-[#8FB4AA] transition";
+        item.innerHTML = `
+          <div class="flex items-center gap-2 overflow-hidden">
+            <span class="px-1.5 py-0.5 rounded bg-[#527C78]/30 text-emerald-300 font-mono text-[10px] uppercase font-bold">${doc.type || 'FILE'}</span>
+            <span class="text-slate-200 truncate font-medium" title="${doc.name}">${doc.name}</span>
+            <span class="text-[10px] text-slate-400 font-mono">(${doc.size || 'نامشخص'})</span>
+          </div>
+          <div class="flex items-center gap-1.5 flex-shrink-0 mr-2">
+            <button type="button" onclick="downloadDoc(${idx})" class="px-2 py-1 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-md text-[11px] font-semibold transition flex items-center gap-1" title="دانلود فایل پیوست">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>دانلود</span>
+            </button>
+            <button type="button" onclick="deleteDoc(${idx})" class="p-1 text-slate-400 hover:text-rose-400 transition" title="حذف این سند">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file || !selectedAccount) return;
+
+      if (file.size > 8 * 1024 * 1024) {
+        alert("⚠️ حجم فایل نباید بیشتر از ۸ مگابایت باشد.");
+        e.target.value = "";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const newDoc = {
+          id: `doc-${Date.now()}`,
+          name: file.name,
+          size: `${(file.size / 1024).toFixed(1)} KB`,
+          date: new Date().toLocaleDateString('fa-IR'),
+          type: file.name.split('.').pop().toLowerCase(),
+          dataUrl: evt.target.result
+        };
+
+        if (!selectedAccount.docs) selectedAccount.docs = [];
+        selectedAccount.docs.push(newDoc);
+        logActionToAccount(selectedAccount, 'email', currentUserName || 'تیم', `پیوست سند جدید: «${file.name}» (${newDoc.size})`);
+        saveState();
+        renderDocsList();
+        renderBoard();
+        renderList();
+        updateDrawerBadges();
+        alert(`✅ سند "${file.name}" با موفقیت الصاق و در پایگاه ابری ذخیره شد!`);
+      };
+      reader.onerror = function() {
+        alert("خطا در بارگذاری فایل. لطفاً دوباره تلاش فرمایید.");
+      };
+      reader.readAsDataURL(file);
+      e.target.value = "";
+    }
+
+    function deleteDoc(idx) {
+      if (!selectedAccount || !selectedAccount.docs) return;
+      const docName = selectedAccount.docs[idx]?.name || "سند";
+      if (confirm(`آیا از حذف سند «${docName}» اطمینان دارید؟`)) {
+        selectedAccount.docs.splice(idx, 1);
+        saveState();
+        renderDocsList();
+        renderBoard();
+        renderList();
+        updateDrawerBadges();
+      }
+    }
+
+    function downloadDoc(idx) {
+      if (!selectedAccount || !selectedAccount.docs) return;
+      const doc = selectedAccount.docs[idx];
+      if (!doc) return;
+
+      if (doc.dataUrl) {
+        const a = document.createElement("a");
+        a.href = doc.dataUrl;
+        a.download = doc.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } else {
+        // Fallback for pre-seeded template records: generate a descriptive companion file
+        const blob = new Blob([
+          `اسناد توسعه بازار پرشیا فاوا (درگاه ملی فِرِستا)\n\n` +
+          `نام سند: ${doc.name}\n` +
+          `شرکت مربوطه: ${selectedAccount.name}\n` +
+          `پاشنه آشیل: ${selectedAccount.pain}\n` +
+          `قلاب مدیرعامل: ${selectedAccount.hookCeo}\n` +
+          `قلاب مدیر فنی: ${selectedAccount.hookTech}\n` +
+          `تاریخ الصاق: ${doc.date || 'امروز'}\n`
+        ], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = doc.name.replace(/\.[^.]+$/, '') + ".txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    // Modals & New Account
+    function openNewAccountModal() { document.getElementById("newAccountModal").classList.remove("hidden"); }
+    function closeNewAccountModal() { document.getElementById("newAccountModal").classList.add("hidden"); }
+    function saveNewAccount() {
+      const name = document.getElementById("mName").value.trim();
+      if (!name) { alert("لطفاً نام شرکت را وارد کنید."); return; }
+
+      const newAcc = {
+        id: `acc-${Date.now()}`,
+        num: String(accounts.length + 1),
+        name: name,
+        vertical: document.getElementById("mVertical").value.trim() || "فین‌تک و خدمات آنلاین",
+        tier: document.getElementById("mTier").value,
+        score: "۷۰",
+        stage: "prospect",
+        linkedin: document.getElementById("mLinkedin").value.trim() || "https://linkedin.com",
+        website: document.getElementById("mWebsite").value.trim() || "https://",
+        decisionMaker: "مدیرعامل / هیئت‌مدیره",
+        approver: "سرمایه‌گذاران کلان",
+        techLead: "مدیر ارشد فناوری (CTO)",
+        assigneeResearcher: "",
+        assigneeDrafter: "",
+        csuiteStatus: "در انتظار بررسی",
+        pain: document.getElementById("mPain").value.trim() || "نیاز به روت پشتیبان پیامک با تاخیر پایین و وب‌هوک وضعیت زنده.",
+        hookCeo: `جناب مدیریت محترم ${name}، با سلام. پرشیا فاوا آماده است زیرساخت پیامک مستقیم و پایدار خود را بدون قطعی روت فعلی در اختیار شما قرار دهد.`,
+        hookTech: `درود بر تیم فنی ${name}. اتصال مستقیم SMPP و وب‌هوک تحویل پیامک تا سطح گوشی با SLA زیر ۲ ثانیه آماده ارائه است.`,
+        docs: []
+      };
+
+      accounts.push(newAcc);
+      saveState();
+      closeNewAccountModal();
+      renderBoard();
+      renderList();
+      alert(`حساب "${name}" با موفقیت در تخته کانبان ایجاد شد!`);
+    }
+
+    // Filters & Switchers
+    function switchView(view) {
+      ['board', 'list', 'analytics'].forEach(v => {
+        const btn = document.getElementById(`btnView${v.charAt(0).toUpperCase() + v.slice(1)}`);
+        const el = document.getElementById(`view${v.charAt(0).toUpperCase() + v.slice(1)}`);
+        if (v === view) {
+          btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/15 text-white shadow-sm transition";
+          el.classList.remove("hidden");
+        } else {
+          btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white transition";
+          el.classList.add("hidden");
+        }
+      });
+      if (view === 'board') renderBoard();
+      if (view === 'list') renderList();
+      if (view === 'analytics') updateAnalytics();
+    }
+
+    function quickTakeRole(roleType) {
+      if (!selectedAccount) return;
+      const member = prompt("نام خود را جهت پذیرش این نقش انتخاب/تایپ کنید:\n۱. خانم خرم‌دل\n۲. خانم فائزه\n۳. خانم موسی‌پور\n۴. خانم شهروزی", "خانم خرم‌دل");
+      if (!member) return;
+      if (roleType === 'researcher') {
+        document.getElementById("dEditAssigneeResearcher").value = member;
+        selectedAccount.assigneeResearcher = member;
+      } else if (roleType === 'drafter') {
+        document.getElementById("dEditAssigneeDrafter").value = member;
+        selectedAccount.assigneeDrafter = member;
+      }
+      saveState();
+      renderBoard();
+      renderList();
+      alert(`مسئولیت به "${member}" تخصیص یافت.`);
+    }
+
+    function filterByRole(role) {
+      activeFilterRole = role;
+      const roles = ['all', 'unassigned', 'shahroozi', 'moosapour', 'khordamdel', 'faeze'];
+      roles.forEach(r => {
+        const btn = document.getElementById(`rf-${r}`);
+        if (!btn) return;
+        if (r === role) {
+          btn.className = "px-3 py-1 rounded-lg bg-[#527C78] text-white font-semibold shadow-sm transition whitespace-nowrap";
+        } else {
+          btn.className = "px-3 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-slate-300 hover:text-white border border-[#46504B] transition whitespace-nowrap";
+        }
+      });
+      renderBoard();
+      renderList();
+    }
+
+    function handleSearch() {
+      activeSearch = document.getElementById("liveSearch").value;
+      renderBoard();
+      renderList();
+    }
+
+    function copyTextFromElement(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text);
+      alert("متن کپی شد!");
+    }
+
+    const GAPGPT_DEFAULT_KEY = "";
+    function getGapGptKey() {
+      return localStorage.getItem("pfg_gapgpt_api_key") || GAPGPT_DEFAULT_KEY;
+    }
+
+    function toggleGapGptConfig() {
+      const panel = document.getElementById("gapGptConfigPanel");
+      if (!panel) return;
+      panel.classList.toggle("hidden");
+      const input = document.getElementById("gapGptApiKeyInput");
+      if (input) input.value = getGapGptKey();
+    }
+
+    function saveGapGptKey() {
+      const input = document.getElementById("gapGptApiKeyInput");
+      if (!input) return;
+      const key = input.value.trim();
+      if (!key) {
+        alert("لطفاً کلید معتبر API را وارد فرمایید.");
+        return;
+      }
+      localStorage.setItem("pfg_gapgpt_api_key", key);
+      alert("✅ کلید GapGPT با موفقیت در مرورگر ذخیره شد.");
+      document.getElementById("gapGptConfigPanel").classList.add("hidden");
+    }
+
+    async function callGapGptDrafter(type) {
+      if (!selectedAccount) return;
+      const acc = selectedAccount;
+      const box = document.getElementById("gapGptOutputBox");
+      const statusEl = document.getElementById("gapGptDraftStatus");
+      const textarea = document.getElementById("gapGptDraftResult");
+
+      if (box) box.classList.remove("hidden");
+      if (statusEl) statusEl.innerText = "⏳ در حال استعلام و نگارش متن از GapGPT...";
+      if (textarea) textarea.value = "در حال ارتباط با موتور هوش مصنوعی GapGPT...";
+
+      let prompt = "";
+      let defaultFallback = "";
+
+      if (type === 'proposal') {
+        prompt = `نقش شما: مدیر ارشد توسعه بازار پرشیا فاوا (درگاه ملی پیامک ابری فِرِستا).
+یک نامه اداری فاخر و رسمی خطاب به مدیریت محترم شرکت ${acc.name} تنظیم کنید.
+محور اصلی: حل چالش "${acc.pain}" با پیشنهاد روت دوم تستی با اتصال مستقیم اپراتوری و وب‌هوک وضعیت لحظه‌ای. بدون تعارفات اضافه، مستقیم و مستدل باشد.`;
+        defaultFallback = `بسمه‌تعالی\n\nجناب آقای / سرکار خانم ${acc.decisionMaker || 'مدیریت محترم'}\nمدیرعامل محترم شرکت ${acc.name}\n\nموضوع: پیشنهاد راه‌اندازی روت پشتیبان پیامک سازمانی با تضمین تحویل زیر ۲ ثانیه (SLA)\n\nبا سلام و احترام،\nپیرو رصد فنی زیرساخت‌های ارتباطی سامانه‌های پیشرو در حوزه ${acc.vertical}، به استحضار می‌رساند پایداری ارسال پیامک‌های تراکنشی نقشی تعیین‌کننده در رضایت و ماندگاری کاربران ایفا می‌کند. با توجه به چالش‌های معمول پیرامون "${acc.pain}"، شرکت پرشیا فاوا گسترش (درگاه ملی فِرِستا) آمادگی دارد با اتصال مستقیم اپراتوری و روت اختصاصی بدون واسطه، ریسک قطعی و تاخیر پیامک را برای مجموعه ${acc.name} به صفر برساند.\n\nپیشنهاد ما فعال‌سازی یک بسته پایلوت تستی ۵۰ هزار پیامکی بدون نیاز به تغییر در پیکربندی فعلی شماست.\n\nبا احترام،\nتیم توسعه بازار پرشیا فاوا گسترش`;
+      } else if (type === 'inmail') {
+        prompt = `یک پیام لینکدین (InMail) بسیار صمیمی، غیررباتیک و حرفه‌ای زیر ۸۰ کلمه خطاب به ${acc.decisionMaker} در شرکت ${acc.name} بنویس.
+مستقیماً به دغدغه "${acc.pain}" اشاره کن و بگو چطور تاخیر زیر ۲ ثانیه پرشیا فاوا این موضوع را حل می‌کند.`;
+        defaultFallback = `سلام ${acc.decisionMaker.split(' ')[0] || 'عزیز'}، وقت بخیر.\nرشد و جایگاه ارزش‌آفرین ${acc.name} را تبریک می‌گویم. در گفتگو با تیم‌های فنی متوجه شدیم دغدغه "${acc.pain}" در زمان اوج ترافیک چالش‌برانگیز است. ما در پرشیا فاوا با اتصال مستقیم اپراتوری تاخیر پیامک را زیر ۲ ثانیه رسانده‌ایم. خوشحال می‌شوم در یک گفتگوی ۵ دقیقه‌ای، امکان تست روت دوم موازی را با هم بررسی کنیم.`;
+      } else if (type === 'objection') {
+        prompt = `پاسخ فنی به مدیر ارشد فناوری شرکت ${acc.name} (${acc.techLead}) که می‌گوید: "ما با سایر تجمیع‌کنندگان قرارداد داریم و امکان جابجایی نداریم".
+استراتژی پاسخ: بدون نیاز به لغو قرارداد، پیشنهاد خط رزرو فعال (Active-Active Failover) و پایلوت تستی را ارائه بده.`;
+        defaultFallback = `درود بر شما جناب ${acc.techLead.split(' ')[0] || 'مهندس گرامی'}.\nکاملاً درک می‌کنم و هدف ما ابداً ایجاد اختلال یا جابجایی سرویس پایدار فعلی شما نیست. پیشنهاد ما پیاده‌سازی معماری High Availability (Active-Active Failover) است؛ یعنی خطوط پرشیا فاوا صرفاً به عنوان روت دوم تستی فعال باشند تا در صورت افت کیفیت روت اول، ترافیک بدون قطعی هدایت شود. وب‌سرویس ما با کمترین تغییر در کدبیس شما قابل تست است.`;
+      } else if (type === 'pilot') {
+        prompt = `یک پیش‌نویس توافق‌نامه پایلوت رایگان ۵۰ هزار پیامکی برای شرکت ${acc.name} بنویس که تعهدات کیفی P99 SLA و وب‌هوک وضعیت لحظه‌ای را تضمین کند.`;
+        defaultFallback = `پیش‌نویس توافق‌نامه پایلوت فنی پیامک سازمانی\nطرفین: شرکت پرشیا فاوا گسترش و شرکت ${acc.name}\n۱. تخصیص ۵۰,۰۰۰ پیامک خدماتی رایگان جهت آزمون پایداری\n۲. تضمین تحویل زیر ۲ ثانیه (SLA 99.9%)\n۳. ارائه وب‌هوک لحظه‌ای وضعیت دلیوری گوشی (Handset Delivery Report)\n۴. عدم نیاز به تعهد خرید پس از اتمام دوره پایلوت`;
+      }
+
+      const apiKey = getGapGptKey();
+      try {
+        const response = await fetch("https://api.gapgpt.app/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model: "gpt-4o-mini",
+            messages: [
+              { role: "system", content: "شما دستیار ارشد توسعه بازار و نگارش تخصصی ارتباط با مشتریان در حوزه تلکام و پیامک سازمانی (B2B SMS Gateway) هستید. پاسخ‌ها را دقیق، جذاب و بدون اضافه گویی بنویسید." },
+              { role: "user", content: prompt }
+            ]
+          }),
+          signal: AbortSignal.timeout(12000)
+        });
+
+        if (response.ok) {
+          const json = await response.json();
+          const generated = json.choices?.[0]?.message?.content;
+          if (generated) {
+            textarea.value = generated.trim();
+            statusEl.innerText = "✅ نگارش هوشمند توسط GapGPT با موفقیت انجام شد (قابل ویرایش):";
+            return;
+          }
+        }
+        
+        const errData = await response.json().catch(() => ({}));
+        const errMsg = errData.error?.message || "عدم موجودی یا خطای سرویس";
+        console.warn("GapGPT API Notice:", errMsg);
+        textarea.value = defaultFallback;
+        statusEl.innerText = `⚡ متن آماده تخصصی بارگذاری شد (وضعیت GapGPT: ${errMsg}):`;
+      } catch(e) {
+        console.warn("GapGPT fetch error, using built-in draft engine:", e);
+        textarea.value = defaultFallback;
+        statusEl.innerText = "⚡ متن آماده تخصصی برای این حساب بارگذاری شد (کاملاً قابل ویرایش):";
+      }
+    }
+
+    function copyGapGptDraft() {
+      const textarea = document.getElementById("gapGptDraftResult");
+      if (!textarea || !textarea.value) return;
+      navigator.clipboard.writeText(textarea.value);
+      alert("✅ متن در کلیپ‌بورد کپی شد!");
+    }
+
+    function applyGapGptToHook(target) {
+      const textarea = document.getElementById("gapGptDraftResult");
+      if (!textarea || !textarea.value) return;
+      if (target === 'ceo') {
+        const el = document.getElementById("dEditHookCeo");
+        if (el) { el.value = textarea.value; el.scrollIntoView({ behavior: 'smooth' }); }
+        alert("✅ متن در قلاب مدیرعامل جایگذاری شد. برای ذخیره روی دکمه ذخیره تغییرات بزنید.");
+      } else {
+        const el = document.getElementById("dEditHookTech");
+        if (el) { el.value = textarea.value; el.scrollIntoView({ behavior: 'smooth' }); }
+        alert("✅ متن در قلاب مدیر فنی جایگذاری شد. برای ذخیره روی دکمه ذخیره تغییرات بزنید.");
+      }
+    }
+
+    function applyGapGptToAction() {
+      const textarea = document.getElementById("gapGptDraftResult");
+      if (!textarea || !textarea.value || !selectedAccount) return;
+      logActionToAccount(selectedAccount, 'email', currentUserName || 'تیم', `پیش‌نویس هوش مصنوعی:\n${textarea.value.slice(0, 180)}...`);
+      renderActionsFeed();
+      updateDrawerBadges();
+      alert("✅ متن تولیدشده به عنوان یک اقدام در تاریخچه حساب ثبت شد.");
+    }
+
+    
+    function copyDataClipboard() {
+      const dataStr = JSON.stringify(accounts);
+      navigator.clipboard.writeText(dataStr).then(() => {
+        alert("✅ تمام ۱۰ حساب، وضعیت‌ها، اقدامات و کامنت‌های این صفحه در کلیپ‌بورد کپی شد!\nاکنون در کامپیوتر یا مرورگر دیگر، روی دکمه «جایگذاری 📥» بزنید تا همه داده‌ها در ۱ ثانیه منتقل شوند.");
+      }).catch(err => {
+        prompt("متن زیر را کپی کنید:", dataStr);
+      });
+    }
+
+    function pasteDataClipboard() {
+      const input = prompt("متن JSON کپی‌شده را در این کادر پیست (Paste) کنید:");
+      if (!input) return;
+      try {
+        const parsed = JSON.parse(input);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          accounts = parsed;
+          saveState();
+          renderBoard();
+          renderList();
+          updateAnalytics();
+          alert(`✅ تعداد ${parsed.length} حساب با موفقیت جایگذاری و روی این صفحه ثبت شد!`);
+        } else {
+          alert("فرمت داده نامعتبر است.");
+        }
+      } catch(e) {
+        alert("خطا در بازخوانی داده: " + e.message);
+      }
+    }
+
+    function exportDataJSON() {
+      const blob = new Blob([JSON.stringify(accounts, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `PFG_B2B_Board_Backup_${Date.now()}.json`;
+      a.click();
+    }
+
+    function updateAnalytics() {
+      document.getElementById("statTotal").innerText = accounts.length;
+      document.getElementById("statTierA").innerText = accounts.filter(a => a.tier === "Tier A").length;
+      
+      let totalDocs = 0;
+      accounts.forEach(a => { if (a.docs) totalDocs += a.docs.length; });
+      document.getElementById("statDocs").innerText = `${totalDocs} فایل`;
+
+      const barsContainer = document.getElementById("pipelineBars");
+      barsContainer.innerHTML = "";
+      stages.forEach(st => {
+        const count = accounts.filter(a => a.stage === st.id).length;
+        const pct = accounts.length ? Math.round((count / accounts.length) * 100) : 0;
+        barsContainer.innerHTML += `
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-slate-300 font-medium">${st.title}</span>
+              <span class="text-slate-400 font-mono">${count} حساب (${pct}٪)</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full ${st.color}" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Init
+    renderBoard();
+    detectClientIP();
+    autoInitSync();
+    checkDirectMigrationOnLoad();
+  </script>
+  <!-- SHEETS GUIDE MODAL -->
+  <div id="sheetsGuideModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#343C38] text-white border border-white/10 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4 text-right">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-[#8FB4AA]"></span>
+          <h3 class="font-bold text-white text-sm">راهنمای بارگذاری مستقیم کاربرگ در Google Sheets</h3>
+        </div>
+        <button onclick="closeSheetsGuideModal()" class="text-slate-400 hover:text-white">&times;</button>
+      </div>
+
+      <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+        <p class="text-[#60A5FA] font-medium">فایل اکسل تولیدشده شامل ۴ تب رسمی (پایپ‌لاین پیگیری، درخت تصمیم‌گیران، قلاب‌های متنی، نقش‌های تیمی) با پشتیبانی کامل راست‌به‌چپ (RTL) است.</p>
+        
+        <div class="p-3 bg-[#292F2D] text-white border border-white/10 rounded-xl border border-white/10 space-y-2">
+          <div class="flex items-start gap-2">
+            <span class="px-2 py-0.5 rounded bg-[#8FB4AA]/20 text-[#60A5FA] font-bold">۱</span>
+            <span>روی دکمه سبز رنگ <strong>«دانلود اکسل (XLSX)»</strong> در بالای صفحه کلیک کنید تا فایل <code class="text-emerald-300 font-mono">pfg_b2b_tracker.xlsx</code> ذخیره شود.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="px-2 py-0.5 rounded bg-[#8FB4AA]/20 text-[#60A5FA] font-bold">۲</span>
+            <span>روی دکمه آبی رنگ <strong>«گوگل شیت»</strong> کلیک کنید تا صفحه <code class="text-blue-300 font-mono">sheets.new</code> باز شود.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="px-2 py-0.5 rounded bg-[#8FB4AA]/20 text-[#60A5FA] font-bold">۳</span>
+            <span>در منوی بالای گوگل شیت به مسیر <strong>File &gt; Import</strong> (فایل &gt; وارد کردن) بروید.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="px-2 py-0.5 rounded bg-[#8FB4AA]/20 text-[#60A5FA] font-bold">۴</span>
+            <span>تب <strong>Upload</strong> را زده و فایل دانلودشده را انتخاب کنید؛ سپس گزینه <em>«Replace spreadsheet»</em> را برگزینید.</span>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-[#A3A6B4]">فرمت سلول‌ها، عرض ستون‌ها، فریز ردیف هدر و جهت راست‌به‌چپ شیت‌ها کاملاً آماده اشتراک‌گذاری با مدیرعامل، COO و محققین است.</p>
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button onclick="closeSheetsGuideModal()" class="px-4 py-2 bg-[#527C78] hover:bg-[#436763] text-white rounded-xl text-xs font-semibold">متوجه شدم</button>
+      </div>
+    </div>
+  </div>
+  <!-- STANDUP MODAL (Interactive & Revisitable Daily Sync Workspace) -->
+  <div id="standupModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-[#292F2D] text-white border border-[#46504B] w-full max-w-3xl rounded-2xl p-6 shadow-2xl space-y-5 text-right max-h-[90vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-[#46504B] pb-3.5">
+        <div class="flex items-center gap-2.5">
+          <span class="w-3.5 h-3.5 rounded-full bg-sky-500"></span>
+          <div>
+            <h3 class="font-bold text-white text-base">میز کار استندآپ و همگام‌سازی روزانه تیم</h3>
+            <p class="text-[11px] text-slate-400">فضای تعاملی ثبت و بازبینی تعهدات روز، موانع اجرایی و تصمیمات مشترک</p>
+          </div>
+        </div>
+        <button onclick="closeStandupModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
+      </div>
+
+      <!-- Quick Date & Sync Status -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="bg-[#343C38] p-3 rounded-xl border border-[#46504B]">
+          <span class="text-slate-400 text-[10px] block">تاریخ جلسه:</span>
+          <span id="standupCurrentDate" class="font-bold text-white mt-0.5 block">امروز</span>
+        </div>
+        <div class="bg-[#343C38] p-3 rounded-xl border border-[#46504B]">
+          <span class="text-slate-400 text-[10px] block">حساب‌های در جریان:</span>
+          <span id="standupActiveCount" class="font-bold text-sky-400 mt-0.5 block">۱۰ حساب هدف</span>
+        </div>
+        <div class="bg-[#343C38] p-3 rounded-xl border border-[#46504B]">
+          <span class="text-slate-400 text-[10px] block">وضعیت سینک:</span>
+          <span class="font-bold text-emerald-400 mt-0.5 block">ذخیره خودکار روی حافظه مرورگر</span>
+        </div>
+      </div>
+
+      <!-- Editable Section 1: Today's Priorities & Commitments -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+            <span>🎯 تعهدات و اولویت‌های امروز تیم (Today's Key Commitments):</span>
+          </label>
+          <span class="text-[10px] text-slate-400">قابل ویرایش و بازبینی زنده</span>
+        </div>
+        <textarea id="suCommitments" rows="3" placeholder="مثلاً:&#10;• ممیزی ساختار سازمانی طلاین و ترابرنت توسط خانم خرم‌دل&#10;• آماده‌سازی پیش‌نویس نامه زرپی۲۴ توسط خانم فائزه&#10;• بررسی مدل ترافیکی با خانم موسی‌پور و شهروزی..." class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+      </div>
+
+      <!-- Editable Section 2: Current Blockers & Bottlenecks -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+            <span>⚠️ موانع، چالش‌ها و گره‌های فنی/عملیاتی (Blockers):</span>
+          </label>
+          <span class="text-[10px] text-slate-400">هر آنچه مانع پیشرفت کار است</span>
+        </div>
+        <textarea id="suBlockers" rows="3" placeholder="مثلاً: عدم دریافت پاسخ از تیم فنی در پیامک تستی، نیاز به خط خدماتی جدید، تاخیر در تایید شماره اختصاصی..." class="w-full bg-[#343C38] text-amber-200 border border-amber-900/30 focus:border-amber-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+      </div>
+
+      <!-- Editable Section 3: Minutes & Free Notes -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+            <span>📝 تصمیمات و نکات استندآپ (Session Minutes):</span>
+          </label>
+        </div>
+        <textarea id="suNotes" rows="3" placeholder="یادداشت‌های آزاد جلسه، جمع‌بندی نکات و توافقات نهایی..." class="w-full bg-[#343C38] text-slate-200 border border-[#46504B] focus:border-sky-500 rounded-xl p-3 text-xs leading-relaxed focus:outline-none"></textarea>
+      </div>
+
+      <!-- Actions Toolbar -->
+      <div class="flex items-center justify-between pt-3 border-t border-[#46504B]">
+        <button onclick="clearStandupWorkspace()" class="text-xs text-rose-400 hover:text-rose-300 transition">
+          🗑️ پاکسازی برای روز جدید
+        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="closeStandupModal()" class="px-4 py-2 bg-[#343C38] hover:bg-[#3D4742] text-slate-300 rounded-xl text-xs font-medium transition">
+            بستن
+          </button>
+          <button onclick="saveStandupWorkspace()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold shadow-md shadow-sky-600/25 transition">
+            💾 ذخیره یادداشت‌های استندآپ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- USER IDENTITY MODAL -->
+  <div id="userIdentityModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-[#292F2D] text-white border border-[#46504B] w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 text-right">
+      <div class="flex items-center justify-between border-b border-[#46504B] pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+          <h3 class="font-bold text-white text-sm">شناسایی هویت کاربر (ثبت وقایع و اقدامات)</h3>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-400 leading-relaxed">
+        جهت ثبت دقیق تاریخچه، لاگ اقدامات و کامنت‌ها، لطفاً نام خود را مشخص نمایید:
+      </p>
+
+      <!-- Quick Preset Buttons -->
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <button type="button" onclick="selectUserPreset('خانم خرم‌دل')" class="p-2.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] font-medium transition text-center">
+          خانم خرم‌دل
+        </button>
+        <button type="button" onclick="selectUserPreset('خانم فائزه')" class="p-2.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] font-medium transition text-center">
+          خانم فائزه
+        </button>
+        <button type="button" onclick="selectUserPreset('خانم موسی‌پور')" class="p-2.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] font-medium transition text-center">
+          خانم موسی‌پور
+        </button>
+        <button type="button" onclick="selectUserPreset('خانم شهروزی')" class="p-2.5 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-slate-200 border border-[#46504B] font-medium transition text-center">
+          خانم شهروزی
+        </button>
+      </div>
+
+      <!-- Custom Name Input -->
+      <div class="pt-2">
+        <label class="block text-[11px] text-slate-400 mb-1">یا نام دلخواه خود را تایپ کنید:</label>
+        <input type="text" id="customUserNameInput" placeholder="نام و نام خانوادگی..." class="w-full bg-[#343C38] text-white border border-[#46504B] focus:border-emerald-500 rounded-xl px-3 py-2 text-xs">
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2 border-t border-[#46504B]">
+        <button type="button" onclick="saveCustomUserName()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition">
+          تایید و ورود به بورد
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Local Backups History Modal -->
+  <div id="backupsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+    <div class="bg-[#292F2D] border border-[#46504B] rounded-2xl max-w-xl w-full p-6 shadow-2xl relative my-8 text-right">
+      <div class="flex items-center justify-between border-b border-[#46504B] pb-3 mb-4">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🕒</span>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-[#F0EEE7]">تاریخچه پشتیبان‌های مرورگر (Rollback & Recovery)</h3>
+            <p class="text-[11px] text-[#8FB4AA]">تمام نسخه‌های خودکار ذخیره‌شده در این مرورگر؛ بدون خطر از دست رفتن داده</p>
+          </div>
+        </div>
+        <button onclick="closeBackupsModal()" class="w-8 h-8 rounded-xl bg-[#343C38] hover:bg-[#3D4742] text-[#B5BDB6] hover:text-[#F0EEE7] flex items-center justify-center text-xs font-bold transition">
+          ✕
+        </button>
+      </div>
+
+      <div class="mb-4 bg-[#202725] p-3 rounded-xl border border-[#36403C] text-xs text-[#B5BDB6] leading-relaxed">
+        هر بار که تغییری ایجاد می‌کنید یا دکمه ارسال/دریافت را می‌زنید، یک نسخه کامل در این سیستم نگهداری می‌شود. با کلیک روی دکمه «بازگردانی»، اطلاعات آن لحظه دقیقاً روی صفحه بازنشانی می‌شود.
+      </div>
+
+      <div id="backupsListContainer" class="space-y-2 max-h-[60vh] overflow-y-auto pr-1">
+        <!-- Rendered by renderBackupsList() -->
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
