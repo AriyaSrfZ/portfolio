@@ -21,8 +21,8 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
   const [activeSection, setActiveSection] = useState<string>('payment-settlement');
 
   // Theme & Appearance State
-  const [appearance, setAppearance] = useState<AppearanceMode>('system');
-  const [effectiveTheme, setEffectiveTheme] = useState<'dark' | 'light'>('dark');
+  const [appearance, setAppearance] = useState<AppearanceMode>('light');
+  const [effectiveTheme, setEffectiveTheme] = useState<'dark' | 'light'>('light');
   const [appearanceMenuOpen, setAppearanceMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -61,7 +61,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       try {
         const savedMode = (localStorage.getItem('appearance-mode') as AppearanceMode) || 
                           (localStorage.getItem('apple-appearance-mode') as AppearanceMode) || 
-                          'system';
+                          'light';
         setAppearance(savedMode);
         applyTheme(savedMode);
       } catch (e) {}
@@ -69,7 +69,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
       // Listen for system theme changes if in system mode
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       const handleSystemChange = (e: MediaQueryListEvent) => {
-        const currentMode = localStorage.getItem('appearance-mode') || 'system';
+        const currentMode = localStorage.getItem('appearance-mode') || 'light';
         if (currentMode === 'system') {
           applyTheme('system');
         }
@@ -161,6 +161,11 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
     }
   };
 
+  // macOS-style bar: plain text links, no boxes; the active section is just darker and bolder.
+  const navBase = 'h-8 px-2.5 items-center gap-1.5 whitespace-nowrap rounded-md text-[13px] font-sans font-normal transition-colors active:scale-[0.97] text-[var(--text-secondary)] hover:text-[var(--text-primary)]';
+  const navBtn = `inline-flex ${navBase}`;
+  const navBtnActive = 'inline-flex h-8 px-2.5 items-center gap-1.5 whitespace-nowrap rounded-md text-[13px] font-sans font-semibold text-[var(--text-primary)]';
+
   return (
     <header className="fixed top-2.5 sm:top-3 inset-x-2.5 sm:inset-x-4 lg:inset-x-8 max-w-[1920px] 2xl:max-w-[2160px] mx-auto h-14 z-50 liquid-glass-navbar rounded-2xl sm:rounded-full transition-all" dir={isFa ? 'rtl' : 'ltr'}>
       <div className="w-full h-full px-3 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -182,7 +187,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
               {isFa ? 'آریا صراف‌زاده' : 'ARIYA SARRAFZADEH'}
             </span>
           </a>
-          <span className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] text-[11px] font-sans font-medium text-[var(--text-secondary)]">
+          <span className="hidden 2xl:inline-flex items-center gap-1.5 whitespace-nowrap px-2.5 py-0.5 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] text-[11px] font-sans font-medium text-[var(--text-secondary)]">
             <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)]"></span>
             <span>{isFa ? 'معمار سیستم‌ها' : 'Systems Architect'}</span>
           </span>
@@ -191,7 +196,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
         {/* Right: Section Pills + Secondary Links + Theme Switcher + Language Toggle */}
         <div className="flex items-center gap-2">
           {/* Desktop Nav Pills */}
-          <nav className="hidden lg:flex items-center gap-1 font-sans text-xs bg-[var(--surface-elevated)] p-1 rounded-full border border-[var(--border)]">
+          <nav className="hidden lg:flex items-center gap-1.5">
             {navItems.map((item) => {
               const isActive = activeSection === item.target;
               const targetHref = isFa ? `${baseUrl}fa/#${item.target}` : `${baseUrl}#${item.target}`;
@@ -200,11 +205,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   key={item.target}
                   href={targetHref}
                   onClick={(e) => handleNavClick(e, item.target, item.env)}
-                  className={`px-3 py-1 rounded-full transition-all font-sans text-xs font-medium active:scale-95 ${
-                    isActive
-                      ? 'bg-[var(--accent-primary)] text-white font-semibold shadow-sm'
-                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface)]'
-                  }`}
+                  className={isActive ? navBtnActive : navBtn}
                 >
                   {item.label}
                 </a>
@@ -213,24 +214,23 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           </nav>
 
           {/* Divider */}
-          <span className="hidden lg:block w-px h-4 bg-[var(--border)] mx-1"></span>
 
           {/* Secondary Links */}
           <a
             href={isFa ? `${baseUrl}fa/achievements/` : `${baseUrl}achievements/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-[var(--accent-primary)] hover:text-white transition-colors"
+            className={`hidden sm:inline-flex ${navBase}`}
           >
             {isFa ? 'دستاوردها' : 'Achievements'}
           </a>
           <a
             href={isFa ? `${baseUrl}fa/dictionary/` : `${baseUrl}dictionary/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+            className={`hidden sm:inline-flex ${navBase}`}
           >
             {isFa ? 'واژه‌نامه' : 'Dictionary'}
           </a>
           <a
             href={isFa ? `${baseUrl}fa/whitepapers/` : `${baseUrl}whitepapers/`}
-            className="hidden sm:inline-block px-2.5 py-1 text-xs font-sans font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+            className={`hidden sm:inline-flex ${navBase}`}
           >
             {isFa ? 'وایت‌پیپرها' : 'Whitepapers'}
           </a>
@@ -240,7 +240,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
             <button
               type="button"
               onClick={() => setAppearanceMenuOpen(!appearanceMenuOpen)}
-              className="h-8 px-2.5 sm:px-3 rounded-full bg-[var(--surface-elevated)] hover:bg-[var(--surface)] border border-[var(--border)] text-[var(--text-primary)] flex items-center gap-1.5 text-xs transition-all active:scale-95 shadow-sm"
+              className={navBtn}
               aria-label="Theme & Appearance Settings"
               title={isFa ? 'تنظیمات تم و ظاهر' : 'Theme & Appearance Settings'}
             >
@@ -253,8 +253,8 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               )}
-              <span className="hidden sm:inline font-sans text-[11px] font-medium">
-                {appearance === 'system' ? (isFa ? 'خودکار' : 'System') : appearance === 'dark' ? (isFa ? 'تیره' : 'Dark') : (isFa ? 'روشن' : 'Light')}
+              <span className="hidden sm:inline">
+                {appearance === 'system' ? (isFa ? 'سیستم' : 'System') : appearance === 'dark' ? (isFa ? 'بلوپرینت' : 'Blueprint') : (isFa ? 'کاغذ' : 'Paper')}
               </span>
               <svg className={`w-3 h-3 text-[var(--text-secondary)] transition-transform ${appearanceMenuOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -264,20 +264,21 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
             {/* Theme Popover Menu */}
             {appearanceMenuOpen && (
               <div
-                className={`absolute top-11 ${isFa ? 'left-0' : 'right-0'} w-48 p-2 rounded-xl bg-[var(--surface-elevated)] border border-[var(--border)] shadow-xl z-50 text-xs font-sans space-y-1`}
+                className={`menu-pop absolute top-11 ${isFa ? 'left-0' : 'right-0'} w-48 p-2 rounded-xl bg-[var(--surface-elevated)] border border-[var(--border)] shadow-xl z-50 text-xs font-sans space-y-1`}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="px-2 py-1 text-[10px] uppercase font-semibold text-[var(--text-secondary)] tracking-wider border-b border-[var(--border)] mb-1">
                   {isFa ? 'حالت نمایش' : 'Theme Mode'}
                 </div>
                 {[
-                  { id: 'dark' as AppearanceMode, label: isFa ? 'تیره (Carbon & Basalt)' : 'Dark (Carbon & Basalt)', icon: '🌙' },
-                  { id: 'light' as AppearanceMode, label: isFa ? 'روشن (Porcelain & Paper)' : 'Light (Porcelain & Paper)', icon: '☀️' },
-                  { id: 'system' as AppearanceMode, label: isFa ? 'خودکار بر اساس سیستم' : 'System Match (Auto)', icon: '💻' },
+                  { id: 'light' as AppearanceMode, label: isFa ? 'کاغذ (روشن)' : 'Paper (light)' },
+                  { id: 'dark' as AppearanceMode, label: isFa ? 'بلوپرینت (تیره)' : 'Blueprint (dark)' },
+                  { id: 'system' as AppearanceMode, label: isFa ? 'هماهنگ با سیستم' : 'Match system' },
                 ].map((item) => (
                   <button
                     key={item.id}
                     type="button"
+                    aria-pressed={appearance === item.id}
                     onClick={() => {
                       setAppearance(item.id);
                       applyTheme(item.id);
@@ -289,11 +290,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
                         : 'text-[var(--text-primary)] hover:bg-[var(--surface)]'
                     }`}
                   >
-                    <span className="flex items-center gap-2">
-                      <span>{item.icon}</span>
-                      <span>{item.label}</span>
-                    </span>
-                    {appearance === item.id && <span>✓</span>}
+                    <span>{item.label}</span>
                   </button>
                 ))}
               </div>
@@ -303,7 +300,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           {/* Language Switcher */}
           <a
             href={switchTarget}
-            className="h-8 px-2.5 sm:px-3 rounded-full bg-[var(--surface-elevated)] hover:bg-[var(--surface)] border border-[var(--border)] text-[var(--text-primary)] flex items-center gap-1.5 text-xs transition-all active:scale-95 shadow-sm font-sans font-medium"
+            className={navBtn}
             title={isFa ? 'Switch to English' : 'تغییر به فارسی'}
           >
             <span>{isFa ? 'EN' : 'فا'}</span>
@@ -313,7 +310,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden h-8 w-8 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] flex items-center justify-center text-[var(--text-primary)]"
+            className={`inline-flex lg:hidden !px-0 w-8 justify-center ${navBase}`}
             aria-label="Open navigation menu"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -329,7 +326,7 @@ export default function FloatingNavbar({ locale = 'en' }: FloatingNavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed top-20 inset-x-4 p-4 rounded-2xl bg-[var(--surface-elevated)] border border-[var(--border)] shadow-2xl z-50 space-y-2">
+        <div className="drawer-in lg:hidden fixed top-20 inset-x-4 p-4 rounded-2xl bg-[var(--surface-elevated)] border border-[var(--border)] shadow-2xl z-50 space-y-2">
           {navItems.map((item) => (
             <a
               key={item.target}
