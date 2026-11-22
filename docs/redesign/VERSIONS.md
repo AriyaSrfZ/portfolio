@@ -20,3 +20,4 @@
 | sketch_board_v4_v1 | 2026-11-21 | /home/aria/projects/portfolio/docs/redesign/home-v2/sketch_board_v4_v1.html | board_v4.png | Drawable page over board v4 |
 | board_v5 | 2026-11-21 | /home/aria/projects/portfolio/docs/redesign/home-v2/board_v5.png | global.css + CommandBoard.astro + FloatingNavbar.tsx | Site-wide Apple/macOS base: #F5F5F7 page, white cards, SF system font, soft corners, pill buttons, plain-text top bar |
 | sketch_board_v5_v1 | 2026-11-21 | /home/aria/projects/portfolio/docs/redesign/home-v2/sketch_board_v5_v1.html | board_v5.png | Drawable page over board v5 |
+| board_v6 | 2026-11-22 | /home/aria/projects/portfolio/docs/redesign/home-v2/board_v6.png | CommandBoard.astro | Operations record strip added (7 yrs, 20,000+, 800+, 4); NDA-safe totals only |
