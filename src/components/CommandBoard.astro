@@ -64,6 +64,17 @@ const timeline = [
   { year: 2026, title: 'Independent practice', note: 'Architecture for hire', confirm: false },
 ];
 const tStart = 2001, tEnd = 2026;
+const tx = (y: number) => ((y - tStart) / (tEnd - tStart)) * 100;
+
+// Close-up of 2018–2025, dated from the mail archive (checked 2026-11-22). NDA: no names.
+const pins = [
+  { at: 2018.55, when: 'Jul 2018', title: 'First card terminals live', note: 'Settlement accounts with 4 acquirers' },
+  { at: 2019.6, when: 'Aug 2019', title: 'Payment-facilitator licensing', note: 'Card-network rules and audits' },
+  { at: 2020.6, when: '2019–20', title: '15,000+ police and court requests', note: 'Peak years of the fraud desk' },
+  { at: 2023.2, when: '2021–25', title: 'Trust-seal complaint desk', note: 'Busiest in 2024 and 2025' },
+  { at: 2025.05, when: 'Early 2025', title: 'Handed over to the team', note: 'Desk, panels and runbooks' },
+];
+const zStart = 2018, zEnd = 2025.5;
 
 // Skills matrix: depth 1-4 across what Ariya does with each domain.
 const stages = ['Design', 'Build', 'Operate', 'Lead'];
@@ -162,14 +173,28 @@ const offers = [
       <p class="note">Each step went one layer closer to the money.</p>
     </header>
     <div class="track" dir="ltr">
-      <div class="track-line"><span class="track-progress"></span></div>
+      <div class="track-line"><span class="track-progress"></span><span class="track-band" style={`--a:${tx(zStart)}%; --b:${tx(2025.2)}%`} aria-hidden="true"></span></div>
       <ol>
         {timeline.map((t, i) => (
-          <li style={`--x:${((t.year - tStart) / (tEnd - tStart)) * 100}%; --i:${i}`} class={i % 2 ? 'below' : 'above'}>
+          <li style={`--x:${tx(t.year)}%; --i:${i}`} class={i % 2 ? 'below' : 'above'}>
             <span class="tick" aria-hidden="true"></span>
             <span class="t-year fig">{t.year}</span>
             <span class="t-title">{t.title}</span>
             <span class="t-note">{t.note}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <p class="zoom-head"><span class="fig">2018–2025</span> Close-up: running payment operations</p>
+    <div class="track track-zoom" dir="ltr">
+      <div class="track-line"><span class="track-progress"></span></div>
+      <ol>
+        {pins.map((p, i) => (
+          <li style={`--x:${((p.at - zStart) / (zEnd - zStart)) * 100}%; --i:${i}`} class={i % 2 ? 'below' : 'above'}>
+            <span class="tick" aria-hidden="true"></span>
+            <span class="t-year fig">{p.when}</span>
+            <span class="t-title">{p.title}</span>
+            <span class="t-note">{p.note}</span>
           </li>
         ))}
       </ol>
@@ -459,6 +484,10 @@ const offers = [
   .track-line { position: absolute; top: 50%; inset-inline: 0; height: 2px; background: var(--paper-3); }
   .track-progress { position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink-4), var(--ink-2)); transform: scaleX(0); transform-origin: left; transition: transform 1400ms var(--ease-out) 200ms; }
   .in .track-progress { transform: scaleX(1); }
+  .track-band { position: absolute; left: var(--a); width: calc(var(--b) - var(--a)); top: -3px; height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--ink-3) 45%, transparent); }
+  .zoom-head { margin: 1.25rem 0 0; padding-top: 1rem; border-top: 1px solid var(--border); font-size: .8125rem; color: var(--graphite-3); }
+  .zoom-head .fig { color: var(--ink-2); margin-inline-end: .4rem; }
+  .track-zoom { height: 200px; margin-top: 1.75rem; }
   .track ol { position: absolute; inset: 0; }
   .track li { position: absolute; left: var(--x); top: 50%; width: 150px; transform: translateX(-50%); display: grid; gap: .1rem; text-align: center; opacity: .0; transition: opacity 500ms var(--ease-out) calc(300ms + var(--i) * 140ms); }
   .track li:first-child { transform: none; text-align: start; }
@@ -476,6 +505,8 @@ const offers = [
   .t-note { font-size: .8125rem; color: var(--text-muted); line-height: 1.35; }
   @media (max-width: 900px) {
     .track { height: auto; margin: 0; }
+    .track-band { display: none; }
+    .track-zoom { margin-top: .9rem; }
     .track-line { top: 0; bottom: 0; left: 5px; right: auto; width: 2px; height: auto; inset-inline: auto; }
     .track-progress { transform-origin: top; transform: scaleY(0); background: linear-gradient(180deg, var(--ink-4), var(--ink-2)); }
     .in .track-progress { transform: scaleY(1); }
