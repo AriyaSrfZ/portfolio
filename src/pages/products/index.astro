@@ -1,0 +1,150 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const products = [
+  {
+    id: 'telecom-sms',
+    title: 'National SMS Gateway & Carrier Routing Platform',
+    category: 'Telecom Infrastructure · High-Throughput Routing',
+    scale: '1.08M+ SMS/Day · 22 Carrier Gateways',
+    summary: 'Carrier-grade messaging gateway managing 22 physical routes, 14 parallel MySQL shards for Magfa 3000, Kannel SMPP clustering, sub-10ms Redis MNP evaluation, and automated carrier outage forensics.',
+    status: 'PRODUCTION DEPLOYED',
+    link: `${baseUrl}products/sms-gateway/`,
+    dossierPdf: `${baseUrl}products/sms-gateway/TELLIR_CORE_OPERATIONAL_CATALOG_MASTER.pdf`,
+    wikiLink: `${baseUrl}products/sms-gateway/wiki/`,
+    tags: ['Kannel SMPP v3.4', 'MySQL 14-Table Shards', 'RabbitMQ Delivery Queue', 'Redis MNP Cache', '454 Operations Modules']
+  },
+  {
+    id: 'smart-psp-switch',
+    title: 'Enterprise Payment Switch & Dynamic Weighted Router',
+    category: 'Fintech Infrastructure · High-Availability Core',
+    scale: '50,000 TPS · Sub-30ms Failover SLA',
+    summary: 'Carrier-agnostic multi-PSP financial switch parsing ISO 8583 MTI 0200/0210 messages with automated sub-30ms circuit-breaking failover across SEP, PEC, BPM, and PEP payment acquirers.',
+    status: 'PRODUCTION DEPLOYED',
+    link: `${baseUrl}blog/sms-infrastructure/`,
+    tags: ['ISO 8583 Switch', 'Sub-30ms Failover', 'Faravaran Hub Integration', 'Dynamic Weighted Routing']
+  },
+  {
+    id: 'double-entry-ledger',
+    title: 'ACID Double-Entry Financial Ledger & Balance Vault',
+    category: 'Core Banking · Immutable Financial Records',
+    scale: '100% Mathematical Parity · Zero Drift',
+    summary: 'Strict two-phase balance reservation engine (AVAILABLE to RESERVED) with atomic Redis SETNX mutex locks recording into an immutable double-entry ledger in ScyllaDB.',
+    status: 'PRODUCTION DEPLOYED',
+    link: `${baseUrl}blog/payment-gateway/`,
+    tags: ['Two-Phase Reservation', 'Double-Entry ACID Ledger', 'ScyllaDB Fact Store', 'Redis Mutex Idempotency']
+  },
+  {
+    id: 'recon-engine',
+    title: 'Multi-Pass Event-Driven Financial Reconciliation Engine',
+    category: 'Financial Operations · Automated Settlement',
+    scale: 'Multi-Million Daily Records · 2h Settlement',
+    summary: 'Automated 3-way reconciliation engine cross-referencing internal transactional ledgers against bank clearing files, with auto-healing refund management and 2h merchant payouts.',
+    status: 'PRODUCTION DEPLOYED',
+    link: `${baseUrl}data-cleaning/`,
+    tags: ['Spring Batch 3-Way Recon', 'Bank SFTP Pipelines', 'Auto-Healing Refund-MNG', 'Paya/Satna Settlement']
+  }
+];
+---
+
+<Layout 
+  title="Products & Platforms — Ariya Sarrafzadeh"
+  description="High-throughput systems architected by Ariya Sarrafzadeh: National SMS Gateways, Payment Switches, Double-Entry Ledgers, and Multi-Bank Reconciliation Engines."
+  lang="en"
+>
+  <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 font-sans">
+    
+    <div class="flex justify-between items-center mb-6">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-secondary)] font-mono">
+        <a href={baseUrl} class="hover:text-[var(--accent-primary)] transition">HOME</a>
+        <span>/</span>
+        <span class="text-[var(--text-primary)] font-semibold">PRODUCTS & PLATFORMS</span>
+      </nav>
+      <a 
+        href={`${baseUrl}fa/products/`} 
+        class="px-3 py-1 text-xs rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--accent-warm)] hover:border-[var(--accent-warm)] transition font-bold"
+      >
+        نسخه فارسی (Farsi)
+      </a>
+    </div>
+
+    <header class="border-b border-[var(--border)] pb-8 mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] text-[11px] font-mono uppercase tracking-wider text-[var(--accent-primary)] mb-3">
+        Systems Portfolio
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight">
+        Flagship Products & Production Platforms
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-3xl leading-relaxed">
+        High-scale, mission-critical systems designed with verified architectural trade-offs, strict correctness rules, and comprehensive telemetry.
+      </p>
+    </header>
+
+    <div class="space-y-8">
+      {products.map((p) => (
+        <section class="p-8 rounded-3xl border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] transition-all shadow-sm">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[var(--border)] pb-6 mb-6">
+            <div>
+              <div class="text-xs font-mono font-bold uppercase text-[var(--accent-warm)] tracking-wider mb-1">{p.category}</div>
+              <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">{p.title}</h2>
+              <div class="text-xs font-mono text-[var(--accent-primary)] mt-1 font-semibold">{p.scale}</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
+                {p.status}
+              </span>
+              <a 
+                href={p.link}
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[var(--accent-primary)] text-white text-xs font-bold hover:opacity-95 transition"
+              >
+                Inspect Platform
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
+            {p.summary}
+          </p>
+
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex flex-wrap gap-2">
+              {p.tags.map((t) => (
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-secondary)]">
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {p.wikiLink && (
+              <div class="flex items-center gap-3">
+                <a 
+                  href={p.wikiLink} 
+                  target="_blank"
+                  class="text-xs font-mono font-bold text-[var(--accent-primary)] hover:underline inline-flex items-center gap-1"
+                >
+                  Interactive 454-Module Wiki ↗
+                </a>
+                <span class="text-[var(--border)]">|</span>
+                <a 
+                  href={p.dossierPdf} 
+                  target="_blank"
+                  class="text-xs font-mono font-bold text-[var(--accent-warm)] hover:underline inline-flex items-center gap-1"
+                >
+                  Dossier PDF (2.5MB) ↗
+                </a>
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+
+  </article>
+</Layout>

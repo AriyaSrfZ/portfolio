@@ -1,0 +1,326 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const stats = [
+  { value: '1.08M+', label: 'Daily SMS Volume', sub: 'Banking & Enterprise Traffic' },
+  { value: '22', label: 'Carrier Gateways', sub: 'Magfa, Asiatech, Fanap, Asanak' },
+  { value: '454', label: 'Operational Modules', sub: 'Reverse-Engineered & Cataloged' },
+  { value: '14', label: 'Magfa 3000 Shards', sub: 'Physical MySQL Sharded Tables' },
+  { value: '10', label: 'Official SDKs', sub: 'Go, Python, Node, Java, .NET, PHP' },
+  { value: '<120ms', label: 'P99 Gateway Latency', sub: 'Sub-10ms Redis MNP Lookup' },
+];
+
+const carrierGateways = [
+  { id: '01', name: '3000 - Magfa Main', op: 'Magfa HTTP/SOAP v2', status: 'ACTIVE', table: 'sms_send_3000' },
+  { id: '02', name: '3000 - Magfa Sub 1 (30001)', op: 'Magfa Carrier Line 1', status: 'ACTIVE', table: 'sms_send_30001' },
+  { id: '03', name: '3000 - ESB Main (30000)', op: 'Magfa High-Speed ESB', status: 'ACTIVE', table: 'sms_send_30000' },
+  { id: '07', name: '9000 - Asiatech', op: 'Asiatech / Samaso', status: 'ACTIVE', table: 'sms_send_9000' },
+  { id: '08', name: '50002 - Hooshmand', op: 'Sarzamin Hooshmand', status: 'ACTIVE', table: 'sms_send_50002' },
+  { id: '21', name: '9992101 - Fanap', op: 'Fanap Telecom Bulk', status: 'ACTIVE', table: 'sms_send_9992101' },
+];
+
+const forensicTools = [
+  { title: 'Detect Long Pending', param: 'detect_long_pending', desc: 'Identifies stalled SMS records waiting on carrier webhooks beyond SLA.' },
+  { title: 'Carrier Provider Errors', param: 'sms_provider_error_in_archive', desc: 'Direct upstream error dumps proving carrier-side dropouts vs server-side issues.' },
+  { title: 'Count Discrepancy Engine', param: 'sms_send_count_discrepancy', desc: 'Reconciles incoming HTTP API submissions against carrier-acknowledged batches.' },
+  { title: 'Redis Tarabord MNP', param: 'tarabord_redis_manager', desc: 'In-memory routing cache resolving ported numbers between MCI, MTN, and RighTel in <5ms.' },
+  { title: 'RabbitMQ Depth Monitor', param: 'monitoring_rabbitmq', desc: 'Real-time telemetry for rabbitmq-delivery and rabbitmq-esb queue backpressure.' },
+  { title: 'Kannel Config Builder', param: 'kannel_config_builder', desc: 'Visual configurator for SMPP v3.4 bindings, bearerbox throughput, and smsbox routing.' }
+];
+---
+
+<Layout 
+  title="Enterprise SMS Gateway & Carrier Routing Engine — Ariya Sarrafzadeh"
+  description="High-throughput national SMS gateway handling 1.08M+ daily messages across 22 carrier routes, 14 parallel MySQL shards, Kannel SMPP clustering, and forensic Zabbix telemetry."
+  lang="en"
+>
+  <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 font-sans">
+    
+    <!-- Breadcrumbs & Language Switcher -->
+    <div class="flex justify-between items-center mb-6">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-secondary)] font-mono">
+        <a href={baseUrl} class="hover:text-[var(--accent-primary)] transition">HOME</a>
+        <span>/</span>
+        <a href={`${baseUrl}products/`} class="hover:text-[var(--accent-primary)] transition">PRODUCTS</a>
+        <span>/</span>
+        <span class="text-[var(--text-primary)] font-semibold">ENTERPRISE SMS GATEWAY</span>
+      </nav>
+      <a 
+        href={`${baseUrl}fa/products/sms-gateway/`} 
+        class="px-3 py-1 text-xs rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--accent-warm)] hover:border-[var(--accent-warm)] transition font-bold"
+      >
+        نسخه فارسی (Farsi)
+      </a>
+    </div>
+
+    <!-- Product Header Hero -->
+    <header class="border-b border-[var(--border)] pb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] text-[11px] font-mono uppercase tracking-wider text-[var(--accent-primary)] mb-4">
+        <span class="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse"></span>
+        Production Platform Case Study & Technical Dossier
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight leading-tight">
+        National SMS Gateway & Telecom Routing Platform
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-4xl leading-relaxed">
+        Engineered for Persian Fava Gostaresh (PFG) to manage and route <strong>1,080,000+ daily mission-critical SMS</strong> across 22 carrier endpoints, 14 parallel database shards, Kannel SMPP v3.4 gateways, and RabbitMQ message queues. Includes full reverse-engineered diagnostic tooling, live Zabbix/Grafana telemetry, and client SDKs.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a 
+          href={`${baseUrl}products/sms-gateway/wiki/`} 
+          target="_blank"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--accent-primary)] text-white font-bold text-sm shadow-lg shadow-[var(--accent-primary)]/20 hover:opacity-95 transition"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          Launch Interactive 454-Module Wiki
+        </a>
+        <a 
+          href={`${baseUrl}products/sms-gateway/TELLIR_CORE_OPERATIONAL_CATALOG_MASTER.pdf`} 
+          target="_blank"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--surface-card)] text-[var(--text-primary)] font-bold text-sm hover:border-[var(--accent-primary)] transition"
+        >
+          <svg class="w-4 h-4 text-[var(--accent-warm)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Download Master Catalog (PDF · 2.5 MB)
+        </a>
+        <a 
+          href={`${baseUrl}products/sms-gateway/Tellir_Database_Incident_PostMortem_CEO_v2.pdf`} 
+          target="_blank"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--surface-sunken)] text-[var(--text-secondary)] font-medium text-sm hover:text-[var(--text-primary)] transition"
+        >
+          Database Incident RCA (PDF)
+        </a>
+      </div>
+    </header>
+
+    <!-- Key Metrics Grid -->
+    <section class="mt-12">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {stats.map((s) => (
+          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--surface-card)] text-center hover:border-[var(--accent-primary)] transition-colors">
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-[var(--accent-primary)] tracking-tight">{s.value}</div>
+            <div class="text-xs font-bold text-[var(--text-primary)] mt-1">{s.label}</div>
+            <div class="text-[10px] text-[var(--text-secondary)] mt-0.5">{s.sub}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Architecture Breakdown -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">System Architecture & Multi-Layer Fleet</h2>
+        <p class="text-sm text-[var(--text-secondary)] mt-1">Decoupled ingest, routing sharding, and real-time carrier delivery.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-mono uppercase font-bold text-[var(--accent-warm)]">01 · Edge & Ingest Layer</h3>
+            <span class="text-[11px] font-mono text-[var(--text-secondary)]">HAProxy / Nginx</span>
+          </div>
+          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+            HAProxy load balancers on <code>192.168.1.150</code> terminate SSL and enforce per-IP rate limiting before dispatching traffic into ESB endpoints (ports 4000–4005). Buffers burst traffic directly into RabbitMQ <code>rabbitmq-delivery</code> and <code>rabbitmq-esb</code> queues.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-mono uppercase font-bold text-[var(--accent-warm)]">02 · Sharded Storage Layer</h3>
+            <span class="text-[11px] font-mono text-[var(--text-secondary)]">MySQL Cluster</span>
+          </div>
+          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+            Primary database on <code>192.168.1.101</code> shards high-volume Magfa 3000 carrier traffic into 14 physical tables (<code>sms_send_3000</code> to <code>sms_send_30009</code>). Replicated to slave node <code>192.168.1.64</code> via binary logs with sub-second lag.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-mono uppercase font-bold text-[var(--accent-warm)]">03 · Memory Cache & MNP</h3>
+            <span class="text-[11px] font-mono text-[var(--text-secondary)]">Redis Cluster</span>
+          </div>
+          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+            Redis memory layer evaluates ported mobile numbers (MNP) and national blacklists in sub-5ms before messages hit upstream carrier queues, preventing non-deliverable carrier billing leakage.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Dashboard Showcase -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3 flex justify-between items-end">
+        <div>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Telemetry Over Intuition: Production Dashboards</h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">7 Zabbix tiers and Grafana Z-Factor correlation proving exact technical root causes.</p>
+        </div>
+        <a href={`${baseUrl}products/sms-gateway/wiki/`} target="_blank" class="text-xs font-bold text-[var(--accent-primary)] hover:underline">
+          View all 21 high-res screenshots →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden">
+          <img 
+            src={`${baseUrl}products/sms-gateway/wiki/assets/zabbix_page1_db_master.png`} 
+            alt="DB-Master Zabbix Dashboard" 
+            class="w-full h-auto object-cover"
+          />
+          <div class="p-4 border-t border-[var(--border)]">
+            <div class="text-xs font-bold text-[var(--text-primary)]">Zabbix Dashboard 1: DB-Master Cluster Node (192.168.1.101)</div>
+            <div class="text-[11px] text-[var(--text-secondary)] mt-1">Active MySQL threads, QPS degradation, disk read saturation (1,169 r/s), and swap overflow.</div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden">
+          <img 
+            src={`${baseUrl}products/sms-gateway/wiki/assets/grafana_zfactor_full.png`} 
+            alt="Grafana Z-Factor Full Correlation" 
+            class="w-full h-auto object-cover"
+          />
+          <div class="p-4 border-t border-[var(--border)]">
+            <div class="text-xs font-bold text-[var(--text-primary)]">Grafana Z-Factor: Multi-Metric Cascading Incident Correlation</div>
+            <div class="text-[11px] text-[var(--text-secondary)] mt-1">Precise alignment of replica sync disk I/O with HAProxy 41.6-second latency spikes.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 Gateways & Magfa Sharding Matrix -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Carrier Gateways & 14-Table Magfa Sprawl</h2>
+        <p class="text-sm text-[var(--text-secondary)] mt-1">Multi-operator routing across 22 physical endpoints.</p>
+      </div>
+
+      <div class="overflow-x-auto border border-[var(--border)] rounded-2xl bg-[var(--surface-card)]">
+        <table class="w-full text-left text-xs">
+          <thead class="border-b border-[var(--border)] bg-[var(--surface-sunken)] font-mono text-[var(--text-primary)]">
+            <tr>
+              <th class="py-3 px-4">#</th>
+              <th class="py-3 px-4">Gateway Endpoint</th>
+              <th class="py-3 px-4">Carrier Service</th>
+              <th class="py-3 px-4">Physical Table</th>
+              <th class="py-3 px-4">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border)] font-mono">
+            {carrierGateways.map((g) => (
+              <tr class="hover:bg-[var(--surface-hover)] transition-colors">
+                <td class="py-3 px-4 text-[var(--text-secondary)]">{g.id}</td>
+                <td class="py-3 px-4 font-semibold text-[var(--text-primary)]">{g.name}</td>
+                <td class="py-3 px-4 text-[var(--text-secondary)]">{g.op}</td>
+                <td class="py-3 px-4 text-[var(--accent-primary)]"><code>{g.table}</code></td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">{g.status}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-[var(--text-secondary)] italic">
+        * Complete 22-gateway matrix and configuration endpoints documented in the Master Catalog.
+      </p>
+    </section>
+
+    <!-- Forensic & Diagnostic Tools -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Forensic Detectors & Diagnostic Engines</h2>
+        <p class="text-sm text-[var(--text-secondary)] mt-1">Reverse-engineered internal modules used to isolate upstream outages and reconcile billing.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {forensicTools.map((t) => (
+          <div class="p-5 rounded-xl border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] transition-colors">
+            <div class="text-xs font-mono font-bold text-[var(--accent-warm)] mb-1"><code>page={t.param}</code></div>
+            <h3 class="text-sm font-bold text-[var(--text-primary)]">{t.title}</h3>
+            <p class="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">{t.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SDKs & Client Libraries -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Official Client SDKs Suite (10 Languages)</h2>
+        <p class="text-sm text-[var(--text-secondary)] mt-1">Comprehensive enterprise client libraries implementing OpenAPI 3.0 specs.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+        <div class="flex flex-wrap gap-2 text-xs font-mono font-bold mb-6">
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Python (asyncio)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Node.js (TypeScript)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Go (Standard Lib)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">PHP (PSR-7/18)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Laravel Package</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Java (Spring Boot)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">.NET (C#)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Ruby on Rails</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Yii2 Component</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Delphi Legacy</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <div class="text-xs font-mono text-[var(--text-secondary)] mb-2">cURL API Ingest:</div>
+            <pre class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--border)] text-xs text-sky-400 font-mono overflow-x-auto"><code>curl -X POST https://sms.persiafava.com/api/v1/sms/send \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '&#123;
+    "sender": "3000xxxx",
+    "recipients": ["09123456789"],
+    "message": "Verification code: 84920"
+  &#125;'</code></pre>
+          </div>
+
+          <div>
+            <div class="text-xs font-mono text-[var(--text-secondary)] mb-2">Python Client:</div>
+            <pre class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--border)] text-xs text-emerald-400 font-mono overflow-x-auto"><code>from persiafava import FerestaClient
+
+client = FerestaClient(token="YOUR_TOKEN")
+resp = client.send_sms(
+    sender="3000xxxx",
+    recipients=["09123456789"],
+    message="Verification code: 84920"
+)
+print("Batch ID:", resp.batch_id)</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Embedded Interactive Wiki Live Launcher -->
+    <section class="mt-16 p-8 rounded-3xl border border-[var(--accent-primary)]/40 bg-gradient-to-b from-[var(--surface-card)] to-[var(--surface-elevated)] shadow-2xl">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)]">
+          Explore the Complete 454-Module Interactive Wiki
+        </h2>
+        <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+          Search, filter, and inspect every single admin endpoint, reverse-engineered parameter, database table interaction, and diagnostic detector in real time.
+        </p>
+        <div class="pt-2">
+          <a 
+            href={`${baseUrl}products/sms-gateway/wiki/`} 
+            target="_blank" 
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-[var(--accent-primary)] text-white font-bold text-base shadow-xl shadow-[var(--accent-primary)]/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
+          >
+            Launch Standalone Interactive Wiki Portal
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </article>
+</Layout>

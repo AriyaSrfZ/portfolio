@@ -1,0 +1,327 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const stats = [
+  { value: '۱,۰۸۰,۰۰۰+', label: 'ارسال روزانه پیامک', sub: 'ترافیک بانکی و تراکنشی' },
+  { value: '۲۲', label: 'درگاه فیزیکی کاریر', sub: 'مگفا، آسیاتک، فناپ، آسانک' },
+  { value: '۴۵۴', label: 'ماژول عملیاتی', sub: 'مهندسی معکوس و کاتالوگ‌شده' },
+  { value: '۱۴', label: 'جدول موازی مگفا ۳۰۰۰', sub: 'شاردینگ فیزیکی در MySQL' },
+  { value: '۱۰', label: 'پکیج رسمی SDK', sub: 'Go, Python, Node, Java, .NET, PHP' },
+  { value: 'زیر ۱۲۰ms', label: 'تاخیر P99 درگاه لبه', sub: 'بررسی زیر ۵ میلی‌ثانیه MNP ردیس' },
+];
+
+const carrierGateways = [
+  { id: '۱', name: '3000 - مسیر اصلی', op: 'مگفا HTTP/SOAP v2', status: 'فعال', table: 'sms_send_3000' },
+  { id: '۲', name: '3000 - مسیر فرعی اول (30001)', op: 'خط ۱ کاریر مگفا', status: 'فعال', table: 'sms_send_30001' },
+  { id: '۳', name: '3000 - ESB اصلی (30000)', op: 'وب‌سرویس پرسرعت ESB', status: 'فعال', table: 'sms_send_30000' },
+  { id: '۷', name: '9000 - آسیاتک', op: 'آسیاتک / سماسو', status: 'فعال', table: 'sms_send_9000' },
+  { id: '۸', name: '50002 - سرزمین هوشمند', op: 'راهکار سرزمین هوشمند', status: 'فعال', table: 'sms_send_50002' },
+  { id: '۲۱', name: '9992101 - فناپ', op: 'فناپ تلکام خدماتی', status: 'فعال', table: 'sms_send_9992101' },
+];
+
+const forensicTools = [
+  { title: 'کشف پیام‌های معلق طولانی', param: 'detect_long_pending', desc: 'رهگیری رکوردهایی که ساعت‌ها در صف مانده و پاسخی از کاریر دریافت نکرده‌اند.' },
+  { title: 'خطاهای مستقیم کاریر در آرشیو', param: 'sms_provider_error_in_archive', desc: 'استخراج کدهای خطای اپراتور جهت اثبات قطعی سمت مگفا در برابر سیستم داخلی.' },
+  { title: 'مغایرت شمارش پیامک‌ها', param: 'sms_send_count_discrepancy', desc: 'تطبیق تعداد پیام‌های ورودی به وب‌سرویس با بسته‌های تحویل داده‌شده به کاریر.' },
+  { title: 'مدیریت ردیس ترابرد (MNP)', param: 'tarabord_redis_manager', desc: 'کش سریع نگاشت پیش‌شماره‌های ترابردشده میان اپراتورها در کمتر از ۵ میلی‌ثانیه.' },
+  { title: 'مانیتورینگ صف‌های رابیت‌ام‌کیو', param: 'monitoring_rabbitmq', desc: 'پایش بلادرنگ عمق صف‌های rabbitmq-delivery و rabbitmq-esb جهت ممانعت از انباشت بار.' },
+  { title: 'سازنده ویژوال کانفیگ Kannel', param: 'kannel_config_builder', desc: 'پیکربندی اتصالات SMPP v3.4، ترودپوت باکس‌ها و روتینگ پیامک‌های اپراتوری.' }
+];
+---
+
+<Layout 
+  title="سامانه جامع مدیریت و روتینگ پیامک سازمانی — آریا صراف‌زاده"
+  description="پلتفرم اینترپرایز پیامک پرشیا فاوا گسترش با ظرفیت ۱.۰۸ میلیون پیامک روزانه، ۲۲ درگاه کاریر، ۱۴ جدول موازی مگفا، کلاسترینگ Kannel SMPP و تلمتری دقیق زبیکس."
+  lang="fa"
+  dir="rtl"
+>
+  <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 font-sans text-right" dir="rtl">
+    
+    <!-- Breadcrumbs & Language Switcher -->
+    <div class="flex justify-between items-center mb-6">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-secondary)] font-mono">
+        <a href={`${baseUrl}fa/`} class="hover:text-[var(--accent-primary)] transition">خانه</a>
+        <span>/</span>
+        <a href={`${baseUrl}fa/products/`} class="hover:text-[var(--accent-primary)] transition">محصولات</a>
+        <span>/</span>
+        <span class="text-[var(--text-primary)] font-semibold">درگاه پیامک سازمانی (تلیر / فرستا)</span>
+      </nav>
+      <a 
+        href={`${baseUrl}products/sms-gateway/`} 
+        class="px-3 py-1 text-xs rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--accent-warm)] hover:border-[var(--accent-warm)] transition font-bold"
+      >
+        English Version
+      </a>
+    </div>
+
+    <!-- Product Header Hero -->
+    <header class="border-b border-[var(--border)] pb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] text-[11px] font-mono uppercase tracking-wider text-[var(--accent-primary)] mb-4">
+        <span class="w-2 h-2 rounded-full bg-[var(--accent-primary)] animate-pulse"></span>
+        شناسنامه مهندسی محصول و پرونده عملیاتی
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight leading-tight">
+        پلتفرم ملی درگاه و روتینگ پیامک سازمانی (Tellir / Feresta)
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-4xl leading-relaxed">
+        معماری و توسعه‌یافته برای شرکت پرشیا فاوا گسترش جهت مدیریت و هدایت <strong>بیش از ۱,۰۸۰,۰۰۰ پیامک روزانه بانکی، تراکنشی و خدماتی</strong> از طریق ۲۲ درگاه کاریر، ۱۴ جدول موازی دیتابیس MySQL، پردازشگرهای Kannel SMPP v3.4 و صفوف RabbitMQ. به همراه کاتالوگ ۴۵۴ ماژول، پرونده‌های تلمتری زبیکس و گرافانا و ۱۰ کیت توسعه کلاینت.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a 
+          href={`${baseUrl}products/sms-gateway/wiki/`} 
+          target="_blank"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--accent-primary)] text-white font-bold text-sm shadow-lg shadow-[var(--accent-primary)]/20 hover:opacity-95 transition"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          اجرای پرتابل تعاملی ویکی و کاوشگر ۴۵۴ ماژول
+        </a>
+        <a 
+          href={`${baseUrl}products/sms-gateway/TELLIR_CORE_OPERATIONAL_CATALOG_MASTER.pdf`} 
+          target="_blank"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--surface-card)] text-[var(--text-primary)] font-bold text-sm hover:border-[var(--accent-primary)] transition"
+        >
+          <svg class="w-4 h-4 text-[var(--accent-warm)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          دانلود کتابچه کاتالوگ عملیاتی (PDF · ۲.۵ مگابایت)
+        </a>
+        <a 
+          href={`${baseUrl}products/sms-gateway/Tellir_Database_Incident_PostMortem_CEO_v2.pdf`} 
+          target="_blank"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--surface-sunken)] text-[var(--text-secondary)] font-medium text-sm hover:text-[var(--text-primary)] transition"
+        >
+          گزارش کالبدشکافی حادثه ۱۷ آبان (PDF)
+        </a>
+      </div>
+    </header>
+
+    <!-- Key Metrics Grid -->
+    <section class="mt-12">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {stats.map((s) => (
+          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--surface-card)] text-center hover:border-[var(--accent-primary)] transition-colors">
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-[var(--accent-primary)] tracking-tight">{s.value}</div>
+            <div class="text-xs font-bold text-[var(--text-primary)] mt-1">{s.label}</div>
+            <div class="text-[10px] text-[var(--text-secondary)] mt-0.5">{s.sub}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Architecture Breakdown -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">معماری سیستم و ناوگان چندلایه</h2>
+        <p class="text-sm text-[var(--text-secondary)] mt-1">جداسازی لایه دریافت، شاردینگ روتینگ درگاه‌ها و دلیوری بلادرنگ کاریرها.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-mono uppercase font-bold text-[var(--accent-warm)]">۰۱ · لایه لبه و دریافت ترافیک</h3>
+            <span class="text-[11px] font-mono text-[var(--text-secondary)]">HAProxy / Nginx</span>
+          </div>
+          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+            لودبالانسرهای HAProxy روی نود <code>192.168.1.150</code> وظیفه خاتمه SSL و اعمال ریت‌لیمیتینگ بر اساس IP کلاینت را قبل از ورود به پورت‌های وب‌سرویسی ۴۰۰۰ تا ۴۰۰۵ بر عهده دارند. ترافیک انفجاری مستقیماً در صفوف <code>rabbitmq-delivery</code> و <code>rabbitmq-esb</code> بافر می‌گردد.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-mono uppercase font-bold text-[var(--accent-warm)]">۰۲ · لایه پایگاه‌داده شاردشده</h3>
+            <span class="text-[11px] font-mono text-[var(--text-secondary)]">MySQL Cluster</span>
+          </div>
+          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+            دیتابیس مستر روی نود <code>192.168.1.101</code> ترافیک کاریر پرحجم مگفا ۳۰۰۰ را به ۱۴ جدول فیزیکی تفکیک نموده است. این داده‌ها از طریق باینری‌لاگ به نود رپلیکا <code>192.168.1.64</code> همگام‌سازی می‌شوند.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-mono uppercase font-bold text-[var(--accent-warm)]">۰۳ · لایه حافظه ردیس و MNP</h3>
+            <span class="text-[11px] font-mono text-[var(--text-secondary)]">Redis Cluster</span>
+          </div>
+          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+            حافظه رم ردیس وظیفه اعتبارسنجی شماره‌های ترابردشده و بلک‌لیست مخابراتی را در کمتر از ۵ میلی‌ثانیه قبل از ارسال به کاریر انجام می‌دهد تا از هدررفت هزینه کاریر ممانعت به عمل آید.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Dashboard Showcase -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3 flex justify-between items-end">
+        <div>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">تلمتری به جای حدس و گمان: داشبوردهای پروداکشن</h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">لایه‌های ۷گانه زبیکس و همبستگی شاخص Z-Factor در گرافانا جهت اثبات ریشه‌ای وقایع.</p>
+        </div>
+        <a href={`${baseUrl}products/sms-gateway/wiki/`} target="_blank" class="text-xs font-bold text-[var(--accent-primary)] hover:underline">
+          مشاهده کلیه ۲۱ تصویر با کیفیت بالا در پرتابل ویکی ←
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden">
+          <img 
+            src={`${baseUrl}products/sms-gateway/wiki/assets/zabbix_page1_db_master.png`} 
+            alt="داشبورد مستر دیتابیس زبیکس" 
+            class="w-full h-auto object-cover"
+          />
+          <div class="p-4 border-t border-[var(--border)]">
+            <div class="text-xs font-bold text-[var(--text-primary)]">داشبورد ۱ زبیکس: نود سرور اصلی پایگاه‌داده (192.168.1.101)</div>
+            <div class="text-[11px] text-[var(--text-secondary)] mt-1">تردهای فعال MySQL، افت QPS، اشباع خواندن دیسک (۱,۱۶۹ r/s) و پر شدن حافظه Swap.</div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden">
+          <img 
+            src={`${baseUrl}products/sms-gateway/wiki/assets/grafana_zfactor_full.png`} 
+            alt="همبستگی کامل Z-Factor در گرافانا" 
+            class="w-full h-auto object-cover"
+          />
+          <div class="p-4 border-t border-[var(--border)]">
+            <div class="text-xs font-bold text-[var(--text-primary)]">گرافانا Z-Factor: همبستگی شکست زنجیره‌ای حادثه</div>
+            <div class="text-[11px] text-[var(--text-secondary)] mt-1">تطبیق زمانی عملیات دیسک با جهش تاخیر پراکسی HAProxy به ۴۱.۶ ثانیه.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 Gateways & Magfa Sharding Matrix -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">ماتریس درگاه‌های کاریر و تکثیر ۱۴ جدول مگفا</h2>
+        <p class="text-sm text-[var(--text-secondary)] mt-1">هدایت ترافیک میان ۲۲ درگاه فیزیکی ثبت‌شده در سیستم.</p>
+      </div>
+
+      <div class="overflow-x-auto border border-[var(--border)] rounded-2xl bg-[var(--surface-card)]">
+        <table class="w-full text-right text-xs">
+          <thead class="border-b border-[var(--border)] bg-[var(--surface-sunken)] font-mono text-[var(--text-primary)]">
+            <tr>
+              <th class="py-3 px-4">کد</th>
+              <th class="py-3 px-4">نام درگاه در پنل</th>
+              <th class="py-3 px-4">سرویس کاریر</th>
+              <th class="py-3 px-4">جدول دیتابیس</th>
+              <th class="py-3 px-4">وضعیت</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border)] font-mono">
+            {carrierGateways.map((g) => (
+              <tr class="hover:bg-[var(--surface-hover)] transition-colors">
+                <td class="py-3 px-4 text-[var(--text-secondary)]">{g.id}</td>
+                <td class="py-3 px-4 font-semibold text-[var(--text-primary)]">{g.name}</td>
+                <td class="py-3 px-4 text-[var(--text-secondary)]">{g.op}</td>
+                <td class="py-3 px-4 text-[var(--accent-primary)]"><code>{g.table}</code></td>
+                <td class="py-3 px-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">{g.status}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-[var(--text-secondary)] italic">
+        * مشخصات کامل کلیه ۲۲ درگاه و آدرس‌های اندپوینت در کتابچه کاتالوگ عملیاتی مستند شده است.
+      </p>
+    </section>
+
+    <!-- Forensic & Diagnostic Tools -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">موتورهای کالبدشکافی و ابزارهای تشخیصی</h2>
+        <p class="text-sm text-[var(--text-secondary)] mt-1">ماژول‌های مهندسی معکوس جهت ریشه‌یابی قطعی‌های کاریر و رفع مغایرت‌های مالی.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {forensicTools.map((t) => (
+          <div class="p-5 rounded-xl border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] transition-colors">
+            <div class="text-xs font-mono font-bold text-[var(--accent-warm)] mb-1"><code>page={t.param}</code></div>
+            <h3 class="text-sm font-bold text-[var(--text-primary)]">{t.title}</h3>
+            <p class="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">{t.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SDKs & Client Libraries -->
+    <section class="mt-16 space-y-6">
+      <div class="border-b border-[var(--border)] pb-3">
+        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">بسته ۱۰ کیت توسعه رسمی (SDK Suite)</h2>
+        <p class="text-sm text-[var(--text-secondary)] mt-1">پکیج‌های نرم‌افزاری رسمی جهت اتصال کلاینت‌ها با استاندارد OpenAPI 3.0.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+        <div class="flex flex-wrap gap-2 text-xs font-mono font-bold mb-6" dir="ltr">
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Python (asyncio)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Node.js (TypeScript)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Go (Standard Lib)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">PHP (PSR-7/18)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Laravel Package</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Java (Spring Boot)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">.NET (C#)</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Ruby on Rails</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Yii2 Component</span>
+          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Delphi Legacy</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" dir="ltr">
+          <div>
+            <div class="text-xs font-mono text-[var(--text-secondary)] mb-2">cURL API Ingest:</div>
+            <pre class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--border)] text-xs text-sky-400 font-mono overflow-x-auto"><code>curl -X POST https://sms.persiafava.com/api/v1/sms/send \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '&#123;
+    "sender": "3000xxxx",
+    "recipients": ["09123456789"],
+    "message": "کد تأیید ورود شما: ۸۴۹۲۰"
+  &#125;'</code></pre>
+          </div>
+
+          <div>
+            <div class="text-xs font-mono text-[var(--text-secondary)] mb-2">Python Client:</div>
+            <pre class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--border)] text-xs text-emerald-400 font-mono overflow-x-auto"><code>from persiafava import FerestaClient
+
+client = FerestaClient(token="YOUR_TOKEN")
+resp = client.send_sms(
+    sender="3000xxxx",
+    recipients=["09123456789"],
+    message="کد تأیید ورود شما: ۸۴۹۲۰"
+)
+print("شناسه بسته:", resp.batch_id)</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Embedded Interactive Wiki Live Launcher -->
+    <section class="mt-16 p-8 rounded-3xl border border-[var(--accent-primary)]/40 bg-gradient-to-b from-[var(--surface-card)] to-[var(--surface-elevated)] shadow-2xl text-center">
+      <div class="max-w-3xl mx-auto space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)]">
+          کاوشگر کامل و تعاملی ۴۵۴ ماژول پلتفرم تلیر
+        </h2>
+        <p class="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+          جستجو، فیلتر و بررسی دقیق تک‌تک اندپوینت‌ها، جداول درگیر دیتابیس، ابزارهای عیب‌یابی و تنظیمات گاد-مود به صورت بلادرنگ در محیط تحت وب تعاملی.
+        </p>
+        <div class="pt-2">
+          <a 
+            href={`${baseUrl}products/sms-gateway/wiki/`} 
+            target="_blank" 
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-[var(--accent-primary)] text-white font-bold text-base shadow-xl shadow-[var(--accent-primary)]/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
+          >
+            اجرای پرتابل مستقل ویکی و عیب‌یابی تعاملی
+            <svg class="w-5 h-5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </article>
+</Layout>

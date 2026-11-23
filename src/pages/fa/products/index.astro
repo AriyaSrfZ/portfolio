@@ -1,0 +1,151 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const products = [
+  {
+    id: 'telecom-sms',
+    title: 'پلتفرم ملی درگاه و روتینگ پیامک سازمانی (Tellir / Feresta)',
+    category: 'زیرساخت تلکام · روتینگ با توان بالا',
+    scale: 'ارسال ۱.۰۸ میلیون پیامک روزانه · ۲۲ درگاه کاریر',
+    summary: 'درگاه پیامکی اینترپرایز با مدیریت ۲۲ مسیر فیزیکی، شاردینگ ترافیک مگفا ۳۰۰۰ به ۱۴ جدول موازی، کلاسترینگ Kannel SMPP v3.4، ارزیابی زیر ۵ میلی‌ثانیه ترابرد ردیس و عیب‌یابی خودکار اختلالات اپراتوری.',
+    status: 'مستقر در پروداکشن',
+    link: `${baseUrl}fa/products/sms-gateway/`,
+    dossierPdf: `${baseUrl}products/sms-gateway/TELLIR_CORE_OPERATIONAL_CATALOG_MASTER.pdf`,
+    wikiLink: `${baseUrl}products/sms-gateway/wiki/`,
+    tags: ['Kannel SMPP v3.4', 'شاردینگ ۱۴ جدول MySQL', 'صف‌های RabbitMQ', 'کش ردیس MNP', '۴۵۴ ماژول عملیاتی']
+  },
+  {
+    id: 'smart-psp-switch',
+    title: 'سوئیچ پرداخت اینترپرایز و روتینگ پویا با اوزان متغیر',
+    category: 'زیرساخت فین‌تک · هسته با دسترس‌پذیری بالا',
+    scale: '۵۰,۰۰۰ تراکنش در ثانیه (TPS) · قطع و وصل زیر ۳۰ میلی‌ثانیه',
+    summary: 'سوئیچ مالی مستقل از PSP با پردازش پیام‌های استاندارد ISO 8583 MTI 0200/0210 و سوییچینگ خودکار زیر ۳۰ میلی‌ثانیه میان شرکت‌های پرداخت به‌پرداخت، سامان، پارسیان و پاسارگاد.',
+    status: 'مستقر در پروداکشن',
+    link: `${baseUrl}fa/blog/sms-infrastructure/`,
+    tags: ['سوئیچ ISO 8583', 'Failover زیر ۳۰ms', 'اتصال به هاب فراباران', 'روتینگ پویا']
+  },
+  {
+    id: 'double-entry-ledger',
+    title: 'دفترکل دوبل حسابداری مالی با ضمانت ACID و رزرو موجودی',
+    category: 'بانکداری هسته · سوابق مالی غیرقابل تغییر',
+    scale: 'تطابق ۱۰۰٪ ریاضی · صفر انحراف مالی',
+    summary: 'موتور رزرو دو مرحله‌ای موجودی (AVAILABLE به RESERVED) با قفل‌های اتمیک انحصاری Redis SETNX و ثبت تغییرناپذیر در لجر دوبل ScyllaDB.',
+    status: 'مستقر در پروداکشن',
+    link: `${baseUrl}fa/blog/payment-gateway/`,
+    tags: ['رزرو دو مرحله‌ای موجودی', 'لجر دوبل ACID', 'پایگاه داده ScyllaDB', 'Mutex اتمیک ردیس']
+  },
+  {
+    id: 'recon-engine',
+    title: 'موتور مغایرت‌گیری و تسویه مالی رویدادمحور چندمرحله‌ای',
+    category: 'عملیات مالی · تسویه خودکار بانکی',
+    scale: 'میلیون‌ها رکورد روزانه · تسویه ۲ ساعته تجار',
+    summary: 'موتور انطباق ۳جانبه خودکار میان تراکنش‌های داخلی و فایل‌های پایا/ساتنا و شاپرک بانک‌ها، به همراه مدیریت خودکار مرجوعی‌ها و تسویه ۲ ساعته.',
+    status: 'مستقر در پروداکشن',
+    link: `${baseUrl}fa/data-cleaning/`,
+    tags: ['مغایرت‌گیری ۳طرفه Spring Batch', 'پایپ‌لاین بانکی SFTP', 'مدیریت مرجوعی Refund-MNG', 'تسویه پایا و ساتنا']
+  }
+];
+---
+
+<Layout 
+  title="محصولات و پلتفرم‌های مهندسی — آریا صراف‌زاده"
+  description="سامانه‌های پرترافیک ملی طراحی و پیاده‌سازی شده توسط آریا صراف‌زاده: درگاه‌های پیامک ملی، سوئیچ‌های پرداخت، دفاترکل دوبل و موتورهای مغایرت‌گیری بانکی."
+  lang="fa"
+  dir="rtl"
+>
+  <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 font-sans text-right" dir="rtl">
+    
+    <div class="flex justify-between items-center mb-6">
+      <nav class="flex items-center gap-2 text-xs text-[var(--text-secondary)] font-mono">
+        <a href={`${baseUrl}fa/`} class="hover:text-[var(--accent-primary)] transition">خانه</a>
+        <span>/</span>
+        <span class="text-[var(--text-primary)] font-semibold">محصولات و پلتفرم‌ها</span>
+      </nav>
+      <a 
+        href={`${baseUrl}products/`} 
+        class="px-3 py-1 text-xs rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--accent-warm)] hover:border-[var(--accent-warm)] transition font-bold"
+      >
+        English Version
+      </a>
+    </div>
+
+    <header class="border-b border-[var(--border)] pb-8 mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] text-[11px] font-mono uppercase tracking-wider text-[var(--accent-primary)] mb-3">
+        سامانه‌های مستقر در پروداکشن
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight">
+        محصولات شاخص و پلتفرم‌های کلان عملیاتی
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-3xl leading-relaxed">
+        معماری سیستم‌های پرترافیک و مقیاس ملی با قواعد اثبات‌شده پایداری، تصمیمات فنی شفاف، و تلمتری دقیق بدون حدس و گمان.
+      </p>
+    </header>
+
+    <div class="space-y-8">
+      {products.map((p) => (
+        <section class="p-8 rounded-3xl border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] transition-all shadow-sm">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[var(--border)] pb-6 mb-6">
+            <div>
+              <div class="text-xs font-mono font-bold uppercase text-[var(--accent-warm)] tracking-wider mb-1">{p.category}</div>
+              <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">{p.title}</h2>
+              <div class="text-xs font-mono text-[var(--accent-primary)] mt-1 font-semibold">{p.scale}</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
+                {p.status}
+              </span>
+              <a 
+                href={p.link}
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[var(--accent-primary)] text-white text-xs font-bold hover:opacity-95 transition"
+              >
+                مشاهده شناسنامه پلتفرم
+                <svg class="w-3.5 h-3.5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
+            {p.summary}
+          </p>
+
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex flex-wrap gap-2">
+              {p.tags.map((t) => (
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-secondary)]">
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {p.wikiLink && (
+              <div class="flex items-center gap-3">
+                <a 
+                  href={p.wikiLink} 
+                  target="_blank"
+                  class="text-xs font-mono font-bold text-[var(--accent-primary)] hover:underline inline-flex items-center gap-1"
+                >
+                  پرتابل تعاملی ویکی ۴۵۴ ماژول ↗
+                </a>
+                <span class="text-[var(--border)]">|</span>
+                <a 
+                  href={p.dossierPdf} 
+                  target="_blank"
+                  class="text-xs font-mono font-bold text-[var(--accent-warm)] hover:underline inline-flex items-center gap-1"
+                >
+                  دانلود PDF مستندات (۲.۵MB) ↗
+                </a>
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+
+  </article>
+</Layout>
