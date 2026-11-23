@@ -8,7 +8,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 const stats = [
   { value: '1,080,000+', label: 'Daily SMS Throughput', sub: 'Banking, OTP & Transactional' },
-  { value: '22', label: 'Physical Carrier Gateways', sub: 'Magfa, Asiatech, Fanap, Asanak' },
+  { value: '22', label: 'Physical Carrier Trunks', sub: 'Magfa, Asiatech, Fanap, Asanak' },
   { value: '454', label: 'Operational Modules', sub: 'Reverse-Engineered & Catalogued' },
   { value: '14', label: 'Magfa 3000 Parallel Shards', sub: 'Physical Table Sharding in MySQL' },
   { value: '10', label: 'Official Client SDKs', sub: 'Go, Python, Node, Java, .NET, PHP' },
@@ -17,7 +17,7 @@ const stats = [
 
 const networkFleet = [
   { name: 'DB-Master (Primary Node)', ip: '192.168.1.101', role: 'Primary MySQL 8.0 server hosting sharded SMS tables, billing ledgers, and authentication', os: 'Linux 5.15 / MySQL 8.0' },
-  { name: 'Feresta-DB-Slave (Replica)', ip: '192.168.1.64', role: 'Replica backup node syncing via Binary Logs with 240GB free disk headroom for read offload', os: 'Linux 5.15 / MySQL Replica' },
+  { name: 'Feresta-DB-Slave (Replica)', ip: '192.168.1.64', role: 'Replica backup node syncing via Binary Logs with 240GB free disk space for read offloading', os: 'Linux 5.15 / MySQL Replica' },
   { name: 'fersta-nginx-gateway', ip: '192.168.1.150', role: 'HAProxy and Nginx reverse proxies handling SSL termination, rate-limiting, and ingress routing', os: 'Nginx + HAProxy 2.6' },
   { name: 'smart-db (Monitoring Node)', ip: '192.168.1.136', role: 'Infrastructure telemetry server running Zabbix 6.4.6, Prometheus, and carrier health monitors', os: 'Zabbix Server 6.4.6' },
 ];
@@ -51,7 +51,13 @@ const forensicTools = [
   { title: 'Long-Pending Message Detector', param: 'detect_long_pending', desc: 'Identifies messages stalled in pending state awaiting carrier upstream response, providing concrete proof of carrier-side outages.' },
   { title: 'Real-Time Uncounted Pendings', param: 'detect_long_pending_current', desc: 'Live tracker for the oldest uncounted messages, verifying worker pool health and queue draining performance.' },
   { title: 'Carrier Direct Error in Archive', param: 'sms_provider_error_in_archive', desc: 'Extracts upstream carrier error codes logged in historical archive tables to isolate carrier SLA breaches from platform faults.' },
+  { title: 'No-Route Provider Detection', param: 'sms_no_route_providers_in_archive', desc: 'Identifies unrouted messages caused by carrier trunk disconnects or upstream gateway incapacitation.' },
   { title: 'SMS Ingest Count Discrepancy', param: 'sms_send_count_discrepancy', desc: 'Reconciles API ingress batch counts with actual delivery packages handed off to telecommunication operators for financial settlement.' },
+  { title: 'Duplicate Message Archive Auditing', param: 'sms_duplicate_in_archive', desc: 'Identifies duplicate message payloads dispatched during network timeouts or uncoordinated application retry loops.' },
+  { title: 'Duplicate Delivery Receipt Verifier', param: 'sms_deliver_duplicate_number', desc: 'Audits anomalous duplicate delivery receipt (DLR) webhook callbacks from telecommunication carriers.' },
+  { title: 'Archive Integrity Validator', param: 'sms_check_archive_with_new_stat_from_archive', desc: 'Validates statistical consistency between long-term cold archives and real-time active message buffers.' },
+  { title: 'Sent Table Database Value Check', param: 'sms_sent_check_db_value', desc: 'Audits field schema and column integrity across the sms_sent persistence layer in MySQL.' },
+  { title: 'Financial Refund Reconciliation', param: 'detect_diff_price_back_state_admin_and_user', desc: 'Audits financial credit rollbacks for failed upstream carrier packets between tenants and platform accounts.' },
   { title: 'Mobile Number Portability (MNP) Cache', param: 'tarabord_redis_manager', desc: 'High-speed Redis cache managing operator mappings for ported MSISDNs in under 5ms, preventing misrouted carrier billing charges.' },
   { title: 'RabbitMQ Queue Telemetry Monitor', param: 'monitoring_rabbitmq', desc: 'Live monitoring of rabbitmq-delivery and rabbitmq-esb queue depths, worker consumers, and burst buffer saturation.' },
   { title: 'Kannel SMPP Visual Config Builder', param: 'kannel_config_builder', desc: 'Automated compiler for SMPP v3.4 connections, sliding-window flow control, and bearerbox/smsbox operational topologies.' },
@@ -69,7 +75,7 @@ const actionPlan = [
 
 <Layout 
   title="National Telecom SMS Gateway & Switching Platform (Tellir / Feresta) — Ariya Sarrafzadeh"
-  description="Comprehensive engineering portfolio of Persia Fava Gostaresh enterprise telecom switch: 1.08M+ daily SMS, 22 carrier gateways, 14 Magfa sharded tables, 454 catalogued modules, 7-layer Zabbix telemetry, and post-mortem incident forensics."
+  description="Consolidated engineering dossier: 12-chapter Feresta User Manual, 264-endpoint Tellir Admin Core Catalog, 22 carrier gateways, 14 Magfa shards, 7-layer Zabbix telemetry, and post-mortem incident forensics."
   lang="en"
   dir="ltr"
 >
@@ -78,115 +84,152 @@ const actionPlan = [
     <!-- Breadcrumb & Top Bar -->
     <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
       <nav class="flex items-center gap-2 text-xs text-[var(--text-secondary)] font-mono">
-        <a href={baseUrl} class="hover:text-[var(--accent-primary)] transition">Home</a>
+        <a href={baseUrl} class="hover:text-[var(--text-primary)] transition">Home</a>
         <span>/</span>
-        <a href={`${baseUrl}products/`} class="hover:text-[var(--accent-primary)] transition">Products</a>
+        <a href={`${baseUrl}products/`} class="hover:text-[var(--text-primary)] transition">Products</a>
         <span>/</span>
-        <span class="text-[var(--text-primary)] font-semibold">Enterprise SMS Switching Platform</span>
+        <span class="text-[var(--text-primary)] font-bold">Enterprise SMS Switching Platform</span>
       </nav>
       <div class="flex items-center gap-2">
         <a 
           href={`${baseUrl}fa/products/sms-gateway/`} 
-          class="px-3 py-1 text-xs rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--accent-warm)] hover:border-[var(--accent-warm)] transition font-bold"
+          class="btn-3d-secondary text-xs"
+          style="height: 32px; padding: 0 14px;"
         >
-          نسخه فارسی (Persian)
+          نسخه فارسی (Persian Dossier)
         </a>
       </div>
     </div>
 
-    <!-- Hero Header -->
-    <header class="border-b border-[var(--border)] pb-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 text-xs font-mono font-bold mb-4">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        Production Platform · Reverse-Engineered Architecture & Live Telemetry
+    <!-- Hero Header (Heavy 3D Liquid Glass Panel 28px) -->
+    <header class="glass-panel-hero p-8 sm:p-10 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="icon-well">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="status-pill">
+          <span class="status-dot success"></span>
+          <span>Production Platform · Consolidated Engineering Portals & Full Panel Manuals</span>
+        </div>
       </div>
+
       <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight leading-tight">
         National Telecom SMS Gateway & Switching Platform (Tellir / Feresta)
       </h1>
+      
       <p class="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-5xl leading-relaxed">
-        Engineered, audited, and scaled for <strong>Persia Fava Gostaresh</strong> to ingest, route, and deliver <strong>over 1,080,000 daily banking OTPs, transaction alerts, and service notifications</strong> across 22 carrier gateways, 14 parallel MySQL database shards, Kannel SMPP v3.4 clusters, and high-throughput RabbitMQ queues. Includes a web-based 454-module catalog explorer, 7-layer Zabbix telemetry, Grafana Z-factor correlation, and forensic post-mortem incident dossiers.
+        Engineered, audited, and scaled for <strong>Persia Fava Gostaresh</strong> to ingest, route, and deliver <strong>over 1,080,000 daily banking OTPs, transaction alerts, and service notifications</strong> across 22 carrier gateways, 14 parallel MySQL database shards, Kannel SMPP v3.4 clusters, and high-throughput RabbitMQ queues. Comprehensive consolidation includes the <strong>12-chapter Feresta User Portal Manual</strong>, the <strong>Tellir Admin Core 264-Endpoint Catalog</strong>, an interactive 454-module explorer, 7-layer Zabbix telemetry, and post-mortem incident forensics.
       </p>
 
-      <!-- Sticky Quick-Jump Navigation Tabs -->
-      <nav class="mt-8 flex flex-wrap gap-2 pt-4 border-t border-[var(--border)] text-xs font-bold font-mono">
-        <a href="#topology" class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition">
+      <hr class="separator-etched" />
+
+      <!-- Segmented Dock Navigator -->
+      <nav class="glass-dock-nav" aria-label="Consolidated Dossiers Navigator">
+        <a href="#overview" class="dock-pill active">
+          <span class="status-dot success"></span>
           01 · Topology & Fleet
         </a>
-        <a href="#gateways" class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition">
-          02 · 22 Gateways & Shards
+        <a href="#user-manual" class="dock-pill">
+          02 · User Manual (12 Chapters)
         </a>
-        <a href="#zabbix" class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition">
-          03 · Zabbix 7 Dashboards
+        <a href="#admin-catalog" class="dock-pill">
+          03 · Admin Core & Diagnostics
         </a>
-        <a href="#grafana" class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition">
-          04 · Grafana Z-Factor
+        <a href="#gateways" class="dock-pill">
+          04 · 22 Gateways & Shards
         </a>
-        <a href="#postmortem" class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition">
-          05 · Incident Post-Mortem
+        <a href="#zabbix" class="dock-pill">
+          05 · Zabbix & Grafana
         </a>
-        <a href="#godmode" class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition">
-          06 · God-Mode & Internals
+        <a href="#postmortem" class="dock-pill">
+          06 · Incident Post-Mortem
         </a>
-        <a href="#catalog" class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition">
+        <a href="#catalog" class="dock-pill">
           07 · 454-Module Explorer
         </a>
-        <a href="#sdks" class="px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition">
-          08 · 10 SDKs & Portals
+        <a href="#sdks" class="dock-pill">
+          08 · 10 SDKs & Client API
         </a>
       </nav>
     </header>
 
     <!-- Key Metrics Grid -->
-    <section class="mt-10">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+    <section class="mb-14">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {stats.map((s) => (
-          <div class="p-4 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] text-center hover:border-[var(--accent-primary)] transition-colors shadow-sm">
-            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-[var(--accent-primary)] tracking-tight">{s.value}</div>
-            <div class="text-xs font-bold text-[var(--text-primary)] mt-1">{s.label}</div>
-            <div class="text-[10px] text-[var(--text-secondary)] mt-0.5">{s.sub}</div>
+          <div class="glass-card p-5 text-center">
+            <div class="text-2xl sm:text-3xl font-extrabold mono-tabular text-[var(--text-primary)] tracking-tight">{s.value}</div>
+            <div class="text-xs font-bold text-[var(--text-primary)] mt-1.5">{s.label}</div>
+            <div class="text-[10px] text-[var(--text-tertiary)] mt-1">{s.sub}</div>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- SECTION 1: TOPOLOGY & NETWORK FLEET -->
-    <section id="topology" class="mt-16 pt-6 space-y-6">
-      <div class="border-b border-[var(--border)] pb-3">
-        <span class="text-xs font-mono font-bold text-[var(--accent-warm)] uppercase tracking-wider">Section 01</span>
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
-          System Architecture, Fleet Topology & Traffic Processing Layers
-        </h2>
-        <p class="text-sm text-[var(--text-secondary)] mt-1">
-          Separation of high-priority banking OTP traffic from bulk marketing broadcasts across a three-tier ingress, queue, and persistence fleet.
-        </p>
+    <!-- =========================================================================
+         SECTION 1: ARCHITECTURE & FLEET TOPOLOGY
+         ========================================================================= -->
+    <section id="overview" class="mb-16 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--separator-line)]">
+        <div>
+          <span class="text-xs font-mono font-bold text-[var(--text-tertiary)] uppercase tracking-wider">Chapter 01</span>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+            System Architecture, Fleet Topology & Traffic Processing Layers
+          </h2>
+        </div>
       </div>
 
-      <!-- Fleet Architecture Description Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="text-sm font-bold text-[var(--text-primary)]">1. Edge Ingress & Web Layer</h3>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-[var(--surface-sunken)] text-[var(--accent-primary)]">HAProxy / Nginx</span>
+        <div class="glass-card p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="icon-well">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-[var(--text-primary)]">1. Edge Ingress & Web Layer</h3>
+              <span class="text-[10px] font-mono text-[var(--text-tertiary)]">HAProxy / Nginx</span>
+            </div>
           </div>
           <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
             HAProxy load balancers deployed on node <code>192.168.1.150</code> handle TLS termination, client IP rate-limiting, and traffic balancing across API ports 4000 to 4005. High-priority OTP payloads are prioritized into dedicated message channels.
           </p>
         </div>
 
-        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="text-sm font-bold text-[var(--text-primary)]">2. Distributed Queues & Kannel</h3>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-[var(--surface-sunken)] text-[var(--accent-warm)]">RabbitMQ & SMPP</span>
+        <div class="glass-card p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="icon-well">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-[var(--text-primary)]">2. Distributed Queues & Kannel</h3>
+              <span class="text-[10px] font-mono text-[var(--text-tertiary)]">RabbitMQ & SMPP</span>
+            </div>
           </div>
           <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
             <code>rabbitmq-delivery</code> and <code>rabbitmq-esb</code> queues absorb burst traffic spikes. Kannel clusters utilizing SMPP v3.4 protocols and sliding-window flow control dispatch packets upstream at over 350 SMS/second per trunk.
           </p>
         </div>
 
-        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="text-sm font-bold text-[var(--text-primary)]">3. Sharded Database & Memory</h3>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-[var(--surface-sunken)] text-emerald-500">MySQL & Redis MNP</span>
+        <div class="glass-card p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="icon-well">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-[var(--text-primary)]">3. Sharded Persistence & Memory</h3>
+              <span class="text-[10px] font-mono text-[var(--text-tertiary)]">MySQL & Redis MNP</span>
+            </div>
           </div>
           <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
             The primary database on <code>192.168.1.101</code> stores messages across 14 parallel physical tables. An in-memory Redis cluster verifies mobile number portability (MNP) and regulatory blacklists in under 5ms before carrier handoff.
@@ -194,138 +237,345 @@ const actionPlan = [
         </div>
       </div>
 
-      <!-- Network Servers Table -->
-      <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
-        <h3 class="text-sm font-bold text-[var(--text-primary)] mb-4">Internal Infrastructure Node Topology</h3>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs">
-            <thead class="border-b border-[var(--border)] bg-[var(--surface-sunken)] font-mono text-[var(--text-primary)]">
+      <!-- Network Nodes Table -->
+      <div class="glass-table-wrapper">
+        <table class="glass-table-ltr">
+          <thead>
+            <tr>
+              <th>Node & Service Name</th>
+              <th>Network Address (IP)</th>
+              <th>Software Stack & Version</th>
+              <th>Role in Fleet Topology</th>
+            </tr>
+          </thead>
+          <tbody>
+            {networkFleet.map((n) => (
               <tr>
-                <th class="py-3 px-4">Node & Service Name</th>
-                <th class="py-3 px-4">Network Address (IP)</th>
-                <th class="py-3 px-4">Software Stack & Version</th>
-                <th class="py-3 px-4">Role in Fleet Topology</th>
+                <td style="font-weight: 700; color: var(--text-primary);">{n.name}</td>
+                <td class="mono-tabular"><code>{n.ip}</code></td>
+                <td class="mono-tabular" style="color: var(--text-secondary);">{n.os}</td>
+                <td style="color: var(--text-secondary);">{n.role}</td>
               </tr>
-            </thead>
-            <tbody class="divide-y divide-[var(--border)]">
-              {networkFleet.map((n) => (
-                <tr class="hover:bg-[var(--surface-hover)] transition-colors">
-                  <td class="py-3 px-4 font-bold text-[var(--text-primary)]">{n.name}</td>
-                  <td class="py-3 px-4 font-mono text-[var(--accent-warm)]"><code>{n.ip}</code></td>
-                  <td class="py-3 px-4 font-mono text-[var(--text-secondary)]">{n.os}</td>
-                  <td class="py-3 px-4 text-[var(--text-secondary)]">{n.role}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 2: FERESTA USER PANEL MANUAL (12 CHAPTERS)
+         ========================================================================= -->
+    <section id="user-manual" class="mb-16 space-y-8">
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--separator-line)]">
+        <div>
+          <span class="text-xs font-mono font-bold text-[var(--text-tertiary)] uppercase tracking-wider">Chapter 02</span>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+            Feresta SMS User Portal Comprehensive Operating Manual
+          </h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">
+            Complete 12-chapter client operational guide · Portal: <code>panel.persiafava.com</code>
+          </p>
+        </div>
+        <div class="status-pill">
+          <span class="status-dot success"></span>
+          <span>12 Complete Chapters Integrated</span>
         </div>
       </div>
 
-      <!-- Production Admin Panel Screenshots Gallery -->
+      <!-- Chapters 1-4 Overview -->
+      <div class="glass-card p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="icon-well">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7.5" r="4"></circle>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-[var(--text-primary)]">Chapters 1–4: Registration, Captcha, 3-Step Legal KYC & Dispatch Modules</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">Telecommunication regulatory compliance and multi-part SMS character rules</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <div class="glass-inner p-5">
+            <h4 class="text-xs font-bold font-mono text-[var(--text-primary)] uppercase mb-2">A) Account Onboarding</h4>
+            <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+              Unique username registration, password complexity validation, verified MSISDN onboarding for OTP security, and subscription tier selection based on projected monthly volume.
+            </p>
+          </div>
+
+          <div class="glass-inner p-5">
+            <h4 class="text-xs font-bold font-mono text-[var(--text-primary)] uppercase mb-2">B) 3-Step Legal Verification</h4>
+            <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+              <strong>1. Individual KYC:</strong> National ID, birthdate, postal address.<br />
+              <strong>2. Corporate KYC:</strong> National company ID, registration certificate, executive board signatories.<br />
+              <strong>3. Document Vault:</strong> Official ID and utility bill upload.
+            </p>
+          </div>
+
+          <div class="glass-inner p-5">
+            <h4 class="text-xs font-bold font-mono text-[var(--text-primary)] uppercase mb-2">C) Dispatch Heuristics</h4>
+            <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+              Persian character limits (70 chars part 1, 64 chars subsequently), English limits (160/153), simple manual sending, smart variable replacement (<code>%name%</code>, <code>%code%</code>), national postal code banks, and BTS cellular tower mapping.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapters 5-12 Features -->
+      <div class="glass-card p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="icon-well">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-[var(--text-primary)]">Chapters 5–12: Templates, Contacts, SMS Assist, Delivery Reports, API & Finance</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">5 contact import mechanisms, delivery webhook forwarders, and budget tax calculations</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+          <div class="glass-inner p-4">
+            <h4 class="text-xs font-bold text-[var(--text-primary)] mb-1.5">Templates & Blacklist Bypass</h4>
+            <p class="text-[11px] text-[var(--text-secondary)] leading-relaxed">
+              Pre-approved regulatory service patterns with dynamic variable tokens (<code>%name%</code>) enabling legal delivery to telecommunication advertising blacklists.
+            </p>
+          </div>
+
+          <div class="glass-inner p-4">
+            <h4 class="text-xs font-bold text-[var(--text-primary)] mb-1.5">Audience & Contact Engine</h4>
+            <p class="text-[11px] text-[var(--text-secondary)] leading-relaxed">
+              5 contact import methods: manual input, XLSX/CSV parsing, bulk text paste, raw TXT file ingestion, and automated inbound subscriber extraction.
+            </p>
+          </div>
+
+          <div class="glass-inner p-4">
+            <h4 class="text-xs font-bold text-[var(--text-primary)] mb-1.5">SMS Assist & Value-Added</h4>
+            <p class="text-[11px] text-[var(--text-secondary)] leading-relaxed">
+              Automated keyword auto-responders, digital catalog dispatchers, code verification lotteries, smart appointments, and interactive survey analytics.
+            </p>
+          </div>
+
+          <div class="glass-inner p-4">
+            <h4 class="text-xs font-bold text-[var(--text-primary)] mb-1.5">Billing & Automated Refunds</h4>
+            <p class="text-[11px] text-[var(--text-secondary)] leading-relaxed">
+              Online payment gateways, automated 10% VAT and state budget levies, bank receipt uploads (Paya/Satna), and immediate credit rollbacks for failed packets.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 Real UI Screens Gallery -->
       <div class="space-y-4">
-        <h3 class="text-sm font-bold text-[var(--text-primary)]">Production Operations Admin Panel Screenshots</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/admin_panel_active_screen.png`} 
-              alt="Active Admin Operations Panel" 
-              class="w-full h-48 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-4">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Primary Admin Console Interface</div>
-              <p class="text-[11px] text-[var(--text-secondary)] mt-1">Operational gateway management, administrative modules menu, and real-time carrier status monitors.</p>
+        <h3 class="text-sm font-bold text-[var(--text-primary)]">Feresta Client User Panel 8 Operational Interfaces</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="glass-card overflow-hidden">
+            <img src={`${baseUrl}products/sms-gateway/assets/dashboard.png`} alt="Dashboard" class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-3">
+              <div class="text-xs font-bold text-[var(--text-primary)]">1. Client Dashboard</div>
+              <p class="text-[10px] text-[var(--text-tertiary)] mt-1">Real-time credit balance, monthly volume trends, and carrier availability.</p>
             </div>
           </div>
 
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/admin_panel_main_stat.png`} 
-              alt="Operator Statistics Interface" 
-              class="w-full h-48 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-4">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Per-Operator Traffic Analytics (main_stat)</div>
-              <p class="text-[11px] text-[var(--text-secondary)] mt-1">Real-time metrics on dispatched packages, delivery receipt (DLR) ratios, and daily operator quota usage.</p>
+          <div class="glass-card overflow-hidden">
+            <img src={`${baseUrl}products/sms-gateway/assets/send_smart.png`} alt="Smart Send" class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-3">
+              <div class="text-xs font-bold text-[var(--text-primary)]">2. Smart Dynamic Send</div>
+              <p class="text-[10px] text-[var(--text-tertiary)] mt-1">Dynamic text variable substitution from spreadsheet columns.</p>
             </div>
           </div>
 
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/admin_panel_received_msgs.png`} 
-              alt="Mobile Originated Inbound Traffic" 
-              class="w-full h-48 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-4">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Inbound Mobile Originated (MO) Ingest</div>
-              <p class="text-[11px] text-[var(--text-secondary)] mt-1">End-user replies, incoming webhook dispatch logs, and service shortcode transaction archives.</p>
+          <div class="glass-card overflow-hidden">
+            <img src={`${baseUrl}products/sms-gateway/assets/send_bank.png`} alt="Bank Send" class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-3">
+              <div class="text-xs font-bold text-[var(--text-primary)]">3. Transactional Banking Send</div>
+              <p class="text-[10px] text-[var(--text-tertiary)] mt-1">High-priority expedited queue for OTP delivery and financial alerts.</p>
+            </div>
+          </div>
+
+          <div class="glass-card overflow-hidden">
+            <img src={`${baseUrl}products/sms-gateway/assets/reports.png`} alt="Reports" class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-3">
+              <div class="text-xs font-bold text-[var(--text-primary)]">4. Detailed Delivery Reports</div>
+              <p class="text-[10px] text-[var(--text-tertiary)] mt-1">Handset receipt confirmation logs and carrier error code breakdown.</p>
+            </div>
+          </div>
+
+          <div class="glass-card overflow-hidden">
+            <img src={`${baseUrl}products/sms-gateway/assets/contacts_groups.png`} alt="Contacts" class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-3">
+              <div class="text-xs font-bold text-[var(--text-primary)]">5. Contacts & Group Manager</div>
+              <p class="text-[10px] text-[var(--text-tertiary)] mt-1">Audience segmentation, deduplication, and automated blacklist filtering.</p>
+            </div>
+          </div>
+
+          <div class="glass-card overflow-hidden">
+            <img src={`${baseUrl}products/sms-gateway/assets/sms_assist.png`} alt="SMS Assist" class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-3">
+              <div class="text-xs font-bold text-[var(--text-primary)]">6. SMS Assistant & Templates</div>
+              <p class="text-[10px] text-[var(--text-tertiary)] mt-1">Approved pattern management and real-time message part calculation.</p>
+            </div>
+          </div>
+
+          <div class="glass-card overflow-hidden">
+            <img src={`${baseUrl}products/sms-gateway/assets/send_simple_manual.png`} alt="Manual Send" class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-3">
+              <div class="text-xs font-bold text-[var(--text-primary)]">7. Simple Manual Dispatch</div>
+              <p class="text-[10px] text-[var(--text-tertiary)] mt-1">Direct peer-to-peer transmission UI with live credit estimation.</p>
+            </div>
+          </div>
+
+          <div class="glass-card overflow-hidden">
+            <img src={`${baseUrl}products/sms-gateway/assets/settings.png`} alt="Settings" class="w-full h-40 object-cover" loading="lazy" />
+            <div class="p-3">
+              <div class="text-xs font-bold text-[var(--text-primary)]">8. API & Webhook Settings</div>
+              <p class="text-[10px] text-[var(--text-tertiary)] mt-1">API bearer token issuance, IP allowlisting, and webhook registration.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: 22 CARRIER GATEWAYS & MAGFA SHARDING -->
-    <section id="gateways" class="mt-16 pt-6 space-y-6">
-      <div class="border-b border-[var(--border)] pb-3">
-        <span class="text-xs font-mono font-bold text-[var(--accent-warm)] uppercase tracking-wider">Section 02</span>
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
-          22 Carrier Gateways Matrix & 14-Table Magfa Physical Sharding
-        </h2>
-        <p class="text-sm text-[var(--text-secondary)] mt-1">
-          Technical debt analysis of physical table proliferation vs native partitioning, plus live Magfa API v2 compliance audit.
-        </p>
+    <!-- =========================================================================
+         SECTION 3: TELLIR ADMIN CORE & DIAGNOSTICS (264 ENDPOINTS)
+         ========================================================================= -->
+    <section id="admin-catalog" class="mb-16 space-y-8">
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--separator-line)]">
+        <div>
+          <span class="text-xs font-mono font-bold text-[var(--text-tertiary)] uppercase tracking-wider">Chapter 03</span>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+            Tellir Admin Core Operational Catalog & Diagnostics (264 Endpoints)
+          </h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">
+            Extracted directly via live DOM scraping of superadmin session (Admin ID: 1)
+          </p>
+        </div>
+        <div class="status-pill">
+          <span class="status-dot warning"></span>
+          <span>264 Discovered Endpoints</span>
+        </div>
+      </div>
+
+      <!-- Diagnostic & Forensic Detectors Table -->
+      <div class="glass-table-wrapper">
+        <div class="p-5 border-b border-[var(--separator-line)]">
+          <h3 class="text-sm font-bold text-[var(--text-primary)]">1. Forensic & Discrepancy Detectors</h3>
+          <p class="text-xs text-[var(--text-secondary)] mt-1">Internal diagnostic tools engineered to identify pending message bottlenecks and carrier SLA disputes.</p>
+        </div>
+        <table class="glass-table-ltr">
+          <thead>
+            <tr>
+              <th style="width: 50px; text-align: center;">#</th>
+              <th style="width: 260px;">Module Title</th>
+              <th>Diagnostic Function & Technical Evidence Value</th>
+              <th style="width: 260px;">Endpoint Parameter</th>
+            </tr>
+          </thead>
+          <tbody>
+            {forensicTools.map((t, idx) => (
+              <tr>
+                <td style="text-align: center;" class="mono-tabular text-xs opacity-70">{idx + 1}</td>
+                <td style="font-weight: 700; color: var(--text-primary);">{t.title}</td>
+                <td style="color: var(--text-secondary); line-height: 1.6;">{t.desc}</td>
+                <td class="mono-tabular"><code>?page={t.param}</code></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Grid for Queues, Routing & Live AJAX Endpoints -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-card p-6">
+          <h3 class="text-sm font-bold text-[var(--text-primary)] mb-3">2. Carrier Gateway Routing & Compilers</h3>
+          <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+            <li><code>page=dargahha_list</code> — Full inventory of active and disabled carrier gateways.</li>
+            <li><code>page=dargahha_config_list</code> — Carrier endpoint configurations and v2 protocol migration flags.</li>
+            <li><code>page=dargahha_config_file</code> — Live configuration file editor for Linux daemon gateway routes.</li>
+            <li><code>page=dargahha_bulk_management</code> — Bulk traffic distribution and load allocation rules.</li>
+            <li><code>page=dargahha_deliver_state_change</code> — Telecommunication DLR code mapping to platform status codes.</li>
+            <li><code>page=sms_send_operator_report_sse</code> — Server-Sent Events (SSE) real-time packet dispatch stream.</li>
+          </ul>
+        </div>
+
+        <div class="glass-card p-6">
+          <h3 class="text-sm font-bold text-[var(--text-primary)] mb-3">3. Queues, Redis & RabbitMQ Telemetry</h3>
+          <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+            <li><code>page=monitoring_rabbitmq</code> — Real-time queue depth inspection across <code>rabbitmq-delivery</code> and <code>rabbitmq-esb</code>.</li>
+            <li><code>page=sms_send_with_queue_list</code> — Raw records awaiting Docker worker dispatch to upstream carriers.</li>
+            <li><code>page=tarabord_redis_manager</code> — Mobile Number Portability Redis key manager and cache status.</li>
+            <li><code>page=blacklist_redis_manager</code> — Regulatory number blacklist cache in Redis memory.</li>
+            <li><code>page=cron_running_list</code> — Active Linux background cron processes and execution state.</li>
+            <li><code>page=sms_esb_speed_chart</code> — Live throughput TPS graph for ESB ports 4000 to 4005.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 4: 22 CARRIER GATEWAYS & MAGFA SHARDING
+         ========================================================================= -->
+    <section id="gateways" class="mb-16 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--separator-line)]">
+        <div>
+          <span class="text-xs font-mono font-bold text-[var(--text-tertiary)] uppercase tracking-wider">Chapter 04</span>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+            22 Carrier Gateways Matrix & 14-Table Magfa Physical Sharding
+          </h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">
+            Technical debt analysis of physical table proliferation vs native partitioning, plus live Magfa API v2 compliance audit.
+          </p>
+        </div>
       </div>
 
       <!-- Architectural Note on 14 Shards -->
-      <div class="p-6 rounded-2xl border border-amber-500/30 bg-amber-500/5 text-xs text-[var(--text-secondary)] leading-relaxed">
-        <div class="flex items-center gap-2 text-amber-500 font-bold text-sm mb-2">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>
+      <div class="glass-card p-6">
+        <div class="flex items-center gap-2 mb-2 font-bold text-sm text-[var(--text-primary)]">
+          <span class="status-dot warning"></span>
           Root Technical Debt: Why 14 Physical Tables Instead of Native Partitioning?
         </div>
-        In the legacy database architecture of the switch, instead of utilizing MySQL range partitioning on transaction timestamps, traffic for the primary Magfa carrier (prefix 3000) was partitioned into <strong>14 separate physical tables</strong> (<code>sms_send_3000</code>, <code>sms_send_30001</code> through <code>sms_send_30009</code>, and associated ESB variants). During system-wide reporting and financial audits, the query engine was forced to execute expensive <code>UNION ALL</code> scans across 14 tables, creating dozens of gigabytes of temporary disk tables in <code>/tmp</code> and causing catastrophic I/O contention during peak hours.
+        <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
+          In the legacy database architecture of the switch, instead of utilizing MySQL range partitioning on transaction timestamps, traffic for the primary Magfa carrier (prefix 3000) was partitioned into <strong>14 separate physical tables</strong> (<code>sms_send_3000</code>, <code>sms_send_30001</code> through <code>sms_send_30009</code>, and associated ESB variants). During system-wide reporting and financial audits, the query engine was forced to execute expensive <code>UNION ALL</code> scans across 14 tables, creating dozens of gigabytes of temporary disk tables in <code>/tmp</code> and causing catastrophic I/O contention during peak hours.
+        </p>
       </div>
 
       <!-- 22 Gateways Full Table -->
-      <div class="overflow-x-auto border border-[var(--border)] rounded-2xl bg-[var(--surface-card)] shadow-sm">
-        <table class="w-full text-left text-xs">
-          <thead class="border-b border-[var(--border)] bg-[var(--surface-sunken)] font-mono text-[var(--text-primary)]">
+      <div class="glass-table-wrapper">
+        <table class="glass-table-ltr">
+          <thead>
             <tr>
-              <th class="py-3 px-3 text-center w-12">ID</th>
-              <th class="py-3 px-4">Gateway Name in Panel</th>
-              <th class="py-3 px-4">Operator / Service Type</th>
-              <th class="py-3 px-4">Status</th>
-              <th class="py-3 px-4">Physical Database Table</th>
-              <th class="py-3 px-4">Configuration Endpoint</th>
+              <th style="width: 50px; text-align: center;">ID</th>
+              <th>Gateway Name in Panel</th>
+              <th>Operator / Service Type</th>
+              <th>Status</th>
+              <th>Physical Database Table</th>
+              <th>Configuration Endpoint</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-[var(--border)] font-mono">
+          <tbody>
             {allCarrierGateways.map((g) => (
-              <tr class="hover:bg-[var(--surface-hover)] transition-colors">
-                <td class="py-2.5 px-3 text-center text-[var(--text-secondary)]">{g.id}</td>
-                <td class="py-2.5 px-4 font-sans font-bold text-[var(--text-primary)]">{g.name}</td>
-                <td class="py-2.5 px-4 font-sans text-[var(--text-secondary)]">{g.op}</td>
-                <td class="py-2.5 px-4">
+              <tr>
+                <td style="text-align: center;" class="mono-tabular text-xs opacity-70">{g.id}</td>
+                <td style="font-weight: 700; color: var(--text-primary);">{g.name}</td>
+                <td style="color: var(--text-secondary);">{g.op}</td>
+                <td>
                   {g.status === 'Active' ? (
-                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 font-sans">
+                    <span class="status-pill">
+                      <span class="status-dot success"></span>
                       Active
                     </span>
                   ) : (
-                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-500/10 text-gray-400 border border-gray-500/30 font-sans">
+                    <span class="status-pill" style="opacity: 0.5;">
                       Disabled
                     </span>
                   )}
                 </td>
-                <td class="py-2.5 px-4 text-[var(--accent-primary)] font-bold">
-                  <code>{g.table}</code>
-                </td>
-                <td class="py-2.5 px-4 text-[var(--accent-warm)]">
-                  <code>?page={g.endpoint}</code>
-                </td>
+                <td class="mono-tabular"><code>{g.table}</code></td>
+                <td class="mono-tabular"><code>?page={g.endpoint}</code></td>
               </tr>
             ))}
           </tbody>
@@ -334,44 +584,44 @@ const actionPlan = [
 
       <!-- Magfa v2 Technical Audit & Outage Evidence -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
+        <div class="glass-card p-6">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-sm font-bold text-[var(--text-primary)]">Magfa API v2 Compliance & Endpoint Audit</h3>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">TLS 1.2+ Verified</span>
+            <span class="status-pill">TLS 1.2+ Verified</span>
           </div>
           <p class="text-xs text-[var(--text-secondary)] mb-4 leading-relaxed">
             Following Magfa's sunset of legacy HTTP v1 and SOAP v1 interfaces, all outbound routes were validated against v2 endpoints:
           </p>
-          <div class="space-y-2 text-xs font-mono">
-            <div class="p-2.5 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] flex justify-between items-center">
+          <div class="space-y-2 text-xs mono-tabular">
+            <div class="glass-inner p-3 flex justify-between items-center">
               <div>
-                <span class="text-sky-400 font-bold">Base URL:</span>
-                <span class="text-[var(--text-primary)] ml-1">https://sms.magfa.com/api/http/sms/v2</span>
+                <strong>Base URL:</strong>
+                <span class="ml-1 text-[var(--text-primary)]">https://sms.magfa.com/api/http/sms/v2</span>
               </div>
-              <span class="text-emerald-400 text-[11px]">200 OK (~42ms)</span>
+              <span class="status-pill">200 OK (~42ms)</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] flex justify-between items-center">
+            <div class="glass-inner p-3 flex justify-between items-center">
               <div>
-                <span class="text-sky-400 font-bold">Balance:</span>
-                <span class="text-[var(--text-primary)] ml-1">/balance (GET Basic Auth)</span>
+                <strong>Balance:</strong>
+                <span class="ml-1 text-[var(--text-primary)]">/balance (GET Basic Auth)</span>
               </div>
-              <span class="text-emerald-400 text-[11px]">Active</span>
+              <span class="status-pill">Active</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] flex justify-between items-center">
+            <div class="glass-inner p-3 flex justify-between items-center">
               <div>
-                <span class="text-sky-400 font-bold">Send SMS:</span>
-                <span class="text-[var(--text-primary)] ml-1">/send (POST JSON)</span>
+                <strong>Send SMS:</strong>
+                <span class="ml-1 text-[var(--text-primary)]">/send (POST JSON)</span>
               </div>
-              <span class="text-emerald-400 text-[11px]">High-Throughput</span>
+              <span class="status-pill">High-Throughput</span>
             </div>
           </div>
         </div>
 
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
+        <div class="glass-card overflow-hidden">
           <img 
             src={`${baseUrl}products/sms-gateway/assets/madrak_ghati_magfa.png`} 
             alt="Carrier Outage Forensic Evidence" 
-            class="w-full h-52 object-cover border-b border-[var(--border)]"
+            class="w-full h-52 object-cover"
             loading="lazy"
           />
           <div class="p-4">
@@ -382,30 +632,34 @@ const actionPlan = [
       </div>
     </section>
 
-    <!-- SECTION 3: ZABBIX 7 DASHBOARDS SHOWCASE -->
-    <section id="zabbix" class="mt-16 pt-6 space-y-6">
-      <div class="border-b border-[var(--border)] pb-3">
-        <span class="text-xs font-mono font-bold text-[var(--accent-warm)] uppercase tracking-wider">Section 03</span>
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
-          Zabbix 7 Production Dashboards Portfolio (Zabbix 6.4.6 Telemetry)
-        </h2>
-        <p class="text-sm text-[var(--text-secondary)] mt-1">
-          Monitoring node: <code>192.168.1.136</code> · Unimpeachable hardware-level telemetry recorded across all fleet nodes.
-        </p>
+    <!-- =========================================================================
+         SECTION 5: ZABBIX 7 DASHBOARDS & GRAFANA Z-FACTOR
+         ========================================================================= -->
+    <section id="zabbix" class="mb-16 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--separator-line)]">
+        <div>
+          <span class="text-xs font-mono font-bold text-[var(--text-tertiary)] uppercase tracking-wider">Chapter 05</span>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+            Zabbix 7 Production Dashboards Portfolio & Grafana Z-Factor Model
+          </h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">
+            Monitoring node: <code>192.168.1.136</code> · Unimpeachable hardware-level telemetry recorded across all fleet nodes.
+          </p>
+        </div>
       </div>
 
       <!-- Dashboard 1 Full Width Feature -->
-      <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
+      <div class="glass-card overflow-hidden">
         <img 
           src={`${baseUrl}products/sms-gateway/assets/zabbix_page1_db_master.png`} 
           alt="Zabbix Dashboard 1: DB-Master" 
-          class="w-full h-auto object-cover border-b border-[var(--border)]"
+          class="w-full h-auto object-cover"
           loading="lazy"
         />
-        <div class="p-5">
+        <div class="p-6">
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-bold text-[var(--text-primary)]">Dashboard 01: Primary Database Host (DB-Master · 192.168.1.101 · Host ID: 10594)</h3>
-            <span class="text-xs font-mono text-[var(--accent-primary)] font-bold">Mission-Critical Telemetry</span>
+            <span class="status-pill font-mono">Mission-Critical Telemetry</span>
           </div>
           <p class="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
             Records key database health indicators: active MySQL threads surging from 18 to <strong>147 threads</strong> during the incident, QPS collapse, disk read operations spiking to <strong>1,169 r/s</strong>, and RAM usage stabilizing at 67.8% alongside swap growth.
@@ -415,11 +669,11 @@ const actionPlan = [
 
       <!-- Dashboards 2 & 3 Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
+        <div class="glass-card overflow-hidden">
           <img 
             src={`${baseUrl}products/sms-gateway/assets/zabbix_page4_slave.png`} 
             alt="Replica Database Dashboard" 
-            class="w-full h-64 object-cover border-b border-[var(--border)]"
+            class="w-full h-64 object-cover"
             loading="lazy"
           />
           <div class="p-4">
@@ -428,11 +682,11 @@ const actionPlan = [
           </div>
         </div>
 
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
+        <div class="glass-card overflow-hidden">
           <img 
             src={`${baseUrl}products/sms-gateway/assets/zabbix_page2_gateway.png`} 
             alt="Edge Gateway Proxy Dashboard" 
-            class="w-full h-64 object-cover border-b border-[var(--border)]"
+            class="w-full h-64 object-cover"
             loading="lazy"
           />
           <div class="p-4">
@@ -442,134 +696,18 @@ const actionPlan = [
         </div>
       </div>
 
-      <!-- Dashboards 4 & 5 Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_page3_docker.png`} 
-            alt="Docker Containers Dashboard" 
-            class="w-full h-64 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">Dashboard 04: Docker Container Fleet & Workers</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">Container memory consumption, OOM events, and delivery worker (TelircoMagfaDLR) restart tracking.</p>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_page5_magfa.png`} 
-            alt="Carrier Outage Tracking Dashboard" 
-            class="w-full h-64 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">Dashboard 05: Carrier Outage Tracking & Latency</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">RTT latency and HTTP error code monitoring across 3000, 9000, and 5002 trunks compared to SLA thresholds.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dashboards 6 & 7 Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_db_dashboard_enhanced.png`} 
-            alt="Deep Database Forensics Dashboard" 
-            class="w-full h-64 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">Dashboard 06: Deep Database Forensics (DB Enhanced)</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">Disk consumption leaks in <code>/var</code>, temporary disk tables, and InnoDB row lock wait counters.</p>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_tellirs_global_view.png`} 
-            alt="Global Fleet Overview Dashboard" 
-            class="w-full h-64 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">Dashboard 07: Global Fleet Overview (Cluster Topology)</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">Unified matrix of all server hosts, Linux daemon services, and active cluster-wide triggers.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Problems View Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_dash295_problems.png`} 
-            alt="Zabbix Active Problems View 295" 
-            class="w-full h-56 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">Zabbix Live Alert Triggers (Dashboard 295)</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">Disk I/O overload alarms and inbound queue saturation during the Nov 6th-7th incident window.</p>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_dash301_problems_demo.png`} 
-            alt="Zabbix Live Event Stream 301" 
-            class="w-full h-56 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">Real-Time Event Stream (Dashboard 301)</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">Upstream carrier error logs and edge proxy response latency threshold warnings.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: GRAFANA & Z-FACTOR TELEMETRY -->
-    <section id="grafana" class="mt-16 pt-6 space-y-6">
-      <div class="border-b border-[var(--border)] pb-3">
-        <span class="text-xs font-mono font-bold text-[var(--accent-warm)] uppercase tracking-wider">Section 04</span>
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
-          Grafana Z-Factor Correlation Model & Cascading Failure Telemetry
-        </h2>
-        <p class="text-sm text-[var(--text-secondary)] mt-1">
-          Correlating heterogeneous Zabbix metrics, Prometheus time-series, and ingress logs onto a unified timeline.
-        </p>
-      </div>
-
-      <!-- Grafana Overview Card -->
-      <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-        <img 
-          src={`${baseUrl}products/sms-gateway/assets/grafana_zfactor_overview.png`} 
-          alt="Grafana Z-Factor Overview" 
-          class="w-full h-auto object-cover border-b border-[var(--border)]"
-          loading="lazy"
-        />
-        <div class="p-5">
-          <h3 class="text-sm font-bold text-[var(--text-primary)]">High-Level Indicator Correlation (Z-Factor Overview)</h3>
-          <p class="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-            The Z-Factor dashboard proves that edge latency in HAProxy was directly caused by disk saturation and database thread lock cascades. The 12:40 to 13:40 incident window demonstrates synchronized surges across proxy latency and active MySQL connections.
-          </p>
-        </div>
-      </div>
-
       <!-- Grafana Full Timeline Feature -->
-      <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
+      <div class="glass-card overflow-hidden">
         <img 
           src={`${baseUrl}products/sms-gateway/assets/grafana_zfactor_full.png`} 
           alt="Full High-Resolution Z-Factor Timeline" 
-          class="w-full h-auto object-cover border-b border-[var(--border)]"
+          class="w-full h-auto object-cover"
           loading="lazy"
         />
-        <div class="p-5">
+        <div class="p-6">
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-bold text-[var(--text-primary)]">Unimpeachable Proof: Disk Read Surging to 1,169 r/s & Proxy Latency Hitting 41.6s</h3>
-            <span class="text-xs font-mono text-emerald-400 font-bold">Forensic Correlation</span>
+            <span class="status-pill font-mono">Forensic Correlation</span>
           </div>
           <p class="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
             Second-by-second forensic analysis reveals that disk read operations spiked to 1,169 r/s at 12:55 PM due to an uncoordinated binary log sync and file transfers. This heavily saturated the Linux Page Cache, triggered memory swapping, and caused edge reverse proxy responses to stall at 41.6 seconds.
@@ -578,137 +716,99 @@ const actionPlan = [
       </div>
     </section>
 
-    <!-- SECTION 5: INCIDENT RCA & FACT-CHECK -->
-    <section id="postmortem" class="mt-16 pt-6 space-y-6">
-      <div class="border-b border-[var(--border)] pb-3">
-        <span class="text-xs font-mono font-bold text-[var(--accent-warm)] uppercase tracking-wider">Section 05</span>
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
-          Database Lock Incident Post-Mortem & Telemetry Fact-Check
-        </h2>
-        <p class="text-sm text-[var(--text-secondary)] mt-1">
-          Official engineering rebuttal of supplier claims, live Zabbix data verification, and actionable corrective plan.
-        </p>
+    <!-- =========================================================================
+         SECTION 6: INCIDENT RCA & FACT-CHECK
+         ========================================================================= -->
+    <section id="postmortem" class="mb-16 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--separator-line)]">
+        <div>
+          <span class="text-xs font-mono font-bold text-[var(--text-tertiary)] uppercase tracking-wider">Chapter 06</span>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+            Database Lock Incident Post-Mortem & Telemetry Fact-Check
+          </h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">
+            Official engineering rebuttal of supplier claims, live Zabbix data verification, and actionable corrective plan.
+          </p>
+        </div>
       </div>
 
-      <!-- Fact-Check Side-by-Side Comparison Table -->
-      <div class="overflow-x-auto border border-[var(--border)] rounded-2xl bg-[var(--surface-card)] shadow-sm">
-        <div class="p-4 border-b border-[var(--border)] bg-[var(--surface-sunken)]">
+      <!-- Fact-Check Table -->
+      <div class="glass-table-wrapper">
+        <div class="p-5 border-b border-[var(--separator-line)]">
           <h3 class="text-sm font-bold text-[var(--text-primary)]">Comparative Fact-Check Matrix: Supplier Claims vs Zabbix 6.4.6 Telemetry</h3>
         </div>
-        <table class="w-full text-left text-xs">
-          <thead class="border-b border-[var(--border)] font-mono text-[var(--text-primary)]">
+        <table class="glass-table-ltr">
+          <thead>
             <tr>
-              <th class="py-3 px-4 w-1/4">Supplier Management Claim</th>
-              <th class="py-3 px-4 w-1/3">Recorded Data in Zabbix 6.4.6</th>
-              <th class="py-3 px-4">Architectural Reality & Verdict</th>
+              <th style="width: 28%;">Supplier Management Claim</th>
+              <th style="width: 32%;">Recorded Data in Zabbix 6.4.6</th>
+              <th>Architectural Reality & Verdict</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-[var(--border)]">
-            <tr class="hover:bg-[var(--surface-hover)]">
-              <td class="py-3.5 px-4 font-bold text-red-400">"Server RAM filled up to 100% and requires 128GB upgrade"</td>
-              <td class="py-3.5 px-4 font-mono text-[var(--text-primary)]">Peak RAM consumption was <strong>67.8%</strong> with over 22GB of unallocated physical RAM free.</td>
-              <td class="py-3.5 px-4 text-emerald-400 font-bold">
-                Claim Disproven: RAM was not exhausted. Default <code>vm.swappiness=60</code> alongside heavy disk I/O caused premature swap thrashing. Purchasing 128GB RAM was wasteful.
+          <tbody>
+            <tr>
+              <td style="font-weight: 700; color: var(--status-danger);">"Server RAM filled up to 100% and requires 128GB upgrade"</td>
+              <td class="mono-tabular">Peak RAM consumption was <strong>67.8%</strong> with over 22GB of unallocated physical RAM free.</td>
+              <td style="color: var(--text-primary); font-weight: 600;">
+                <strong>Claim Disproven:</strong> RAM was not exhausted. Default <code>vm.swappiness=60</code> alongside heavy disk I/O caused premature swap thrashing. Purchasing 128GB RAM was wasteful.
               </td>
             </tr>
-            <tr class="hover:bg-[var(--surface-hover)]">
-              <td class="py-3.5 px-4 font-bold text-red-400">"Disk space shortage caused database transaction lockup"</td>
-              <td class="py-3.5 px-4 font-mono text-[var(--text-primary)]">The database storage volume maintained over <strong>455GB of free space</strong>.</td>
-              <td class="py-3.5 px-4 text-emerald-400 font-bold">
-                Claim Disproven: Swapping relates to virtual memory subsystem, not block storage. Ample storage headroom existed.
+            <tr>
+              <td style="font-weight: 700; color: var(--status-danger);">"Disk space shortage caused database transaction lockup"</td>
+              <td class="mono-tabular">The database storage volume maintained over <strong>455GB of free space</strong>.</td>
+              <td style="color: var(--text-primary); font-weight: 600;">
+                <strong>Claim Disproven:</strong> Swapping relates to virtual memory subsystem, not block storage. Ample storage headroom existed.
               </td>
             </tr>
-            <tr class="hover:bg-[var(--surface-hover)]">
-              <td class="py-3.5 px-4 font-bold text-[var(--text-primary)]">"386GB of disk files were cleaned up"</td>
-              <td class="py-3.5 px-4 font-mono text-[var(--text-primary)]">Partition capacity graphs in <code>/var</code> recorded an exact drop of 386GB at 15:40.</td>
-              <td class="py-3.5 px-4 text-sky-400 font-bold">
-                Report Confirmed: Accumulated unrotated binary logs were purged, highlighting the absence of automated log rotation policies.
+            <tr>
+              <td style="font-weight: 700; color: var(--text-primary);">"386GB of disk files were cleaned up"</td>
+              <td class="mono-tabular">Partition capacity graphs in <code>/var</code> recorded an exact drop of 386GB at 15:40.</td>
+              <td style="color: var(--text-secondary);">
+                <strong>Report Confirmed:</strong> Accumulated unrotated binary logs were purged, highlighting the absence of automated log rotation policies.
               </td>
             </tr>
-            <tr class="hover:bg-[var(--surface-hover)]">
-              <td class="py-3.5 px-4 font-bold text-[var(--text-primary)]">"10GB was added to server Swap"</td>
-              <td class="py-3.5 px-4 font-mono text-[var(--text-primary)]">Swap volume jumped directly from 6.8GB to 16.8GB on the host.</td>
-              <td class="py-3.5 px-4 text-sky-400 font-bold">
-                Report Confirmed: Supplier operations team applied this swap expansion, validating the memory thrashing symptoms highlighted.
+            <tr>
+              <td style="font-weight: 700; color: var(--text-primary);">"10GB was added to server Swap"</td>
+              <td class="mono-tabular">Swap volume jumped directly from 6.8GB to 16.8GB on the host.</td>
+              <td style="color: var(--text-secondary);">
+                <strong>Report Confirmed:</strong> Supplier operations team applied this swap expansion, validating the memory thrashing symptoms highlighted.
               </td>
             </tr>
-            <tr class="hover:bg-[var(--surface-hover)]">
-              <td class="py-3.5 px-4 font-bold text-red-400">"41.6-second proxy latency is unrelated to database performance"</td>
-              <td class="py-3.5 px-4 font-mono text-[var(--text-primary)]">100% temporal synchronization between active MySQL threads (147) and HAProxy queue time.</td>
-              <td class="py-3.5 px-4 text-emerald-400 font-bold">
-                Claim Disproven: Blocked database queries exhausted application worker pools, forcing inbound HTTP requests to stall in proxy queues.
+            <tr>
+              <td style="font-weight: 700; color: var(--status-danger);">"41.6-second proxy latency is unrelated to database performance"</td>
+              <td class="mono-tabular">100% temporal synchronization between active MySQL threads (147) and HAProxy queue time.</td>
+              <td style="color: var(--text-primary); font-weight: 600;">
+                <strong>Claim Disproven:</strong> Blocked database queries exhausted application worker pools, forcing inbound HTTP requests to stall in proxy queues.
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <!-- Fact-Check Screenshots -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_fact_check_comparison.png`} 
-            alt="Zabbix Fact Check Evidence Matrix" 
-            class="w-full h-48 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">Zabbix Telemetry Verification</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">Live data confirming 67.8% peak RAM and disproving the 128GB upgrade claim.</p>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_ha_root_cause.png`} 
-            alt="HAProxy Root Cause Evidence" 
-            class="w-full h-48 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">HAProxy Ingress Root Cause</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">41.6-second response time spike during peak database thread lockup.</p>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-          <img 
-            src={`${baseUrl}products/sms-gateway/assets/zabbix_forensic_dashboard.png`} 
-            alt="Database Forensic Dashboard" 
-            class="w-full h-48 object-cover border-b border-[var(--border)]"
-            loading="lazy"
-          />
-          <div class="p-4">
-            <div class="text-xs font-bold text-[var(--text-primary)]">Database Forensic Timeline</div>
-            <p class="text-[11px] text-[var(--text-secondary)] mt-1">75GB of temporary files in <code>/tmp</code> and associated swap escalation.</p>
-          </div>
-        </div>
       </div>
 
       <!-- Strategic Action Plan Table -->
-      <div class="overflow-x-auto border border-[var(--border)] rounded-2xl bg-[var(--surface-card)] shadow-sm">
-        <div class="p-4 border-b border-[var(--border)] bg-[var(--surface-sunken)] flex justify-between items-center">
+      <div class="glass-table-wrapper">
+        <div class="p-5 border-b border-[var(--separator-line)] flex justify-between items-center">
           <h3 class="text-sm font-bold text-[var(--text-primary)]">Mandatory Cluster Stabilization Action Plan</h3>
-          <span class="text-xs text-[var(--accent-primary)] font-bold">Zero-Cost Infrastructure Optimizations</span>
+          <span class="status-pill">Zero-Cost Infrastructure Optimizations</span>
         </div>
-        <table class="w-full text-left text-xs">
-          <thead class="border-b border-[var(--border)] font-mono text-[var(--text-primary)]">
+        <table class="glass-table-ltr">
+          <thead>
             <tr>
-              <th class="py-3 px-3 text-center w-12">#</th>
-              <th class="py-3 px-4">Strategic Initiative</th>
-              <th class="py-3 px-4">Owner</th>
-              <th class="py-3 px-4">SLA</th>
-              <th class="py-3 px-4">Systemic Impact</th>
+              <th style="width: 50px; text-align: center;">#</th>
+              <th>Strategic Initiative</th>
+              <th>Owner</th>
+              <th>SLA</th>
+              <th>Systemic Impact</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-[var(--border)]">
+          <tbody>
             {actionPlan.map((a) => (
-              <tr class="hover:bg-[var(--surface-hover)] transition-colors">
-                <td class="py-3 px-3 text-center font-mono font-bold text-[var(--accent-primary)]">{a.step}</td>
-                <td class="py-3 px-4 font-bold text-[var(--text-primary)]">{a.title}</td>
-                <td class="py-3 px-4 text-[var(--text-secondary)]">{a.owner}</td>
-                <td class="py-3 px-4 font-mono text-[var(--accent-warm)]">{a.deadline}</td>
-                <td class="py-3 px-4 text-[var(--text-secondary)]">{a.impact}</td>
+              <tr>
+                <td style="text-align: center;" class="mono-tabular text-xs font-bold">{a.step}</td>
+                <td style="font-weight: 700; color: var(--text-primary);">{a.title}</td>
+                <td style="color: var(--text-secondary);">{a.owner}</td>
+                <td class="mono-tabular"><code>{a.deadline}</code></td>
+                <td style="color: var(--text-secondary);">{a.impact}</td>
               </tr>
             ))}
           </tbody>
@@ -716,157 +816,60 @@ const actionPlan = [
       </div>
     </section>
 
-    <!-- SECTION 6: DEVELOPER GOD-MODE & DIAGNOSTICS -->
-    <section id="godmode" class="mt-16 pt-6 space-y-6">
-      <div class="border-b border-[var(--border)] pb-3">
-        <span class="text-xs font-mono font-bold text-[var(--accent-warm)] uppercase tracking-wider">Section 06</span>
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
-          Developer God-Mode, Core Configuration & Diagnostic Engines
-        </h2>
-        <p class="text-sm text-[var(--text-secondary)] mt-1">
-          Reverse-engineered toolset for carrier troubleshooting, financial reconciliation, and live queue telemetry.
-        </p>
-      </div>
-
-      <!-- Core God-Mode Components Breakdown -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="p-5 rounded-2xl border border-red-500/30 bg-red-500/5 shadow-sm">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-bold text-red-400 font-mono">config_god</h3>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-300">Superadmin Root</span>
-          </div>
-          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
-            Administrative override for critical system parameters, root privilege elevation, global routing switches, and zero-downtime configuration hot-reloads.
+    <!-- =========================================================================
+         SECTION 7: INTERACTIVE 454-MODULE CATALOG EXPLORER
+         ========================================================================= -->
+    <section id="catalog" class="mb-16 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--separator-line)]">
+        <div>
+          <span class="text-xs font-mono font-bold text-[var(--text-tertiary)] uppercase tracking-wider">Chapter 07</span>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+            Interactive Explorer: 454 Catalogued Platform Modules
+          </h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">
+            Real-time search, domain filtering, risk segmentation, and deep modal inspection across all endpoints and database table relationships.
           </p>
         </div>
-
-        <div class="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] shadow-sm">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-bold text-[var(--text-primary)] font-mono">dargahha_config_file</h3>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--surface-sunken)] text-[var(--accent-primary)]">Gateway Compiler</span>
-          </div>
-          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
-            Configuration compiler for the 22 SMS trunks, mapping credentials and generating dynamic daemon configs across worker nodes.
-          </p>
-        </div>
-
-        <div class="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] shadow-sm">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-bold text-[var(--text-primary)] font-mono">kannel_config_builder</h3>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--surface-sunken)] text-[var(--accent-warm)]">SMPP v3.4 Engine</span>
-          </div>
-          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
-            Visual config compiler for Kannel bearerbox/smsbox instances, tuning SMPP bindings, window sizes, and throughput thresholds.
-          </p>
-        </div>
-
-        <div class="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] shadow-sm">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-bold text-[var(--text-primary)] font-mono">monitoring_rabbitmq</h3>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--surface-sunken)] text-emerald-400">Queue Inspector</span>
-          </div>
-          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
-            Real-time inspection of RabbitMQ unacknowledged message counts, consumer starvation, and burst delivery buffer saturation.
-          </p>
-        </div>
-
-        <div class="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] shadow-sm">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-bold text-[var(--text-primary)] font-mono">query_list</h3>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--surface-sunken)] text-amber-400">Query Killer</span>
-          </div>
-          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
-            Live MySQL processlist monitor with emergency termination capabilities for unindexed, lock-holding reporting queries.
-          </p>
-        </div>
-
-        <div class="p-5 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] shadow-sm">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-bold text-[var(--text-primary)] font-mono">tarabord_redis_manager</h3>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--surface-sunken)] text-sky-400">MNP Cache Core</span>
-          </div>
-          <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
-            Manages Mobile Number Portability Redis keys, ensuring sub-5ms operator prefix lookups and eliminating wrong-carrier charges.
-          </p>
-        </div>
-      </div>
-
-      <!-- Forensic Detectors Table -->
-      <div class="overflow-x-auto border border-[var(--border)] rounded-2xl bg-[var(--surface-card)] shadow-sm">
-        <div class="p-4 border-b border-[var(--border)] bg-[var(--surface-sunken)]">
-          <h3 class="text-sm font-bold text-[var(--text-primary)]">Forensic Detectors & Diagnostic Engines</h3>
-        </div>
-        <table class="w-full text-left text-xs">
-          <thead class="border-b border-[var(--border)] font-mono text-[var(--text-primary)]">
-            <tr>
-              <th class="py-3 px-4 w-60">Module Title</th>
-              <th class="py-3 px-4">Forensic Function & Troubleshooting Value</th>
-              <th class="py-3 px-4 w-64">Invocation Parameter</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-[var(--border)]">
-            {forensicTools.map((t) => (
-              <tr class="hover:bg-[var(--surface-hover)] transition-colors">
-                <td class="py-3 px-4 font-bold text-[var(--text-primary)]">{t.title}</td>
-                <td class="py-3 px-4 text-[var(--text-secondary)] leading-relaxed">{t.desc}</td>
-                <td class="py-3 px-4 font-mono text-[var(--accent-warm)]">
-                  <code>?page={t.param}</code>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- SECTION 7: INTERACTIVE 454-MODULE CATALOG EXPLORER -->
-    <section id="catalog" class="mt-16 pt-6 space-y-6">
-      <div class="border-b border-[var(--border)] pb-3">
-        <span class="text-xs font-mono font-bold text-[var(--accent-warm)] uppercase tracking-wider">Section 07</span>
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
-          Interactive Explorer: 454 Catalogued Platform Modules
-        </h2>
-        <p class="text-sm text-[var(--text-secondary)] mt-1">
-          Real-time search, domain filtering, risk segmentation, and deep modal inspection across all endpoints and database table relationships.
-        </p>
       </div>
 
       <!-- React Interactive Catalog Explorer -->
       <TelecomCatalogExplorer client:load locale="en" />
     </section>
 
-    <!-- SECTION 8: 10 SDKS SUITE & CLIENT USER PANELS -->
-    <section id="sdks" class="mt-16 pt-6 space-y-6">
-      <div class="border-b border-[var(--border)] pb-3">
-        <span class="text-xs font-mono font-bold text-[var(--accent-warm)] uppercase tracking-wider">Section 08</span>
-        <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
-          10 Official Client SDKs Suite & Feresta User Portals
-        </h2>
-        <p class="text-sm text-[var(--text-secondary)] mt-1">
-          OpenAPI 3.0-compliant developer libraries across 10 major programming languages alongside client UI showcase.
-        </p>
+    <!-- =========================================================================
+         SECTION 8: 10 SDKS SUITE & CLIENT CONNECTIVITY
+         ========================================================================= -->
+    <section id="sdks" class="mb-16 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--separator-line)]">
+        <div>
+          <span class="text-xs font-mono font-bold text-[var(--text-tertiary)] uppercase tracking-wider">Chapter 08</span>
+          <h2 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+            10 Official Client SDKs Suite & Connectivity Examples
+          </h2>
+          <p class="text-sm text-[var(--text-secondary)] mt-1">
+            OpenAPI 3.0-compliant developer libraries across 10 major programming languages.
+          </p>
+        </div>
       </div>
 
-      <!-- SDKs List & Code Samples Grid -->
-      <div class="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface-card)]">
-        <h3 class="text-sm font-bold text-[var(--text-primary)] mb-4">Official Client Software Packages Across 10 Frameworks</h3>
-        <div class="flex flex-wrap gap-2 text-xs font-mono font-bold mb-6">
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Python (asyncio/requests)</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Node.js (TypeScript/NestJS)</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Go (Standard Lib High-TPS)</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">PHP (PSR-7 / PSR-18)</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Laravel Package & Channel</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Java (Spring Boot / Maven)</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">.NET Core (C# / NuGet)</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Ruby on Rails Gem</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Yii2 Extension</span>
-          <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--text-primary)]">Delphi Legacy Enterprise</span>
+      <div class="glass-card p-8">
+        <div class="flex flex-wrap gap-2 text-xs mono-tabular mb-6">
+          <span class="status-pill">Python (asyncio)</span>
+          <span class="status-pill">Node.js (TypeScript)</span>
+          <span class="status-pill">Go (Standard Lib)</span>
+          <span class="status-pill">PHP (PSR-7 / PSR-18)</span>
+          <span class="status-pill">Laravel Package</span>
+          <span class="status-pill">Java (Spring Boot)</span>
+          <span class="status-pill">.NET Core (C#)</span>
+          <span class="status-pill">Ruby on Rails</span>
+          <span class="status-pill">Yii2 Extension</span>
+          <span class="status-pill">Delphi Legacy</span>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
-            <div class="text-xs font-mono text-[var(--text-secondary)] mb-2">cURL API Ingest:</div>
-            <pre class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--border)] text-xs text-sky-400 font-mono overflow-x-auto leading-relaxed"><code>curl -X POST https://sms.persiafava.com/api/v1/sms/send \
+            <div class="text-xs font-mono text-[var(--text-tertiary)] mb-2">cURL API Ingest:</div>
+            <pre class="glass-inner p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>curl -X POST https://sms.persiafava.com/api/v1/sms/send \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
   -d '&#123;
@@ -877,8 +880,8 @@ const actionPlan = [
           </div>
 
           <div>
-            <div class="text-xs font-mono text-[var(--text-secondary)] mb-2">Python Async Client:</div>
-            <pre class="p-4 rounded-xl bg-[var(--code-bg)] border border-[var(--border)] text-xs text-emerald-400 font-mono overflow-x-auto leading-relaxed"><code>from persiafava import AsyncFerestaClient
+            <div class="text-xs font-mono text-[var(--text-tertiary)] mb-2">Python Async Client:</div>
+            <pre class="glass-inner p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>from persiafava import AsyncFerestaClient
 
 client = AsyncFerestaClient(token="YOUR_API_TOKEN")
 
@@ -889,116 +892,6 @@ async def send_otp():
         message="Your verification code: 84920"
     )
     print("Batch ID:", resp.batch_id)</code></pre>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feresta User Portal Screens Gallery -->
-      <div class="space-y-4">
-        <h3 class="text-sm font-bold text-[var(--text-primary)]">End-User Operational Portal Screens (Feresta User Panel)</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/dashboard.png`} 
-              alt="User Dashboard" 
-              class="w-full h-40 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-3">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Primary User Dashboard</div>
-              <p class="text-[10px] text-[var(--text-secondary)] mt-1">Wallet balance, monthly throughput charts, and carrier trunk availability.</p>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/send_smart.png`} 
-              alt="Smart Dynamic Dispatch" 
-              class="w-full h-40 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-3">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Smart Dynamic Dispatch</div>
-              <p class="text-[10px] text-[var(--text-secondary)] mt-1">Dynamic text variable substitution from client spreadsheets or databases.</p>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/send_bank.png`} 
-              alt="Transactional Banking Dispatch" 
-              class="w-full h-40 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-3">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Transactional Banking Dispatch</div>
-              <p class="text-[10px] text-[var(--text-secondary)] mt-1">High-priority expedited queue for OTP delivery and financial alerts.</p>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/reports.png`} 
-              alt="Detailed Delivery Reports" 
-              class="w-full h-40 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-3">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Detailed Delivery Reports</div>
-              <p class="text-[10px] text-[var(--text-secondary)] mt-1">Handset receipt confirmation logs and telecommunication error codes.</p>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/contacts_groups.png`} 
-              alt="Contacts & Groups" 
-              class="w-full h-40 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-3">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Contact & Audience Groups</div>
-              <p class="text-[10px] text-[var(--text-secondary)] mt-1">Segmentation, deduplication, and automatic blacklist filtering.</p>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/sms_assist.png`} 
-              alt="SMS Assistant" 
-              class="w-full h-40 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-3">
-              <div class="text-xs font-bold text-[var(--text-primary)]">SMS Assistant & Templates</div>
-              <p class="text-[10px] text-[var(--text-secondary)] mt-1">Approved message template management and real-time part calculation.</p>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/send_simple_manual.png`} 
-              alt="Simple Manual Dispatch" 
-              class="w-full h-40 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-3">
-              <div class="text-xs font-bold text-[var(--text-primary)]">Simple Manual Dispatch</div>
-              <p class="text-[10px] text-[var(--text-secondary)] mt-1">Rapid peer-to-peer transmission UI with live credit calculation.</p>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface-card)] overflow-hidden shadow-sm">
-            <img 
-              src={`${baseUrl}products/sms-gateway/assets/settings.png`} 
-              alt="API & Webhook Settings" 
-              class="w-full h-40 object-cover border-b border-[var(--border)]"
-              loading="lazy"
-            />
-            <div class="p-3">
-              <div class="text-xs font-bold text-[var(--text-primary)]">API & Security Configuration</div>
-              <p class="text-[10px] text-[var(--text-secondary)] mt-1">API token issuance, IP address allowlisting, and webhook endpoint registration.</p>
-            </div>
           </div>
         </div>
       </div>
