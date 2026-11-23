@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const products = [
+  {
+    id: 'sms-gateway',
+    title: 'National Telecom SMS Gateway & Switching Platform (Tellir / Feresta)',
+    badge: 'Telecom & High-Volume Routing',
+    scale: '1.08M+ Daily SMS Throughput',
+    desc: 'Enterprise telecommunications aggregation and routing switch with 22 carrier gateways, 14 parallel MySQL sharded tables, Kannel SMPP v3.4 clusters, and RabbitMQ message buffers. Includes an interactive web explorer for 454 modules and full 7-layer Zabbix telemetry.',
+    specs: ['22 Physical Carrier Gateways', '454 Operational Modules Catalogued', '14 Parallel Magfa MySQL Shards', '10 Official Client SDKs', 'Sub-120ms P99 Edge Ingress Latency'],
+    href: `${baseUrl}products/sms-gateway/`,
+    featured: true,
+  },
+  {
+    id: 'payment-switch',
+    title: 'High-Throughput Financial Payment Switch (ISO 8583)',
+    badge: 'Switching & Banking Ledger',
+    scale: '4,200+ Peak TPS',
+    desc: 'Distributed financial switch compliant with ISO 8583 standards, intelligent PSP routing heuristics, and two-phase balance reservation (2PC) with zero financial drift.',
+    specs: ['ISO 8583 Standard', 'Two-Phase Balance Reservation (2PC)', 'Redis SETNX Distributed Locks', 'Automated Clearing Payouts'],
+    href: `${baseUrl}#payment-switch`,
+    featured: false,
+  },
+  {
+    id: 'reconciliation-engine',
+    title: 'Multi-Bank Automated Reconciliation Engine',
+    badge: 'Ledger & Settlement',
+    scale: 'Zero Financial Drift',
+    desc: 'Multi-pass automated clearing reconciling banking file logs, tracking discrepancy discrepancies, and executing merchant settlements without human intervention.',
+    specs: ['RabbitMQ Event Pipeline', 'Nightly Spring Batch Workers', 'Real-Time Webhook Matching', 'Automated Suspicious Activity Flagging'],
+    href: `${baseUrl}#reconciliation-engine`,
+    featured: false,
+  },
+  {
+    id: 'fraud-forensics',
+    title: 'Edge Fraud Forensics & Identity Verification Engine (eKYC)',
+    badge: 'Cybersecurity & Anti-Fraud',
+    scale: '< 50ms Evaluation Loop',
+    desc: 'Banking network anomaly detection, transaction risk graphing with Neo4j, and automated national identity verification with zero cardholder data storage.',
+    specs: ['Central Bank Dynamic Harim OTP', 'National Identity eKYC Verification', 'Neo4j Transaction Risk Graphs', 'PCI-DSS Compliant Token Vault'],
+    href: `${baseUrl}#fraud-forensics`,
+    featured: false,
+  }
+];
+---
+
+<Layout 
+  title="Software Products & Engineering Platforms — Ariya Sarrafzadeh" 
+  description="Catalog of distributed systems, payment switches, telecom infrastructure, and enterprise platforms engineered by Ariya Sarrafzadeh."
+  lang="en"
+  dir="ltr"
+>
+  <main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-24 font-sans text-left" dir="ltr">
+    
+    <!-- Header -->
+    <header class="border-b border-[var(--border)] pb-8 mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] text-[11px] font-mono text-[var(--accent-primary)] mb-3">
+        High-Throughput Production Systems Portfolio
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight">
+        Engineering Products & Operational Platforms
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-4xl leading-relaxed">
+        Production platforms architected for mission-critical reliability, transactional correctness, and hardware-verified telemetry without conjecture.
+      </p>
+    </header>
+
+    <!-- Product Grid -->
+    <div class="space-y-8">
+      {products.map((p) => (
+        <article class={`p-6 sm:p-8 rounded-3xl border transition-all ${
+          p.featured 
+            ? 'border-[var(--accent-primary)] bg-gradient-to-b from-[var(--surface-card)] to-[var(--surface-elevated)] shadow-xl' 
+            : 'border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)]/50'
+        }`}>
+          <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-[var(--surface-sunken)] text-[var(--accent-warm)] border border-[var(--border)]">
+                  {p.badge}
+                </span>
+                <span class="text-xs font-mono text-[var(--accent-primary)] font-bold">
+                  {p.scale}
+                </span>
+              </div>
+              <h2 class="text-2xl font-bold text-[var(--text-primary)]">
+                {p.title}
+              </h2>
+            </div>
+            <a 
+              href={p.href}
+              class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[var(--accent-primary)] text-white font-bold text-sm shadow-md hover:opacity-95 transition"
+            >
+              Explore Full Engineering Dossier →
+            </a>
+          </div>
+
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed max-w-5xl mb-6">
+            {p.desc}
+          </p>
+
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[var(--border)]">
+            {p.specs.map((s) => (
+              <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-xs font-medium text-[var(--text-primary)]">
+                {s}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </main>
+</Layout>

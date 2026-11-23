@@ -1,0 +1,119 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const products = [
+  {
+    id: 'sms-gateway',
+    title: 'سامانه جامع درگاه و روتینگ پیامک سازمانی (Tellir / Feresta)',
+    badge: 'تلکام و روتینگ بانکی',
+    scale: '۱.۰۸+ میلیون پیامک روزانه',
+    desc: 'پلتفرم اینترپرایز سوئیچ و تجمیع پیامک کشور با ۲۲ درگاه کاریر، ۱۴ جدول موازی دیتابیس MySQL، کلاسترهای Kannel SMPP v3.4 و صفوف RabbitMQ به همراه کاوشگر تحت وب ۴۵۴ ماژول و تلمتری ۷ لایه زبیکس.',
+    specs: ['۲۲ درگاه کاریر فیزیکی', '۴۵۴ ماژول عملیاتی کاتالوگ‌شده', '۱۴ جدول موازی شاردینگ مگفا', '۱۰ پکیج رسمی SDK کلاینت', 'تاخیر لبه زیر ۱۲۰ میلی‌ثانیه'],
+    href: `${baseUrl}fa/products/sms-gateway/`,
+    featured: true,
+  },
+  {
+    id: 'payment-switch',
+    title: 'سوییچ پرداخت و تسویه بلادرنگ بانکی (ISO 8583)',
+    badge: 'سوئیچ مالی و تراکنشی',
+    scale: '۴,۲۰۰+ TPS اوج بار',
+    desc: 'سوییچ توزیع‌شده با استاندارد بانکی ISO 8583، منطق روتینگ هوشمند پذیرندگان، و موتور رزرو دومرحله‌ای بدون مغایرت مالی تحت نظارت شاپرک.',
+    specs: ['استاندارد ISO 8583', 'تخصیص دومرحله‌ای موجودی (2PC)', 'قفل توزیع‌شده Redis SETNX', 'موتور تسویه پایا و ساتنا'],
+    href: `${baseUrl}fa/#payment-switch`,
+    featured: false,
+  },
+  {
+    id: 'reconciliation-engine',
+    title: 'موتور مغایرت‌گیری خودکار چندبانکی (Automated Recon)',
+    badge: 'دفتر کل و تسویه حساب',
+    scale: 'صفر درصد دریفت مالی',
+    desc: 'سیستم چندمرحله‌ای انطباق فایل‌های شاپرک و کارپوشه‌های بانکی، رهگیری کسری‌های ریالی و صدور دستورات تسویه خودکار بدون دخالت اپراتور انسانی.',
+    specs: ['پایپ‌لاین رویدادی RabbitMQ', 'ورکرهای شبانه Spring Batch', 'تطبیق بلادرنگ وب‌هوک بانکی', 'ردیابی خودکار تراکنش‌های مشکوک'],
+    href: `${baseUrl}fa/#reconciliation-engine`,
+    featured: false,
+  },
+  {
+    id: 'fraud-forensics',
+    title: 'موتور کشف تقلب و احراز هویت لبه (eKYC & Fraud Risk)',
+    badge: 'امنیت سایبری و ضدتقلب',
+    scale: 'زیر ۵۰ میلی‌ثانیه لوپ ارزیابی',
+    desc: 'شناسایی ناهنجاری‌های شبکه بانکی، گراف ریسک تراکنش‌ها، اعتبارسنجی هویتی شاهکار و ثبت‌احوال با توکن‌سازی امن بدون ذخیره‌سازی اطلاعات کارت.',
+    specs: ['سرویس رمز پویا حریم', 'استعلام هویتی شاهکار', 'گراف ریسک تراکنشی Neo4j', 'انطباق الزامات PCI-DSS'],
+    href: `${baseUrl}fa/#fraud-forensics`,
+    featured: false,
+  }
+];
+---
+
+<Layout 
+  title="محصولات مهندسی و پلتفرم‌های سیستم — آریا صراف‌زاده" 
+  description="کاتالوگ محصولات مهندسی نرم‌افزار، سامانه‌های سوییچ پرداخت، زیرساخت تلکام و درگاه‌های پیامک سازمانی توسعه‌یافته توسط آریا صراف‌زاده."
+  lang="fa"
+  dir="rtl"
+>
+  <main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-24 font-sans text-right" dir="rtl">
+    
+    <!-- Header -->
+    <header class="border-b border-[var(--border)] pb-8 mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] text-[11px] font-mono text-[var(--accent-primary)] mb-3">
+        شناسنامه سامانه‌ها و محصولات نرم‌افزاری مقیاس‌بالا
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight">
+        محصولات مهندسی و پلتفرم‌های عملیاتی
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-4xl leading-relaxed">
+        معماری، کالبدشکافی و پیاده‌سازی سامانه‌هایی با تضمین دقت تراکنشی، ظرفیت توان عملیاتی بالا و تلمتری دقیق بدون حدس و گمان.
+      </p>
+    </header>
+
+    <!-- Product Grid -->
+    <div class="space-y-8">
+      {products.map((p) => (
+        <article class={`p-6 sm:p-8 rounded-3xl border transition-all ${
+          p.featured 
+            ? 'border-[var(--accent-primary)] bg-gradient-to-b from-[var(--surface-card)] to-[var(--surface-elevated)] shadow-xl' 
+            : 'border-[var(--border)] bg-[var(--surface-card)] hover:border-[var(--accent-primary)]/50'
+        }`}>
+          <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-[var(--surface-sunken)] text-[var(--accent-warm)] border border-[var(--border)]">
+                  {p.badge}
+                </span>
+                <span class="text-xs font-mono text-[var(--accent-primary)] font-bold">
+                  {p.scale}
+                </span>
+              </div>
+              <h2 class="text-2xl font-bold text-[var(--text-primary)]">
+                {p.title}
+              </h2>
+            </div>
+            <a 
+              href={p.href}
+              class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[var(--accent-primary)] text-white font-bold text-sm shadow-md hover:opacity-95 transition"
+            >
+              مشاهده شناسنامه کامل و پرونده فنی ←
+            </a>
+          </div>
+
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed max-w-5xl mb-6">
+            {p.desc}
+          </p>
+
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[var(--border)]">
+            {p.specs.map((s) => (
+              <span class="px-3 py-1 rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] text-xs font-medium text-[var(--text-primary)]">
+                {s}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </main>
+</Layout>
