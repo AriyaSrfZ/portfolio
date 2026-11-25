@@ -272,6 +272,7 @@
       <button onclick="filterByPhase('all')" id="pf-all" class="px-2.5 py-1 rounded-lg bg-[#527C78] text-white font-semibold text-xs shadow-sm transition">همه فازها</button>
       <button onclick="filterByPhase('phase1')" id="pf-p1" class="px-2.5 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-emerald-300 hover:text-white border border-emerald-500/30 text-xs transition">🌿 فاز ۱ (پیگیری ثانویه)</button>
       <button onclick="filterByPhase('phase2')" id="pf-p2" class="px-2.5 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-cyan-300 hover:text-white border border-cyan-500/30 text-xs transition">⚡ فاز ۲ (استراتژی ملایم)</button>
+      <button onclick="filterByPhase('phase3')" id="pf-p3" class="px-2.5 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-amber-300 hover:text-white border border-amber-500/30 text-xs transition">🚀 فاز ۳ (تهاجمی سریع)</button>
 
       <span class="text-slate-600 mx-1">|</span>
 
@@ -2608,7 +2609,7 @@
 
 
     // LocalStorage State Management with Anti-Stale Migration
-    const CURRENT_DATA_VERSION = "2026-11-10-phase2-audited-v12";
+    const CURRENT_DATA_VERSION = "2026-11-25-phase3-doctrine-v13";
     const storedVersion = localStorage.getItem("pfg_data_version");
     if (storedVersion !== CURRENT_DATA_VERSION) {
       console.log("War Room: Detected older data version, purging stale cache to apply authoritative server state.");
@@ -4451,13 +4452,15 @@ function saveState() {
 
     function filterByPhase(phase) {
       activeFilterPhase = phase;
-      const phases = ['all', 'phase1', 'phase2'];
+      const phases = ['all', 'phase1', 'phase2', 'phase3'];
       phases.forEach(p => {
-        const btnId = `pf-${p === 'all' ? 'all' : (p === 'phase1' ? 'p1' : 'p2')}`;
+        const btnId = `pf-${p === 'all' ? 'all' : (p === 'phase1' ? 'p1' : (p === 'phase2' ? 'p2' : 'p3'))}`;
         const btn = document.getElementById(btnId);
         if (!btn) return;
         if (p === phase) {
-          if (p === 'phase2') {
+          if (p === 'phase3') {
+            btn.className = "px-2.5 py-1 rounded-lg bg-amber-600 text-white font-semibold text-xs shadow-sm border border-amber-400 transition";
+          } else if (p === 'phase2') {
             btn.className = "px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-semibold text-xs shadow-sm border border-cyan-400 transition";
           } else if (p === 'phase1') {
             btn.className = "px-2.5 py-1 rounded-lg bg-[#527C78] text-white font-semibold text-xs shadow-sm border border-emerald-400/40 transition";
@@ -4465,7 +4468,9 @@ function saveState() {
             btn.className = "px-2.5 py-1 rounded-lg bg-[#527C78] text-white font-semibold text-xs shadow-sm transition";
           }
         } else {
-          if (p === 'phase2') {
+          if (p === 'phase3') {
+            btn.className = "px-2.5 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-amber-300 hover:text-white border border-amber-500/30 text-xs transition";
+          } else if (p === 'phase2') {
             btn.className = "px-2.5 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-cyan-300 hover:text-white border border-cyan-500/30 text-xs transition";
           } else if (p === 'phase1') {
             btn.className = "px-2.5 py-1 rounded-lg bg-[#292F2D] hover:bg-[#343C38] text-emerald-300 hover:text-white border border-emerald-500/30 text-xs transition";

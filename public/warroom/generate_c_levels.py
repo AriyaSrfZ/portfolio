@@ -45,6 +45,7 @@ def generate():
         linkedin = acc.get('linkedin', '')
         phase = acc.get('phase', 'phase1')
         is_phase2 = (phase == 'phase2')
+        is_phase3 = (phase == 'phase3')
 
         # DM parsing
         dm_raw = acc.get('decisionMaker', '')
@@ -59,6 +60,10 @@ def generate():
               <a href="https://www.linkedin.com/in/{clean_handle}/" target="_blank" class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] bg-[#0A66C2]/15 hover:bg-[#0A66C2]/25 text-sky-300 hover:text-white border border-[#0A66C2]/30 transition font-mono font-medium" dir="ltr">
                 <span>in/{clean_handle}</span> <span class="text-xs">↗</span>
               </a>
+            </div>'''
+        elif is_phase3:
+            dm_li_html = '''<div class="mt-1.5 flex items-center gap-1 text-[10px] text-amber-300/80 font-medium">
+              <span>عضو ارشد کمیته تصمیم‌گیری</span>
             </div>'''
         elif is_phase2:
             dm_li_html = '''<div class="mt-1.5 flex items-center gap-1 text-[10px] text-cyan-300/80 font-medium">
@@ -120,7 +125,12 @@ def generate():
         # Status column
         stage = acc.get('stage', '')
 
-        if is_phase2:
+        if is_phase3:
+            status_html = '''<div class="space-y-1.5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>آماده‌باش مرحله ۳ پایپ‌لاین</span>
+          <div class="text-[10px] text-slate-400 mt-1">تسخیر بازارهای مکمل (طلا/BNPL/ERP)</div>
+        </div>'''
+        elif is_phase2:
             status_html = '''<div class="space-y-1.5">
           <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>استراتژی ملایم Hot Failover</span>
           <div class="text-[10px] text-slate-400 mt-1">تست ۵۰k پیامک بدون تعهد قرارداد</div>
@@ -203,7 +213,20 @@ def generate():
           {li_company_btn}
         </div>'''
 
-        if is_phase2:
+        if is_phase3:
+            row_cls = "phase-row bg-amber-950/20 hover:bg-amber-950/40 border-b border-amber-500/20 transition"
+            num_html = f'<td class="py-3.5 px-4 text-center font-mono text-amber-400 font-bold w-12">{num}</td>'
+            company_col = f'''<div class="font-bold text-amber-200 text-sm flex items-center gap-1.5">
+            <span>{name}</span>
+            <span class="px-1.5 py-0.2 rounded text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-medium">فاز ۳</span>
+          </div>
+          <div class="flex items-center gap-2 mt-1.5 flex-wrap">
+            <span class="inline-flex items-center gap-1 text-[10px] text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 font-medium"><span>🚀 آماده‌باش مرحله ۳</span></span>
+            <button onclick="openAuditModal('{acc_id}')" class="inline-flex items-center gap-1 text-[10px] text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30 font-medium transition cursor-pointer"><span>✏️</span> <span>ثبت اصلاح / خطا</span></button>
+          </div>
+          {metadata_details_html}'''
+            l2_col_cls = "py-3.5 px-4 min-w-[280px] bg-amber-950/30"
+        elif is_phase2:
             row_cls = "phase-row bg-cyan-950/20 hover:bg-cyan-950/40 border-b border-cyan-500/20 transition"
             num_html = f'<td class="py-3.5 px-4 text-center font-mono text-cyan-400 font-bold w-12">{num}</td>'
             company_col = f'''<div class="font-bold text-white text-sm">{name}</div>
@@ -333,10 +356,10 @@ def generate():
     </div>
 
     <!-- Phase Switcher Tabs -->
-    <div class="flex items-center gap-3 bg-[#292F2D] border border-[#46504B] p-2 rounded-2xl">
+    <div class="flex items-center gap-3 bg-[#292F2D] border border-[#46504B] p-2 rounded-2xl flex-wrap">
       <button onclick="switchPhase('all')" id="tab-all" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center gap-2 whitespace-nowrap">
-        <span>همه حساب‌ها (۲۰)</span>
-        <span class="px-2 py-0.5 rounded-full bg-white/10 text-slate-300 text-[10px] font-mono">۲۰</span>
+        <span>همه حساب‌ها (۳۰)</span>
+        <span class="px-2 py-0.5 rounded-full bg-white/10 text-slate-300 text-[10px] font-mono">۳۰</span>
       </button>
       <button onclick="switchPhase('phase1')" id="tab-phase1" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap">
         <span>🌿 فاز ۱: ۱۰ حساب سازمانی (پیگیری ثانویه)</span>
@@ -345,6 +368,10 @@ def generate():
       <button onclick="switchPhase('phase2')" id="tab-phase2" class="px-4 py-2 rounded-xl text-xs font-bold text-cyan-300 hover:text-white hover:bg-cyan-950/40 border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap">
         <span>⚡ فاز ۲: ۱۰ حساب بکر V2 (استراتژی ملایم Hot Failover)</span>
         <span class="px-2 py-0.5 rounded-full bg-cyan-500/25 text-cyan-300 text-[10px] font-mono font-bold">۱۰</span>
+      </button>
+      <button onclick="switchPhase('phase3')" id="tab-phase3" class="px-4 py-2 rounded-xl text-xs font-bold text-amber-300 hover:text-white hover:bg-amber-950/40 border border-amber-500/30 transition flex items-center gap-2 whitespace-nowrap">
+        <span>🚀 فاز ۳: ۱۰ حساب تهاجمی سریع (مرحله ۳ آماده‌باش)</span>
+        <span class="px-2 py-0.5 rounded-full bg-amber-500/25 text-amber-300 text-[10px] font-mono font-bold">۱۰</span>
       </button>
     </div>
 
@@ -391,17 +418,21 @@ def generate():
       const label = document.getElementById('currentPhaseLabel');
 
       // Update Tab Styles
-      ['all', 'phase1', 'phase2'].forEach(p => {{
+      ['all', 'phase1', 'phase2', 'phase3'].forEach(p => {{
         const btn = document.getElementById('tab-' + p);
         if (!btn) return;
         if (p === phase) {{
-          if (p === 'phase2') {{
+          if (p === 'phase3') {{
+            btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-white bg-amber-700 shadow-md border border-amber-400/40 transition flex items-center gap-2 whitespace-nowrap";
+          }} else if (p === 'phase2') {{
             btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-white bg-cyan-700 shadow-md border border-cyan-400/40 transition flex items-center gap-2 whitespace-nowrap";
           }} else {{
             btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#527C78] shadow-md border border-emerald-400/40 transition flex items-center gap-2 whitespace-nowrap";
           }}
         }} else {{
-          if (p === 'phase2') {{
+          if (p === 'phase3') {{
+            btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-amber-300 hover:text-white hover:bg-amber-950/40 border border-amber-500/30 transition flex items-center gap-2 whitespace-nowrap";
+          }} else if (p === 'phase2') {{
             btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-cyan-300 hover:text-white hover:bg-cyan-950/40 border border-cyan-500/30 transition flex items-center gap-2 whitespace-nowrap";
           }} else {{
             btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center gap-2 whitespace-nowrap";
@@ -420,9 +451,10 @@ def generate():
       }});
 
       if (label) {{
-        if (phase === 'all') label.innerHTML = '<span class="text-slate-200">همه ۲۰ حساب</span>';
-        if (phase === 'phase1') label.innerHTML = '<span class="text-emerald-300">فاز ۱ (۱۰ حساب سازمانی)</span>';
-        if (phase === 'phase2') label.innerHTML = '<span class="text-cyan-300">فاز ۲ (۱۰ حساب بکر V2)</span>';
+        if (phase === 'all') label.innerHTML = '<span class="text-slate-200">همه ۳۰ حساب (آرایش ۳ مرحله‌ای)</span>';
+        if (phase === 'phase1') label.innerHTML = '<span class="text-emerald-300">فاز ۱ (۱۰ حساب سازمانی · مرحله ۲)</span>';
+        if (phase === 'phase2') label.innerHTML = '<span class="text-cyan-300">فاز ۲ (۱۰ حساب بکر V2 · مرحله ۲)</span>';
+        if (phase === 'phase3') label.innerHTML = '<span class="text-amber-300">فاز ۳ (۱۰ حساب تهاجمی سریع · مرحله ۳)</span>';
       }}
     }}
 

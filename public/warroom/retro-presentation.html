@@ -754,10 +754,11 @@
       <div class="nav-actions">
         <!-- Tab Switcher -->
         <div class="view-switcher">
-          <button class="tab-pill active" onclick="switchTab('board')">بورد ۴ ستونه رترو</button>
-          <button class="tab-pill" onclick="switchTab('mindset')">ماتریس تغییر ذهنیت (Cold vs Network)</button>
-          <button class="tab-pill" onclick="switchTab('matrix')">ماتریس تعهدات اسپرینت</button>
-          <button class="tab-pill" onclick="switchTab('playbook')">پلی‌بوک اسب تروجان</button>
+          <button class="tab-pill" id="tab-btn-doctrine" onclick="switchTab('doctrine')">⚡ داکترین نبرد B2B (۳ گروه و ۳ مرحله)</button>
+          <button class="tab-pill active" id="tab-btn-board" onclick="switchTab('board')">بورد ۴ ستونه رترو</button>
+          <button class="tab-pill" id="tab-btn-mindset" onclick="switchTab('mindset')">ماتریس تغییر ذهنیت</button>
+          <button class="tab-pill" id="tab-btn-matrix" onclick="switchTab('matrix')">ماتریس تعهدات اسپرینت</button>
+          <button class="tab-pill" id="tab-btn-playbook" onclick="switchTab('playbook')">پلی‌بوک اسب تروجان</button>
         </div>
 
         <span class="separator-v"></span>
@@ -783,24 +784,25 @@
       </div>
     </header>
 
-    <!-- Official Handover & Support Guarantee Banner -->
-    <div class="glass-panel" style="padding: 14px 22px; margin-bottom: 14px; border-right: 4px solid var(--status-success); background: linear-gradient(90deg, rgba(50, 215, 75, 0.08) 0%, rgba(14, 165, 233, 0.05) 100%);">
+    <!-- Master Operational Doctrine & 3-Stage Pipeline Banner -->
+    <div class="glass-panel" style="padding: 14px 22px; margin-bottom: 14px; border-right: 4px solid #0EA5E9; background: linear-gradient(90deg, rgba(14, 165, 233, 0.12) 0%, rgba(50, 215, 75, 0.08) 100%);">
       <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
         <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 28px; height: 28px; border-radius: 8px; background: rgba(50, 215, 75, 0.2); color: var(--status-success); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;">✓</div>
+          <div style="width: 30px; height: 30px; border-radius: 9px; background: rgba(14, 165, 233, 0.25); color: #38BDF8; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px;">⚡</div>
           <div>
-            <div style="font-weight: 800; color: var(--text-primary); font-size: 0.92rem; display: flex; align-items: center; gap: 8px;">
-              <span>فاز تحویل رسمی و انتقال پایدار فرآیندها (Handover Complete)</span>
-              <span class="badge" style="background: rgba(50, 215, 75, 0.18); color: var(--status-success); border: 1px solid rgba(50, 215, 75, 0.35); font-size: 0.72rem;">تضمین همراهی و پشتیبانی فنی تا پایان دوره انتقال</span>
+            <div style="font-weight: 800; color: var(--text-primary); font-size: 0.94rem; display: flex; align-items: center; gap: 8px;">
+              <span>داکترین عملیاتی و آرایش ۳ مرحله‌ای پایپ‌لاین (3-Stage Battle Doctrine)</span>
+              <span class="badge" style="background: rgba(14, 165, 233, 0.2); color: #38BDF8; border: 1px solid rgba(14, 165, 233, 0.4); font-size: 0.72rem;">طرح عملیاتی اسپرینت نهایی</span>
             </div>
             <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 3px;">
-              کلیه مستندات فنی، ممیزی ۲۰ حساب هدف، معماری بوردها و استراتژی نفوذ تحویل گردید. مهندس صراف‌زاده تا پایان دوره انتقال جهت پاسخگویی، همراهی و پشتیبانی کامل در کنار تیم خواهد بود.
+              آرایش موازی: <b>گروه ۱ در مرحله ۲</b> (پیگیری دبیرخانه‌ای و لینکدین لایه ۲) · <b>گروه ۲ در مرحله ۲</b> (استراتژی ملایم Hot Failover و تست ۵۰k) · <b>گروه ۳ در مرحله ۳</b> (استقرار ۱۰ حساب تهاجمی سریع).
             </p>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span class="badge" style="background: rgba(255, 255, 255, 0.08); color: var(--text-secondary); border: 1px solid var(--glass-border-outer); font-size: 0.75rem;">پیوندهای منجمد و دائمی اتاق جنگ</span>
-          <span class="mono-tabular" style="font-size: 0.75rem; color: var(--text-tertiary);">نسخه مصوب</span>
+          <button class="btn btn-primary btn-sm" onclick="switchTab('doctrine')">
+            <span>📖 متن کامل داکترین نبرد B2B</span>
+          </button>
         </div>
       </div>
     </div>
@@ -816,8 +818,8 @@
             </svg>
           </div>
           <div>
-            <div class="kpi-num mono-tabular">۲۰ حساب هدف</div>
-            <div class="kpi-label">۱۰ فاز ۱ (سازمانی) + ۱۰ فاز ۲ (بکر)</div>
+            <div class="kpi-num mono-tabular">۳۰ حساب هدف</div>
+            <div class="kpi-label">۱۰ گروه ۱ (مرحله ۲) + ۱۰ گروه ۲ (مرحله ۲) + ۱۰ گروه ۳ (مرحله ۳)</div>
           </div>
         </div>
 
@@ -843,7 +845,7 @@
             </svg>
           </div>
           <div>
-            <div class="kpi-num mono-tabular">۲ رابط به ازای هر حساب</div>
+            <div class="kpi-num mono-tabular">۶۰ رابط لایه دوم</div>
             <div class="kpi-label">ورود از لایه DevOps و Product Lead</div>
           </div>
         </div>
@@ -861,6 +863,232 @@
         </div>
       </div>
     </div>
+
+    <!-- =========================================================================
+         TAB 0: MASTER OPERATIONAL DOCTRINE & 3-STAGE PIPELINE (داکترین نبرد B2B)
+         ========================================================================= -->
+    <main id="tab-doctrine" class="tab-content">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+
+        <!-- Doctrine Hero Section -->
+        <div class="glass-panel" style="padding: 24px; border-right: 4px solid #0EA5E9; background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(50, 215, 75, 0.05) 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <span class="badge" style="background: rgba(14, 165, 233, 0.2); color: #38BDF8; border: 1px solid rgba(14, 165, 233, 0.4); font-size: 0.72rem; font-weight: 800;">سند رسمی حاکمیتی ۰۹</span>
+                <span class="badge" style="background: rgba(50, 215, 75, 0.15); color: var(--status-success); border: 1px solid rgba(50, 215, 75, 0.3); font-size: 0.72rem; font-weight: 800;">آرایش ۳ مرحله‌ای ۳۰ حساب</span>
+              </div>
+              <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); line-height: 1.4;">داکترین نبرد توسعه بازار B2B و آرایش ۳ مرحله‌ای پایپ‌لاین</h2>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 900px; line-height: 1.6; margin-top: 6px;">
+                راهبرد عملیاتی خروج از تله بازاریابی سنتی و ورود به مدل مهندسی راهکار: گذار از ارسال انبوه پیامک‌های کلیشه‌ای به نفوذ از لایه دوم فنی (DevOps / Product Lead) با اسب تروجان خط اضطراری (Hot Failover) و SLA تحویل زیر ۲ ثانیه.
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <a href="dossier/09_THE_SOVEREIGN_B2B_BATTLE_DOCTRINE.md" target="_blank" class="btn btn-secondary btn-sm" title="مشاهده فایل مارک‌داون داکترین در پرونده">
+                <span>📄 مطالعه متن کامل پرونده ۰۹</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 1: The 3-Stage Strategic Formation (3 Columns) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px;">
+
+          <!-- Card 1: Group 1 -> Stage 2 -->
+          <article class="glass-card" style="border-top: 3px solid #10B981; padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3);">🌿 گروه اول · ۱۰ حساب سازمانی</span>
+              <span class="badge" style="background: rgba(255, 255, 255, 0.08); color: var(--text-primary); font-weight: 800;">ورود به مرحله ۲</span>
+            </div>
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary);">مرحله ۲: پیگیری دبیرخانه‌ای و شکستن مقاومت لایه میانی</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-top: 4px;">
+                نامه‌های رسمی فیزیکی قبلاً به مدیران عامل ارسال شده است. هدف مرحله ۲ تبدیل نامه راکد به مکالمه زنده فنی با سرپرستان دواپس است.
+              </p>
+            </div>
+
+            <!-- Steps -->
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.78rem;">
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #34D399;">۱.</span>
+                <div><b>تماس تلفنی با دبیرخانه (خانم کوشکشتانی):</b> استعلام شماره اندیکاتور و نام کارشناس ارجاع‌شونده در ۴۸ ساعت.</div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #34D399;">۲.</span>
+                <div><b>ارسال پیام لینکدین به لایه ۲ (خانم موسی‌پور):</b> تماس با سرپرست دواپس با اشاره به نامه رسمی مدیرعامل در کارتابل شرکت.</div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #34D399;">۳.</span>
+                <div><b>تثبیت جلسه پرزنت آنلاین ۲۰ دقیقه‌ای:</b> پرزنت فنی روت مستقیم اپراتوری و برطرف کردن نگرانی‌های امنیتی.</div>
+              </div>
+            </div>
+
+            <!-- Target Accounts Tags -->
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px solid var(--separator-line);">
+              <div style="font-size: 0.72rem; color: var(--text-tertiary); margin-bottom: 6px;">۱۰ حساب تحت پوشش:</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                <span class="badge" style="font-size: 0.7rem;">طلاین</span>
+                <span class="badge" style="font-size: 0.7rem;">ترابرنت</span>
+                <span class="badge" style="font-size: 0.7rem;">زرپی۲۴</span>
+                <span class="badge" style="font-size: 0.7rem;">اوبار</span>
+                <span class="badge" style="font-size: 0.7rem;">سندپرداز</span>
+                <span class="badge" style="font-size: 0.7rem;">چارگون</span>
+                <span class="badge" style="font-size: 0.7rem;">گلدیکا</span>
+                <span class="badge" style="font-size: 0.7rem;">قسطا</span>
+                <span class="badge" style="font-size: 0.7rem;">وال‌گلد</span>
+                <span class="badge" style="font-size: 0.7rem;">پستکس</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Group 2 -> Stage 2 -->
+          <article class="glass-card" style="border-top: 3px solid #06B6D4; padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge" style="background: rgba(6, 182, 212, 0.15); color: #22D3EE; border: 1px solid rgba(6, 182, 212, 0.3);">⚡ گروه دوم · ۱۰ حساب بکر V2</span>
+              <span class="badge" style="background: rgba(255, 255, 255, 0.08); color: var(--text-primary); font-weight: 800;">ورود به مرحله ۲</span>
+            </div>
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary);">مرحله ۲: ورود ملایم، تست ۵۰k پیامک و SDK دو صفحه‌ای</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-top: 4px;">
+                سازمان‌های چابک و با اصطکاک پایین (Low-IEI). حذف کامل بروکراسی اداری و ورود مستقیم به عنوان خط پشتیبان اضطراری بدون تعهد قرارداد.
+              </p>
+            </div>
+
+            <!-- Steps -->
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.78rem;">
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #22D3EE;">۱.</span>
+                <div><b>ارائه آفر ۵۰k پیامک بدون تعهد (مهندس صراف‌زاده):</b> پیشنهاد خط Hot Failover در ساعات پیک نوسان بدون هزینه و بدون ریسک.</div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #22D3EE;">۲.</span>
+                <div><b>تحویل مستندات دولوپر ۲ صفحه‌ای (خانم خرم‌دل):</b> نمونه کدهای آماده پایتون/نود با اتصال سریع ۱۰ دقیقه‌ای بدون دردسر.</div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #22D3EE;">۳.</span>
+                <div><b>تسهیم درآمد و درگاه وب‌سرویس (ریتون و سیموتک):</b> تعبیه به عنوان درگاه پیش‌فرض با مدل درآمدی اشتراکی.</div>
+              </div>
+            </div>
+
+            <!-- Target Accounts Tags -->
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px solid var(--separator-line);">
+              <div style="font-size: 0.72rem; color: var(--text-tertiary); margin-bottom: 6px;">۱۰ حساب تحت پوشش:</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">اکوگلد</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">پادیز.کردیت</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">او‌ام‌پی‌فینکس</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">اکوتراست</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">ریتون</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">خودرو۴۵</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">پول‌نو</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">سیموتک</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">تبدیل</span>
+                <span class="badge" style="font-size: 0.7rem; color: #22D3EE;">بیدارز</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Group 3 -> Stage 3 -->
+          <article class="glass-card" style="border-top: 3px solid #F59E0B; padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.3);">🚀 گروه سوم · ۱۰ حساب تهاجمی سریع</span>
+              <span class="badge" style="background: rgba(255, 255, 255, 0.08); color: var(--text-primary); font-weight: 800;">مرحله ۳ (آماده‌باش)</span>
+            </div>
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary);">مرحله ۳: تسخیر بازارهای مکمل طلا، BNPL، لجستیک و ERP</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-top: 4px;">
+                پلتفرم‌های با ترافیک میلیونی و وابستگی حیاتی به پیامک تراکنشی (SLA < 2s). ورود مستقیم به عنوان خط نجات اضطراری در ساعات اوج.
+              </p>
+            </div>
+
+            <!-- Steps -->
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.78rem;">
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #FBBF24;">۱.</span>
+                <div><b>طلا و اعتبارسنجی خرد (داریک زرین، لندو، ازکی‌وام):</b> حل مشکل لغو معامله طلا و تاخیر امضای سفته الکترونیک.</div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #FBBF24;">۲.</span>
+                <div><b>اکوسیستم نرم‌افزارهای مالی (سپیدار، پارمیس، شماران):</b> تعبیه وب‌سرویس مستقیم بانکی در سامانه‌های صدور فاکتور و کارخانجات.</div>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; background: var(--bg-recessed); border-radius: 10px;">
+                <span style="font-weight: 800; color: #FBBF24;">۳.</span>
+                <div><b>لجستیک هوشمند و بیمه آنلاین (بارپین، اسنپ‌بار، بیمه دات کام، ازکی):</b> تضمین تحویل کدهای مجوز تردد و لینک بیمه‌نامه.</div>
+              </div>
+            </div>
+
+            <!-- Target Accounts Tags -->
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px solid var(--separator-line);">
+              <div style="font-size: 0.72rem; color: var(--text-tertiary); margin-bottom: 6px;">۱۰ حساب آماده‌باش نهایی:</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">داریک زرین</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">لندو</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">ازکی‌وام</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">سپیدار سیستم</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">پارمیس</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">شماران سیستم</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">بارپین</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">اسنپ‌بار</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">بیمه دات کام</span>
+                <span class="badge" style="font-size: 0.7rem; color: #FBBF24;">ازکی</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Section 2: Battle Dialogue Scripts (3 Boxes) -->
+        <div class="glass-panel" style="padding: 24px;">
+          <div style="margin-bottom: 16px;">
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary);">پروتکل‌های ارتباطی و اسکریپت‌های اجرایی تماس و پیام (Battle Scripts)</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px;">متن‌های استانداردسازی‌شده جهت استفاده مستقیم تیم در تماس‌های تلفنی و پیام‌های لینکدین</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px;">
+
+            <!-- Script 1 -->
+            <div style="background: var(--bg-elevated-solid); border: 1px solid var(--glass-border-outer); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #34D399;">📞 تماس تلفنی دبیرخانه</span>
+                <span class="mono-tabular" style="font-size: 0.72rem; color: var(--text-tertiary);">واحد IT</span>
+              </div>
+              <div style="font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary); background: var(--bg-recessed); padding: 12px; border-radius: 10px; font-style: italic;">
+                «وقت‌بخیر، کوشکشتانی هستم از دفتر مدیرعامل شرکت پرشیا فاوا گسترش. پیرو نامه رسمی شماره [شماره نامه] با امضای سرکار خانم مهندس شهروزی که با موضوع زیرساخت پیامک مستقیم بانکی برای جناب آقای [نام مدیرعامل] ارسال شده، تماس گرفتم جهت ثبت شماره اندیکاتور در سامانه پیگیری‌مان. ممنون می‌شم بفرمایید نامه با چه شماره‌ای ثبت شده و آیا به کارتابل مدیریت فناوری ارجاع فرموده‌اند؟»
+              </div>
+              <div style="font-size: 0.72rem; color: var(--text-tertiary);"><b>هدف:</b> دریافت شماره اندیکاتور و نام دقیق شخص ارجاع‌شونده در کارتابل اداری.</div>
+            </div>
+
+            <!-- Script 2 -->
+            <div style="background: var(--bg-elevated-solid); border: 1px solid var(--glass-border-outer); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="badge" style="background: rgba(14, 165, 233, 0.15); color: #38BDF8;">💬 پیام اختصاصی لینکدین</span>
+                <span class="mono-tabular" style="font-size: 0.72rem; color: var(--text-tertiary);">DevOps / Tech Lead</span>
+              </div>
+              <div style="font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary); background: var(--bg-recessed); padding: 12px; border-radius: 10px; font-style: italic;">
+                «درود جناب مهندس [نام خانوادگی] عزیز، روزتون بخیر. پروفایل فنی شما رو در [نام شرکت] دنبال می‌کنم. با توجه به حساسیت ثانیه‌ای سرویس‌های شما، متوجه شدیم در ساعات نوسان و پیک، برخی تجمیع‌کننده‌ها دچار اختلال در تحویل کدهای OTP می‌شوند. ما در پرشیا فاوا مسیر مستقیم اپراتوری با تضمین تحویل زیر ۲ ثانیه پیاده‌سازی کردیم و یک بسته ۵۰k تست اضطراری (Hot Failover) بدون نیاز به تغییر روت فعلی آماده کردیم. خوشحال می‌شم در صورت تمایل، کلید تست ۱۰ دقیقه‌ای رو در اختیارتون بگذارم.»
+              </div>
+              <div style="font-size: 0.72rem; color: var(--text-tertiary);"><b>هدف:</b> باز کردن دیالوگ دونفره فنی بدون لحن تبلیغاتی و شکستن مقاومت سازمانی.</div>
+            </div>
+
+            <!-- Script 3 -->
+            <div style="background: var(--bg-elevated-solid); border: 1px solid var(--glass-border-outer); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #FBBF24;">🛡️ پاسخ به اعتراضات</span>
+                <span class="mono-tabular" style="font-size: 0.72rem; color: var(--text-tertiary);">هندلینگ مقاومت</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.76rem; color: var(--text-secondary);">
+                <div><b>«پنل داریم و راضی هستیم»:</b> هدف ما جایگزینی نیست؛ ما بیمه اضطراری در جیب شما برای قطعی ۱۰ دقیقه‌ای خط اصلی هستیم.</div>
+                <div><b>«تعرفه شما چنده؟»:</b> تعرفه ما رقابتی است، اما ارزش ما در SLA زیر ۲ ثانیه و وب‌هوک واقعی وضعیت دلیوری است.</div>
+                <div><b>«تیم ما وقت تست نداره»:</b> ما SDK آماده دو صفحه‌ای داریم که کل فرآیند تست آن کمتر از ۱۰ دقیقه زمان می‌برد.</div>
+              </div>
+              <div style="font-size: 0.72rem; color: var(--text-tertiary); margin-top: auto;"><b>هدف:</b> رفع ترس از تغییر (Switching Cost) و رفع اصطکاک ورود.</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
 
     <!-- =========================================================================
          TAB 1: 4-COLUMN STANDARD AGILE RETROSPECTIVE BOARD
@@ -1435,12 +1663,29 @@
       const targetPane = document.getElementById('tab-' + tabId);
       if (targetPane) targetPane.classList.add('active');
 
-      const pills = document.querySelectorAll('.tab-pill');
-      if (tabId === 'board') pills[0]?.classList.add('active');
-      else if (tabId === 'mindset') pills[1]?.classList.add('active');
-      else if (tabId === 'matrix') pills[2]?.classList.add('active');
-      else if (tabId === 'playbook') pills[3]?.classList.add('active');
+      const btn = document.getElementById('tab-btn-' + tabId);
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const pills = document.querySelectorAll('.tab-pill');
+        if (tabId === 'doctrine') pills[0]?.classList.add('active');
+        else if (tabId === 'board') pills[1]?.classList.add('active');
+        else if (tabId === 'mindset') pills[2]?.classList.add('active');
+        else if (tabId === 'matrix') pills[3]?.classList.add('active');
+        else if (tabId === 'playbook') pills[4]?.classList.add('active');
+      }
+
+      try {
+        history.replaceState(null, null, '#tab-' + tabId);
+      } catch(e) {}
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#tab-', '').replace('#', '');
+      if (hash && document.getElementById('tab-' + hash)) {
+        switchTab(hash);
+      }
+    });
 
     // CSV Exporter
     function exportMatrixCSV() {
