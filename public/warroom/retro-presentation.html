@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>بورد رتروسپکتیو چابک پایپ‌لاین و بازتنظیم ذهنیت فروش — پرشیا فاوا</title>
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/misc/Farsi-Digits/Vazirmatn-FD-font-face.css" rel="stylesheet" type="text/css" />
+  
+  <style>
+    /* ==========================================================================
+       TACTILE 3D LIQUID GLASS DESIGN SYSTEM (ARIA-DESIGNER SPEC)
+       Zero AI Blue/Purple Gradients · Pure Hardware Monochrome Contrast
+       ========================================================================== */
+    :root {
+      /* Canvas & Hardware Surfaces */
+      --bg-canvas: #ECECEE;
+      --bg-elevated-solid: #FFFFFF;
+      --bg-recessed: #DFDFE3;
+
+      /* 3D Liquid Glass Surfaces */
+      --glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.72) 100%);
+      --glass-bg-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.82) 100%);
+      --glass-dock: linear-gradient(180deg, rgba(250, 250, 252, 0.92) 0%, rgba(242, 242, 245, 0.82) 100%);
+      --glass-blur: blur(32px) saturate(190%);
+
+      /* 3D Rim Lighting & Bevels */
+      --glass-border-outer: rgba(0, 0, 0, 0.12);
+      --glass-bevel-top: inset 0 1.5px 0 0 rgba(255, 255, 255, 1);
+      --glass-bevel-bottom: inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.08);
+      --glass-bevel-sides: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+      --glass-shadow-3d: 
+        0 20px 38px -10px rgba(0, 0, 0, 0.10),
+        0 8px 16px -4px rgba(0, 0, 0, 0.06),
+        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+      /* Typography & Icons */
+      --text-primary: #111113;
+      --text-secondary: #48484D;
+      --text-tertiary: #6E6E75;
+      --icon-primary: #111113;
+      --icon-secondary: #3A3A3F;
+      --icon-badge-bg: rgba(0, 0, 0, 0.06);
+      --icon-badge-border: rgba(0, 0, 0, 0.10);
+
+      /* Crisp Etched Separators */
+      --separator-line: rgba(0, 0, 0, 0.12);
+      --separator-highlight: rgba(255, 255, 255, 0.95);
+
+      /* Tactile 3D Buttons */
+      --btn-primary-bg: linear-gradient(180deg, #2C2C30 0%, #141416 100%);
+      --btn-primary-text: #FFFFFF;
+      --btn-primary-shadow: 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.6),
+        0 6px 14px -2px rgba(0, 0, 0, 0.25),
+        0 2px 4px 0 rgba(0, 0, 0, 0.15);
+
+      --btn-secondary-bg: linear-gradient(180deg, #FFFFFF 0%, #EFEFF2 100%);
+      --btn-secondary-text: #111113;
+      --btn-secondary-border: rgba(0, 0, 0, 0.15);
+      --btn-secondary-shadow: 
+        inset 0 1.5px 0 0 #FFFFFF,
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.06),
+        0 4px 10px -2px rgba(0, 0, 0, 0.08),
+        0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+      /* Semantic Apple Status */
+      --status-success: #1E9E34;
+      --status-warning: #D97706;
+      --status-danger: #DC2626;
+
+      /* Column Accents */
+      --col-win: #1E9E34;
+      --col-fail: #DC2626;
+      --col-root: #D97706;
+      --col-act: #111113;
+    }
+
+    [data-theme="dark"] {
+      /* Canvas & Hardware Surfaces */
+      --bg-canvas: #070709;
+      --bg-elevated-solid: #161619;
+      --bg-recessed: #0E0E11;
+
+      /* 3D Liquid Glass Surfaces */
+      --glass-bg: linear-gradient(180deg, rgba(38, 38, 43, 0.82) 0%, rgba(20, 20, 24, 0.78) 100%);
+      --glass-bg-hover: linear-gradient(180deg, rgba(48, 48, 54, 0.88) 0%, rgba(26, 26, 30, 0.82) 100%);
+      --glass-dock: linear-gradient(180deg, rgba(34, 34, 38, 0.85) 0%, rgba(18, 18, 22, 0.82) 100%);
+      --glass-blur: blur(36px) saturate(180%);
+
+      /* 3D Rim Lighting & Bevels */
+      --glass-border-outer: rgba(255, 255, 255, 0.16);
+      --glass-bevel-top: inset 0 1.5px 0 0 rgba(255, 255, 255, 0.28);
+      --glass-bevel-bottom: inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.7);
+      --glass-bevel-sides: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      --glass-shadow-3d: 
+        0 24px 48px -10px rgba(0, 0, 0, 0.8),
+        0 10px 20px -4px rgba(0, 0, 0, 0.55),
+        0 2px 4px 0 rgba(0, 0, 0, 0.45);
+
+      /* Typography & Icons */
+      --text-primary: #FFFFFF;
+      --text-secondary: #C7C7CC;
+      --text-tertiary: #8E8E93;
+      --icon-primary: #FFFFFF;
+      --icon-secondary: #D1D1D6;
+      --icon-badge-bg: rgba(255, 255, 255, 0.10);
+      --icon-badge-border: rgba(255, 255, 255, 0.20);
+
+      /* Crisp Etched Separators */
+      --separator-line: rgba(255, 255, 255, 0.16);
+      --separator-highlight: rgba(0, 0, 0, 0.8);
+
+      /* Tactile 3D Buttons */
+      --btn-primary-bg: linear-gradient(180deg, #FFFFFF 0%, #E2E2E6 100%);
+      --btn-primary-text: #09090B;
+      --btn-primary-shadow: 
+        inset 0 1.5px 0 0 #FFFFFF,
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.22),
+        0 8px 20px -3px rgba(0, 0, 0, 0.65),
+        0 2px 5px 0 rgba(0, 0, 0, 0.45);
+
+      --btn-secondary-bg: linear-gradient(180deg, #2E2E33 0%, #1C1C20 100%);
+      --btn-secondary-text: #FFFFFF;
+      --btn-secondary-border: rgba(255, 255, 255, 0.18);
+      --btn-secondary-shadow: 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.65),
+        0 6px 14px -2px rgba(0, 0, 0, 0.55);
+
+      /* Semantic Apple Status */
+      --status-success: #32D74B;
+      --status-warning: #FFD60A;
+      --status-danger: #FF453A;
+
+      /* Column Accents */
+      --col-win: #32D74B;
+      --col-fail: #FF453A;
+      --col-root: #FFD60A;
+      --col-act: #FFFFFF;
+    }
+
+    /* Core Resets */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Vazirmatn FD', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+      padding: 24px;
+    }
+
+    .mono-tabular {
+      font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Outer Shell */
+    .app-shell {
+      max-width: 1640px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Liquid Glass Panels */
+    .glass-panel {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border-outer);
+      border-radius: 28px;
+      box-shadow: var(--glass-bevel-top), var(--glass-bevel-bottom), var(--glass-bevel-sides), var(--glass-shadow-3d);
+      transition: all 0.25s ease;
+    }
+
+    /* Liquid Glass Cards */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border-outer);
+      border-radius: 22px;
+      box-shadow: var(--glass-bevel-top), var(--glass-bevel-bottom), var(--glass-bevel-sides), var(--glass-shadow-3d);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glass-bevel-top), var(--glass-bevel-bottom), var(--glass-bevel-sides), 
+        0 20px 40px -8px rgba(0, 0, 0, 0.4), 0 8px 16px -2px rgba(0, 0, 0, 0.25);
+    }
+
+    /* High-Contrast Icon Well */
+    .icon-well {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--icon-badge-border);
+      box-shadow: var(--glass-bevel-top), 0 2px 4px rgba(0, 0, 0, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--icon-primary);
+      flex-shrink: 0;
+    }
+
+    .icon-svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.2px;
+    }
+
+    /* Etched Dividers */
+    .separator-etched {
+      border: 0;
+      height: 1px;
+      background: var(--separator-line);
+      box-shadow: 0 1px 0 0 var(--separator-highlight);
+      margin: 12px 0;
+    }
+
+    .separator-v {
+      width: 1px;
+      height: 18px;
+      background: var(--separator-line);
+      box-shadow: 1px 0 0 0 var(--separator-highlight);
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 8px;
+    }
+
+    /* Tactile Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.8125rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1.5px);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      box-shadow: var(--btn-primary-shadow);
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .btn-secondary {
+      background: var(--btn-secondary-bg);
+      color: var(--btn-secondary-text);
+      border: 1px solid var(--btn-secondary-border);
+      box-shadow: var(--btn-secondary-shadow);
+    }
+
+    .btn-sm {
+      height: 32px;
+      padding: 0 12px;
+      font-size: 0.75rem;
+    }
+
+    .btn-icon-only {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 9999px;
+    }
+
+    /* Status Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--icon-badge-border);
+      color: var(--text-primary);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .badge-dot.success { background-color: var(--status-success); }
+    .badge-dot.warning { background-color: var(--status-warning); }
+    .badge-dot.danger { background-color: var(--status-danger); }
+
+    /* Header Bar */
+    .header-bar {
+      padding: 16px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .header-meta {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* View Switcher */
+    .view-switcher {
+      display: flex;
+      align-items: center;
+      background: var(--bg-recessed);
+      padding: 4px;
+      border-radius: 9999px;
+      border: 1px solid var(--glass-border-outer);
+      gap: 4px;
+    }
+
+    .tab-pill {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .tab-pill.active {
+      background: var(--btn-secondary-bg);
+      color: var(--text-primary);
+      box-shadow: var(--btn-secondary-shadow);
+      border: 1px solid var(--btn-secondary-border);
+    }
+
+    /* KPI Strip */
+    .kpi-strip {
+      padding: 12px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      background: var(--bg-recessed);
+      border-radius: 20px;
+      margin: 12px 18px 18px 18px;
+    }
+
+    .kpi-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .kpi-num {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .kpi-label {
+      font-size: 0.72rem;
+      color: var(--text-tertiary);
+      font-weight: 600;
+    }
+
+    /* 4-Column Agile Retro Grid */
+    .retro-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    @media (max-width: 1300px) {
+      .retro-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .retro-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Retro Column */
+    .retro-column {
+      background: var(--bg-elevated-solid);
+      border: 1px solid var(--glass-border-outer);
+      border-radius: 24px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--glass-shadow-3d);
+      min-height: 580px;
+    }
+
+    .column-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 2px solid;
+    }
+
+    .col-win { border-color: var(--col-win); }
+    .col-fail { border-color: var(--col-fail); }
+    .col-root { border-color: var(--col-root); }
+    .col-act { border-color: var(--col-act); }
+
+    .col-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .col-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .col-badge-count {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--icon-badge-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-secondary);
+    }
+
+    .cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+    }
+
+    /* Card Details */
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-category {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .card-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .card-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 6px 10px;
+      background: var(--bg-recessed);
+      border-radius: 10px;
+      font-size: 0.73rem;
+      color: var(--text-secondary);
+    }
+
+    .bullet-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .bullet-row::before {
+      content: "•";
+      color: var(--text-tertiary);
+      font-weight: bold;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid var(--separator-line);
+      font-size: 0.72rem;
+      color: var(--text-tertiary);
+    }
+
+    .assignee-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .avatar-mini {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--btn-secondary-bg);
+      border: 1px solid var(--glass-border-outer);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    /* Tabs Visibility */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 18px;
+      border: 1px solid var(--glass-border-outer);
+      background: var(--bg-elevated-solid);
+    }
+
+    .agile-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: right;
+      font-size: 0.8rem;
+    }
+
+    .agile-table th {
+      padding: 12px 16px;
+      background: var(--bg-recessed);
+      color: var(--text-secondary);
+      font-weight: 700;
+      border-bottom: 1px solid var(--glass-border-outer);
+      white-space: nowrap;
+    }
+
+    .agile-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--separator-line);
+      color: var(--text-primary);
+      vertical-align: middle;
+    }
+
+    .agile-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .agile-table tr:hover td {
+      background: var(--glass-bg-hover);
+    }
+
+    /* Comparison Mindset Matrix */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .matrix-box {
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid var(--glass-border-outer);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .matrix-box.wrong {
+      background: rgba(220, 38, 38, 0.05);
+      border-color: rgba(220, 38, 38, 0.3);
+    }
+
+    .matrix-box.correct {
+      background: rgba(50, 215, 75, 0.05);
+      border-color: rgba(50, 215, 75, 0.3);
+    }
+
+    .matrix-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--separator-line);
+    }
+
+    .matrix-header h3 {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .matrix-point {
+      display: flex;
+      gap: 10px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .matrix-point-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    /* Playbook Steps */
+    .workflow-step {
+      display: flex;
+      gap: 16px;
+      padding: 16px 20px;
+      border-radius: 18px;
+      background: var(--bg-elevated-solid);
+      border: 1px solid var(--glass-border-outer);
+      margin-bottom: 12px;
+      box-shadow: var(--glass-shadow-3d);
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- Top Master Header -->
+    <header class="glass-panel header-bar">
+      <div class="header-info">
+        <div class="icon-well">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="header-title">رتروسپکتیو چابک پایپ‌لاین و بازتنظیم ذهنیت فروش B2B</h1>
+          <div class="header-meta">
+            <span class="mono-tabular">SPRINT-03 · RETROSPECTIVE & REALIGNMENT</span>
+            <span class="separator-v"></span>
+            <span>راهبری و معماری: <b>مهندس صراف‌زاده</b></span>
+            <span class="separator-v"></span>
+            <span>شرکت پرشیا فاوا گسترش (فِرِستا)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Tab Switcher -->
+        <div class="view-switcher">
+          <button class="tab-pill active" onclick="switchTab('board')">بورد ۴ ستونه رترو</button>
+          <button class="tab-pill" onclick="switchTab('mindset')">ماتریس تغییر ذهنیت (Cold vs Network)</button>
+          <button class="tab-pill" onclick="switchTab('matrix')">ماتریس تعهدات اسپرینت</button>
+          <button class="tab-pill" onclick="switchTab('playbook')">پلی‌بوک اسب تروجان</button>
+        </div>
+
+        <span class="separator-v"></span>
+
+        <!-- Relative Links (Work on all domains & subpaths) -->
+        <a href="project-board.html" class="btn btn-secondary btn-sm" title="بورد جامع پروژه (ClickUp)">
+          <span>📋 بورد جامع پروژه</span>
+        </a>
+        <a href="index.html" class="btn btn-secondary btn-sm" title="اتاق جنگ و بورد اصلی">
+          <span>← اتاق جنگ</span>
+        </a>
+        <a href="c-levels.html" class="btn btn-secondary btn-sm" title="بورد مخاطبان C-Level">
+          <span>👥 بورد مخاطبان</span>
+        </a>
+
+        <!-- Dark/Light Mode -->
+        <button onclick="toggleTheme()" class="btn btn-secondary btn-icon-only" title="تغییر تم">
+          <svg class="icon-svg" id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- KPI & Metrics Strip -->
+    <div class="glass-panel" style="padding: 4px 0 0 0;">
+      <div class="kpi-strip">
+        <div class="kpi-item">
+          <div class="icon-well" style="width:36px; height:36px;">
+            <svg class="icon-svg" style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="kpi-num mono-tabular">۲۰ حساب هدف</div>
+            <div class="kpi-label">۱۰ فاز ۱ (سازمانی) + ۱۰ فاز ۲ (بکر)</div>
+          </div>
+        </div>
+
+        <div class="kpi-item">
+          <div class="icon-well" style="width:36px; height:36px;">
+            <svg class="icon-svg" style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="kpi-num mono-tabular">۵ سرشماره رقیب</div>
+            <div class="kpi-label">مسیرهای انحصاری کشف‌شده جهت رصد</div>
+          </div>
+        </div>
+
+        <div class="kpi-item">
+          <div class="icon-well" style="width:36px; height:36px;">
+            <svg class="icon-svg" style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <polyline points="17 11 19 13 23 9"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="kpi-num mono-tabular">۲ رابط به ازای هر حساب</div>
+            <div class="kpi-label">ورود از لایه DevOps و Product Lead</div>
+          </div>
+        </div>
+
+        <div class="kpi-item">
+          <div class="icon-well" style="width:36px; height:36px;">
+            <svg class="icon-svg" style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div>
+            <div class="kpi-num mono-tabular">۱۰۰٪ ترافیک تراکنشی</div>
+            <div class="kpi-label">تست ۵۰k بدون ریسک و SLA زیر ۲ ثانیه</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         TAB 1: 4-COLUMN STANDARD AGILE RETROSPECTIVE BOARD
+         ========================================================================= -->
+    <main id="tab-board" class="tab-content active">
+      <div class="retro-grid">
+
+        <!-- Column 1: What Went Well (موفقیت‌ها و دستاوردهای قطعی) -->
+        <section class="retro-column col-win">
+          <div class="column-header">
+            <div class="col-title-group">
+              <span class="badge-dot success"></span>
+              <h2 class="col-title">۱. چه کارهایی خوب پیش رفت؟</h2>
+            </div>
+            <span class="col-badge-count mono-tabular">۴</span>
+          </div>
+
+          <div class="cards-container">
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">زیرساخت و پایداری</span>
+                <span class="badge"><span class="badge-dot success"></span> مستقر</span>
+              </div>
+              <h3 class="card-title">استقرار بورد مستقل و ممیزی ۲۰ حساب روی استکهلم</h3>
+              <p class="card-desc">اتاق جنگ و بورد C-Levels بدون نیاز به اینترنت آزاد و فایربیس تحریم‌شده، به صورت مستقل و پایدار با معماری بومی بالا آمد.</p>
+              <div class="card-bullets">
+                <div class="bullet-row">حذف کامل وابستگی به سرورهای تحریم‌شده ابری خارجی</div>
+                <div class="bullet-row">یکپارچه‌سازی دیتابیس JSON مستر با همگام‌سازی بلادرنگ</div>
+              </div>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">ص</span>
+                  <span>مهندس صراف‌زاده (زیرساخت)</span>
+                </div>
+                <span class="mono-tabular">پایداری ۱۰۰٪</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">هوش رقابتی</span>
+                <span class="badge"><span class="badge-dot success"></span> ممیزی شد</span>
+              </div>
+              <h3 class="card-title">کشف سرشماره‌های اختصاصی پیامک رقبا</h3>
+              <p class="card-desc">استخراج سرشماره‌های فعال طلاین (10000200002255)، ترابرنت (90008691)، اوبار (20006600033)، گلدیکا و قسطا.</p>
+              <div class="card-bullets">
+                <div class="bullet-row">امکان مانیتورینگ دقیق تاخیر پیامک‌های رقیب در ساعات پیک نوسان</div>
+                <div class="bullet-row">مستندسازی پاشنه آشیل فنی برای مکالمه مستقیم با سرپرست دواپس</div>
+              </div>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">ف</span>
+                  <span>خانم کوشکشتانی (ممیزی)</span>
+                </div>
+                <span class="mono-tabular">ثبت دیتابیس</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">استراتژی کلان</span>
+                <span class="badge"><span class="badge-dot success"></span> مصوب</span>
+              </div>
+              <h3 class="card-title">تصویب استراتژی تعامل ترکیبی (Hybrid B2B)</h3>
+              <p class="card-desc">صورتجلسه رسمی ۱۱ آبان: ارسال نامه به مدیرعامل همزمان با ارتباط اختصاصی ۲ رابط کلیدی در لینکدین جهت شکستن مقاومت سازمانی.</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">ش</span>
+                  <span>خانم مهندس شهروزی (مدیرعامل)</span>
+                </div>
+                <span class="mono-tabular">مصوبه رسمی</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">مدیریت داده</span>
+                <span class="badge"><span class="badge-dot success"></span> یکپارچه</span>
+              </div>
+              <h3 class="card-title">نجات داده‌های محلی و قراردادهای رسمی</h3>
+              <p class="card-desc">استخراج مستقیم داده‌های ممیزی‌شده، قراردادهای رسمی و کاربرگ‌ها بدون افت حتی یک کلمه و ذخیره پایدار در دیتابیس اصلی.</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">ت</span>
+                  <span>عملیات تیم توسعه بازار</span>
+                </div>
+                <span class="mono-tabular">۳۱٫۷ KB ادغام</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Column 2: What Didn't Go Well (آسیب‌شناسی شکست‌ها و موانع) -->
+        <section class="retro-column col-fail">
+          <div class="column-header">
+            <div class="col-title-group">
+              <span class="badge-dot danger"></span>
+              <h2 class="col-title">۲. آسیب‌شناسی شکست‌ها و موانع</h2>
+            </div>
+            <span class="col-badge-count mono-tabular">۴</span>
+          </div>
+
+          <div class="cards-container">
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">خطای نفوذ</span>
+                <span class="badge"><span class="badge-dot danger"></span> مسدودکننده</span>
+              </div>
+              <h3 class="card-title">عقب‌گرد به مدل بازاریابی سرد (Cold Blast)</h3>
+              <p class="card-desc">ارسال پیام‌های کلیشه‌ای تبلیغاتی به مدیران عامل به جای مکالمه فنی با سرپرستان دواپس و حل نقطه درد واقعی تاخیر OTP.</p>
+              <div class="card-bullets">
+                <div class="bullet-row">اشتباه گرفتن توسعه شبکه با ارسال انبوه پیامک تبلیغاتی</div>
+                <div class="bullet-row">نادیده گرفتن مکالمه فنی دونفره و افتادن در تله بازاریابی سطحی</div>
+              </div>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">⚠️</span>
+                  <span>خطای شناختی تیم فروش</span>
+                </div>
+                <span class="mono-tabular">بازنگری کامل</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">فرسایش سازمانی</span>
+                <span class="badge"><span class="badge-dot danger"></span> زمان‌سوز</span>
+              </div>
+              <h3 class="card-title">اتکای کور به ارسال فیزیکی بدون پیگیری تلفنی ۴۸ ساعته</h3>
+              <p class="card-desc">نامه‌های ارسالی به مدیرعامل در دبیرخانه‌ها خاک می‌خورند چون هیچ پیگیری تلفنی برای ثبت شماره اندیکاتور انجام نشد.</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">⚠️</span>
+                  <span>دبیرخانه‌های اداری</span>
+                </div>
+                <span class="mono-tabular">بایگانی راکد</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">اتلاف بهره‌وری</span>
+                <span class="badge"><span class="badge-dot danger"></span> فعالیت کاذب</span>
+              </div>
+              <h3 class="card-title">توهم کار مفید با اصلاح سطحی لینک‌ها و اکسل</h3>
+              <p class="card-desc">ساعت‌ها وقت صرف رنگ‌آمیزی ستون‌ها و اصلاح لینک‌های لینکدین شد بدون اینکه حتی یک مکالمه واقعی با یک تصمیم‌گیرنده برقرار شود.</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">⚠️</span>
+                  <span>فرآیند اداری</span>
+                </div>
+                <span class="mono-tabular">توقف موقت</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">خطای ساختاری</span>
+                <span class="badge"><span class="badge-dot danger"></span> مانع رشد</span>
+              </div>
+              <h3 class="card-title">توقف در لایه مدیرعامل و نادیده گرفتن لایه میانی</h3>
+              <p class="card-desc">مدیران عامل وقت مکالمه درباره تاخیر پیامک را ندارند؛ تصمیم‌گیرنده واقعی سرپرست فنی، مدیر محصول و مدیر زیرساخت است.</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">⚠️</span>
+                  <span>مسیر دسترسی</span>
+                </div>
+                <span class="mono-tabular">اصلاح مسیر</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Column 3: Root Causes & Methodology (ریشه‌یابی و متدولوژی تروجان) -->
+        <section class="retro-column col-root">
+          <div class="column-header">
+            <div class="col-title-group">
+              <span class="badge-dot warning"></span>
+              <h2 class="col-title">۳. ریشه‌یابی و درس‌آموخته‌ها (متدولوژی تروجان)</h2>
+            </div>
+            <span class="col-badge-count mono-tabular">۴</span>
+          </div>
+
+          <div class="cards-container">
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">اصل اسب تروجان</span>
+                <span class="badge"><span class="badge-dot success"></span> راهکار قطعی</span>
+              </div>
+              <h3 class="card-title">ورود از درگاه فنی تاخیر OTP (نه پیام بازاریابی)</h3>
+              <p class="card-desc">پلتفرم‌های فین‌تک، لندتک و طلا با هر ثانیه تاخیر پیامک OTP مشتری را از دست می‌دهند. راه ورود ارائه روت پشتیبان موازی ظرف ۲ ساعت است.</p>
+              <div class="card-bullets">
+                <div class="bullet-row">گفتگو درباره پایداری ۹۹٫۹٪، نه تخفیف تعرفه</div>
+                <div class="bullet-row">پیشنهاد ۵۰ هزار پیامک تستی رایگان در ساعات پیک بدون ریسک</div>
+              </div>
+              <div class="card-footer">
+                <span class="badge">قانون اول نفوذ</span>
+                <span class="mono-tabular">SLA < 2s</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">فیلترینگ حساب‌ها</span>
+                <span class="badge"><span class="badge-dot warning"></span> قانون ۵ گانه</span>
+              </div>
+              <h3 class="card-title">رعایت سخت‌گیرانه ۵ قانون طلایی فیلتر لیدها</h3>
+              <p class="card-desc">فقط حساب‌هایی در پایپ‌لاین می‌مانند که: شدت پیامک تراکنشی بالا، نرخ رشد بالا، درد تاخیر مشهود و ضریب دسترسی سازمانی داشته باشند.</p>
+              <div class="card-footer">
+                <span class="badge">معیار طلایی</span>
+                <span class="mono-tabular">۵ شاخص</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">درخت تصمیم‌گیری</span>
+                <span class="badge"><span class="badge-dot success"></span> لایه دوم</span>
+              </div>
+              <h3 class="card-title">نفوذ از لایه دوم به جای درگیری با گیت‌کیپرهای مدیرعامل</h3>
+              <p class="card-desc">ارتباط مستقیم با مدیر محصول و سرپرست دواپس کلید معرفی رسمی به C-Level است؛ وقتی فنی تایید کند، امضای مدیرعامل تشریفاتی است.</p>
+              <div class="card-footer">
+                <span class="badge">توسعه شبکه‌ای</span>
+                <span class="mono-tabular">لایه میانی</span>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-top">
+                <span class="card-category">اعتبارسنجی دقیق</span>
+                <span class="badge"><span class="badge-dot success"></span> راستی‌آزمایی</span>
+              </div>
+              <h3 class="card-title">ممیزی حقیقت قبل از هر اقدام اجرایی</h3>
+              <p class="card-desc">تصحیح اشتباهات تاریخی: محمد ظاهری مدیرعامل سندپرداز (نه متقی)، محمد صدوقی ترابرنت (نه رجبی)، تفکیک دقیق پستکس از پست‌بار.</p>
+              <div class="card-footer">
+                <span class="badge">صحت داده‌ها</span>
+                <span class="mono-tabular">۱۰۰٪ راستی‌آزمایی</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Column 4: Action Items & Commitments (تعهدات قطعی و وظایف اسپرینت جاری) -->
+        <section class="retro-column col-act">
+          <div class="column-header">
+            <div class="col-title-group">
+              <span class="badge-dot" style="background-color: var(--col-act);"></span>
+              <h2 class="col-title">۴. اقدامات اصلاحی و تعهدات اسپرینت</h2>
+            </div>
+            <span class="col-badge-count mono-tabular">۴</span>
+          </div>
+
+          <div class="cards-container">
+            <article class="glass-card" style="border-right: 3px solid var(--status-success);">
+              <div class="card-top">
+                <span class="card-category">تعهد فردی</span>
+                <span class="badge"><span class="badge-dot warning"></span> در حال اجرا</span>
+              </div>
+              <h3 class="card-title">شناسایی ۲ رابط لینکدین برای ۲۰ حساب فاز ۱ و ۲</h3>
+              <p class="card-desc">استخراج حداقل ۲ نفر در هر شرکت با سمت‌های مارکتینگ، دولوپر، مدیر محصول یا زیرساخت API.</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">ص</span>
+                  <span>مهندس صراف‌زاده</span>
+                </div>
+                <span class="mono-tabular">مهلت: ۲ روز</span>
+              </div>
+            </article>
+
+            <article class="glass-card" style="border-right: 3px solid var(--status-success);">
+              <div class="card-top">
+                <span class="card-category">تعهد فردی</span>
+                <span class="badge"><span class="badge-dot warning"></span> در حال اجرا</span>
+              </div>
+              <h3 class="card-title">راستی‌آزمایی پروفایل‌ها و پیگیری تلفنی ۴۸ ساعته</h3>
+              <p class="card-desc">سنجش اصالت پروفایل‌ها در واحد IT و پیگیری دبیرخانه‌ای نامه‌های ارسالی (استعلام شماره ثبت نامه).</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">ف</span>
+                  <span>خانم کوشکشتانی</span>
+                </div>
+                <span class="mono-tabular">پروتکل تلفن</span>
+              </div>
+            </article>
+
+            <article class="glass-card" style="border-right: 3px solid var(--status-success);">
+              <div class="card-top">
+                <span class="card-category">تعهد فردی</span>
+                <span class="badge"><span class="badge-dot warning"></span> آماده اقدام</span>
+              </div>
+              <h3 class="card-title">تنظیم پاراگراف استاندارد و ارسال پیام اختصاصی</h3>
+              <p class="card-desc">تنظیم متن قلاب از اکانت شخصی با اشاره به نامه فیزیکی قبلی به مدیرعامل و دعوت به بررسی روت دوم موازی.</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">م</span>
+                  <span>موسی‌پور و خرم‌دل</span>
+                </div>
+                <span class="mono-tabular">هماهنگی فنی</span>
+              </div>
+            </article>
+
+            <article class="glass-card" style="border-right: 3px solid var(--status-success);">
+              <div class="card-top">
+                <span class="card-category">راهبری کلان</span>
+                <span class="badge"><span class="badge-dot success"></span> نظارت فعال</span>
+              </div>
+              <h3 class="card-title">صفر کردن وضعیت‌های Pending و انعقاد تفاهم</h3>
+              <p class="card-desc">پیگیری ارتباطات نصر و جلسات سطح هیئت‌مدیره برای اهداف کلان سندپرداز، چارگون، وال‌گلد و ترابرنت.</p>
+              <div class="card-footer">
+                <div class="assignee-chip">
+                  <span class="avatar-mini">ش</span>
+                  <span>خانم مهندس شهروزی</span>
+                </div>
+                <span class="mono-tabular">اهرم صنفی نصر</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         TAB 2: MINDSET TRANSFORMATION MATRIX (COLD BLAST VS NETWORK DEV)
+         ========================================================================= -->
+    <main id="tab-mindset" class="tab-content">
+      <div class="glass-panel" style="padding: 24px;">
+        <div style="margin-bottom: 20px;">
+          <h2 style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary);">ماتریس بازتنظیم ذهنیت: توسعه کسب‌وکار و سیستم‌ها در برابر بازاریابی کورکورانه</h2>
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px;">کالبدشکافی اشتباه شناختی تیم در عقب‌گرد به مدل بازاریابی پیامکی سنتی و اصول سیستم‌های توسعه شبکه B2B</p>
+        </div>
+
+        <div class="matrix-grid">
+          <!-- Box 1: The Regression (Cold Contacting / Marketing Tunnel Vision) -->
+          <div class="matrix-box wrong">
+            <div class="matrix-header">
+              <span class="matrix-point-icon" style="background: rgba(220, 38, 38, 0.2); color: var(--status-danger);">✕</span>
+              <h3 style="color: var(--status-danger);">اشتباه شناختی: عقب‌گرد به بازاریابی سنتی (Cold Blast)</h3>
+            </div>
+
+            <div class="matrix-point">
+              <div class="matrix-point-icon" style="background: rgba(220, 38, 38, 0.15); color: var(--status-danger);">۱</div>
+              <div>
+                <b>ارسال پیام‌های قالبی تبلیغاتی به مدیران عامل:</b>
+                <p style="color: var(--text-secondary); margin-top: 2px;">ارسال پیامک‌های تبلیغاتی با متن کلیشه‌ای «تعرفه ارزان پیامک» که مدیرعامل بلافاصله بلاک می‌کند.</p>
+              </div>
+            </div>
+
+            <div class="matrix-point">
+              <div class="matrix-point-icon" style="background: rgba(220, 38, 38, 0.15); color: var(--status-danger);">۲</div>
+              <div>
+                <b>توهم پیشرفت با فرمت‌دهی اکسل:</b>
+                <p style="color: var(--text-secondary); margin-top: 2px;">تیم ساعت‌ها روی رنگ کردن ردیف‌های اکسل و جابجایی ستون‌ها وقت می‌گذارد اما حتی یک مکالمه با تصمیم‌گیرنده شکل نمی‌گیرد.</p>
+              </div>
+            </div>
+
+            <div class="matrix-point">
+              <div class="matrix-point-icon" style="background: rgba(220, 38, 38, 0.15); color: var(--status-danger);">۳</div>
+              <div>
+                <b>انتظار منفعلانه پس از ارسال نامه:</b>
+                <p style="color: var(--text-secondary); margin-top: 2px;">نامه کاغذی به دبیرخانه فرستاده می‌شود و بدون تماس تلفنی پیگیری ۴۸ ساعته، در بایگانی دفن می‌شود.</p>
+              </div>
+            </div>
+
+            <div class="matrix-point">
+              <div class="matrix-point-icon" style="background: rgba(220, 38, 38, 0.15); color: var(--status-danger);">۴</div>
+              <div>
+                <b>رقابت فرسایشی روی قیمت پیامک:</b>
+                <p style="color: var(--text-secondary); margin-top: 2px;">تلاش برای جذب مشتری با ادعای ۱۰ ریال تعرفه کمتر؛ در حالی که مشتری برای پایداری و تاخیر حاضر است هزینه بپردازد.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 2: The Solution (Network B2B & Systems Development) -->
+          <div class="matrix-box correct">
+            <div class="matrix-header">
+              <span class="matrix-point-icon" style="background: rgba(50, 215, 75, 0.2); color: var(--status-success);">✓</span>
+              <h3 style="color: var(--status-success);">متدولوژی اصیل: توسعه سیستم‌ها و نفوذ شبکه‌ای (Network B2B)</h3>
+            </div>
+
+            <div class="matrix-point">
+              <div class="matrix-point-icon" style="background: rgba(50, 215, 75, 0.15); color: var(--status-success);">۱</div>
+              <div>
+                <b>اسب تروجان فنی و تاخیر OTP:</b>
+                <p style="color: var(--text-secondary); margin-top: 2px;">ورود از نقطه درد تاخیر کد تایید (OTP) در ساعات پیک نوسان طلا یا بورس با پیشنهاد روت پشتیبان موازی (Hot Failover).</p>
+              </div>
+            </div>
+
+            <div class="matrix-point">
+              <div class="matrix-point-icon" style="background: rgba(50, 215, 75, 0.15); color: var(--status-success);">۲</div>
+              <div>
+                <b>مکالمه دونفره با لایه دوم (DevOps & Product Lead):</b>
+                <p style="color: var(--text-secondary); margin-top: 2px;">هدف قرار دادن مدیر زیرساخت در لینکدین با مستندات فنی و ارائه ۵۰ هزار پیامک تستی بدون ریسک و بدون نیاز به قرارداد اولیه.</p>
+              </div>
+            </div>
+
+            <div class="matrix-point">
+              <div class="matrix-point-icon" style="background: rgba(50, 215, 75, 0.15); color: var(--status-success);">۳</div>
+              <div>
+                <b>پروتکل فعال پیگیری تلفنی ۴۸ ساعته:</b>
+                <p style="color: var(--text-secondary); margin-top: 2px;">تماس با مسئول دفتر مدیرعامل، دریافت شماره ثبت اندیکاتور و اتصال آن به گفتگوی موازی در لینکدین.</p>
+              </div>
+            </div>
+
+            <div class="matrix-point">
+              <div class="matrix-point-icon" style="background: rgba(50, 215, 75, 0.15); color: var(--status-success);">۴</div>
+              <div>
+                <b>فروش راهکار پایداری با SLA زیر ۲ ثانیه:</b>
+                <p style="color: var(--text-secondary); margin-top: 2px;">تضمین تحویل ۹۹٫۹٪ پیامک‌های بانکی و تراکنشی؛ مهندسی راهکاری که سازمان وابسته به آن می‌شود.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         TAB 3: AGILE COMMITMENT & EXECUTION MATRIX
+         ========================================================================= -->
+    <main id="tab-matrix" class="tab-content">
+      <div class="glass-panel" style="padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h2 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary);">ماتریس رسمی تعهدات و تفکیک وظایف اسپرینت ۳</h2>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">برنامه اقدام مصوب هیئت‌مدیره با مسئولیت‌های شفاف فردی و سنجه‌های خروجی ملموس</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="exportMatrixCSV()">📥 خروجی اکسل (CSV)</button>
+        </div>
+
+        <div class="table-container">
+          <table class="agile-table">
+            <thead>
+              <tr>
+                <th>عضو تیم و سمت</th>
+                <th>عنوان تعهد اجرایی</th>
+                <th>ورودی موردنیاز (Input)</th>
+                <th>خروجی ملموس (Deliverable)</th>
+                <th>مهلت زمانی (SLA)</th>
+                <th>وضعیت پیشرفت</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>جناب آقای صراف‌زاده</b><br><span style="color:var(--text-tertiary); font-size:0.75rem;">معماری سیستم و مدیریت پروژه</span></td>
+                <td>استخراج ۲ رابط کلیدی در لینکدین برای ۲۰ حساب</td>
+                <td>دیتابیس ممیزی‌شده حساب‌های هدف</td>
+                <td>شناسه‌های معتبر مدیران محصول و دواپس</td>
+                <td class="mono-tabular">۲ روز کاری</td>
+                <td><span class="badge"><span class="badge-dot warning"></span> در حال انجام</span></td>
+              </tr>
+              <tr>
+                <td><b>جناب آقای صراف‌زاده</b><br><span style="color:var(--text-tertiary); font-size:0.75rem;">معماری سیستم و مدیریت پروژه</span></td>
+                <td>فرمولاسیون استراتژی ملایم Hot Failover فاز ۲</td>
+                <td>پایپ‌لاین ۱۰ حساب بکر سازمانی</td>
+                <td>پکیج پیشنهادی ۵۰k تست بدون تعهد</td>
+                <td class="mono-tabular">تکمیل شد</td>
+                <td><span class="badge"><span class="badge-dot success"></span> مستقر در دیتابیس</span></td>
+              </tr>
+              <tr>
+                <td><b>سرکار خانم فائزه کوشکشتانی</b><br><span style="color:var(--text-tertiary); font-size:0.75rem;">واحد IT و ممیزی داده</span></td>
+                <td>راستی‌آزمایی اصالت حساب‌ها و درگاه‌های فعال</td>
+                <td>فهرست دریافتی از صراف‌زاده</td>
+                <td>تاییدیه فنی حساب‌های معتبر لینکدین</td>
+                <td class="mono-tabular">۲۴ ساعت</td>
+                <td><span class="badge"><span class="badge-dot warning"></span> در نوبت تحویل</span></td>
+              </tr>
+              <tr>
+                <td><b>سرکار خانم فائزه کوشکشتانی</b><br><span style="color:var(--text-tertiary); font-size:0.75rem;">واحد IT و ممیزی داده</span></td>
+                <td>پیگیری تلفنی نامه‌ها در دبیرخانه‌های هدف</td>
+                <td>نامه ارسالی و شماره تماس دفاتر مدیریت</td>
+                <td>دریافت شماره اندیکاتور و نام ارجاع‌شونده</td>
+                <td class="mono-tabular">۴۸ ساعت</td>
+                <td><span class="badge"><span class="badge-dot success"></span> فعال (طلاین/قسطا)</span></td>
+              </tr>
+              <tr>
+                <td><b>سرکار خانم خرم‌دل</b><br><span style="color:var(--text-tertiary); font-size:0.75rem;">عملیات و پشتیبانی</span></td>
+                <td>تطبیق فنی و تدوین بسته‌های نامه‌نگاری رابطین</td>
+                <td>نام رابطین تاییدشده</td>
+                <td>نامه‌های رسمی آماده به همراه پیوست‌ها</td>
+                <td class="mono-tabular">۴۸ ساعت</td>
+                <td><span class="badge"><span class="badge-dot success"></span> ۵ نامه تنظیم شد</span></td>
+              </tr>
+              <tr>
+                <td><b>سرکار خانم مریم موسی‌پور</b><br><span style="color:var(--text-tertiary); font-size:0.75rem;">معاونت اجرایی</span></td>
+                <td>ارسال پیام‌های قلاب (Hook) و مذاکره اولیه</td>
+                <td>پاراگراف استاندارد و اکانت معتبر</td>
+                <td>برقراری دیالوگ اولیه و ارائه پیشنهاد تست</td>
+                <td class="mono-tabular">پیوسته</td>
+                <td><span class="badge"><span class="badge-dot warning"></span> در حال اجرا</span></td>
+              </tr>
+              <tr>
+                <td><b>سرکار خانم مهندس شهروزی</b><br><span style="color:var(--text-tertiary); font-size:0.75rem;">مدیرعامل</span></td>
+                <td>ارتباط مستقیم هم‌رده و اهرم صنفی نصر</td>
+                <td>فهرست C-Level و اعضای نصر (سندپرداز/چارگون)</td>
+                <td>تعیین جلسه دوجانبه در سطح هیئت‌مدیره</td>
+                <td class="mono-tabular">هفتگی</td>
+                <td><span class="badge"><span class="badge-dot success"></span> ارتباط نصر فعال</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         TAB 4: TROJAN HORSE INFILTRATION PLAYBOOK
+         ========================================================================= -->
+    <main id="tab-playbook" class="tab-content">
+      <div class="glass-panel" style="padding: 24px;">
+        <h2 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin-bottom: 6px;">پلی‌بوک نفوذ سازمانی با استراتژی اسب تروجان (Trojan Playbook)</h2>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 20px;">چهار گام حیاتی برای تبدیل تاخیرهای ثانیه‌ای پیامک رقیب به قراردادهای پایدار سازمانی</p>
+
+        <div class="workflow-step">
+          <div class="step-number mono-tabular">۱</div>
+          <div>
+            <h3 style="font-size: 0.92rem; font-weight: 800; color: var(--text-primary);">رصد و ثبت مستند پاشنه آشیل فنی (SLA Breach Hunting)</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">مانیتورینگ اختلالات سرشماره‌های رقیب در زمان اوج سفارش (پیک نوسان طلا، سررسید اقساط لندتک، سالن اعلام بار جاده‌ای). ثبت تاخیرهای بالای ۵ ثانیه و فیلترهای بلک‌لیست اپراتوری.</p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="step-number mono-tabular">۲</div>
+          <div>
+            <h3 style="font-size: 0.92rem; font-weight: 800; color: var(--text-primary);">ارسال پیام قلاب هم‌دردی به لایه دوم سازمان (DevOps / Tech Lead)</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">پیام اختصاصی در لینکدین بدون تبلیغ: <i>«درود، متوجه شدیم در ساعات پیک ظهر دیروز، تحویل کدهای OTP با اختلال تجمیع‌کننده مواجه بوده است. ما مسیر مستقیم اپراتوری با وب‌هوک وضعیت قطعی را فراهم کرده‌ایم...»</i></p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="step-number mono-tabular">۳</div>
+          <div>
+            <h3 style="font-size: 0.92rem; font-weight: 800; color: var(--text-primary);">پیشنهاد راه‌اندازی روت دوم موازی ظرف ۲ ساعت (Zero Friction Trial)</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">بدون نیاز به تغییر روت اصلی شرکت؛ تست ۵۰k پیامک رایگان به عنوان روت پشتیبان موازی (Hot Failover) تا مدیر فنی شخصاً پایداری و تاخیر زیر ۲ ثانیه را تایید کند.</p>
+          </div>
+        </div>
+
+        <div class="workflow-step">
+          <div class="step-number mono-tabular">۴</div>
+          <div>
+            <h3 style="font-size: 0.92rem; font-weight: 800; color: var(--text-primary);">ارجاع و پرزنت رسمی به C-Suite توسط خود تیم فنی مشتری</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">وقتی مدیر فنی پایداری روت را دید، خودش در جلسه هفتگی با مدیرعامل می‌گوید: «پرشیا فاوا تست شد و مشکل تاخیر پیامک را حل کرد». در این مرحله نامه رسمی و پیگیری اداری وارد کارتابل امضا می‌شود.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Interactive Logic (Pure Vanilla JS) -->
+  <script>
+    // Theme Manager
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'dark';
+      const target = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', target);
+      localStorage.setItem('pfg_retro_theme', target);
+    }
+
+    (function initTheme() {
+      const saved = localStorage.getItem('pfg_retro_theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    })();
+
+    // Tab Switcher
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-pill').forEach(el => el.classList.remove('active'));
+
+      const targetPane = document.getElementById('tab-' + tabId);
+      if (targetPane) targetPane.classList.add('active');
+
+      const pills = document.querySelectorAll('.tab-pill');
+      if (tabId === 'board') pills[0]?.classList.add('active');
+      else if (tabId === 'mindset') pills[1]?.classList.add('active');
+      else if (tabId === 'matrix') pills[2]?.classList.add('active');
+      else if (tabId === 'playbook') pills[3]?.classList.add('active');
+    }
+
+    // CSV Exporter
+    function exportMatrixCSV() {
+      const rows = [
+        ["عضو تیم", "عنوان تعهد", "ورودی", "خروجی", "SLA", "وضعیت"],
+        ["آقای صراف‌زاده", "استخراج ۲ رابط لینکدین برای ۲۰ حساب", "دیتابیس ممیزی‌شده", "شناسه لینکدین رابطین", "۲ روز", "در حال انجام"],
+        ["آقای صراف‌زاده", "استراتژی ملایم Hot Failover فاز ۲", "پایپ‌لاین ۱۰ حساب بکر", "پکیج تست ۵۰k بدون تعهد", "تکمیل", "مستقر در دیتابیس"],
+        ["خانم کوشکشتانی", "راستی‌آزمایی پروفایل‌ها و درگاه‌ها", "فهرست دریافتی", "تاییدیه فنی حساب‌ها", "۲۴ ساعت", "در نوبت"],
+        ["خانم کوشکشتانی", "پیگیری تلفنی نامه‌ها در دبیرخانه‌ها", "نامه‌ها و تماس دفاتر", "شماره اندیکاتور", "۴۸ ساعت", "فعال"],
+        ["خانم خرم‌دل", "تنظیم بسته‌های نامه‌نگاری رابطین", "نام رابطین", "نامه‌های رسمی آماده", "۴۸ ساعت", "۵ نامه آماده شد"],
+        ["خانم موسی‌پور", "ارسال پیام‌های قلاب و مذاکره", "پاراگراف استاندارد", "دیالوگ اولیه و پیشنهاد تست", "پیوسته", "در حال اجرا"],
+        ["خانم مهندس شهروزی", "ارتباط صنفی نصر با C-Suite", "فهرست نصر", "جلسه دوجانبه هیئت‌مدیره", "هفتگی", "فعال"]
+      ];
+      const csvContent = "\uFEFF" + rows.map(e => e.map(cell => `"${cell}"`).join(",")).join("\n");
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `PFG_Sprint3_Commitment_Matrix.csv`;
+      a.click();
+    }
+  </script>
+</body>
+</html>

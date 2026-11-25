@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>بورد جامع پروژه و توسعه بازار (ClickUp Enterprise) — پرشیا فاوا</title>
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/misc/Farsi-Digits/Vazirmatn-FD-font-face.css" rel="stylesheet" type="text/css" />
+  
+  <style>
+    /* ==========================================================================
+       TACTILE 3D LIQUID GLASS DESIGN SYSTEM (ARIA-DESIGNER SPEC)
+       Pure Modern Vanilla CSS Tokens · Zero AI Blue/Purple Gradients
+       ========================================================================== */
+    :root {
+      --bg-canvas: #ECECEE;
+      --bg-elevated-solid: #FFFFFF;
+      --bg-recessed: #DFDFE3;
+
+      --glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.68) 100%);
+      --glass-bg-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.78) 100%);
+      --glass-dock: linear-gradient(180deg, rgba(250, 250, 252, 0.90) 0%, rgba(242, 242, 245, 0.78) 100%);
+      --glass-blur: blur(32px) saturate(190%);
+
+      --glass-border-outer: rgba(0, 0, 0, 0.14);
+      --glass-bevel-top: inset 0 1.5px 0 0 rgba(255, 255, 255, 1);
+      --glass-bevel-bottom: inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.08);
+      --glass-bevel-sides: inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+      --glass-shadow-3d: 
+        0 20px 38px -10px rgba(0, 0, 0, 0.12),
+        0 8px 16px -4px rgba(0, 0, 0, 0.07),
+        0 1px 2px 0 rgba(0, 0, 0, 0.08);
+
+      --text-primary: #111113;
+      --text-secondary: #48484D;
+      --text-tertiary: #6E6E75;
+      --icon-primary: #111113;
+      --icon-secondary: #3A3A3F;
+      --icon-badge-bg: rgba(0, 0, 0, 0.07);
+      --icon-badge-border: rgba(0, 0, 0, 0.12);
+
+      --separator-line: rgba(0, 0, 0, 0.13);
+      --separator-highlight: rgba(255, 255, 255, 0.9);
+
+      --btn-primary-bg: linear-gradient(180deg, #2C2C30 0%, #141416 100%);
+      --btn-primary-text: #FFFFFF;
+      --btn-primary-shadow: 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.6),
+        0 6px 14px -2px rgba(0, 0, 0, 0.28),
+        0 2px 4px 0 rgba(0, 0, 0, 0.18);
+
+      --btn-secondary-bg: linear-gradient(180deg, #FFFFFF 0%, #EFEFF2 100%);
+      --btn-secondary-text: #111113;
+      --btn-secondary-border: rgba(0, 0, 0, 0.16);
+      --btn-secondary-shadow: 
+        inset 0 1.5px 0 0 #FFFFFF,
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.08),
+        0 4px 10px -2px rgba(0, 0, 0, 0.09),
+        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+      --input-bg: rgba(235, 235, 240, 0.75);
+      --input-border: rgba(0, 0, 0, 0.18);
+      --input-shadow-recessed: inset 0 2px 4px rgba(0, 0, 0, 0.07), 0 1px 0 rgba(255, 255, 255, 0.85);
+      --input-focus-border: #111113;
+      --input-focus-ring: 0 0 0 3px rgba(17, 17, 19, 0.14);
+
+      --status-success: #1E9E34;
+      --status-warning: #D97706;
+      --status-danger: #DC2626;
+
+      --col-backlog: #8E8E93;
+      --col-todo: #0284C7;
+      --col-progress: #D97706;
+      --col-review: #7C3AED;
+      --col-done: #1E9E34;
+    }
+
+    [data-theme="dark"] {
+      --bg-canvas: #070709;
+      --bg-elevated-solid: #18181B;
+      --bg-recessed: #0F0F12;
+
+      --glass-bg: linear-gradient(180deg, rgba(44, 44, 49, 0.78) 0%, rgba(24, 24, 28, 0.72) 100%);
+      --glass-bg-hover: linear-gradient(180deg, rgba(54, 54, 60, 0.84) 0%, rgba(30, 30, 35, 0.78) 100%);
+      --glass-dock: linear-gradient(180deg, rgba(40, 40, 45, 0.85) 0%, rgba(20, 20, 24, 0.80) 100%);
+      --glass-blur: blur(36px) saturate(180%);
+
+      --glass-border-outer: rgba(255, 255, 255, 0.18);
+      --glass-bevel-top: inset 0 1.5px 0 0 rgba(255, 255, 255, 0.32);
+      --glass-bevel-bottom: inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.65);
+      --glass-bevel-sides: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      --glass-shadow-3d: 
+        0 24px 48px -10px rgba(0, 0, 0, 0.78),
+        0 10px 20px -4px rgba(0, 0, 0, 0.55),
+        0 2px 4px 0 rgba(0, 0, 0, 0.45);
+
+      --text-primary: #FFFFFF;
+      --text-secondary: #C7C7CC;
+      --text-tertiary: #8E8E93;
+      --icon-primary: #FFFFFF;
+      --icon-secondary: #D1D1D6;
+      --icon-badge-bg: rgba(255, 255, 255, 0.12);
+      --icon-badge-border: rgba(255, 255, 255, 0.22);
+
+      --separator-line: rgba(255, 255, 255, 0.18);
+      --separator-highlight: rgba(0, 0, 0, 0.75);
+
+      --btn-primary-bg: linear-gradient(180deg, #FFFFFF 0%, #E2E2E6 100%);
+      --btn-primary-text: #09090B;
+      --btn-primary-shadow: 
+        inset 0 1.5px 0 0 #FFFFFF,
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.22),
+        0 8px 20px -3px rgba(0, 0, 0, 0.65),
+        0 2px 5px 0 rgba(0, 0, 0, 0.45);
+
+      --btn-secondary-bg: linear-gradient(180deg, #323237 0%, #202024 100%);
+      --btn-secondary-text: #FFFFFF;
+      --btn-secondary-border: rgba(255, 255, 255, 0.20);
+      --btn-secondary-shadow: 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.24),
+        inset 0 -1.5px 0 0 rgba(0, 0, 0, 0.65),
+        0 6px 14px -2px rgba(0, 0, 0, 0.55);
+
+      --input-bg: rgba(12, 12, 15, 0.78);
+      --input-border: rgba(255, 255, 255, 0.20);
+      --input-shadow-recessed: inset 0 2px 5px rgba(0, 0, 0, 0.65), 0 1px 0 rgba(255, 255, 255, 0.12);
+      --input-focus-border: #FFFFFF;
+      --input-focus-ring: 0 0 0 3px rgba(255, 255, 255, 0.18);
+
+      --status-success: #32D74B;
+      --status-warning: #FFD60A;
+      --status-danger: #FF453A;
+
+      --col-backlog: #8E8E93;
+      --col-todo: #38BDF8;
+      --col-progress: #FFD60A;
+      --col-review: #A78BFA;
+      --col-done: #32D74B;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Vazirmatn FD', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    .mono-num {
+      font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Core Layout Shell */
+    .board-app {
+      max-width: 1720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Tactile 3D Glass Surface */
+    .glass-surface {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border-outer);
+      border-radius: 28px;
+      box-shadow: var(--glass-bevel-top), var(--glass-bevel-bottom), var(--glass-bevel-sides), var(--glass-shadow-3d);
+    }
+
+    /* Header & Control Bar */
+    .board-header {
+      padding: 16px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .project-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon-well {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--icon-badge-border);
+      box-shadow: var(--glass-bevel-top), 0 2px 4px rgba(0, 0, 0, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--icon-primary);
+      flex-shrink: 0;
+    }
+
+    .brand-titles h1 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .brand-titles p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Buttons & Interactive Elements */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.84rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1.5px);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.975);
+    }
+
+    .btn-primary {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      box-shadow: var(--btn-primary-shadow);
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .btn-secondary {
+      background: var(--btn-secondary-bg);
+      color: var(--btn-secondary-text);
+      border: 1px solid var(--btn-secondary-border);
+      box-shadow: var(--btn-secondary-shadow);
+    }
+
+    .btn-sm {
+      height: 32px;
+      padding: 0 12px;
+      font-size: 0.78rem;
+    }
+
+    .btn-icon-only {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 9999px;
+    }
+
+    /* Sync Live Badge */
+    .sync-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--icon-badge-border);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .sync-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--status-success);
+      box-shadow: 0 0 8px var(--status-success);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Navigation & View Switcher */
+    .view-nav {
+      display: flex;
+      align-items: center;
+      background: var(--bg-recessed);
+      padding: 4px;
+      border-radius: 9999px;
+      border: 1px solid var(--glass-border-outer);
+      gap: 4px;
+    }
+
+    .nav-pill {
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .nav-pill.active {
+      background: var(--btn-secondary-bg);
+      color: var(--text-primary);
+      box-shadow: var(--btn-secondary-shadow);
+      border: 1px solid var(--btn-secondary-border);
+    }
+
+    /* Sub-header Filter Toolbar */
+    .filter-bar {
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--bg-recessed);
+      border-radius: 20px;
+      margin: 0 16px 16px 16px;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      height: 36px;
+      width: 240px;
+      padding: 0 12px;
+      border-radius: 10px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.82rem;
+      outline: none;
+    }
+
+    .select-recessed {
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 10px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.82rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Etched Dividers */
+    .separator-etched {
+      border: 0;
+      height: 1px;
+      background: var(--separator-line);
+      box-shadow: 0 1px 0 0 var(--separator-highlight);
+      margin: 12px 0;
+    }
+
+    .separator-v {
+      width: 1px;
+      height: 24px;
+      background: var(--separator-line);
+      box-shadow: 1px 0 0 0 var(--separator-highlight);
+      display: inline-block;
+    }
+
+    /* =========================================================================
+       1. KANBAN BOARD VIEW (CLICKUP STYLE)
+       ========================================================================= */
+    .kanban-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(290px, 1fr));
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      align-items: start;
+    }
+
+    .kanban-column {
+      background: var(--bg-elevated-solid);
+      border: 1px solid var(--glass-border-outer);
+      border-radius: 22px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--glass-shadow-3d);
+      min-height: 650px;
+    }
+
+    .column-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 2px solid;
+    }
+
+    .col-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .col-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .col-header-text {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .col-count {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--icon-badge-border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-grow: 1;
+    }
+
+    /* Tactile ClickUp Card */
+    .task-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border-outer);
+      border-radius: 16px;
+      box-shadow: var(--glass-bevel-top), var(--glass-bevel-bottom), var(--glass-bevel-sides), 0 4px 12px rgba(0,0,0,0.06);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .task-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glass-bevel-top), var(--glass-bevel-bottom), var(--glass-bevel-sides), 0 14px 28px -4px rgba(0,0,0,0.25);
+    }
+
+    .card-top-tags {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .badge-tier {
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--icon-badge-border);
+      color: var(--text-secondary);
+    }
+
+    .priority-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .priority-chip.urgent { color: var(--status-danger); }
+    .priority-chip.high { color: var(--status-warning); }
+    .priority-chip.normal { color: var(--status-success); }
+    .priority-chip.low { color: var(--text-tertiary); }
+
+    .card-heading {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+
+    .card-subtext {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-metadata-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+      padding-top: 6px;
+      border-top: 1px solid var(--separator-line);
+    }
+
+    .meta-field span:first-child {
+      color: var(--text-tertiary);
+    }
+    .meta-field span:last-child {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px solid var(--separator-line);
+    }
+
+    .assignee-avatar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .avatar-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--glass-border-outer);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .card-actions-quick {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-step {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--icon-badge-bg);
+      border: 1px solid var(--icon-badge-border);
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-step:hover {
+      background: var(--btn-secondary-bg);
+      transform: scale(1.1);
+    }
+
+    /* Inline Card Adder */
+    .col-adder {
+      background: var(--bg-recessed);
+      border: 1px dashed var(--glass-border-outer);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .col-adder input {
+      width: 100%;
+      height: 32px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      padding: 0 8px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.8rem;
+      outline: none;
+    }
+
+    /* =========================================================================
+       2. LIST / TABLE VIEW (CLICKUP SPREADSHEET STYLE)
+       ========================================================================= */
+    .table-card-wrap {
+      overflow-x: auto;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border-outer);
+      background: var(--bg-elevated-solid);
+    }
+
+    .clickup-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: right;
+      font-size: 0.82rem;
+    }
+
+    .clickup-table th {
+      padding: 12px 16px;
+      background: var(--bg-recessed);
+      color: var(--text-secondary);
+      font-weight: 700;
+      border-bottom: 1px solid var(--separator-line);
+      white-space: nowrap;
+    }
+
+    .clickup-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--separator-line);
+      color: var(--text-primary);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .clickup-table tr:hover {
+      background: var(--icon-badge-bg);
+    }
+
+    /* =========================================================================
+       3. TIMELINE & GANTT VIEW
+       ========================================================================= */
+    .gantt-board {
+      background: var(--bg-elevated-solid);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border-outer);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--separator-line);
+    }
+
+    .timeline-bar-wrap {
+      background: var(--bg-recessed);
+      height: 24px;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-progress {
+      height: 100%;
+      border-radius: 6px;
+      background: var(--btn-primary-bg);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-left: 8px;
+      color: var(--btn-primary-text);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    /* =========================================================================
+       4. TEAM WORKLOAD VIEW
+       ========================================================================= */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .team-card {
+      background: var(--bg-elevated-solid);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border-outer);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--glass-shadow-3d);
+    }
+
+    .member-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .member-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    /* Views visibility */
+    .view-pane {
+      display: none;
+    }
+    .view-pane.active {
+      display: block;
+    }
+
+    /* Edit Drawer / Detail Panel (Right Side Slide-In) */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      justify-content: flex-end;
+    }
+
+    .drawer-overlay.active {
+      display: flex;
+    }
+
+    .drawer-panel {
+      width: 580px;
+      max-width: 95vw;
+      height: 100vh;
+      background: var(--bg-elevated-solid);
+      border-left: 1px solid var(--glass-border-outer);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: -20px 0 50px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="board-app">
+
+    <!-- Top Master Glass Header -->
+    <header class="glass-surface board-header">
+      <div class="project-brand">
+        <div class="brand-icon-well">
+          <svg style="width:24px; height:24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <line x1="9" y1="9" x2="21" y2="9"></line>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <h1>بورد جامع مدیریت پروژه و پایپ‌لاین فروش B2B</h1>
+          <p>
+            <span>پرشیا فاوا گسترش (فِرِستا)</span>
+            <span class="separator-v"></span>
+            <span>معماری کلیک‌آپ سازمانی</span>
+            <span class="separator-v"></span>
+            <span id="accountCountLabel" class="mono-num">۲۰ حساب</span>
+          </p>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <!-- Sync Status Indicator -->
+        <div class="sync-badge" id="syncStatusBadge">
+          <span class="sync-pulse" id="syncDot"></span>
+          <span id="syncText">همگام با سرور و ابر (Synced)</span>
+        </div>
+
+        <!-- Manual Save Button -->
+        <button class="btn btn-primary btn-sm" onclick="forceSyncToCloud()" title="ذخیره آنی تغییرات در سرور استکهلم و دیتابیس ابری">
+          <svg style="width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+            <polyline points="7 3 7 8 15 8"></polyline>
+          </svg>
+          <span>ذخیره در سرور</span>
+        </button>
+
+        <!-- Direct Nav Links -->
+        <a href="index.html" class="btn btn-secondary btn-sm" title="اتاق جنگ اصلی">
+          <span>اتاق جنگ</span>
+        </a>
+        <a href="retro-presentation.html" class="btn btn-secondary btn-sm" title="بورد رتروسپکتیو">
+          <span>بورد رترو</span>
+        </a>
+        <a href="c-levels.html" class="btn btn-secondary btn-sm" title="بورد مخاطبان C-Level">
+          <span>👥 مخاطبان</span>
+        </a>
+
+        <!-- Dark/Light Mode -->
+        <button onclick="toggleTheme()" class="btn btn-secondary btn-icon-only" title="تغییر تم">
+          <svg style="width:16px; height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Navigation Views & Filter Strip -->
+    <div class="glass-surface" style="border-radius: 22px; padding: 12px 18px;">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
+        <!-- View Mode Switcher (ClickUp Tabs) -->
+        <div class="view-nav">
+          <button class="nav-pill active" onclick="switchView('kanban')">📋 بورد کانبان (Board)</button>
+          <button class="nav-pill" onclick="switchView('table')">📑 جدول تفصیلی (List)</button>
+          <button class="nav-pill" onclick="switchView('gantt')">📊 زمان‌بندی و گانت (Timeline)</button>
+          <button class="nav-pill" onclick="switchView('team')">👥 توزیع کار تیم (Workload)</button>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="filter-group">
+          <input type="text" id="globalSearchInput" class="search-input" placeholder="جستجوی سریع شرکت، مدیر یا سرشماره..." oninput="applyFilters()" />
+          
+          <select id="tierFilterSelect" class="select-recessed" onchange="applyFilters()">
+            <option value="all">تمام سطوح (Tier A & B)</option>
+            <option value="Tier A">فقط Tier A (استراتژیک)</option>
+            <option value="Tier B">فقط Tier B (فوری)</option>
+          </select>
+
+          <select id="assigneeFilterSelect" class="select-recessed" onchange="applyFilters()">
+            <option value="all">همه اعضای تیم</option>
+            <option value="صراف‌زاده">آقای صراف‌زاده</option>
+            <option value="فائزه">خانم فائزه کوشکشتانی</option>
+            <option value="موسی‌پور">خانم موسی‌پور</option>
+            <option value="خرم‌دل">خانم خرم‌دل</option>
+            <option value="شهروزی">خانم مهندس شهروزی</option>
+          </select>
+
+          <button class="btn btn-secondary btn-sm" onclick="exportBackupJSON()" title="دانلود پشتیبان کامل JSON">
+            <span>📥 پشتیبان JSON</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 1: KANBAN BOARD (CLICKUP STYLE)
+         ========================================================================= -->
+    <main id="view-kanban" class="view-pane active">
+      <div class="kanban-grid">
+
+        <!-- Column 1: Backlog / Prospect -->
+        <section class="kanban-column" id="col-backlog">
+          <div class="column-top" style="border-color: var(--col-backlog);">
+            <div class="col-title-wrap">
+              <span class="col-indicator" style="background: var(--col-backlog);"></span>
+              <h2 class="col-header-text">بانک لیدها و نیازمندی‌ها</h2>
+            </div>
+            <span class="col-count mono-num" id="count-prospect">0</span>
+          </div>
+
+          <div class="cards-stack" id="stack-prospect"></div>
+
+          <div class="col-adder">
+            <input type="text" placeholder="+ افزودن کارت لید جدید..." id="adder-prospect" onkeydown="handleAdderKey(event, 'prospect')" />
+            <div style="display:flex; justify-content:flex-end;">
+              <button class="btn btn-primary btn-sm" onclick="quickAddCard('prospect')">افزودن</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Column 2: Drafting / To Do -->
+        <section class="kanban-column" id="col-drafting">
+          <div class="column-top" style="border-color: var(--col-todo);">
+            <div class="col-title-wrap">
+              <span class="col-indicator" style="background: var(--col-todo);"></span>
+              <h2 class="col-header-text">آماده‌سازی و تدوین نامه</h2>
+            </div>
+            <span class="col-count mono-num" id="count-drafting">0</span>
+          </div>
+
+          <div class="cards-stack" id="stack-drafting"></div>
+
+          <div class="col-adder">
+            <input type="text" placeholder="+ افزودن کار آماده‌سازی..." id="adder-drafting" onkeydown="handleAdderKey(event, 'drafting')" />
+            <div style="display:flex; justify-content:flex-end;">
+              <button class="btn btn-primary btn-sm" onclick="quickAddCard('drafting')">افزودن</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Column 3: Outreach / In Progress -->
+        <section class="kanban-column" id="col-outreach">
+          <div class="column-top" style="border-color: var(--col-progress);">
+            <div class="col-title-wrap">
+              <span class="col-indicator" style="background: var(--col-progress);"></span>
+              <h2 class="col-header-text">پیگیری و ارتباط فعال</h2>
+            </div>
+            <span class="col-count mono-num" id="count-outreach">0</span>
+          </div>
+
+          <div class="cards-stack" id="stack-outreach"></div>
+
+          <div class="col-adder">
+            <input type="text" placeholder="+ افزودن اقدام میدانی..." id="adder-outreach" onkeydown="handleAdderKey(event, 'outreach')" />
+            <div style="display:flex; justify-content:flex-end;">
+              <button class="btn btn-primary btn-sm" onclick="quickAddCard('outreach')">افزودن</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Column 4: Review / Negotiation -->
+        <section class="kanban-column" id="col-review">
+          <div class="column-top" style="border-color: var(--col-review);">
+            <div class="col-title-wrap">
+              <span class="col-indicator" style="background: var(--col-review);"></span>
+              <h2 class="col-header-text">مذاکره و پایلوت تستی</h2>
+            </div>
+            <span class="col-count mono-num" id="count-review">0</span>
+          </div>
+
+          <div class="cards-stack" id="stack-review"></div>
+
+          <div class="col-adder">
+            <input type="text" placeholder="+ ثبت پرونده در حال تست..." id="adder-review" onkeydown="handleAdderKey(event, 'review')" />
+            <div style="display:flex; justify-content:flex-end;">
+              <button class="btn btn-primary btn-sm" onclick="quickAddCard('review')">افزودن</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Column 5: Done / Closed -->
+        <section class="kanban-column" id="col-done">
+          <div class="column-top" style="border-color: var(--col-done);">
+            <div class="col-title-wrap">
+              <span class="col-indicator" style="background: var(--col-done);"></span>
+              <h2 class="col-header-text">قرارداد و نهایی‌شده</h2>
+            </div>
+            <span class="col-count mono-num" id="count-done">0</span>
+          </div>
+
+          <div class="cards-stack" id="stack-done"></div>
+
+          <div class="col-adder">
+            <input type="text" placeholder="+ ثبت قرارداد نهایی..." id="adder-done" onkeydown="handleAdderKey(event, 'done')" />
+            <div style="display:flex; justify-content:flex-end;">
+              <button class="btn btn-primary btn-sm" onclick="quickAddCard('done')">افزودن</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         VIEW 2: SPREADSHEET TABLE VIEW
+         ========================================================================= -->
+    <main id="view-table" class="view-pane">
+      <div class="table-card-wrap">
+        <table class="clickup-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>نام شرکت و برند</th>
+              <th>حوزه فعالیت</th>
+              <th>سطح</th>
+              <th>مرحله پایپ‌لاین</th>
+              <th>تصمیم‌گیرنده C-Level</th>
+              <th>سرشماره پیامک</th>
+              <th>مسئول پیگیری</th>
+              <th>اولویت</th>
+              <th>اقدامات</th>
+            </tr>
+          </thead>
+          <tbody id="tableBodyRows"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         VIEW 3: GANTT & TIMELINE VIEW
+         ========================================================================= -->
+    <main id="view-gantt" class="view-pane">
+      <div class="gantt-board" id="ganttRowsContainer"></div>
+    </main>
+
+    <!-- =========================================================================
+         VIEW 4: TEAM WORKLOAD VIEW
+         ========================================================================= -->
+    <main id="view-team" class="view-pane">
+      <div class="team-grid" id="teamCardsGrid"></div>
+    </main>
+
+  </div>
+
+  <!-- Detail & Edit Drawer (Slide-In) -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer(event)">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="status-badge" id="dDrawerTier">Tier A</span>
+        <button class="btn btn-secondary btn-sm" onclick="closeDrawerNow()">بستن ✕</button>
+      </div>
+
+      <h2 id="dDrawerTitle" style="font-size:1.3rem; font-weight:800; color:var(--text-primary);">عنوان حساب</h2>
+      <div id="dDrawerSubtitle" style="font-size:0.85rem; color:var(--text-secondary);">حوزه فعالیت</div>
+
+      <hr class="separator-etched" />
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <label style="font-size:0.8rem; font-weight:700;">مرحله پایپ‌لاین:</label>
+        <select id="dDrawerStage" class="select-recessed" onchange="updateDrawerCardStage()">
+          <option value="prospect">بانک لیدها (Prospect)</option>
+          <option value="drafting">آماده‌سازی و تدوین (Drafting)</option>
+          <option value="outreach">پیگیری و ارتباط فعال (Outreach)</option>
+          <option value="review">مذاکره و تست (Review)</option>
+          <option value="done">قرارداد و نهایی (Done)</option>
+        </select>
+
+        <label style="font-size:0.8rem; font-weight:700;">مسئول پیگیری:</label>
+        <input type="text" id="dDrawerAssignee" class="input-recessed" placeholder="نام مسئول..." />
+
+        <label style="font-size:0.8rem; font-weight:700;">سرشماره اختصاصی پیامک:</label>
+        <input type="text" id="dDrawerShortcode" class="input-recessed" placeholder="مثال: 10000200002255" />
+
+        <label style="font-size:0.8rem; font-weight:700;">پاشنه آشیل و نقطه درد فنی:</label>
+        <textarea id="dDrawerPain" class="input-recessed" style="height:70px; padding:8px;" placeholder="تاخیر OTP، فیلتر بلک‌لیست..."></textarea>
+
+        <label style="font-size:0.8rem; font-weight:700;">پیام قلاب به مدیرعامل (Hook):</label>
+        <textarea id="dDrawerHook" class="input-recessed" style="height:90px; padding:8px;"></textarea>
+
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px;">
+          <button class="btn btn-secondary btn-sm" onclick="deleteCurrentCard()">حذف کارت</button>
+          <button class="btn btn-primary btn-sm" onclick="saveDrawerEdits()">ذخیره تغییرات</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pure Vanilla Architecture & Cloud Persistence Script -->
+  <script>
+    // Theme Management
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'dark';
+      const target = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', target);
+      localStorage.setItem('pfg_theme_preference', target);
+    }
+
+    (function initTheme() {
+      const saved = localStorage.getItem('pfg_theme_preference');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    })();
+
+    // State
+    let accountsData = [];
+    let currentDrawerAccount = null;
+    const STORAGE_KEY = "pfg_clickup_board_data_v1";
+    const PRIMARY_API = "/api/warroom/accounts";
+    const FIREBASE_API = "https://gen-lang-client-0338096411-default-rtdb.firebaseio.com/warroom/accounts.json";
+
+    // View Navigation
+    function switchView(viewName) {
+      document.querySelectorAll('.view-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
+
+      const targetPane = document.getElementById('view-' + viewName);
+      if (targetPane) targetPane.classList.add('active');
+
+      const pills = document.querySelectorAll('.nav-pill');
+      if (viewName === 'kanban') pills[0]?.classList.add('active');
+      else if (viewName === 'table') pills[1]?.classList.add('active');
+      else if (viewName === 'gantt') pills[2]?.classList.add('active');
+      else if (viewName === 'team') pills[3]?.classList.add('active');
+
+      if (viewName === 'table') renderTableView();
+      if (viewName === 'gantt') renderGanttView();
+      if (viewName === 'team') renderTeamView();
+    }
+
+    // Load Data
+    async function initData() {
+      updateSyncStatus('saving', 'در حال واکشی اطلاعات...');
+
+      // 1. Try LocalStorage
+      const localCached = localStorage.getItem(STORAGE_KEY);
+      if (localCached) {
+        try {
+          accountsData = JSON.parse(localCached);
+          renderAllViews();
+        } catch(e) {}
+      }
+
+      // 2. Fetch from Primary API or data.json
+      try {
+        const res = await fetch(PRIMARY_API + "?t=" + Date.now(), { cache: "no-store" });
+        if (res.ok) {
+          const remoteData = await res.json();
+          if (Array.isArray(remoteData) && remoteData.length > 0) {
+            accountsData = remoteData;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(accountsData));
+            updateSyncStatus('synced', 'متصل و همگام با سرور');
+            renderAllViews();
+            return;
+          }
+        }
+      } catch(err) {
+        console.warn("Primary API fetch error, trying local fallback:", err);
+      }
+
+      // 3. Fallback to ./data.json
+      try {
+        let res2 = await fetch("./data.json?t=" + Date.now(), { cache: "no-store" });
+        if (!res2.ok) {
+          res2 = await fetch("/warroom/data.json?t=" + Date.now(), { cache: "no-store" });
+        }
+        if (!res2.ok) {
+          res2 = await fetch("/data.json?t=" + Date.now(), { cache: "no-store" });
+        }
+        if (res2.ok) {
+          const fallbackData = await res2.json();
+          if (Array.isArray(fallbackData) && fallbackData.length > 0) {
+            accountsData = fallbackData;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(accountsData));
+            updateSyncStatus('synced', 'همگام از data.json');
+            renderAllViews();
+            return;
+          }
+        }
+      } catch(err2) {
+        console.warn("Fallback data.json fetch error:", err2);
+      }
+
+      updateSyncStatus('synced', 'آماده (داده‌های آفلاین)');
+      renderAllViews();
+    }
+
+    // Sync Persistence Engine
+    async function persistChanges(actionDescription = "ویرایش بورد") {
+      updateSyncStatus('saving', 'در حال ذخیره...');
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(accountsData));
+
+      // Attempt 1: Server POST
+      try {
+        const res = await fetch(PRIMARY_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-User-Name": "مدیر پروژه" },
+          body: JSON.stringify(accountsData)
+        });
+        if (res.ok) {
+          updateSyncStatus('synced', 'ذخیره شد روی سرور استکهلم');
+          return;
+        }
+      } catch(e) {}
+
+      // Attempt 2: Firebase Fallback
+      try {
+        const fbRes = await fetch(FIREBASE_API, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(accountsData)
+        });
+        if (fbRes.ok) {
+          updateSyncStatus('synced', 'ذخیره شد روی Google Cloud / Firebase');
+          return;
+        }
+      } catch(e) {}
+
+      updateSyncStatus('synced', 'ذخیره در مرورگر (آفلاین)');
+    }
+
+    function updateSyncStatus(status, text) {
+      const badge = document.getElementById('syncStatusBadge');
+      const dot = document.getElementById('syncDot');
+      const label = document.getElementById('syncText');
+      if (!badge || !dot || !label) return;
+
+      label.innerText = text;
+      if (status === 'saving') {
+        dot.style.backgroundColor = 'var(--status-warning)';
+        dot.style.boxShadow = '0 0 8px var(--status-warning)';
+      } else {
+        dot.style.backgroundColor = 'var(--status-success)';
+        dot.style.boxShadow = '0 0 8px var(--status-success)';
+      }
+    }
+
+    function forceSyncToCloud() {
+      persistChanges("همگام‌سازی دستی");
+    }
+
+    // Render Master
+    function renderAllViews() {
+      renderKanbanView();
+      const countEl = document.getElementById('accountCountLabel');
+      if (countEl) countEl.innerText = `${accountsData.length} حساب و تسک`;
+    }
+
+    // 1. Render Kanban
+    function renderKanbanView() {
+      const search = (document.getElementById('globalSearchInput')?.value || '').toLowerCase();
+      const tier = document.getElementById('tierFilterSelect')?.value || 'all';
+      const assignee = document.getElementById('assigneeFilterSelect')?.value || 'all';
+
+      const stacks = {
+        prospect: document.getElementById('stack-prospect'),
+        drafting: document.getElementById('stack-drafting'),
+        outreach: document.getElementById('stack-outreach'),
+        review: document.getElementById('stack-review'),
+        done: document.getElementById('stack-done')
+      };
+
+      const counts = { prospect: 0, drafting: 0, outreach: 0, review: 0, done: 0 };
+      Object.values(stacks).forEach(s => { if (s) s.innerHTML = ''; });
+
+      accountsData.forEach(acc => {
+        // Filter criteria
+        const nameMatch = (acc.name || '').toLowerCase().includes(search) || 
+                          (acc.decisionMaker || '').toLowerCase().includes(search) ||
+                          (acc.shortcode || '').includes(search);
+        const tierMatch = tier === 'all' || acc.tier === tier;
+        const assigneeStr = `${acc.assigneeResearcher || ''} ${acc.assigneeDrafter || ''} ${acc.assigneeApprover || ''}`;
+        const assigneeMatch = assignee === 'all' || assigneeStr.includes(assignee);
+
+        if (!nameMatch || !tierMatch || !assigneeMatch) return;
+
+        // Stage mapping
+        let stage = acc.stage || 'prospect';
+        if (!stacks[stage]) stage = 'prospect';
+        counts[stage]++;
+
+        const card = document.createElement('article');
+        card.className = 'task-card';
+        card.onclick = () => openDrawer(acc);
+
+        const priority = acc.tier === 'Tier A' ? 'urgent' : 'high';
+        const priorityLabel = priority === 'urgent' ? 'فوری (Tier A)' : 'بالا (Tier B)';
+
+        const initials = (acc.name || 'ح')[0];
+        const assignedName = acc.assigneeDrafter || acc.assigneeResearcher || 'تیم عملیات';
+
+        card.innerHTML = `
+          <div class="card-top-tags">
+            <span class="badge-tier">${acc.tier || 'Tier B'}</span>
+            <span class="priority-chip ${priority}">⚡ ${priorityLabel}</span>
+          </div>
+
+          <h3 class="card-heading">${acc.name}</h3>
+          <p class="card-subtext">${acc.pain || acc.vertical || 'در حال آماده‌سازی روت پیامکی...'}</p>
+
+          <div class="card-metadata-grid">
+            <div class="meta-field"><span>C-Level:</span> <span>${(acc.decisionMaker || 'تعیین نشده').split('(')[0]}</span></div>
+            <div class="meta-field"><span>سرشماره:</span> <span class="mono-num">${acc.shortcode || 'در انتظار'}</span></div>
+          </div>
+
+          <div class="card-bottom">
+            <div class="assignee-avatar">
+              <span class="avatar-dot">${initials}</span>
+              <span>${assignedName}</span>
+            </div>
+            <div class="card-actions-quick" onclick="event.stopPropagation()">
+              <button class="btn-step" onclick="shiftCard('${acc.id}', -1)" title="مرحله قبل">←</button>
+              <button class="btn-step" onclick="shiftCard('${acc.id}', 1)" title="مرحله بعد">→</button>
+            </div>
+          </div>
+        `;
+
+        stacks[stage].appendChild(card);
+      });
+
+      // Update counters
+      Object.keys(counts).forEach(k => {
+        const badge = document.getElementById('count-' + k);
+        if (badge) badge.innerText = counts[k];
+      });
+    }
+
+    // Step Forward / Backward in Kanban
+    const STAGE_ORDER = ['prospect', 'drafting', 'outreach', 'review', 'done'];
+    function shiftCard(accId, dir) {
+      const acc = accountsData.find(a => a.id === accId);
+      if (!acc) return;
+      let currIdx = STAGE_ORDER.indexOf(acc.stage || 'prospect');
+      if (currIdx === -1) currIdx = 0;
+      let nextIdx = currIdx + dir;
+      if (nextIdx >= 0 && nextIdx < STAGE_ORDER.length) {
+        acc.stage = STAGE_ORDER[nextIdx];
+        renderKanbanView();
+        persistChanges(`تغییر مرحله ${acc.name} به ${acc.stage}`);
+      }
+    }
+
+    // Quick Card Adder
+    function handleAdderKey(e, stage) {
+      if (e.key === 'Enter') quickAddCard(stage);
+    }
+
+    function quickAddCard(stage) {
+      const input = document.getElementById('adder-' + stage);
+      if (!input) return;
+      const val = input.value.trim();
+      if (!val) return;
+
+      const newAcc = {
+        id: "acc-" + Date.now(),
+        num: String(accountsData.length + 1),
+        name: val,
+        vertical: "سرویس‌های آنلاین B2B",
+        tier: "Tier A",
+        score: "۸۵",
+        stage: stage,
+        decisionMaker: "مدیرعامل / هیئت‌مدیره",
+        assigneeDrafter: "صراف‌زاده",
+        pain: "تاخیر در پیامک‌های OTP و عدم گزارش تحویل رسمی",
+        shortcode: "در انتظار استعلام"
+      };
+
+      accountsData.push(newAcc);
+      input.value = '';
+      renderKanbanView();
+      persistChanges(`افزودن کارت ${val}`);
+    }
+
+    // 2. Render Spreadsheet Table View
+    function renderTableView() {
+      const tbody = document.getElementById('tableBodyRows');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      accountsData.forEach((acc, i) => {
+        const tr = document.createElement('tr');
+        tr.onclick = () => openDrawer(acc);
+        tr.style.cursor = 'pointer';
+
+        tr.innerHTML = `
+          <td class="mono-num">${i + 1}</td>
+          <td><b>${acc.name}</b></td>
+          <td>${acc.vertical || 'عمومی'}</td>
+          <td><span class="badge-tier">${acc.tier || 'Tier B'}</span></td>
+          <td><span class="status-badge">${acc.stage || 'prospect'}</span></td>
+          <td>${acc.decisionMaker || '-'}</td>
+          <td class="mono-num">${acc.shortcode || 'نامشخص'}</td>
+          <td>${acc.assigneeDrafter || acc.assigneeResearcher || 'تیم'}</td>
+          <td><span class="priority-chip urgent">⚡ فوری</span></td>
+          <td><button class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); openDrawer(accountsData[${i}])">ویرایش</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // 3. Render Gantt Timeline View
+    function renderGanttView() {
+      const container = document.getElementById('ganttRowsContainer');
+      if (!container) return;
+      container.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h2 style="font-size:1rem; font-weight:700;">زمان‌بندی اسپرینت جاری و مهلت‌های پیگیری ۴۸ ساعته</h2>
+          <span class="mono-num" style="font-size:0.8rem; color:var(--text-secondary);">SPRINT 03 · ۱۴۰۵/۰۸/۱۱ الی ۱۴۰۵/۰۸/۲۵</span>
+        </div>
+      `;
+
+      accountsData.slice(0, 12).forEach((acc, i) => {
+        const progressPct = acc.stage === 'done' ? 100 : (acc.stage === 'review' ? 75 : (acc.stage === 'outreach' ? 50 : 25));
+        const row = document.createElement('div');
+        row.className = 'timeline-row';
+        row.innerHTML = `
+          <div>
+            <div style="font-weight:700; font-size:0.85rem;">${acc.name}</div>
+            <div style="font-size:0.72rem; color:var(--text-tertiary);">مرحله: ${acc.stage}</div>
+          </div>
+          <div class="timeline-bar-wrap">
+            <div class="timeline-progress mono-num" style="width: ${progressPct}%;">
+              ${progressPct}%
+            </div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    // 4. Render Team Workload View
+    function renderTeamView() {
+      const grid = document.getElementById('teamCardsGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      const members = [
+        { name: "آقای صراف‌زاده", role: "فنی محصول و لیدجنریشن", tag: "ص", key: "صراف‌زاده" },
+        { name: "خانم فائزه کوشکشتانی", role: "واحد IT و ممیزی", tag: "ف", key: "فائزه" },
+        { name: "خانم مریم موسی‌پور", role: "معاونت اجرایی", tag: "م", key: "موسی‌پور" },
+        { name: "خانم خرم‌دل", role: "عملیات و پشتیبانی", tag: "خ", key: "خرم‌دل" },
+        { name: "خانم مهندس شهروزی", role: "مدیرعامل و راهبر عالی", tag: "ش", key: "شهروزی" }
+      ];
+
+      members.forEach(m => {
+        const assignedAccounts = accountsData.filter(a => {
+          const str = `${a.assigneeDrafter || ''} ${a.assigneeResearcher || ''} ${a.assigneeApprover || ''}`;
+          return str.includes(m.key);
+        });
+
+        const card = document.createElement('div');
+        card.className = 'team-card';
+        card.innerHTML = `
+          <div class="member-top">
+            <div class="member-avatar">${m.tag}</div>
+            <div>
+              <h3 style="font-size:0.95rem; font-weight:700;">${m.name}</h3>
+              <p style="font-size:0.75rem; color:var(--text-secondary);">${m.role}</p>
+            </div>
+          </div>
+          <hr class="separator-etched" />
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
+            <span>حساب‌های تحت مسئولیت:</span>
+            <b class="mono-num">${assignedAccounts.length} حساب</b>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
+            ${assignedAccounts.slice(0, 4).map(a => `<div style="font-size:0.75rem; background:var(--bg-recessed); padding:4px 8px; border-radius:6px;">• ${a.name} (${a.stage})</div>`).join('')}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Handler
+    function applyFilters() {
+      renderKanbanView();
+    }
+
+    // Drawer Handler
+    function openDrawer(acc) {
+      currentDrawerAccount = acc;
+      document.getElementById('dDrawerTier').innerText = acc.tier || 'Tier A';
+      document.getElementById('dDrawerTitle').innerText = acc.name || 'حساب';
+      document.getElementById('dDrawerSubtitle').innerText = acc.vertical || 'سرویس‌های آنلاین B2B';
+      document.getElementById('dDrawerStage').value = acc.stage || 'prospect';
+      document.getElementById('dDrawerAssignee').value = acc.assigneeDrafter || acc.assigneeResearcher || '';
+      document.getElementById('dDrawerShortcode').value = acc.shortcode || '';
+      document.getElementById('dDrawerPain').value = acc.pain || '';
+      document.getElementById('dDrawerHook').value = acc.hookCeo || '';
+      document.getElementById('drawerOverlay').classList.add('active');
+    }
+
+    function closeDrawerNow() {
+      document.getElementById('drawerOverlay').classList.remove('active');
+      currentDrawerAccount = null;
+    }
+
+    function closeDrawer(e) {
+      if (e.target.id === 'drawerOverlay') closeDrawerNow();
+    }
+
+    function updateDrawerCardStage() {
+      if (!currentDrawerAccount) return;
+      currentDrawerAccount.stage = document.getElementById('dDrawerStage').value;
+      renderKanbanView();
+      persistChanges(`تغییر مرحله ${currentDrawerAccount.name}`);
+    }
+
+    function saveDrawerEdits() {
+      if (!currentDrawerAccount) return;
+      currentDrawerAccount.stage = document.getElementById('dDrawerStage').value;
+      currentDrawerAccount.assigneeDrafter = document.getElementById('dDrawerAssignee').value.trim();
+      currentDrawerAccount.shortcode = document.getElementById('dDrawerShortcode').value.trim();
+      currentDrawerAccount.pain = document.getElementById('dDrawerPain').value.trim();
+      currentDrawerAccount.hookCeo = document.getElementById('dDrawerHook').value.trim();
+
+      renderAllViews();
+      persistChanges(`ویرایش مشخصات ${currentDrawerAccount.name}`);
+      closeDrawerNow();
+    }
+
+    function deleteCurrentCard() {
+      if (!currentDrawerAccount) return;
+      if (confirm(`آیا از حذف کارت «${currentDrawerAccount.name}» مطمئن هستید؟`)) {
+        accountsData = accountsData.filter(a => a.id !== currentDrawerAccount.id);
+        renderAllViews();
+        persistChanges(`حذف ${currentDrawerAccount.name}`);
+        closeDrawerNow();
+      }
+    }
+
+    function exportBackupJSON() {
+      const blob = new Blob([JSON.stringify(accountsData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `PFG_ClickUp_Project_Board_${Date.now()}.json`;
+      a.click();
+    }
+
+    // Initialize on page ready
+    document.addEventListener('DOMContentLoaded', initData);
+  </script>
+</body>
+</html>
