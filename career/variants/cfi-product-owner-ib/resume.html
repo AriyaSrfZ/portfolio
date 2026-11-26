@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ariya Sarrafzadeh, Resume</title>
+<style>
+@font-face{font-family:IN;src:url(inter-400.woff2);font-weight:400}
+@font-face{font-family:IN;src:url(inter-500.woff2);font-weight:500}
+@font-face{font-family:IN;src:url(inter-600.woff2);font-weight:600}
+:root{--carbon:#202725;--graphite:#292F2D;--basalt:#343C38;--patina:#8FB4AA;--patina-d:#527C78;--ochre:#B39A77;--line:#D9DEDB}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:IN,Arial,sans-serif;color:var(--carbon);background:#fff;font-size:8.6pt;line-height:1.44}
+.page{width:210mm;height:297mm;overflow:hidden}
+header{background:var(--carbon);color:#fff;padding:6mm 13mm 5mm;border-bottom:3px solid var(--patina-d)}
+h1{font-size:19pt;font-weight:600;letter-spacing:.2px}
+.role{color:var(--patina);font-size:10.5pt;font-weight:500;margin-top:.5mm}
+.contact{margin-top:2mm;font-size:8.2pt;color:#E4E8E6}
+.contact span{margin-right:4.5mm;white-space:nowrap}
+.contact b{color:var(--ochre);font-weight:500;margin-right:1mm}
+main{padding:2.5mm 13mm 0}
+section{margin-top:2.8mm}
+h2{font-size:9.6pt;font-weight:600;color:var(--patina-d);text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--line);padding-bottom:.8mm;margin-bottom:1.6mm;display:flex;align-items:center;gap:2mm}
+
+p.sum{text-align:justify}
+.job{margin-bottom:2.4mm}
+.jh{display:flex;justify-content:space-between;align-items:baseline}
+.jh h3{font-size:9.7pt;font-weight:600}
+.date{color:#8A7556;font-size:8.2pt;font-weight:600;white-space:nowrap}
+.sub{color:var(--patina-d);font-weight:500;font-size:8.5pt}
+ul{padding-left:4mm;margin-top:.8mm}
+li{margin-bottom:.35mm}
+li::marker{color:var(--patina-d)}
+.skills div{margin-bottom:.8mm}
+.skills b{font-weight:600}
+.two{display:grid;grid-template-columns:1.45fr 1fr;gap:6mm}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <h1>Ariya Sarrafzadeh</h1>
+  <div class="role">Product Owner for FinTech Platforms, Payouts and Back-Office Integrations</div>
+  <div class="contact">
+    <span><b>Phone</b>{{PHONE}}</span>
+    <span><b>Email</b>aria.sarrafzadeh@gmail.com</span>
+    <span><b>Location</b>Tehran, Iran, open to relocation to Dubai, UAE</span><br>
+    <span><b>Web</b>ariya-sarrafzadeh.ir</span>
+    <span><b>LinkedIn</b>linkedin.com/in/ariya-sarrafzadeh</span>
+  </div>
+</header>
+
+<main>
+<section>
+  <h2>Summary</h2>
+  <p class="sum">Product owner with 10 years in FinTech platforms, payments and back-office operations. I own roadmaps and backlogs, translate business and compliance requirements into user stories, acceptance criteria and specifications, and partner daily with engineering, data, business, compliance and marketing. Employee #1 at Digipay, the fintech arm of Digikala Group, where I designed multi-party reconciliation and settlement flows, owned operations for every product line, and served as the trusted contact for banks and the Central Bank. Today I own an API platform that integrates 30+ third-party identity, KYC and banking providers.</p>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <div class="job">
+    <div class="jh"><h3>Senior Technical Product Manager, Persia Fava Gostaresh, Tehran</h3><span class="date">Apr 2025 to Present</span></div>
+    <div class="sub">Product owner of Shenasa, an identity, KYC and open-banking API gateway</div>
+    <ul>
+      <li>Own the product roadmap and backlog end to end. Built the 12-month roadmap and prioritized integration of 30+ identity, KYC and banking providers (Shahkar, Yekta, Sanbod, Tosan).</li>
+      <li>Translate business requirements into PRDs, user stories, acceptance criteria and product specifications, including a user authentication system (UAA) and a new messenger bot channel.</li>
+      <li>Manage back-office integrations and dependencies with banks and third-party partners. Authored enterprise documentation, including for Digikala, covering TPS capacity, failover, webhooks and security.</li>
+      <li>Designed a Python, Parquet and Elasticsearch data pipeline that feeds analytics, reporting and product decisions.</li>
+      <li>Bridge business objectives and technical execution as sole liaison between the CEO and outsourced backend and frontend teams.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="jh"><h3>Employee #1, Senior Technical Operations Analyst, Digipay (Digikala Group), Tehran</h3><span class="date">Jul 2018 to Apr 2025</span></div>
+    <div class="sub">Also Senior Payments and Fraud Consultant for Digikala, a 45M-user e-commerce platform</div>
+    <ul>
+      <li>Designed multi-party reconciliation and settlement logic for wallet, card-to-card and lending products before engineering began, so calculations, tracking and reporting stayed accurate across partners and banks.</li>
+      <li>Owned implementation, testing, operations, support and reconciliation across every super-app product: wallet, card-to-card, bill payment, mobile top-up, internet packages, insurance payments and credit.</li>
+      <li>Worked daily with every unit, including engineering, business, legal, compliance and marketing, to align product behavior with operational and regulatory requirements. Managed ~300 regulatory accounts.</li>
+      <li>Built monitoring dashboards with Prometheus and Grafana and turned system data into reports for executives. Standardized error logging, data and code conventions across units.</li>
+      <li>Owned the SMS channel for 7 years, shared across 10 products, including SMS marketing and behavioral analysis for the growth program.</li>
+      <li>Answered 50,000+ official cyber police inquiries with zero failed cases, supported by a classical ML response tool I built. Cut fraud reporting time by 96% and resolution time from 48 hours to 45 minutes.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="jh"><h3>Operations Analyst, Founding Team, Homapay, Tehran</h3><span class="date">Sep 2016 to Jun 2018</span></div>
+    <ul>
+      <li>Ran financial flows and monitoring during the startup phase. The company tripled its funding and was acquired by Digikala, becoming the foundation of Digipay.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="jh"><h3>Earlier Roles</h3></div>
+    <ul>
+      <li>Regional Sales Manager leading 30+ sales reps with full P&amp;L ownership. Founder of an IT consultancy serving 15+ SME clients.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="two">
+<section class="skills">
+  <h2>Skills</h2>
+  <div><b>Product:</b> Product Ownership, Roadmap and Backlog Management, User Stories, Acceptance Criteria, Product Specifications, Prioritization, Scrum, Stakeholder Management, KPIs</div>
+  <div><b>FinTech:</b> Payments, Settlement and Payout Reconciliation, Wallets, Credit and Lending, KYC, Fraud and AML Operations, Compliance and Regulatory Alignment, Partner Integrations</div>
+  <div><b>Data and Technical:</b> Data Platforms, BI Dashboards, Reporting, Python, Elasticsearch, Grafana, Prometheus, API Integration, Back-Office Integrations, Webhooks</div>
+</section>
+<section class="skills">
+  <h2>Education and Languages</h2>
+  <div><b>BSc, Software Engineering</b><br>Islamic Azad University, South Tehran Branch</div>
+  <div><b>Persian:</b> Native<br><b>English:</b> Professional working proficiency</div>
+</section>
+</div>
+</main>
+</div>
+</body>
+</html>
